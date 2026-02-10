@@ -1,4 +1,5 @@
 using Feature.Common;
+using Feature.HandLogic;
 using Zenject;
 
 namespace Feature.EntryPoint.Script
@@ -9,6 +10,7 @@ namespace Feature.EntryPoint.Script
         {
             Container.BindInterfacesAndSelfTo<GameBootstrap>().AsSingle().NonLazy();
             Container.Bind<CorrectableActivityGameObject>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<HandCardsPositionSystem>().FromComponentInHierarchy().AsSingle();
         }
     }
 }
