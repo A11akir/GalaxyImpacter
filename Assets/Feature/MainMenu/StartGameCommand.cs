@@ -16,7 +16,7 @@ namespace Feature.MainMenu
 
         protected override void OnExecute()
         {
-            _bootstrap.StartLevel();
+            _bootstrap.CheckStartLevel();
         }
     }
 }

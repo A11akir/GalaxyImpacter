@@ -1,3 +1,4 @@
+using Feature.Steam;
 using Zenject;
 
 namespace Feature.EntryPoint.Script
@@ -7,6 +8,7 @@ namespace Feature.EntryPoint.Script
         public override void InstallBindings()
         {
             Container.BindInterfacesAndSelfTo<EntryPointLoadingScene>().AsSingle();
+            Container.Bind<SteamStart>().FromComponentInHierarchy().AsSingle();
         }
     }
 }
