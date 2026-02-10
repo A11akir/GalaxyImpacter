@@ -9,8 +9,12 @@ namespace Feature.HandLogic
         private readonly List<GameObject> _handCards = new List<GameObject>();
         
         [SerializeField] private Transform handParent;
-        [SerializeField] private int verticalCardOffset = 50;        
-        [SerializeField] private int horizontalCardOffset = 100;
+        [SerializeField] private int verticalCardOffset = 30; 
+        [SerializeField] private int verticalCardOffsetRatio = 5;  
+        [SerializeField] private int cardOffsetRotate = 15;
+        [SerializeField] private float cardOffsetRotateRatio = 1;        
+        [SerializeField] private int horizontalCardOffset = 150; 
+        [SerializeField] private int horizontalCardOffsetRatio = 10;
 
         [Button]
         private void UpdateCardsPosition()
@@ -19,13 +23,53 @@ namespace Feature.HandLogic
 
             for (int i = 0; i < _handCards.Count; i++)
             {
-                float yPos = verticalCardOffset * Mathf.Min(i, _handCards.Count - 1 - i);
-                
                 float centerOffset = (_handCards.Count - 1) * horizontalCardOffset / 2f;
-                float xPos = (i * horizontalCardOffset) - centerOffset;
+                Debug.Log(centerOffset);
+                
+                var rotateZ = CalculateRotateZ(i);
+                var yPos = CalculateYPos(i);
+                var xPos = CalculateXPos(i);
                 
                 _handCards[i].transform.localPosition = new Vector3(xPos, yPos, 0);
+                if (!float.IsNaN(rotateZ)) _handCards[i].transform.localRotation = Quaternion.Euler(0, 0, rotateZ);
             }
+        }
+
+        private float CalculateRotateZ(int i)
+        {
+            if (_handCards.Count == 1) return 0;
+            
+            int distanceFromEdge = Mathf.Min(i, _handCards.Count - 1 - i);
+    
+            float centerIndex = (_handCards.Count - 1) / 2f;
+            float offsetFromCenter = i - centerIndex;
+    
+            float normalizedOffset = offsetFromCenter / centerIndex;
+    
+            float rotateZ = normalizedOffset * (-cardOffsetRotate - cardOffsetRotateRatio * distanceFromEdge);
+    
+            return rotateZ;
+        }
+
+        private float CalculateXPos(int i)
+        {
+            int count = _handCards.Count;
+
+            float spacing = horizontalCardOffset
+                            - (count - 1) * horizontalCardOffsetRatio;
+
+            spacing = Mathf.Max(spacing, 20f);
+
+            float centerIndex = (count - 1) / 2f;
+
+            return (i - centerIndex) * spacing;
+        }
+
+        private float CalculateYPos(int i)
+        {
+            float yPos = (verticalCardOffset - verticalCardOffsetRatio*_handCards.Count)
+                         * Mathf.Min(i, _handCards.Count - 1 - i);
+            return yPos;
         }
 
         private void CollectHandCards()
