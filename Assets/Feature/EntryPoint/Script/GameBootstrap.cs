@@ -10,7 +10,6 @@ namespace Feature.EntryPoint.Script
         private readonly CorrectableActivityGameObject _correctableActivityGameObject;
         public GameBootstrap(CorrectableActivityGameObject correctableActivityGameObject)
         {
-
             _correctableActivityGameObject = correctableActivityGameObject;
         }
         
