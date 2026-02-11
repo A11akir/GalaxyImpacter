@@ -6,7 +6,7 @@ namespace Feature.EntryPoint.Script
     {
         public void StartLevel()
         {
-            SelectGameMode();
+            /*SelectGameMode();*/
         }
     }
 }
