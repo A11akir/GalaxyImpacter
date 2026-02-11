@@ -10,6 +10,7 @@ namespace Feature.EntryPoint.Script
         private readonly CorrectableActivityGameObject _correctableActivityGameObject;
         public GameBootstrap(CorrectableActivityGameObject correctableActivityGameObject)
         {
+
             _correctableActivityGameObject = correctableActivityGameObject;
         }
         
@@ -17,11 +18,11 @@ namespace Feature.EntryPoint.Script
         {
             if (GameModeSession.GameMode == GameMode.GameMode.Offline)
             {
-                
+                Debug.Log("Starting Game Mode Offline");
             }
             else if (GameModeSession.GameMode == GameMode.GameMode.Online)
             {
-                
+                Debug.Log("Starting Game Mode Online");
             }
         }
 
