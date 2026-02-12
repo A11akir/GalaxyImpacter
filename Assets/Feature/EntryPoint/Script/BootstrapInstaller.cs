@@ -24,7 +24,8 @@ namespace Feature.EntryPoint.Script
             Container.Bind<HeroView>().FromComponentInHierarchy().AsTransient(); //Check Trouble
             
             Container.Bind<GameSessionPlayerData>().AsSingle();
-            Container.Bind<GameSessionData.GameSessionData>().AsSingle();
+            Container.Bind<GameSessionData.GameSessionData>().AsTransient();
+
             
             
             BindGameSessionFSM();
@@ -34,7 +35,7 @@ namespace Feature.EntryPoint.Script
         
         private void BindGameSessionFSM()
         {
-            Container.Bind<GameSessionFSM.GameSessionFSM>().AsSingle();
+            Container.Bind<GameSessionFSM.GameSessionFSM>().FromComponentInHierarchy().AsSingle();
             Container.Bind<StartStateGameSessionFSM>().AsTransient();
             Container.Bind<BanStateGameSessionFSM>().AsTransient();
             Container.Bind<PickStateGameSessionFSM>().AsTransient();

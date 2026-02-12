@@ -15,9 +15,11 @@ namespace Feature.UI.SelectWindowHero
         private GameData _gameData;
         
         
-        public SelectWindowHeroPresenter(SelectWindowHeroView selectWindowHeroView)
+        public SelectWindowHeroPresenter(SelectWindowHeroView selectWindowHeroView, GameData gameData, SelectWindowHeroModel selectWindowHeroModel)
         {
             _selectWindowHeroView = selectWindowHeroView;
+            _gameData = gameData;
+            _selectWindowHeroModel = selectWindowHeroModel;
 
             _selectWindowHeroView.OnBanHeroButtonClicked += BanHero;
             _selectWindowHeroView.OnChoseHeroButtonClicked += ChoseHero;

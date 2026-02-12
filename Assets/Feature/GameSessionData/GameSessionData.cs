@@ -7,6 +7,13 @@ namespace Feature.GameSessionData
         public GameSessionPlayerData PlayerHero;
         public GameSessionPlayerData EnemyHero;
 
+
+        public GameSessionData(GameSessionPlayerData playerHero, GameSessionPlayerData enemyHero)
+        {
+            PlayerHero = playerHero;
+            EnemyHero = enemyHero;
+        }
+
         public bool PlayersHaveHero()
         {
             if (PlayerHero.PlayerHasHero() &&
