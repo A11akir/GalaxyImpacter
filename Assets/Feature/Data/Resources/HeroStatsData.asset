@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee97756efd444f34bac052c819c8ec76, type: 3}
+  m_Name: HeroStatsData
+  m_EditorClassIdentifier: 
+  allHeroStats:
+  - {fileID: 11400000, guid: 49d56671969e1bd4e8861e1eb735a337, type: 2}
+  - {fileID: 11400000, guid: 8180934e2f95b204f97ab29bbc5a4ec3, type: 2}
+  - {fileID: 11400000, guid: 46f9221a1ca417e409beeeaae6a03aa7, type: 2}
+  - {fileID: 11400000, guid: 5a1283e982149834ca03c7c9cd4b54f1, type: 2}
+  - {fileID: 11400000, guid: 0c3ef91e5488dec4b9d3574a9a485eea, type: 2}
+  - {fileID: 11400000, guid: 23d54e4559ecd8b4a86811c3d24a887b, type: 2}
+  - {fileID: 11400000, guid: 8e82bd8ecee6d7841b7dded3fd7f04e3, type: 2}
+  - {fileID: 11400000, guid: f7a3cdd09059db4459323cd6f4cfcb47, type: 2}
+  - {fileID: 11400000, guid: b1b39476d51250a4daaba096a52310b7, type: 2}
