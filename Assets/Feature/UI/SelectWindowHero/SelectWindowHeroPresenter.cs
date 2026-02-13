@@ -6,6 +6,7 @@ using Feature.GameSessionData;
 using Feature.GameSessionFSM;
 using Feature.Hero;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 namespace Feature.UI.SelectWindowHero
@@ -81,15 +82,20 @@ namespace Feature.UI.SelectWindowHero
 
             _gameSessionData.PlayerHero = _selectWindowHeroModel._selectedHero;
 
+            
+            _selectWindowHeroView.HideSelectButton();
+            _selectWindowHeroView.OnChoseHeroButtonClicked -= ChoseHeroPlayer;
             OnPickedHero?.Invoke();
             if (_gameSessionData.PlayersHaveHero())
-            {
                 _gameSessionFSM.SetState<PrepareStateGameSessionFSM>();
-            }
+            
+            selectedHero._isBanned = true;
         }
         public void ChoseHeroEnemy()
         {
             var selectedHero = _selectWindowHeroView._selectHeroView;
+            
+            
             
             SetViewSelectedHeroBot();
             
@@ -100,6 +106,8 @@ namespace Feature.UI.SelectWindowHero
 
             if (_gameSessionData.PlayersHaveHero())
                 _gameSessionFSM.SetState<PrepareStateGameSessionFSM>();
+
+            selectedHero._isBanned = true;
         }
 
         public void SelectRandomHeroes()
@@ -117,7 +125,9 @@ namespace Feature.UI.SelectWindowHero
                 {
                     _heroName = selectedHeroStats.Name,
                     _health = selectedHeroStats.Health,
-                    _heroPowerData = selectedHeroStats.HeroPowerCost
+                    _heroPowerCost = selectedHeroStats.HeroPowerCost,
+                    
+                    _iconImage = selectedHeroStats.IconImage
                 };
 
                 _selectWindowHeroModel._heroesForChose.Add(heroData);

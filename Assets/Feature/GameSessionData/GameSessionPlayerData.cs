@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Feature.GameSessionData
 {
@@ -12,12 +13,14 @@ namespace Feature.GameSessionData
 
         public string _heroName;
 
-        public int _heroPowerData;
+        public int _heroPowerCost;
         public int _health;
+        public Sprite _iconImage;
+        public Sprite _heroPowerSprite;
 
         public bool PlayerHasHero()
         {
-            if (_heroName != null && _heroPowerData != null && _health != null)
+            if (_heroName != null && _heroPowerCost != null && _health != null)
             {
                 return true;
             }

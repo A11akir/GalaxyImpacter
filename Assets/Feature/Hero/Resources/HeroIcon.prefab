@@ -66,6 +66,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _banWindow: {fileID: 3805470002485658676}
   _nameWindow: {fileID: 3592864764503716843}
+  _iconImage: {fileID: 200054665436310926}
   _selectWindow: {fileID: 1850049352185157076}
   _wasSelectBotWindow: {fileID: 4555898984084105891}
   _nameText: {fileID: 7823904269570864308}
@@ -1445,7 +1446,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.26931223, g: 0.07450981, b: 0.5019608, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

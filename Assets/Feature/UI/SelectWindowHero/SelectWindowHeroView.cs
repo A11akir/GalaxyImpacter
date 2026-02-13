@@ -34,7 +34,10 @@ namespace Feature.UI.SelectWindowHero
             
             OnSelectWindowHeroView?.Invoke();
         }
-
+        public void HideSelectButton()
+        {
+            buttonSelectHero.gameObject.SetActive(false);
+        }
         public void ClearAllSelected()
         {
             foreach (var hero in heroViews)

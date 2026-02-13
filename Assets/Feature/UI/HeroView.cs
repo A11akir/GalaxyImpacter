@@ -3,6 +3,7 @@ using Feature.GameSessionData;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Feature.UI
 {
@@ -11,14 +12,16 @@ namespace Feature.UI
         [SerializeField] private GameObject _banWindow;
         [SerializeField] private GameObject _nameWindow;
         
+        [SerializeField] private Image _iconImage;
+        
         [SerializeField] private GameObject _selectWindow;      
         [SerializeField] private GameObject _wasSelectBotWindow;
         
         [SerializeField] public TextMeshProUGUI _nameText;
         [SerializeField] public TextMeshProUGUI _healthText;
         [SerializeField] public TextMeshProUGUI _heroPowerText;
-        
-        private bool _isBanned;
+
+        public bool _isBanned;
 
         public GameSessionPlayerData HeroData { get; private set; }
         
@@ -27,9 +30,10 @@ namespace Feature.UI
         public void SetData(GameSessionPlayerData data)
         {
             HeroData = data;
+            _iconImage.sprite = data._iconImage;
             _nameText.text = data._heroName;
             _healthText.text = data._health.ToString();
-            _heroPowerText.text = data._heroPowerData.ToString();
+            _heroPowerText.text = data._heroPowerCost.ToString();
         }
         
         public void OnPointerDown(PointerEventData eventData)

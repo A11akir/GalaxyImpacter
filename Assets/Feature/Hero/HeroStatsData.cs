@@ -1,5 +1,6 @@
 using Feature.GoogleSheets;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Feature.Hero
 {
@@ -12,7 +13,13 @@ namespace Feature.Hero
         [SerializeField] private int _heroPowerCost;
         [SerializeField] private string _name;
         [SerializeField] private int _health;
+        [SerializeField] private Sprite _iconImage;
         
+        public Sprite IconImage
+        {
+            get => _iconImage;
+            set => _iconImage = value;
+        }        
         public int HeroPowerCost
         {
             get => _heroPowerCost;
