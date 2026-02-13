@@ -4,6 +4,7 @@ namespace Feature.GameSessionFSM
     {
         public PrepareStateGameSessionFSM(GameSessionFSM gameSessionFsm) : base(gameSessionFsm)
         {
+            
         }
     }
 }

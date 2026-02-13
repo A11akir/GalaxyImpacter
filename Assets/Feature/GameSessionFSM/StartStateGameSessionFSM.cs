@@ -10,20 +10,16 @@ namespace Feature.GameSessionFSM
 
         public override void Enter()
         {
+            _gameSessionData.ChooseFirstPlayer();
             CheckGameRules();
-            
         }
 
         private void CheckGameRules()
         {
             if (_gameSessionData.PlayersHaveHero())
-            {
                 _gameSessionFSM.SetState<PrepareStateGameSessionFSM>();
-            }
             else
-            {
                 _gameSessionFSM.SetState<BanStateGameSessionFSM>();
-            }
         }
     }
 }

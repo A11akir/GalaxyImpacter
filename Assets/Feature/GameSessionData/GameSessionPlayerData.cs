@@ -8,10 +8,11 @@ namespace Feature.GameSessionData
     {
         private List<GameplayCard> _cards = new List<GameplayCard>();
 
+        public bool IsPlayerFirst;
 
         public string _heroName;
 
-        public HeroPowerData _heroPowerData;
+        public int _heroPowerData;
         public int _health;
 
         public bool PlayerHasHero()

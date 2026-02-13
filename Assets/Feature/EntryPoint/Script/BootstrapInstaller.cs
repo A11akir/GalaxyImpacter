@@ -1,8 +1,10 @@
+using Feature.AI;
 using Feature.Common;
 using Feature.Data;
 using Feature.GameSessionData;
 using Feature.HandLogic;
 using Feature.GameSessionFSM;
+using Feature.Hero;
 using Feature.UI;
 using Feature.UI.SelectWindowHero;
 using UnityEngine;
@@ -25,6 +27,7 @@ namespace Feature.EntryPoint.Script
             
             Container.Bind<GameSessionPlayerData>().AsSingle();
             Container.Bind<GameSessionData.GameSessionData>().AsTransient();
+            Container.Bind<AIRandomSelectSystem>().AsSingle();
 
             
             
@@ -48,7 +51,8 @@ namespace Feature.EntryPoint.Script
 
         private void BindConfig()
         {
-            Container.Bind<GameData>().FromInstance(_gameData).AsSingle().NonLazy();
+            Container.Bind<GameData>().FromInstance(_gameData).AsSingle().Lazy();
+            Container.Bind<HeroStatsData>().AsSingle();
         }
     }
 }

@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Feature.GameSessionData
 {
     public class GameSessionData
@@ -6,12 +8,27 @@ namespace Feature.GameSessionData
 
         public GameSessionPlayerData PlayerHero;
         public GameSessionPlayerData EnemyHero;
-
-
+        
         public GameSessionData(GameSessionPlayerData playerHero, GameSessionPlayerData enemyHero)
         {
             PlayerHero = playerHero;
             EnemyHero = enemyHero;
+        }
+
+        public void ChooseFirstPlayer()
+        {
+            bool playerFirst = new System.Random().Next(2) == 0;
+            
+            if (playerFirst)
+            {
+                PlayerHero.IsPlayerFirst = true;
+                EnemyHero.IsPlayerFirst = false;
+            }
+            else
+            {
+                PlayerHero.IsPlayerFirst = false;
+                EnemyHero.IsPlayerFirst = true;
+            }
         }
 
         public bool PlayersHaveHero()

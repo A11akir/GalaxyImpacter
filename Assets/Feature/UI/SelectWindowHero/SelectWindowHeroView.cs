@@ -10,7 +10,9 @@ namespace Feature.UI.SelectWindowHero
         [SerializeField] public List<HeroView> heroViews;
         [SerializeField] public Button buttonSelectHero;
         [SerializeField] public Button buttonBanHero;
-        
+
+        [HideInInspector]public HeroView _selectHeroView;
+        public event Action OnSelectWindowHeroView;
         public event Action OnChoseHeroButtonClicked;       
         public event Action OnBanHeroButtonClicked;
 
@@ -18,6 +20,27 @@ namespace Feature.UI.SelectWindowHero
         {
             buttonSelectHero.onClick.AddListener(() => OnChoseHeroButtonClicked?.Invoke());
             buttonBanHero.onClick.AddListener(() => OnBanHeroButtonClicked?.Invoke());
+
+            foreach (var heroView in heroViews)
+            {
+                heroView.OnSelectHeroView += HeroViewViewOnOnSelectHeroView;
+            }
+        }
+
+        private void HeroViewViewOnOnSelectHeroView(HeroView heroView)
+        {
+            _selectHeroView = heroView;
+            ClearAllSelected();
+            
+            OnSelectWindowHeroView?.Invoke();
+        }
+
+        public void ClearAllSelected()
+        {
+            foreach (var hero in heroViews)
+            {
+                hero.ClearSelectWindow();
+            }
         }
     }
 }

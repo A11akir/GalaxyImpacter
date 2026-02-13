@@ -7,7 +7,7 @@ namespace Feature.UI.SelectWindowHero
     {
         public GameSessionPlayerData _selectedHero;
         
-        public List<GameSessionPlayerData> _heroesForChose;
+        public List<GameSessionPlayerData> _heroesForChose = new List<GameSessionPlayerData>();
 
         public int countPersonForChose = 5;
 

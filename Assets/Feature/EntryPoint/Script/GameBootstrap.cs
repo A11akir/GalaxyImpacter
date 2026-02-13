@@ -19,18 +19,15 @@ namespace Feature.EntryPoint.Script
         {
             if (GameModeSession.GameMode == GameMode.GameMode.Offline)
             {
-                Debug.Log("Starting Game Mode Offline");
                 _gameSessionFSM.Initialize();
             }
             else if (GameModeSession.GameMode == GameMode.GameMode.Online)
             {
-                Debug.Log("Starting Game Mode Online");
             }
         }
 
         public void Initialize()
         {
-            Debug.Log("GameBootstrap.Initialize()");
             _correctableActivityGameObject.SetCorrectableActivityGameObject();
         }
     }
