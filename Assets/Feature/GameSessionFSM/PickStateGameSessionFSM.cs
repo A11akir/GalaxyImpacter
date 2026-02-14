@@ -10,7 +10,6 @@ namespace Feature.GameSessionFSM
     {
         private SelectWindowHeroPresenter _selectWindowHeroPresenter { get; set; }
         private GameSessionPlayerData  _gameSessionPlayerData { get; set; }
-        
         private GameSessionDataView  _gameSessionDataView { get; set; }
         private AIRandomSelectSystem _aiRandomSelectSystem { get; set; }
         private GameSessionFSM _gameSessionFsm { get; set; }
@@ -58,12 +57,11 @@ namespace Feature.GameSessionFSM
         public override void Exit()
         {
             _selectWindowHeroPresenter.SetInactive();
-            Debug.Log(_gameSessionData.PlayerHero._heroName);
-            Debug.Log(_gameSessionData.EnemyHero._heroName);
+
             _gameSessionDataView._heroView.SetData(_gameSessionData.PlayerHero);
             _gameSessionDataView._enemyView.SetData(_gameSessionData.EnemyHero);
-            _gameSessionDataView._heroView._isBanned = true;
-            _gameSessionDataView._enemyView._isBanned = true;
+            _gameSessionDataView._heroView._isBlocked = true;
+            _gameSessionDataView._enemyView._isBlocked = true;
         }
     }
 }

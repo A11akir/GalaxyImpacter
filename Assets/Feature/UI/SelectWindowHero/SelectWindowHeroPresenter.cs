@@ -33,6 +33,8 @@ namespace Feature.UI.SelectWindowHero
             _selectWindowHeroView.OnBanHeroButtonClicked += BanHero;
             _selectWindowHeroView.OnChoseHeroButtonClicked += ChoseHeroPlayer;
             _selectWindowHeroView.OnSelectWindowHeroView += SelectHero;
+
+            _selectWindowHeroView.Init();
         }
 
         private void SetViewSelectedHeroBot()
@@ -45,8 +47,7 @@ namespace Feature.UI.SelectWindowHero
             _selectWindowHeroModel._selectedHero =
                 _selectWindowHeroView._selectHeroView.HeroData;
         }
-        public List<GameSessionPlayerData> GetCurrentHeroStats()
-            => _selectWindowHeroModel._heroesForChose;
+
         public void BanHero()
         {
             var selectedHero = _selectWindowHeroView._selectHeroView;
@@ -89,13 +90,11 @@ namespace Feature.UI.SelectWindowHero
             if (_gameSessionData.PlayersHaveHero())
                 _gameSessionFSM.SetState<PrepareStateGameSessionFSM>();
             
-            selectedHero._isBanned = true;
+            selectedHero._isBlocked = true;
         }
         public void ChoseHeroEnemy()
         {
             var selectedHero = _selectWindowHeroView._selectHeroView;
-            
-            
             
             SetViewSelectedHeroBot();
             
@@ -107,10 +106,10 @@ namespace Feature.UI.SelectWindowHero
             if (_gameSessionData.PlayersHaveHero())
                 _gameSessionFSM.SetState<PrepareStateGameSessionFSM>();
 
-            selectedHero._isBanned = true;
+            selectedHero._isBlocked = true;
         }
 
-        public void SelectRandomHeroes()
+        public void SelectStartRandomHeroes()
         {
             List<HeroStatsData> availableHeroes = new List<HeroStatsData>(_gameData.allHeroStats);
             
@@ -150,7 +149,7 @@ namespace Feature.UI.SelectWindowHero
             _selectWindowHeroView.buttonSelectHero.gameObject.SetActive(true);
         }
         
-        public void SetRandomHeroes()
+        public void SetupRandomHeroes()
         {
             for (int i = 0; i < _selectWindowHeroModel._heroesForChose.Count; i++)
             {

@@ -25,8 +25,8 @@ namespace Feature.GameSessionFSM
         public override void Enter()
         {
             _selectWindowHeroPresenter.SetActive();
-            _selectWindowHeroPresenter.SelectRandomHeroes();
-            _selectWindowHeroPresenter.SetRandomHeroes();
+            _selectWindowHeroPresenter.SelectStartRandomHeroes();
+            _selectWindowHeroPresenter.SetupRandomHeroes();
             
             if (_gameSessionData.PlayerHero.IsPlayerFirst)
             {

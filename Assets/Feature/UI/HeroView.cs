@@ -21,7 +21,7 @@ namespace Feature.UI
         [SerializeField] public TextMeshProUGUI _healthText;
         [SerializeField] public TextMeshProUGUI _heroPowerText;
 
-        public bool _isBanned;
+        public bool _isBlocked;
 
         public GameSessionPlayerData HeroData { get; private set; }
         
@@ -38,7 +38,7 @@ namespace Feature.UI
         
         public void OnPointerDown(PointerEventData eventData)
         {
-            if (_isBanned) return;
+            if (_isBlocked) return;
             OnSelectHeroView?.Invoke(this);
             _selectWindow.SetActive(true);
         }
@@ -49,7 +49,7 @@ namespace Feature.UI
 
         public void BanHero()
         {
-            _isBanned = true;
+            _isBlocked = true;
             _banWindow.SetActive(true);
             ClearSelectWindow();
         }
@@ -66,7 +66,7 @@ namespace Feature.UI
         public void WasSetHeroEnemy()
         {
             _wasSelectBotWindow.SetActive(true);
-            _isBanned = true;
+            _isBlocked = true;
         }
     }
 }

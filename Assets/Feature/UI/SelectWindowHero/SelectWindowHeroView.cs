@@ -16,11 +16,16 @@ namespace Feature.UI.SelectWindowHero
         public event Action OnChoseHeroButtonClicked;       
         public event Action OnBanHeroButtonClicked;
 
-        private void OnEnable()
+        public void Init()
         {
             buttonSelectHero.onClick.AddListener(() => OnChoseHeroButtonClicked?.Invoke());
             buttonBanHero.onClick.AddListener(() => OnBanHeroButtonClicked?.Invoke());
 
+            SubscribeAllHeroViewForSelect();
+        }
+
+        private void SubscribeAllHeroViewForSelect()
+        {
             foreach (var heroView in heroViews)
             {
                 heroView.OnSelectHeroView += HeroViewViewOnOnSelectHeroView;
