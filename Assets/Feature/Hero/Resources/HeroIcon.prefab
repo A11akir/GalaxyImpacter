@@ -64,14 +64,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db03efc06e224dca885a7a23b5729890, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _banWindow: {fileID: 3805470002485658676}
-  _nameWindow: {fileID: 3592864764503716843}
-  _iconImage: {fileID: 200054665436310926}
-  _selectWindow: {fileID: 1850049352185157076}
   _wasSelectBotWindow: {fileID: 4555898984084105891}
-  _nameText: {fileID: 7823904269570864308}
-  _healthText: {fileID: 6329764275106759652}
+  _selectWindow: {fileID: 1850049352185157076}
+  _nameWindow: {fileID: 3592864764503716843}
+  _banWindow: {fileID: 3805470002485658676}
+  _iconImage: {fileID: 200054665436310926}
+  _heroPowerIcon: {fileID: 7264096642367187845}
   _heroPowerText: {fileID: 3381389700554026147}
+  _healthText: {fileID: 6329764275106759652}
+  _nameText: {fileID: 7823904269570864308}
+  _isBlockedForSelect: 0
 --- !u!1 &1850049352185157076
 GameObject:
   m_ObjectHideFlags: 0
@@ -1086,7 +1088,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4793966, g: 0.764151, b: 0.66241366, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

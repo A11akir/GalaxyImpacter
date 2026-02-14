@@ -10,20 +10,20 @@ namespace Feature.GoogleSheets
     {
         private readonly AllGameConfig _allGameConfig;
         private HeroStatsConfig _currentStatsMinionConfig;
-        
+
         private readonly List<IHeroStatsData> _targetSO = new();
 
         public StatsMinionParser(AllGameConfig allGameConfig)
         {
             _allGameConfig = allGameConfig;
             _allGameConfig.HeroStats = new List<HeroStatsConfig>();
-            
+
             LoadAllMinionSO();
         }
 
         private void LoadAllMinionSO()
         {
-            string[] guids = AssetDatabase.FindAssets("t:ScriptableObject", new[] {"Assets/Feature"});
+            string[] guids = AssetDatabase.FindAssets("t:ScriptableObject", new[] { "Assets/Feature" });
             foreach (var guid in guids)
             {
                 string path = AssetDatabase.GUIDToAssetPath(guid);
@@ -47,10 +47,9 @@ namespace Feature.GoogleSheets
                 case "HeroPowerCost":
                     _currentStatsMinionConfig.HeroPowerCost = Convert.ToInt32(token);
                     break;
-
                 case "Health":
                     _currentStatsMinionConfig.Health = Convert.ToInt32(token);
-                    break;  
+                    break;
             }
         }
 

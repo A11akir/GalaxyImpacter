@@ -15,8 +15,9 @@ namespace Feature.UI
         [SerializeField] private GameObject _banWindow;
         
         [SerializeField] private Image _iconImage;
-        
-        [SerializeField] public TextMeshProUGUI _heroPowerText;
+        [SerializeField] public Image _heroPowerIcon;
+        [SerializeField] public TextMeshProUGUI _heroPowerText;        
+
         [SerializeField] public TextMeshProUGUI _healthText;
         [SerializeField] public TextMeshProUGUI _nameText;
 
@@ -31,6 +32,7 @@ namespace Feature.UI
             _nameText.text = data._heroName;
             _healthText.text = data._health.ToString();
             _heroPowerText.text = data._heroPowerCost.ToString();
+            _heroPowerIcon.sprite = data._heroPowerSprite;
         }
         
         public void OnPointerDown(PointerEventData eventData)

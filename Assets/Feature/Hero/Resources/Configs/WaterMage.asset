@@ -15,3 +15,5 @@ MonoBehaviour:
   _heroPowerCost: 1
   _name: WaterMage
   _health: 80
+  _iconImage: {fileID: 4579685217922792695, guid: bd8f7c622848346639a609a39d4a2f8d, type: 3}
+  _iconHeroPowerImage: {fileID: 1455171399251226232, guid: 8b04a1e4067444e3bb1c6c98594038e5, type: 3}

@@ -12,6 +12,6 @@ namespace Feature.Data
     public class GameData : ScriptableObject
     {
         public List<HeroStatsData> allHeroStats = new List<HeroStatsData>();
-        public List<GameplayCard> allCards = new List<GameplayCard>();
+        public List<CardStatsData> allCards = new List<CardStatsData>();
     }
 }

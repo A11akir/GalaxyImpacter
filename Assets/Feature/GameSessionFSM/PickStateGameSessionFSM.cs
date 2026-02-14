@@ -1,4 +1,5 @@
 using Feature.AI;
+using Feature.Card.Script;
 using Feature.GameSessionData;
 using Feature.UI;
 using Feature.UI.SelectWindowHero;
@@ -11,6 +12,7 @@ namespace Feature.GameSessionFSM
         private GameSessionPresenter _gameSessionPresenter { get; }
         private AIRandomSelectSystem _aiRandomSelectSystem { get;  }
         private GameSessionModel _gameSessionModel { get; }
+
 
         public PickStateGameSessionFSM(GameSessionFSM gameSessionFsm, SelectWindowHeroPresenter selectWindowHeroPresenter, 
             GameSessionModel gameSessionModel, AIRandomSelectSystem aiRandomSelectSystem, 

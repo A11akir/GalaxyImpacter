@@ -12,9 +12,7 @@ namespace Feature.GoogleSheets
     {
         public string Name;
         public int Cost;
-        public int Value1;
-        public int Value2;
-        public int Value3;
+        public List<int> Values;
         public string Description;
         public string Rarity;
         public List<string> Specialization;

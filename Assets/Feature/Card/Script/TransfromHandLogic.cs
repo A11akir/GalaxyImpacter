@@ -17,6 +17,7 @@ namespace Feature.Card.Script
         private int _hierarchyIndex;
         public void OnPointerEnter(PointerEventData eventData)
         {
+            if (!isActiveAndEnabled) return;
             CardPointerEnter();
         }
 
@@ -24,20 +25,34 @@ namespace Feature.Card.Script
         {
             Init();
         }
+        
+        private void OnDisable()
+        {
+            ResetCardTransform();
+            _handCardsPositionSystem?.UpdateCardsPosition();
+        }
+        
+        private void ResetCardTransform()
+        {
+            transform.localScale = Vector3.one;
+            transform.localRotation = Quaternion.identity;
+        }
 
+        [Button]
         private void Init()
         {
             _rectTransform = GetComponent<RectTransform>();
         }
         
+        [Button]
         private void CardPointerEnter()
         {
             _hierarchyIndex = transform.GetSiblingIndex();
             transform.SetAsLastSibling();
             
-            transform.localPosition += new Vector3(0,
-                _rectTransform.rect.height * (scaleFactor - 1f), 
-                0);
+            transform.localPosition = new Vector3(transform.localPosition.x,
+                ((_rectTransform.rect.height/2)*scaleFactor)-5, 
+                transform.localPosition.z);
             transform.localScale *= scaleFactor;
             transform.localRotation = Quaternion.identity;
         }

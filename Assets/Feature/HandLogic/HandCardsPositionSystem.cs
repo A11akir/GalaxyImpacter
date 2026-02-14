@@ -1,11 +1,16 @@
 using System.Collections.Generic;
+using System.Linq;
+using Feature.Card.Script;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Zenject;
 
 namespace Feature.HandLogic
 {
     public class HandCardsPositionSystem : MonoBehaviour
     {
+        [Inject] private HandCardViews _handCardViews;
+        
         private readonly List<GameObject> _handCards = new List<GameObject>();
         
         [SerializeField] private Transform handParent;
@@ -16,6 +21,16 @@ namespace Feature.HandLogic
         [SerializeField] private int horizontalCardOffset = 150; 
         [SerializeField] private int horizontalCardOffsetRatio = 10;
 
+
+        public void OnEnable()
+        {
+            _handCardViews.UpdateViewCard += UpdateCardsPosition;
+        }
+        public void OnDisable()
+        {
+            _handCardViews.UpdateViewCard -= UpdateCardsPosition;
+        }
+        
         [Button]
         public void UpdateCardsPosition()
         {
@@ -66,7 +81,8 @@ namespace Feature.HandLogic
             _handCards.Clear();
             
             foreach (Transform child in handParent)
-                _handCards.Add(child.gameObject);
+                if (child.gameObject.activeInHierarchy)
+                    _handCards.Add(child.gameObject);
         }
     }
 }

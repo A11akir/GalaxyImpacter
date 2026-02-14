@@ -15,3 +15,5 @@ MonoBehaviour:
   _heroPowerCost: 1
   _name: Assasian
   _health: 70
+  _iconImage: {fileID: -2437297010394648134, guid: 024cc0e206a9f4dd28560c173f885ba5, type: 3}
+  _iconHeroPowerImage: {fileID: -3023850045430360540, guid: 8142ea481a81e471696ba04809a167c1, type: 3}

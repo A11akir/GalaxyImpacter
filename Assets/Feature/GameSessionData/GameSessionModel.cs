@@ -13,6 +13,8 @@ namespace Feature.GameSessionData
             PlayerHero = playerHero;
             EnemyHero = enemyHero;
         }
+        
+        public bool IsFirstTurn() => Turn == 0;
 
         public void ChooseFirstPlayer()
         {

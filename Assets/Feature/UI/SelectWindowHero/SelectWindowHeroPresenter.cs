@@ -37,8 +37,11 @@ namespace Feature.UI.SelectWindowHero
             _selectWindowHeroView.Init();
         }
 
-        private void SetViewChosedHeroBot() => 
+        private void SetViewChosedHeroBot()
+        {
+            if (_selectWindowHeroView._selectHeroView == null) return;
             _selectWindowHeroView._selectHeroView.WasSetHeroEnemy();
+        }
 
         public void SelectHero()
         {
@@ -48,6 +51,7 @@ namespace Feature.UI.SelectWindowHero
 
         public void BanHero()
         {
+            if (_selectWindowHeroView._selectHeroView == null) return;
             var selectedHero = _selectWindowHeroView._selectHeroView;
             
             selectedHero.BanHeroView();
@@ -55,11 +59,15 @@ namespace Feature.UI.SelectWindowHero
             RemoveHeroFromSelectList(selectedHero);
             
             _selectWindowHeroView.ClearAllViewSelected();
+            ClearSelectedHero();
             _gameSessionFSM.SetState<PickStateGameSessionFSM>();
         }
         
         private void RemoveHeroFromSelectList(HeroView selectedHero)
         {
+            if (_selectWindowHeroModel._heroesForChose == null) return;
+            if (selectedHero == null) return;
+            
             var heroToRemove = _selectWindowHeroModel._heroesForChose
                 .FirstOrDefault(h => h._heroName == selectedHero.HeroData._heroName);
             
@@ -75,6 +83,7 @@ namespace Feature.UI.SelectWindowHero
 
         private void CompleteHeroSelection(bool isPlayer)
         {
+            if (_selectWindowHeroView._selectHeroView == null) return;
             var selectedHero = _selectWindowHeroView._selectHeroView;
     
             SetViewChosedHeroBot();
@@ -91,9 +100,17 @@ namespace Feature.UI.SelectWindowHero
             else _gameSessionModel.EnemyHero = _selectWindowHeroView._selectHeroView.HeroData;
     
             selectedHero._isBlockedForSelect = true;
-    
+            
+            ClearSelectedHero();
+            
             if (_gameSessionModel.PlayersHaveHero())
                 _gameSessionFSM.SetState<PrepareStateGameSessionFSM>();
+        }
+
+        private void ClearSelectedHero()
+        {
+            _selectWindowHeroView._selectHeroView = null;
+            _selectWindowHeroModel._selectedHero = null;
         }
 
         public void SelectStartRandomHeroes() => _selectWindowHeroModel.SelectStartRandomHeroes();

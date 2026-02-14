@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Feature.Hero;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,7 +8,12 @@ namespace Feature.GameSessionData
 {
     public class GameSessionPlayerData 
     {
-        private List<GameplayCard> _cards = new List<GameplayCard>();
+        public List<CardStatsData> _cardsInDeck = new List<CardStatsData>();
+        public List<CardStatsData> _cardsInHand = new List<CardStatsData>();
+
+        public int maxCardsInHandCount = 10;
+        public int startCardsInHand = 4;
+        public int startCardsInDeckCount = 6;
 
         public bool IsPlayerFirst;
 
@@ -68,11 +74,6 @@ namespace Feature.GameSessionData
     public class HeroPowerData
     {
         private int cost;
-        
-    }
-
-    public class GameplayCard
-    {
         
     }
 

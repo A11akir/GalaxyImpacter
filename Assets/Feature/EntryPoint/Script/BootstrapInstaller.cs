@@ -1,4 +1,5 @@
 using Feature.AI;
+using Feature.Card.Script;
 using Feature.Common;
 using Feature.Data;
 using Feature.GameSessionData;
@@ -23,9 +24,14 @@ namespace Feature.EntryPoint.Script
             Container.Bind<SelectWindowHeroPresenter>().AsSingle();
             Container.Bind<SelectWindowHeroModel>().AsSingle();
             Container.Bind<SelectWindowHeroView>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<HandCardViews>().FromComponentInHierarchy().AsSingle();
             Container.Bind<GameSessionView>().FromComponentInHierarchy().AsSingle();
             Container.Bind<HeroView>().FromComponentInHierarchy().AsTransient();
             
+            Container.Bind<HandCardPresenter>().AsSingle();
+            Container.Bind<DeckFillSystem>().AsSingle();            
+            Container.Bind<HandFillSystem>().AsSingle();       
+            Container.Bind<TurnСycleGameSessionSystem>().AsSingle(); 
             Container.Bind<GameSessionPlayerData>().AsSingle();
             Container.Bind<GameSessionModel>().AsSingle();
             Container.Bind<GameSessionPresenter>().AsSingle();
@@ -51,6 +57,7 @@ namespace Feature.EntryPoint.Script
         {
             Container.Bind<GameData>().FromInstance(_gameData).AsSingle().Lazy();
             Container.Bind<HeroStatsData>().AsSingle();
+            Container.Bind<CardStatsData>().AsSingle();
         }
     }
 }

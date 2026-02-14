@@ -14,11 +14,17 @@ namespace Feature.Hero
         [SerializeField] private string _name;
         [SerializeField] private int _health;
         [SerializeField] private Sprite _iconImage;
+        [SerializeField] private Sprite _iconHeroPowerImage;
         
         public Sprite IconImage
         {
             get => _iconImage;
             set => _iconImage = value;
+        }        
+        public Sprite IconHeroPowerImage
+        {
+            get => _iconHeroPowerImage;
+            set => _iconHeroPowerImage = value;
         }        
         public int Cost
         {

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 841897ad535c42f18db209ab53f63dd8, type: 3}
   m_Name: WindMage
   m_EditorClassIdentifier: 
-  _heroPowerCost: 1
+  _heroPowerCost: 0
   _name: WindMage
   _health: 80
+  _iconImage: {fileID: 2437554326289776482, guid: 6b159de4f9a91490c823dd07fcae1d8e, type: 3}
+  _iconHeroPowerImage: {fileID: -4529121875680807664, guid: e95c68e33427c4d828c0b56e28dd233b, type: 3}

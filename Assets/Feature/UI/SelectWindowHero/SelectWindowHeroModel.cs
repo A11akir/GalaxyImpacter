@@ -33,7 +33,8 @@ namespace Feature.UI.SelectWindowHero
                     _heroName = selectedHeroStats.Name,
                     _health = selectedHeroStats.Rarity,
                     _heroPowerCost = selectedHeroStats.Cost,
-                    _iconImage = selectedHeroStats.IconImage
+                    _iconImage = selectedHeroStats.IconImage,
+                    _heroPowerSprite = selectedHeroStats.IconHeroPowerImage
                 };
 
                 _heroesForChose.Add(heroData);

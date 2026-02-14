@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 841897ad535c42f18db209ab53f63dd8, type: 3}
   m_Name: EarthMage
   m_EditorClassIdentifier: 
-  _heroPowerCost: 2
+  _heroPowerCost: 3
   _name: EarthMage
   _health: 100
+  _iconImage: {fileID: -1761296668566541725, guid: c9add8794bc8e418dbb359098259b199, type: 3}
+  _iconHeroPowerImage: {fileID: -3169645105665962964, guid: 9423d80ebb24a45419848a09a043f0a1, type: 3}

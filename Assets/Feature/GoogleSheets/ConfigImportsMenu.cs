@@ -27,6 +27,9 @@ namespace Feature.GoogleSheets
                     case "HeroStats":
                         parser = new StatsMinionParser(gameSetting);
                         break;
+                    case "Cards":
+                        parser = new CardsParser(gameSetting);
+                        break;
 
                     default:
                         Debug.LogWarning($"No parser for sheet: {sheet}");

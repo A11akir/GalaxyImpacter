@@ -15,3 +15,5 @@ MonoBehaviour:
   _heroPowerCost: 0
   _name: Monster
   _health: 90
+  _iconImage: {fileID: -512557962653754336, guid: f4b81d06bc4cd4baa946e0bfd9ade0d4, type: 3}
+  _iconHeroPowerImage: {fileID: 6262113936893043348, guid: 00ec7db2beb5b485b827a84e3821201b, type: 3}

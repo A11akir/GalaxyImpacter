@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Feature.GoogleSheets;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Feature.Hero
 {
@@ -9,15 +8,16 @@ namespace Feature.Hero
         fileName = "HeroStatsData",
         menuName = "Configs/Card/Card Stats Data",
         order = 1)]
-    public class CardStatsData : ScriptableObject, IHeroStatsData
+    public class CardStatsData : ScriptableObject, ICardStatsData
     {
         [SerializeField] private int _cost;
         [SerializeField] private string _name;
-        [SerializeField] private int _rarity;
+        [SerializeField] private string _rarity;
         [SerializeField] private Sprite _iconImage;
         [SerializeField] private List<int> _values;
         [SerializeField] private List<string> _specialization;
         [SerializeField] private int _level;
+        [SerializeField] private string _description;
         
         public List<int> Values
         {
@@ -44,8 +44,13 @@ namespace Feature.Hero
         {
             get => _name;
             set => _name = value;
+        } 
+        public string Description
+        {
+            get => _description;
+            set => _description = value;
         }
-        public int Rarity
+        public string Rarity
         {
             get => _rarity;
             set => _rarity = value;
