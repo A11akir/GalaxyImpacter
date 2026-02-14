@@ -1,8 +1,7 @@
 using Feature.GameSessionData;
 using R3;
-using UnityEngine;
 
-namespace Feature.ShopGamePlay.Script
+namespace Feature.ShopGamePlay.Script.Currency
 {
     public class CurrencyManagePresenter : System.IDisposable
     {
@@ -15,17 +14,12 @@ namespace Feature.ShopGamePlay.Script
             _currencyManageView = currencyManageView;
             _gameSessionData = gameSessionData;
             
-            SubscribeToCurrencyChanges();
         }
 
-        private void SubscribeToCurrencyChanges()
+        public void SubscribeToCurrencyChanges()
         {
             _gameSessionData.PlayerHero.CurrencyCount
                 .Subscribe(currency => _currencyManageView.SetCurrencyText(currency))
-                .AddTo(_disposables);
-            
-            _gameSessionData.EnemyHero.CurrencyCount
-                .Subscribe(currency => Debug.Log($"Enemy currency changed: {currency}"))
                 .AddTo(_disposables);
         }
 

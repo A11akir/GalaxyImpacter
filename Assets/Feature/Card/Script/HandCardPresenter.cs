@@ -15,7 +15,7 @@ namespace Feature.Card.Script
 
         public void SetCardInPlayerHand()
         {
-            _handCardViews.SetCardsPalyerView(_gameSessionModel.PlayerHero._cardsInHand);
+            _handCardViews.SetCardsPlayerView(_gameSessionModel.PlayerHero._cardsInHand);
         }
         
     }

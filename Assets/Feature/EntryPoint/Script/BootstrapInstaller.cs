@@ -7,6 +7,8 @@ using Feature.HandLogic;
 using Feature.GameSessionFSM;
 using Feature.Hero;
 using Feature.ShopGamePlay.Script;
+using Feature.ShopGamePlay.Script.Currency;
+using Feature.ShopGamePlay.Script.ShopWindow;
 using Feature.UI;
 using Feature.UI.SelectWindowHero;
 using UnityEngine;
@@ -28,7 +30,7 @@ namespace Feature.EntryPoint.Script
             Container.Bind<HandCardViews>().FromComponentInHierarchy().AsSingle();
             Container.Bind<GameSessionView>().FromComponentInHierarchy().AsSingle();
             Container.Bind<HeroView>().FromComponentInHierarchy().AsTransient();
-            
+            Container.Bind<CurrencyManagePresenter>().AsSingle();
             Container.Bind<HandCardPresenter>().AsSingle();
             Container.Bind<DeckFillSystem>().AsSingle();            
             Container.Bind<HandFillSystem>().AsSingle();       
@@ -39,8 +41,11 @@ namespace Feature.EntryPoint.Script
             Container.Bind<AIRandomSelectSystem>().AsSingle();
             
             Container.Bind<CurrencyManageView>().FromComponentInHierarchy().AsSingle();
-            Container.Bind<CurrencyManagePresenter>().AsSingle();
             Container.Bind<CurrencyManagerSystem>().AsSingle();
+            
+            Container.Bind<ShopGameplayView>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<ShopGameplayPresenter>().AsSingle();
+            Container.Bind<ShopGameplayManagerSystem>().AsSingle();
             
             BindGameSessionFSM();
             BindConfig();

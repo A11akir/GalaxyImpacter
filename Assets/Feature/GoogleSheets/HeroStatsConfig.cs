@@ -17,5 +17,6 @@ namespace Feature.GoogleSheets
         public string Rarity;
         public List<string> Specialization;
         public int Level;
+        public int Health;
     }
 }

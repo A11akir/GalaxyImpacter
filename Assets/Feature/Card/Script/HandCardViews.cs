@@ -10,7 +10,7 @@ namespace Feature.Card.Script
         [SerializeField] private List<CardView> _cardsInDeck;
 
         public event Action UpdateViewCard;
-        public void SetCardsPalyerView(List<CardStatsData> playerHeroCardsInDeck)
+        public void SetCardsPlayerView(List<CardStatsData> playerHeroCardsInDeck)
         {
             for (int i = 0; i < playerHeroCardsInDeck.Count; i++)
             {

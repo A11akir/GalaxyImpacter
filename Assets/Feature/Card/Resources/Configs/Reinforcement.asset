@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Reinforcement
   m_EditorClassIdentifier: 
   _cost: 1
+  _health: 2
   _name: Reinforcement
   _rarity: Galaxy
   _iconImage: {fileID: -3140911068402530301, guid: 931395c010c014fd0b3fd8552fbfb85c, type: 3}

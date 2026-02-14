@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Tactical retreat
   m_EditorClassIdentifier: 
   _cost: 2
+  _health: 0
   _name: Tactical retreat
   _rarity: 
   _iconImage: {fileID: 8639660358796777332, guid: 06fda0e5423da482ebebe4127f617f9c, type: 3}

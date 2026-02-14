@@ -11,6 +11,7 @@ namespace Feature.Hero
     public class CardStatsData : ScriptableObject, ICardStatsData
     {
         [SerializeField] private int _cost;
+        [SerializeField] private int _health;
         [SerializeField] private string _name;
         [SerializeField] private string _rarity;
         [SerializeField] private Sprite _iconImage;
@@ -18,7 +19,8 @@ namespace Feature.Hero
         [SerializeField] private List<string> _specialization;
         [SerializeField] private int _level;
         [SerializeField] private string _description;
-        
+
+        public bool IsHero => _health > 0;
         public List<int> Values
         {
             get => _values;
@@ -39,6 +41,11 @@ namespace Feature.Hero
         {
             get => _cost;
             set => _cost = value;
+        }        
+        public int Health
+        {
+            get => _health;
+            set => _health = value;
         }
         public string Name
         {

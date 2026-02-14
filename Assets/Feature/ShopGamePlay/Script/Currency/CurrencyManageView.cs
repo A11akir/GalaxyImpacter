@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace Feature.ShopGamePlay.Script
+namespace Feature.ShopGamePlay.Script.Currency
 {
     public class CurrencyManageView : MonoBehaviour
     {

@@ -51,6 +51,10 @@ namespace Feature.GoogleSheets
                 case "Cost":
                     if (_cardStatsConfig != null)
                         _cardStatsConfig.Cost = Convert.ToInt32(token);
+                    break;              
+                case "Health":
+                    if (_cardStatsConfig != null)
+                        _cardStatsConfig.Health = Convert.ToInt32(token);
                     break;
                     
                 case "Rarity":
@@ -109,6 +113,7 @@ namespace Feature.GoogleSheets
                 so.Specialization = cfg.Specialization;
                 so.Values = cfg.Values;
                 so.Level = cfg.Level;
+                so.Health = cfg.Health;
 
                 EditorUtility.SetDirty(so as UnityEngine.Object);
                 

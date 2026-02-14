@@ -1,17 +1,22 @@
 using Feature.GameSessionData;
-using R3;
 
-namespace Feature.ShopGamePlay.Script
+namespace Feature.ShopGamePlay.Script.Currency
 {
     public class CurrencyManagerSystem
     {
         private readonly GameSessionModel _gameSessionModel;
+        private readonly CurrencyManagePresenter _currencyManagePresenter;
 
-        public CurrencyManagerSystem(GameSessionModel gameSessionModel)
+        public CurrencyManagerSystem(GameSessionModel gameSessionModel, CurrencyManagePresenter currencyManagePresenter)
         {
             _gameSessionModel = gameSessionModel;
+            _currencyManagePresenter = currencyManagePresenter;
         }
 
+        public void Init()
+        {
+            _currencyManagePresenter.SubscribeToCurrencyChanges();
+        }
         public void NewTurnUpdate()
         {
             AddGoldHeroForNewTurn();

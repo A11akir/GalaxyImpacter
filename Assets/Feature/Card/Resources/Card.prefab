@@ -725,11 +725,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: {fileID: 6600433546763498728}
+  _health: {fileID: 6966580572392519612}
   _healthMinion: {fileID: 6966580572392519612}
   _cost: {fileID: 5555558728533896058}
   _description: {fileID: 930615477127320737}
   _iconSpell: {fileID: 6480691650987587063}
   _iconMinion: {fileID: 454567810538467842}
+  _heroCardWindow: {fileID: 3933783503274223462}
+  _spellCardWindow: {fileID: 7562218685204429665}
 --- !u!1 &6385549037012269887
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,7 +959,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &9042575288351050403
 RectTransform:
   m_ObjectHideFlags: 0

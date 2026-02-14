@@ -1,5 +1,7 @@
 using Feature.Card.Script;
 using Feature.ShopGamePlay.Script;
+using Feature.ShopGamePlay.Script.Currency;
+using UnityEngine;
 
 namespace Feature.GameSessionFSM
 {
@@ -12,11 +14,12 @@ namespace Feature.GameSessionFSM
         private CurrencyManagerSystem _currencyManagerSystem { get;  }
         
         public TurnСycleGameSessionSystem(DeckFillSystem deckFillSystem, HandFillSystem handFillSystem,
-            HandCardPresenter handCardPresenter)
+            HandCardPresenter handCardPresenter, CurrencyManagerSystem currencyManagerSystem)
         {
             _deckFillSystem = deckFillSystem;
             _handFillSystem = handFillSystem;
             _handCardPresenter = handCardPresenter;
+            _currencyManagerSystem = currencyManagerSystem;
         }
 
         public void StartGameSession()
@@ -24,6 +27,7 @@ namespace Feature.GameSessionFSM
             _deckFillSystem.InitializeDecks();
             _handFillSystem.FillHandInDecks();
             _handCardPresenter.SetCardInPlayerHand();
+            _currencyManagerSystem.Init();
         }
 
         public void CycleTurn()
