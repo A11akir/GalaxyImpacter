@@ -2,21 +2,21 @@ namespace Feature.GameSessionFSM
 {
     public class StartStateGameSessionFSM : StateGameSessionFSM
     {
-        private GameSessionData.GameSessionData _gameSessionData;
-        public StartStateGameSessionFSM(GameSessionFSM gameSessionFsm, GameSessionData.GameSessionData gameSessionData) : base(gameSessionFsm)
+        private GameSessionData.GameSessionModel _gameSessionModel;
+        public StartStateGameSessionFSM(GameSessionFSM gameSessionFsm, GameSessionData.GameSessionModel gameSessionModel) : base(gameSessionFsm)
         {
-            _gameSessionData = gameSessionData;
+            _gameSessionModel = gameSessionModel;
         }
 
         public override void Enter()
         {
-            _gameSessionData.ChooseFirstPlayer();
+            _gameSessionModel.ChooseFirstPlayer();
             CheckGameRules();
         }
 
         private void CheckGameRules()
         {
-            if (_gameSessionData.PlayersHaveHero())
+            if (_gameSessionModel.PlayersHaveHero())
                 _gameSessionFSM.SetState<PrepareStateGameSessionFSM>();
             else
                 _gameSessionFSM.SetState<BanStateGameSessionFSM>();

@@ -16,31 +16,29 @@ namespace Feature.UI.SelectWindowHero
         public SelectWindowHeroView _selectWindowHeroView;
         private SelectWindowHeroModel _selectWindowHeroModel;
         private GameSessionFSM.GameSessionFSM  _gameSessionFSM;
-        private GameSessionData.GameSessionData _gameSessionData;
+        private GameSessionModel _gameSessionModel;
         
         private PickStateGameSessionFSM _pickStateGameSessionFSM;
-        private GameData _gameData;
-        public event Action OnPickedHero;
+        public event Action OnPlayerPickedHero;
         
-        public SelectWindowHeroPresenter(SelectWindowHeroView selectWindowHeroView, GameData gameData, SelectWindowHeroModel selectWindowHeroModel, GameSessionFSM.GameSessionFSM gameSessionFsm, GameSessionData.GameSessionData gameSessionData)
+        public SelectWindowHeroPresenter(SelectWindowHeroView selectWindowHeroView,
+            SelectWindowHeroModel selectWindowHeroModel, GameSessionFSM.GameSessionFSM gameSessionFsm,
+            GameSessionModel gameSessionModel)
         {
             _selectWindowHeroView = selectWindowHeroView;
-            _gameData = gameData;
             _selectWindowHeroModel = selectWindowHeroModel;
             _gameSessionFSM = gameSessionFsm;
-            _gameSessionData = gameSessionData;
+            _gameSessionModel = gameSessionModel;
 
             _selectWindowHeroView.OnBanHeroButtonClicked += BanHero;
-            _selectWindowHeroView.OnChoseHeroButtonClicked += ChoseHeroPlayer;
+            _selectWindowHeroView.OnChoseHeroButtonClicked += ChoseSelectedHeroPlayer;
             _selectWindowHeroView.OnSelectWindowHeroView += SelectHero;
 
             _selectWindowHeroView.Init();
         }
 
-        private void SetViewSelectedHeroBot()
-        {
+        private void SetViewChosedHeroBot() => 
             _selectWindowHeroView._selectHeroView.WasSetHeroEnemy();
-        }
 
         public void SelectHero()
         {
@@ -52,14 +50,15 @@ namespace Feature.UI.SelectWindowHero
         {
             var selectedHero = _selectWindowHeroView._selectHeroView;
             
-            selectedHero.BanHero();
+            selectedHero.BanHeroView();
             
-            RemoveHeroFromList(selectedHero);
+            RemoveHeroFromSelectList(selectedHero);
             
-            _selectWindowHeroView.ClearAllSelected();
+            _selectWindowHeroView.ClearAllViewSelected();
             _gameSessionFSM.SetState<PickStateGameSessionFSM>();
         }
-        private void RemoveHeroFromList(HeroView selectedHero)
+        
+        private void RemoveHeroFromSelectList(HeroView selectedHero)
         {
             var heroToRemove = _selectWindowHeroModel._heroesForChose
                 .FirstOrDefault(h => h._heroName == selectedHero.HeroData._heroName);
@@ -71,68 +70,33 @@ namespace Feature.UI.SelectWindowHero
             }
         }
 
-        private void ChoseHeroPlayer()
+        public void ChoseSelectedHeroPlayer() => CompleteHeroSelection(true);
+        public void ChoseSelectedHeroEnemy() => CompleteHeroSelection(false);
+
+        private void CompleteHeroSelection(bool isPlayer)
         {
             var selectedHero = _selectWindowHeroView._selectHeroView;
-            
-            SetViewSelectedHeroBot();
-            
-            RemoveHeroFromList(selectedHero);
-
-            _selectWindowHeroView.ClearAllSelected();
-
-            _gameSessionData.PlayerHero = _selectWindowHeroModel._selectedHero;
-
-            
-            _selectWindowHeroView.HideSelectButton();
-            _selectWindowHeroView.OnChoseHeroButtonClicked -= ChoseHeroPlayer;
-            OnPickedHero?.Invoke();
-            if (_gameSessionData.PlayersHaveHero())
-                _gameSessionFSM.SetState<PrepareStateGameSessionFSM>();
-            
-            selectedHero._isBlocked = true;
-        }
-        public void ChoseHeroEnemy()
-        {
-            var selectedHero = _selectWindowHeroView._selectHeroView;
-            
-            SetViewSelectedHeroBot();
-            
-            _selectWindowHeroView.ClearAllSelected();
-            RemoveHeroFromList(selectedHero);
-            
-            _gameSessionData.EnemyHero = _selectWindowHeroView._selectHeroView.HeroData;
-
-            if (_gameSessionData.PlayersHaveHero())
-                _gameSessionFSM.SetState<PrepareStateGameSessionFSM>();
-
-            selectedHero._isBlocked = true;
-        }
-
-        public void SelectStartRandomHeroes()
-        {
-            List<HeroStatsData> availableHeroes = new List<HeroStatsData>(_gameData.allHeroStats);
-            
-            int heroesToSelect = Mathf.Min(_selectWindowHeroModel.countPersonForChose, availableHeroes.Count);
     
-            for (int i = 0; i < heroesToSelect; i++)
+            SetViewChosedHeroBot();
+            RemoveHeroFromSelectList(selectedHero);
+            _selectWindowHeroView.ClearAllViewSelected();
+    
+            if (isPlayer)
             {
-                int randomIndex = Random.Range(0, availableHeroes.Count);
-                HeroStatsData selectedHeroStats = availableHeroes[randomIndex];
-                
-                GameSessionPlayerData heroData = new GameSessionPlayerData
-                {
-                    _heroName = selectedHeroStats.Name,
-                    _health = selectedHeroStats.Health,
-                    _heroPowerCost = selectedHeroStats.HeroPowerCost,
-                    
-                    _iconImage = selectedHeroStats.IconImage
-                };
-
-                _selectWindowHeroModel._heroesForChose.Add(heroData);
-                availableHeroes.RemoveAt(randomIndex);
+                _gameSessionModel.PlayerHero = _selectWindowHeroModel._selectedHero;
+                _selectWindowHeroView.HideSelectButton();
+                _selectWindowHeroView.OnChoseHeroButtonClicked -= ChoseSelectedHeroPlayer;
+                OnPlayerPickedHero?.Invoke();
             }
+            else _gameSessionModel.EnemyHero = _selectWindowHeroView._selectHeroView.HeroData;
+    
+            selectedHero._isBlockedForSelect = true;
+    
+            if (_gameSessionModel.PlayersHaveHero())
+                _gameSessionFSM.SetState<PrepareStateGameSessionFSM>();
         }
+
+        public void SelectStartRandomHeroes() => _selectWindowHeroModel.SelectStartRandomHeroes();
 
         public void SetActive() => _selectWindowHeroView.gameObject.SetActive(true);
         public void SetInactive() => _selectWindowHeroView.gameObject.SetActive(false);
@@ -154,7 +118,7 @@ namespace Feature.UI.SelectWindowHero
             for (int i = 0; i < _selectWindowHeroModel._heroesForChose.Count; i++)
             {
                 var data = _selectWindowHeroModel._heroesForChose[i];
-                _selectWindowHeroView.heroViews[i].SetData(data);
+                _selectWindowHeroView.heroViews[i].SetViewData(data);
             }
         }
     }

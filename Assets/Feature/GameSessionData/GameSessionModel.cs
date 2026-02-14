@@ -1,14 +1,14 @@
 
 namespace Feature.GameSessionData
 {
-    public class GameSessionData
+    public class GameSessionModel
     {
         public int Turn;
 
         public GameSessionPlayerData PlayerHero;
         public GameSessionPlayerData EnemyHero;
         
-        public GameSessionData(GameSessionPlayerData playerHero, GameSessionPlayerData enemyHero)
+        public GameSessionModel(GameSessionPlayerData playerHero, GameSessionPlayerData enemyHero)
         {
             PlayerHero = playerHero;
             EnemyHero = enemyHero;
@@ -30,6 +30,9 @@ namespace Feature.GameSessionData
             }
         }
 
+        public bool PlayerStartGameSessionFirst() => PlayerHero.IsPlayerFirst;
+
+        
         public bool PlayersHaveHero()
         {
             if (PlayerHero.PlayerHasHero() &&
@@ -39,7 +42,5 @@ namespace Feature.GameSessionData
             }
             return false;
         }
-        
-        
     }
 }

@@ -35,7 +35,8 @@ namespace Feature.UI.SelectWindowHero
         private void HeroViewViewOnOnSelectHeroView(HeroView heroView)
         {
             _selectHeroView = heroView;
-            ClearAllSelected();
+            ClearAllViewSelected();
+            _selectHeroView.SelectHeroView();
             
             OnSelectWindowHeroView?.Invoke();
         }
@@ -43,7 +44,7 @@ namespace Feature.UI.SelectWindowHero
         {
             buttonSelectHero.gameObject.SetActive(false);
         }
-        public void ClearAllSelected()
+        public void ClearAllViewSelected()
         {
             foreach (var hero in heroViews)
             {

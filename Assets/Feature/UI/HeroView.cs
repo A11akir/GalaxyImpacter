@@ -9,25 +9,22 @@ namespace Feature.UI
 {
     public class HeroView : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
     {
-        [SerializeField] private GameObject _banWindow;
+        [SerializeField] private GameObject _wasSelectBotWindow;
+        [SerializeField] private GameObject _selectWindow;      
         [SerializeField] private GameObject _nameWindow;
+        [SerializeField] private GameObject _banWindow;
         
         [SerializeField] private Image _iconImage;
         
-        [SerializeField] private GameObject _selectWindow;      
-        [SerializeField] private GameObject _wasSelectBotWindow;
-        
-        [SerializeField] public TextMeshProUGUI _nameText;
-        [SerializeField] public TextMeshProUGUI _healthText;
         [SerializeField] public TextMeshProUGUI _heroPowerText;
+        [SerializeField] public TextMeshProUGUI _healthText;
+        [SerializeField] public TextMeshProUGUI _nameText;
 
-        public bool _isBlocked;
-
+        public bool _isBlockedForSelect;
         public GameSessionPlayerData HeroData { get; private set; }
-        
         public event Action<HeroView> OnSelectHeroView;
         
-        public void SetData(GameSessionPlayerData data)
+        public void SetViewData(GameSessionPlayerData data)
         {
             HeroData = data;
             _iconImage.sprite = data._iconImage;
@@ -38,8 +35,12 @@ namespace Feature.UI
         
         public void OnPointerDown(PointerEventData eventData)
         {
-            if (_isBlocked) return;
+            if (_isBlockedForSelect) return;
             OnSelectHeroView?.Invoke(this);
+        }
+
+        public void SelectHeroView()
+        {
             _selectWindow.SetActive(true);
         }
 
@@ -47,26 +48,19 @@ namespace Feature.UI
 
         public void OnPointerExit(PointerEventData eventData) => _nameWindow.SetActive(false);
 
-        public void BanHero()
+        public void BanHeroView()
         {
-            _isBlocked = true;
+            _isBlockedForSelect = true;
             _banWindow.SetActive(true);
             ClearSelectWindow();
         }
 
         public void ClearSelectWindow() => _selectWindow.SetActive(false);
 
-        public void ExitSelectMode()
-        {
-            _selectWindow.SetActive(false);
-            _banWindow.SetActive(false);
-            _wasSelectBotWindow.SetActive(false);
-        }
-
         public void WasSetHeroEnemy()
         {
             _wasSelectBotWindow.SetActive(true);
-            _isBlocked = true;
+            _isBlockedForSelect = true;
         }
     }
 }

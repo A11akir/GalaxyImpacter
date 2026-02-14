@@ -23,14 +23,13 @@ namespace Feature.EntryPoint.Script
             Container.Bind<SelectWindowHeroPresenter>().AsSingle();
             Container.Bind<SelectWindowHeroModel>().AsSingle();
             Container.Bind<SelectWindowHeroView>().FromComponentInHierarchy().AsSingle();
-            Container.Bind<GameSessionDataView>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<GameSessionView>().FromComponentInHierarchy().AsSingle();
             Container.Bind<HeroView>().FromComponentInHierarchy().AsTransient();
             
             Container.Bind<GameSessionPlayerData>().AsSingle();
-            Container.Bind<GameSessionData.GameSessionData>().AsSingle();
+            Container.Bind<GameSessionModel>().AsSingle();
+            Container.Bind<GameSessionPresenter>().AsSingle();
             Container.Bind<AIRandomSelectSystem>().AsSingle();
-
-            
             
             BindGameSessionFSM();
             BindConfig();
@@ -46,8 +45,6 @@ namespace Feature.EntryPoint.Script
             Container.Bind<FightStateGameSessionFSM>().AsTransient();
             Container.Bind<PrepareStateGameSessionFSM>().AsTransient();
             Container.Bind<BlockStateGameSessionFSM>().AsTransient();
-            
-            
         }
 
         private void BindConfig()

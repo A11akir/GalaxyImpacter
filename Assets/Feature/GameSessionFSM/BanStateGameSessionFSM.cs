@@ -8,17 +8,17 @@ namespace Feature.GameSessionFSM
     {
         private GameSessionFSM _gameSessionFsm;
         public SelectWindowHeroPresenter _selectWindowHeroPresenter { get; set; }
-        private GameSessionData.GameSessionData _gameSessionData { get; set; }
+        private GameSessionData.GameSessionModel GameSessionModel { get; set; }
 
         private AIRandomSelectSystem _aiRandomSelectSystem { get; set; }
 
         public BanStateGameSessionFSM(GameSessionFSM gameSessionFsm,
-            SelectWindowHeroPresenter selectWindowHeroPresenter, GameSessionData.GameSessionData gameSessionData,
+            SelectWindowHeroPresenter selectWindowHeroPresenter, GameSessionData.GameSessionModel gameSessionModel,
             AIRandomSelectSystem aiRandomSelectSystem) : base(gameSessionFsm)
         {
             _gameSessionFsm = gameSessionFsm;
             _selectWindowHeroPresenter = selectWindowHeroPresenter;
-            _gameSessionData = gameSessionData;
+            GameSessionModel = gameSessionModel;
             _aiRandomSelectSystem = aiRandomSelectSystem;
         }
 
@@ -28,7 +28,7 @@ namespace Feature.GameSessionFSM
             _selectWindowHeroPresenter.SelectStartRandomHeroes();
             _selectWindowHeroPresenter.SetupRandomHeroes();
             
-            if (_gameSessionData.PlayerHero.IsPlayerFirst)
+            if (GameSessionModel.PlayerHero.IsPlayerFirst)
             {
                 _selectWindowHeroPresenter.SetBanMode();
             }
