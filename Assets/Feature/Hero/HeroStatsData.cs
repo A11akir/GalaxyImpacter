@@ -20,7 +20,7 @@ namespace Feature.Hero
             get => _iconImage;
             set => _iconImage = value;
         }        
-        public int HeroPowerCost
+        public int Cost
         {
             get => _heroPowerCost;
             set => _heroPowerCost = value;
@@ -30,7 +30,7 @@ namespace Feature.Hero
             get => _name;
             set => _name = value;
         }
-        public int Health
+        public int Rarity
         {
             get => _health;
             set => _health = value;

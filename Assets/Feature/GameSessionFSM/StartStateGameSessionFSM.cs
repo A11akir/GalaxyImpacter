@@ -10,8 +10,15 @@ namespace Feature.GameSessionFSM
 
         public override void Enter()
         {
+            InitializeAllListCard();
             _gameSessionModel.ChooseFirstPlayer();
             CheckGameRules();
+            
+        }
+
+        private void InitializeAllListCard()
+        {
+            
         }
 
         private void CheckGameRules()

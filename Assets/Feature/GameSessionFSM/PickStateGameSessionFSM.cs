@@ -2,7 +2,6 @@ using Feature.AI;
 using Feature.GameSessionData;
 using Feature.UI;
 using Feature.UI.SelectWindowHero;
-using UnityEngine;
 
 namespace Feature.GameSessionFSM
 {
@@ -24,14 +23,15 @@ namespace Feature.GameSessionFSM
         }
         
         public override void Enter()
+        {   
+            if (_gameSessionModel.PlayerStartGameSessionFirst()) PickHeroAI();
+            else PickHeroPlayer();
+        }
+
+        private void PickHeroPlayer()
         {
-            if (_gameSessionModel.PlayerStartGameSessionFirst())
-                PickHeroAI();
-            else
-            {
-                _selectWindowHeroPresenter.SetSelectMode();
-                _selectWindowHeroPresenter.OnPlayerPickedHero += PickHeroAI;
-            }
+            _selectWindowHeroPresenter.SetSelectMode();
+            _selectWindowHeroPresenter.OnPlayerPickedHero += PickHeroAI;
         }
 
         private void PickHeroAI()
@@ -42,9 +42,8 @@ namespace Feature.GameSessionFSM
                     _selectWindowHeroPresenter._selectWindowHeroView._selectHeroView = selectedHeroView;
                     _selectWindowHeroPresenter.SelectHero();
                     _selectWindowHeroPresenter.ChoseSelectedHeroEnemy();
-                        
                     _selectWindowHeroPresenter.OnPlayerPickedHero -= PickHeroAI;
-                    _selectWindowHeroPresenter.SetSelectMode();
+                    _selectWindowHeroPresenter.SetSelectMode(); 
                 })
                 .AIImitation();
         }

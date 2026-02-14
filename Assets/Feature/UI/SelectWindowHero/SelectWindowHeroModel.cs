@@ -31,8 +31,8 @@ namespace Feature.UI.SelectWindowHero
                 GameSessionPlayerData heroData = new GameSessionPlayerData
                 {
                     _heroName = selectedHeroStats.Name,
-                    _health = selectedHeroStats.Health,
-                    _heroPowerCost = selectedHeroStats.HeroPowerCost,
+                    _health = selectedHeroStats.Rarity,
+                    _heroPowerCost = selectedHeroStats.Cost,
                     _iconImage = selectedHeroStats.IconImage
                 };
 
