@@ -6,6 +6,7 @@ using Feature.GameSessionData;
 using Feature.HandLogic;
 using Feature.GameSessionFSM;
 using Feature.Hero;
+using Feature.ShopGamePlay.Script;
 using Feature.UI;
 using Feature.UI.SelectWindowHero;
 using UnityEngine;
@@ -36,6 +37,10 @@ namespace Feature.EntryPoint.Script
             Container.Bind<GameSessionModel>().AsSingle();
             Container.Bind<GameSessionPresenter>().AsSingle();
             Container.Bind<AIRandomSelectSystem>().AsSingle();
+            
+            Container.Bind<CurrencyManageView>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<CurrencyManagePresenter>().AsSingle();
+            Container.Bind<CurrencyManagerSystem>().AsSingle();
             
             BindGameSessionFSM();
             BindConfig();

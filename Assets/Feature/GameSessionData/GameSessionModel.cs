@@ -4,7 +4,7 @@ namespace Feature.GameSessionData
     public class GameSessionModel
     {
         public int Turn;
-
+        
         public GameSessionPlayerData PlayerHero;
         public GameSessionPlayerData EnemyHero;
         

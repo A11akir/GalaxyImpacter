@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Feature.Hero;
+using R3;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,6 +22,14 @@ namespace Feature.GameSessionData
 
         public int _heroPowerCost;
         public int _health;
+        private readonly ReactiveProperty<int> _currencyCount = new();
+        public ReadOnlyReactiveProperty<int> CurrencyCount => _currencyCount;
+
+        public int Currency
+        {
+            get => _currencyCount.Value;
+            set => _currencyCount.Value = value;
+        }
         public Sprite _iconImage;
         public Sprite _heroPowerSprite;
 
