@@ -1932,7 +1932,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &740798129
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2140,17 +2140,17 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 24562749}
-  - {fileID: 1987505313}
   - {fileID: 1391783041}
-  - {fileID: 1388931698}
   - {fileID: 1995079769}
-  - {fileID: 1852101373}
   - {fileID: 740798129}
   - {fileID: 890994444}
+  - {fileID: 1987505313}
   - {fileID: 1626493393}
+  - {fileID: 1388931698}
   - {fileID: 39308272}
   - {fileID: 1175480810}
   - {fileID: 1664326975}
+  - {fileID: 1852101373}
   m_Father: {fileID: 569098865}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5002,10 +5002,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1626493392}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 367591e0345c4586911c6d0b90e00679, type: 3}
+  m_Script: {fileID: 11500000, guid: 03cc406990394184a9929396f1531757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currencyCountText: {fileID: 2002292384}
+  _chakraCountText: {fileID: 2002292384}
 --- !u!114 &1631569966 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8304432329169127823, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}

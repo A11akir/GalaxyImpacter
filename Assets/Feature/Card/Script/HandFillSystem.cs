@@ -9,11 +9,8 @@ namespace Feature.Card.Script
     {
         private GameSessionModel _gameSessionModel;
         
-        public HandFillSystem(GameSessionModel gameSessionModel)
-        {
-            _gameSessionModel = gameSessionModel;
-        }
-        
+        public HandFillSystem(GameSessionModel gameSessionModel) => _gameSessionModel = gameSessionModel;
+
         public void FillHandInDecks()
         {
             FillHandForHero(_gameSessionModel.PlayerHero);
@@ -39,6 +36,7 @@ namespace Feature.Card.Script
             }
             
             Debug.Log($"Рука {hero._heroName}: взято {hero._cardsInHand.Count} карт, в колоде осталось {deck.Count}");
+            
         }
         
         private void Shuffle<T>(List<T> list)

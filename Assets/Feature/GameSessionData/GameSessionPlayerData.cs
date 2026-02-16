@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Feature.Card.Script;
 using Feature.Hero;
 using R3;
 using UnityEngine;
@@ -24,11 +25,21 @@ namespace Feature.GameSessionData
         public int _health;
         private readonly ReactiveProperty<int> _currencyCount = new();
         public ReadOnlyReactiveProperty<int> CurrencyCount => _currencyCount;
+        
+        private readonly ReactiveProperty<int> _chakraCount = new();
+        public ReadOnlyReactiveProperty<int> ChakraCount => _chakraCount;
+
+        public int MaxChakraCountBaseIncrease = 8;
 
         public int Currency
         {
             get => _currencyCount.Value;
             set => _currencyCount.Value = value;
+        }
+        public int Chakra
+        {
+            get => _chakraCount.Value;
+            set => _chakraCount.Value = value;
         }
         public Sprite _iconImage;
         public Sprite _heroPowerSprite;

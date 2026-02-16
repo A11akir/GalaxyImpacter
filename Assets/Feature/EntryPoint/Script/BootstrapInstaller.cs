@@ -1,5 +1,6 @@
 using Feature.AI;
 using Feature.Card.Script;
+using Feature.Chakra;
 using Feature.Common;
 using Feature.Data;
 using Feature.GameSessionData;
@@ -39,9 +40,13 @@ namespace Feature.EntryPoint.Script
             Container.Bind<GameSessionModel>().AsSingle();
             Container.Bind<GameSessionPresenter>().AsSingle();
             Container.Bind<AIRandomSelectSystem>().AsSingle();
-            
+
+            Container.Bind<ChakraWindowPresenter>().AsSingle();
             Container.Bind<CurrencyManageView>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<ChakraWindowView>().FromComponentInHierarchy().AsSingle();
             Container.Bind<CurrencyManagerSystem>().AsSingle();
+            Container.Bind<ChakraManagerSystem>().AsSingle();
+            Container.Bind<CardCastSystem>().AsSingle();
             
             Container.Bind<ShopGameplayView>().FromComponentInHierarchy().AsSingle();
             Container.Bind<ShopGameplayPresenter>().AsSingle();

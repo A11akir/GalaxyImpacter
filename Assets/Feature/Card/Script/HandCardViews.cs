@@ -7,7 +7,7 @@ namespace Feature.Card.Script
 {
     public class HandCardViews : MonoBehaviour
     {
-        [SerializeField] private List<CardView> _cardsInDeck;
+        [SerializeField] public List<CardView> _cardsInDeck;
 
         public event Action UpdateViewCard;
         public void SetCardsPlayerView(List<CardStatsData> playerHeroCardsInDeck)

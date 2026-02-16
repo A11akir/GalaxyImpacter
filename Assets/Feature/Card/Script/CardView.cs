@@ -1,12 +1,16 @@
 using Feature.Hero;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Feature.Card.Script
 {
     public class CardView : MonoBehaviour
     {
+        [SerializeField] public GameObject _cursorArrowLine;
+        [SerializeField] public GameObject _cursorArrowHead;
+        [SerializeField] public GameObject _cardContainer;
         [SerializeField] private TextMeshProUGUI _name;
         [SerializeField] private TextMeshProUGUI _health;
         [SerializeField] private TextMeshProUGUI _healthMinion;
@@ -17,6 +21,7 @@ namespace Feature.Card.Script
 
         [SerializeField] private GameObject _heroCardWindow;
         [SerializeField] private GameObject _spellCardWindow;
+
         public void SetDataView(CardStatsData cardStatsData)
         {
             gameObject.SetActive(true);

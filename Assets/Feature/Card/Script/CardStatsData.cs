@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Feature.GoogleSheets;
 using UnityEngine;
 
-namespace Feature.Hero
+namespace Feature.Card.Script
 {
     [CreateAssetMenu(
         fileName = "HeroStatsData",
@@ -19,7 +19,7 @@ namespace Feature.Hero
         [SerializeField] private List<string> _specialization;
         [SerializeField] private int _level;
         [SerializeField] private string _description;
-
+        [SerializeField] public TargetSpellType targetSpellType;
         public bool IsHero => _health > 0;
         public List<int> Values
         {
@@ -31,7 +31,6 @@ namespace Feature.Hero
             get => _specialization;
             set => _specialization = value;
         }
-        
         public Sprite IconImage
         {
             get => _iconImage;
@@ -62,11 +61,18 @@ namespace Feature.Hero
             get => _rarity;
             set => _rarity = value;
         }
-        
         public int Level
         {
             get => _level;
             set => _level = value;
         }
+    }
+
+    public enum TargetSpellType
+    {
+        AnyTarget = 0,
+        Player = 1,
+        Enemy = 2,
+        All = 3
     }
 }
