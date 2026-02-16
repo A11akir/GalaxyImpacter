@@ -22,3 +22,4 @@ MonoBehaviour:
   - Assasian
   _level: 0
   _description: Give 1 armor.
+  targetSpellType: 3

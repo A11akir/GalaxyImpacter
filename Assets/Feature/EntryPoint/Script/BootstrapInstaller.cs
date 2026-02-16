@@ -52,6 +52,9 @@ namespace Feature.EntryPoint.Script
             Container.Bind<ShopGameplayPresenter>().AsSingle();
             Container.Bind<ShopGameplayManagerSystem>().AsSingle();
             
+            
+            Container.Bind<CastCardAreaAllTarget>().FromComponentInHierarchy().AsSingle();
+            
             BindGameSessionFSM();
             BindConfig();
       
