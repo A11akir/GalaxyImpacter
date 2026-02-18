@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Feature.GoogleSheets
 {
+    #if UNITY_EDITOR
     public class ConfigImportsMenu
     {
         private static string spreadsheetId = "1a7yYFInQjZXkeCFavpWwcT91aE90bWddaxrV4Pu-9Lw";
@@ -42,4 +43,6 @@ namespace Feature.GoogleSheets
             }
         }
     }
+    
+    #endif
 }

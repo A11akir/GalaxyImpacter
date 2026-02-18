@@ -1,24 +1,51 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace Feature.Card.Script
 {
-    public class CastCardAreaAllTarget : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public class CastCardAreaAllTarget : MonoBehaviour
     {
         [SerializeField] GameObject CardIsAreaAllTargetUseEffect;
         [HideInInspector] public bool CardGoingIsUsed;
         
-        public void OnPointerEnter(PointerEventData eventData)
+        private GraphicRaycaster _raycaster;
+        private EventSystem _eventSystem;
+        
+        private void Start()
         {
-            if (CardGoingIsUsed)
-                CardIsAreaAllTargetUseEffect.SetActive(true);
+            _eventSystem = EventSystem.current;
+            _raycaster = FindObjectOfType<GraphicRaycaster>();
         }
 
-        public void OnPointerExit(PointerEventData eventData)
+        public void CheckCardArea()
         {
-            CardIsAreaAllTargetUseEffectOff();
+            if (CardGoingIsUsed && _raycaster && _eventSystem)
+            {
+                PointerEventData pointerData = new PointerEventData(_eventSystem);
+                pointerData.position = Input.mousePosition;
+                
+                var results = new System.Collections.Generic.List<RaycastResult>();
+                _raycaster.Raycast(pointerData, results);
+                
+                bool mouseOverThis = false;
+                foreach (var result in results)
+                {
+                    if (result.gameObject == gameObject)
+                    {
+                        mouseOverThis = true;
+                        break;
+                    }
+                }
+                
+                CardIsAreaAllTargetUseEffect.SetActive(mouseOverThis);
+            }
+            else
+            {
+                CardIsAreaAllTargetUseEffect.SetActive(false);
+            }
         }
-
+        
         public void CardIsAreaAllTargetUseEffectOff()
         {
             CardIsAreaAllTargetUseEffect.SetActive(false);

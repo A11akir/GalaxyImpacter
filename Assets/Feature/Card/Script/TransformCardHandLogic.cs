@@ -7,25 +7,26 @@ using Zenject;
 
 namespace Feature.Card.Script
 {
-    public class TransfromHandLogic : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IDragHandler, IEndDragHandler
+    public class TransformCardHandLogic : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IDragHandler, IEndDragHandler
     {
         [SerializeField] private float scaleFactor = 1.5f;
+
+        private bool isDrag = false;
+        private static bool isPointerEnter = false;
         
         [Inject] private HandCardsPositionSystem  _handCardsPositionSystem;
         
         private RectTransform _rectTransform;
         private int _hierarchyIndex;
+        
         public void OnPointerEnter(PointerEventData eventData)
         {
             if (!isActiveAndEnabled) return;
             CardPointerEnter();
         }
 
-        private void OnEnable()
-        {
-            Init();
-        }
-        
+        private void OnEnable() => Init();
+
         private void OnDisable()
         {
             ResetCardTransform();
@@ -39,21 +40,23 @@ namespace Feature.Card.Script
         }
 
         [Button]
-        private void Init()
-        {
-            _rectTransform = GetComponent<RectTransform>();
-        }
-        
+        private void Init() => _rectTransform = GetComponent<RectTransform>();
+
         [Button]
         private void CardPointerEnter()
         {
+            if (isPointerEnter) return;
+            isPointerEnter = true;
             _hierarchyIndex = transform.GetSiblingIndex();
             transform.SetAsLastSibling();
-            
+    
             transform.localPosition = new Vector3(transform.localPosition.x,
                 ((_rectTransform.rect.height/2)*scaleFactor)-5, 
                 transform.localPosition.z);
-            transform.localScale *= scaleFactor;
+    
+            if (isDrag) transform.localScale = Vector3.one;
+            else transform.localScale *= scaleFactor;
+    
             transform.localRotation = Quaternion.identity;
         }
 
@@ -61,10 +64,18 @@ namespace Feature.Card.Script
         {
             transform.SetSiblingIndex(_hierarchyIndex);
             _handCardsPositionSystem.UpdateCardsPosition();
+            
+            isPointerEnter = false;
         }
 
         public void OnDrag(PointerEventData eventData)
         {
+            if (!isDrag)
+            {
+                isDrag = true;
+                transform.localScale = Vector3.one;
+            }
+    
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
                 _rectTransform.parent as RectTransform,
                 eventData.position,
@@ -75,8 +86,11 @@ namespace Feature.Card.Script
             _rectTransform.localPosition = localPoint;
         }
         
-        public void OnEndDrag(PointerEventData eventData)
+        public void OnEndDrag(PointerEventData eventData) => DragCancel();
+
+        public void DragCancel()
         {
+            isDrag = false;
             transform.SetSiblingIndex(_hierarchyIndex);
             _handCardsPositionSystem.UpdateCardsPosition();
         }

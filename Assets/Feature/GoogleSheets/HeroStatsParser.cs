@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace Feature.GoogleSheets
 {
+#if UNITY_EDITOR
     public class StatsMinionParser : IGoggleSheetsParser
     {
         private readonly AllGameConfig _allGameConfig;
@@ -77,4 +78,6 @@ namespace Feature.GoogleSheets
             AssetDatabase.Refresh();
         }
     }
+    
+    #endif
 }

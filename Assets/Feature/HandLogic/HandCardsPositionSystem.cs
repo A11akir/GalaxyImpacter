@@ -13,6 +13,7 @@ namespace Feature.HandLogic
         
         private readonly List<GameObject> _handCards = new List<GameObject>();
         
+        
         [SerializeField] private Transform handParent;
         [SerializeField] private int verticalCardOffset = 30; 
         [SerializeField] private int verticalCardOffsetRatio = 5;  
@@ -61,8 +62,7 @@ namespace Feature.HandLogic
 
         private float CalculateXPos(int i)
         {
-            float spacing = horizontalCardOffset
-                            - (_handCards.Count - 1) * horizontalCardOffsetRatio;
+            float spacing = horizontalCardOffset - (_handCards.Count - 1) * horizontalCardOffsetRatio;
 
             spacing = Mathf.Max(spacing, 20f);
             

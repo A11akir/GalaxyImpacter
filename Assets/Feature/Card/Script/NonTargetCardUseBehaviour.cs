@@ -10,6 +10,7 @@ namespace Feature.Card.Script
         
         public void OnDrag(PointerEventData eventData)
         {
+            _castCardAreaAllTarget.CheckCardArea();
             _castCardAreaAllTarget.CardGoingIsUsed = true;
         }
 

@@ -6,16 +6,10 @@ namespace Feature.Card.Script
 {
     public class CardCastSystem
     {
-        private GameSessionModel _gameSessionModel;
         private HandCardPresenter _handCardPresenter;
-        private IInstantiator _instantiator; // Используем IInstantiator
-
-        public CardCastSystem(
-            GameSessionModel gameSessionModel, 
-            HandCardPresenter handCardPresenter,
-            IInstantiator instantiator) // Инжектим IInstantiator
+        private IInstantiator _instantiator;
+        public CardCastSystem(HandCardPresenter handCardPresenter, IInstantiator instantiator)
         {
-            _gameSessionModel = gameSessionModel;
             _handCardPresenter = handCardPresenter;
             _instantiator = instantiator;
         }
@@ -35,6 +29,7 @@ namespace Feature.Card.Script
                         selectObject.cardObject = pair.view._cardContainer;
                         selectObject.cursorArrowHead = pair.view._cursorArrowHead;
                         selectObject.cursorArrowLine = pair.view._cursorArrowLine;
+                        selectObject.Init();
                         break;
                         
                     default:
