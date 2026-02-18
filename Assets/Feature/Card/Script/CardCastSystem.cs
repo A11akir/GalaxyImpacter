@@ -8,12 +8,24 @@ namespace Feature.Card.Script
     {
         private HandCardPresenter _handCardPresenter;
         private IInstantiator _instantiator;
-        public CardCastSystem(HandCardPresenter handCardPresenter, IInstantiator instantiator)
+        private readonly GameSessionModel _gameSessionModel;
+
+        public CardCastSystem(HandCardPresenter handCardPresenter, IInstantiator instantiator, GameSessionModel gameSessionModel)
         {
             _handCardPresenter = handCardPresenter;
             _instantiator = instantiator;
+            _gameSessionModel = gameSessionModel;
         }
 
+        public void ManaCheckCanCastCard()
+        {
+            foreach (var card in _handCardPresenter._handCards)
+            {
+                card.view.SetCanCastView(_gameSessionModel.PlayerHero.Chakra >= card.data.Cost);
+                card.
+            }
+        }
+        
         public void InitPropertyCard()
         {
             foreach (var pair in _handCardPresenter._handCards)
@@ -24,19 +36,30 @@ namespace Feature.Card.Script
                 switch (data.targetSpellType)
                 {
                     case TargetSpellType.AnyTarget:
-                        var selectObject = _instantiator.InstantiateComponent<SelectTargetCardUseBehaviour>(cardObject);
+                        var selectObjectTarget = _instantiator.InstantiateComponent<SelectTargetCardUseBehaviour>(cardObject);
 
-                        selectObject.cardObject = pair.view._cardContainer;
-                        selectObject.cursorArrowHead = pair.view._cursorArrowHead;
-                        selectObject.cursorArrowLine = pair.view._cursorArrowLine;
-                        selectObject.Init();
+                        selectObjectTarget.cardObject = pair.view._cardContainer;
+                        selectObjectTarget.cursorArrowHead = pair.view._cursorArrowHead;
+                        selectObjectTarget.cursorArrowLine = pair.view._cursorArrowLine;
+                        selectObjectTarget.Init();
                         break;
                         
                     default:
                         _instantiator.InstantiateComponent<NonTargetCardUseBehaviour>(cardObject);
                         break;
                 }
+                
             }
+        }
+        
+        public void CheckCastCardData()
+        {
+            
+        }
+
+        public void CastCard()
+        {
+            
         }
     }
 }

@@ -11,13 +11,13 @@ namespace Feature.Card.Script
         
         public HandFillSystem(GameSessionModel gameSessionModel) => _gameSessionModel = gameSessionModel;
 
-        public void FillHandInDecks()
+        public void FillHandDataInDecks()
         {
-            FillHandForHero(_gameSessionModel.PlayerHero);
-            FillHandForHero(_gameSessionModel.EnemyHero);
+            FillHandDataForHero(_gameSessionModel.PlayerHero);
+            FillHandDataForHero(_gameSessionModel.EnemyHero);
         }
         
-        private void FillHandForHero(GameSessionPlayerData hero)
+        private void FillHandDataForHero(GameSessionPlayerData hero)
         {
             hero._cardsInHand.Clear();
             

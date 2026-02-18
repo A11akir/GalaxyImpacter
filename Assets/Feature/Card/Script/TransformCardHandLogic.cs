@@ -1,4 +1,3 @@
-using System;
 using Feature.HandLogic;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -11,8 +10,8 @@ namespace Feature.Card.Script
     {
         [SerializeField] private float scaleFactor = 1.5f;
 
-        private bool isDrag = false;
-        private static bool isPointerEnter = false;
+        private bool isDrag;
+        private static bool isPointerEnter;
         
         [Inject] private HandCardsPositionSystem  _handCardsPositionSystem;
         

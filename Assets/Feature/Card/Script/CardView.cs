@@ -19,6 +19,7 @@ namespace Feature.Card.Script
         [SerializeField] private Image _iconSpell;
         [SerializeField] private Image _iconMinion;
 
+        [SerializeField] private GameObject _canAvailableCast;
         [SerializeField] private GameObject _heroCardWindow;
         [SerializeField] private GameObject _spellCardWindow;
 
@@ -41,6 +42,11 @@ namespace Feature.Card.Script
             _name.text = cardStatsData.Name;
             _cost.text = cardStatsData.Cost.ToString();
             
+        }
+
+        public void SetCanCastView(bool canCast)
+        {
+            _canAvailableCast.SetActive(canCast);
         }
     }
 }

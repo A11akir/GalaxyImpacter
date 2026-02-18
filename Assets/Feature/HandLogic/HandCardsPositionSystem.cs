@@ -13,7 +13,6 @@ namespace Feature.HandLogic
         
         private readonly List<GameObject> _handCards = new List<GameObject>();
         
-        
         [SerializeField] private Transform handParent;
         [SerializeField] private int verticalCardOffset = 30; 
         [SerializeField] private int verticalCardOffsetRatio = 5;  

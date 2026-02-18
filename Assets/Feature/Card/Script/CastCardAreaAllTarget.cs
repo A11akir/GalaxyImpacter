@@ -8,7 +8,8 @@ namespace Feature.Card.Script
     {
         [SerializeField] GameObject CardIsAreaAllTargetUseEffect;
         [HideInInspector] public bool CardGoingIsUsed;
-        
+
+        public bool CardHasTarget;
         private GraphicRaycaster _raycaster;
         private EventSystem _eventSystem;
         
@@ -37,18 +38,20 @@ namespace Feature.Card.Script
                         break;
                     }
                 }
-                
                 CardIsAreaAllTargetUseEffect.SetActive(mouseOverThis);
+                CardHasTarget =  true;
             }
             else
             {
                 CardIsAreaAllTargetUseEffect.SetActive(false);
+                CardHasTarget =  false;
             }
         }
         
         public void CardIsAreaAllTargetUseEffectOff()
         {
             CardIsAreaAllTargetUseEffect.SetActive(false);
+            CardHasTarget =  false;
         }
     }
 }

@@ -1,9 +1,10 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Feature.Card.Script
 {
-    public class SelectTargetCardUseBehaviour : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler
+    public class SelectTargetCardUseBehaviour : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler, ITargetCardBehaviour
     {
         public GameObject cursorArrowHead;
         public GameObject cursorArrowLine;
@@ -74,6 +75,7 @@ namespace Feature.Card.Script
         private void OnDisable() => _isDragging = false;
         public void OnBeginDrag(PointerEventData eventData)
         {
+            TryCastCard(this);
             cursorArrowLine.SetActive(true);
             cursorArrowHead.SetActive(true);
             cardObject.SetActive(false);
@@ -84,5 +86,12 @@ namespace Feature.Card.Script
                 _isDragging = true;
             }
         }
+
+        public void TryCastCard(ITargetCardBehaviour _currentCardBehaviour)
+        {
+            
+        }
+
+        public event Action OnTryCardCast;
     }
 }

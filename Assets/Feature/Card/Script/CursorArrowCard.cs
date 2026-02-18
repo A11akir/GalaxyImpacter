@@ -6,8 +6,6 @@ namespace Feature.Card.Script
     {
         [SerializeField] private GameObject arrow;
         [SerializeField] private GameObject line;
-        
-        
 
     }
 }
