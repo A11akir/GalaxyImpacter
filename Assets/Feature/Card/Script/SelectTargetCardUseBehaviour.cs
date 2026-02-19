@@ -15,10 +15,12 @@ namespace Feature.Card.Script
         private RectTransform _cardRectTransform;
         
         private Vector2 _startPosition;
-        
+
+        public bool _canCastCard { get; set; }
         private bool _isDragging;
 
         private int _headRotationOffset = 180;
+
 
         public void Init()
         {
@@ -29,8 +31,11 @@ namespace Feature.Card.Script
 
         public void OnDrag(PointerEventData eventData) => UpdateCursorArrow(eventData);
 
+
         private void UpdateCursorArrow(PointerEventData eventData)
         {
+            if (!_canCastCard) return;
+            
             RectTransform parentRect = _cardRectTransform.parent as RectTransform;
 
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
@@ -73,8 +78,11 @@ namespace Feature.Card.Script
         }
 
         private void OnDisable() => _isDragging = false;
+
         public void OnBeginDrag(PointerEventData eventData)
         {
+            if (!_canCastCard) return;
+
             TryCastCard(this);
             cursorArrowLine.SetActive(true);
             cursorArrowHead.SetActive(true);
@@ -93,5 +101,9 @@ namespace Feature.Card.Script
         }
 
         public event Action OnTryCardCast;
+        public void CanCastCard(bool canCast)
+        {
+            _canCastCard = canCast;
+        }
     }
 }

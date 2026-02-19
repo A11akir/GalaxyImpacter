@@ -6,6 +6,9 @@ namespace Feature.Card.Script
     {
         void TryCastCard(ITargetCardBehaviour _currentCardBehaviour);
         
+        public bool _canCastCard { get;set; }
+        
         event Action OnTryCardCast;
+        void CanCastCard(bool b);
     }
 }

@@ -8,16 +8,12 @@ namespace Feature.Card.Script
     public class CardCastSystem
     {
         private IInstantiator _instantiator;
-        private TransformCardHandLogic _cardHandLogic;
-        private ITargetCardBehaviour _targetCardBehaviour;
         private GameSessionModel _gameSessionModel;
 
-        public CardCastSystem(IInstantiator instantiator, GameSessionModel gameSessionModel, TransformCardHandLogic cardHandLogic, ITargetCardBehaviour targetCardBehaviour)
+        public CardCastSystem(IInstantiator instantiator, GameSessionModel gameSessionModel)
         {
             _instantiator = instantiator;
             _gameSessionModel = gameSessionModel;
-            _cardHandLogic = cardHandLogic;
-            _targetCardBehaviour = targetCardBehaviour;
         }
 
         public void AddBehavioursToCards(List<HandCardData> handData)
@@ -50,7 +46,7 @@ namespace Feature.Card.Script
         {
             foreach (var cardData in handData)
             {
-                /*cardData.Behaviour.CanCastCard(_gameSessionModel.PlayerHero.Chakra > cardData.Data.Cost);*/
+                cardData.Behaviour.CanCastCard(_gameSessionModel.PlayerHero.Chakra > cardData.Data.Cost);
             }
         }
     }

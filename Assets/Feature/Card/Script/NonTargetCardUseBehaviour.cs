@@ -8,9 +8,11 @@ namespace Feature.Card.Script
     public class NonTargetCardUseBehaviour : MonoBehaviour, IDragHandler, IEndDragHandler, ITargetCardBehaviour
     {
         [Inject] CastCardAreaAllTarget _castCardAreaAllTarget;
+        public bool _canCastCard { get; set; }
         
         public void OnDrag(PointerEventData eventData)
         {
+            if (!_canCastCard) return;
             _castCardAreaAllTarget.CheckCardArea();
             _castCardAreaAllTarget.CardGoingIsUsed = true;
         }
@@ -32,5 +34,9 @@ namespace Feature.Card.Script
         }
 
         public event Action OnTryCardCast;
+        public void CanCastCard(bool canCast)
+        {
+            _canCastCard = canCast;
+        }
     }
 }

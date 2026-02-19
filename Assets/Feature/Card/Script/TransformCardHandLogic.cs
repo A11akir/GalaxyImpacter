@@ -87,7 +87,7 @@ namespace Feature.Card.Script
         
         public void OnEndDrag(PointerEventData eventData) => DragCancel();
 
-        public void DragCancel()
+        private void DragCancel()
         {
             isDrag = false;
             transform.SetSiblingIndex(_hierarchyIndex);
