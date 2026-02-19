@@ -8,10 +8,7 @@ namespace Feature.GameSessionFSM
 {
     public class TurnСycleGameSessionSystem
     {
-        
         private DeckFillSystem _deckFillSystem { get;  }
-        private HandFillSystem _handFillSystem { get;  }
-        
         private HandDataRepository _handDataRepository { get;  }
         private CurrencyManagerSystem _currencyManagerSystem { get;  }        
         private ChakraManagerSystem _chakraManagerSystem { get;  }
@@ -28,13 +25,13 @@ namespace Feature.GameSessionFSM
         public void StartGameSession()
         {
             _deckFillSystem.InitializeDecks();
-            _handDataRepository.InitPropertyCard();
             _currencyManagerSystem.Init();
             _chakraManagerSystem.Init();
         }
 
         public void CycleTurn()
         {
+            _handDataRepository.InitPropertyCard();
             _currencyManagerSystem.NewTurnUpdate();
             _chakraManagerSystem.NewTurnUpdate();
         }

@@ -1,41 +1,147 @@
 using System;
+using Feature.HandLogic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Zenject;
 
 namespace Feature.Card.Script
 {
-    public class SelectTargetCardUseBehaviour : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler, ITargetCardBehaviour
+    public class SelectTargetCardUseBehaviour : MonoBehaviour,
+        IPointerEnterHandler,
+        IPointerExitHandler,
+        IBeginDragHandler,
+        IDragHandler,
+        IEndDragHandler,
+        ITargetCardBehaviour
     {
+        [Header("Arrow")]
         public GameObject cursorArrowHead;
         public GameObject cursorArrowLine;
         public GameObject cardObject;
 
+        [Header("Hover")]
+         private float scaleFactor = 1.5f;
+
+        [Inject] private HandCardsPositionSystem _handCardsPositionSystem;
+
+        private RectTransform _rectTransform;
         private RectTransform _lineRectTransform;
         private RectTransform _headRectTransform;
         private RectTransform _cardRectTransform;
-        
+
         private Vector2 _startPosition;
 
-        public bool _canCastCard { get; set; }
         private bool _isDragging;
+        private int _hierarchyIndex;
+        private static bool _isPointerEnter;
 
-        private int _headRotationOffset = 180;
+        public bool _canCastCard { get; set; }
+        public event Action OnTryCardCast;
 
+        #region Init
 
-        public void Init()
+        public void Init(GameObject viewCardContainer, GameObject viewCursorArrowHead, GameObject viewCursorArrowLine)
         {
+            cardObject = viewCardContainer;
+            cursorArrowHead = viewCursorArrowHead;
+            cursorArrowLine = viewCursorArrowLine;
+            
+            _rectTransform = GetComponent<RectTransform>();
             _lineRectTransform = cursorArrowLine.GetComponent<RectTransform>();
             _headRectTransform = cursorArrowHead.GetComponent<RectTransform>();
             _cardRectTransform = cardObject.GetComponent<RectTransform>();
         }
 
-        public void OnDrag(PointerEventData eventData) => UpdateCursorArrow(eventData);
+        private void OnDisable()
+        {
+            ResetTransform();
+            _isDragging = false;
+            _handCardsPositionSystem?.UpdateCardsPosition();
+        }
 
+        private void ResetTransform()
+        {
+            transform.localScale = Vector3.one;
+            transform.localRotation = Quaternion.identity;
+        }
+
+        #endregion
+
+        #region Hover
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            if (!isActiveAndEnabled || _isPointerEnter) return;
+
+            _isPointerEnter = true;
+
+            _hierarchyIndex = transform.GetSiblingIndex();
+            transform.SetAsLastSibling();
+
+            transform.localPosition = new Vector3(
+                transform.localPosition.x,
+                ((_rectTransform.rect.height / 2) * scaleFactor) - 5,
+                transform.localPosition.z);
+
+            transform.localScale = Vector3.one * scaleFactor;
+            transform.localRotation = Quaternion.identity;
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            if (_isDragging) return;
+
+            transform.SetSiblingIndex(_hierarchyIndex);
+            _handCardsPositionSystem.UpdateCardsPosition();
+            _isPointerEnter = false;
+        }
+
+        #endregion
+
+        #region Drag
+
+        public void OnBeginDrag(PointerEventData eventData)
+        {
+            if (!_canCastCard) return;
+
+            TryCastCard(this);
+
+            cursorArrowLine.SetActive(true);
+            cursorArrowHead.SetActive(true);
+            cardObject.SetActive(false);
+
+            _startPosition = _cardRectTransform.position;
+            _isDragging = true;
+
+            transform.localScale = Vector3.one;
+        }
+
+        public void OnDrag(PointerEventData eventData)
+        {
+            if (!_canCastCard || !_isDragging) return;
+
+            UpdateCursorArrow(eventData);
+        }
+
+        public void OnEndDrag(PointerEventData eventData)
+        {
+            cursorArrowLine.SetActive(false);
+            cursorArrowHead.SetActive(false);
+            cardObject.SetActive(true);
+
+            _isDragging = false;
+
+            transform.SetSiblingIndex(_hierarchyIndex);
+            _handCardsPositionSystem.UpdateCardsPosition();
+            _isPointerEnter = false;
+        }
+
+        #endregion
+
+        #region Arrow Logic
 
         private void UpdateCursorArrow(PointerEventData eventData)
         {
-            if (!_canCastCard) return;
-            
             RectTransform parentRect = _cardRectTransform.parent as RectTransform;
 
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
@@ -55,52 +161,28 @@ namespace Feature.Card.Script
             Vector2 direction = currentLocalPoint - startLocalPoint;
             float distance = direction.magnitude;
 
-            if (distance > 0.01f)
-            {
-                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            if (distance <= 0.01f) return;
 
-                _lineRectTransform.localPosition = startLocalPoint + direction * 0.5f;
-                _lineRectTransform.rotation = Quaternion.Euler(0, 0, angle);
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-                _lineRectTransform.sizeDelta = new Vector2(distance, _lineRectTransform.sizeDelta.y);
+            _lineRectTransform.localPosition = startLocalPoint + direction * 0.5f;
+            _lineRectTransform.rotation = Quaternion.Euler(0, 0, angle);
+            _lineRectTransform.sizeDelta =
+                new Vector2(distance, _lineRectTransform.sizeDelta.y);
 
-                _headRectTransform.localPosition = currentLocalPoint;
-                _headRectTransform.rotation = Quaternion.Euler(0, 0, angle + 180);
-            }
+            _headRectTransform.localPosition = currentLocalPoint;
+            _headRectTransform.rotation =
+                Quaternion.Euler(0, 0, angle + 180);
         }
 
-        public void OnEndDrag(PointerEventData eventData)
+        #endregion
+
+        public void TryCastCard(ITargetCardBehaviour currentCardBehaviour)
         {
-            cursorArrowLine.SetActive(false);
-            cursorArrowHead.SetActive(false);
-            cardObject.SetActive(true);
-            _isDragging = false;
+            // Здесь можно добавить проверку попадания в цель
+            OnTryCardCast?.Invoke();
         }
 
-        private void OnDisable() => _isDragging = false;
-
-        public void OnBeginDrag(PointerEventData eventData)
-        {
-            if (!_canCastCard) return;
-
-            TryCastCard(this);
-            cursorArrowLine.SetActive(true);
-            cursorArrowHead.SetActive(true);
-            cardObject.SetActive(false);
-
-            if (!_isDragging)
-            {
-                _startPosition = _cardRectTransform.position;
-                _isDragging = true;
-            }
-        }
-
-        public void TryCastCard(ITargetCardBehaviour _currentCardBehaviour)
-        {
-            
-        }
-
-        public event Action OnTryCardCast;
         public void CanCastCard(bool canCast)
         {
             _canCastCard = canCast;

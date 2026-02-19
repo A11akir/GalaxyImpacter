@@ -24,11 +24,7 @@ namespace Feature.Card.Script
                 {
                     case TargetSpellType.AnyTarget:
                         var selectObjectTarget = _instantiator.InstantiateComponent<SelectTargetCardUseBehaviour>(cardData.View.gameObject);
-                        
-                        selectObjectTarget.cardObject = cardData.View._cardContainer;
-                        selectObjectTarget.cursorArrowHead = cardData.View._cursorArrowHead;
-                        selectObjectTarget.cursorArrowLine = cardData.View._cursorArrowLine;
-                        selectObjectTarget.Init();
+                        selectObjectTarget.Init(cardData.View._cardContainer, cardData.View._cursorArrowHead, cardData.View._cursorArrowLine);
                         cardData.Behaviour = selectObjectTarget;
                         break;
                         
@@ -39,14 +35,12 @@ namespace Feature.Card.Script
                 }
             }
         }
-
-
-
+        
         public void ChakraCheckCanCastCard(List<HandCardData> handData)
         {
             foreach (var cardData in handData)
             {
-                cardData.Behaviour.CanCastCard(_gameSessionModel.PlayerHero.Chakra > cardData.Data.Cost);
+                cardData.Behaviour.CanCastCard(_gameSessionModel.PlayerHero.Chakra >= cardData.Data.Cost);
             }
         }
     }
