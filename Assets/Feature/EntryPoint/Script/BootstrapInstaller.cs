@@ -52,6 +52,7 @@ namespace Feature.EntryPoint.Script
             Container.Bind<ShopGameplayPresenter>().AsSingle();
             Container.Bind<ShopGameplayManagerSystem>().AsSingle();
             
+            Container.Bind<HandDataRepository>().AsSingle();
             
             Container.Bind<CastCardAreaAllTarget>().FromComponentInHierarchy().AsSingle();
             

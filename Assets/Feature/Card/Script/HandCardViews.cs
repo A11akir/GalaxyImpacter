@@ -18,5 +18,6 @@ namespace Feature.Card.Script
             }
             UpdateViewCard?.Invoke();
         }
+        
     }
 }

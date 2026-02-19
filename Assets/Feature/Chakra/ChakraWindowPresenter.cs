@@ -7,15 +7,20 @@ namespace Feature.Chakra
 {
     public class ChakraWindowPresenter 
     {
+        private readonly CardCastSystem _cardCastSystem;
+        
         private readonly ChakraWindowView _chakraWindowView;
-        private CardCastSystem  _cardCastSystem;
+        private readonly HandCardPresenter _handCardPresenter;
         private readonly GameSessionModel _gameSessionData;
+        private readonly HandDataRepository _handDataRepository;
         private readonly CompositeDisposable _disposables = new();
 
-        public ChakraWindowPresenter(ChakraWindowView chakraWindowView, GameSessionModel gameSessionData, CardCastSystem cardCastSystem)
+        public ChakraWindowPresenter(ChakraWindowView chakraWindowView, GameSessionModel gameSessionData, HandCardPresenter handCardPresenter, HandDataRepository handDataRepository, CardCastSystem cardCastSystem)
         {
             _chakraWindowView = chakraWindowView;
             _gameSessionData = gameSessionData;
+            _handCardPresenter = handCardPresenter;
+            _handDataRepository = handDataRepository;
             _cardCastSystem = cardCastSystem;
         }
 
@@ -25,7 +30,9 @@ namespace Feature.Chakra
                 .Subscribe(currency => _chakraWindowView.SetChakraText(currency))
                 .AddTo(_disposables);
             _gameSessionData.PlayerHero.ChakraCount
-                .Subscribe(_ => _cardCastSystem.ManaCheckCanCastCard())
+                .Subscribe(_ => _handCardPresenter.ChakraCheckCanCastCard(_handDataRepository._handData))
+                .AddTo(_disposables);          _gameSessionData.PlayerHero.ChakraCount
+                .Subscribe(_ => _cardCastSystem.ChakraCheckCanCastCard(_handDataRepository._handData))
                 .AddTo(_disposables);
         }
 

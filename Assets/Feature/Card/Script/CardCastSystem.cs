@@ -1,4 +1,5 @@
 using Feature.GameSessionData;
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -6,60 +7,51 @@ namespace Feature.Card.Script
 {
     public class CardCastSystem
     {
-        private HandCardPresenter _handCardPresenter;
         private IInstantiator _instantiator;
-        private readonly GameSessionModel _gameSessionModel;
+        private TransformCardHandLogic _cardHandLogic;
+        private ITargetCardBehaviour _targetCardBehaviour;
+        private GameSessionModel _gameSessionModel;
 
-        public CardCastSystem(HandCardPresenter handCardPresenter, IInstantiator instantiator, GameSessionModel gameSessionModel)
+        public CardCastSystem(IInstantiator instantiator, GameSessionModel gameSessionModel, TransformCardHandLogic cardHandLogic, ITargetCardBehaviour targetCardBehaviour)
         {
-            _handCardPresenter = handCardPresenter;
             _instantiator = instantiator;
             _gameSessionModel = gameSessionModel;
+            _cardHandLogic = cardHandLogic;
+            _targetCardBehaviour = targetCardBehaviour;
         }
 
-        public void ManaCheckCanCastCard()
+        public void AddBehavioursToCards(List<HandCardData> handData)
         {
-            foreach (var card in _handCardPresenter._handCards)
+            foreach (var cardData in handData)
             {
-                card.view.SetCanCastView(_gameSessionModel.PlayerHero.Chakra >= card.data.Cost);
-                card.
-            }
-        }
-        
-        public void InitPropertyCard()
-        {
-            foreach (var pair in _handCardPresenter._handCards)
-            {
-                CardStatsData data = pair.data;
-                GameObject cardObject = pair.view.gameObject;
-        
-                switch (data.targetSpellType)
+                switch (cardData.Data.targetSpellType)
                 {
                     case TargetSpellType.AnyTarget:
-                        var selectObjectTarget = _instantiator.InstantiateComponent<SelectTargetCardUseBehaviour>(cardObject);
-
-                        selectObjectTarget.cardObject = pair.view._cardContainer;
-                        selectObjectTarget.cursorArrowHead = pair.view._cursorArrowHead;
-                        selectObjectTarget.cursorArrowLine = pair.view._cursorArrowLine;
+                        var selectObjectTarget = _instantiator.InstantiateComponent<SelectTargetCardUseBehaviour>(cardData.View.gameObject);
+                        
+                        selectObjectTarget.cardObject = cardData.View._cardContainer;
+                        selectObjectTarget.cursorArrowHead = cardData.View._cursorArrowHead;
+                        selectObjectTarget.cursorArrowLine = cardData.View._cursorArrowLine;
                         selectObjectTarget.Init();
+                        cardData.Behaviour = selectObjectTarget;
                         break;
                         
                     default:
-                        _instantiator.InstantiateComponent<NonTargetCardUseBehaviour>(cardObject);
+                        var nonTargetBehaviour = _instantiator.InstantiateComponent<NonTargetCardUseBehaviour>(cardData.View.gameObject);
+                        cardData.Behaviour = nonTargetBehaviour;
                         break;
                 }
-                
             }
         }
-        
-        public void CheckCastCardData()
-        {
-            
-        }
 
-        public void CastCard()
+
+
+        public void ChakraCheckCanCastCard(List<HandCardData> handData)
         {
-            
+            foreach (var cardData in handData)
+            {
+                /*cardData.Behaviour.CanCastCard(_gameSessionModel.PlayerHero.Chakra > cardData.Data.Cost);*/
+            }
         }
     }
 }

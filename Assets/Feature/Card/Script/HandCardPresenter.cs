@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Feature.GameSessionData;
 
@@ -14,19 +15,32 @@ namespace Feature.Card.Script
             _gameSessionModel = gameSessionModel;
         }
         
+        public List<CardView> GetHandViews()
+        {
+            return _handCardViews._cardsInDeck;
+            
+        }
+        
         public void SetCardInPlayerHand()
         {
-            _handCards.Clear();
-            
             var cardsInHand = _gameSessionModel.PlayerHero._cardsInHand;
-            var cardViews = _handCardViews._cardsInDeck;
-            
-            for (int i = 0; i < cardsInHand.Count; i++)
-            {
-                _handCards.Add((cardsInHand[i], cardViews[i], null));
-            }
-            
             _handCardViews.SetCardsPlayerView(cardsInHand);
+        }
+        
+        public CardView GetCardView(int index)
+        {
+            if (index >= 0 && index < _handCardViews._cardsInDeck.Count)
+                return _handCardViews._cardsInDeck[index];
+                
+            return null;
+        }
+
+        public void ChakraCheckCanCastCard(List<HandCardData> handCardData)
+        {
+            foreach (var cardData in handCardData)
+            {
+                cardData.View.SetCanCastView(_gameSessionModel.PlayerHero.Chakra > cardData.Data.Cost);
+            }
         }
     }
 }

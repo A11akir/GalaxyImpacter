@@ -17,6 +17,12 @@ namespace Feature.Card.Script
             FillHandDataForHero(_gameSessionModel.EnemyHero);
         }
         
+        public List<CardStatsData> GetHandData()
+        {
+            FillHandDataInDecks();
+            return _gameSessionModel.PlayerHero._cardsInHand;
+        }
+        
         private void FillHandDataForHero(GameSessionPlayerData hero)
         {
             hero._cardsInHand.Clear();
