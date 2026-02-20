@@ -20,12 +20,15 @@ namespace Feature.Card.Script
         {
             foreach (var cardData in handData)
             {
-                if (cardData.View.TryGetComponent<ITransformCastCardBehaviour>(out var existing))
+                var existingBehaviours = cardData.View.GetComponents<ITransformCastCardBehaviour>();
+                foreach (var behaviour in existingBehaviours)
                 {
-                    cardData.Behaviour = existing;
-                    continue;
+                    if (behaviour is Component comp)
+                    {
+                        Object.Destroy(comp);
+                    }
                 }
-
+                
                 switch (cardData.Data.targetSpellType)
                 {
                     case TargetSpellType.AnyTarget:

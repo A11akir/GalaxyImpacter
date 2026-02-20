@@ -8,7 +8,7 @@ namespace Feature.Card.Script
 {
     public class HandCardData
     {
-        
+        public System.Action OnTryCardCastHandler;
         public int Index;
         public CardStatsData Data;
         public HandCardView View;

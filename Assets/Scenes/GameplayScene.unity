@@ -1084,7 +1084,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &309014019
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5544,20 +5544,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyBattlefield: {fileID: 648095945}
   _playerBattlefield: {fileID: 1196659511}
-  _cardsGameObjectsEnemy:
-  - {fileID: 64464139}
-  - {fileID: 1002232814}
-  - {fileID: 675102433}
-  - {fileID: 1430227938}
-  - {fileID: 761218068}
-  - {fileID: 218631681}
-  _cardsGameObjectsPlayer:
-  - {fileID: 430377076}
-  - {fileID: 1954540650}
-  - {fileID: 1682046813}
-  - {fileID: 1739212609}
-  - {fileID: 283072378}
-  - {fileID: 1109528613}
 --- !u!1 &1430227938 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4640322776435668920, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}

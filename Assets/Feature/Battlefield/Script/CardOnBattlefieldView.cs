@@ -25,7 +25,6 @@ namespace Feature.Battlefield.Script
             gameObject.SetActive(true);
             _heroDescriptionWindow.SetActive(false);
             
-            Debug.Log("gameObject.SetActive(true);");
             _health.text = cardStatsData.Health.ToString();
             _healthBoard.text = cardStatsData.Health.ToString();
             _iconMinionHand.sprite = cardStatsData.IconImage;

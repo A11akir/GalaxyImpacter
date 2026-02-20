@@ -10,7 +10,7 @@ namespace Feature.Card.Script
     public class HandDataRepository
     {
         public List<HandCardData> _handData = new List<HandCardData>();
-        
+        private Dictionary<int, HandCardData> _cachedHandData = new();
         
         private BattlefieldSystem _battlefieldSystem;
         private GameSessionModel _gameSessionModel;
@@ -56,52 +56,62 @@ namespace Feature.Card.Script
             var viewList = _handCardPresenter.GetHandViews();
             _handData = CombineDataAndViews(dataList, viewList);
 
+            _cardCastSystem.AddBehavioursToCards(_handData);
+            BindBehavioursToLogic();
             _handCardPresenter.SetCardInPlayerHand();
+            
         }
 
         private void BindBehavioursToLogic()
         {
             foreach (var card in _handData)
             {
-                if (card.IsLogicInitialized)
-                    continue;
 
                 Debug.Log("BindBehavioursToLogic");
+
                 card.Logic = new GameplayLogicCard(card, _gameSessionModel, _battlefieldSystem);
-
-                var cachedCard = card;
-
-                card.Behaviour.OnTryCardCast += () =>
+                
+                if (card.OnTryCardCastHandler != null)
                 {
-                    cachedCard.Logic.CastCard();
-
-                };
-
-                card.IsLogicInitialized = true;
+                    card.Behaviour.OnTryCardCast -= card.OnTryCardCastHandler;
+                }
+                
+                card.OnTryCardCastHandler = () => card.Logic.CastCard();
+                
+                card.Behaviour.OnTryCardCast += card.OnTryCardCastHandler;
+                
             }
         }
         
-        private List<HandCardData> CombineDataAndViews(
-            List<CardStatsData> dataList, 
-            List<HandCardView> viewList)
+        private List<HandCardData> CombineDataAndViews(List<CardStatsData> dataList, List<HandCardView> viewList)
         {
             var result = new List<HandCardData>();
-            
             int count = Mathf.Min(dataList.Count, viewList.Count);
-            
+
             for (int i = 0; i < count; i++)
             {
-                var handCardData = new HandCardData(
-                    index: i,
-                    data: dataList[i],
-                    view: viewList[i],
-                    behaviour: null ,
-                    logic: null
-                );
+                if (!_cachedHandData.TryGetValue(i, out var handCardData))
+                {
+                    handCardData = new HandCardData(i, dataList[i], viewList[i], null, null);
+                    _cachedHandData[i] = handCardData;
+                }
+                else
+                {
+                    handCardData.Data = dataList[i];
+                    handCardData.View = viewList[i];
+                }
                 
+                if (handCardData.Behaviour != null && handCardData.Behaviour is Component comp)
+                {
+                    Object.Destroy(comp);
+                    handCardData.Behaviour = null;
+                }
+                
+                _cardCastSystem.AddBehavioursToCards(new List<HandCardData> { handCardData });
+
                 result.Add(handCardData);
             }
-            
+
             return result;
         }
         
