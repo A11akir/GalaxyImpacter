@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using Feature.Data;
 using Feature.GameSessionData;
-using Feature.GoogleSheets;
-using Feature.Hero;
+
 using UnityEngine;
 
 namespace Feature.Card.Script
@@ -27,26 +26,26 @@ namespace Feature.Card.Script
         private void InitializeSingleDeck(GameSessionPlayerData hero)
         {
             var allCards = _gameData.allCards;
-            var heroDeck = hero._cardsInDeck;
+            var heroDeck = hero.CardsInDeck;
             int cardsToAdd = hero.startCardsInDeckCount;
     
-            heroDeck.Clear();
+            heroDeck.CurrentValue.Clear();
     
             List<CardStatsData> availableCards = new List<CardStatsData>(allCards);
     
             for (int i = 0; i < cardsToAdd && availableCards.Count > 0; i++)
             {
                 int randomIndex = Random.Range(0, availableCards.Count);
-                heroDeck.Add(availableCards[randomIndex]);
+                heroDeck.CurrentValue.Add(availableCards[randomIndex]);
                 availableCards.RemoveAt(randomIndex);
             }
     
-            while (heroDeck.Count < cardsToAdd)
+            while (heroDeck.CurrentValue.Count < cardsToAdd)
             {
-                heroDeck.Add(allCards[Random.Range(0, allCards.Count)]);
+                heroDeck.CurrentValue.Add(allCards[Random.Range(0, allCards.Count)]);
             }
     
-            Debug.Log($"Колода для {hero._heroName} инициализирована: {heroDeck.Count} карт");
+            Debug.Log($"Колода для {hero._heroName} инициализирована: {heroDeck.CurrentValue.Count} карт");
         }
     }
 }

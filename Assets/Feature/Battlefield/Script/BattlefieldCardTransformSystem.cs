@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -9,30 +8,30 @@ namespace Feature.Battlefield.Script
         [SerializeField] private Transform battlefieldParent;
         [SerializeField] private float horizontalSpacing = 100f;
         
-        private readonly List<GameObject> _battlefieldCards = new List<GameObject>();
-        
         [Button]
         public void UpdateCardsPosition()
         {
-            CollectHandCards();
-
-            float totalWidth = (_battlefieldCards.Count - 1) * horizontalSpacing;
-            float startX = -totalWidth / 2f;
-
-            for (int i = 0; i < _battlefieldCards.Count; i++)
-            {
-                float xPos = startX + (i * horizontalSpacing);
-                _battlefieldCards[i].transform.localPosition = new Vector3(xPos, 0, 0);
-            }
-        }
-
-        private void CollectHandCards()
-        {
-            _battlefieldCards.Clear();
+            int activeCardsCount = 0;
             
             foreach (Transform child in battlefieldParent)
                 if (child.gameObject.activeInHierarchy)
-                    _battlefieldCards.Add(child.gameObject);
+                    activeCardsCount++;
+
+            if (activeCardsCount == 0) return;
+
+            float totalWidth = (activeCardsCount - 1) * horizontalSpacing;
+            float startX = -totalWidth / 2f;
+            int currentIndex = 0;
+            
+            foreach (Transform child in battlefieldParent)
+            {
+                if (child.gameObject.activeInHierarchy)
+                {
+                    float xPos = startX + (currentIndex * horizontalSpacing);
+                    child.localPosition = new Vector3(xPos, 0, 0);
+                    currentIndex++;
+                }
+            }
         }
     }
 }

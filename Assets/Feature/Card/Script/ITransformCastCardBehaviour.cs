@@ -2,9 +2,9 @@ using System;
 
 namespace Feature.Card.Script
 {
-    public interface ITargetCardBehaviour
+    public interface ITransformCastCardBehaviour
     {
-        void TryCastCard(ITargetCardBehaviour _currentCardBehaviour);
+        void TryCastCard(ITransformCastCardBehaviour _currentCardBehaviour);
         
         public bool _canCastCard { get;set; }
         

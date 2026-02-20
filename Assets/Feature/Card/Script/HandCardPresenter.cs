@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Feature.GameSessionData;
+using UnityEngine;
 
 namespace Feature.Card.Script
 {
@@ -15,22 +16,25 @@ namespace Feature.Card.Script
             _gameSessionModel = gameSessionModel;
         }
         
-        public List<CardView> GetHandViews()
+        public List<HandCardView> GetHandViews()
         {
-            return _handCardViews._cardsInDeck;
+            return _handCardViews._cardsInHand;
             
         }
         
         public void SetCardInPlayerHand()
         {
-            var cardsInHand = _gameSessionModel.PlayerHero._cardsInHand;
+            Debug.Log("SetCardInPlayerHand");
+
+            var cardsInHand = _gameSessionModel.PlayerHero.CardsInHand.CurrentValue;
+
             _handCardViews.SetCardsPlayerView(cardsInHand);
         }
         
-        public CardView GetCardView(int index)
+        public HandCardView GetCardView(int index)
         {
-            if (index >= 0 && index < _handCardViews._cardsInDeck.Count)
-                return _handCardViews._cardsInDeck[index];
+            if (index >= 0 && index < _handCardViews._cardsInHand.Count)
+                return _handCardViews._cardsInHand[index];
                 
             return null;
         }
@@ -39,7 +43,7 @@ namespace Feature.Card.Script
         {
             foreach (var cardData in handCardData)
             {
-                cardData.View.SetCanCastView(_gameSessionModel.PlayerHero.Chakra > cardData.Data.Cost);
+                cardData.View.SetCanCastView(_gameSessionModel.PlayerHero.Chakra >= cardData.Data.Cost);
             }
         }
     }

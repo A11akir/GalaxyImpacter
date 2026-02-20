@@ -1,4 +1,5 @@
 using Feature.AI;
+using Feature.Battlefield.Script;
 using Feature.Card.Script;
 using Feature.Chakra;
 using Feature.Common;
@@ -33,6 +34,7 @@ namespace Feature.EntryPoint.Script
             Container.Bind<HeroView>().FromComponentInHierarchy().AsTransient();
             Container.Bind<CurrencyManagePresenter>().AsSingle();
             Container.Bind<HandCardPresenter>().AsSingle();
+            Container.Bind<CardOnBattlefieldPresenter>().AsSingle();
             Container.Bind<DeckFillSystem>().AsSingle();            
             Container.Bind<HandFillSystem>().AsSingle();       
             Container.Bind<TurnСycleGameSessionSystem>().AsSingle(); 
@@ -52,9 +54,13 @@ namespace Feature.EntryPoint.Script
             Container.Bind<ShopGameplayPresenter>().AsSingle();
             Container.Bind<ShopGameplayManagerSystem>().AsSingle();
             
-            Container.Bind<HandDataRepository>().AsSingle();
+            Container.Bind<HandDataRepository>().AsSingle();            
+            Container.Bind<GameplayLogicCard>().AsSingle();
             
             Container.Bind<CastCardAreaAllTarget>().FromComponentInHierarchy().AsSingle();
+
+            Container.Bind<BattlefieldCardTransformSystem>().FromComponentInHierarchy().AsSingle();            
+            Container.Bind<BattlefieldSystem>().FromComponentInHierarchy().AsSingle();
             
             BindGameSessionFSM();
             BindConfig();

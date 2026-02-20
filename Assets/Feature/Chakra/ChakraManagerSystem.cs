@@ -26,8 +26,8 @@ namespace Feature.Chakra
 
         private void AddChakraHeroForNewTurn()
         {
-            AddChakraWithMaxLimit(_gameSessionModel.EnemyHero, 2);
-            AddChakraWithMaxLimit(_gameSessionModel.PlayerHero, 2);
+            AddChakraWithMaxLimit(_gameSessionModel.EnemyHero, 100);
+            AddChakraWithMaxLimit(_gameSessionModel.PlayerHero, 100);
         }
 
         private void AddChakraWithMaxLimit(GameSessionPlayerData hero, int amount)

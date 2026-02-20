@@ -6,24 +6,24 @@ using Zenject;
 
 namespace Feature.Card.Script
 {
-    public class NonTargetCardUseBehaviour : MonoBehaviour,
+    public class NonTransformCastCardUseBehaviour : MonoBehaviour,
         IPointerEnterHandler,
         IPointerExitHandler,
         IDragHandler,
         IEndDragHandler,
-        ITargetCardBehaviour
+        ITransformCastCardBehaviour
     {
         [SerializeField] private float scaleFactor = 1.5f;
 
+        
+        private bool isDrag;
         [Inject] private HandCardsPositionSystem _handCardsPositionSystem;
         [Inject] private CastCardAreaAllTarget _castCardAreaAllTarget;
-
+        
+        
         private RectTransform _rectTransform;
         private int _hierarchyIndex;
-
-        private bool _isDrag;
-        private static bool _isPointerEnter;
-
+        
         public bool _canCastCard { get; set; }
 
         public event Action OnTryCardCast;
@@ -49,18 +49,16 @@ namespace Feature.Card.Script
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            if (!isActiveAndEnabled || _isPointerEnter) return;
-
-            _isPointerEnter = true;
             _hierarchyIndex = transform.GetSiblingIndex();
             transform.SetAsLastSibling();
-
-            transform.localPosition = new Vector3(
-                transform.localPosition.x,
-                ((_rectTransform.rect.height / 2) * scaleFactor) - 5,
+    
+            transform.localPosition = new Vector3(transform.localPosition.x,
+                ((_rectTransform.rect.height/2)*scaleFactor)-5, 
                 transform.localPosition.z);
-
-            transform.localScale = _isDrag ? Vector3.one : Vector3.one * scaleFactor;
+    
+            if (isDrag) transform.localScale = Vector3.one;
+            else transform.localScale *= scaleFactor;
+    
             transform.localRotation = Quaternion.identity;
         }
 
@@ -68,7 +66,6 @@ namespace Feature.Card.Script
         {
             transform.SetSiblingIndex(_hierarchyIndex);
             _handCardsPositionSystem.UpdateCardsPosition();
-            _isPointerEnter = false;
         }
 
         #endregion
@@ -77,14 +74,15 @@ namespace Feature.Card.Script
 
         public void OnDrag(PointerEventData eventData)
         {
+            _castCardAreaAllTarget.gameObject.SetActive(true);
             if (!_canCastCard) return;
-
-            if (!_isDrag)
+            
+            if (!isDrag)
             {
-                _isDrag = true;
+                isDrag = true;
                 transform.localScale = Vector3.one;
             }
-
+    
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
                 _rectTransform.parent as RectTransform,
                 eventData.position,
@@ -100,25 +98,26 @@ namespace Feature.Card.Script
 
         public void OnEndDrag(PointerEventData eventData)
         {
+            TryCastCard(this);
             _castCardAreaAllTarget.CardIsAreaAllTargetUseEffectOff();
             _castCardAreaAllTarget.CardGoingIsUsed = false;
-
-            TryCastCard(this);
-
+            
             DragCancel();
         }
 
         private void DragCancel()
         {
-            _isDrag = false;
+            isDrag = false;
             transform.SetSiblingIndex(_hierarchyIndex);
             _handCardsPositionSystem.UpdateCardsPosition();
+            _castCardAreaAllTarget.gameObject.SetActive(false);
         }
 
         #endregion
 
-        public void TryCastCard(ITargetCardBehaviour currentCardBehaviour)
+        public void TryCastCard(ITransformCastCardBehaviour currentCardBehaviour)
         {
+            Debug.Log(_castCardAreaAllTarget.CardHasTarget);
             if (_castCardAreaAllTarget.CardHasTarget)
             {
                 OnTryCardCast?.Invoke();

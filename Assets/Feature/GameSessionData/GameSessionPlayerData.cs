@@ -10,9 +10,34 @@ namespace Feature.GameSessionData
 {
     public class GameSessionPlayerData 
     {
-        public List<CardStatsData> _cardsInDeck = new List<CardStatsData>();
-        public List<CardStatsData> _cardsInHand = new List<CardStatsData>();
+        private readonly ReactiveProperty<List<CardStatsData>> _cardsInDeck = new(new List<CardStatsData>());
+        public ReadOnlyReactiveProperty<List<CardStatsData>> CardsInDeck => _cardsInDeck;
+        
+        public List<CardStatsData> CardsInDeckList
+        {
+            get => _cardsInDeck.Value;
+            set => _cardsInDeck.Value = value;
+        }
 
+        public readonly ReactiveProperty<List<CardStatsData>> _cardsInHand = new(new List<CardStatsData>());
+        public ReadOnlyReactiveProperty<List<CardStatsData>> CardsInHand => _cardsInHand;
+        
+        public List<CardStatsData> CardsInHandList
+        {
+            get => _cardsInHand.Value;
+            set => _cardsInHand.Value = value;
+        }
+        
+        private readonly ReactiveProperty<List<CardStatsData>> _cardsInBoard = new(new List<CardStatsData>());
+        public ReadOnlyReactiveProperty<List<CardStatsData>> CardsInBoard => _cardsInBoard;
+        
+        public List<CardStatsData> CardsInBoardList
+        {
+            get => _cardsInBoard.Value;
+            set => _cardsInBoard.Value = value;
+        }
+
+        public int CardsInBoardMax = 5;
         public int maxCardsInHandCount = 10;
         public int startCardsInHand = 4;
         public int startCardsInDeckCount = 6;
@@ -52,8 +77,92 @@ namespace Feature.GameSessionData
             }
             return false;
         }
+        
+        public void AddCardToDeck(CardStatsData card)
+        {
+            var currentList = new List<CardStatsData>(_cardsInDeck.Value);
+            currentList.Add(card);
+            _cardsInDeck.Value = currentList;
+        }
+        
+        public void RemoveCardFromDeck(CardStatsData card)
+        {
+            var currentList = new List<CardStatsData>(_cardsInDeck.Value);
+            currentList.Remove(card);
+            _cardsInDeck.Value = currentList;
+        }
+        
+        public void ClearDeck()
+        {
+            _cardsInDeck.Value = new List<CardStatsData>();
+        }
+        
+        public CardStatsData DrawCardFromDeck()
+        {
+            if (_cardsInDeck.Value.Count == 0) return null;
+            
+            var currentList = new List<CardStatsData>(_cardsInDeck.Value);
+            var drawnCard = currentList[0];
+            currentList.RemoveAt(0);
+            _cardsInDeck.Value = currentList;
+            
+            return drawnCard;
+        }
+        
+        public void ShuffleDeck()
+        {
+            var currentList = new List<CardStatsData>(_cardsInDeck.Value);
+            for (int i = currentList.Count - 1; i > 0; i--)
+            {
+                int randomIndex = UnityEngine.Random.Range(0, i + 1);
+                (currentList[i], currentList[randomIndex]) = (currentList[randomIndex], currentList[i]);
+            }
+            _cardsInDeck.Value = currentList;
+        }
+        
+        public void AddCardToHand(CardStatsData card)
+        {
+            if (_cardsInHand.Value.Count >= maxCardsInHandCount) return;
+            
+            var currentList = new List<CardStatsData>(_cardsInHand.Value);
+            currentList.Add(card);
+            _cardsInHand.Value = currentList;
+        }
+        
+        public void RemoveCardFromHand(CardStatsData card)
+        {
+            var currentList = new List<CardStatsData>(_cardsInHand.Value);
+            currentList.Remove(card);
+            _cardsInHand.Value = currentList;
+        }
+        
+        public void ClearHand()
+        {
+            _cardsInHand.Value = new List<CardStatsData>();
+        }
+        
+        public void AddCardToBoard(CardStatsData card)
+        {
+            if (_cardsInBoard.Value.Count >= CardsInBoardMax) return;
+            
+            var currentList = new List<CardStatsData>(_cardsInBoard.Value);
+            currentList.Add(card);
+            _cardsInBoard.Value = currentList;
+        }
+        
+        public void RemoveCardFromBoard(CardStatsData card)
+        {
+            var currentList = new List<CardStatsData>(_cardsInBoard.Value);
+            currentList.Remove(card);
+            _cardsInBoard.Value = currentList;
+        }
+        
+        public void ClearBoard()
+        {
+            _cardsInBoard.Value = new List<CardStatsData>();
+        }
     }
-
+    
     public class Health
     {
         public event Action HpChanged;
@@ -108,6 +217,6 @@ namespace Feature.GameSessionData
 
     public interface IMinion
     {
-        List<GameplayCard> _cards { get; set; }
+        List<GameplayLogicCard> _cards { get; set; }
     }
 }

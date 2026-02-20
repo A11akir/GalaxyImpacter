@@ -9,7 +9,7 @@ namespace Feature.Card.Script
     {
         private IInstantiator _instantiator;
         private GameSessionModel _gameSessionModel;
-
+        
         public CardCastSystem(IInstantiator instantiator, GameSessionModel gameSessionModel)
         {
             _instantiator = instantiator;
@@ -20,21 +20,38 @@ namespace Feature.Card.Script
         {
             foreach (var cardData in handData)
             {
+                if (cardData.View.TryGetComponent<ITransformCastCardBehaviour>(out var existing))
+                {
+                    cardData.Behaviour = existing;
+                    continue;
+                }
+
                 switch (cardData.Data.targetSpellType)
                 {
                     case TargetSpellType.AnyTarget:
-                        var selectObjectTarget = _instantiator.InstantiateComponent<SelectTargetCardUseBehaviour>(cardData.View.gameObject);
-                        selectObjectTarget.Init(cardData.View._cardContainer, cardData.View._cursorArrowHead, cardData.View._cursorArrowLine);
+                        var selectObjectTarget =
+                            _instantiator.InstantiateComponent<SelectTransformCastCardUseBehaviour>(
+                                cardData.View.gameObject);
+
+                        selectObjectTarget.Init(
+                            cardData.View._cardContainer,
+                            cardData.View._cursorArrowHead,
+                            cardData.View._cursorArrowLine);
+
                         cardData.Behaviour = selectObjectTarget;
                         break;
-                        
+
                     default:
-                        var nonTargetBehaviour = _instantiator.InstantiateComponent<NonTargetCardUseBehaviour>(cardData.View.gameObject);
+                        var nonTargetBehaviour =
+                            _instantiator.InstantiateComponent<NonTransformCastCardUseBehaviour>(
+                                cardData.View.gameObject);
+
                         cardData.Behaviour = nonTargetBehaviour;
                         break;
                 }
             }
         }
+
         
         public void ChakraCheckCanCastCard(List<HandCardData> handData)
         {

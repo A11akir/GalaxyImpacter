@@ -6,13 +6,13 @@ using Zenject;
 
 namespace Feature.Card.Script
 {
-    public class SelectTargetCardUseBehaviour : MonoBehaviour,
+    public class SelectTransformCastCardUseBehaviour : MonoBehaviour,
         IPointerEnterHandler,
         IPointerExitHandler,
         IBeginDragHandler,
         IDragHandler,
         IEndDragHandler,
-        ITargetCardBehaviour
+        ITransformCastCardBehaviour
     {
         [Header("Arrow")]
         public GameObject cursorArrowHead;
@@ -37,6 +37,8 @@ namespace Feature.Card.Script
 
         public bool _canCastCard { get; set; }
         public event Action OnTryCardCast;
+        public bool CardHasTarget { get; set; }
+
 
         #region Init
 
@@ -104,7 +106,7 @@ namespace Feature.Card.Script
         {
             if (!_canCastCard) return;
 
-            TryCastCard(this);
+            
 
             cursorArrowLine.SetActive(true);
             cursorArrowHead.SetActive(true);
@@ -131,6 +133,8 @@ namespace Feature.Card.Script
 
             _isDragging = false;
 
+            TryCastCard(this); 
+            
             transform.SetSiblingIndex(_hierarchyIndex);
             _handCardsPositionSystem.UpdateCardsPosition();
             _isPointerEnter = false;
@@ -177,10 +181,10 @@ namespace Feature.Card.Script
 
         #endregion
 
-        public void TryCastCard(ITargetCardBehaviour currentCardBehaviour)
+        public void TryCastCard(ITransformCastCardBehaviour currentCardBehaviour)
         {
-            // Здесь можно добавить проверку попадания в цель
-            OnTryCardCast?.Invoke();
+            if (CardHasTarget)
+               OnTryCardCast?.Invoke();
         }
 
         public void CanCastCard(bool canCast)
