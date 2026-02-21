@@ -45,18 +45,14 @@ namespace Feature.Card.Script
                     {
                         var removedCard = removedCards[0];
                         int removedIndex = _previousCards.FindIndex(p => p.id == removedCard.id);
-                        
-                        if (removedIndex >= 0)
-                            OnCardRemovedFromHand(removedCard, removedIndex);
+                        OnCardRemovedFromHand(removedCard, removedIndex);
                     }
 
                     if (addedCards.Count > 0)
                     {
                         var addedCard = addedCards[0];
                         int addedIndex = currentCards.FindIndex(c => c.id == addedCard.id);
-                        
-                        if (addedIndex >= 0)
-                            OnCardAddedToHand(addedCard, addedIndex);
+                        OnCardAddedToHand(addedCard, addedIndex);
                     }
 
                     _previousCards = currentCards.ToList();
