@@ -30,7 +30,6 @@ namespace Feature.Card.Script
 
         public void Init()
         {
-    
             _gameSessionModel.PlayerHero.CardsInHand
                 .Subscribe(currentCards =>
                 {
@@ -48,9 +47,7 @@ namespace Feature.Card.Script
                         int removedIndex = _previousCards.FindIndex(p => p.id == removedCard.id);
                         
                         if (removedIndex >= 0)
-                        {
                             OnCardRemovedFromHand(removedCard, removedIndex);
-                        }
                     }
 
                     if (addedCards.Count > 0)
@@ -59,9 +56,7 @@ namespace Feature.Card.Script
                         int addedIndex = currentCards.FindIndex(c => c.id == addedCard.id);
                         
                         if (addedIndex >= 0)
-                        {
                             OnCardAddedToHand(addedCard, addedIndex);
-                        }
                     }
 
                     _previousCards = currentCards.ToList();
@@ -92,12 +87,11 @@ namespace Feature.Card.Script
             {
                 _handCardPresenter.RemoveCardFromHand(cardToRemove.View);
         
-                _cardCastSystem.RemoveBehavioursToCard(_handData, removedIndex);
+                _cardCastSystem.RemoveBehaviourFromCard(cardToRemove);
         
                 _handData.Remove(cardToRemove);
             }
         }
-
         private void SetupCardBehavioursAndLogic(int index)
         {
             _cardCastSystem.AddBehavioursToCard(_handData[index]);
