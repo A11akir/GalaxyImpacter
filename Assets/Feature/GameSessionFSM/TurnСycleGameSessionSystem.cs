@@ -34,18 +34,16 @@ namespace Feature.GameSessionFSM
         public void StartGameSession()
         {
             _deckFillSystem.InitializeDecks();
+            _handDataRepository.Init();
+            _chakraManagerSystem.Init();
             _battlefieldSystem.Init();
             _currencyManagerSystem.Init();
-            _chakraManagerSystem.Init();
-            _handDataRepository.Init();
+   
         }
 
         public void CycleTurn()
         {
             _handFillSystem.FillHandDataInDecks();
-            _handDataRepository.InitPropertyCard(); // TODO: сделать добавление на каждую карту отдельно а не всю руку
-            _handCardPresenter.SetCardInPlayerHand();
-
             _currencyManagerSystem.NewTurnUpdate();
             _chakraManagerSystem.NewTurnUpdate();
         }

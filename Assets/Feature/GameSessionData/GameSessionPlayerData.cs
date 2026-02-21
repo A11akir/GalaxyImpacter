@@ -12,7 +12,8 @@ namespace Feature.GameSessionData
     {
         private readonly ReactiveProperty<List<CardStatsData>> _cardsInDeck = new(new List<CardStatsData>());
         public ReadOnlyReactiveProperty<List<CardStatsData>> CardsInDeck => _cardsInDeck;
-        
+
+        public int LastRemovedCardIndex;
         public List<CardStatsData> CardsInDeckList
         {
             get => _cardsInDeck.Value;
@@ -129,11 +130,13 @@ namespace Feature.GameSessionData
             _cardsInHand.Value = currentList;
         }
         
-        public void RemoveCardFromHand(CardStatsData card)
+        public void RemoveCardFromHand(HandCardData card)
         {
+            card.Index = LastRemovedCardIndex;
             var currentList = new List<CardStatsData>(_cardsInHand.Value);
-            currentList.Remove(card);
+            currentList.Remove(card.Data);
             _cardsInHand.Value = currentList;
+            
         }
         
         public void ClearHand()
@@ -160,6 +163,11 @@ namespace Feature.GameSessionData
         public void ClearBoard()
         {
             _cardsInBoard.Value = new List<CardStatsData>();
+        }
+        
+        public void SetChakra(int amount)
+        {
+            _chakraCount.Value = amount;
         }
     }
     

@@ -8,20 +8,19 @@ namespace Feature.Card.Script
 {
     public class HandCardData
     {
-        public System.Action OnTryCardCastHandler;
-        public int Index;
         public CardStatsData Data;
         public HandCardView View;
         public ITransformCastCardBehaviour Behaviour;
         public GameplayLogicCard Logic;
-        public bool IsLogicInitialized;
+        public int Index;
         
-        public HandCardData(int index, CardStatsData data, HandCardView view, ITransformCastCardBehaviour behaviour, GameplayLogicCard logic)
+        public HandCardData( CardStatsData data, HandCardView view, ITransformCastCardBehaviour behaviour, GameplayLogicCard logic, int index)
         {
-            Index = index;
+            Logic = logic;
             Data = data;
             View = view;
             Behaviour = behaviour;
+            Index = index;
         }
     }
 }

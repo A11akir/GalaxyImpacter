@@ -10,8 +10,6 @@ namespace Feature.Card.Script
     public class HandDataRepository
     {
         public List<HandCardData> _handData = new List<HandCardData>();
-        private Dictionary<int, HandCardData> _cachedHandData = new();
-        
         private BattlefieldSystem _battlefieldSystem;
         private GameSessionModel _gameSessionModel;
         private HandFillSystem _handFillSystem;
@@ -30,97 +28,84 @@ namespace Feature.Card.Script
             _battlefieldSystem = battlefieldSystem;
         }
 
+        private int _previousCardCount;
+
         public void Init()
         {
-            Debug.Log("InitHandDataRepository");
             _gameSessionModel.PlayerHero.CardsInHand
                 .Select(x => x.Count)
                 .DistinctUntilChanged()
-                .Subscribe(_ => UpdateHandCard());
+                .Subscribe(count =>
+                {
+                    if (count > _previousCardCount)
+                    {
+                        var cardsList = _gameSessionModel.PlayerHero.CardsInHand.CurrentValue;
+
+                        if (cardsList.Count > 0)
+                        {
+                            var lastCard = cardsList[^1];
+                            AddCardToHand(lastCard);
+                        }
+                    }
+                    else if (count < _previousCardCount)
+                    {
+                        RemoveLastCardFromHand();
+                    }
+                    
+                    _previousCardCount = count;
+                });
         }
 
-        public void InitPropertyCard()
+        private void RemoveLastCardFromHand()
         {
-            Debug.Log("InitPropertyCard");
-            var dataList = _handFillSystem.GetHandData();
-            var viewList = _handCardPresenter.GetHandViews();
-            _handData = CombineDataAndViews(dataList, viewList);
-            
-            _cardCastSystem.AddBehavioursToCards(_handData);
-            BindBehavioursToLogic();
-        }
-
-        private void UpdateHandCard()
-        {
-            var dataList = _handFillSystem.GetHandData();
-            var viewList = _handCardPresenter.GetHandViews();
-            _handData = CombineDataAndViews(dataList, viewList);
-
-            _cardCastSystem.AddBehavioursToCards(_handData);
-            BindBehavioursToLogic();
-            _handCardPresenter.SetCardInPlayerHand();
-            
-        }
-
-        private void BindBehavioursToLogic()
-        {
-            foreach (var card in _handData)
+            int removedIndex = _gameSessionModel.PlayerHero.LastRemovedCardIndex;
+    
+            if (removedIndex < 0 || removedIndex >= _handData.Count) return;
+    
+            var removedCardData = _handData[removedIndex];
+    
+            if (removedCardData.Behaviour != null && removedCardData.Logic != null)
             {
-
-                Debug.Log("BindBehavioursToLogic");
-
-                card.Logic = new GameplayLogicCard(card, _gameSessionModel, _battlefieldSystem);
-                
-                if (card.OnTryCardCastHandler != null)
-                {
-                    card.Behaviour.OnTryCardCast -= card.OnTryCardCastHandler;
-                }
-                
-                card.OnTryCardCastHandler = () => card.Logic.CastCard();
-                
-                card.Behaviour.OnTryCardCast += card.OnTryCardCastHandler;
-                
+                removedCardData.Behaviour.OnTryCardCast -= removedCardData.Logic.CastCard;
             }
-        }
-        
-        private List<HandCardData> CombineDataAndViews(List<CardStatsData> dataList, List<HandCardView> viewList)
-        {
-            var result = new List<HandCardData>();
-            int count = Mathf.Min(dataList.Count, viewList.Count);
-
-            for (int i = 0; i < count; i++)
+    
+            if (removedCardData.Behaviour != null)
             {
-                if (!_cachedHandData.TryGetValue(i, out var handCardData))
-                {
-                    handCardData = new HandCardData(i, dataList[i], viewList[i], null, null);
-                    _cachedHandData[i] = handCardData;
-                }
-                else
-                {
-                    handCardData.Data = dataList[i];
-                    handCardData.View = viewList[i];
-                }
-                
-                if (handCardData.Behaviour != null && handCardData.Behaviour is Component comp)
-                {
-                    Object.Destroy(comp);
-                    handCardData.Behaviour = null;
-                }
-                
-                _cardCastSystem.AddBehavioursToCards(new List<HandCardData> { handCardData });
-
-                result.Add(handCardData);
+                Object.Destroy(removedCardData.Behaviour as MonoBehaviour);
+                removedCardData.Behaviour = null;
             }
-
-            return result;
+    
+            _handCardPresenter.UpdateAfterRemoveCard(removedIndex);
+    
+            _handData.RemoveAt(removedIndex);
         }
-        
-        public HandCardData GetHandCardByIndex(int index)
+
+        private void AddCardToHand(CardStatsData card)
         {
-            if (index >= 0 && index < _handData.Count)
-                return _handData[index];
-                
-            return null;
+            Debug.Log("AddCardToHand");
+            var view = _handCardPresenter.AddCardFromHand(card);
+
+            var handCardData = new HandCardData(
+                data: card,
+                view: view,
+                behaviour: null,
+                logic: null,
+                index : _gameSessionModel.PlayerHero.CardsInHand.CurrentValue.Count
+            );
+             
+            SetupCardBehavioursAndLogic(handCardData);
+            _handData.Add(handCardData);
+        }
+
+        private void SetupCardBehavioursAndLogic(HandCardData handCardData)
+        {
+            _cardCastSystem.AddBehavioursToCard(handCardData);
+    
+            var logic = new GameplayLogicCard(handCardData, _gameSessionModel, _battlefieldSystem);
+    
+            handCardData.Behaviour.OnTryCardCast += logic.CastCard;
+    
+            handCardData.Logic = logic;
         }
     }
 }

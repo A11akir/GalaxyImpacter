@@ -47,10 +47,8 @@ namespace Feature.Battlefield.Script
 
         private void UpdateCardToBattlefield()
         {
-            Debug.Log("UpdateCardToBattlefield");
             for (int i = 0; i < _gameSessionModel.PlayerHero.CardsInBoard.CurrentValue.Count; i++)
             {
-                Debug.Log(_gameSessionModel.PlayerHero.CardsInBoard.CurrentValue.Count.ToString());
                 _cardOnBattlefieldPresenter.SetCardInPlayerHand(_cardsGameObjectsPlayer[i], _gameSessionModel.PlayerHero.CardsInBoard.CurrentValue[i]);
             }
             _battlefieldCardTransformSystem.UpdateCardsPosition();

@@ -12,24 +12,14 @@ namespace Feature.Card.Script
         [FormerlySerializedAs("_cardsInDeck")] [SerializeField] public List<HandCardView> _cardsInHand;
 
         public event Action UpdateViewCard;
-        public void SetCardsPlayerView(List<CardStatsData> cards)
-        {
-            for (int i = 0; i < _cardsInHand.Count; i++)
-            {
-                _cardsInHand[i].gameObject.SetActive(false);
-                _cardsInHand[i].ClearCardData(_cardsInHand[i]);
-            }
-            
-            for (int i = 0; i < cards.Count; i++)
-            {
-                _cardsInHand[i].gameObject.SetActive(true);
-                _cardsInHand[i].SetDataView(cards[i]);
-            }
 
+        public void SetHandCardView(CardStatsData cardStatsData, int index)
+        {
+            _cardsInHand[index].gameObject.SetActive(false);
+            _cardsInHand[index].ClearData();
+            _cardsInHand[index].SetDataView(cardStatsData);
+            
             UpdateViewCard?.Invoke();
         }
-        
-        
-        
     }
 }

@@ -11,7 +11,7 @@ namespace Feature.Card.Script
         [SerializeField] public GameObject _cursorArrowLine;
         [SerializeField] public GameObject _cursorArrowHead;
         [SerializeField] public GameObject _cardContainer;
-        [SerializeField] private TextMeshProUGUI _name;
+        [SerializeField] public TextMeshProUGUI _name;
         [SerializeField] private TextMeshProUGUI _health;
         [SerializeField] private TextMeshProUGUI _cost;
         [SerializeField] private TextMeshProUGUI _description;
@@ -43,19 +43,26 @@ namespace Feature.Card.Script
             
         }
 
-        public void ClearCardData(HandCardView card)
+        public void ClearData()
         {
-            card._name.text = "";
-            card._health.text = "";
-            card._cost.text = "";
-            card._description.text = "";
-            card._iconMinionHand.sprite = null;
-            card._iconSpell.sprite = null;
-            card._heroCardWindow.SetActive(false);
-            card._spellCardWindow.SetActive(false);
-            card._canAvailableCast.SetActive(false);
+            _name.text = "";
+            _health.text = "";
+            _cost.text = "";
+            _description.text = "";
+            _iconMinionHand.sprite = null;
+            _iconSpell.sprite = null;
+            _heroCardWindow.SetActive(false);
+            _spellCardWindow.SetActive(false);
+            _canAvailableCast.SetActive(false);
         }
         
         public void SetCanCastView(bool canCast) => _canAvailableCast.SetActive(canCast);
+
+        public void ViewDelete()
+        {
+            Debug.Log("ViewDelete");
+            gameObject.SetActive(false);
+            transform.SetAsLastSibling();
+        }
     }
 }

@@ -19,6 +19,7 @@ namespace Feature.Card.Script
 
         public void InitializeDecks()
         {
+            Debug.Log("Initializing decks");
             InitializeSingleDeck(_gameSessionModel.PlayerHero);
             InitializeSingleDeck(_gameSessionModel.EnemyHero);
         }

@@ -18,16 +18,8 @@ namespace Feature.Card.Script
             FillHandDataForHero(_gameSessionModel.EnemyHero);
         }
         
-        public List<CardStatsData> GetHandData()
-        {
-            return _gameSessionModel.PlayerHero.CardsInHand.CurrentValue;
-        }
-        
-        
         private void FillHandDataForHero(GameSessionPlayerData hero)
         {
-            hero.ClearHand();
-            
             int cardsToDraw = hero.startCardsInHand;
             
             hero.ShuffleDeck();

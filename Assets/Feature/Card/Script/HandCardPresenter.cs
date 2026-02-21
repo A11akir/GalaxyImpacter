@@ -15,29 +15,6 @@ namespace Feature.Card.Script
             _handCardViews = handCardViews;
             _gameSessionModel = gameSessionModel;
         }
-        
-        public List<HandCardView> GetHandViews()
-        {
-            return _handCardViews._cardsInHand;
-            
-        }
-        
-        public void SetCardInPlayerHand()
-        {
-            Debug.Log("SetCardInPlayerHand");
-
-            var cardsInHand = _gameSessionModel.PlayerHero.CardsInHand.CurrentValue;
-
-            _handCardViews.SetCardsPlayerView(cardsInHand);
-        }
-        
-        public HandCardView GetCardView(int index)
-        {
-            if (index >= 0 && index < _handCardViews._cardsInHand.Count)
-                return _handCardViews._cardsInHand[index];
-                
-            return null;
-        }
 
         public void ChakraCheckCanCastCard(List<HandCardData> handCardData)
         {
@@ -45,6 +22,18 @@ namespace Feature.Card.Script
             {
                 cardData.View.SetCanCastView(_gameSessionModel.PlayerHero.Chakra >= cardData.Data.Cost);
             }
+        }
+
+        public HandCardView AddCardFromHand(CardStatsData cardStatsData)
+        {
+            _handCardViews.SetHandCardView(cardStatsData, _gameSessionModel.PlayerHero.CardsInHand.CurrentValue.Count);
+            return _handCardViews._cardsInHand[_gameSessionModel.PlayerHero.CardsInHand.CurrentValue.Count];
+        }
+
+        public void UpdateAfterRemoveCard(int lastRemovedCardIndex)
+        {
+            Debug.Log("UpdateAfterRemoveCard: " + lastRemovedCardIndex);
+            _handCardViews._cardsInHand[lastRemovedCardIndex].ViewDelete();
         }
     }
 }

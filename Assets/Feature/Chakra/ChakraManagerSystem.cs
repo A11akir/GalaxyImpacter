@@ -34,7 +34,7 @@ namespace Feature.Chakra
         {
             int maxChakra = hero.MaxChakraCountBaseIncrease;
             int newChakra = Mathf.Min(hero.Chakra + amount, maxChakra);
-            hero.Chakra = newChakra;
+            hero.SetChakra(newChakra); // ← Лучше сделать метод SetChakra
         }
     }
 }

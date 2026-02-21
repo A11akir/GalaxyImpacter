@@ -20,7 +20,7 @@ namespace Feature.GameSessionData
 
         public void CastCard()
         {
-            Debug.Log(_cardData.Data.Name.ToString());
+            Debug.Log("CastCard");
             if (!CheckCanCast()) return;
             
             _gameSessionModel.PlayerHero.Chakra -= _cardData.Data.Cost;
@@ -58,7 +58,7 @@ namespace Feature.GameSessionData
         private void SpawnHeroCard()
         {
             _battlefieldSystem.AddCardInBattlefield(_gameSessionModel.PlayerHero, _cardData.Data);
-            _gameSessionModel.PlayerHero.RemoveCardFromHand(_cardData.Data);
+            _gameSessionModel.PlayerHero.RemoveCardFromHand(_cardData);
         }
     }
 }
