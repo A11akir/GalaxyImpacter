@@ -51,10 +51,13 @@ namespace Feature.Card.Script
             }
         }
 
-        public void RemoveBehavioursToCard(List<HandCardData> handData, int removedIndex)
+        public void RemoveBehaviourFromCard(HandCardData cardData)
         {
-            Object.Destroy(handData[removedIndex].Behaviour as MonoBehaviour);
-            handData[removedIndex].Behaviour = null;
+            if (cardData?.Behaviour != null)
+            {
+                Object.Destroy(cardData.Behaviour as MonoBehaviour);
+                cardData.Behaviour = null;
+            }
         }
     }
 }
