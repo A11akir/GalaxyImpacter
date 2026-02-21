@@ -9,39 +9,26 @@ namespace Feature.Card.Script
     public class HandFillSystem
     {
         private GameSessionModel _gameSessionModel;
-        
+
         public HandFillSystem(GameSessionModel gameSessionModel) => _gameSessionModel = gameSessionModel;
 
         public void FillHandDataInDecks()
         {
-            FillHandDataForHero(_gameSessionModel.PlayerHero);
-            FillHandDataForHero(_gameSessionModel.EnemyHero);
+            FillHandDataForHeroFromDeck(_gameSessionModel.PlayerHero);
+            FillHandDataForHeroFromDeck(_gameSessionModel.EnemyHero);
         }
-        
-        private void FillHandDataForHero(GameSessionPlayerData hero)
-        {
-            int cardsToDraw = hero.startCardsInHand;
-            
-            hero.ShuffleDeck();
-            
 
-            for (int i = 0; i < cardsToDraw; i++)
+        private void FillHandDataForHeroFromDeck(GameSessionPlayerData hero)
+        {
+            hero.ShuffleDeck();
+
+            for (int i = 0; i < hero.startCardsInHandToDraw; i++)
             {
-                CardStatsData drawnCard = hero.DrawCardFromDeck();
-                if (drawnCard != null)
-                {
-                    hero.AddCardToHand(drawnCard);
-                }
-                else
-                {
-                    Debug.Log($"Колода {hero._heroName} пуста");
-                    break;
-                }
+                hero.AddCardToHand(hero.DrawCardFromDeck(), hero.CountCardsInHand);
             }
-            
-            Debug.Log($"Рука {hero._heroName}: взято {hero.CardsInHand.CurrentValue.Count} карт, в колоде осталось {hero.CardsInDeck.CurrentValue.Count}");
+
+            Debug.Log($"Рука {hero._heroName}: взято {hero.CardsInHand.CurrentValue.Count}" +
+                      $" карт, в колоде осталось {hero.CardsInDeck.CurrentValue.Count}");
         }
-        
-        
     }
 }

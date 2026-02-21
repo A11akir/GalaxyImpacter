@@ -20,6 +20,7 @@ namespace Feature.Card.Script
         [SerializeField] private int _level;
         [SerializeField] private string _description;
         [SerializeField] public TargetSpellType targetSpellType;
+        public string id = System.Guid.NewGuid().ToString();
         public bool IsHero => _health > 0;
         public List<int> Values
         {

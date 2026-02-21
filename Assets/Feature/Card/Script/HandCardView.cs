@@ -24,7 +24,9 @@ namespace Feature.Card.Script
 
         public void SetDataView(CardStatsData cardStatsData)
         {
+            
             gameObject.SetActive(true);
+            Debug.Log(gameObject.activeInHierarchy);
             if (cardStatsData.IsHero)
             {
                 _heroCardWindow.SetActive(true);

@@ -24,16 +24,14 @@ namespace Feature.Card.Script
             }
         }
 
-        public HandCardView AddCardFromHand(CardStatsData cardStatsData)
+        public HandCardView AddCardFromHand(CardStatsData cardStatsData, int addedIndex)
         {
-            _handCardViews.SetHandCardView(cardStatsData, _gameSessionModel.PlayerHero.CardsInHand.CurrentValue.Count);
-            return _handCardViews._cardsInHand[_gameSessionModel.PlayerHero.CardsInHand.CurrentValue.Count];
+            return _handCardViews.AddCardFromHand(cardStatsData, addedIndex);
         }
 
-        public void UpdateAfterRemoveCard(int lastRemovedCardIndex)
+        public void RemoveCardFromHand(HandCardView view)
         {
-            Debug.Log("UpdateAfterRemoveCard: " + lastRemovedCardIndex);
-            _handCardViews._cardsInHand[lastRemovedCardIndex].ViewDelete();
+            _handCardViews.RemoveHandCardView(view);
         }
     }
 }

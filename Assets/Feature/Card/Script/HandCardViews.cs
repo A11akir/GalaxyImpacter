@@ -13,13 +13,22 @@ namespace Feature.Card.Script
 
         public event Action UpdateViewCard;
 
-        public void SetHandCardView(CardStatsData cardStatsData, int index)
+        
+        public HandCardView AddCardFromHand(CardStatsData cardStatsData, int addedIndex)
         {
-            _cardsInHand[index].gameObject.SetActive(false);
-            _cardsInHand[index].ClearData();
-            _cardsInHand[index].SetDataView(cardStatsData);
-            
+            Transform handContainer = transform;
+            HandCardView lastView = handContainer.GetChild(handContainer.childCount - 1).GetComponent<HandCardView>();
+            lastView.SetDataView(cardStatsData);
+            lastView.transform.SetSiblingIndex(addedIndex);
             UpdateViewCard?.Invoke();
+            return lastView;
+        }
+        
+        public void RemoveHandCardView(HandCardView view)
+        {
+            view.ClearData();
+            view.transform.SetAsLastSibling();
+            view.gameObject.SetActive(false);
         }
     }
 }

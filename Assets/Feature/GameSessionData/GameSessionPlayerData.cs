@@ -12,13 +12,7 @@ namespace Feature.GameSessionData
     {
         private readonly ReactiveProperty<List<CardStatsData>> _cardsInDeck = new(new List<CardStatsData>());
         public ReadOnlyReactiveProperty<List<CardStatsData>> CardsInDeck => _cardsInDeck;
-
-        public int LastRemovedCardIndex;
-        public List<CardStatsData> CardsInDeckList
-        {
-            get => _cardsInDeck.Value;
-            set => _cardsInDeck.Value = value;
-        }
+        
 
         public readonly ReactiveProperty<List<CardStatsData>> _cardsInHand = new(new List<CardStatsData>());
         public ReadOnlyReactiveProperty<List<CardStatsData>> CardsInHand => _cardsInHand;
@@ -38,10 +32,11 @@ namespace Feature.GameSessionData
             set => _cardsInBoard.Value = value;
         }
 
+        public int CountCardsInHand => _cardsInHand.Value.Count;
         public int CardsInBoardMax = 5;
         public int maxCardsInHandCount = 10;
-        public int startCardsInHand = 4;
-        public int startCardsInDeckCount = 6;
+        public int startCardsInHandToDraw = 6;
+        public int startCardsInDeckCount = 10;
 
         public bool IsPlayerFirst;
 
@@ -121,22 +116,30 @@ namespace Feature.GameSessionData
             _cardsInDeck.Value = currentList;
         }
         
-        public void AddCardToHand(CardStatsData card)
+        public void AddCardToHand(CardStatsData card, int index)
         {
             if (_cardsInHand.Value.Count >= maxCardsInHandCount) return;
-            
-            var currentList = new List<CardStatsData>(_cardsInHand.Value);
-            currentList.Add(card);
-            _cardsInHand.Value = currentList;
+    
+            var newList = new List<CardStatsData>(_cardsInHand.Value);
+    
+            newList.Insert(index, card);
+    
+            _cardsInHand.Value = newList;
+    
+            Debug.Log($"AddCardToHand: карта {card.Name} добавлена, новый список длиной {newList.Count}");
         }
         
         public void RemoveCardFromHand(HandCardData card)
         {
-            card.Index = LastRemovedCardIndex;
-            var currentList = new List<CardStatsData>(_cardsInHand.Value);
-            currentList.Remove(card.Data);
-            _cardsInHand.Value = currentList;
-            
+    
+            // 1. Создаем копию
+            var newList = new List<CardStatsData>(_cardsInHand.Value);
+    
+            // 2. Удаляем из копии
+            newList.Remove(card.Data);
+    
+            // 3. Присваиваем новый список
+            _cardsInHand.Value = newList;
         }
         
         public void ClearHand()

@@ -29,23 +29,32 @@ namespace Feature.Card.Script
             var allCards = _gameData.allCards;
             var heroDeck = hero.CardsInDeck;
             int cardsToAdd = hero.startCardsInDeckCount;
-    
+
             heroDeck.CurrentValue.Clear();
-    
+
             List<CardStatsData> availableCards = new List<CardStatsData>(allCards);
-    
+
             for (int i = 0; i < cardsToAdd && availableCards.Count > 0; i++)
             {
                 int randomIndex = Random.Range(0, availableCards.Count);
-                heroDeck.CurrentValue.Add(availableCards[randomIndex]);
+                var originalCard = availableCards[randomIndex];
+        
+                var cardCopy = ScriptableObject.Instantiate(originalCard);
+                cardCopy.id = System.Guid.NewGuid().ToString();
+        
+                heroDeck.CurrentValue.Add(cardCopy);
                 availableCards.RemoveAt(randomIndex);
             }
-    
+
             while (heroDeck.CurrentValue.Count < cardsToAdd)
             {
-                heroDeck.CurrentValue.Add(allCards[Random.Range(0, allCards.Count)]);
+                var originalCard = allCards[Random.Range(0, allCards.Count)];
+                var cardCopy = ScriptableObject.Instantiate(originalCard);
+                cardCopy.id = System.Guid.NewGuid().ToString();
+        
+                heroDeck.CurrentValue.Add(cardCopy);
             }
-    
+
             Debug.Log($"Колода для {hero._heroName} инициализирована: {heroDeck.CurrentValue.Count} карт");
         }
     }
