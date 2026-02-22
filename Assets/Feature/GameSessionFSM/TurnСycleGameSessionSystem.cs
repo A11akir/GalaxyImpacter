@@ -7,8 +7,8 @@ namespace Feature.GameSessionFSM
 {
     public class TurnСycleGameSessionSystem
     {
-        private HandFillSystem _handFillSystem;
-        private BattlefieldSystem _battlefieldSystem;
+        private readonly HandFillSystem _handFillSystem;
+        private readonly BattlefieldSystem _battlefieldSystem;
         private DeckFillSystem _deckFillSystem { get;  }
         private HandDataRepository _handDataRepository { get;  }
         private CurrencyManagerSystem _currencyManagerSystem { get;  }        
@@ -24,7 +24,6 @@ namespace Feature.GameSessionFSM
             _battlefieldSystem = battlefieldSystem;
             _handFillSystem = handFillSystem;
         }
-        
 
         public void StartGameSession()
         {

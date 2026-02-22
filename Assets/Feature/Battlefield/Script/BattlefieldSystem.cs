@@ -22,14 +22,17 @@ namespace Feature.Battlefield.Script
         [ShowInInspector] private List<CardOnBattlefieldView> _cardsGameObjectsPlayer;
 
         [Inject]
-        public void Construct(GameSessionModel gameSessionModel, BattlefieldCardTransformSystem battlefieldCardTransformSystem, CardOnBattlefieldPresenter cardOnBattlefieldPresenter)
+        public void Construct(GameSessionModel gameSessionModel, BattlefieldCardTransformSystem battlefieldCardTransformSystem,
+            CardOnBattlefieldPresenter cardOnBattlefieldPresenter)
         {
             _gameSessionModel = gameSessionModel;
             _battlefieldCardTransformSystem = battlefieldCardTransformSystem;
             _cardOnBattlefieldPresenter = cardOnBattlefieldPresenter;
         }
 
-        public void Init()
+        public void Init() => SubscribeReactiveBoardList();
+
+        private void SubscribeReactiveBoardList()
         {
             _gameSessionModel.PlayerHero.CardsInBoard
                 .Subscribe(_ =>
@@ -49,7 +52,8 @@ namespace Feature.Battlefield.Script
         {
             for (int i = 0; i < _gameSessionModel.PlayerHero.CardsInBoard.CurrentValue.Count; i++)
             {
-                _cardOnBattlefieldPresenter.SetCardInPlayerHand(_cardsGameObjectsPlayer[i], _gameSessionModel.PlayerHero.CardsInBoard.CurrentValue[i]);
+                _cardOnBattlefieldPresenter.SetCardInPlayerHand(_cardsGameObjectsPlayer[i],
+                    _gameSessionModel.PlayerHero.CardsInBoard.CurrentValue[i]);
             }
             _battlefieldCardTransformSystem.UpdateCardsPosition();
         }
@@ -57,9 +61,7 @@ namespace Feature.Battlefield.Script
         public void AddCardInBattlefield(GameSessionPlayerData playerData, CardStatsData cardData)
         {
             if (_gameSessionModel.PlayerHero == playerData)
-            {
                 playerData.AddCardToBoard(cardData);
-            }
         }
     }
 }
