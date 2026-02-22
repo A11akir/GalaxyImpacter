@@ -49,7 +49,7 @@ namespace Feature.GameSessionData
         private void SpawnHeroCard()
         {
             _battlefieldSystem.AddCardInBattlefield(_gameSessionModel.PlayerHero, _cardData.Data);
-            _gameSessionModel.PlayerHero.RemoveCardFromHand(_cardData);
+
         }
     }
 }

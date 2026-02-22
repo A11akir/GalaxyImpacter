@@ -130,11 +130,11 @@ namespace Feature.GameSessionData
     
         }
         
-        public void RemoveCardFromHand(HandCardData card)
+        public void RemoveCardFromHand(CardStatsData data)
         {
             var newList = new List<CardStatsData>(_cardsInHand.Value);
     
-            newList.Remove(card.Data);
+            newList.Remove(data);
     
             _cardsInHand.Value = newList;
         }
@@ -142,6 +142,7 @@ namespace Feature.GameSessionData
         public void AddCardToBoard(CardStatsData card, int index)
         {
             if (index >= CardsInBoardMax) return;
+            if (_cardsInBoard.Value[index] != null) return;
             var newList = new List<CardStatsData>();
     
             for (int i = 0; i < CardsInBoardMax; i++)

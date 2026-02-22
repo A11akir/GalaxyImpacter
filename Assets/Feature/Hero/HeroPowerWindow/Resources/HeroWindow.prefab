@@ -568,6 +568,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HeroIcon
       objectReference: {fileID: 0}
+    - target: {fileID: 1856239399854532917, guid: f91b620f52a734f4ea0522028177e042, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1976157032157224654, guid: f91b620f52a734f4ea0522028177e042, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

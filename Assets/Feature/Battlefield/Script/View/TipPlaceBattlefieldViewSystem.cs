@@ -7,9 +7,9 @@ namespace Feature.Battlefield.Script.View
         [SerializeField] private Transform[] _tipPositions;
         [SerializeField] private float _highlightAlpha = 0.5f;
 
-        private int indexNearCard;
+        private int _indexNearCard;
         
-        public int GetCardIndex() => indexNearCard;
+        public int GetCardIndex() => _indexNearCard;
         
         private CanvasGroup[] _canvasGroups;
 
@@ -20,10 +20,6 @@ namespace Feature.Battlefield.Script.View
             for (int i = 0; i < _tipPositions.Length; i++)
             {
                 _canvasGroups[i] = _tipPositions[i].GetComponent<CanvasGroup>();
-                if (_canvasGroups[i] == null)
-                {
-                    _canvasGroups[i] = _tipPositions[i].gameObject.AddComponent<CanvasGroup>();
-                }
                 _canvasGroups[i].alpha = 0f;
             }
             
@@ -34,7 +30,6 @@ namespace Feature.Battlefield.Script.View
         {
             gameObject.SetActive(true);
             
-            Transform closestTip = null;
             float closestDistance = float.MaxValue;
             int closestIndex = -1;
             
@@ -44,16 +39,14 @@ namespace Feature.Battlefield.Script.View
                 if (distance < closestDistance)
                 {
                     closestDistance = distance;
-                    closestTip = _tipPositions[i];
                     closestIndex = i;
-                
                 }
             }
             
             for (int i = 0; i < _tipPositions.Length; i++)
             {
-                indexNearCard = closestIndex;
-                _canvasGroups[i].alpha = (i == indexNearCard) ? _highlightAlpha : 0f;
+                _indexNearCard = closestIndex;
+                _canvasGroups[i].alpha = (i == _indexNearCard) ? _highlightAlpha : 0f;
             }
         }
 

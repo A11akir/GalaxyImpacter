@@ -1440,7 +1440,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5887037005102134059, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 5887037005102134059, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2643,7 +2643,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5887037005102134059, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -270
       objectReference: {fileID: 0}
     - target: {fileID: 5887037005102134059, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3630,7 +3630,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2233787423589274252, guid: 0a7872cc1d7604fd1b3333db3581d77b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 270
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 2233787423589274252, guid: 0a7872cc1d7604fd1b3333db3581d77b, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -5892,7 +5892,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1391783041}
   - component: {fileID: 1391783042}
-  - component: {fileID: 1391783043}
   m_Layer: 5
   m_Name: Battlefield
   m_TagString: Untagged
@@ -5935,21 +5934,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyBattlefield: {fileID: 648095945}
   _playerBattlefield: {fileID: 1196659511}
---- !u!114 &1391783043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1391783040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca102e35c398485889974e10339faa19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  battlefieldParent: {fileID: 1409142020}
-  horizontalSpacing: 200
-  horizontalSpacingCoef: 3
 --- !u!1 &1409142019
 GameObject:
   m_ObjectHideFlags: 0
@@ -5983,8 +5967,8 @@ RectTransform:
   - {fileID: 733134115}
   - {fileID: 781923703}
   - {fileID: 1745601955}
-  - {fileID: 148962297}
   - {fileID: 1559136488}
+  - {fileID: 148962297}
   m_Father: {fileID: 1292160304}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -6221,7 +6205,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5887037005102134059, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 5887037005102134059, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -7176,7 +7160,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5887037005102134059, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 270
       objectReference: {fileID: 0}
     - target: {fileID: 5887037005102134059, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -7192,6 +7176,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5887037005102134059, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8461198785409712509, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -7390,7 +7378,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2233787423589274252, guid: 0a7872cc1d7604fd1b3333db3581d77b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 450
+      value: 270
       objectReference: {fileID: 0}
     - target: {fileID: 2233787423589274252, guid: 0a7872cc1d7604fd1b3333db3581d77b, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -8045,7 +8033,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5887037005102134059, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 5887037005102134059, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -9560,6 +9548,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HeroOnBoardView
       objectReference: {fileID: 0}
+    - target: {fileID: 4640322776435668920, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5887037005102134059, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -9622,7 +9614,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5887037005102134059, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -450
       objectReference: {fileID: 0}
     - target: {fileID: 5887037005102134059, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
       propertyPath: m_AnchoredPosition.y

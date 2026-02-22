@@ -4,7 +4,6 @@ using Feature.Battlefield.Script.View;
 using Feature.Card.Script;
 using Feature.GameSessionData;
 using R3;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
 
@@ -88,11 +87,15 @@ namespace Feature.Battlefield.Script
         }
 
 
-        private void OnCardAddedBoard(CardStatsData addedCard, int addedIndex) => 
+        private void OnCardAddedBoard(CardStatsData addedCard, int addedIndex)
+        {
             _cardOnBattlefieldPresenter.SetCardInPlayerHand(_cardsGameObjectsPlayer[addedIndex], addedCard);
+            _gameSessionModel.PlayerHero.RemoveCardFromHand(addedCard);
+        }
 
         private void OnCardRemovedFromBoard(CardStatsData removedCard)
         {
+            
         }
 
 

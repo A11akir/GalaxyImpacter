@@ -11,29 +11,21 @@ namespace Feature.Card.Script
     {
         [SerializeField] GameObject CardIsAreaBattlefield;
         [Inject] private TipPlaceBattlefieldViewSystem _tipPlaceBattlefieldViewSystem;
-        
         [HideInInspector] public bool CardGoingIsUsed;
-
-        public bool CardHasTarget;
-        private GraphicRaycaster _raycaster;
-        private EventSystem _eventSystem;
+        [HideInInspector] public bool CardHasTarget;
+        [SerializeField] private GraphicRaycaster _raycaster;
+        [SerializeField] private EventSystem _eventSystem;
         
-        private void Start()
-        {
-            _eventSystem = EventSystem.current;
-            _raycaster = FindObjectOfType<GraphicRaycaster>();
-        }
-
         public void CheckCardArea(Transform transformCard)
         {
             if (CardGoingIsUsed && _raycaster && _eventSystem)
             {
                 PointerEventData pointerData = new PointerEventData(_eventSystem);
                 pointerData.position = Input.mousePosition;
-                
+        
                 var results = new System.Collections.Generic.List<RaycastResult>();
                 _raycaster.Raycast(pointerData, results);
-                
+        
                 bool mouseOverThis = false;
                 foreach (var result in results)
                 {
@@ -43,24 +35,30 @@ namespace Feature.Card.Script
                         break;
                     }
                 }
-                
+        
                 CardIsAreaBattlefield.SetActive(mouseOverThis);
-                _tipPlaceBattlefieldViewSystem.ActiveNearTip(transformCard);
-                CardHasTarget =  true;
+                
+                if (mouseOverThis)
+                    _tipPlaceBattlefieldViewSystem.ActiveNearTip(transformCard);
+                else
+                    _tipPlaceBattlefieldViewSystem.Inactive();
+                
+                CardHasTarget = mouseOverThis;
             }
             else
             {
+                CardHasTarget = false;
                 CardIsAreaBattlefield.SetActive(false);
                 _tipPlaceBattlefieldViewSystem.Inactive();
-                CardHasTarget =  false;
             }
         }
         
         public void CardIsAreaAllTargetUseEffectOff()
         {
+            CardHasTarget =  false;
             CardIsAreaBattlefield.SetActive(false);
             _tipPlaceBattlefieldViewSystem.Inactive();
-            CardHasTarget =  false;
+    
         }
     }
 }
