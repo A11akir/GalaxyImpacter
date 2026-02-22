@@ -10,17 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b61c756ac7284bbb844947755dcb81a1, type: 3}
-  m_Name: Reinforcement
+  m_Name: Footman
   m_EditorClassIdentifier: 
-  _cost: 0
-  _health: 2
-  _name: Reinforcement
-  _rarity: Galaxy
-  _iconImage: {fileID: -3140911068402530301, guid: 931395c010c014fd0b3fd8552fbfb85c, type: 3}
-  _values: 01000000
-  _specialization:
-  - Assasian
+  _cost: 1
+  _health: 5
+  _name: Footman
+  _rarity: 
+  _iconImage: {fileID: -2276372485318268192, guid: 2690368afb2f44a88a793de361d7e8c8, type: 3}
+  _values: 
+  _specialization: []
   _level: 0
-  _description: Give 1 armor.
+  _description: 
   targetSpellType: 3
-  id: 3449d200-9150-4bc6-8962-c1bf6affe95f
+  id: 3ad6b882-badd-436e-a54b-63a1259826d7

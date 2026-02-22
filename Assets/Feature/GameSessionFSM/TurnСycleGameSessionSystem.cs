@@ -1,6 +1,7 @@
 using Feature.Battlefield.Script;
 using Feature.Card.Script;
 using Feature.Chakra;
+using Feature.GameSessionData;
 using Feature.ShopGamePlay.Script.Currency;
 
 namespace Feature.GameSessionFSM
@@ -9,13 +10,14 @@ namespace Feature.GameSessionFSM
     {
         private readonly HandFillSystem _handFillSystem;
         private readonly BattlefieldSystem _battlefieldSystem;
+        private GameSessionModel _gameSessionModel;
         private DeckFillSystem _deckFillSystem { get;  }
         private HandDataRepository _handDataRepository { get;  }
         private CurrencyManagerSystem _currencyManagerSystem { get;  }        
         private ChakraManagerSystem _chakraManagerSystem { get;  }
         
         public TurnСycleGameSessionSystem(DeckFillSystem deckFillSystem, CurrencyManagerSystem currencyManagerSystem,
-            ChakraManagerSystem chakraManagerSystem, HandDataRepository handDataRepository, BattlefieldSystem battlefieldSystem, HandFillSystem handFillSystem)
+            ChakraManagerSystem chakraManagerSystem, HandDataRepository handDataRepository, BattlefieldSystem battlefieldSystem, HandFillSystem handFillSystem, GameSessionModel gameSessionModel)
         {
             _deckFillSystem = deckFillSystem;
             _currencyManagerSystem = currencyManagerSystem;
@@ -23,10 +25,12 @@ namespace Feature.GameSessionFSM
             _handDataRepository = handDataRepository;
             _battlefieldSystem = battlefieldSystem;
             _handFillSystem = handFillSystem;
+            _gameSessionModel = gameSessionModel;
         }
 
         public void StartGameSession()
         {
+            _gameSessionModel.PlayerHero.InitBoard();
             _deckFillSystem.InitializeDecks();
             _handDataRepository.Init();
             _chakraManagerSystem.Init();

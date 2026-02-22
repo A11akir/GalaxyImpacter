@@ -1,4 +1,6 @@
 using System;
+using System.Runtime.InteropServices;
+using Feature.Battlefield.Script;
 using Feature.HandLogic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -17,8 +19,8 @@ namespace Feature.Card.Script
         
         private bool isDrag;
         [Inject] private HandCardsPositionSystem _handCardsPositionSystem;
-        [Inject] private CastCardAreaAllTarget _castCardAreaAllTarget;
-        
+        [Inject] private CastCardAreaMinion _castCardAreaMinion;
+        [Inject] private BattlefieldSystem _battlefieldSystem;
         
         private RectTransform _rectTransform;
         private int _hierarchyIndex;
@@ -70,7 +72,7 @@ namespace Feature.Card.Script
 
         public void OnDrag(PointerEventData eventData)
         {
-            _castCardAreaAllTarget.gameObject.SetActive(true);
+            _castCardAreaMinion.gameObject.SetActive(true);
             if (!_canCastCard) return;
             
             if (!isDrag)
@@ -88,15 +90,15 @@ namespace Feature.Card.Script
 
             _rectTransform.localPosition = localPoint;
 
-            _castCardAreaAllTarget.CheckCardArea();
-            _castCardAreaAllTarget.CardGoingIsUsed = true;
+            _castCardAreaMinion.CheckCardArea(transform);
+            _castCardAreaMinion.CardGoingIsUsed = true;
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
             TryCastCard(this);
-            _castCardAreaAllTarget.CardIsAreaAllTargetUseEffectOff();
-            _castCardAreaAllTarget.CardGoingIsUsed = false;
+            _castCardAreaMinion.CardIsAreaAllTargetUseEffectOff();
+            _castCardAreaMinion.CardGoingIsUsed = false;
             
             DragCancel();
         }
@@ -106,14 +108,14 @@ namespace Feature.Card.Script
             isDrag = false;
             transform.SetSiblingIndex(_hierarchyIndex);
             _handCardsPositionSystem.UpdateCardsPosition();
-            _castCardAreaAllTarget.gameObject.SetActive(false);
+            _castCardAreaMinion.gameObject.SetActive(false);
         }
 
         #endregion
 
         public void TryCastCard(ITransformCastCardBehaviour currentCardBehaviour)
         {
-            if (_castCardAreaAllTarget.CardHasTarget)
+            if (_castCardAreaMinion.CardHasTarget)
             {
                 OnTryCardCast?.Invoke();
             }

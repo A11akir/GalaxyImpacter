@@ -20,7 +20,6 @@ namespace Feature.GameSessionData
 
         public void CastCard()
         {
-            Debug.Log("CastCard");
             if (!CheckCanCast()) return;
             
             _gameSessionModel.PlayerHero.Chakra -= _cardData.Data.Cost;
@@ -33,7 +32,7 @@ namespace Feature.GameSessionData
         {
             if (_cardData.Data.IsHero && 
                 _gameSessionModel.PlayerHero.CardsInBoard.CurrentValue.Count 
-                >= _gameSessionModel.PlayerHero.CardsInBoardMax)
+                > _gameSessionModel.PlayerHero.CardsInBoardMax)
                 return false;
 
             if (_gameSessionModel.PlayerHero.Chakra < _cardData.Data.Cost)

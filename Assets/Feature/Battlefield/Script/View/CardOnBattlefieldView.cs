@@ -2,10 +2,9 @@ using Feature.Card.Script;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace Feature.Battlefield.Script
+namespace Feature.Battlefield.Script.View
 {
     public class CardOnBattlefieldView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {

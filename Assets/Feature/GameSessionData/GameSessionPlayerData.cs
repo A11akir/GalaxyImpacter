@@ -10,11 +10,17 @@ namespace Feature.GameSessionData
 {
     public class GameSessionPlayerData 
     {
+        public int CountCardsInHand => _cardsInHand.Value.Count;
+        public int CardsInBoardMax = 6;
+        public int maxCardsInHandCount = 10;
+        public int startCardsInHandToDraw = 6;
+        public int startCardsInDeckCount = 10;
+        
         private readonly ReactiveProperty<List<CardStatsData>> _cardsInDeck = new(new List<CardStatsData>());
         public ReadOnlyReactiveProperty<List<CardStatsData>> CardsInDeck => _cardsInDeck;
         
 
-        public readonly ReactiveProperty<List<CardStatsData>> _cardsInHand = new(new List<CardStatsData>());
+        public readonly ReactiveProperty<List<CardStatsData>> _cardsInHand = new(new List<CardStatsData>(6));
         public ReadOnlyReactiveProperty<List<CardStatsData>> CardsInHand => _cardsInHand;
         
         public List<CardStatsData> CardsInHandList
@@ -32,11 +38,7 @@ namespace Feature.GameSessionData
             set => _cardsInBoard.Value = value;
         }
 
-        public int CountCardsInHand => _cardsInHand.Value.Count;
-        public int CardsInBoardMax = 5;
-        public int maxCardsInHandCount = 10;
-        public int startCardsInHandToDraw = 6;
-        public int startCardsInDeckCount = 10;
+
 
         public bool IsPlayerFirst;
 
@@ -136,14 +138,32 @@ namespace Feature.GameSessionData
     
             _cardsInHand.Value = newList;
         }
-        
-        public void AddCardToBoard(CardStatsData card)
+
+        public void AddCardToBoard(CardStatsData card, int index)
         {
-            if (_cardsInBoard.Value.Count >= CardsInBoardMax) return;
-            
-            var currentList = new List<CardStatsData>(_cardsInBoard.Value);
-            currentList.Add(card);
-            _cardsInBoard.Value = currentList;
+            if (index >= CardsInBoardMax) return;
+            var newList = new List<CardStatsData>();
+    
+            for (int i = 0; i < CardsInBoardMax; i++)
+            {
+                if (i < _cardsInBoard.Value.Count)
+                    newList.Add(_cardsInBoard.Value[i]);
+                else newList.Add(null);
+            }
+    
+            newList[index] = card;
+    
+            _cardsInBoard.Value = newList;
+        }
+        
+        public void InitBoard()
+        {
+            var list = new List<CardStatsData>(CardsInBoardMax);
+            for (int i = 0; i < CardsInBoardMax; i++)
+            {
+                list.Add(null);
+            }
+            _cardsInBoard.Value = list;
         }
         
         public void RemoveCardFromBoard(CardStatsData card)
@@ -162,6 +182,7 @@ namespace Feature.GameSessionData
         {
             _chakraCount.Value = amount;
         }
+        
     }
     
     public class Health

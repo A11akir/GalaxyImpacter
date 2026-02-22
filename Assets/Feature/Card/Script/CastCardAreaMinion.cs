@@ -1,12 +1,17 @@
+using Feature.Battlefield.Script;
+using Feature.Battlefield.Script.View;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Feature.Card.Script
 {
-    public class CastCardAreaAllTarget : MonoBehaviour
+    public class CastCardAreaMinion : MonoBehaviour
     {
-        [SerializeField] GameObject CardIsAreaAllTargetUseEffect;
+        [SerializeField] GameObject CardIsAreaBattlefield;
+        [Inject] private TipPlaceBattlefieldViewSystem _tipPlaceBattlefieldViewSystem;
+        
         [HideInInspector] public bool CardGoingIsUsed;
 
         public bool CardHasTarget;
@@ -19,7 +24,7 @@ namespace Feature.Card.Script
             _raycaster = FindObjectOfType<GraphicRaycaster>();
         }
 
-        public void CheckCardArea()
+        public void CheckCardArea(Transform transformCard)
         {
             if (CardGoingIsUsed && _raycaster && _eventSystem)
             {
@@ -38,19 +43,23 @@ namespace Feature.Card.Script
                         break;
                     }
                 }
-                CardIsAreaAllTargetUseEffect.SetActive(mouseOverThis);
+                
+                CardIsAreaBattlefield.SetActive(mouseOverThis);
+                _tipPlaceBattlefieldViewSystem.ActiveNearTip(transformCard);
                 CardHasTarget =  true;
             }
             else
             {
-                CardIsAreaAllTargetUseEffect.SetActive(false);
+                CardIsAreaBattlefield.SetActive(false);
+                _tipPlaceBattlefieldViewSystem.Inactive();
                 CardHasTarget =  false;
             }
         }
         
         public void CardIsAreaAllTargetUseEffectOff()
         {
-            CardIsAreaAllTargetUseEffect.SetActive(false);
+            CardIsAreaBattlefield.SetActive(false);
+            _tipPlaceBattlefieldViewSystem.Inactive();
             CardHasTarget =  false;
         }
     }

@@ -1,5 +1,6 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace Feature.Battlefield.Script
 {
@@ -7,31 +8,12 @@ namespace Feature.Battlefield.Script
     {
         [SerializeField] private Transform battlefieldParent;
         [SerializeField] private float horizontalSpacing = 100f;
-        
+        [SerializeField] private float horizontalSpacingCoef = 7f;
+
         [Button]
-        public void UpdateCardsPosition()
+        public void UpdateCardsPosition(Transform transformCard)
         {
-            int activeCardsCount = 0;
             
-            foreach (Transform child in battlefieldParent)
-                if (child.gameObject.activeInHierarchy)
-                    activeCardsCount++;
-
-            if (activeCardsCount == 0) return;
-
-            float totalWidth = (activeCardsCount - 1) * horizontalSpacing;
-            float startX = -totalWidth / 2f;
-            int currentIndex = 0;
-            
-            foreach (Transform child in battlefieldParent)
-            {
-                if (child.gameObject.activeInHierarchy)
-                {
-                    float xPos = startX + (currentIndex * horizontalSpacing);
-                    child.localPosition = new Vector3(xPos, 0, 0);
-                    currentIndex++;
-                }
-            }
         }
     }
 }

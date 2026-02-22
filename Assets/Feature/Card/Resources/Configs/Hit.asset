@@ -21,3 +21,5 @@ MonoBehaviour:
   _specialization: []
   _level: 0
   _description: Give 3 damage.
+  targetSpellType: 0
+  id: 0da40797-41f6-47dd-a098-b591b0c2a50d

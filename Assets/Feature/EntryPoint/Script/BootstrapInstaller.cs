@@ -1,5 +1,6 @@
 using Feature.AI;
 using Feature.Battlefield.Script;
+using Feature.Battlefield.Script.View;
 using Feature.Card.Script;
 using Feature.Chakra;
 using Feature.Common;
@@ -8,7 +9,6 @@ using Feature.GameSessionData;
 using Feature.HandLogic;
 using Feature.GameSessionFSM;
 using Feature.Hero;
-using Feature.ShopGamePlay.Script;
 using Feature.ShopGamePlay.Script.Currency;
 using Feature.ShopGamePlay.Script.ShopWindow;
 using Feature.UI;
@@ -46,6 +46,7 @@ namespace Feature.EntryPoint.Script
             Container.Bind<ChakraWindowPresenter>().AsSingle();
             Container.Bind<CurrencyManageView>().FromComponentInHierarchy().AsSingle();
             Container.Bind<ChakraWindowView>().FromComponentInHierarchy().AsSingle();
+            /*Container.Bind<BattlefieldCardTransformSystem>().FromComponentInHierarchy().AsSingle();*/
             Container.Bind<CurrencyManagerSystem>().AsSingle();
             Container.Bind<ChakraManagerSystem>().AsSingle();
             Container.Bind<CardCastSystem>().AsSingle();
@@ -57,10 +58,10 @@ namespace Feature.EntryPoint.Script
             Container.Bind<HandDataRepository>().AsSingle();            
             Container.Bind<GameplayLogicCard>().AsSingle();
             
-            Container.Bind<CastCardAreaAllTarget>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<CastCardAreaMinion>().FromComponentInHierarchy().AsSingle();
 
-            Container.Bind<BattlefieldCardTransformSystem>().FromComponentInHierarchy().AsSingle();            
             Container.Bind<BattlefieldSystem>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<TipPlaceBattlefieldViewSystem>().FromComponentInHierarchy().AsSingle();
             
             BindGameSessionFSM();
             BindConfig();
