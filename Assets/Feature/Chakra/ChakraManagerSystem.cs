@@ -14,15 +14,9 @@ namespace Feature.Chakra
             _chakraWindowPresenter = chakraWindowPresenter;
         }
 
-        public void Init()
-        {
-            _chakraWindowPresenter.SubscribeToChakraChanges();
-        }
-        
-        public void NewTurnUpdate()
-        {
-            AddChakraHeroForNewTurn();
-        }
+        public void Init() => _chakraWindowPresenter.SubscribeToChakraChanges();
+
+        public void NewTurnUpdate() => AddChakraHeroForNewTurn();
 
         private void AddChakraHeroForNewTurn()
         {
@@ -34,7 +28,7 @@ namespace Feature.Chakra
         {
             int maxChakra = hero.MaxChakraCountBaseIncrease;
             int newChakra = Mathf.Min(hero.Chakra + amount, maxChakra);
-            hero.SetChakra(newChakra); // ← Лучше сделать метод SetChakra
+            hero.SetChakra(newChakra);
         }
     }
 }

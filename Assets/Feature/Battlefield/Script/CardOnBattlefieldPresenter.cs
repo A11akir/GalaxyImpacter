@@ -1,6 +1,4 @@
-
 using Feature.Card.Script;
-using UnityEngine;
 
 namespace Feature.Battlefield.Script
 {

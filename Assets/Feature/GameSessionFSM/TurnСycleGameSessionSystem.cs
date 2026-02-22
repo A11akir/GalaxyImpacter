@@ -1,16 +1,12 @@
 using Feature.Battlefield.Script;
 using Feature.Card.Script;
 using Feature.Chakra;
-using Feature.GameSessionData;
-using Feature.ShopGamePlay.Script;
 using Feature.ShopGamePlay.Script.Currency;
-using UnityEngine;
 
 namespace Feature.GameSessionFSM
 {
     public class TurnСycleGameSessionSystem
     {
-        private HandCardPresenter _handCardPresenter;
         private HandFillSystem _handFillSystem;
         private BattlefieldSystem _battlefieldSystem;
         private DeckFillSystem _deckFillSystem { get;  }
@@ -19,7 +15,7 @@ namespace Feature.GameSessionFSM
         private ChakraManagerSystem _chakraManagerSystem { get;  }
         
         public TurnСycleGameSessionSystem(DeckFillSystem deckFillSystem, CurrencyManagerSystem currencyManagerSystem,
-            ChakraManagerSystem chakraManagerSystem, HandDataRepository handDataRepository, BattlefieldSystem battlefieldSystem, HandFillSystem handFillSystem, HandCardPresenter handCardPresenter)
+            ChakraManagerSystem chakraManagerSystem, HandDataRepository handDataRepository, BattlefieldSystem battlefieldSystem, HandFillSystem handFillSystem)
         {
             _deckFillSystem = deckFillSystem;
             _currencyManagerSystem = currencyManagerSystem;
@@ -27,7 +23,6 @@ namespace Feature.GameSessionFSM
             _handDataRepository = handDataRepository;
             _battlefieldSystem = battlefieldSystem;
             _handFillSystem = handFillSystem;
-            _handCardPresenter = handCardPresenter;
         }
         
 
@@ -38,7 +33,6 @@ namespace Feature.GameSessionFSM
             _chakraManagerSystem.Init();
             _battlefieldSystem.Init();
             _currencyManagerSystem.Init();
-   
         }
 
         public void CycleTurn()

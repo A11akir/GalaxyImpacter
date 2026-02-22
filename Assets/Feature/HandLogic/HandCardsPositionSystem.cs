@@ -20,17 +20,11 @@ namespace Feature.HandLogic
         [SerializeField] private float cardOffsetRotateRatio = 1;        
         [SerializeField] private int horizontalCardOffset = 150; 
         [SerializeField] private int horizontalCardOffsetRatio = 10;
-
-
-        public void OnEnable()
-        {
-            _handCardViews.UpdateViewCard += UpdateCardsPosition;
-        }
-        public void OnDisable()
-        {
-            _handCardViews.UpdateViewCard -= UpdateCardsPosition;
-        }
         
+        public void OnEnable() => _handCardViews.UpdateViewCard += UpdateCardsPosition;
+
+        public void OnDisable() => _handCardViews.UpdateViewCard -= UpdateCardsPosition;
+
         [Button]
         public void UpdateCardsPosition()
         {

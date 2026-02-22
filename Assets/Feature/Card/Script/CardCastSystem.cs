@@ -19,9 +19,7 @@ namespace Feature.Card.Script
         public void ChakraCheckCanCastCard(List<HandCardData> handData)
         {
             foreach (var cardData in handData)
-            {
                 cardData.Behaviour.CanCastCard(_gameSessionModel.PlayerHero.Chakra >= cardData.Data.Cost);
-            }
         }
         
         public void AddBehavioursToCard(HandCardData cardData)

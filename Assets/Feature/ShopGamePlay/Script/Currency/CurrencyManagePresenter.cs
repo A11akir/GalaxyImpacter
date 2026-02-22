@@ -13,7 +13,6 @@ namespace Feature.ShopGamePlay.Script.Currency
         {
             _currencyManageView = currencyManageView;
             _gameSessionData = gameSessionData;
-            
         }
 
         public void SubscribeToCurrencyChanges()
@@ -23,9 +22,6 @@ namespace Feature.ShopGamePlay.Script.Currency
                 .AddTo(_disposables);
         }
 
-        public void Dispose()
-        {
-            _disposables.Dispose();
-        }
+        public void Dispose() => _disposables.Dispose();
     }
 }

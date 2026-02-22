@@ -4,7 +4,7 @@ using Feature.GameSessionData;
 
 namespace Feature.GameSessionFSM
 {
-    public class PrepareStateGameSessionFSM : StateGameSessionFSM
+    public class PrepareStateGameSessionFSM : StateGameSessionFsm
     {
         private GameSessionModel _gameSessionModel;
         private TurnСycleGameSessionSystem _turnСycleGameSessionSystem;

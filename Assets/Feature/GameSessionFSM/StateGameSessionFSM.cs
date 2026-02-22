@@ -1,10 +1,10 @@
 namespace Feature.GameSessionFSM
 {
-    public class StateGameSessionFSM
+    public class StateGameSessionFsm
     {
         protected readonly GameSessionFSM _gameSessionFSM;
 
-        public StateGameSessionFSM(GameSessionFSM gameSessionFsm)
+        public StateGameSessionFsm(GameSessionFSM gameSessionFsm)
         {
             _gameSessionFSM = gameSessionFsm;
         }

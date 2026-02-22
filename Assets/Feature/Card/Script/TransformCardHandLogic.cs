@@ -10,8 +10,8 @@ namespace Feature.Card.Script
     {
         [SerializeField] private float scaleFactor = 1.5f;
 
-        private bool isDrag;
-        private static bool isPointerEnter;
+        private bool _isDrag;
+        private static bool _isPointerEnter;
         
         [Inject] private HandCardsPositionSystem  _handCardsPositionSystem;
         
@@ -44,8 +44,8 @@ namespace Feature.Card.Script
         [Button]
         private void CardPointerEnter()
         {
-            if (isPointerEnter) return;
-            isPointerEnter = true;
+            if (_isPointerEnter) return;
+            _isPointerEnter = true;
             _hierarchyIndex = transform.GetSiblingIndex();
             transform.SetAsLastSibling();
     
@@ -53,7 +53,7 @@ namespace Feature.Card.Script
                 ((_rectTransform.rect.height/2)*scaleFactor)-5, 
                 transform.localPosition.z);
     
-            if (isDrag) transform.localScale = Vector3.one;
+            if (_isDrag) transform.localScale = Vector3.one;
             else transform.localScale *= scaleFactor;
     
             transform.localRotation = Quaternion.identity;
@@ -64,14 +64,14 @@ namespace Feature.Card.Script
             transform.SetSiblingIndex(_hierarchyIndex);
             _handCardsPositionSystem.UpdateCardsPosition();
             
-            isPointerEnter = false;
+            _isPointerEnter = false;
         }
 
         public void OnDrag(PointerEventData eventData)
         {
-            if (!isDrag)
+            if (!_isDrag)
             {
-                isDrag = true;
+                _isDrag = true;
                 transform.localScale = Vector3.one;
             }
     
@@ -89,7 +89,7 @@ namespace Feature.Card.Script
 
         private void DragCancel()
         {
-            isDrag = false;
+            _isDrag = false;
             transform.SetSiblingIndex(_hierarchyIndex);
             _handCardsPositionSystem.UpdateCardsPosition();
         }

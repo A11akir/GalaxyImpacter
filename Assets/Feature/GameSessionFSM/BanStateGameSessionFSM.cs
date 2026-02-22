@@ -3,7 +3,7 @@ using Feature.UI.SelectWindowHero;
 
 namespace Feature.GameSessionFSM
 {
-    public class BanStateGameSessionFSM : StateGameSessionFSM
+    public class BanStateGameSessionFSM : StateGameSessionFsm
     {
         private GameSessionFSM _gameSessionFsm;
         private SelectWindowHeroPresenter _selectWindowHeroPresenter { get; set; }

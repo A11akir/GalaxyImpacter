@@ -32,9 +32,9 @@ namespace Feature.Chakra
                 {
                     _chakraWindowView.SetChakraText(chakra);
             
-                    _handCardPresenter.ChakraCheckCanCastCard(_handDataRepository._handData);
+                    _handCardPresenter.ChakraCheckCanCastCard(_handDataRepository.HandData);
             
-                    _cardCastSystem.ChakraCheckCanCastCard(_handDataRepository._handData);
+                    _cardCastSystem.ChakraCheckCanCastCard(_handDataRepository.HandData);
                 })
                 .AddTo(_disposables);
         }

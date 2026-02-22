@@ -9,16 +9,16 @@ namespace Feature.Card.Script
 {
     public class HandDataRepository
     {
-        public List<HandCardData> _handData = new List<HandCardData>();
+        public readonly List<HandCardData> HandData = new List<HandCardData>();
         private List<CardStatsData> _previousCards = new();
-        private BattlefieldSystem _battlefieldSystem;
-        private GameSessionModel _gameSessionModel;
-        private HandCardPresenter _handCardPresenter;
-        private CardCastSystem _cardCastSystem;
+        private readonly BattlefieldSystem _battlefieldSystem;
+        private readonly GameSessionModel _gameSessionModel;
+        private readonly HandCardPresenter _handCardPresenter;
+        private readonly CardCastSystem _cardCastSystem;
 
         public HandDataRepository(
-            CardCastSystem cardCastSystem,
-            HandCardPresenter handCardPresenter, GameSessionModel gameSessionModel, BattlefieldSystem battlefieldSystem)
+            CardCastSystem cardCastSystem, HandCardPresenter handCardPresenter,
+            GameSessionModel gameSessionModel, BattlefieldSystem battlefieldSystem)
         {
             _cardCastSystem = cardCastSystem;
             _handCardPresenter = handCardPresenter;
@@ -26,9 +26,9 @@ namespace Feature.Card.Script
             _battlefieldSystem = battlefieldSystem;
         }
 
+        public void Init() => SubscribeReactiveHandList();
 
-
-        public void Init()
+        private void SubscribeReactiveHandList()
         {
             _gameSessionModel.PlayerHero.CardsInHand
                 .Subscribe(currentCards =>
@@ -44,8 +44,7 @@ namespace Feature.Card.Script
                     if (removedCards.Count > 0)
                     {
                         var removedCard = removedCards[0];
-                        int removedIndex = _previousCards.FindIndex(p => p.id == removedCard.id);
-                        OnCardRemovedFromHand(removedCard, removedIndex);
+                        OnCardRemovedFromHand(removedCard);
                     }
 
                     if (addedCards.Count > 0)
@@ -69,34 +68,31 @@ namespace Feature.Card.Script
                 behaviour: null,
                 logic: null);
             
-            _handData.Insert(addedIndex, handCardData);
-            
+            HandData.Insert(addedIndex, handCardData);
             SetupCardBehavioursAndLogic(addedIndex);
-            
         }
 
-        private void OnCardRemovedFromHand(CardStatsData removedCard, int removedIndex)
+        private void OnCardRemovedFromHand(CardStatsData removedCard)
         {
-            var cardToRemove = _handData.FirstOrDefault(c => c.Data.id == removedCard.id);
-    
-            if (cardToRemove != null)
-            {
-                _handCardPresenter.RemoveCardFromHand(cardToRemove.View);
+            var cardToRemove = HandData.FirstOrDefault(c => c.Data.id == removedCard.id);
+
+            if (cardToRemove == null) return;
+            
+            _handCardPresenter.RemoveCardFromHand(cardToRemove.View);
         
-                _cardCastSystem.RemoveBehaviourFromCard(cardToRemove);
+            _cardCastSystem.RemoveBehaviourFromCard(cardToRemove);
         
-                _handData.Remove(cardToRemove);
-            }
+            HandData.Remove(cardToRemove);
         }
         private void SetupCardBehavioursAndLogic(int index)
         {
-            _cardCastSystem.AddBehavioursToCard(_handData[index]);
+            _cardCastSystem.AddBehavioursToCard(HandData[index]);
 
-            var logic = new GameplayLogicCard(_handData[index], _gameSessionModel, _battlefieldSystem);
+            var logic = new GameplayLogicCard(HandData[index], _gameSessionModel, _battlefieldSystem);
 
-            _handData[index].Behaviour.OnTryCardCast += logic.CastCard;
+            HandData[index].Behaviour.OnTryCardCast += logic.CastCard;
 
-            _handData[index].Logic = logic;
+            HandData[index].Logic = logic;
         }
     }
 }

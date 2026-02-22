@@ -1,6 +1,6 @@
 namespace Feature.GameSessionFSM
 {
-    public class StartStateGameSessionFSM : StateGameSessionFSM
+    public class StartStateGameSessionFSM : StateGameSessionFsm
     {
         private GameSessionData.GameSessionModel _gameSessionModel;
         public StartStateGameSessionFSM(GameSessionFSM gameSessionFsm, GameSessionData.GameSessionModel gameSessionModel) : base(gameSessionFsm)

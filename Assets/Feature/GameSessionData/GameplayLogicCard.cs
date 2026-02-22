@@ -25,24 +25,16 @@ namespace Feature.GameSessionData
             
             _gameSessionModel.PlayerHero.Chakra -= _cardData.Data.Cost;
             
-            if (_cardData.Data.IsHero)
-            {
-                SpawnHeroCard();
-            }
-            else
-            {
-                CastSpell();
-            }
+            if (_cardData.Data.IsHero) SpawnHeroCard();
+            else CastSpell();
         }
 
         private bool CheckCanCast()
         {
-            if (_cardData.Data.IsHero)
-            {
-                if (_gameSessionModel.PlayerHero.CardsInBoard.CurrentValue.Count 
-                    >= _gameSessionModel.PlayerHero.CardsInBoardMax)
-                    return false;
-            }
+            if (_cardData.Data.IsHero && 
+                _gameSessionModel.PlayerHero.CardsInBoard.CurrentValue.Count 
+                >= _gameSessionModel.PlayerHero.CardsInBoardMax)
+                return false;
 
             if (_gameSessionModel.PlayerHero.Chakra < _cardData.Data.Cost)
                 return false;

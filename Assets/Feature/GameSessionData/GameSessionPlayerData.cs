@@ -126,25 +126,15 @@ namespace Feature.GameSessionData
     
             _cardsInHand.Value = newList;
     
-            Debug.Log($"AddCardToHand: карта {card.Name} добавлена, новый список длиной {newList.Count}");
         }
         
         public void RemoveCardFromHand(HandCardData card)
         {
-    
-            // 1. Создаем копию
             var newList = new List<CardStatsData>(_cardsInHand.Value);
     
-            // 2. Удаляем из копии
             newList.Remove(card.Data);
     
-            // 3. Присваиваем новый список
             _cardsInHand.Value = newList;
-        }
-        
-        public void ClearHand()
-        {
-            _cardsInHand.Value = new List<CardStatsData>();
         }
         
         public void AddCardToBoard(CardStatsData card)

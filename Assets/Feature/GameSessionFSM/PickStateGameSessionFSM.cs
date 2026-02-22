@@ -6,7 +6,7 @@ using Feature.UI.SelectWindowHero;
 
 namespace Feature.GameSessionFSM
 {
-    public class PickStateGameSessionFSM : StateGameSessionFSM
+    public class PickStateGameSessionFSM : StateGameSessionFsm
     {
         private SelectWindowHeroPresenter _selectWindowHeroPresenter { get; }
         private GameSessionPresenter _gameSessionPresenter { get; }

@@ -14,7 +14,6 @@ namespace Feature.Card.Script
         ITransformCastCardBehaviour
     {
         [SerializeField] private float scaleFactor = 1.5f;
-
         
         private bool isDrag;
         [Inject] private HandCardsPositionSystem _handCardsPositionSystem;
@@ -28,10 +27,7 @@ namespace Feature.Card.Script
 
         public event Action OnTryCardCast;
 
-        private void Awake()
-        {
-            _rectTransform = GetComponent<RectTransform>();
-        }
+        private void Awake() => _rectTransform = GetComponent<RectTransform>();
 
         private void OnDisable()
         {
@@ -117,7 +113,6 @@ namespace Feature.Card.Script
 
         public void TryCastCard(ITransformCastCardBehaviour currentCardBehaviour)
         {
-            Debug.Log(_castCardAreaAllTarget.CardHasTarget);
             if (_castCardAreaAllTarget.CardHasTarget)
             {
                 OnTryCardCast?.Invoke();

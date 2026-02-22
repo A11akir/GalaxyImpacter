@@ -24,9 +24,7 @@ namespace Feature.Card.Script
 
         public void SetDataView(CardStatsData cardStatsData)
         {
-            
             gameObject.SetActive(true);
-            Debug.Log(gameObject.activeInHierarchy);
             if (cardStatsData.IsHero)
             {
                 _heroCardWindow.SetActive(true);
@@ -42,7 +40,6 @@ namespace Feature.Card.Script
             
             _name.text = cardStatsData.Name;
             _cost.text = cardStatsData.Cost.ToString();
-            
         }
 
         public void ClearData()
@@ -59,12 +56,5 @@ namespace Feature.Card.Script
         }
         
         public void SetCanCastView(bool canCast) => _canAvailableCast.SetActive(canCast);
-
-        public void ViewDelete()
-        {
-            Debug.Log("ViewDelete");
-            gameObject.SetActive(false);
-            transform.SetAsLastSibling();
-        }
     }
 }

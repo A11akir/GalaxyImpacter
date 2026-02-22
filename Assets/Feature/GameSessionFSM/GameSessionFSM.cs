@@ -7,7 +7,7 @@ namespace Feature.GameSessionFSM
 {
     public class GameSessionFSM : MonoBehaviour
     {
-        private StateGameSessionFSM _stateCurrent;
+        private StateGameSessionFsm _stateCurrent;
         
         private StartStateGameSessionFSM _startState;
         private BanStateGameSessionFSM _banState;
@@ -16,7 +16,7 @@ namespace Feature.GameSessionFSM
         private FightStateGameSessionFSM _fightState;
         private BlockStateGameSessionFSM _blockState;
         
-        private Dictionary<Type, StateGameSessionFSM> _states;
+        private Dictionary<Type, StateGameSessionFsm> _states;
         
         [Inject]
         public void Construct(
@@ -34,7 +34,7 @@ namespace Feature.GameSessionFSM
             _fightState = fightState;
             _blockState = blockState;
             
-            _states = new Dictionary<Type, StateGameSessionFSM>();
+            _states = new Dictionary<Type, StateGameSessionFsm>();
         }
 
         public void Initialize()
@@ -49,7 +49,7 @@ namespace Feature.GameSessionFSM
             SetState<StartStateGameSessionFSM>();
         }
         
-        public void AddState(StateGameSessionFSM state)
+        public void AddState(StateGameSessionFsm state)
         {
             if (state == null) return;
             
@@ -60,7 +60,7 @@ namespace Feature.GameSessionFSM
             }
         }
 
-        public void SetState<T>() where T : StateGameSessionFSM
+        public void SetState<T>() where T : StateGameSessionFsm
         {
             var type = typeof(T);
             
@@ -75,6 +75,6 @@ namespace Feature.GameSessionFSM
             }
         }
         
-        public StateGameSessionFSM GetCurrentState() => _stateCurrent;
+        public StateGameSessionFsm GetCurrentState() => _stateCurrent;
     }
 }
