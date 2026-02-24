@@ -39,7 +39,7 @@ namespace Feature.Card.Script
                     cardData.Behaviour = selectObjectTarget;
                     break;
 
-                default:
+                case TargetSpellType.All:
                     var nonTargetBehaviour =
                         _instantiator.InstantiateComponent<NonTransformCastCardUseBehaviour>(
                             cardData.View.gameObject);

@@ -1,99 +1,102 @@
 using System.Collections.Generic;
 using System.Linq;
-using Feature.Battlefield.Script;
-using Feature.Card.Script;
 using Feature.GameSessionData;
 using R3;
 
-public class HandDataRepository
+namespace Feature.Card.Script
 {
-    private readonly Dictionary<CardAndHealthEntityOwnerData, EntityHandState> _entityHands = new();
+    public class HandDataRepository
+    {
+        private readonly Dictionary<CardAndHealthEntityOwnerData, EntityHandState> _entityHands = new();
     
-    private readonly BattlefieldSystem _battlefieldSystem;
-    private readonly GameSessionModel _gameSessionModel;
-    private readonly HandCardPresenter _handCardPresenter;
-    private readonly CardCastSystem _cardCastSystem;
+        private readonly BattlefieldSystem _battlefieldSystem;
+        private readonly GameSessionModel _gameSessionModel;
+        private readonly HandCardPresenter _handCardPresenter;
+        private readonly CardCastSystem _cardCastSystem;
 
-    public HandDataRepository(
-        CardCastSystem cardCastSystem, HandCardPresenter handCardPresenter,
-        GameSessionModel gameSessionModel, BattlefieldSystem battlefieldSystem)
-    {
-        _cardCastSystem = cardCastSystem;
-        _handCardPresenter = handCardPresenter;
-        _gameSessionModel = gameSessionModel;
-        _battlefieldSystem = battlefieldSystem;
-    }
+        public HandDataRepository(
+            CardCastSystem cardCastSystem, HandCardPresenter handCardPresenter,
+            GameSessionModel gameSessionModel, BattlefieldSystem battlefieldSystem)
+        {
+            _cardCastSystem = cardCastSystem;
+            _handCardPresenter = handCardPresenter;
+            _gameSessionModel = gameSessionModel;
+            _battlefieldSystem = battlefieldSystem;
+        }
 
-    public void InitHandRepository(CardAndHealthEntityOwnerData owner)
-    {
-        var state = new EntityHandState(owner);
-        _entityHands[owner] = state;
-        SubscribeReactiveHandList(state);
-    }
+        public void InitHandRepository(CardAndHealthEntityOwnerData owner)
+        {
+            
+            var state = new EntityHandState(owner);
+            if (!_gameSessionModel.PlayerHero.CardAndHealthEntityOwners.Contains(owner)) return;
+            _entityHands[owner] = state;
+            SubscribeReactiveHandList(state);
+        }
 
-    public List<HandCardData> GetHandData(CardAndHealthEntityOwnerData owner)
-        => _entityHands.TryGetValue(owner, out var state) ? state.HandData : null;
+        public List<HandCardData> GetHandData(CardAndHealthEntityOwnerData owner)
+            => _entityHands.TryGetValue(owner, out var state) ? state.HandData : null;
 
-    private void SubscribeReactiveHandList( EntityHandState state)
-    {
-        state.Owner.CardsInHand
-            .Subscribe(currentCards =>
-            {
-                var addedCards = currentCards
-                    .Where(c => !state.PreviousCards.Any(p => p.id == c.id))
-                    .ToList();
-
-                var removedCards = state.PreviousCards
-                    .Where(p => !currentCards.Any(c => c.id == p.id))
-                    .ToList();
-
-                if (removedCards.Count > 0)
-                    OnCardRemovedFromHand(removedCards[0], state);
-
-                if (addedCards.Count > 0)
+        private void SubscribeReactiveHandList( EntityHandState state)
+        {
+            state.Owner.CardsInHand
+                .Subscribe(currentCards =>
                 {
-                    int addedIndex = currentCards.FindIndex(c => c.id == addedCards[0].id);
-                    OnCardAddedToHand(addedCards[0], addedIndex, state);
-                }
+                    var addedCards = currentCards
+                        .Where(c => !state.PreviousCards.Any(p => p.id == c.id))
+                        .ToList();
 
-                state.PreviousCards = currentCards.ToList();
-            });
-    }
+                    var removedCards = state.PreviousCards
+                        .Where(p => !currentCards.Any(c => c.id == p.id))
+                        .ToList();
 
-    private void OnCardAddedToHand(CardStatsData addedCard, int addedIndex, EntityHandState state)
-    {
-        var view = _handCardPresenter.AddCardFromHand(addedCard, addedIndex);
+                    if (removedCards.Count > 0)
+                        OnCardRemovedFromHand(removedCards[0], state);
 
-        var handCardData = new HandCardData(
-            data: addedCard,
-            view: view,
-            behaviour: null,
-            logic: null);
+                    if (addedCards.Count > 0)
+                    {
+                        int addedIndex = currentCards.FindIndex(c => c.id == addedCards[0].id);
+                        OnCardAddedToHand(addedCards[0], addedIndex, state);
+                    }
 
-        state.HandData.Insert(addedIndex, handCardData);
-        SetupCardBehavioursAndLogic(addedIndex, state);
-    }
+                    state.PreviousCards = currentCards.ToList();
+                });
+        }
 
-    private void OnCardRemovedFromHand(CardStatsData removedCard, EntityHandState state)
-    {
-        var cardToRemove = state.HandData.FirstOrDefault(c => c.Data.id == removedCard.id);
-        if (cardToRemove == null) return;
+        private void OnCardAddedToHand(CardStatsData addedCard, int addedIndex, EntityHandState state)
+        {
+            var view = _handCardPresenter.AddCardFromHand(addedCard, addedIndex);
 
-        _handCardPresenter.RemoveCardFromHand(cardToRemove.View);
-        _cardCastSystem.RemoveBehaviourFromCard(cardToRemove);
-        state.HandData.Remove(cardToRemove);
-    }
+            var handCardData = new HandCardData(
+                data: addedCard,
+                view: view,
+                behaviour: null,
+                logic: null);
 
-    private void SetupCardBehavioursAndLogic(int index, EntityHandState state)
-    {
-        _cardCastSystem.AddBehavioursToCard(state.HandData[index]);
+            state.HandData.Insert(addedIndex, handCardData);
+            SetupCardBehavioursAndLogic(addedIndex, state);
+        }
 
-        state.HandData[index].Behaviour.SetOwner(state.Owner);
-        var logic = new GameplayLogicCard(state.HandData[index], _gameSessionModel, _battlefieldSystem);
+        private void OnCardRemovedFromHand(CardStatsData removedCard, EntityHandState state)
+        {
+            var cardToRemove = state.HandData.FirstOrDefault(c => c.Data.id == removedCard.id);
+            if (cardToRemove == null) return;
 
-        state.HandData[index].Behaviour.OnTryCardCast += logic.CastCard;
-        state.HandData[index].Logic = logic;
-    }
+            _handCardPresenter.RemoveCardFromHand(cardToRemove.View);
+            _cardCastSystem.RemoveBehaviourFromCard(cardToRemove);
+            state.HandData.Remove(cardToRemove);
+        }
+
+        private void SetupCardBehavioursAndLogic(int index, EntityHandState state)
+        {
+            _cardCastSystem.AddBehavioursToCard(state.HandData[index]);
+
+            state.HandData[index].Behaviour.SetOwner(state.Owner);
+            var logic = new GameplayLogicCard(state.HandData[index], _gameSessionModel, _battlefieldSystem);
+
+            state.HandData[index].Behaviour.OnTryCardCast += logic.CastCard;
+            state.HandData[index].Logic = logic;
+        }
     
     
+    }
 }
