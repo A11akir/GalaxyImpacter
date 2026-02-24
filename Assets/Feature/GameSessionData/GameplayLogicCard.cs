@@ -18,38 +18,38 @@ namespace Feature.GameSessionData
             _battlefieldSystem = battlefieldSystem;
         }
 
-        public void CastCard()
+        public void CastCard(CardAndHealthEntityOwnerData owner)
         {
-            if (!CheckCanCast()) return;
-            
-            _gameSessionModel.PlayerHero.Chakra -= _cardData.Data.Cost;
-            
-            if (_cardData.Data.IsHero) SpawnHeroCard();
+            if (!CheckCanCast(owner)) return;
+    
+            owner.Chakra -= _cardData.Data.Cost;
+    
+            if (_cardData.Data.IsHero) SpawnHeroCard(owner);
             else CastSpell();
         }
 
-        private bool CheckCanCast()
+        private void CastSpell()
         {
+        }
+
+        private bool CheckCanCast(CardAndHealthEntityOwnerData owner)
+        {
+            var playerData = _gameSessionModel.GetPlayerDataByOwner(owner);
+    
             if (_cardData.Data.IsHero && 
-                _gameSessionModel.PlayerHero.CardsInBoard.CurrentValue.Count 
-                > _gameSessionModel.PlayerHero.CardsInBoardMax)
+                playerData.CardsInBoard.CurrentValue.Count > playerData.CardsInBoardMax)
                 return false;
 
-            if (_gameSessionModel.PlayerHero.Chakra < _cardData.Data.Cost)
+            if (owner.Chakra < _cardData.Data.Cost)
                 return false;
 
             return true;
         }
 
-        private void CastSpell()
+        private void SpawnHeroCard(CardAndHealthEntityOwnerData owner)
         {
-            
-        }
-
-        private void SpawnHeroCard()
-        {
-            _battlefieldSystem.AddCardInBattlefield(_gameSessionModel.PlayerHero, _cardData.Data);
-
+            var playerData = _gameSessionModel.GetPlayerDataByOwner(owner);
+            _battlefieldSystem.AddCardInBattlefield(playerData, _cardData.Data);
         }
     }
 }

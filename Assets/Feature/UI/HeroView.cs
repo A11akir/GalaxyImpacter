@@ -30,7 +30,7 @@ namespace Feature.UI
             HeroData = data;
             _iconImage.sprite = data._iconImage;
             _nameText.text = data._heroName;
-            _healthText.text = data._health.ToString();
+            _healthText.text = data.MainHeroEntity()._health.ToString();
             _heroPowerText.text = data._heroPowerCost.ToString();
             _heroPowerIcon.sprite = data._heroPowerSprite;
         }

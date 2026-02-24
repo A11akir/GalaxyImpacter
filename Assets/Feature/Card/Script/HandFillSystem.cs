@@ -1,34 +1,40 @@
 using Feature.GameSessionData;
-using System.Collections.Generic;
-using Feature.Hero;
 using UnityEngine;
-using R3;
 
 namespace Feature.Card.Script
 {
     public class HandFillSystem
     {
-        private GameSessionModel _gameSessionModel;
+        private readonly GameSessionModel _gameSessionModel;
 
-        public HandFillSystem(GameSessionModel gameSessionModel) => _gameSessionModel = gameSessionModel;
+        public HandFillSystem(GameSessionModel gameSessionModel)
+        {
+            _gameSessionModel = gameSessionModel;
+        }
 
         public void FillHandDataInDecks()
         {
-            FillHandDataForHeroFromDeck(_gameSessionModel.PlayerHero);
-            FillHandDataForHeroFromDeck(_gameSessionModel.EnemyHero);
+            foreach (var entity in _gameSessionModel.GetAllEntityOwners())
+            {
+                FillHandFromDeck(entity);
+            }
         }
 
-        private void FillHandDataForHeroFromDeck(GameSessionPlayerData hero)
+        private void FillHandFromDeck(CardAndHealthEntityOwnerData entity)
         {
-            hero.ShuffleDeck();
+            entity.ShuffleDeck();
 
-            for (int i = 0; i < hero.startCardsInHandToDraw; i++)
+            for (int i = 0; i < entity.startCardsInHandToDraw; i++)
             {
-                hero.AddCardToHand(hero.DrawCardFromDeck(), hero.CountCardsInHand);
+                var drawnCard = entity.DrawCardFromDeck();
+                if (drawnCard == null)
+                    break;
+
+                entity.AddCardToHand(drawnCard, entity.CountCardsInHand);
             }
 
-            Debug.Log($"Рука {hero._heroName}: взято {hero.CardsInHand.CurrentValue.Count}" +
-                      $" карт, в колоде осталось {hero.CardsInDeck.CurrentValue.Count}");
+            Debug.Log($"Entity: взято {entity.CardsInHand.CurrentValue.Count} карт, " +
+                      $"в колоде осталось {entity.CardsInDeck.CurrentValue.Count}");
         }
     }
 }

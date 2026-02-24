@@ -67,7 +67,7 @@ namespace Feature.GoogleSheets
                 }
 
                 so.Name = cfg.HeroName;
-                so.Rarity = cfg.Health;
+                so.Health = cfg.Health;
                 so.Cost = cfg.HeroPowerCost;
 
                 EditorUtility.SetDirty(so as UnityEngine.Object);

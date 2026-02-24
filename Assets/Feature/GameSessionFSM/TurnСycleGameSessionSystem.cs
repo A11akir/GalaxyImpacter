@@ -2,12 +2,14 @@ using Feature.Battlefield.Script;
 using Feature.Card.Script;
 using Feature.Chakra;
 using Feature.GameSessionData;
+using Feature.Hero;
 using Feature.ShopGamePlay.Script.Currency;
 
 namespace Feature.GameSessionFSM
 {
     public class TurnСycleGameSessionSystem
     {
+        private CreateOwnerCardAndHealthEntitySystem _createOwnerCardAndHealthEntitySystem;
         private readonly HandFillSystem _handFillSystem;
         private readonly BattlefieldSystem _battlefieldSystem;
         private GameSessionModel _gameSessionModel;
@@ -17,7 +19,7 @@ namespace Feature.GameSessionFSM
         private ChakraManagerSystem _chakraManagerSystem { get;  }
         
         public TurnСycleGameSessionSystem(DeckFillSystem deckFillSystem, CurrencyManagerSystem currencyManagerSystem,
-            ChakraManagerSystem chakraManagerSystem, HandDataRepository handDataRepository, BattlefieldSystem battlefieldSystem, HandFillSystem handFillSystem, GameSessionModel gameSessionModel)
+            ChakraManagerSystem chakraManagerSystem, HandDataRepository handDataRepository, BattlefieldSystem battlefieldSystem, HandFillSystem handFillSystem, GameSessionModel gameSessionModel, CreateOwnerCardAndHealthEntitySystem createOwnerCardAndHealthEntitySystem)
         {
             _deckFillSystem = deckFillSystem;
             _currencyManagerSystem = currencyManagerSystem;
@@ -26,14 +28,13 @@ namespace Feature.GameSessionFSM
             _battlefieldSystem = battlefieldSystem;
             _handFillSystem = handFillSystem;
             _gameSessionModel = gameSessionModel;
+            _createOwnerCardAndHealthEntitySystem = createOwnerCardAndHealthEntitySystem;
         }
 
         public void StartGameSession()
         {
             _gameSessionModel.PlayerHero.InitBoard();
-            _deckFillSystem.InitializeDecks();
-            _handDataRepository.Init();
-            _chakraManagerSystem.Init();
+            _createOwnerCardAndHealthEntitySystem.CreatePlayersEntity();
             _battlefieldSystem.Init();
             _currencyManagerSystem.Init();
         }

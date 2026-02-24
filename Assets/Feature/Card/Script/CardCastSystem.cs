@@ -16,10 +16,10 @@ namespace Feature.Card.Script
             _gameSessionModel = gameSessionModel;
         }
         
-        public void ChakraCheckCanCastCard(List<HandCardData> handData)
+        public void ChakraCheckCanCastCard(List<HandCardData> handData, int chakra)
         {
             foreach (var cardData in handData)
-                cardData.Behaviour.CanCastCard(_gameSessionModel.PlayerHero.Chakra >= cardData.Data.Cost);
+                cardData.Behaviour.CanCastCard(chakra >= cardData.Data.Cost);
         }
         
         public void AddBehavioursToCard(HandCardData cardData)

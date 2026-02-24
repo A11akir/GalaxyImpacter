@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Feature.Battlefield.Script;
 using Feature.Battlefield.Script.View;
 using Feature.Card.Script;
 using Feature.GameSessionData;
@@ -7,105 +8,93 @@ using R3;
 using UnityEngine;
 using Zenject;
 
-namespace Feature.Battlefield.Script
+public class BattlefieldSystem : MonoBehaviour
 {
-    public class BattlefieldSystem : MonoBehaviour
+    private TipPlaceBattlefieldViewSystem _tipPlaceBattlefieldViewSystem;
+    private CardOnBattlefieldPresenter _cardOnBattlefieldPresenter;
+    private GameSessionModel _gameSessionModel;
+
+    [SerializeField] private GameObject _enemyBattlefield;
+    [SerializeField] private GameObject _playerBattlefield;
+
+    private readonly Dictionary<GameSessionPlayerData, List<CardOnBattlefieldView>> _battlefieldViews = new();
+    private readonly Dictionary<GameSessionPlayerData, List<CardStatsData>> _previousCards = new();
+
+    [Inject]
+    public void Construct(GameSessionModel gameSessionModel,
+        CardOnBattlefieldPresenter cardOnBattlefieldPresenter,
+        TipPlaceBattlefieldViewSystem tipPlaceBattlefieldViewSystem)
     {
-        private TipPlaceBattlefieldViewSystem _tipPlaceBattlefieldViewSystem;
-        private CardOnBattlefieldPresenter _cardOnBattlefieldPresenter;
-        private GameSessionModel _gameSessionModel;
+        _gameSessionModel = gameSessionModel;
+        _cardOnBattlefieldPresenter = cardOnBattlefieldPresenter;
+        _tipPlaceBattlefieldViewSystem = tipPlaceBattlefieldViewSystem;
+    }
 
-        private List<CardStatsData> _previousCardsHero = new();
+    public void Init()
+    {
+        _battlefieldViews[_gameSessionModel.PlayerHero] = GetCardViewsFromBattlefield(_playerBattlefield);
+        _battlefieldViews[_gameSessionModel.EnemyHero] = GetCardViewsFromBattlefield(_enemyBattlefield);
 
-        [SerializeField] private GameObject _enemyBattlefield;
-        [SerializeField] private GameObject _playerBattlefield;
+        _previousCards[_gameSessionModel.PlayerHero] = new();
+        _previousCards[_gameSessionModel.EnemyHero] = new();
 
-        private List<CardOnBattlefieldView> _cardsGameObjectsEnemy;
-        private List<CardOnBattlefieldView> _cardsGameObjectsPlayer;
+        SubscribeReactiveBoardList(_gameSessionModel.PlayerHero);
+        SubscribeReactiveBoardList(_gameSessionModel.EnemyHero);
+    }
 
-        [Inject]
-        public void Construct(GameSessionModel gameSessionModel,
-            CardOnBattlefieldPresenter cardOnBattlefieldPresenter,
-            TipPlaceBattlefieldViewSystem tipPlaceBattlefieldViewSystem)
+    private List<CardOnBattlefieldView> GetCardViewsFromBattlefield(GameObject battlefield)
+    {
+        var cardViews = new List<CardOnBattlefieldView>();
+        foreach (Transform child in battlefield.transform)
         {
-            _gameSessionModel = gameSessionModel;
-            _cardOnBattlefieldPresenter = cardOnBattlefieldPresenter;
-            _tipPlaceBattlefieldViewSystem = tipPlaceBattlefieldViewSystem;
+            var cardView = child.GetComponent<CardOnBattlefieldView>();
+            cardViews.Add(cardView);
         }
+        return cardViews;
+    }
 
-        public void Init()
-        {
-            _cardsGameObjectsEnemy = GetCardViewsFromBattlefield(_enemyBattlefield);
-            _cardsGameObjectsPlayer = GetCardViewsFromBattlefield(_playerBattlefield);
-
-            SubscribeReactiveBoardList();
-        }
-
-        private List<CardOnBattlefieldView> GetCardViewsFromBattlefield(GameObject battlefield)
-        {
-            var cardViews = new List<CardOnBattlefieldView>();
-    
-            foreach (Transform child in battlefield.transform)
+    private void SubscribeReactiveBoardList(GameSessionPlayerData playerData)
+    {
+        playerData.CardsInBoard
+            .Subscribe(currentCards =>
             {
-                var cardView = child.GetComponent<CardOnBattlefieldView>();
-                cardViews.Add(cardView);
-            }
-            return cardViews;
-        }
+                var nonNullCards = currentCards.Where(c => c != null).ToList();
+                var previousNonNullCards = _previousCards[playerData].Where(c => c != null).ToList();
 
-        private void SubscribeReactiveBoardList()
-        {
-            _gameSessionModel.PlayerHero.CardsInBoard
-                .Subscribe(currentHeroCards =>
+                var addedCards = nonNullCards
+                    .Where(c => previousNonNullCards.All(p => p.id != c.id))
+                    .ToList();
+
+                var removedCards = previousNonNullCards
+                    .Where(p => nonNullCards.All(c => c.id != p.id))
+                    .ToList();
+
+                if (removedCards.Count > 0)
+                    OnCardRemovedFromBoard(removedCards[0], playerData);
+
+                if (addedCards.Count > 0)
                 {
-                    var nonNullCards = currentHeroCards.Where(c => c != null).ToList();
-                    var previousNonNullCards = _previousCardsHero.Where(c => c != null).ToList();
+                    int addedIndex = currentCards.FindIndex(c => c != null && c.id == addedCards[0].id);
+                    OnCardAddedBoard(addedCards[0], addedIndex, playerData);
+                }
 
-                    var addedCards = nonNullCards
-                        .Where(c => previousNonNullCards.All(p => p.id != c.id))
-                        .ToList();
+                _previousCards[playerData] = currentCards.ToList();
+            });
+    }
 
-                    var removedCards = previousNonNullCards
-                        .Where(p => nonNullCards.All(c => c.id != p.id))
-                        .ToList();
+    private void OnCardAddedBoard(CardStatsData addedCard, int addedIndex, GameSessionPlayerData playerData)
+    {
+        var views = _battlefieldViews[playerData];
+        _cardOnBattlefieldPresenter.SetCardInPlayerHand(views[addedIndex], addedCard);
+        playerData.MainHeroEntity().RemoveCardFromHand(addedCard);
+    }
 
-                    if (removedCards.Count > 0)
-                    {
-                        var removedCard = removedCards[0];
-                        OnCardRemovedFromBoard(removedCard);
-                    }
+    private void OnCardRemovedFromBoard(CardStatsData removedCard, GameSessionPlayerData playerData)
+    {
+    }
 
-                    if (addedCards.Count > 0)
-                    {
-                        var addedCard = addedCards[0];
-                        int addedIndex = currentHeroCards.FindIndex(c => c != null && c.id == addedCard.id);
-                        OnCardAddedBoard(addedCard, addedIndex);
-                    }
-
-                    _previousCardsHero = currentHeroCards.ToList();
-                });
-        }
-
-
-        private void OnCardAddedBoard(CardStatsData addedCard, int addedIndex)
-        {
-            _cardOnBattlefieldPresenter.SetCardInPlayerHand(_cardsGameObjectsPlayer[addedIndex], addedCard);
-            _gameSessionModel.PlayerHero.RemoveCardFromHand(addedCard);
-        }
-
-        private void OnCardRemovedFromBoard(CardStatsData removedCard)
-        {
-            
-        }
-
-
-        public void AddCardInBattlefield(GameSessionPlayerData playerData, CardStatsData cardData)
-        {
-            if (_gameSessionModel.PlayerHero == playerData)
-            {
-                Debug.Log(_tipPlaceBattlefieldViewSystem.GetCardIndex());
-                playerData.AddCardToBoard(cardData, _tipPlaceBattlefieldViewSystem.GetCardIndex());
-            }
-        }
+    public void AddCardInBattlefield(GameSessionPlayerData playerData, CardStatsData cardData)
+    {
+        playerData.AddCardToBoard(cardData, _tipPlaceBattlefieldViewSystem.GetCardIndex());
     }
 }

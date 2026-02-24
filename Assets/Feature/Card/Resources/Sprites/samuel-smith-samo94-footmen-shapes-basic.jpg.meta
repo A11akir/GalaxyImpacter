@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      samuel-smith-samo94-footmen-shapes-basic_0: -2276372485318268192
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 using Feature.Battlefield.Script;
+using Feature.GameSessionData;
 using Feature.HandLogic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -16,20 +17,23 @@ namespace Feature.Card.Script
         ITransformCastCardBehaviour
     {
         [SerializeField] private float scaleFactor = 1.5f;
-        
+
         private bool isDrag;
         [Inject] private HandCardsPositionSystem _handCardsPositionSystem;
         [Inject] private CastCardAreaMinion _castCardAreaMinion;
         [Inject] private BattlefieldSystem _battlefieldSystem;
-        
+
         private RectTransform _rectTransform;
         private int _hierarchyIndex;
-        
+
         public bool _canCastCard { get; set; }
 
-        public event Action OnTryCardCast;
+        private CardAndHealthEntityOwnerData _owner;
+        public event Action<CardAndHealthEntityOwnerData> OnTryCardCast;
 
+        public void SetOwner(CardAndHealthEntityOwnerData owner) => _owner = owner;
         private void Awake() => _rectTransform = GetComponent<RectTransform>();
+
 
         private void OnDisable()
         {
@@ -116,14 +120,9 @@ namespace Feature.Card.Script
         public void TryCastCard(ITransformCastCardBehaviour currentCardBehaviour)
         {
             if (_castCardAreaMinion.CardHasTarget)
-            {
-                OnTryCardCast?.Invoke();
-            }
+                OnTryCardCast?.Invoke(_owner);
         }
 
-        public void CanCastCard(bool canCast)
-        {
-            _canCastCard = canCast;
-        }
+        public void CanCastCard(bool canCast) => _canCastCard = canCast;
     }
 }

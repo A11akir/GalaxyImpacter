@@ -25,16 +25,18 @@ namespace Feature.Chakra
             _cardCastSystem = cardCastSystem;
         }
 
-        public void SubscribeToChakraChanges()
+        public void SubscribeToChakraChanges(CardAndHealthEntityOwnerData owner)
         {
-            _gameSessionData.PlayerHero.ChakraCount
+            owner.ChakraCount
                 .Subscribe(chakra =>
                 {
-                    _chakraWindowView.SetChakraText(chakra);
-            
-                    _handCardPresenter.ChakraCheckCanCastCard(_handDataRepository.HandData);
-            
-                    _cardCastSystem.ChakraCheckCanCastCard(_handDataRepository.HandData);
+                        _chakraWindowView.SetChakraText(chakra);
+
+                    var handData = _handDataRepository.GetHandData(owner);
+                    if (handData == null) return;
+
+                    _handCardPresenter.ChakraCheckCanCastCard(handData, chakra);
+                    _cardCastSystem.ChakraCheckCanCastCard(handData, chakra);
                 })
                 .AddTo(_disposables);
         }

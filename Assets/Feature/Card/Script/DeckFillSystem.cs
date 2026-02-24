@@ -16,14 +16,8 @@ namespace Feature.Card.Script
             _gameData = gameData;
             _gameSessionModel = gameSessionModel;
         }
-
-        public void InitializeDecks()
-        {
-            InitializeSingleDeck(_gameSessionModel.PlayerHero);
-            InitializeSingleDeck(_gameSessionModel.EnemyHero);
-        }
-
-        private void InitializeSingleDeck(GameSessionPlayerData hero)
+        
+        public void InitializeDeck(CardAndHealthEntityOwnerData hero)
         {
             var allCards = _gameData.allCards;
             var heroDeck = hero.CardsInDeck;

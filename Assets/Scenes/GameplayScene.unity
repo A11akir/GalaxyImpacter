@@ -1124,6 +1124,8 @@ MonoBehaviour:
   CardIsAreaBattlefield: {fileID: 2119159646}
   CardGoingIsUsed: 0
   CardHasTarget: 0
+  _raycaster: {fileID: 799219098}
+  _eventSystem: {fileID: 613596216}
 --- !u!222 &309014021
 CanvasRenderer:
   m_ObjectHideFlags: 0

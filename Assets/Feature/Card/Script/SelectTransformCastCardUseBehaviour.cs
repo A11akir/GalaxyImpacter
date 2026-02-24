@@ -1,4 +1,5 @@
 using System;
+using Feature.GameSessionData;
 using Feature.HandLogic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -36,6 +37,12 @@ namespace Feature.Card.Script
         private static bool _isPointerEnter;
 
         public bool _canCastCard { get; set; }
+        event Action<CardAndHealthEntityOwnerData> ITransformCastCardBehaviour.OnTryCardCast
+        {
+            add => throw new NotImplementedException();
+            remove => throw new NotImplementedException();
+        }
+
         public event Action OnTryCardCast;
         public bool CardHasTarget { get; set; }
 
@@ -190,6 +197,11 @@ namespace Feature.Card.Script
         public void CanCastCard(bool canCast)
         {
             _canCastCard = canCast;
+        }
+
+        public void SetOwner(CardAndHealthEntityOwnerData owner)
+        {
+            throw new NotImplementedException();
         }
     }
 }

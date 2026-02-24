@@ -1,4 +1,4 @@
-using System;
+
 using System.Collections.Generic;
 using Feature.GameSessionData;
 using UnityEngine;
@@ -8,19 +8,17 @@ namespace Feature.Card.Script
     public class HandCardPresenter
     {
         private HandCardViews _handCardViews;
-        private GameSessionModel _gameSessionModel;
         
-        public HandCardPresenter(HandCardViews handCardViews, GameSessionModel gameSessionModel)
+        public HandCardPresenter(HandCardViews handCardViews)
         {
             _handCardViews = handCardViews;
-            _gameSessionModel = gameSessionModel;
         }
 
-        public void ChakraCheckCanCastCard(List<HandCardData> handCardData)
+        public void ChakraCheckCanCastCard(List<HandCardData> handCardData, int chakra)
         {
             foreach (var cardData in handCardData)
             {
-                cardData.View.SetCanCastView(_gameSessionModel.PlayerHero.Chakra >= cardData.Data.Cost);
+                cardData.View.SetCanCastView(chakra >= cardData.Data.Cost);
             }
         }
 

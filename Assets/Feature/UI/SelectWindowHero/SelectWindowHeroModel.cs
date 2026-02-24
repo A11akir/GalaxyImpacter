@@ -1,46 +1,46 @@
-using System.Collections.Generic;
-using Feature.Data;
-using Feature.GameSessionData;
-using Feature.Hero;
-using UnityEngine;
+    using System.Collections.Generic;
+    using Feature.Data;
+    using Feature.GameSessionData;
+    using Feature.Hero;
+    using UnityEngine;
 
-namespace Feature.UI.SelectWindowHero
-{
-    public class SelectWindowHeroModel
+    namespace Feature.UI.SelectWindowHero
     {
-        public GameSessionPlayerData _selectedHero;
-        
-        public List<GameSessionPlayerData> _heroesForChose = new List<GameSessionPlayerData>();
-
-        private int countPersonForChose = 5;
-        private GameData _gameData;
-
-        public SelectWindowHeroModel(GameData gameData) => _gameData = gameData;
-
-        public void SelectStartRandomHeroes()
+        public class SelectWindowHeroModel
         {
-            List<HeroStatsData> availableHeroes = new List<HeroStatsData>(_gameData.allHeroStats);
+            public GameSessionPlayerData _selectedHero;
             
-            int heroesToSelect = Mathf.Min(countPersonForChose, availableHeroes.Count);
-    
-            for (int i = 0; i < heroesToSelect; i++)
+            public List<GameSessionPlayerData> _heroesForChose = new List<GameSessionPlayerData>();
+
+            private int countPersonForChose = 5;
+            private GameData _gameData;
+
+            public SelectWindowHeroModel(GameData gameData) => _gameData = gameData;
+
+            public void SelectStartRandomHeroes()
             {
-                int randomIndex = Random.Range(0, availableHeroes.Count);
-                HeroStatsData selectedHeroStats = availableHeroes[randomIndex];
+                List<HeroStatsData> availableHeroes = new List<HeroStatsData>(_gameData.allHeroStats);
                 
-                GameSessionPlayerData heroData = new GameSessionPlayerData
+                int heroesToSelect = Mathf.Min(countPersonForChose, availableHeroes.Count);
+        
+                for (int i = 0; i < heroesToSelect; i++)
                 {
-                    _heroName = selectedHeroStats.Name,
-                    _health = selectedHeroStats.Rarity,
-                    _heroPowerCost = selectedHeroStats.Cost,
-                    _iconImage = selectedHeroStats.IconImage,
-                    _heroPowerSprite = selectedHeroStats.IconHeroPowerImage
-                };
+                    int randomIndex = Random.Range(0, availableHeroes.Count);
+                    HeroStatsData selectedHeroStats = availableHeroes[randomIndex];
+                    
+                    GameSessionPlayerData heroData = new GameSessionPlayerData
+                    {
+                        _heroName = selectedHeroStats.Name,
+                        _heroPowerCost = selectedHeroStats.Cost,
+                        _iconImage = selectedHeroStats.IconImage,
+                        _heroPowerSprite = selectedHeroStats.IconHeroPowerImage
+                    };
 
-                _heroesForChose.Add(heroData);
-                availableHeroes.RemoveAt(randomIndex);
+                    heroData.MainHeroEntity()._health = selectedHeroStats.Health;
+                    _heroesForChose.Add(heroData);
+                    availableHeroes.RemoveAt(randomIndex);
+                }
             }
-        }
 
+        }
     }
-}

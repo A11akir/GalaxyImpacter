@@ -14,21 +14,24 @@ namespace Feature.Chakra
             _chakraWindowPresenter = chakraWindowPresenter;
         }
 
-        public void Init() => _chakraWindowPresenter.SubscribeToChakraChanges();
-
-        public void NewTurnUpdate() => AddChakraHeroForNewTurn();
-
-        private void AddChakraHeroForNewTurn()
+        public void Init(CardAndHealthEntityOwnerData owner)
         {
-            AddChakraWithMaxLimit(_gameSessionModel.EnemyHero, 100);
-            AddChakraWithMaxLimit(_gameSessionModel.PlayerHero, 100);
+            _chakraWindowPresenter.SubscribeToChakraChanges(owner);
         }
 
-        private void AddChakraWithMaxLimit(GameSessionPlayerData hero, int amount)
+        public void NewTurnUpdate()
         {
-            int maxChakra = hero.MaxChakraCountBaseIncrease;
-            int newChakra = Mathf.Min(hero.Chakra + amount, maxChakra);
-            hero.SetChakra(newChakra);
+            foreach (var owner in _gameSessionModel.GetAllEntityOwners())
+            {
+                AddChakraWithMaxLimit(owner, 100);
+            }
+        }
+
+        private void AddChakraWithMaxLimit(CardAndHealthEntityOwnerData owner, int amount)
+        {
+            int max = owner.MaxChakraCountBaseIncrease;
+            int newChakra = Mathf.Min(owner.Chakra + amount, max);
+            owner.SetChakra(newChakra);
         }
     }
 }

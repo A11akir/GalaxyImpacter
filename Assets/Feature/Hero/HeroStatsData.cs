@@ -36,7 +36,7 @@ namespace Feature.Hero
             get => _name;
             set => _name = value;
         }
-        public int Rarity
+        public int Health
         {
             get => _health;
             set => _health = value;

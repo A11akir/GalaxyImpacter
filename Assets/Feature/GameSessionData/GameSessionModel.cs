@@ -1,4 +1,7 @@
 
+using System.Collections.Generic;
+using System.Linq;
+
 namespace Feature.GameSessionData
 {
     public class GameSessionModel
@@ -7,7 +10,18 @@ namespace Feature.GameSessionData
         
         public GameSessionPlayerData PlayerHero;
         public GameSessionPlayerData EnemyHero;
+        public GameSessionPlayerData GetPlayerDataByOwner(CardAndHealthEntityOwnerData owner)
+        {
+            if (PlayerHero.CardAndHealthEntityOwners.Contains(owner)) return PlayerHero;
+            if (EnemyHero.CardAndHealthEntityOwners.Contains(owner)) return EnemyHero;
+            return null;
+        }
         
+        public IEnumerable<CardAndHealthEntityOwnerData> GetAllEntityOwners()
+        {
+            return PlayerHero.CardAndHealthEntityOwners
+                .Concat(EnemyHero.CardAndHealthEntityOwners);
+        }
         public GameSessionModel(GameSessionPlayerData playerHero, GameSessionPlayerData enemyHero)
         {
             PlayerHero = playerHero;
@@ -42,7 +56,10 @@ namespace Feature.GameSessionData
             {
                 return true;
             }
+            
             return false;
         }
+
+
     }
 }

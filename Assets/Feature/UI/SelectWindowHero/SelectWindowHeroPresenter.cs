@@ -45,6 +45,7 @@ namespace Feature.UI.SelectWindowHero
 
         public void SelectHero()
         {
+            Debug.Log("SelectHero");
             _selectWindowHeroModel._selectedHero =
                 _selectWindowHeroView._selectHeroView.HeroData;
         }

@@ -43,6 +43,9 @@ namespace Feature.EntryPoint.Script
             Container.Bind<GameSessionPresenter>().AsSingle();
             Container.Bind<AIRandomSelectSystem>().AsSingle();
 
+            
+            Container.Bind<CreateOwnerCardAndHealthEntitySystem>().AsSingle();
+            
             Container.Bind<ChakraWindowPresenter>().AsSingle();
             Container.Bind<CurrencyManageView>().FromComponentInHierarchy().AsSingle();
             Container.Bind<ChakraWindowView>().FromComponentInHierarchy().AsSingle();
