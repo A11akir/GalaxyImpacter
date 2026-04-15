@@ -9,23 +9,24 @@ namespace Feature.Card.Script
 {
     public class CastCardAreaMinion : MonoBehaviour
     {
-        [SerializeField] GameObject CardIsAreaBattlefield;
+        [SerializeField] GameObject CardIsAreaBattlefieldHero;
+        [SerializeField] GameObject CardIsAreaBattlefieldSpell;
         [Inject] private TipPlaceBattlefieldViewSystem _tipPlaceBattlefieldViewSystem;
         [HideInInspector] public bool CardGoingIsUsed;
         [HideInInspector] public bool CardHasTarget;
         [SerializeField] private GraphicRaycaster _raycaster;
         [SerializeField] private EventSystem _eventSystem;
-        
-        public void CheckCardArea(Transform transformCard)
+
+        public void CheckCardAreaSpell(Transform transformCard)
         {
             if (CardGoingIsUsed && _raycaster && _eventSystem)
             {
                 PointerEventData pointerData = new PointerEventData(_eventSystem);
                 pointerData.position = Input.mousePosition;
-        
+
                 var results = new System.Collections.Generic.List<RaycastResult>();
                 _raycaster.Raycast(pointerData, results);
-        
+
                 bool mouseOverThis = false;
                 foreach (var result in results)
                 {
@@ -35,30 +36,62 @@ namespace Feature.Card.Script
                         break;
                     }
                 }
-        
-                CardIsAreaBattlefield.SetActive(mouseOverThis);
-                
-                if (mouseOverThis)
+
+                CardIsAreaBattlefieldSpell.SetActive(mouseOverThis);
+
+                /*if (mouseOverThis)
                     _tipPlaceBattlefieldViewSystem.ActiveNearTip(transformCard);
                 else
-                    _tipPlaceBattlefieldViewSystem.Inactive();
-                
+                    _tipPlaceBattlefieldViewSystem.Inactive();*/
+
                 CardHasTarget = mouseOverThis;
             }
             else
             {
                 CardHasTarget = false;
-                CardIsAreaBattlefield.SetActive(false);
+                CardIsAreaBattlefieldSpell.SetActive(false);
                 _tipPlaceBattlefieldViewSystem.Inactive();
             }
         }
-        
+
         public void CardIsAreaAllTargetUseEffectOff()
         {
-            CardHasTarget =  false;
-            CardIsAreaBattlefield.SetActive(false);
+            CardHasTarget = false;
+            CardIsAreaBattlefieldSpell.SetActive(false);
+            CardIsAreaBattlefieldHero.SetActive(false);
             _tipPlaceBattlefieldViewSystem.Inactive();
-    
+
+        }
+
+        public void CheckCardAreaHero(Transform transformCard)
+        {
+            if (CardGoingIsUsed && _raycaster && _eventSystem)
+            {
+                PointerEventData pointerData = new PointerEventData(_eventSystem);
+                pointerData.position = Input.mousePosition;
+
+                var results = new System.Collections.Generic.List<RaycastResult>();
+                _raycaster.Raycast(pointerData, results);
+
+                bool mouseOverThis = false;
+                foreach (var result in results)
+                {
+                    if (result.gameObject == gameObject)
+                    {
+                        mouseOverThis = true;
+                        break;
+                    }
+                }
+
+                CardIsAreaBattlefieldHero.SetActive(mouseOverThis);
+
+                if (mouseOverThis)
+                    _tipPlaceBattlefieldViewSystem.ActiveNearTip(transformCard);
+                else
+                    _tipPlaceBattlefieldViewSystem.Inactive();
+
+                CardHasTarget = mouseOverThis;
+            }
         }
     }
 }

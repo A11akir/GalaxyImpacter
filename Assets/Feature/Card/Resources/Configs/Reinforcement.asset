@@ -19,7 +19,7 @@ MonoBehaviour:
   _specialization:
   - Assasian
   _level: 0
-  targetType: 3
+  targetType: 4
   id: c9728864-e8d7-459d-86fe-454ca6968f27
   _health: 2
   _chakra: 0

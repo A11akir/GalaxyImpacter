@@ -7,7 +7,7 @@ using Zenject;
 
 namespace Feature.Card.Script
 {
-    public class NonTransformCastCardUseBehaviour : MonoBehaviour,
+    public class HeroTransformCastCardUseBehaviour : MonoBehaviour,
         IPointerEnterHandler,
         IPointerExitHandler,
         IDragHandler,
@@ -89,7 +89,7 @@ namespace Feature.Card.Script
 
             _rectTransform.localPosition = localPoint;
 
-            _castCardAreaMinion.CheckCardAreaSpell(transform);
+            _castCardAreaMinion.CheckCardAreaHero(transform);
             _castCardAreaMinion.CardGoingIsUsed = true;
         }
 
@@ -121,4 +121,3 @@ namespace Feature.Card.Script
         public void CanCastCard(bool canCast) => _canCastCard = canCast;
     }
 }
-

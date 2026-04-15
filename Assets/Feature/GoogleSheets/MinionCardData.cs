@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using Feature.GoogleSheets;
+using Feature.Card.Script;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Feature.Card.Script
+namespace Feature.GoogleSheets
 {
     [CreateAssetMenu(fileName = "MinionCard", menuName = "Configs/Card/Minion Card", order = 1)]
     public class MinionCardData : CardStatsData, IMinionStatsData

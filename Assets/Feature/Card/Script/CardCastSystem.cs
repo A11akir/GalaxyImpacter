@@ -8,14 +8,9 @@ namespace Feature.Card.Script
     public class CardCastSystem
     {
         private IInstantiator _instantiator;
-        private GameSessionModel _gameSessionModel;
         
-        public CardCastSystem(IInstantiator instantiator, GameSessionModel gameSessionModel)
-        {
-            _instantiator = instantiator;
-            _gameSessionModel = gameSessionModel;
-        }
-        
+        public CardCastSystem(IInstantiator instantiator) => _instantiator = instantiator;
+
         public void ChakraCheckCanCastCard(List<HandCardData> handData, int chakra)
         {
             foreach (var cardData in handData)
@@ -24,7 +19,7 @@ namespace Feature.Card.Script
         
         public void AddBehavioursToCard(HandCardData cardData)
         {
-            switch (cardData.Data.targetType)
+            switch (cardData.Data.TargetType)
             {
                 case TargetType.AnyTarget:
                     var selectObjectTarget =
@@ -45,6 +40,13 @@ namespace Feature.Card.Script
                             cardData.View.gameObject);
 
                     cardData.Behaviour = nonTargetBehaviour;
+                    break; 
+                case TargetType.Hero:
+                    var heroBehaviour =
+                        _instantiator.InstantiateComponent<HeroTransformCastCardUseBehaviour>(
+                            cardData.View.gameObject);
+
+                    cardData.Behaviour = heroBehaviour;
                     break;
             }
         }

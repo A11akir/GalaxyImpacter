@@ -17,12 +17,13 @@ namespace Feature.Card.Script
         [SerializeField] private Sprite _iconImage;
         [SerializeField] private List<string> _specialization;
         [SerializeField] private int _level;
-        [SerializeField] public TargetType targetType;
+        [SerializeField] private TargetType targetType;
 
         public string id = System.Guid.NewGuid().ToString();
         public virtual bool IsHero => false;
         public string Name { get => _name; set => _name = value; }
         public int Cost { get => _cost; set => _cost = value; }
+        public TargetType TargetType { get => targetType; set => targetType = value; }
         public string Rarity { get => _rarity; set => _rarity = value; }
         public List<string> Specialization { get => _specialization; set => _specialization = value; }
         public int Level { get => _level; set => _level = value; }
