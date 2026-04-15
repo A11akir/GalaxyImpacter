@@ -1,22 +1,25 @@
 using Feature.Card.Script;
 using Feature.Chakra;
 using Feature.GameSessionData;
+using Feature.HandLogic;
 
 namespace Feature.Hero
 {
     public class CreateOwnerCardAndHealthEntitySystem
     {
-        GameSessionModel _gameSessionModel;
-        DeckFillSystem _deckFillSystem;
-        HandDataRepository _handDataRepository;
-        ChakraManagerSystem _chakraManagerSystem;
+        private readonly HandViewSwitcher _handViewSwitcher;
+        private readonly GameSessionModel _gameSessionModel;
+        private readonly DeckFillSystem _deckFillSystem;
+        private readonly HandDataRepository _handDataRepository;
+        private readonly ChakraManagerSystem _chakraManagerSystem;
 
-        public CreateOwnerCardAndHealthEntitySystem(GameSessionModel gameSessionModel, ChakraManagerSystem chakraManagerSystem, HandDataRepository handDataRepository, DeckFillSystem deckFillSystem)
+        public CreateOwnerCardAndHealthEntitySystem(GameSessionModel gameSessionModel, ChakraManagerSystem chakraManagerSystem, HandDataRepository handDataRepository, DeckFillSystem deckFillSystem, HandViewSwitcher handViewSwitcher)
         {
             _gameSessionModel = gameSessionModel;
             _chakraManagerSystem = chakraManagerSystem;
             _handDataRepository = handDataRepository;
             _deckFillSystem = deckFillSystem;
+            _handViewSwitcher = handViewSwitcher;
         }
 
         public void CreateEntity(CardAndHealthEntityOwnerData cardAndHealthEntityOwnerData)
@@ -24,12 +27,15 @@ namespace Feature.Hero
             _deckFillSystem.InitializeDeck(cardAndHealthEntityOwnerData);
             _handDataRepository.InitHandRepository(cardAndHealthEntityOwnerData);
             _chakraManagerSystem.Init(cardAndHealthEntityOwnerData);
+            _handViewSwitcher.RegisterOwner(cardAndHealthEntityOwnerData);
         }
 
         public void CreatePlayersEntity()
         {
-            CreateEntity(_gameSessionModel.PlayerHero.MainHeroEntity());
+            var playerEntity = _gameSessionModel.PlayerHero.MainHeroEntity();
+            CreateEntity(playerEntity);
             CreateEntity(_gameSessionModel.EnemyHero.MainHeroEntity());
+            _handViewSwitcher.SwitchTo(playerEntity);
         }
     }
 }

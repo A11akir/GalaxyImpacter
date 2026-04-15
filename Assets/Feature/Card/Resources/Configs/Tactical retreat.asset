@@ -19,7 +19,7 @@ MonoBehaviour:
   _specialization:
   - Warrior
   _level: 0
-  targetType: 0
+  targetType: 3
   id: c5e7ded9-c8f0-4ee2-9bd1-7cd5ded869e2
   _values: 02000000
   _description: Give 2 health.

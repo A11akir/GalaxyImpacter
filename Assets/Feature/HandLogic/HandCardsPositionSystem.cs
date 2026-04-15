@@ -9,21 +9,42 @@ namespace Feature.HandLogic
 {
     public class HandCardsPositionSystem : MonoBehaviour
     {
-        [Inject] private HandCardViews _handCardViews;
-        
-        private readonly List<GameObject> _handCards = new List<GameObject>();
-        
-        [SerializeField] private Transform handParent;
-        [SerializeField] private int verticalCardOffset = 30; 
-        [SerializeField] private int verticalCardOffsetRatio = 5;  
-        [SerializeField] private int cardOffsetRotate = 15;
-        [SerializeField] private float cardOffsetRotateRatio = 1;        
-        [SerializeField] private int horizontalCardOffset = 150; 
-        [SerializeField] private int horizontalCardOffsetRatio = 10;
-        
-        public void OnEnable() => _handCardViews.UpdateViewCard += UpdateCardsPosition;
+        private HandCardViews _handCardViews;
 
-        public void OnDisable() => _handCardViews.UpdateViewCard -= UpdateCardsPosition;
+        private readonly List<GameObject> _handCards = new List<GameObject>();
+
+        [SerializeField] private Transform handParent;
+
+        [SerializeField] private int verticalCardOffset = 30;
+
+        [SerializeField] private int verticalCardOffsetRatio = 5;
+
+        [SerializeField] private int cardOffsetRotate = 15;
+
+        [SerializeField] private float cardOffsetRotateRatio = 1;
+
+        [SerializeField] private int horizontalCardOffset = 150;
+
+        [SerializeField] private int horizontalCardOffsetRatio = 10;
+
+        [Inject]
+        public void Construct(HandCardViews handCardViews)
+        {
+            _handCardViews = handCardViews;
+            _handCardViews.UpdateViewCard += UpdateCardsPosition;
+        }
+
+        public void OnDisable() 
+        {
+            if (_handCardViews == null) return;
+            _handCardViews.UpdateViewCard -= UpdateCardsPosition;
+        }
+
+        public void OnEnable()
+        {
+            if (_handCardViews == null) return;
+            _handCardViews.UpdateViewCard += UpdateCardsPosition;
+        }
 
         [Button]
         public void UpdateCardsPosition()

@@ -2,29 +2,34 @@ using System.Collections.Generic;
 using Feature.GameSessionData;
 using UnityEngine;
 
-public class HandViewSwitcher : MonoBehaviour
+namespace Feature.HandLogic
 {
-    [SerializeField] private List<GameObject> _handContainers; // 7 штук в инспекторе
-
-    private readonly Dictionary<CardAndHealthEntityOwnerData, GameObject> _ownerToContainer = new();
-    private CardAndHealthEntityOwnerData _currentOwner;
-
-    public void RegisterOwner(CardAndHealthEntityOwnerData owner, int index)
+    public class HandViewSwitcher : MonoBehaviour
     {
-        _ownerToContainer[owner] = _handContainers[index];
-        _handContainers[index].SetActive(false);
-    }
+        [SerializeField] private List<GameObject> _handContainers;
 
-    public void SwitchTo(CardAndHealthEntityOwnerData owner)
-    {
-        if (_currentOwner == owner) return;
+        public CardAndHealthEntityOwnerData CurrentOwner => _currentOwner;
+        private readonly Dictionary<CardAndHealthEntityOwnerData, GameObject> _ownerToContainer = new();
+        private CardAndHealthEntityOwnerData _currentOwner;
 
-        if (_currentOwner != null && _ownerToContainer.TryGetValue(_currentOwner, out var prev))
-            prev.SetActive(false);
+        public void RegisterOwner(CardAndHealthEntityOwnerData owner)
+        {
+            int index = _ownerToContainer.Count; 
+            _ownerToContainer[owner] = _handContainers[index];
+            _handContainers[index].SetActive(false);
+        }
 
-        if (_ownerToContainer.TryGetValue(owner, out var next))
-            next.SetActive(true);
+        public void SwitchTo(CardAndHealthEntityOwnerData owner)
+        {
+            if (_currentOwner == owner) return;
 
-        _currentOwner = owner;
+            if (_currentOwner != null && _ownerToContainer.TryGetValue(_currentOwner, out var prev))
+                prev.SetActive(false);
+
+            if (_ownerToContainer.TryGetValue(owner, out var next))
+                next.SetActive(true);
+
+            _currentOwner = owner;
+        }
     }
 }

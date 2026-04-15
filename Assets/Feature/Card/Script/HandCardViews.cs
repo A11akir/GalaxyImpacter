@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Feature.Hero;
-using R3;
 using UnityEngine;
 using UnityEngine.Serialization;
 

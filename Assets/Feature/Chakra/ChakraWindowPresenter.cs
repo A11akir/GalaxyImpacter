@@ -1,5 +1,6 @@
 using Feature.Card.Script;
 using Feature.GameSessionData;
+using Feature.HandLogic;
 using R3;
 using UnityEngine;
 
@@ -10,31 +11,34 @@ namespace Feature.Chakra
     {
         private readonly CardCastSystem _cardCastSystem;
         
+        private readonly HandViewSwitcher _handViewSwitcher; 
         private readonly ChakraWindowView _chakraWindowView;
         private readonly HandCardPresenter _handCardPresenter;
-        private readonly GameSessionModel _gameSessionData;
         private readonly HandDataRepository _handDataRepository;
         private readonly CompositeDisposable _disposables = new();
 
-        public ChakraWindowPresenter(ChakraWindowView chakraWindowView, GameSessionModel gameSessionData, HandCardPresenter handCardPresenter, HandDataRepository handDataRepository, CardCastSystem cardCastSystem)
+        public ChakraWindowPresenter(ChakraWindowView chakraWindowView, HandCardPresenter handCardPresenter, 
+            HandDataRepository handDataRepository, CardCastSystem cardCastSystem, HandViewSwitcher handViewSwitcher)
         {
             _chakraWindowView = chakraWindowView;
-            _gameSessionData = gameSessionData;
             _handCardPresenter = handCardPresenter;
             _handDataRepository = handDataRepository;
             _cardCastSystem = cardCastSystem;
+            _handViewSwitcher = handViewSwitcher;
         }
-
+        
         public void SubscribeToChakraChanges(CardAndHealthEntityOwnerData owner)
         {
             owner.ChakraCount
                 .Subscribe(chakra =>
                 {
-                        _chakraWindowView.SetChakraText(chakra);
-
                     var handData = _handDataRepository.GetHandData(owner);
+            
+                    if (_handViewSwitcher.CurrentOwner != owner) return;
+                    
                     if (handData == null) return;
 
+                    _chakraWindowView.SetChakraText(chakra);
                     _handCardPresenter.ChakraCheckCanCastCard(handData, chakra);
                     _cardCastSystem.ChakraCheckCanCastCard(handData, chakra);
                 })

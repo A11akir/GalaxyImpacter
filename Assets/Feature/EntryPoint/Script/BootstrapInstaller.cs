@@ -46,6 +46,7 @@ namespace Feature.EntryPoint.Script
             
             Container.Bind<CreateOwnerCardAndHealthEntitySystem>().AsSingle();
             
+            Container.Bind<HandViewSwitcher>().FromComponentInHierarchy().AsSingle();
             Container.Bind<ChakraWindowPresenter>().AsSingle();
             Container.Bind<CurrencyManageView>().FromComponentInHierarchy().AsSingle();
             Container.Bind<ChakraWindowView>().FromComponentInHierarchy().AsSingle();
