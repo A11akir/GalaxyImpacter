@@ -2876,8 +2876,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12a05a944b54a9facc21a6ca51c0ee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CardIsAreaBattlefieldHero: {fileID: 0}
-  CardIsAreaBattlefieldSpell: {fileID: 0}
+  CardIsAreaBattlefieldHero: {fileID: 2119159646}
+  CardIsAreaBattlefieldSpell: {fileID: 2119159646}
   CardGoingIsUsed: 0
   CardHasTarget: 0
   _raycaster: {fileID: 799219098}
