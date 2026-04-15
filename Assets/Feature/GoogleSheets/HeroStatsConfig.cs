@@ -26,7 +26,7 @@ namespace Feature.GoogleSheets
         public string Name;
         public int Cost;
         public List<int> Values;
-        public List<SpellStatsConfig> SpellsList;
+        public List<ISpellStatsData> SpellsList;
         public List<string> SpellNames = new List<string>();
         public string Rarity;
         public List<string> Specialization;

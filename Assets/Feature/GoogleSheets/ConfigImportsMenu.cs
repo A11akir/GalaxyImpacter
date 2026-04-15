@@ -15,33 +15,40 @@ namespace Feature.GoogleSheets
         private static async void LoadItemsSettings()
         {
             var sheetsImporter = new GoogleSheetsImporter(credentialsPath, spreadsheetId);
-
             itemsSheetsName = await sheetsImporter.GetSheetNames();
 
             var gameSetting = new AllGameConfig();
-            
+            var parsers = new Dictionary<string, IGoggleSheetsParser>();
+
             foreach (var sheet in itemsSheetsName)
             {
-                IGoggleSheetsParser parser;
-                switch (sheet)
+                IGoggleSheetsParser parser = sheet switch
                 {
-                    case "HeroStats":
-                        parser = new StatsMinionParser(gameSetting);
-                        break;
-                    case "SpellStats":
-                        parser = new SpellParser(gameSetting);
-                        break;
-                    case "MinionStats":
-                        parser = new MinionParser(gameSetting);
-                        break;
-                    default:
-                        Debug.LogWarning($"No parser for sheet: {sheet}");
-                        continue;
+                    "HeroStats"   => new StatsMinionParser(gameSetting),
+                    "SpellStats"  => new SpellParser(gameSetting),
+                    "MinionStats" => new MinionParser(gameSetting),
+                    _             => null
+                };
+
+                if (parser == null)
+                {
+                    Debug.LogWarning($"No parser for sheet: {sheet}");
+                    continue;
                 }
-                
+
                 await sheetsImporter.DownloadAndParseSheet(sheet, parser);
-                
-                parser.ApplyToSO();
+                parsers[sheet] = parser;
+            }
+
+            var applyOrder = new[] { "SpellStats", "HeroStats", "MinionStats" };
+
+            foreach (var sheet in applyOrder)
+            {
+                if (parsers.TryGetValue(sheet, out var parser))
+                {
+                    parser.ApplyToSO();
+                    Debug.Log($"✅ Applied: {sheet}");
+                }
             }
         }
     }

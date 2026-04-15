@@ -13,7 +13,7 @@ namespace Feature.Card.Script
         [SerializeField] private int _handCardCount;
         [SerializeField]
         [ListDrawerSettings(ShowIndexLabels = true, ShowItemCount = true)]
-        private List<SpellStatsConfig> _spellsList;
+        private List<SpellCardData> _spellsList;
 
         public override bool IsHero => _health > 0;
 
@@ -21,6 +21,6 @@ namespace Feature.Card.Script
         public int Health { get => _health; set => _health = value; }
         public int Chakra { get => _chakra; set => _chakra = value; }
         public int HandCardCount { get => _handCardCount; set => _handCardCount = value; }
-        public List<SpellStatsConfig> SpellsList { get => _spellsList; set => _spellsList = value; }
+        public List<SpellCardData> SpellsList { get => _spellsList; set => _spellsList = value; }
     }
 }

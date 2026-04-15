@@ -12,6 +12,6 @@ namespace Feature.GoogleSheets
         int Health { get; set; }
         int Chakra { get; set; }
         int HandCardCount { get; set; }
-        List<SpellStatsConfig> SpellsList { get; set; }
+        List<SpellCardData> SpellsList { get; set; }
     }
 }

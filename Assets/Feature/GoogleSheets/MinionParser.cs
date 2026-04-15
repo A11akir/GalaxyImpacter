@@ -94,7 +94,17 @@ namespace Feature.GoogleSheets
         public void ApplyToSO()
         {
             const string path = "Assets/Feature/Card/Resources/Configs";
-    
+
+            var allSpellSOs = new Dictionary<string, SpellCardData>();
+            string[] guids = AssetDatabase.FindAssets("t:SpellCardData", new[] { "Assets/Feature/Card/Resources/Configs" });
+            foreach (var guid in guids)
+            {
+                string assetPath = AssetDatabase.GUIDToAssetPath(guid);
+                var spellSO = AssetDatabase.LoadAssetAtPath<SpellCardData>(assetPath);
+                if (spellSO != null)
+                    allSpellSOs[spellSO.name] = spellSO;
+            }
+
             foreach (var cfg in _allGameConfig.AllMinionStats)
             {
                 var so = _targetSO.FirstOrDefault(x => (x as ScriptableObject).name == cfg.Name);
@@ -115,11 +125,13 @@ namespace Feature.GoogleSheets
                 so.Specialization = cfg.Specialization;
                 so.Level = cfg.Level;
                 so.Health = cfg.Health;
-                so.SpellsList = cfg.SpellNames
-                    .Select(name => _allGameConfig.AllSpellStats
-                        .FirstOrDefault(s => s.Name == name))
+                so.Chakra = cfg.Chakra;
+                so.HandCardCount = cfg.HandCardCount;
+
+                so.SpellsList = cfg.SpellNames?
+                    .Select(name => allSpellSOs.TryGetValue(name, out var spellSO) ? spellSO : null)
                     .Where(s => s != null)
-                    .ToList();
+                    .ToList() ?? new List<SpellCardData>();
 
                 EditorUtility.SetDirty(so as UnityEngine.Object);
                 Debug.Log($"✅ Updated MinionCardData SO: {cfg.Name}");
