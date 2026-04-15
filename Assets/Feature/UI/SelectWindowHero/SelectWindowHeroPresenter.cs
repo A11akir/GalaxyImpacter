@@ -1,13 +1,8 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using Feature.Data;
 using Feature.GameSessionData;
 using Feature.GameSessionFSM;
-using Feature.Hero;
 using UnityEngine;
-using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
 namespace Feature.UI.SelectWindowHero
 {
@@ -45,7 +40,6 @@ namespace Feature.UI.SelectWindowHero
 
         public void SelectHero()
         {
-            Debug.Log("SelectHero");
             _selectWindowHeroModel._selectedHero =
                 _selectWindowHeroView._selectHeroView.HeroData;
         }
@@ -70,7 +64,7 @@ namespace Feature.UI.SelectWindowHero
             if (selectedHero == null) return;
             
             var heroToRemove = _selectWindowHeroModel._heroesForChose
-                .FirstOrDefault(h => h._heroName == selectedHero.HeroData._heroName);
+                .FirstOrDefault(h => h.MainHeroEntity()._heroName == selectedHero.HeroData.MainHeroEntity()._heroName);
             
             if (heroToRemove != null)
             {

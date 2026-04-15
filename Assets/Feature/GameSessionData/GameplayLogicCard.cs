@@ -1,7 +1,5 @@
-using System.Collections.Generic;
-using Feature.Battlefield.Script;
 using Feature.Card.Script;
-using UnityEngine;
+using Feature.GoogleSheets;
 
 namespace Feature.GameSessionData
 {
@@ -23,9 +21,15 @@ namespace Feature.GameSessionData
             if (!CheckCanCast(owner)) return;
     
             owner.Chakra -= _cardData.Data.Cost;
-    
-            if (_cardData.Data.IsHero) SpawnHeroCard(owner);
-            else CastSpell();
+            
+            if (_cardData.Data is MinionCardData minion)
+            {
+                SpawnHeroCard(owner);
+            }
+            else if (_cardData.Data is SpellCardData spell)
+            {
+                CastSpell();
+            }
         }
 
         private void CastSpell()

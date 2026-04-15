@@ -7,10 +7,7 @@ namespace Feature.Card.Script
     {
         private readonly GameSessionModel _gameSessionModel;
 
-        public HandFillSystem(GameSessionModel gameSessionModel)
-        {
-            _gameSessionModel = gameSessionModel;
-        }
+        public HandFillSystem(GameSessionModel gameSessionModel) => _gameSessionModel = gameSessionModel;
 
         public void FillHandDataInDecks()
         {

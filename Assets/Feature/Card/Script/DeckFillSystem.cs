@@ -20,35 +20,30 @@ namespace Feature.Card.Script
         public void InitializeDeck(CardAndHealthEntityOwnerData hero)
         {
             var allCards = _gameData.allCards;
-            var heroDeck = hero.CardsInDeck;
             int cardsToAdd = hero.startCardsInDeckCount;
 
-            heroDeck.CurrentValue.Clear();
+            hero.ClearDeck();
 
-            List<CardStatsData> availableCards = new List<CardStatsData>(allCards);
+            List<CardStatsData> shuffled = new List<CardStatsData>(allCards);
 
-            for (int i = 0; i < cardsToAdd && availableCards.Count > 0; i++)
+            for (int i = shuffled.Count - 1; i > 0; i--)
             {
-                int randomIndex = Random.Range(0, availableCards.Count);
-                var originalCard = availableCards[randomIndex];
+                int j = Random.Range(0, i + 1);
+                (shuffled[i], shuffled[j]) = (shuffled[j], shuffled[i]);
+            }
+
+            for (int i = 0; i < cardsToAdd; i++)
+            {
+                var originalCard = shuffled[i % shuffled.Count];
         
                 var cardCopy = ScriptableObject.Instantiate(originalCard);
                 cardCopy.id = System.Guid.NewGuid().ToString();
-        
-                heroDeck.CurrentValue.Add(cardCopy);
-                availableCards.RemoveAt(randomIndex);
+
+                Debug.Log(cardCopy.Name);
+                hero.AddCardToDeck(cardCopy);
             }
 
-            while (heroDeck.CurrentValue.Count < cardsToAdd)
-            {
-                var originalCard = allCards[Random.Range(0, allCards.Count)];
-                var cardCopy = ScriptableObject.Instantiate(originalCard);
-                cardCopy.id = System.Guid.NewGuid().ToString();
-        
-                heroDeck.CurrentValue.Add(cardCopy);
-            }
-
-            Debug.Log($"Колода для {hero._heroName} инициализирована: {heroDeck.CurrentValue.Count} карт");
+            Debug.Log($"Колода для {hero._heroName} инициализирована: {hero.CardsInDeck.CurrentValue.Count} карт");
         }
     }
 }

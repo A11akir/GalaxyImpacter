@@ -9,18 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b61c756ac7284bbb844947755dcb81a1, type: 3}
-  m_Name: Tactical retreat
+  m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
+  m_Name: Tactical Retreat
   m_EditorClassIdentifier: 
   _cost: 2
-  _health: 0
-  _name: Tactical retreat
+  _name: Tactical Retreat
   _rarity: 
   _iconImage: {fileID: 8639660358796777332, guid: 06fda0e5423da482ebebe4127f617f9c, type: 3}
-  _values: 02000000
   _specialization:
   - Warrior
   _level: 0
+  targetType: 0
+  id: c5e7ded9-c8f0-4ee2-9bd1-7cd5ded869e2
+  _values: 02000000
   _description: Give 2 health.
-  targetSpellType: 3
-  id: 880c3d66-836a-46ba-8ea5-ecb92547bacd
+  targetSpellType: 0

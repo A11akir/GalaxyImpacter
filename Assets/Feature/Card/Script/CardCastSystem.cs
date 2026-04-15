@@ -24,9 +24,9 @@ namespace Feature.Card.Script
         
         public void AddBehavioursToCard(HandCardData cardData)
         {
-            switch (cardData.Data.targetSpellType)
+            switch (cardData.Data.targetType)
             {
-                case TargetSpellType.AnyTarget:
+                case TargetType.AnyTarget:
                     var selectObjectTarget =
                         _instantiator.InstantiateComponent<SelectTransformCastCardUseBehaviour>(
                             cardData.View.gameObject);
@@ -39,7 +39,7 @@ namespace Feature.Card.Script
                     cardData.Behaviour = selectObjectTarget;
                     break;
 
-                case TargetSpellType.All:
+                case TargetType.All:
                     var nonTargetBehaviour =
                         _instantiator.InstantiateComponent<NonTransformCastCardUseBehaviour>(
                             cardData.View.gameObject);

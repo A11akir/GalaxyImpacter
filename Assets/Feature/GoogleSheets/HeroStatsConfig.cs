@@ -8,7 +8,9 @@ namespace Feature.GoogleSheets
         public int Health;
         public int HeroPowerCost;
     }
-    public class CardStatsConfig
+    
+    [System.Serializable]
+    public class SpellStatsConfig
     {
         public string Name;
         public int Cost;
@@ -17,6 +19,21 @@ namespace Feature.GoogleSheets
         public string Rarity;
         public List<string> Specialization;
         public int Level;
+    }
+    
+    public class MinionStatsConfig
+    {
+        public string Name;
+        public int Cost;
+        public List<int> Values;
+        public List<SpellStatsConfig> SpellsList;
+        public List<string> SpellNames = new List<string>();
+        public string Rarity;
+        public List<string> Specialization;
+        public int Level;
         public int Health;
+        public int Chakra;
+        public int HandCardCount;
+        
     }
 }

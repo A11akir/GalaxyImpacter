@@ -1,7 +1,6 @@
-using Feature.Hero;
+using Feature.GoogleSheets;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Feature.Card.Script
@@ -25,19 +24,20 @@ namespace Feature.Card.Script
         public void SetDataView(CardStatsData cardStatsData)
         {
             gameObject.SetActive(true);
-            if (cardStatsData.IsHero)
+    
+            if (cardStatsData is MinionCardData minion)
             {
                 _heroCardWindow.SetActive(true);
-                _health.text = cardStatsData.Health.ToString();
-                _iconMinionHand.sprite = cardStatsData.IconImage;
+                _health.text = minion.Health.ToString();
+                _iconMinionHand.sprite = minion.IconImage;
             }
-            else
+            else if (cardStatsData is SpellCardData spell)
             {
                 _spellCardWindow.SetActive(true);
-                _description.text = cardStatsData.Description;
-                _iconSpell.sprite = cardStatsData.IconImage;
+                _description.text = spell.Description;
+                _iconSpell.sprite = spell.IconImage;
             }
-            
+    
             _name.text = cardStatsData.Name;
             _cost.text = cardStatsData.Cost.ToString();
         }

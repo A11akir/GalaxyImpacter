@@ -14,10 +14,10 @@ namespace Feature.GameSessionData
         
         public int CardsInBoardMax = 6;
 
-        private readonly ReactiveProperty<List<CardStatsData>> _cardsInBoard = new(new List<CardStatsData>());
-        public ReadOnlyReactiveProperty<List<CardStatsData>> CardsInBoard => _cardsInBoard;
+        private readonly ReactiveProperty<List<MinionCardData>> _cardsInBoard = new(new List<MinionCardData>());
+        public ReadOnlyReactiveProperty<List<MinionCardData>> CardsInBoard => _cardsInBoard;
         
-        public List<CardStatsData> CardsInBoardList
+        public List<MinionCardData> CardsInBoardList
         {
             get => _cardsInBoard.Value;
             set => _cardsInBoard.Value = value;
@@ -25,7 +25,7 @@ namespace Feature.GameSessionData
         
         public bool IsPlayerFirst;
 
-        public string _heroName;
+        /*public string _heroName;*/
 
         public int _heroPowerCost;
 
@@ -43,18 +43,18 @@ namespace Feature.GameSessionData
 
         public bool PlayerHasHero()
         {
-            Debug.Log(_heroName != null);
+            Debug.Log(MainHeroEntity()._heroName != null);
             Debug.Log(
                       MainHeroEntity()._health > 0);
-            return _heroName != null && 
+            return MainHeroEntity()._heroName != null && 
                    MainHeroEntity()._health > 0;
         }
         
-        public void AddCardToBoard(CardStatsData card, int index)
+        public void AddCardToBoard(MinionCardData card, int index)
         {
             if (index >= CardsInBoardMax) return;
             if (_cardsInBoard.Value[index] != null) return;
-            var newList = new List<CardStatsData>();
+            var newList = new List<MinionCardData>();
     
             for (int i = 0; i < CardsInBoardMax; i++)
             {
@@ -70,7 +70,7 @@ namespace Feature.GameSessionData
         
         public void InitBoard()
         {
-            var list = new List<CardStatsData>(CardsInBoardMax);
+            var list = new List<MinionCardData>(CardsInBoardMax);
             for (int i = 0; i < CardsInBoardMax; i++)
             {
                 list.Add(null);
@@ -78,14 +78,14 @@ namespace Feature.GameSessionData
             _cardsInBoard.Value = list;
         }
         
-        public void RemoveCardFromBoard(CardStatsData card)
+        public void RemoveCardFromBoard(MinionCardData card)
         {
-            var currentList = new List<CardStatsData>(_cardsInBoard.Value);
+            var currentList = new List<MinionCardData>(_cardsInBoard.Value);
             currentList.Remove(card);
             _cardsInBoard.Value = currentList;
         }
         
-        public void ClearBoard() => _cardsInBoard.Value = new List<CardStatsData>();
+        public void ClearBoard() => _cardsInBoard.Value = new List<MinionCardData>();
     }
     
     public class Health

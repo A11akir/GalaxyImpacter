@@ -19,7 +19,7 @@ namespace Feature.Battlefield.Script.View
         [SerializeField] private GameObject _borderHasAction; 
         [SerializeField] private GameObject _heroDescriptionWindow;
 
-        public void SetDataView(CardStatsData cardStatsData)
+        public void SetDataView(MinionCardData cardStatsData)
         {
             gameObject.SetActive(true);
             _heroDescriptionWindow.SetActive(false);

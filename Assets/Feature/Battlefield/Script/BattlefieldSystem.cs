@@ -4,6 +4,7 @@ using Feature.Battlefield.Script;
 using Feature.Battlefield.Script.View;
 using Feature.Card.Script;
 using Feature.GameSessionData;
+using Feature.Hero;
 using R3;
 using UnityEngine;
 using Zenject;
@@ -13,27 +14,30 @@ public class BattlefieldSystem : MonoBehaviour
     private TipPlaceBattlefieldViewSystem _tipPlaceBattlefieldViewSystem;
     private CardOnBattlefieldPresenter _cardOnBattlefieldPresenter;
     private GameSessionModel _gameSessionModel;
+    private CreateOwnerCardAndHealthEntitySystem _createOwnerCardAndHealthEntitySystem;
 
-    [SerializeField] private GameObject _enemyBattlefield;
-    [SerializeField] private GameObject _playerBattlefield;
+    [SerializeField] private GameObject enemyBattlefield;
+    [SerializeField] private GameObject playerBattlefield;
 
     private readonly Dictionary<GameSessionPlayerData, List<CardOnBattlefieldView>> _battlefieldViews = new();
-    private readonly Dictionary<GameSessionPlayerData, List<CardStatsData>> _previousCards = new();
+    private readonly Dictionary<GameSessionPlayerData, List<MinionCardData>> _previousCards = new();
 
     [Inject]
     public void Construct(GameSessionModel gameSessionModel,
         CardOnBattlefieldPresenter cardOnBattlefieldPresenter,
-        TipPlaceBattlefieldViewSystem tipPlaceBattlefieldViewSystem)
+        TipPlaceBattlefieldViewSystem tipPlaceBattlefieldViewSystem,
+        CreateOwnerCardAndHealthEntitySystem createOwnerCardAndHealthEntitySystem)
     {
         _gameSessionModel = gameSessionModel;
         _cardOnBattlefieldPresenter = cardOnBattlefieldPresenter;
         _tipPlaceBattlefieldViewSystem = tipPlaceBattlefieldViewSystem;
+        _createOwnerCardAndHealthEntitySystem = createOwnerCardAndHealthEntitySystem;
     }
 
     public void Init()
     {
-        _battlefieldViews[_gameSessionModel.PlayerHero] = GetCardViewsFromBattlefield(_playerBattlefield);
-        _battlefieldViews[_gameSessionModel.EnemyHero] = GetCardViewsFromBattlefield(_enemyBattlefield);
+        _battlefieldViews[_gameSessionModel.PlayerHero] = GetCardViewsFromBattlefield(playerBattlefield);
+        _battlefieldViews[_gameSessionModel.EnemyHero] = GetCardViewsFromBattlefield(enemyBattlefield);
 
         _previousCards[_gameSessionModel.PlayerHero] = new();
         _previousCards[_gameSessionModel.EnemyHero] = new();
@@ -82,19 +86,25 @@ public class BattlefieldSystem : MonoBehaviour
             });
     }
 
-    private void OnCardAddedBoard(CardStatsData addedCard, int addedIndex, GameSessionPlayerData playerData)
+    private void OnCardAddedBoard(MinionCardData addedCard, int addedIndex, GameSessionPlayerData playerData)
     {
         var views = _battlefieldViews[playerData];
         _cardOnBattlefieldPresenter.SetCardInPlayerHand(views[addedIndex], addedCard);
         playerData.MainHeroEntity().RemoveCardFromHand(addedCard);
+        
+        var newOwner = new CardAndHealthEntityOwnerData();
+        playerData.CardAndHealthEntityOwners.Add(newOwner);
+        _createOwnerCardAndHealthEntitySystem.CreateEntity(newOwner);
     }
 
-    private void OnCardRemovedFromBoard(CardStatsData removedCard, GameSessionPlayerData playerData)
+    private void OnCardRemovedFromBoard(MinionCardData removedCard, GameSessionPlayerData playerData)
     {
     }
 
     public void AddCardInBattlefield(GameSessionPlayerData playerData, CardStatsData cardData)
     {
-        playerData.AddCardToBoard(cardData, _tipPlaceBattlefieldViewSystem.GetCardIndex());
+        var data = new MinionCardData();
+        data = (MinionCardData)cardData;
+        playerData.AddCardToBoard(data, _tipPlaceBattlefieldViewSystem.GetCardIndex());
     }
 }

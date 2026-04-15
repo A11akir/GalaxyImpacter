@@ -7,16 +7,16 @@ using UnityEngine;
 namespace Feature.GoogleSheets
 {
 #if UNITY_EDITOR
-    public class CardsParser : IGoggleSheetsParser
+    public class SpellParser : IGoggleSheetsParser
     {
         private readonly AllGameConfig _allGameConfig;
-        private CardStatsConfig _cardStatsConfig;
-        private readonly List<ICardStatsData> _targetSO = new();
+        private SpellStatsConfig _spellStatsConfig;
+        private readonly List<ISpellStatsData> _targetSO = new();
 
-        public CardsParser(AllGameConfig allGameConfig)
+        public SpellParser(AllGameConfig allGameConfig)
         {
             _allGameConfig = allGameConfig;
-            _allGameConfig.AllCards = new List<CardStatsConfig>();
+            _allGameConfig.AllSpellStats = new List<SpellStatsConfig>();
             LoadAllCardsSO();
         }
 
@@ -28,7 +28,7 @@ namespace Feature.GoogleSheets
                 string path = AssetDatabase.GUIDToAssetPath(guid);
                 ScriptableObject so = AssetDatabase.LoadAssetAtPath<ScriptableObject>(path);
 
-                if (so is ICardStatsData card)
+                if (so is ISpellStatsData card)
                 {
                     _targetSO.Add(card);
                 }
@@ -40,43 +40,35 @@ namespace Feature.GoogleSheets
             switch (header)
             {
                 case "Name":
-                    _cardStatsConfig = new CardStatsConfig
+                    _spellStatsConfig = new SpellStatsConfig
                     {
                         Name = token,
                         Values = new List<int>(),
                         Specialization = new List<string>()
                     };
-                    _allGameConfig.AllCards.Add(_cardStatsConfig);
+                    _allGameConfig.AllSpellStats.Add(_spellStatsConfig);
                     break;
-                    
                 case "Cost":
-                    if (_cardStatsConfig != null)
-                        _cardStatsConfig.Cost = Convert.ToInt32(token);
+                    if (_spellStatsConfig != null)
+                        _spellStatsConfig.Cost = Convert.ToInt32(token);
                     break;              
-                case "Health":
-                    if (_cardStatsConfig != null)
-                        _cardStatsConfig.Health = Convert.ToInt32(token);
-                    break;
-                    
                 case "Rarity":
-                    if (_cardStatsConfig != null)
-                        _cardStatsConfig.Rarity = token;
+                    if (_spellStatsConfig != null)
+                        _spellStatsConfig.Rarity = token;
                     break;
-                    
                 case "Description":
-                    if (_cardStatsConfig != null)
-                        _cardStatsConfig.Description = token;
+                    if (_spellStatsConfig != null)
+                        _spellStatsConfig.Description = token;
                     break;
-
                 case "Value1":
                 case "Value2":
                 case "Value3":
-                    if (_cardStatsConfig != null && !string.IsNullOrWhiteSpace(token))
+                    if (_spellStatsConfig != null && !string.IsNullOrWhiteSpace(token))
                     {
                         if (int.TryParse(token, out int value))
                         {
-                            _cardStatsConfig.Values.Add(value);
-                            Debug.Log($"Добавлено значение {value} для {_cardStatsConfig.Name} из {header}");
+                            _spellStatsConfig.Values.Add(value);
+                            Debug.Log($"Добавлено значение {value} для {_spellStatsConfig.Name} из {header}");
                         }
                     }
                     break;
@@ -85,10 +77,10 @@ namespace Feature.GoogleSheets
                 case "Specialization2":
                 case "Specialization3":
                 case "Specialization4":
-                    if (_cardStatsConfig != null && !string.IsNullOrWhiteSpace(token))
+                    if (_spellStatsConfig != null && !string.IsNullOrWhiteSpace(token))
                     {
-                        _cardStatsConfig.Specialization.Add(token);
-                        Debug.Log($"Добавлена специализация {token} для {_cardStatsConfig.Name} из {header}");
+                        _spellStatsConfig.Specialization.Add(token);
+                        Debug.Log($"Добавлена специализация {token} для {_spellStatsConfig.Name} из {header}");
                     }
                     break;
             }
@@ -96,15 +88,20 @@ namespace Feature.GoogleSheets
 
         public void ApplyToSO()
         {
-            foreach (var cfg in _allGameConfig.AllCards)
+            const string path = "Assets/Feature/Card/Resources/Configs";
+    
+            foreach (var cfg in _allGameConfig.AllSpellStats)
             {
-                var so = _targetSO
-                    .FirstOrDefault(x => (x as ScriptableObject).name == cfg.Name);
+                var so = _targetSO.FirstOrDefault(x => (x as ScriptableObject).name == cfg.Name);
 
                 if (so == null)
                 {
-                    Debug.LogWarning($"SO not found for card: {cfg.Name}");
-                    continue;
+                    var newSO = ScriptableObject.CreateInstance<SpellCardData>();
+                    string assetPath = $"{path}/{cfg.Name}.asset";
+                    AssetDatabase.CreateAsset(newSO, assetPath);
+                    so = newSO;
+                    _targetSO.Add(so);
+                    Debug.Log($"✅ Created new SpellCardData SO: {cfg.Name}");
                 }
 
                 so.Name = cfg.Name;
@@ -114,19 +111,15 @@ namespace Feature.GoogleSheets
                 so.Specialization = cfg.Specialization;
                 so.Values = cfg.Values;
                 so.Level = cfg.Level;
-                so.Health = cfg.Health;
 
                 EditorUtility.SetDirty(so as UnityEngine.Object);
-                
-                Debug.Log($"✅ Updated Card SO: {cfg.Name} - " +
-                         $"Values: [{string.Join(", ", cfg.Values)}], " +
-                         $"Specializations: [{string.Join(", ", cfg.Specialization)}]");
+                Debug.Log($"✅ Updated SpellCardData SO: {cfg.Name}");
             }
 
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
         }
     }
-    
-    #endif
+
+#endif
 }

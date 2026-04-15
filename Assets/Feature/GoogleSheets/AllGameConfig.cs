@@ -6,6 +6,7 @@ namespace Feature.GoogleSheets
     public class AllGameConfig
     {
         public List<HeroStatsConfig> HeroStats;
-        public List<CardStatsConfig> AllCards;
+        public List<SpellStatsConfig> AllSpellStats;
+        public List<MinionStatsConfig> AllMinionStats;
     }
 }

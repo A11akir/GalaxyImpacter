@@ -1,16 +1,17 @@
 using System.Collections.Generic;
+using Feature.GoogleSheets;
+using UnityEngine;
 
-namespace Feature.GoogleSheets
+namespace Feature.Card.Script
 {
-    internal interface ICardStatsData
+    public interface ICardStatsData
     {
         string Name { get; set; }
         int Cost { get; set; }
-        List<int> Values { get; set; }
-        string Description { get; set; }
         string Rarity { get; set; }
         List<string> Specialization { get; set; }
         int Level { get; set; }
-        int Health { get; set; }
+        Sprite IconImage { get; set; }
+        bool IsHero { get; }
     }
 }

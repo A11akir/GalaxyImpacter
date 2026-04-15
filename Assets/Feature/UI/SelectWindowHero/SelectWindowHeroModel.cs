@@ -30,12 +30,12 @@
                     
                     GameSessionPlayerData heroData = new GameSessionPlayerData
                     {
-                        _heroName = selectedHeroStats.Name,
                         _heroPowerCost = selectedHeroStats.Cost,
                         _iconImage = selectedHeroStats.IconImage,
                         _heroPowerSprite = selectedHeroStats.IconHeroPowerImage
                     };
 
+                    heroData.MainHeroEntity()._heroName = selectedHeroStats.Name;
                     heroData.MainHeroEntity()._health = selectedHeroStats.Health;
                     _heroesForChose.Add(heroData);
                     availableHeroes.RemoveAt(randomIndex);

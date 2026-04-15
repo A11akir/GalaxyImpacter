@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Feature.GameSessionData;
 using R3;
+using UnityEngine;
 
 namespace Feature.Card.Script
 {
@@ -26,7 +27,6 @@ namespace Feature.Card.Script
 
         public void InitHandRepository(CardAndHealthEntityOwnerData owner)
         {
-            
             var state = new EntityHandState(owner);
             if (!_gameSessionModel.PlayerHero.CardAndHealthEntityOwners.Contains(owner)) return;
             _entityHands[owner] = state;
@@ -36,30 +36,32 @@ namespace Feature.Card.Script
         public List<HandCardData> GetHandData(CardAndHealthEntityOwnerData owner)
             => _entityHands.TryGetValue(owner, out var state) ? state.HandData : null;
 
-        private void SubscribeReactiveHandList( EntityHandState state)
+        private void SubscribeReactiveHandList(EntityHandState state)
         {
-            state.Owner.CardsInHand
-                .Subscribe(currentCards =>
+            Debug.Log("Подписка на изменения руки для " + state.Owner._heroName);
+            state.Owner.CardsInHand.Subscribe(currentCards =>
+            {
+                var previous = state.PreviousCards;
+                state.PreviousCards = currentCards.ToList();
+
+                var addedCards = currentCards
+                    .Where(c => !previous.Any(p => p.id == c.id))
+                    .ToList();
+
+                var removedCards = previous
+                    .Where(p => !currentCards.Any(c => c.id == p.id))
+                    .ToList();
+
+                foreach (var removedCard in removedCards)
+                    OnCardRemovedFromHand(removedCard, state);
+
+                for (int i = 0; i < currentCards.Count; i++)
                 {
-                    var addedCards = currentCards
-                        .Where(c => !state.PreviousCards.Any(p => p.id == c.id))
-                        .ToList();
-
-                    var removedCards = state.PreviousCards
-                        .Where(p => !currentCards.Any(c => c.id == p.id))
-                        .ToList();
-
-                    if (removedCards.Count > 0)
-                        OnCardRemovedFromHand(removedCards[0], state);
-
-                    if (addedCards.Count > 0)
-                    {
-                        int addedIndex = currentCards.FindIndex(c => c.id == addedCards[0].id);
-                        OnCardAddedToHand(addedCards[0], addedIndex, state);
-                    }
-
-                    state.PreviousCards = currentCards.ToList();
-                });
+                    var card = currentCards[i];
+                    if (addedCards.All(addedCard => addedCard.id != card.id)) continue;
+                    OnCardAddedToHand(card, i, state);
+                }
+            });
         }
 
         private void OnCardAddedToHand(CardStatsData addedCard, int addedIndex, EntityHandState state)
@@ -96,7 +98,5 @@ namespace Feature.Card.Script
             state.HandData[index].Behaviour.OnTryCardCast += logic.CastCard;
             state.HandData[index].Logic = logic;
         }
-    
-    
     }
 }

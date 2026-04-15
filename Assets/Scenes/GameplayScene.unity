@@ -11538,8 +11538,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1260173001954de0b5c5ced8bdd3afa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyBattlefield: {fileID: 648095945}
-  _playerBattlefield: {fileID: 1196659511}
+  enemyBattlefield: {fileID: 648095945}
+  playerBattlefield: {fileID: 1196659511}
 --- !u!1 &1409142019
 GameObject:
   m_ObjectHideFlags: 0

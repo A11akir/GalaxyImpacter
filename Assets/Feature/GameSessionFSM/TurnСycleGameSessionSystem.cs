@@ -33,8 +33,8 @@ namespace Feature.GameSessionFSM
 
         public void StartGameSession()
         {
-            _gameSessionModel.PlayerHero.InitBoard();
             _createOwnerCardAndHealthEntitySystem.CreatePlayersEntity();
+            _gameSessionModel.PlayerHero.InitBoard();
             _battlefieldSystem.Init();
             _currencyManagerSystem.Init();
         }
