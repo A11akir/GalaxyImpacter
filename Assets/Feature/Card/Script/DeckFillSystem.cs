@@ -19,12 +19,11 @@ namespace Feature.Card.Script
         
         public void InitializeDeck(CardAndHealthEntityOwnerData hero)
         {
-            var allCards = _gameData.allCards;
-            int cardsToAdd = hero.startCardsInDeckCount;
+            Debug.Log(hero.startCardsInDeckCount);
 
             hero.ClearDeck();
 
-            List<CardStatsData> shuffled = new List<CardStatsData>(allCards);
+            List<CardStatsData> shuffled = new List<CardStatsData>(_gameData.allCards);
 
             for (int i = shuffled.Count - 1; i > 0; i--)
             {
@@ -32,7 +31,7 @@ namespace Feature.Card.Script
                 (shuffled[i], shuffled[j]) = (shuffled[j], shuffled[i]);
             }
 
-            for (int i = 0; i < cardsToAdd; i++)
+            for (int i = 0; i < hero.startCardsInDeckCount; i++)
             {
                 var originalCard = shuffled[i % shuffled.Count];
         

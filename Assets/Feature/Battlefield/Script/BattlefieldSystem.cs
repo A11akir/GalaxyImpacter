@@ -90,7 +90,7 @@ public class BattlefieldSystem : MonoBehaviour
     private void OnCardAddedBoard(MinionCardData addedCard, int addedIndex, GameSessionPlayerData playerData)
     {
         var views = _battlefieldViews[playerData];
-        _cardOnBattlefieldPresenter.SetCardInPlayerHand(views[addedIndex], addedCard);
+        _cardOnBattlefieldPresenter.SetCardInBattlefield(views[addedIndex], addedCard);
         playerData.MainHeroEntity().RemoveCardFromHand(addedCard);
         
         var newOwner = new CardAndHealthEntityOwnerData();

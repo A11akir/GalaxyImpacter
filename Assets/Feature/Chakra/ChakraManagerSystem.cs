@@ -21,6 +21,12 @@ namespace Feature.Chakra
             _chakraWindowPresenter.SubscribeToChakraChanges(owner);
         }
 
+        public void InitEntityChakra(CardAndHealthEntityOwnerData owner)
+        {
+            AddChakraWithMaxLimit(owner, 4);
+        }
+
+        
         public void NewTurnUpdate()
         {
             foreach (var owner in _gameSessionModel.GetAllEntityOwners())

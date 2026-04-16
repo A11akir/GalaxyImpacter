@@ -44,9 +44,6 @@ namespace Feature.GameSessionData
 
         public bool PlayerHasHero()
         {
-            Debug.Log(MainHeroEntity()._heroName != null);
-            Debug.Log(
-                      MainHeroEntity()._health > 0);
             return MainHeroEntity()._heroName != null && 
                    MainHeroEntity()._health > 0;
         }

@@ -17,6 +17,12 @@ namespace Feature.Card.Script
             }
         }
 
+        public void FillEntityHand(CardAndHealthEntityOwnerData entity)
+        {
+            FillHandFromDeck(entity);
+        }
+
+        
         private void FillHandFromDeck(CardAndHealthEntityOwnerData entity)
         {
             entity.ShuffleDeck();
