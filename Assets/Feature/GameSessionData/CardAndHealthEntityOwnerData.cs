@@ -48,7 +48,6 @@ namespace Feature.GameSessionData
         }
         
         public Sprite _iconImage;
-
         
         public void AddCardToDeck(CardStatsData card)
         {

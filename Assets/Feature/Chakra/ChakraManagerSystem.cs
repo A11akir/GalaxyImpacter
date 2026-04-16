@@ -16,6 +16,8 @@ namespace Feature.Chakra
 
         public void Init(CardAndHealthEntityOwnerData owner)
         {
+            Debug.Log(owner);
+            Debug.Log(owner._heroName);
             _chakraWindowPresenter.SubscribeToChakraChanges(owner);
         }
 
@@ -23,7 +25,7 @@ namespace Feature.Chakra
         {
             foreach (var owner in _gameSessionModel.GetAllEntityOwners())
             {
-                AddChakraWithMaxLimit(owner, 100);
+                AddChakraWithMaxLimit(owner, 4);
             }
         }
 

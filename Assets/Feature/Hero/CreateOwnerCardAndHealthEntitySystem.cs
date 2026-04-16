@@ -22,7 +22,7 @@ namespace Feature.Hero
             _handViewSwitcher = handViewSwitcher;
         }
 
-        public void CreateEntity(CardAndHealthEntityOwnerData cardAndHealthEntityOwnerData)
+        public void CreateEntityPlayer(CardAndHealthEntityOwnerData cardAndHealthEntityOwnerData)
         {
             _deckFillSystem.InitializeDeck(cardAndHealthEntityOwnerData);
             _handDataRepository.InitHandRepository(cardAndHealthEntityOwnerData);
@@ -30,11 +30,18 @@ namespace Feature.Hero
             _handViewSwitcher.RegisterOwner(cardAndHealthEntityOwnerData);
         }
 
+        private void CreateEntityEnemy(CardAndHealthEntityOwnerData cardAndHealthEntityOwnerData)
+        {
+            _deckFillSystem.InitializeDeck(cardAndHealthEntityOwnerData);
+            _handDataRepository.InitHandRepository(cardAndHealthEntityOwnerData);
+            _chakraManagerSystem.Init(cardAndHealthEntityOwnerData);
+        }
+
         public void CreatePlayersEntity()
         {
             var playerEntity = _gameSessionModel.PlayerHero.MainHeroEntity();
-            CreateEntity(playerEntity);
-            CreateEntity(_gameSessionModel.EnemyHero.MainHeroEntity());
+            CreateEntityPlayer(playerEntity);
+            CreateEntityEnemy(_gameSessionModel.EnemyHero.MainHeroEntity());
             _handViewSwitcher.SwitchTo(playerEntity);
         }
     }

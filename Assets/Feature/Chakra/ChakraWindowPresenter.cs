@@ -34,6 +34,8 @@ namespace Feature.Chakra
                 {
                     var handData = _handDataRepository.GetHandData(owner);
             
+                    Debug.Log(handData.Count);
+                    Debug.Log(handData[0].Data.Name);
                     if (_handViewSwitcher.CurrentOwner != owner) return;
                     
                     if (handData == null) return;

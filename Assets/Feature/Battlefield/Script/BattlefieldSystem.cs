@@ -94,8 +94,19 @@ public class BattlefieldSystem : MonoBehaviour
         playerData.MainHeroEntity().RemoveCardFromHand(addedCard);
         
         var newOwner = new CardAndHealthEntityOwnerData();
+        
+        newOwner.startCardsInDeckCount = addedCard.SpellsList.Count;
+        newOwner.startCardsInHandToDraw = addedCard.HandCardCount;
+        newOwner._heroName = addedCard.Name;
+        newOwner._health = addedCard.Health;
+        newOwner.Chakra = addedCard.Chakra;
+        newOwner._iconImage = addedCard.IconImage;
+        
+        
         playerData.CardAndHealthEntityOwners.Add(newOwner);
-        _createOwnerCardAndHealthEntitySystem.CreateEntity(newOwner);
+        
+        Debug.Log(newOwner._heroName);
+        _createOwnerCardAndHealthEntitySystem.CreateEntityPlayer(newOwner);
     }
 
     private void OnCardRemovedFromBoard(MinionCardData removedCard, GameSessionPlayerData playerData)
