@@ -45,7 +45,7 @@ namespace Feature.GameSessionData
         public bool PlayerHasHero()
         {
             return MainHeroEntity()._heroName != null && 
-                   MainHeroEntity()._health > 0;
+                   MainHeroEntity().HealthValue > 0;
         }
         
         public void AddCardToBoard(MinionCardData card, int index)

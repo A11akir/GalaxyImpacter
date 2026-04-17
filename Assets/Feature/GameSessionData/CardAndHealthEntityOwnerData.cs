@@ -32,8 +32,16 @@ namespace Feature.GameSessionData
             get => _cardsInBoard.Value;
             set => _cardsInBoard.Value = value;
         }
+        
+        private readonly ReactiveProperty<int> _health = new();
+        public ReadOnlyReactiveProperty<int> Health => _health;
 
-        public int _health;
+        public int HealthValue
+        {
+            get => _health.Value;
+            set => _health.Value = value;
+        }
+        
         public string _heroName;
         
         private readonly ReactiveProperty<int> _chakraCount = new();
@@ -68,16 +76,16 @@ namespace Feature.GameSessionData
             _cardsInDeck.Value = new List<CardStatsData>();
         }
         
-        public CardStatsData DrawCardFromDeck()
+        public void DrawCardFromDeck()
         {
-            if (_cardsInDeck.Value.Count == 0) return null;
-            
-            var currentList = new List<CardStatsData>(_cardsInDeck.Value);
-            var drawnCard = currentList[0];
-            currentList.RemoveAt(0);
-            _cardsInDeck.Value = currentList;
-            
-            return drawnCard;
+            if (_cardsInDeck.Value.Count == 0) return;
+    
+            var deckList = new List<CardStatsData>(_cardsInDeck.Value);
+            var drawnCard = deckList[0];
+            deckList.RemoveAt(0);
+            _cardsInDeck.Value = deckList;
+
+            AddCardToHand(drawnCard, CountCardsInHand);
         }
         
         public void ShuffleDeck()
@@ -90,8 +98,8 @@ namespace Feature.GameSessionData
             }
             _cardsInDeck.Value = currentList;
         }
-        
-        public void AddCardToHand(CardStatsData card, int index)
+
+        private void AddCardToHand(CardStatsData card, int index)
         {
             if (_cardsInHand.Value.Count >= maxCardsInHandCount) return;
     

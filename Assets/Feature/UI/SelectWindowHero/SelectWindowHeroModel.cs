@@ -36,7 +36,7 @@
                     };
 
                     heroData.MainHeroEntity()._heroName = selectedHeroStats.Name;
-                    heroData.MainHeroEntity()._health = selectedHeroStats.Health;
+                    heroData.MainHeroEntity().HealthValue = selectedHeroStats.Health;
                     _heroesForChose.Add(heroData);
                     availableHeroes.RemoveAt(randomIndex);
                 }

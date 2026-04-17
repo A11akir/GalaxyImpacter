@@ -129,7 +129,7 @@ namespace Feature.Battlefield.Script
                 startCardsInDeckCount = card.SpellsList.Count,
                 startCardsInHandToDraw = card.HandCardCount,
                 _heroName = card.Name,
-                _health = card.Health,
+                HealthValue = card.Health,
                 Chakra = card.Chakra,
                 _iconImage = card.IconImage
             };

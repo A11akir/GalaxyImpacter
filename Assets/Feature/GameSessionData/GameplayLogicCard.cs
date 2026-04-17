@@ -1,5 +1,6 @@
 using Feature.Battlefield.Script;
 using Feature.Card.Script;
+using Feature.CardEffect.Script;
 using Feature.GoogleSheets;
 
 namespace Feature.GameSessionData
@@ -27,16 +28,30 @@ namespace Feature.GameSessionData
             {
                 SpawnHeroCard(owner);
             }
-            else if (_cardData.Data is SpellCardData)
+            else if (_cardData.Data is SpellCardData spell)
             {
-                CastSpell();
+                CastSpell(spell, owner);
                 owner.RemoveCardFromHand(_cardData.Data);
             }
         }
 
-        private void CastSpell()
+        private void CastSpell(SpellCardData spell, CardAndHealthEntityOwnerData owner)
         {
             
+            for (int i = 0; i < spell.Effects.Count; i++)
+            {
+                var context = new EffectContext
+                {
+                    Caster = owner,
+                    Target = null,
+                    GameSessionModel = _gameSessionModel,
+                    BattlefieldSystem = _battlefieldSystem,
+                    CardData = spell,
+                    ValueIndex = i
+                };
+                
+                spell.Effects[i].Execute(context);
+            }
         }
 
         private bool CheckCanCast(CardAndHealthEntityOwnerData owner)

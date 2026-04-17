@@ -3910,6 +3910,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1196659512}
     m_Modifications:
+    - target: {fileID: 312480007795750149, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
+      propertyPath: _selectEntityView
+      value: 
+      objectReference: {fileID: 1251230312}
     - target: {fileID: 4640322776435668920, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
       propertyPath: m_Name
       value: HeroOnBoardView (3)
@@ -7379,6 +7383,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1196659512}
     m_Modifications:
+    - target: {fileID: 312480007795750149, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
+      propertyPath: _selectEntityView
+      value: 
+      objectReference: {fileID: 1227320271}
     - target: {fileID: 4640322776435668920, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
       propertyPath: m_Name
       value: HeroOnBoardView (1)
@@ -8381,6 +8389,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 801418061}
   m_CullTransparentMesh: 1
+--- !u!1 &834674085 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8169211052180111439, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
+  m_PrefabInstance: {fileID: 1803726994}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &842088091
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10257,6 +10270,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1059011139}
   m_CullTransparentMesh: 1
+--- !u!1 &1060576166 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8169211052180111439, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
+  m_PrefabInstance: {fileID: 1636656250}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1061949995
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10621,6 +10639,11 @@ MonoBehaviour:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1976157032157224654, guid: f91b620f52a734f4ea0522028177e042, type: 3}
   m_PrefabInstance: {fileID: 1901647692}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1104809806 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8169211052180111439, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
+  m_PrefabInstance: {fileID: 6466716348486570818}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1109528613 stripped
 GameObject:
@@ -11899,6 +11922,16 @@ MonoBehaviour:
   _handCardViews: {fileID: 1826728842}
   _handCardsPositionSystem: {fileID: 1826728843}
   _chakraWindowView: {fileID: 746323245}
+--- !u!1 &1227320271 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8169211052180111439, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
+  m_PrefabInstance: {fileID: 681086414}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1251230312 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8169211052180111439, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
+  m_PrefabInstance: {fileID: 372638994}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1273581315
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13043,6 +13076,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1196659512}
     m_Modifications:
+    - target: {fileID: 312480007795750149, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
+      propertyPath: _selectEntityView
+      value: 
+      objectReference: {fileID: 1470220526}
     - target: {fileID: 4640322776435668920, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
       propertyPath: m_Name
       value: HeroOnBoardView (2)
@@ -13199,6 +13236,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _heroView: {fileID: 1631569966}
   _enemyView: {fileID: 1767035918}
+--- !u!1 &1470220526 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8169211052180111439, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
+  m_PrefabInstance: {fileID: 1457562016}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1471828306
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14718,7 +14760,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _containers:
-  - {fileID: 0}
+  - {fileID: 1722939178}
+  - {fileID: 1504451953}
+  - {fileID: 1681061220}
+  - {fileID: 679327711}
+  - {fileID: 1985837894}
+  - {fileID: 1705857248}
+  - {fileID: 1220616652}
 --- !u!1001 &1636656250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14727,6 +14775,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1196659512}
     m_Modifications:
+    - target: {fileID: 312480007795750149, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
+      propertyPath: _selectEntityView
+      value: 
+      objectReference: {fileID: 1060576166}
     - target: {fileID: 4640322776435668920, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
       propertyPath: m_Name
       value: HeroOnBoardView (4)
@@ -16274,6 +16326,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1196659512}
     m_Modifications:
+    - target: {fileID: 312480007795750149, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
+      propertyPath: _selectEntityView
+      value: 
+      objectReference: {fileID: 834674085}
     - target: {fileID: 4640322776435668920, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
       propertyPath: m_Name
       value: HeroOnBoardView (5)
@@ -19544,6 +19600,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1196659512}
     m_Modifications:
+    - target: {fileID: 312480007795750149, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
+      propertyPath: _selectEntityView
+      value: 
+      objectReference: {fileID: 1104809806}
     - target: {fileID: 4640322776435668920, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
       propertyPath: m_Name
       value: HeroOnBoardView
@@ -19657,6 +19717,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3912676221662712250, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4089926481219458353, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -19757,8 +19821,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6528387123813897620, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8169650135252390786, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8304432329169127823, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8304432329169127823, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
