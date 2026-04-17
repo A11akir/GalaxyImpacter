@@ -1,5 +1,6 @@
 using System;
 using Feature.GameSessionData;
+using Feature.Health;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -7,7 +8,7 @@ using UnityEngine.UI;
 
 namespace Feature.UI
 {
-    public class HeroView : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
+    public class HeroView : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler, IHealthView
     {
         [SerializeField] private GameObject _wasSelectBotWindow;
         [SerializeField] private GameObject _selectWindow;      
@@ -71,5 +72,7 @@ namespace Feature.UI
             _wasSelectBotWindow.SetActive(true);
             _isBlockedForSelect = true;
         }
+        
+        public void SetHealth(int hp) => _healthText.text = hp.ToString();
     }
 }

@@ -8,7 +8,10 @@ namespace Feature.CardEffect.Script
         public override void Execute(EffectContext context)
         {
             int damage = context.CardData.Values[context.ValueIndex];
-            context.Target.HealthValue -= damage;
+            context.Caster.HealthValue -= damage;
+            
+            Debug.Log(context.Caster._heroName);
+            Debug.Log(context.Caster.HealthValue);
         }
     }
 }

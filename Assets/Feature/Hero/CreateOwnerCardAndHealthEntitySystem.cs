@@ -1,7 +1,10 @@
+using System.Collections.Generic;
 using Feature.Card.Script;
 using Feature.Chakra;
+using Feature.Entity.Script;
 using Feature.GameSessionData;
 using Feature.HandLogic;
+using Feature.Health;
 using Feature.UI;
 
 namespace Feature.Hero
@@ -14,11 +17,12 @@ namespace Feature.Hero
         private readonly HandDataRepository _handDataRepository;
         private readonly ChakraManagerSystem _chakraManagerSystem;
         private readonly HandFillSystem _handFillSystem;
-        private readonly HeroView _heroView;
 
+        private readonly List<EntityPresenter> _entityPresenters = new();
+        
         public CreateOwnerCardAndHealthEntitySystem(GameSessionModel gameSessionModel,
             ChakraManagerSystem chakraManagerSystem, HandDataRepository handDataRepository,
-            DeckFillSystem deckFillSystem, HandViewSwitcher handViewSwitcher, HandFillSystem handFillSystem, HeroView heroView)
+            DeckFillSystem deckFillSystem, HandViewSwitcher handViewSwitcher, HandFillSystem handFillSystem)
         {
             _gameSessionModel = gameSessionModel;
             _chakraManagerSystem = chakraManagerSystem;
@@ -26,10 +30,11 @@ namespace Feature.Hero
             _deckFillSystem = deckFillSystem;
             _handViewSwitcher = handViewSwitcher;
             _handFillSystem = handFillSystem;
-            _heroView = heroView;
         }
         
-        public void CreateEntityPlayer(CardAndHealthEntityOwnerData owner)
+
+
+        public void CreateEntityPlayer(CardAndHealthEntityOwnerData owner, IHealthView healthView)
         {
             _deckFillSystem.InitializeDeck(owner);
             var container = _handViewSwitcher.RegisterOwner(owner);
@@ -37,6 +42,17 @@ namespace Feature.Hero
             _chakraManagerSystem.Init(owner, container.ChakraWindowView);
             _handFillSystem.FillEntityHand(owner);
             _chakraManagerSystem.InitEntityChakra(owner);
+    
+            var presenter = new EntityPresenter(owner, healthView);
+            _entityPresenters.Add(presenter);
+        }
+
+        public void CreatePlayersEntity(IHealthView playerHealthView, IHealthView enemyHealthView)
+        {
+            var playerEntity = _gameSessionModel.PlayerHero.MainHeroEntity();
+            CreateEntityPlayer(playerEntity, playerHealthView);
+            /*CreateEntityEnemy(_gameSessionModel.EnemyHero.MainHeroEntity(), enemyHealthView);*/
+            _handViewSwitcher.SwitchTo(playerEntity);
         }
 
         private void CreateEntityEnemy(CardAndHealthEntityOwnerData cardAndHealthEntityOwnerData)
@@ -48,13 +64,6 @@ namespace Feature.Hero
             _handFillSystem.FillEntityHand(owner);
             _chakraManagerSystem.InitEntityChakra(owner);*/
         }
-
-        public void CreatePlayersEntity()
-        {
-            var playerEntity = _gameSessionModel.PlayerHero.MainHeroEntity();
-            CreateEntityPlayer(playerEntity);
-            CreateEntityEnemy(_gameSessionModel.EnemyHero.MainHeroEntity());
-            _handViewSwitcher.SwitchTo(playerEntity);
-        }
+        
     }
 }

@@ -4,6 +4,7 @@ using Feature.Chakra;
 using Feature.GameSessionData;
 using Feature.Hero;
 using Feature.ShopGamePlay.Script.Currency;
+using Feature.UI;
 
 namespace Feature.GameSessionFSM
 {
@@ -18,8 +19,10 @@ namespace Feature.GameSessionFSM
         private CurrencyManagerSystem _currencyManagerSystem { get;  }        
         private ChakraManagerSystem _chakraManagerSystem { get;  }
         
+        private GameSessionPresenter _gameSessionPresenter { get;  }
+        
         public TurnСycleGameSessionSystem(DeckFillSystem deckFillSystem, CurrencyManagerSystem currencyManagerSystem,
-            ChakraManagerSystem chakraManagerSystem, HandDataRepository handDataRepository, BattlefieldSystem battlefieldSystem, HandFillSystem handFillSystem, GameSessionModel gameSessionModel, CreateOwnerCardAndHealthEntitySystem createOwnerCardAndHealthEntitySystem)
+            ChakraManagerSystem chakraManagerSystem, HandDataRepository handDataRepository, BattlefieldSystem battlefieldSystem, HandFillSystem handFillSystem, GameSessionModel gameSessionModel, CreateOwnerCardAndHealthEntitySystem createOwnerCardAndHealthEntitySystem, GameSessionPresenter gameSessionPresenter)
         {
             _deckFillSystem = deckFillSystem;
             _currencyManagerSystem = currencyManagerSystem;
@@ -29,11 +32,12 @@ namespace Feature.GameSessionFSM
             _handFillSystem = handFillSystem;
             _gameSessionModel = gameSessionModel;
             _createOwnerCardAndHealthEntitySystem = createOwnerCardAndHealthEntitySystem;
+            _gameSessionPresenter = gameSessionPresenter;
         }
 
         public void StartGameSession()
         {
-            _createOwnerCardAndHealthEntitySystem.CreatePlayersEntity();
+            _gameSessionPresenter.SetupEntityViews(); // ← вместо CreatePlayersEntity напрямую
             _gameSessionModel.PlayerHero.InitBoard();
             _battlefieldSystem.Init();
             _currencyManagerSystem.Init();

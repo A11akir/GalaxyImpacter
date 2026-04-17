@@ -31,7 +31,7 @@ namespace Feature.EntryPoint.Script
             Container.Bind<SelectWindowHeroView>().FromComponentInHierarchy().AsSingle();
             Container.Bind<HandCardViews>().FromComponentInHierarchy().AsSingle();
             Container.Bind<GameSessionView>().FromComponentInHierarchy().AsSingle();
-            Container.Bind<HeroView>().FromComponentInHierarchy().AsTransient();
+            
             Container.Bind<CurrencyManagePresenter>().AsSingle();
             Container.Bind<HandCardPresenter>().AsSingle();
             Container.Bind<CardOnBattlefieldPresenter>().AsSingle();
@@ -50,7 +50,7 @@ namespace Feature.EntryPoint.Script
             Container.Bind<ChakraWindowPresenter>().AsSingle();
             Container.Bind<CurrencyManageView>().FromComponentInHierarchy().AsSingle();
             Container.Bind<ChakraWindowView>().FromComponentInHierarchy().AsSingle();
-            /*Container.Bind<BattlefieldCardTransformSystem>().FromComponentInHierarchy().AsSingle();*/
+
             Container.Bind<CurrencyManagerSystem>().AsSingle();
             Container.Bind<ChakraManagerSystem>().AsSingle();
             Container.Bind<CardCastSystem>().AsSingle();
