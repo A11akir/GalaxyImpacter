@@ -1,3 +1,4 @@
+using Feature.Chakra;
 using Feature.GameSessionData;
 using UnityEngine;
 
@@ -14,11 +15,9 @@ namespace Feature.Chakra
             _chakraWindowPresenter = chakraWindowPresenter;
         }
 
-        public void Init(CardAndHealthEntityOwnerData owner)
+        public void Init(CardAndHealthEntityOwnerData owner, ChakraWindowView chakraWindowView)
         {
-            Debug.Log(owner);
-            Debug.Log(owner._heroName);
-            _chakraWindowPresenter.SubscribeToChakraChanges(owner);
+            _chakraWindowPresenter.SubscribeToChakraChanges(owner, chakraWindowView);
         }
 
         public void InitEntityChakra(CardAndHealthEntityOwnerData owner)
@@ -26,7 +25,6 @@ namespace Feature.Chakra
             AddChakraWithMaxLimit(owner, 4);
         }
 
-        
         public void NewTurnUpdate()
         {
             foreach (var owner in _gameSessionModel.GetAllEntityOwners())

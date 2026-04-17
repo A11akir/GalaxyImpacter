@@ -5,14 +5,15 @@ namespace Feature.Card.Script
 {
     public class EntityHandState
     {
-        public readonly List<HandCardData> HandData = new();
+        public CardAndHealthEntityOwnerData Owner;
+        public HandCardViews HandCardViews;
+        public List<HandCardData> HandData = new();
         public List<CardStatsData> PreviousCards = new();
 
-        public EntityHandState(CardAndHealthEntityOwnerData owner)
+        public EntityHandState(CardAndHealthEntityOwnerData owner, HandCardViews handCardViews)
         {
             Owner = owner;
+            HandCardViews = handCardViews;
         }
-
-        public CardAndHealthEntityOwnerData Owner { get; }
     }
 }

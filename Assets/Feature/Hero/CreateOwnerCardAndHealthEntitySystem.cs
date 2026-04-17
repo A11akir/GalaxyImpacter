@@ -2,6 +2,7 @@ using Feature.Card.Script;
 using Feature.Chakra;
 using Feature.GameSessionData;
 using Feature.HandLogic;
+using Feature.UI;
 
 namespace Feature.Hero
 {
@@ -13,8 +14,11 @@ namespace Feature.Hero
         private readonly HandDataRepository _handDataRepository;
         private readonly ChakraManagerSystem _chakraManagerSystem;
         private readonly HandFillSystem _handFillSystem;
+        private readonly HeroView _heroView;
 
-        public CreateOwnerCardAndHealthEntitySystem(GameSessionModel gameSessionModel, ChakraManagerSystem chakraManagerSystem, HandDataRepository handDataRepository, DeckFillSystem deckFillSystem, HandViewSwitcher handViewSwitcher, HandFillSystem handFillSystem)
+        public CreateOwnerCardAndHealthEntitySystem(GameSessionModel gameSessionModel,
+            ChakraManagerSystem chakraManagerSystem, HandDataRepository handDataRepository,
+            DeckFillSystem deckFillSystem, HandViewSwitcher handViewSwitcher, HandFillSystem handFillSystem, HeroView heroView)
         {
             _gameSessionModel = gameSessionModel;
             _chakraManagerSystem = chakraManagerSystem;
@@ -22,25 +26,27 @@ namespace Feature.Hero
             _deckFillSystem = deckFillSystem;
             _handViewSwitcher = handViewSwitcher;
             _handFillSystem = handFillSystem;
+            _heroView = heroView;
         }
-
-        public void CreateEntityPlayer(CardAndHealthEntityOwnerData cardAndHealthEntityOwnerData)
+        
+        public void CreateEntityPlayer(CardAndHealthEntityOwnerData owner)
         {
-            _deckFillSystem.InitializeDeck(cardAndHealthEntityOwnerData);
-            _handDataRepository.InitHandRepository(cardAndHealthEntityOwnerData);
-            _chakraManagerSystem.Init(cardAndHealthEntityOwnerData);
-            _handViewSwitcher.RegisterOwner(cardAndHealthEntityOwnerData);
-            _handFillSystem.FillEntityHand(cardAndHealthEntityOwnerData);
-            _chakraManagerSystem.InitEntityChakra(cardAndHealthEntityOwnerData);
+            _deckFillSystem.InitializeDeck(owner);
+            var container = _handViewSwitcher.RegisterOwner(owner);
+            _handDataRepository.InitHandRepository(owner, container.HandCardViews);
+            _chakraManagerSystem.Init(owner, container.ChakraWindowView);
+            _handFillSystem.FillEntityHand(owner);
+            _chakraManagerSystem.InitEntityChakra(owner);
         }
 
         private void CreateEntityEnemy(CardAndHealthEntityOwnerData cardAndHealthEntityOwnerData)
         {
-            _deckFillSystem.InitializeDeck(cardAndHealthEntityOwnerData);
-            _handDataRepository.InitHandRepository(cardAndHealthEntityOwnerData);
-            _chakraManagerSystem.Init(cardAndHealthEntityOwnerData);
-            _handFillSystem.FillEntityHand(cardAndHealthEntityOwnerData);
-            _chakraManagerSystem.InitEntityChakra(cardAndHealthEntityOwnerData);
+            /*_deckFillSystem.InitializeDeck(owner);
+            var container = _handViewSwitcher.RegisterOwner(owner); // получаем контейнер
+            _handDataRepository.InitHandRepository(owner, container.HandCardViews); // передаём
+            _chakraManagerSystem.Init(owner, container.ChakraWindowView); // передаём вьюху чакры
+            _handFillSystem.FillEntityHand(owner);
+            _chakraManagerSystem.InitEntityChakra(owner);*/
         }
 
         public void CreatePlayersEntity()

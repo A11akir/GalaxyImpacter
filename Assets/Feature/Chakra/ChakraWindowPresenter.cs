@@ -4,49 +4,61 @@ using Feature.HandLogic;
 using R3;
 using UnityEngine;
 
-
 namespace Feature.Chakra
 {
     public class ChakraWindowPresenter 
     {
         private readonly CardCastSystem _cardCastSystem;
-        
         private readonly HandViewSwitcher _handViewSwitcher; 
-        private readonly ChakraWindowView _chakraWindowView;
         private readonly HandCardPresenter _handCardPresenter;
         private readonly HandDataRepository _handDataRepository;
         private readonly CompositeDisposable _disposables = new();
 
-        public ChakraWindowPresenter(ChakraWindowView chakraWindowView, HandCardPresenter handCardPresenter, 
+        public ChakraWindowPresenter(HandCardPresenter handCardPresenter, 
             HandDataRepository handDataRepository, CardCastSystem cardCastSystem, HandViewSwitcher handViewSwitcher)
         {
-            _chakraWindowView = chakraWindowView;
             _handCardPresenter = handCardPresenter;
             _handDataRepository = handDataRepository;
             _cardCastSystem = cardCastSystem;
             _handViewSwitcher = handViewSwitcher;
+
+            _handViewSwitcher.OnOwnerSwitched += OnOwnerSwitched;
         }
-        
-        public void SubscribeToChakraChanges(CardAndHealthEntityOwnerData owner)
+
+        private void OnOwnerSwitched(CardAndHealthEntityOwnerData owner)
+        {
+            var container = _handViewSwitcher.GetContainer(owner);
+            if (container == null) return;
+
+            var handData = _handDataRepository.GetHandData(owner);
+            if (handData == null) return;
+
+            container.ChakraWindowView.SetChakraText(owner.Chakra);
+            _handCardPresenter.ChakraCheckCanCastCard(handData, owner.Chakra);
+            _cardCastSystem.ChakraCheckCanCastCard(handData, owner.Chakra);
+        }
+
+        public void SubscribeToChakraChanges(CardAndHealthEntityOwnerData owner, ChakraWindowView chakraWindowView)
         {
             owner.ChakraCount
                 .Subscribe(chakra =>
                 {
-                    var handData = _handDataRepository.GetHandData(owner);
-            
-                    Debug.Log(handData.Count);
-                    Debug.Log(handData[0].Data.Name);
                     if (_handViewSwitcher.CurrentOwner != owner) return;
-                    
+
+                    var handData = _handDataRepository.GetHandData(owner);
                     if (handData == null) return;
 
-                    _chakraWindowView.SetChakraText(chakra);
+                    chakraWindowView.SetChakraText(chakra);
                     _handCardPresenter.ChakraCheckCanCastCard(handData, chakra);
                     _cardCastSystem.ChakraCheckCanCastCard(handData, chakra);
                 })
                 .AddTo(_disposables);
         }
 
-        public void Dispose() => _disposables.Dispose();
+        public void Dispose()
+        {
+            _handViewSwitcher.OnOwnerSwitched -= OnOwnerSwitched;
+            _disposables.Dispose();
+        }
     }
 }

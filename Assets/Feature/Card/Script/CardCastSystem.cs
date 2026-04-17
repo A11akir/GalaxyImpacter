@@ -51,7 +51,7 @@ namespace Feature.Card.Script
             }
         }
 
-        public void RemoveBehaviourFromCard(HandCardData cardData)
+        public void RemoveBehaviourFromHandCard(HandCardData cardData)
         {
             if (cardData?.Behaviour != null)
             {

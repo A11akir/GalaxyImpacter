@@ -1,61 +1,69 @@
+using System;
 using System.Collections.Generic;
 using Feature.Card.Script;
 using Feature.GameSessionData;
+using Feature.HandLogic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
 
-namespace Feature.HandLogic
+public class HandViewSwitcher : MonoBehaviour
 {
-    public class HandViewSwitcher : MonoBehaviour
+    [SerializeField] private List<CardsOwnerContainer> _containers; // 7 штук в инспекторе
+
+    private readonly List<CardAndHealthEntityOwnerData> _ownerOrder = new();
+    private readonly Dictionary<CardAndHealthEntityOwnerData, CardsOwnerContainer> _ownerToContainer = new();
+    private CardAndHealthEntityOwnerData _currentOwner;
+
+    public CardAndHealthEntityOwnerData CurrentOwner => _currentOwner;
+    public event Action<CardAndHealthEntityOwnerData> OnOwnerSwitched;
+
+    private void Start()
     {
-        [SerializeField] private List<GameObject> _handContainers;
+        foreach (var container in _containers)
+            container.gameObject.SetActive(false);
+    }
 
-        public CardAndHealthEntityOwnerData CurrentOwner => _currentOwner;
-    
-        [Inject] private readonly HandCardsPositionSystem _handCardsPositionSystem;
-        private readonly Dictionary<CardAndHealthEntityOwnerData, GameObject> _ownerToContainer = new();
-        private readonly List<CardAndHealthEntityOwnerData> _ownerOrder = new(); 
-        private CardAndHealthEntityOwnerData _currentOwner;
-
-        public void RegisterOwner(CardAndHealthEntityOwnerData owner)
+    public CardsOwnerContainer RegisterOwner(CardAndHealthEntityOwnerData owner)
+    {
+        int index = _ownerOrder.Count;
+        if (index >= _containers.Count)
         {
-            int index = _ownerToContainer.Count;
-            if (index >= _handContainers.Count)
-            {
-                Debug.LogError($"Недостаточно контейнеров для владельца {owner}");
-                return; 
-            }
+            Debug.LogError("Недостаточно контейнеров!");
+            return null;
+        }
+
+        var container = _containers[index];
+        _ownerToContainer[owner] = container;
+        _ownerOrder.Add(owner);
+        container.gameObject.SetActive(false);
+        return container;
+    }
+
+    public CardsOwnerContainer GetContainer(CardAndHealthEntityOwnerData owner)
+        => _ownerToContainer.TryGetValue(owner, out var container) ? container : null;
+    
+    public void SwitchTo(CardAndHealthEntityOwnerData owner)
+    {
+        if (_currentOwner == owner) return;
+
+        if (_currentOwner != null && _ownerToContainer.TryGetValue(_currentOwner, out var prev))
+            prev.gameObject.SetActive(false);
+
+        if (_ownerToContainer.TryGetValue(owner, out var next))
+            next.gameObject.SetActive(true);
+
+        _currentOwner = owner;
+        OnOwnerSwitched?.Invoke(owner);
         
-            _ownerToContainer[owner] = _handContainers[index];
-            _ownerOrder.Add(owner);
-            _handContainers[index].SetActive(false);
-            
-        }
-    
-        public void SwitchTo(CardAndHealthEntityOwnerData owner)
-        {
-            if (_currentOwner == owner) return;
+        _ownerToContainer[owner].HandCardsPositionSystem.UpdateCardsPosition();
+    }
 
-            if (_currentOwner != null && _ownerToContainer.TryGetValue(_currentOwner, out var prev))
-                prev.SetActive(false);
-
-            if (_ownerToContainer.TryGetValue(owner, out var next))
-                next.SetActive(true);
-
-            _currentOwner = owner;
-            
-            _handCardsPositionSystem.UpdateCardsPosition();
-        }
-    
-        [Button]
-        public void SwitchToNextOwner()
-        {
-            if (_ownerOrder.Count < 1) return;
-
-            int currentIndex = _ownerOrder.IndexOf(_currentOwner);
-            int nextIndex = (currentIndex + 1) % _ownerOrder.Count;
-            SwitchTo(_ownerOrder[nextIndex]);
-        }
+    [Button]
+    public void SwitchToNextOwner()
+    {
+        if (_ownerOrder.Count < 1) return;
+        int nextIndex = (_ownerOrder.IndexOf(_currentOwner) + 1) % _ownerOrder.Count;
+        SwitchTo(_ownerOrder[nextIndex]);
     }
 }

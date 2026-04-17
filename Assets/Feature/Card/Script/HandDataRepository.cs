@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Feature.Battlefield.Script;
 using Feature.GameSessionData;
 using R3;
 using UnityEngine;
@@ -25,20 +26,19 @@ namespace Feature.Card.Script
             _battlefieldSystem = battlefieldSystem;
         }
 
-        public void InitHandRepository(CardAndHealthEntityOwnerData owner)
+        public void InitHandRepository(CardAndHealthEntityOwnerData owner, HandCardViews handCardViews)
         {
-            var state = new EntityHandState(owner);
-            if (!_gameSessionModel.PlayerHero.CardAndHealthEntityOwners.Contains(owner)) return;
+            if (_entityHands.ContainsKey(owner)) return;
+            var state = new EntityHandState(owner, handCardViews);
             _entityHands[owner] = state;
             SubscribeReactiveHandList(state);
         }
 
         public List<HandCardData> GetHandData(CardAndHealthEntityOwnerData owner)
-            => _entityHands.TryGetValue(owner, out var state) ? state.HandData : null;
+            => _entityHands.TryGetValue(owner, out var state) ? state.HandData : null;  
 
         private void SubscribeReactiveHandList(EntityHandState state)
         {
-            Debug.Log("Подписка на изменения руки для " + state.Owner._heroName);
             state.Owner.CardsInHand.Subscribe(currentCards =>
             {
                 var previous = state.PreviousCards;
@@ -66,7 +66,7 @@ namespace Feature.Card.Script
 
         private void OnCardAddedToHand(CardStatsData addedCard, int addedIndex, EntityHandState state)
         {
-            var view = _handCardPresenter.AddCardFromHand(addedCard, addedIndex);
+            var view = state.HandCardViews.AddCardFromHand(addedCard, addedIndex); 
 
             var handCardData = new HandCardData(
                 data: addedCard,
@@ -75,7 +75,7 @@ namespace Feature.Card.Script
                 logic: null);
 
             state.HandData.Insert(addedIndex, handCardData);
-            SetupCardBehavioursAndLogic(addedIndex, state);
+            SetupHandCardBehavioursAndLogic(addedIndex, state);
         }
 
         private void OnCardRemovedFromHand(CardStatsData removedCard, EntityHandState state)
@@ -84,11 +84,11 @@ namespace Feature.Card.Script
             if (cardToRemove == null) return;
 
             _handCardPresenter.RemoveCardFromHand(cardToRemove.View);
-            _cardCastSystem.RemoveBehaviourFromCard(cardToRemove);
+            _cardCastSystem.RemoveBehaviourFromHandCard(cardToRemove);
             state.HandData.Remove(cardToRemove);
         }
 
-        private void SetupCardBehavioursAndLogic(int index, EntityHandState state)
+        private void SetupHandCardBehavioursAndLogic(int index, EntityHandState state)
         {
             _cardCastSystem.AddBehavioursToCard(state.HandData[index]);
 

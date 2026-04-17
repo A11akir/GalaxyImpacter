@@ -18,14 +18,12 @@ namespace Feature.GameSessionFSM
 
         public override void Enter()
         {
-            
             if (_gameSessionModel.IsFirstTurn())
             {
                 _turnСycleGameSessionSystem.StartGameSession();
                 return;
             }
 
-            
             _turnСycleGameSessionSystem.CycleTurn();
         }
         

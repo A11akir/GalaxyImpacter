@@ -17,14 +17,19 @@ namespace Feature.UI
         [SerializeField] private Image _iconImage;
         [SerializeField] public Image _heroPowerIcon;
         [SerializeField] public TextMeshProUGUI _heroPowerText;        
-
         [SerializeField] public TextMeshProUGUI _healthText;
         [SerializeField] public TextMeshProUGUI _nameText;
 
         public bool _isBlockedForSelect;
         public GameSessionPlayerData HeroData { get; private set; }
-        public event Action<HeroView> OnSelectHeroView;
         
+        public event Action<HeroView> OnSelectHeroView;
+        public event Action OnEntityClicked;
+        
+        private bool _isGameplayMode;
+
+        public void SetGameplayMode(bool isGameplay) => _isGameplayMode = isGameplay;
+
         public void SetViewData(GameSessionPlayerData data)
         {
             HeroData = data;
@@ -37,17 +42,19 @@ namespace Feature.UI
         
         public void OnPointerDown(PointerEventData eventData)
         {
-            if (_isBlockedForSelect) return;
-            OnSelectHeroView?.Invoke(this);
+            if (_isGameplayMode)
+            {
+                OnEntityClicked?.Invoke();
+                return;
+            }
+
+            if (!_isBlockedForSelect)
+                OnSelectHeroView?.Invoke(this);
         }
 
-        public void SelectHeroView()
-        {
-            _selectWindow.SetActive(true);
-        }
-
+        public void SetSelected(bool selected) => _selectWindow.SetActive(selected);
+        public void SelectHeroView() => _selectWindow.SetActive(true);
         public void OnPointerEnter(PointerEventData eventData) => _nameWindow.SetActive(true);
-
         public void OnPointerExit(PointerEventData eventData) => _nameWindow.SetActive(false);
 
         public void BanHeroView()

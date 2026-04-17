@@ -632,6 +632,7 @@ MonoBehaviour:
   _iconMinionBoard: {fileID: 8349310483852527719}
   _borderHasAction: {fileID: 8169211052180111439}
   _heroDescriptionWindow: {fileID: 8461198785409712509}
+  _selectEntityView: {fileID: 0}
 --- !u!1 &4846608506428583166
 GameObject:
   m_ObjectHideFlags: 0
@@ -1363,12 +1364,12 @@ GameObject:
   - component: {fileID: 4080872738846684417}
   - component: {fileID: 7245231304486870129}
   m_Layer: 5
-  m_Name: BorderHaveAction
+  m_Name: CurrentSelectView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3041992950898365054
 RectTransform:
   m_ObjectHideFlags: 0

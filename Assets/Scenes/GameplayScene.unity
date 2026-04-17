@@ -7327,6 +7327,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 679327710}
+  - component: {fileID: 679327711}
   m_Layer: 5
   m_Name: CardsOwner (3)
   m_TagString: Untagged
@@ -7355,6 +7356,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &679327711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679327709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2296fc0fd8384d039f35a0fb5fe78fa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _handCardViews: {fileID: 1781981965}
+  _handCardsPositionSystem: {fileID: 1781981966}
+  _chakraWindowView: {fileID: 1920743628}
 --- !u!1001 &681086414
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11839,6 +11855,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1220616651}
+  - component: {fileID: 1220616652}
   m_Layer: 5
   m_Name: CardsOwner (6)
   m_TagString: Untagged
@@ -11867,6 +11884,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1220616652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1220616650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2296fc0fd8384d039f35a0fb5fe78fa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _handCardViews: {fileID: 1826728842}
+  _handCardsPositionSystem: {fileID: 1826728843}
+  _chakraWindowView: {fileID: 746323245}
 --- !u!1001 &1273581315
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13594,6 +13626,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1504451952}
+  - component: {fileID: 1504451953}
   m_Layer: 5
   m_Name: CardsOwner (1)
   m_TagString: Untagged
@@ -13622,6 +13655,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1504451953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504451951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2296fc0fd8384d039f35a0fb5fe78fa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _handCardViews: {fileID: 623712204}
+  _handCardsPositionSystem: {fileID: 623712205}
+  _chakraWindowView: {fileID: 1162383239}
 --- !u!1001 &1509453027
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14669,14 +14717,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f878cbb25e748abbd05587828e9773e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _handContainers:
-  - {fileID: 1722939176}
-  - {fileID: 1504451951}
-  - {fileID: 1681061218}
-  - {fileID: 679327709}
-  - {fileID: 1985837892}
-  - {fileID: 1705857246}
-  - {fileID: 1220616650}
+  _containers:
+  - {fileID: 0}
 --- !u!1001 &1636656250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15456,6 +15498,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1681061219}
+  - component: {fileID: 1681061220}
   m_Layer: 5
   m_Name: CardsOwner (2)
   m_TagString: Untagged
@@ -15484,6 +15527,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1681061220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1681061218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2296fc0fd8384d039f35a0fb5fe78fa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _handCardViews: {fileID: 1995480603}
+  _handCardsPositionSystem: {fileID: 1995480604}
+  _chakraWindowView: {fileID: 491699824}
 --- !u!1001 &1682039923
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15620,6 +15678,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1705857247}
+  - component: {fileID: 1705857248}
   m_Layer: 5
   m_Name: CardsOwner (5)
   m_TagString: Untagged
@@ -15648,6 +15707,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1705857248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705857246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2296fc0fd8384d039f35a0fb5fe78fa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _handCardViews: {fileID: 1013419862}
+  _handCardsPositionSystem: {fileID: 1013419863}
+  _chakraWindowView: {fileID: 1542577480}
 --- !u!1001 &1708388468
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15765,13 +15839,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1722939177}
+  - component: {fileID: 1722939178}
   m_Layer: 5
   m_Name: CardsOwnerPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1722939177
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15793,6 +15868,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1722939178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722939176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2296fc0fd8384d039f35a0fb5fe78fa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _handCardViews: {fileID: 1388931700}
+  _handCardsPositionSystem: {fileID: 1388931699}
+  _chakraWindowView: {fileID: 1018822690}
 --- !u!1 &1736794671
 GameObject:
   m_ObjectHideFlags: 0
@@ -17832,6 +17922,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1985837893}
+  - component: {fileID: 1985837894}
   m_Layer: 5
   m_Name: CardsOwner (4)
   m_TagString: Untagged
@@ -17860,6 +17951,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1985837894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985837892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2296fc0fd8384d039f35a0fb5fe78fa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _handCardViews: {fileID: 329602166}
+  _handCardsPositionSystem: {fileID: 329602167}
+  _chakraWindowView: {fileID: 1996174368}
 --- !u!224 &1987505313 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5778531318514038528, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}

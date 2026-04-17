@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Feature.Battlefield.Script;
 using Feature.Battlefield.Script.View;
 using Feature.Card.Script;
 using Feature.GameSessionData;
@@ -10,113 +9,141 @@ using R3;
 using UnityEngine;
 using Zenject;
 
-public class BattlefieldSystem : MonoBehaviour
+namespace Feature.Battlefield.Script
 {
-    private TipPlaceBattlefieldViewSystem _tipPlaceBattlefieldViewSystem;
-    private CardOnBattlefieldPresenter _cardOnBattlefieldPresenter;
-    private GameSessionModel _gameSessionModel;
-    private CreateOwnerCardAndHealthEntitySystem _createOwnerCardAndHealthEntitySystem;
-
-    [SerializeField] private GameObject enemyBattlefield;
-    [SerializeField] private GameObject playerBattlefield;
-
-    private readonly Dictionary<GameSessionPlayerData, List<CardOnBattlefieldView>> _battlefieldViews = new();
-    private readonly Dictionary<GameSessionPlayerData, List<MinionCardData>> _previousCards = new();
-
-    [Inject]
-    public void Construct(GameSessionModel gameSessionModel,
-        CardOnBattlefieldPresenter cardOnBattlefieldPresenter,
-        TipPlaceBattlefieldViewSystem tipPlaceBattlefieldViewSystem,
-        CreateOwnerCardAndHealthEntitySystem createOwnerCardAndHealthEntitySystem)
+    public class BattlefieldSystem : MonoBehaviour
     {
-        _gameSessionModel = gameSessionModel;
-        _cardOnBattlefieldPresenter = cardOnBattlefieldPresenter;
-        _tipPlaceBattlefieldViewSystem = tipPlaceBattlefieldViewSystem;
-        _createOwnerCardAndHealthEntitySystem = createOwnerCardAndHealthEntitySystem;
-    }
+        private TipPlaceBattlefieldViewSystem _tipPlaceBattlefieldViewSystem;
+        private CardOnBattlefieldPresenter _cardOnBattlefieldPresenter;
+        private GameSessionModel _gameSessionModel;
+        private CreateOwnerCardAndHealthEntitySystem _createOwnerCardAndHealthEntitySystem;
 
-    public void Init()
-    {
-        _battlefieldViews[_gameSessionModel.PlayerHero] = GetCardViewsFromBattlefield(playerBattlefield);
-        _battlefieldViews[_gameSessionModel.EnemyHero] = GetCardViewsFromBattlefield(enemyBattlefield);
+        [SerializeField] private GameObject enemyBattlefield;
+        [SerializeField] private GameObject playerBattlefield;
 
-        _previousCards[_gameSessionModel.PlayerHero] = new();
-        _previousCards[_gameSessionModel.EnemyHero] = new();
+        private readonly Dictionary<GameSessionPlayerData, List<CardOnBattlefieldView>> _battlefieldViews = new();
+        private readonly Dictionary<GameSessionPlayerData, List<MinionCardData>> _previousCards = new();
+        
+        private readonly Dictionary<CardAndHealthEntityOwnerData, CardOnBattlefieldView> _ownerToView = new();
+        
+        private HandViewSwitcher _handViewSwitcher;
 
-        SubscribeReactiveBoardList(_gameSessionModel.PlayerHero);
-        SubscribeReactiveBoardList(_gameSessionModel.EnemyHero);
-    }
-
-    private List<CardOnBattlefieldView> GetCardViewsFromBattlefield(GameObject battlefield)
-    {
-        var cardViews = new List<CardOnBattlefieldView>();
-        foreach (Transform child in battlefield.transform)
+        [Inject]
+        public void Construct(GameSessionModel gameSessionModel,
+            CardOnBattlefieldPresenter cardOnBattlefieldPresenter,
+            TipPlaceBattlefieldViewSystem tipPlaceBattlefieldViewSystem,
+            CreateOwnerCardAndHealthEntitySystem createOwnerCardAndHealthEntitySystem,
+            HandViewSwitcher handViewSwitcher)
         {
-            var cardView = child.GetComponent<CardOnBattlefieldView>();
-            cardViews.Add(cardView);
+            _handViewSwitcher = handViewSwitcher;
+            _tipPlaceBattlefieldViewSystem = tipPlaceBattlefieldViewSystem;
+            _cardOnBattlefieldPresenter = cardOnBattlefieldPresenter;
+            _gameSessionModel = gameSessionModel;
+            _createOwnerCardAndHealthEntitySystem = createOwnerCardAndHealthEntitySystem;
+            _handViewSwitcher.OnOwnerSwitched += OnOwnerSwitched;
+
         }
-        return cardViews;
-    }
 
-    private void SubscribeReactiveBoardList(GameSessionPlayerData playerData)
-    {
-        playerData.CardsInBoard
-            .Subscribe(currentCards =>
+        public void Init()
+        {
+            _battlefieldViews[_gameSessionModel.PlayerHero] = GetCardViewsFromBattlefield(playerBattlefield);
+            _battlefieldViews[_gameSessionModel.EnemyHero] = GetCardViewsFromBattlefield(enemyBattlefield);
+
+            _previousCards[_gameSessionModel.PlayerHero] = new();
+            _previousCards[_gameSessionModel.EnemyHero] = new();
+
+            SubscribeReactiveBoardList(_gameSessionModel.PlayerHero);
+            SubscribeReactiveBoardList(_gameSessionModel.EnemyHero);
+        }
+
+        private List<CardOnBattlefieldView> GetCardViewsFromBattlefield(GameObject battlefield)
+        {
+            var cardViews = new List<CardOnBattlefieldView>();
+            foreach (Transform child in battlefield.transform)
             {
-                var nonNullCards = currentCards.Where(c => c != null).ToList();
-                var previousNonNullCards = _previousCards[playerData].Where(c => c != null).ToList();
+                var cardView = child.GetComponent<CardOnBattlefieldView>();
+                cardViews.Add(cardView);
+            }
+            return cardViews;
+        }
 
-                var addedCards = nonNullCards
-                    .Where(c => previousNonNullCards.All(p => p.id != c.id))
-                    .ToList();
-
-                var removedCards = previousNonNullCards
-                    .Where(p => nonNullCards.All(c => c.id != p.id))
-                    .ToList();
-
-                if (removedCards.Count > 0)
-                    OnCardRemovedFromBoard(removedCards[0], playerData);
-
-                if (addedCards.Count > 0)
+        private void SubscribeReactiveBoardList(GameSessionPlayerData playerData)
+        {
+            playerData.CardsInBoard
+                .Subscribe(currentCards =>
                 {
-                    int addedIndex = currentCards.FindIndex(c => c != null && c.id == addedCards[0].id);
-                    OnCardAddedBoard(addedCards[0], addedIndex, playerData);
-                }
+                    var nonNullCards = currentCards.Where(c => c != null).ToList();
+                    var previousNonNullCards = _previousCards[playerData].Where(c => c != null).ToList();
 
-                _previousCards[playerData] = currentCards.ToList();
-            });
-    }
+                    var addedCards = nonNullCards
+                        .Where(c => previousNonNullCards.All(p => p.id != c.id))
+                        .ToList();
 
-    private void OnCardAddedBoard(MinionCardData addedCard, int addedIndex, GameSessionPlayerData playerData)
-    {
-        var views = _battlefieldViews[playerData];
-        _cardOnBattlefieldPresenter.SetCardInBattlefield(views[addedIndex], addedCard);
-        playerData.MainHeroEntity().RemoveCardFromHand(addedCard);
-        
-        var newOwner = new CardAndHealthEntityOwnerData();
-        
-        newOwner.startCardsInDeckCount = addedCard.SpellsList.Count;
-        newOwner.startCardsInHandToDraw = addedCard.HandCardCount;
-        newOwner._heroName = addedCard.Name;
-        newOwner._health = addedCard.Health;
-        newOwner.Chakra = addedCard.Chakra;
-        newOwner._iconImage = addedCard.IconImage;
-        
-        
-        playerData.CardAndHealthEntityOwners.Add(newOwner);
-        
-        Debug.Log(newOwner._heroName);
-        _createOwnerCardAndHealthEntitySystem.CreateEntityPlayer(newOwner);
-    }
+                    var removedCards = previousNonNullCards
+                        .Where(p => nonNullCards.All(c => c.id != p.id))
+                        .ToList();
 
-    private void OnCardRemovedFromBoard(MinionCardData removedCard, GameSessionPlayerData playerData)
-    {
-    }
+                    if (removedCards.Count > 0)
+                        OnCardRemovedFromBoard(removedCards[0], playerData);
 
-    public void AddCardInBattlefield(GameSessionPlayerData playerData, CardStatsData cardData)
-    {
-        var data = new MinionCardData();
-        data = (MinionCardData)cardData;
-        playerData.AddCardToBoard(data, _tipPlaceBattlefieldViewSystem.GetCardIndex());
+                    if (addedCards.Count > 0)
+                    {
+                        int addedIndex = currentCards.FindIndex(c => c != null && c.id == addedCards[0].id);
+                        OnCardAddedBoard(addedCards[0], addedIndex, playerData);
+                    }
+
+                    _previousCards[playerData] = currentCards.ToList();
+                });
+        }
+        
+        
+        private void OnOwnerSwitched(CardAndHealthEntityOwnerData owner)
+        {
+            foreach (var kvp in _ownerToView)
+                kvp.Value.SetSelected(kvp.Key == owner);
+        }
+
+        private void OnCardAddedBoard(MinionCardData addedCard, int addedIndex, GameSessionPlayerData playerData)
+        {
+            var view = SetupBattlefieldView(addedCard, addedIndex, playerData);
+            var newOwner = CreateOwnerFromCard(addedCard);
+    
+            playerData.CardAndHealthEntityOwners.Add(newOwner);
+            RegisterOwnerView(newOwner, view);
+    
+            _createOwnerCardAndHealthEntitySystem.CreateEntityPlayer(newOwner);
+        }
+
+        private CardOnBattlefieldView SetupBattlefieldView(MinionCardData addedCard, int addedIndex, GameSessionPlayerData playerData)
+        {
+            var view = _battlefieldViews[playerData][addedIndex];
+            _cardOnBattlefieldPresenter.SetCardInBattlefield(view, addedCard);
+            playerData.MainHeroEntity().RemoveCardFromHand(addedCard);
+            return view;
+        }
+
+        private CardAndHealthEntityOwnerData CreateOwnerFromCard(MinionCardData card)
+        {
+            return new CardAndHealthEntityOwnerData
+            {
+                startCardsInDeckCount = card.SpellsList.Count,
+                startCardsInHandToDraw = card.HandCardCount,
+                _heroName = card.Name,
+                _health = card.Health,
+                Chakra = card.Chakra,
+                _iconImage = card.IconImage
+            };
+        }
+
+        private void RegisterOwnerView(CardAndHealthEntityOwnerData owner, CardOnBattlefieldView view)
+        {
+            _ownerToView[owner] = view;
+            view.OnClicked += () => _handViewSwitcher.SwitchTo(owner);
+        }
+
+        private void OnCardRemovedFromBoard(MinionCardData removedCard, GameSessionPlayerData playerData){}
+
+        public void AddCardInBattlefield(GameSessionPlayerData playerData, CardStatsData cardData) => 
+            playerData.AddCardToBoard((MinionCardData)cardData, _tipPlaceBattlefieldViewSystem.GetCardIndex());
     }
 }

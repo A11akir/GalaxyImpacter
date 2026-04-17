@@ -21,7 +21,7 @@ MonoBehaviour:
   targetType: 4
   id: 22cb8c4b-0566-4e45-b970-c57bb24b9cc7
   _health: 5
-  _chakra: 0
+  _chakra: 4
   _handCardCount: 2
   _spellsList:
   - {fileID: 11400000, guid: 122c9f08f812940e691bf84ed3c3ab38, type: 2}
