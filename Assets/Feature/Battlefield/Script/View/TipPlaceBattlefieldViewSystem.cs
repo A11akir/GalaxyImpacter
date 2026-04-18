@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Feature.Battlefield.Script.View
@@ -23,18 +24,26 @@ namespace Feature.Battlefield.Script.View
                 _canvasGroups[i].alpha = 0f;
             }
             
+            _occupiedSlots = new bool[_tipPositions.Length];
             gameObject.SetActive(false);
         }
+
+        private bool[] _occupiedSlots;
+
+        public void OccupySlot(int index) => _occupiedSlots[index] = true;
+        public void FreeSlot(int index) => _occupiedSlots[index] = false;
 
         public void ActiveNearTip(Transform cardTransform)
         {
             gameObject.SetActive(true);
-            
+    
             float closestDistance = float.MaxValue;
             int closestIndex = -1;
-            
+    
             for (int i = 0; i < _tipPositions.Length; i++)
             {
+                if (_occupiedSlots[i]) continue;
+        
                 float distance = Vector3.Distance(cardTransform.position, _tipPositions[i].position);
                 if (distance < closestDistance)
                 {
@@ -42,7 +51,13 @@ namespace Feature.Battlefield.Script.View
                     closestIndex = i;
                 }
             }
-            
+
+            if (closestIndex == -1)
+            {
+                Inactive();
+                return;
+            }
+
             for (int i = 0; i < _tipPositions.Length; i++)
             {
                 _indexNearCard = closestIndex;

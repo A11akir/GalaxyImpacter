@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Feature.Card.Script;
+using Feature.GoogleSheets;
 using R3;
 using UnityEngine;
 
@@ -12,6 +13,8 @@ namespace Feature.GameSessionData
         public int startCardsInHandToDraw = 6;
         public int startCardsInDeckCount = 10;
         
+        public List<SpellCardData> SpellsList;
+        
         private readonly ReactiveProperty<List<CardStatsData>> _cardsInDeck = new(new List<CardStatsData>());
         public ReadOnlyReactiveProperty<List<CardStatsData>> CardsInDeck => _cardsInDeck;
 
@@ -23,6 +26,8 @@ namespace Feature.GameSessionData
             get => _cardsInHand.Value;
             set => _cardsInHand.Value = value;
         }
+
+        public int StartChakra = 4;
         
         private readonly ReactiveProperty<List<CardStatsData>> _cardsInBoard = new(new List<CardStatsData>());
         public ReadOnlyReactiveProperty<List<CardStatsData>> CardsInBoard => _cardsInBoard;
@@ -54,7 +59,9 @@ namespace Feature.GameSessionData
             get => _chakraCount.Value;
             set => _chakraCount.Value = value;
         }
-        
+
+        public string CardId { get; set; }
+
         public Sprite _iconImage;
         
         public void AddCardToDeck(CardStatsData card)

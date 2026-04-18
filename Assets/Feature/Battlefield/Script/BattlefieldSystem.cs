@@ -55,6 +55,7 @@ namespace Feature.Battlefield.Script
             _previousCards[_gameSessionModel.PlayerHero] = new();
             _previousCards[_gameSessionModel.EnemyHero] = new();
 
+            
             SubscribeReactiveBoardList(_gameSessionModel.PlayerHero);
             SubscribeReactiveBoardList(_gameSessionModel.EnemyHero);
         }
@@ -98,20 +99,21 @@ namespace Feature.Battlefield.Script
                     _previousCards[playerData] = currentCards.ToList();
                 });
         }
-        
-        
         private void OnOwnerSwitched(CardAndHealthEntityOwnerData owner)
         {
             foreach (var kvp in _ownerToView)
                 kvp.Value.SetSelected(kvp.Key == owner);
         }
 
+        private readonly Dictionary<CardAndHealthEntityOwnerData, int> _ownerToSlot = new();
+
         private void OnCardAddedBoard(MinionCardData addedCard, int addedIndex, GameSessionPlayerData playerData)
         {
             var view = SetupBattlefieldView(addedCard, addedIndex, playerData);
             
             var newOwner = CreateOwnerFromCard(addedCard);
-
+            _ownerToSlot[newOwner] = addedIndex;
+            _tipPlaceBattlefieldViewSystem.OccupySlot(addedIndex);
             playerData.CardAndHealthEntityOwners.Add(newOwner);
             RegisterOwnerView(newOwner, view);
 
@@ -129,12 +131,15 @@ namespace Feature.Battlefield.Script
         {
             return new CardAndHealthEntityOwnerData
             {
+                CardId = card.id,
                 startCardsInDeckCount = card.SpellsList.Count,
                 startCardsInHandToDraw = card.HandCardCount,
                 _heroName = card.Name,
                 HealthValue = card.Health,
                 Chakra = card.Chakra,
-                _iconImage = card.IconImage
+                _iconImage = card.IconImage,
+                SpellsList = card.SpellsList,
+                StartChakra = card.Chakra,
             };
         }
 
@@ -145,7 +150,19 @@ namespace Feature.Battlefield.Script
             view.OnClicked += () => _handViewSwitcher.SwitchTo(owner);
         }
 
-        private void OnCardRemovedFromBoard(MinionCardData removedCard, GameSessionPlayerData playerData){}
+        private void OnCardRemovedFromBoard(MinionCardData removedCard, GameSessionPlayerData playerData)
+        {
+            var owner = _ownerToView.Keys.FirstOrDefault(o => o.CardId == removedCard.id);
+            if (owner == null) return;
+
+            var view = _ownerToView[owner];
+            int slot = _battlefieldViews[playerData].IndexOf(view);
+    
+            if (slot >= 0)
+                _tipPlaceBattlefieldViewSystem.FreeSlot(slot);
+    
+            _ownerToView.Remove(owner);
+        }
 
         public void AddCardInBattlefield(GameSessionPlayerData playerData, CardStatsData cardData) => 
             playerData.AddCardToBoard((MinionCardData)cardData, _tipPlaceBattlefieldViewSystem.GetCardIndex());

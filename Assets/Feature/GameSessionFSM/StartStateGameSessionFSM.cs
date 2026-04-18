@@ -10,13 +10,9 @@ namespace Feature.GameSessionFSM
 
         public override void Enter()
         {
-            
             _gameSessionModel.ChooseFirstPlayer();
             CheckGameRules();
-            
         }
-
-
 
         private void CheckGameRules()
         {

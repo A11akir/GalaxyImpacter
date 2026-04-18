@@ -22,4 +22,5 @@ MonoBehaviour:
   id: 3c0eaf1b-b4c1-4f48-bc7f-8f20a22969d8
   _values: 03000000
   _description: Give 3 damage.
-  targetSpellType: 0
+  _effects:
+  - {fileID: 11400000, guid: 3b5f2e160b1e2c74d9990a57ed5fc8d2, type: 2}

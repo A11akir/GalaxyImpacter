@@ -19,28 +19,28 @@ namespace Feature.Card.Script
         
         public void InitializeDeck(CardAndHealthEntityOwnerData hero)
         {
-
             hero.ClearDeck();
-
-            List<CardStatsData> shuffled = new List<CardStatsData>(_gameData.allCards);
-
-            for (int i = shuffled.Count - 1; i > 0; i--)
+            
+            List<CardStatsData> source;
+    
+            if (hero.SpellsList != null && hero.SpellsList.Count > 0)
+                source = new List<CardStatsData>(hero.SpellsList);
+            else
+                source = new List<CardStatsData>(_gameData.allCards);
+            
+            for (int i = source.Count - 1; i > 0; i--)
             {
                 int j = Random.Range(0, i + 1);
-                (shuffled[i], shuffled[j]) = (shuffled[j], shuffled[i]);
+                (source[i], source[j]) = (source[j], source[i]);
             }
 
             for (int i = 0; i < hero.startCardsInDeckCount; i++)
             {
-                var originalCard = shuffled[i % shuffled.Count];
-        
+                var originalCard = source[i % source.Count];
                 var cardCopy = ScriptableObject.Instantiate(originalCard);
                 cardCopy.id = System.Guid.NewGuid().ToString();
-
                 hero.AddCardToDeck(cardCopy);
             }
-
-            Debug.Log($"Колода для {hero._heroName} инициализирована: {hero.CardsInDeck.CurrentValue.Count} карт");
         }
     }
 }
