@@ -93,8 +93,9 @@ namespace Feature.Card.Script
             _cardCastSystem.AddBehavioursToCard(state.HandData[index]);
 
             state.HandData[index].Behaviour.SetOwner(state.Owner);
+            state.HandData[index].Behaviour.CanCastCard(state.Owner.Chakra >= state.HandData[index].Data.Cost);
+    
             var logic = new GameplayLogicCard(state.HandData[index], _gameSessionModel, _battlefieldSystem);
-
             state.HandData[index].Behaviour.OnTryCardCast += logic.CastCard;
             state.HandData[index].Logic = logic;
         }
