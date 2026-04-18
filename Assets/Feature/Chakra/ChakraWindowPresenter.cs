@@ -34,7 +34,7 @@ namespace Feature.Chakra
             if (handData == null) return;
 
             container.ChakraWindowView.SetChakraText(owner.Chakra);
-            _handCardPresenter.ChakraCheckCanCastCard(handData, owner.Chakra);
+            _handCardPresenter.ChakraCheckCanCastHand(handData, owner.Chakra);
             _cardCastSystem.ChakraCheckCanCastCard(handData, owner.Chakra);
         }
 
@@ -49,7 +49,7 @@ namespace Feature.Chakra
                     if (handData == null) return;
 
                     chakraWindowView.SetChakraText(chakra);
-                    _handCardPresenter.ChakraCheckCanCastCard(handData, chakra);
+                    _handCardPresenter.ChakraCheckCanCastHand(handData, chakra);
                     _cardCastSystem.ChakraCheckCanCastCard(handData, chakra);
                 })
                 .AddTo(_disposables);
