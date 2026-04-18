@@ -19,7 +19,6 @@ namespace Feature.Card.Script
         
         public void InitializeDeck(CardAndHealthEntityOwnerData hero)
         {
-            Debug.Log(hero.startCardsInDeckCount);
 
             hero.ClearDeck();
 
@@ -38,7 +37,6 @@ namespace Feature.Card.Script
                 var cardCopy = ScriptableObject.Instantiate(originalCard);
                 cardCopy.id = System.Guid.NewGuid().ToString();
 
-                Debug.Log(cardCopy.Name);
                 hero.AddCardToDeck(cardCopy);
             }
 

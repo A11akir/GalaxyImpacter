@@ -10,6 +10,7 @@ namespace Feature.Card.Script
         [SerializeField] public GameObject _cursorArrowLine;
         [SerializeField] public GameObject _cursorArrowHead;
         [SerializeField] public GameObject _cardContainer;
+        [SerializeField] public GameObject _healthContainer;
         [SerializeField] public TextMeshProUGUI _name;
         [SerializeField] private TextMeshProUGUI _health;
         [SerializeField] private TextMeshProUGUI _cost;
@@ -27,6 +28,7 @@ namespace Feature.Card.Script
     
             if (cardStatsData is MinionCardData minion)
             {
+                _healthContainer.SetActive(true);
                 _heroCardWindow.SetActive(true);
                 _health.text = minion.Health.ToString();
                 _iconMinionHand.sprite = minion.IconImage;

@@ -21,20 +21,15 @@ namespace Feature.GameSessionData
         public void CastCard(CardAndHealthEntityOwnerData owner)
         {
             if (!CheckCanCast(owner)) return;
-
             owner.Chakra -= _cardData.Data.Cost;
-    
-            if (_cardData.Data is MinionCardData)
-            {
-                SpawnHeroCard(owner);
-            }
-            else if (_cardData.Data is SpellCardData spell)
-            {
-                CastSpell(spell, owner);
-                owner.RemoveCardFromHand(_cardData.Data);
-            }
-        }
 
+            if (_cardData.Data is MinionCardData)
+                SpawnHeroCard(owner);
+            else if (_cardData.Data is SpellCardData spell)
+                CastSpell(spell, owner);
+
+            owner.RemoveCardFromHand(_cardData.Data);
+        }
         private void CastSpell(SpellCardData spell, CardAndHealthEntityOwnerData owner)
         {
             

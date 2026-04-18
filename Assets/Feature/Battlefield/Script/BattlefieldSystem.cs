@@ -119,7 +119,6 @@ namespace Feature.Battlefield.Script
         {
             var view = _battlefieldViews[playerData][addedIndex];
             _cardOnBattlefieldPresenter.SetCardInBattlefield(view, addedCard);
-            playerData.MainHeroEntity().RemoveCardFromHand(addedCard);
             return view;
         }
 

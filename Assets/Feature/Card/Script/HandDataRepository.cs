@@ -80,10 +80,12 @@ namespace Feature.Card.Script
 
         private void OnCardRemovedFromHand(CardStatsData removedCard, EntityHandState state)
         {
+            Debug.Log($"Removing card {removedCard.Name} from {state.Owner._heroName}");
             var cardToRemove = state.HandData.FirstOrDefault(c => c.Data.id == removedCard.id);
+            Debug.Log($"Found: {cardToRemove != null}");
             if (cardToRemove == null) return;
 
-            _handCardPresenter.RemoveCardFromHand(cardToRemove.View);
+            _handCardPresenter.RemoveCardFromHand(cardToRemove.View, state.HandCardViews);
             _cardCastSystem.RemoveBehaviourFromHandCard(cardToRemove);
             state.HandData.Remove(cardToRemove);
         }

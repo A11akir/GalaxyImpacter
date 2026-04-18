@@ -30,7 +30,7 @@ namespace Feature.Card.Script
                     selectObjectTarget.Init(
                         cardData.View._cardContainer,
                         cardData.View._cursorArrowHead,
-                        cardData.View._cursorArrowLine); // ← передаём
+                        cardData.View._cursorArrowLine);
 
                     cardData.Behaviour = selectObjectTarget;
                     break;

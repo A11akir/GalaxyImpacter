@@ -27,9 +27,9 @@ namespace Feature.Card.Script
             return _handCardViews.AddCardFromHand(cardStatsData, addedIndex);
         }
 
-        public void RemoveCardFromHand(HandCardView view)
+        public void RemoveCardFromHand(HandCardView view, HandCardViews handCardViews)
         {
-            _handCardViews.RemoveHandCardView(view);
+            handCardViews.RemoveHandCardView(view);
         }
     }
 }

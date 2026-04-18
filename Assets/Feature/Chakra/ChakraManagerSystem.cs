@@ -22,14 +22,14 @@ namespace Feature.Chakra
 
         public void InitEntityChakra(CardAndHealthEntityOwnerData owner)
         {
-            AddChakraWithMaxLimit(owner, 4);
+            AddChakraWithMaxLimit(owner, 8);
         }
 
         public void NewTurnUpdate()
         {
             foreach (var owner in _gameSessionModel.GetAllEntityOwners())
             {
-                AddChakraWithMaxLimit(owner, 4);
+                AddChakraWithMaxLimit(owner, 8);
             }
         }
 

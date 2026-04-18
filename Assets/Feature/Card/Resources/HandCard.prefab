@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &9074923429337631906
 RectTransform:
   m_ObjectHideFlags: 0
@@ -903,6 +903,7 @@ MonoBehaviour:
   _cursorArrowLine: {fileID: 2399504817932188424}
   _cursorArrowHead: {fileID: 4627265300604879143}
   _cardContainer: {fileID: 2383824398865969493}
+  _healthContainer: {fileID: 924570995641032415}
   _name: {fileID: 6600433546763498728}
   _health: {fileID: 6013828456006210300}
   _cost: {fileID: 5555558728533896058}

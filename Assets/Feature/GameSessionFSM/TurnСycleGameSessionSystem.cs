@@ -41,6 +41,7 @@ namespace Feature.GameSessionFSM
             _gameSessionModel.PlayerHero.InitBoard();
             _battlefieldSystem.Init();
             _currencyManagerSystem.Init();
+            _currencyManagerSystem.NewTurnUpdate();
         }
 
         public void CycleTurn()
