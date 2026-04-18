@@ -46,6 +46,7 @@ namespace Feature.EntryPoint.Script
             Container.Bind<GameSessionPresenter>().AsSingle();
             Container.Bind<AIRandomSelectSystem>().AsSingle();
 
+            Container.Bind<CombatSystem.CombatSystem>().AsSingle();
             Container.Bind<GraphicRaycaster>().FromComponentInHierarchy().AsSingle();
             Container.Bind<EventSystem>().FromComponentInHierarchy().AsSingle();
             Container.Bind<EntityDeathSystem>().AsSingle();

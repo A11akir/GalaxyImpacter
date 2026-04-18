@@ -19,7 +19,7 @@ namespace Feature.Hero
         private readonly ChakraManagerSystem _chakraManagerSystem;
         private readonly HandFillSystem _handFillSystem;
 
-        private readonly List<EntityPresenter> _entityPresenters = new();
+        private readonly Dictionary<CardAndHealthEntityOwnerData, EntityPresenter> _entityPresenters = new();
         
         public CreateOwnerCardAndHealthEntitySystem(GameSessionModel gameSessionModel,
             ChakraManagerSystem chakraManagerSystem, HandDataRepository handDataRepository,
@@ -33,6 +33,7 @@ namespace Feature.Hero
             _handViewSwitcher = handViewSwitcher;
             _handFillSystem = handFillSystem;
             _entityDeathSystem = entityDeathSystem;
+            _entityDeathSystem.OnEntityDied += DisposeEntity;
         }
         
         public void CreateEntityPlayer(CardAndHealthEntityOwnerData owner, IHealthView healthView)
@@ -44,8 +45,9 @@ namespace Feature.Hero
             _handFillSystem.FillEntityHand(owner);
             _chakraManagerSystem.InitEntityChakra(owner);
             _entityDeathSystem.Init(owner);
+    
             var presenter = new EntityPresenter(owner, healthView);
-            _entityPresenters.Add(presenter);
+            _entityPresenters[owner] = presenter;
         }
 
         public void CreatePlayersEntity(IHealthView playerHealthView, IHealthView enemyHealthView)
@@ -64,6 +66,15 @@ namespace Feature.Hero
             _chakraManagerSystem.Init(owner, container.ChakraWindowView); // передаём вьюху чакры
             _handFillSystem.FillEntityHand(owner);
             _chakraManagerSystem.InitEntityChakra(owner);*/
+        }
+        
+        public void DisposeEntity(CardAndHealthEntityOwnerData owner)
+        {
+            if (_entityPresenters.TryGetValue(owner, out var presenter))
+            {
+                presenter.Dispose();
+                _entityPresenters.Remove(owner);
+            }
         }
         
     }

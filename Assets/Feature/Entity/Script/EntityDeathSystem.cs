@@ -1,41 +1,42 @@
+using System;
 using System.Linq;
 using Feature.Battlefield.Script;
+using Feature.Card.Script;
 using Feature.GameSessionData;
+using Feature.Hero;
 using R3;
 
 namespace Feature.Entity.Script
 {
     public class EntityDeathSystem
     {
+        private readonly GameSessionModel _gameSessionModel;
+        private readonly HandDataRepository _handDataRepository;
         private readonly CompositeDisposable _disposables = new();
-        private GameSessionModel _gameSessionModel;
-        private BattlefieldSystem _battlefieldSystem;
 
-        public EntityDeathSystem(GameSessionModel gameSessionModel, BattlefieldSystem battlefieldSystem)
+        public event Action<CardAndHealthEntityOwnerData> OnEntityDied;
+
+        public EntityDeathSystem(GameSessionModel gameSessionModel, HandDataRepository handDataRepository)
         {
             _gameSessionModel = gameSessionModel;
-            _battlefieldSystem = battlefieldSystem;
+            _handDataRepository = handDataRepository;
         }
-
 
         public void Init(CardAndHealthEntityOwnerData owner)
-        {
-            Subscribe(owner);
-        }
-
-        private void Subscribe(CardAndHealthEntityOwnerData owner)
         {
             owner.Health
                 .Subscribe(hp =>
                 {
                     if (hp <= 0)
-                        OnEntityDied(owner);
+                        HandleEntityDied(owner);
                 })
                 .AddTo(_disposables);
         }
-        
-        private void OnEntityDied(CardAndHealthEntityOwnerData owner)
+
+        private void HandleEntityDied(CardAndHealthEntityOwnerData owner)
         {
+            _handDataRepository.DisposeOwner(owner);
+        
             var playerData = _gameSessionModel.GetPlayerDataByOwner(owner);
             if (playerData == null) return;
 
@@ -44,8 +45,10 @@ namespace Feature.Entity.Script
         
             if (cardOnBoard != null)
                 playerData.RemoveCardFromBoard(cardOnBoard);
+
+            OnEntityDied?.Invoke(owner);
         }
-        
+
         public void Dispose() => _disposables.Dispose();
     }
 }

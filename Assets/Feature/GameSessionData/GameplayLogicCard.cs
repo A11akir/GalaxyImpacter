@@ -11,12 +11,15 @@ namespace Feature.GameSessionData
         private HandCardData _cardData;
         private GameSessionModel _gameSessionModel;
         private BattlefieldSystem _battlefieldSystem;
+        private CombatSystem.CombatSystem _combatSystem;
 
-        public GameplayLogicCard(HandCardData cardData, GameSessionModel gameSessionModel, BattlefieldSystem battlefieldSystem)
+        public GameplayLogicCard(HandCardData cardData, GameSessionModel gameSessionModel, BattlefieldSystem battlefieldSystem,
+            CombatSystem.CombatSystem combatSystem)
         {
             _cardData = cardData;
             _gameSessionModel = gameSessionModel;
             _battlefieldSystem = battlefieldSystem;
+            _combatSystem = combatSystem;
         }
 
         public void CastCard(CardAndHealthEntityOwnerData owner, CardAndHealthEntityOwnerData target)
@@ -27,10 +30,7 @@ namespace Feature.GameSessionData
             if (_cardData.Data is MinionCardData)
                 SpawnHeroCard(owner);
             else if (_cardData.Data is SpellCardData spell)
-            {
                 CastSpell(spell, owner, target);
-            }
-                
 
             owner.RemoveCardFromHand(_cardData.Data);
         }
@@ -44,12 +44,12 @@ namespace Feature.GameSessionData
                     Caster = owner,
                     Target = target,
                     GameSessionModel = _gameSessionModel,
+                    CombatSystem = _combatSystem,
                     BattlefieldSystem = _battlefieldSystem,
                     CardData = spell,
                     ValueIndex = i
                 };
         
-                
                 spell.Effects[i].Execute(context);
             }
         }

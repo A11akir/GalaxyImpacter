@@ -15,15 +15,17 @@ namespace Feature.Card.Script
         private readonly GameSessionModel _gameSessionModel;
         private readonly HandCardPresenter _handCardPresenter;
         private readonly CardCastSystem _cardCastSystem;
+        private readonly CombatSystem.CombatSystem _combatSystem;
 
         public HandDataRepository(
             CardCastSystem cardCastSystem, HandCardPresenter handCardPresenter,
-            GameSessionModel gameSessionModel, BattlefieldSystem battlefieldSystem)
+            GameSessionModel gameSessionModel, BattlefieldSystem battlefieldSystem, CombatSystem.CombatSystem combatSystem)
         {
             _cardCastSystem = cardCastSystem;
             _handCardPresenter = handCardPresenter;
             _gameSessionModel = gameSessionModel;
             _battlefieldSystem = battlefieldSystem;
+            _combatSystem = combatSystem;
         }
 
         public void InitHandRepository(CardAndHealthEntityOwnerData owner, HandCardViews handCardViews)
@@ -61,7 +63,7 @@ namespace Feature.Card.Script
                     if (addedCards.All(addedCard => addedCard.id != card.id)) continue;
                     OnCardAddedToHand(card, i, state);
                 }
-            });
+            }).AddTo(state.Disposables);
         }
 
         private void OnCardAddedToHand(CardStatsData addedCard, int addedIndex, EntityHandState state)
@@ -98,9 +100,18 @@ namespace Feature.Card.Script
             state.HandData[index].Behaviour.CanCastCard(canCast);
             _handCardPresenter.ChakraCheckCanCastCard(state.HandData[index], state.Owner.Chakra);
     
-            var logic = new GameplayLogicCard(state.HandData[index], _gameSessionModel, _battlefieldSystem);
+            var logic = new GameplayLogicCard(state.HandData[index], _gameSessionModel, _battlefieldSystem, _combatSystem);
             state.HandData[index].Behaviour.OnTryCardCast += logic.CastCard;
             state.HandData[index].Logic = logic;
+        }
+        
+        public void DisposeOwner(CardAndHealthEntityOwnerData owner)
+        {
+            if (_entityHands.TryGetValue(owner, out var state))
+            {
+                state.Disposables.Dispose();
+                _entityHands.Remove(owner);
+            }
         }
     }
 }

@@ -125,9 +125,9 @@ namespace Feature.Card.Script
             cursorArrowHead.SetActive(true);
             cardObject.SetActive(false);
 
-            _startPosition = _cardRectTransform.position;
+            _startPosition = eventData.pressEventCamera.WorldToScreenPoint(_cardRectTransform.position);
+    
             _isDragging = true;
-
             transform.localScale = Vector3.one;
         }
 

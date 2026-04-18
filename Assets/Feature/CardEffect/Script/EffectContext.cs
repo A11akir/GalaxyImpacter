@@ -10,6 +10,7 @@ namespace Feature.CardEffect.Script
         public CardAndHealthEntityOwnerData Target;
         public GameSessionModel GameSessionModel;
         public BattlefieldSystem BattlefieldSystem;
+        public CombatSystem.CombatSystem CombatSystem;
         public SpellCardData CardData;
         public int ValueIndex;
     }
