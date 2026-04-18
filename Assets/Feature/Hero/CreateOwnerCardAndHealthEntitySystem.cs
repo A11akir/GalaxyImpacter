@@ -15,6 +15,7 @@ namespace Feature.Hero
         private readonly GameSessionModel _gameSessionModel;
         private readonly DeckFillSystem _deckFillSystem;
         private readonly HandDataRepository _handDataRepository;
+        private readonly EntityDeathSystem _entityDeathSystem;
         private readonly ChakraManagerSystem _chakraManagerSystem;
         private readonly HandFillSystem _handFillSystem;
 
@@ -22,7 +23,8 @@ namespace Feature.Hero
         
         public CreateOwnerCardAndHealthEntitySystem(GameSessionModel gameSessionModel,
             ChakraManagerSystem chakraManagerSystem, HandDataRepository handDataRepository,
-            DeckFillSystem deckFillSystem, HandViewSwitcher handViewSwitcher, HandFillSystem handFillSystem)
+            DeckFillSystem deckFillSystem, HandViewSwitcher handViewSwitcher, HandFillSystem handFillSystem,
+            EntityDeathSystem entityDeathSystem)
         {
             _gameSessionModel = gameSessionModel;
             _chakraManagerSystem = chakraManagerSystem;
@@ -30,10 +32,9 @@ namespace Feature.Hero
             _deckFillSystem = deckFillSystem;
             _handViewSwitcher = handViewSwitcher;
             _handFillSystem = handFillSystem;
+            _entityDeathSystem = entityDeathSystem;
         }
         
-
-
         public void CreateEntityPlayer(CardAndHealthEntityOwnerData owner, IHealthView healthView)
         {
             _deckFillSystem.InitializeDeck(owner);
@@ -42,7 +43,7 @@ namespace Feature.Hero
             _chakraManagerSystem.Init(owner, container.ChakraWindowView);
             _handFillSystem.FillEntityHand(owner);
             _chakraManagerSystem.InitEntityChakra(owner);
-    
+            _entityDeathSystem.Init(owner);
             var presenter = new EntityPresenter(owner, healthView);
             _entityPresenters.Add(presenter);
         }

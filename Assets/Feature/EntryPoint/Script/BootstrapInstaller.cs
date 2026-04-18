@@ -5,6 +5,7 @@ using Feature.Card.Script;
 using Feature.Chakra;
 using Feature.Common;
 using Feature.Data;
+using Feature.Entity.Script;
 using Feature.GameSessionData;
 using Feature.HandLogic;
 using Feature.GameSessionFSM;
@@ -47,7 +48,7 @@ namespace Feature.EntryPoint.Script
 
             Container.Bind<GraphicRaycaster>().FromComponentInHierarchy().AsSingle();
             Container.Bind<EventSystem>().FromComponentInHierarchy().AsSingle();
-            
+            Container.Bind<EntityDeathSystem>().AsSingle();
             Container.Bind<CreateOwnerCardAndHealthEntitySystem>().AsSingle();
             
             Container.Bind<HandViewSwitcher>().FromComponentInHierarchy().AsSingle();

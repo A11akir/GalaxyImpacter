@@ -44,7 +44,6 @@ namespace Feature.Battlefield.Script
             _gameSessionModel = gameSessionModel;
             _createOwnerCardAndHealthEntitySystem = createOwnerCardAndHealthEntitySystem;
             _handViewSwitcher.OnOwnerSwitched += OnOwnerSwitched;
-
         }
 
         public void Init()
@@ -54,7 +53,6 @@ namespace Feature.Battlefield.Script
 
             _previousCards[_gameSessionModel.PlayerHero] = new();
             _previousCards[_gameSessionModel.EnemyHero] = new();
-
             
             SubscribeReactiveBoardList(_gameSessionModel.PlayerHero);
             SubscribeReactiveBoardList(_gameSessionModel.EnemyHero);
@@ -156,12 +154,19 @@ namespace Feature.Battlefield.Script
             if (owner == null) return;
 
             var view = _ownerToView[owner];
-            int slot = _battlefieldViews[playerData].IndexOf(view);
     
+            int slot = _battlefieldViews[playerData].IndexOf(view);
             if (slot >= 0)
                 _tipPlaceBattlefieldViewSystem.FreeSlot(slot);
-    
+
+            view.ClearData();
+
+            if (_handViewSwitcher.CurrentOwner == owner)
+                _handViewSwitcher.SwitchTo(playerData.MainHeroEntity());
+
             _ownerToView.Remove(owner);
+            _ownerToSlot.Remove(owner);
+            playerData.CardAndHealthEntityOwners.Remove(owner);
         }
 
         public void AddCardInBattlefield(GameSessionPlayerData playerData, CardStatsData cardData) => 

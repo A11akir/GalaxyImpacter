@@ -23,7 +23,6 @@ namespace Feature.Battlefield.Script.View
         [SerializeField] private GameObject _selectEntityView;
 
         public event Action OnClicked;
-        public CardAndHealthEntityOwnerData OwnerData { get; set; }
 
         public void SetDataView(MinionCardData cardStatsData)
         {
@@ -48,6 +47,19 @@ namespace Feature.Battlefield.Script.View
         {
             _health.text = hp.ToString();
             _healthBoard.text = hp.ToString();
+        }
+        
+        public void ClearData()
+        {
+            _name.text = "";
+            _health.text = "";
+            _healthBoard.text = "";
+            _cost.text = "";
+            _iconMinionHand.sprite = null;
+            _iconMinionBoard.sprite = null;
+            _heroDescriptionWindow.SetActive(false);
+            _selectEntityView.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
 }

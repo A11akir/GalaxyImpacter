@@ -17,5 +17,10 @@ namespace Feature.Card.Script
         {
             return _targetsData.TryGetValue(gameObject, out var owner) ? owner : null;
         }
+        
+        public void UnregisterTarget(GameObject gameObject)
+        {
+            _targetsData.Remove(gameObject);
+        }
     }
 }

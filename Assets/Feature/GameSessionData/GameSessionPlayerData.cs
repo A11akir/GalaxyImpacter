@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Feature.Card.Script;
 using Feature.GoogleSheets;
@@ -85,61 +84,10 @@ namespace Feature.GameSessionData
         
         public void ClearBoard() => _cardsInBoard.Value = new List<MinionCardData>();
     }
-    
-    public class Health
-    {
-        public event Action HpChanged;
-        public event Action HealthOver;
-
-        private float _currentHp;
-        public float CurrentHp
-        {
-            get => _currentHp;
-            private set
-            {
-                if (!Mathf.Approximately(_currentHp, value))
-                {
-                    _currentHp = value;
-                    HpChanged?.Invoke();
-                }
-            }
-        }
-
-        public float MaxHp { get; set; }
-        public void ResetHp() => CurrentHp = MaxHp;
-        public void Heal(float amount)
-        {
-            
-        }
-
-        public void TakeDamage(float damage)
-        {
-            CurrentHp -= damage;
-
-            if (CurrentHp <= 0)
-            {
-                HealthOver?.Invoke();
-            }
-        }
-    }
 
     public class HeroPowerData
     {
         private int cost;
         
-    }
-
-    public interface ITargetable
-    {
-        
-    }
-    public interface IUnTargetable
-    {
-        
-    }
-
-    public interface IMinion
-    {
-        List<GameplayLogicCard> _cards { get; set; }
     }
 }
