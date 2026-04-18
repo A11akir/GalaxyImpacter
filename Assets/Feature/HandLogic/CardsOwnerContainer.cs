@@ -7,11 +7,11 @@ namespace Feature.HandLogic
     public class CardsOwnerContainer : MonoBehaviour
     {
         [SerializeField] private HandCardViews _handCardViews;
-        [SerializeField] private HandCardsPositionSystem _handCardsPositionSystem;
+        [SerializeField] private Transform _handCardsContainer;
         [SerializeField] private ChakraWindowView _chakraWindowView;
 
         public HandCardViews HandCardViews => _handCardViews;
-        public HandCardsPositionSystem HandCardsPositionSystem => _handCardsPositionSystem;
+        public Transform HandCardsContainer => _handCardsContainer;
         public ChakraWindowView ChakraWindowView => _chakraWindowView;
     }
 }

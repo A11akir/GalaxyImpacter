@@ -9,11 +9,9 @@ namespace Feature.HandLogic
 {
     public class HandCardsPositionSystem : MonoBehaviour
     {
-        private HandCardViews _handCardViews;
-
         private readonly List<GameObject> _handCards = new List<GameObject>();
 
-        [SerializeField] private Transform handParent;
+        private Transform _handParent;
 
         [SerializeField] private int verticalCardOffset = 30;
 
@@ -27,29 +25,10 @@ namespace Feature.HandLogic
 
         [SerializeField] private int horizontalCardOffsetRatio = 10;
 
-        [Inject]
-        public void Construct(HandCardViews handCardViews)
-        {
-            _handCardViews = handCardViews;
-            _handCardViews.UpdateViewCard += UpdateCardsPosition;
-        }
-
-        public void OnDisable() 
-        {
-            if (_handCardViews == null) return;
-            _handCardViews.UpdateViewCard -= UpdateCardsPosition;
-        }
-
-        public void OnEnable()
-        {
-            if (_handCardViews == null) return;
-            _handCardViews.UpdateViewCard += UpdateCardsPosition;
-        }
-
         [Button]
-        public void UpdateCardsPosition()
+        public void UpdateCardsPosition(Transform cardContainer)
         {
-            CollectHandCards();
+            CollectHandCards(cardContainer);
 
             for (int i = 0; i < _handCards.Count; i++)
             {
@@ -90,7 +69,7 @@ namespace Feature.HandLogic
             return yPos;
         }
 
-        private void CollectHandCards()
+        private void CollectHandCards(Transform handParent)
         {
             _handCards.Clear();
             

@@ -3505,7 +3505,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 329602165}
-  - component: {fileID: 329602167}
   - component: {fileID: 329602166}
   m_Layer: 5
   m_Name: HandCardContainer
@@ -3566,25 +3565,6 @@ MonoBehaviour:
   - {fileID: 1315267468}
   - {fileID: 1151990135}
   - {fileID: 1439874340}
---- !u!114 &329602167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 329602164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cff1814b369499fb82acd205028cae0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  handParent: {fileID: 329602165}
-  verticalCardOffset: 28
-  verticalCardOffsetRatio: 2
-  cardOffsetRotate: 8
-  cardOffsetRotateRatio: 0.5
-  horizontalCardOffset: 150
-  horizontalCardOffsetRatio: 3
 --- !u!1001 &339305142
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6685,7 +6665,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 623712203}
-  - component: {fileID: 623712205}
   - component: {fileID: 623712204}
   m_Layer: 5
   m_Name: HandCardContainer
@@ -6746,25 +6725,6 @@ MonoBehaviour:
   - {fileID: 516919558}
   - {fileID: 1682039925}
   - {fileID: 47643752}
---- !u!114 &623712205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 623712202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cff1814b369499fb82acd205028cae0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  handParent: {fileID: 623712203}
-  verticalCardOffset: 28
-  verticalCardOffsetRatio: 2
-  cardOffsetRotate: 8
-  cardOffsetRotateRatio: 0.5
-  horizontalCardOffset: 150
-  horizontalCardOffsetRatio: 3
 --- !u!1001 &627841102
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7373,7 +7333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _handCardViews: {fileID: 1781981965}
-  _handCardsPositionSystem: {fileID: 1781981966}
+  _handCardsContainer: {fileID: 1781981964}
   _chakraWindowView: {fileID: 1920743628}
 --- !u!1001 &681086414
 PrefabInstance:
@@ -9817,7 +9777,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1013419861}
-  - component: {fileID: 1013419863}
   - component: {fileID: 1013419862}
   m_Layer: 5
   m_Name: HandCardContainer
@@ -9878,25 +9837,6 @@ MonoBehaviour:
   - {fileID: 571772382}
   - {fileID: 318025035}
   - {fileID: 568495788}
---- !u!114 &1013419863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1013419860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cff1814b369499fb82acd205028cae0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  handParent: {fileID: 1013419861}
-  verticalCardOffset: 28
-  verticalCardOffsetRatio: 2
-  cardOffsetRotate: 8
-  cardOffsetRotateRatio: 0.5
-  horizontalCardOffset: 150
-  horizontalCardOffsetRatio: 3
 --- !u!1 &1015252934
 GameObject:
   m_ObjectHideFlags: 0
@@ -11920,7 +11860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _handCardViews: {fileID: 1826728842}
-  _handCardsPositionSystem: {fileID: 1826728843}
+  _handCardsContainer: {fileID: 1826728841}
   _chakraWindowView: {fileID: 746323245}
 --- !u!1 &1227320271 stripped
 GameObject:
@@ -12626,7 +12566,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1388931698}
-  - component: {fileID: 1388931699}
   - component: {fileID: 1388931700}
   m_Layer: 5
   m_Name: HandCardContainer
@@ -12664,25 +12603,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -444}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1388931699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1388931697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cff1814b369499fb82acd205028cae0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  handParent: {fileID: 1388931698}
-  verticalCardOffset: 28
-  verticalCardOffsetRatio: 2
-  cardOffsetRotate: 8
-  cardOffsetRotateRatio: 0.5
-  horizontalCardOffset: 150
-  horizontalCardOffsetRatio: 3
 --- !u!114 &1388931700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13710,7 +13630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _handCardViews: {fileID: 623712204}
-  _handCardsPositionSystem: {fileID: 623712205}
+  _handCardsContainer: {fileID: 623712203}
   _chakraWindowView: {fileID: 1162383239}
 --- !u!1001 &1509453027
 PrefabInstance:
@@ -14714,6 +14634,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1634189283}
   - component: {fileID: 1634189284}
+  - component: {fileID: 1634189285}
   m_Layer: 5
   m_Name: CardsOwnersSwitchContainer
   m_TagString: Untagged
@@ -14767,6 +14688,24 @@ MonoBehaviour:
   - {fileID: 1985837894}
   - {fileID: 1705857248}
   - {fileID: 1220616652}
+--- !u!114 &1634189285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634189282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cff1814b369499fb82acd205028cae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  verticalCardOffset: 30
+  verticalCardOffsetRatio: 5
+  cardOffsetRotate: 15
+  cardOffsetRotateRatio: 1
+  horizontalCardOffset: 150
+  horizontalCardOffsetRatio: 10
 --- !u!1001 &1636656250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15592,7 +15531,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _handCardViews: {fileID: 1995480603}
-  _handCardsPositionSystem: {fileID: 1995480604}
+  _handCardsContainer: {fileID: 1995480602}
   _chakraWindowView: {fileID: 491699824}
 --- !u!1001 &1682039923
 PrefabInstance:
@@ -15772,7 +15711,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _handCardViews: {fileID: 1013419862}
-  _handCardsPositionSystem: {fileID: 1013419863}
+  _handCardsContainer: {fileID: 1013419861}
   _chakraWindowView: {fileID: 1542577480}
 --- !u!1001 &1708388468
 PrefabInstance:
@@ -15933,7 +15872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _handCardViews: {fileID: 1388931700}
-  _handCardsPositionSystem: {fileID: 1388931699}
+  _handCardsContainer: {fileID: 1388931698}
   _chakraWindowView: {fileID: 1018822690}
 --- !u!1 &1736794671
 GameObject:
@@ -16104,7 +16043,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1781981964}
-  - component: {fileID: 1781981966}
   - component: {fileID: 1781981965}
   m_Layer: 5
   m_Name: HandCardContainer
@@ -16165,25 +16103,6 @@ MonoBehaviour:
   - {fileID: 1977211289}
   - {fileID: 930356701}
   - {fileID: 2072796504}
---- !u!114 &1781981966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1781981963}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cff1814b369499fb82acd205028cae0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  handParent: {fileID: 1781981964}
-  verticalCardOffset: 28
-  verticalCardOffsetRatio: 2
-  cardOffsetRotate: 8
-  cardOffsetRotateRatio: 0.5
-  horizontalCardOffset: 150
-  horizontalCardOffsetRatio: 3
 --- !u!1 &1788945385
 GameObject:
   m_ObjectHideFlags: 0
@@ -16453,7 +16372,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1826728841}
-  - component: {fileID: 1826728843}
   - component: {fileID: 1826728842}
   m_Layer: 5
   m_Name: HandCardContainer
@@ -16514,25 +16432,6 @@ MonoBehaviour:
   - {fileID: 1651940780}
   - {fileID: 1678502156}
   - {fileID: 774420083}
---- !u!114 &1826728843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1826728840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cff1814b369499fb82acd205028cae0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  handParent: {fileID: 1826728841}
-  verticalCardOffset: 28
-  verticalCardOffsetRatio: 2
-  cardOffsetRotate: 8
-  cardOffsetRotateRatio: 0.5
-  horizontalCardOffset: 150
-  horizontalCardOffsetRatio: 3
 --- !u!224 &1830303280 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2233787423589274252, guid: 0a7872cc1d7604fd1b3333db3581d77b, type: 3}
@@ -18020,7 +17919,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _handCardViews: {fileID: 329602166}
-  _handCardsPositionSystem: {fileID: 329602167}
+  _handCardsContainer: {fileID: 329602165}
   _chakraWindowView: {fileID: 1996174368}
 --- !u!224 &1987505313 stripped
 RectTransform:
@@ -18283,7 +18182,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1995480602}
-  - component: {fileID: 1995480604}
   - component: {fileID: 1995480603}
   m_Layer: 5
   m_Name: HandCardContainer
@@ -18344,25 +18242,6 @@ MonoBehaviour:
   - {fileID: 189987775}
   - {fileID: 524058734}
   - {fileID: 87649118}
---- !u!114 &1995480604
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1995480601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cff1814b369499fb82acd205028cae0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  handParent: {fileID: 1995480602}
-  verticalCardOffset: 28
-  verticalCardOffsetRatio: 2
-  cardOffsetRotate: 8
-  cardOffsetRotateRatio: 0.5
-  horizontalCardOffset: 150
-  horizontalCardOffsetRatio: 3
 --- !u!1 &1996174366
 GameObject:
   m_ObjectHideFlags: 0

@@ -65,7 +65,7 @@ namespace Feature.Card.Script
         {
             ResetTransform();
             _isDragging = false;
-            _handCardsPositionSystem?.UpdateCardsPosition();
+            _handCardsPositionSystem?.UpdateCardsPosition(transform.parent);
         }
 
         private void ResetTransform()
@@ -101,7 +101,7 @@ namespace Feature.Card.Script
             if (_isDragging) return;
 
             transform.SetSiblingIndex(_hierarchyIndex);
-            _handCardsPositionSystem.UpdateCardsPosition();
+            _handCardsPositionSystem.UpdateCardsPosition(transform.parent);
             _isPointerEnter = false;
         }
 
@@ -143,7 +143,7 @@ namespace Feature.Card.Script
             TryCastCard(this); 
             
             transform.SetSiblingIndex(_hierarchyIndex);
-            _handCardsPositionSystem.UpdateCardsPosition();
+            _handCardsPositionSystem.UpdateCardsPosition(transform.parent);
             _isPointerEnter = false;
         }
 

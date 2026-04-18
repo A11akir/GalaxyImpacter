@@ -29,7 +29,7 @@ namespace Feature.Card.Script
         private void OnDisable()
         {
             ResetCardTransform();
-            _handCardsPositionSystem?.UpdateCardsPosition();
+            _handCardsPositionSystem?.UpdateCardsPosition(transform.parent);
         }
         
         private void ResetCardTransform()
@@ -62,7 +62,7 @@ namespace Feature.Card.Script
         public void OnPointerExit(PointerEventData eventData)
         {
             transform.SetSiblingIndex(_hierarchyIndex);
-            _handCardsPositionSystem.UpdateCardsPosition();
+            _handCardsPositionSystem.UpdateCardsPosition(transform.parent);
             
             _isPointerEnter = false;
         }
@@ -91,7 +91,7 @@ namespace Feature.Card.Script
         {
             _isDrag = false;
             transform.SetSiblingIndex(_hierarchyIndex);
-            _handCardsPositionSystem.UpdateCardsPosition();
+            _handCardsPositionSystem.UpdateCardsPosition(transform.parent);
         }
     }
 }

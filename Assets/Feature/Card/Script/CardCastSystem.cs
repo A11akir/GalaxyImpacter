@@ -1,5 +1,6 @@
 using Feature.GameSessionData;
 using System.Collections.Generic;
+using Feature.HandLogic;
 using UnityEngine;
 using Zenject;
 
@@ -29,7 +30,7 @@ namespace Feature.Card.Script
                     selectObjectTarget.Init(
                         cardData.View._cardContainer,
                         cardData.View._cursorArrowHead,
-                        cardData.View._cursorArrowLine);
+                        cardData.View._cursorArrowLine); // ← передаём
 
                     cardData.Behaviour = selectObjectTarget;
                     break;
@@ -38,14 +39,13 @@ namespace Feature.Card.Script
                     var nonTargetBehaviour =
                         _instantiator.InstantiateComponent<NonTransformCastCardUseBehaviour>(
                             cardData.View.gameObject);
-
                     cardData.Behaviour = nonTargetBehaviour;
                     break; 
+
                 case TargetType.Hero:
                     var heroBehaviour =
                         _instantiator.InstantiateComponent<HeroTransformCastCardUseBehaviour>(
                             cardData.View.gameObject);
-
                     cardData.Behaviour = heroBehaviour;
                     break;
             }
