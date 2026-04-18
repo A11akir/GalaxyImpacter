@@ -14,6 +14,8 @@ using Feature.ShopGamePlay.Script.ShopWindow;
 using Feature.UI;
 using Feature.UI.SelectWindowHero;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using Zenject;
 
 namespace Feature.EntryPoint.Script
@@ -43,6 +45,8 @@ namespace Feature.EntryPoint.Script
             Container.Bind<GameSessionPresenter>().AsSingle();
             Container.Bind<AIRandomSelectSystem>().AsSingle();
 
+            Container.Bind<GraphicRaycaster>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<EventSystem>().FromComponentInHierarchy().AsSingle();
             
             Container.Bind<CreateOwnerCardAndHealthEntitySystem>().AsSingle();
             
@@ -61,7 +65,7 @@ namespace Feature.EntryPoint.Script
             
             Container.Bind<HandDataRepository>().AsSingle();            
             Container.Bind<GameplayLogicCard>().AsSingle();
-            
+            Container.Bind<TargetingSystem>().AsSingle();
             Container.Bind<CastCardAreaMinion>().FromComponentInHierarchy().AsSingle();
 
             Container.Bind<BattlefieldSystem>().FromComponentInHierarchy().AsSingle();

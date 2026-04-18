@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Feature.Card.Script;
 using Feature.GameSessionData;
 using Feature.HandLogic;
 using Feature.Hero;
@@ -10,14 +12,16 @@ namespace Feature.UI
         private GameSessionModel _gameSessionModel;
         private GameSessionView _gameSessionView;
         private HandViewSwitcher _handViewSwitcher;
+        private TargetingSystem _targetingSystem;
         private CreateOwnerCardAndHealthEntitySystem _createOwnerCardAndHealthEntitySystem;
 
-        public GameSessionPresenter(GameSessionView gameSessionView, GameSessionModel gameSessionModel, HandViewSwitcher handViewSwitcher, CreateOwnerCardAndHealthEntitySystem createOwnerCardAndHealthEntitySystem)
+        public GameSessionPresenter(GameSessionView gameSessionView, GameSessionModel gameSessionModel, HandViewSwitcher handViewSwitcher, CreateOwnerCardAndHealthEntitySystem createOwnerCardAndHealthEntitySystem, TargetingSystem targetingSystem)
         {
             _gameSessionModel = gameSessionModel;
             _gameSessionView = gameSessionView;
             _handViewSwitcher = handViewSwitcher;
             _createOwnerCardAndHealthEntitySystem = createOwnerCardAndHealthEntitySystem;
+            _targetingSystem = targetingSystem;
         }
 
         public void SetupHeroView()
@@ -29,6 +33,9 @@ namespace Feature.UI
             _gameSessionView._heroView._isBlockedForSelect = true;
 
             _gameSessionView._heroView.SetGameplayMode(true);
+            
+            _targetingSystem.RegisterTarget(_gameSessionView._heroView.gameObject,_gameSessionModel.PlayerHero.MainHeroEntity());
+            _targetingSystem.RegisterTarget(_gameSessionView._enemyView.gameObject,_gameSessionModel.EnemyHero.MainHeroEntity());
 
             SubscribeHeroViewClick();
         }

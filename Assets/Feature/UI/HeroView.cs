@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace Feature.UI
 {
-    public class HeroView : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler, IHealthView
+    public class HeroView : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler, IHealthView, ITargetable
     {
         [SerializeField] private GameObject _wasSelectBotWindow;
         [SerializeField] private GameObject _selectWindow;      

@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
 using Feature.GameSessionData;
 using Feature.HandLogic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using Zenject;
 
 namespace Feature.Card.Script
@@ -24,6 +26,7 @@ namespace Feature.Card.Script
          private float scaleFactor = 1.5f;
 
         [Inject] private HandCardsPositionSystem _handCardsPositionSystem;
+        [Inject] private TargetingSystem _targetingSystem;
 
         private RectTransform _rectTransform;
         private RectTransform _lineRectTransform;
@@ -37,15 +40,19 @@ namespace Feature.Card.Script
         private static bool _isPointerEnter;
 
         public bool _canCastCard { get; set; }
-        event Action<CardAndHealthEntityOwnerData> ITransformCastCardBehaviour.OnTryCardCast
+        
+        private CardAndHealthEntityOwnerData _owner;
+        private CardAndHealthEntityOwnerData _currentTarget;
+
+        public event Action<CardAndHealthEntityOwnerData, CardAndHealthEntityOwnerData> OnTryCardCast;
+
+        public void SetOwner(CardAndHealthEntityOwnerData owner) => _owner = owner;
+
+        public void TryCastCard(ITransformCastCardBehaviour currentCardBehaviour)
         {
-            add => throw new NotImplementedException();
-            remove => throw new NotImplementedException();
+            if (_currentTarget != null)
+                OnTryCardCast?.Invoke(_owner, _currentTarget);
         }
-
-        public event Action OnTryCardCast;
-        public bool CardHasTarget { get; set; }
-
 
         #region Init
 
@@ -65,6 +72,7 @@ namespace Feature.Card.Script
         {
             ResetTransform();
             _isDragging = false;
+            _currentTarget = null;
             _handCardsPositionSystem?.UpdateCardsPosition(transform.parent);
         }
 
@@ -113,8 +121,6 @@ namespace Feature.Card.Script
         {
             if (!_canCastCard) return;
 
-            
-
             cursorArrowLine.SetActive(true);
             cursorArrowHead.SetActive(true);
             cardObject.SetActive(false);
@@ -130,6 +136,41 @@ namespace Feature.Card.Script
             if (!_canCastCard || !_isDragging) return;
 
             UpdateCursorArrow(eventData);
+            UpdateCurrentTarget(eventData);
+        }
+
+        [Inject] private GraphicRaycaster _raycaster;
+        [Inject] private EventSystem _eventSystem;
+
+        private void UpdateCurrentTarget(PointerEventData eventData)
+        {
+            _currentTarget = null;
+
+            var results = new List<RaycastResult>();
+            var pointerData = new PointerEventData(_eventSystem) { position = eventData.position };
+            _raycaster.Raycast(pointerData, results);
+
+            foreach (var result in results)
+            {
+                var target = GetTargetFromHierarchy(result.gameObject);
+                if (target != null)
+                {
+                    _currentTarget = target;
+                    break;
+                }
+            }
+        }
+
+        private CardAndHealthEntityOwnerData GetTargetFromHierarchy(GameObject go)
+        {
+            var current = go.transform;
+            while (current != null)
+            {
+                var target = _targetingSystem.GetTarget(current.gameObject);
+                if (target != null) return target;
+                current = current.parent;
+            }
+            return null;
         }
 
         public void OnEndDrag(PointerEventData eventData)
@@ -141,6 +182,7 @@ namespace Feature.Card.Script
             _isDragging = false;
 
             TryCastCard(this); 
+            _currentTarget = null;
             
             transform.SetSiblingIndex(_hierarchyIndex);
             _handCardsPositionSystem.UpdateCardsPosition(transform.parent);
@@ -188,20 +230,9 @@ namespace Feature.Card.Script
 
         #endregion
 
-        public void TryCastCard(ITransformCastCardBehaviour currentCardBehaviour)
-        {
-            if (CardHasTarget)
-               OnTryCardCast?.Invoke();
-        }
-
         public void CanCastCard(bool canCast)
         {
             _canCastCard = canCast;
-        }
-
-        public void SetOwner(CardAndHealthEntityOwnerData owner)
-        {
-            throw new NotImplementedException();
         }
     }
 }

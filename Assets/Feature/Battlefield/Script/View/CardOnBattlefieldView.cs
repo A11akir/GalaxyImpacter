@@ -1,4 +1,5 @@
 using System;
+using Feature.GameSessionData;
 using Feature.GoogleSheets;
 using Feature.Health;
 using TMPro;
@@ -9,7 +10,7 @@ using UnityEngine.UI;
 namespace Feature.Battlefield.Script.View
 {
     public class CardOnBattlefieldView : MonoBehaviour, 
-        IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IHealthView
+        IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IHealthView, ITargetable
     {
         [SerializeField] private TextMeshProUGUI _name;
         [SerializeField] private TextMeshProUGUI _health;
@@ -22,6 +23,7 @@ namespace Feature.Battlefield.Script.View
         [SerializeField] private GameObject _selectEntityView;
 
         public event Action OnClicked;
+        public CardAndHealthEntityOwnerData OwnerData { get; set; }
 
         public void SetDataView(MinionCardData cardStatsData)
         {

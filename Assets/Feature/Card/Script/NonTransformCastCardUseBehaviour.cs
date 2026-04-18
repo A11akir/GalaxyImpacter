@@ -24,7 +24,7 @@ namespace Feature.Card.Script
         public bool _canCastCard { get; set; }
 
         private CardAndHealthEntityOwnerData _owner;
-        public event Action<CardAndHealthEntityOwnerData> OnTryCardCast;
+        public event Action<CardAndHealthEntityOwnerData, CardAndHealthEntityOwnerData> OnTryCardCast;
 
         [Inject] private HandCardsPositionSystem _handCardsPositionSystem;
         
@@ -121,7 +121,7 @@ namespace Feature.Card.Script
         public void TryCastCard(ITransformCastCardBehaviour currentCardBehaviour)
         {
             if (_castCardAreaMinion.CardHasTarget)
-                OnTryCardCast?.Invoke(_owner);
+                OnTryCardCast?.Invoke(_owner, null);
         }
 
         public void CanCastCard(bool canCast) => _canCastCard = canCast;

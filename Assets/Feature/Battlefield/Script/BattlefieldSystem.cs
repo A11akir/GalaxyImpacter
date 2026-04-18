@@ -18,10 +18,11 @@ namespace Feature.Battlefield.Script
         private CardOnBattlefieldPresenter _cardOnBattlefieldPresenter;
         private GameSessionModel _gameSessionModel;
         private CreateOwnerCardAndHealthEntitySystem _createOwnerCardAndHealthEntitySystem;
+        private TargetingSystem _targetingSystem;
 
         [SerializeField] private GameObject enemyBattlefield;
         [SerializeField] private GameObject playerBattlefield;
-
+                
         private readonly Dictionary<GameSessionPlayerData, List<CardOnBattlefieldView>> _battlefieldViews = new();
         private readonly Dictionary<GameSessionPlayerData, List<MinionCardData>> _previousCards = new();
         
@@ -34,9 +35,10 @@ namespace Feature.Battlefield.Script
             CardOnBattlefieldPresenter cardOnBattlefieldPresenter,
             TipPlaceBattlefieldViewSystem tipPlaceBattlefieldViewSystem,
             CreateOwnerCardAndHealthEntitySystem createOwnerCardAndHealthEntitySystem,
-            HandViewSwitcher handViewSwitcher)
+            HandViewSwitcher handViewSwitcher, TargetingSystem targetingSystem)
         {
             _handViewSwitcher = handViewSwitcher;
+            _targetingSystem = targetingSystem;
             _tipPlaceBattlefieldViewSystem = tipPlaceBattlefieldViewSystem;
             _cardOnBattlefieldPresenter = cardOnBattlefieldPresenter;
             _gameSessionModel = gameSessionModel;
@@ -107,6 +109,7 @@ namespace Feature.Battlefield.Script
         private void OnCardAddedBoard(MinionCardData addedCard, int addedIndex, GameSessionPlayerData playerData)
         {
             var view = SetupBattlefieldView(addedCard, addedIndex, playerData);
+            
             var newOwner = CreateOwnerFromCard(addedCard);
 
             playerData.CardAndHealthEntityOwners.Add(newOwner);
@@ -138,6 +141,7 @@ namespace Feature.Battlefield.Script
         private void RegisterOwnerView(CardAndHealthEntityOwnerData owner, CardOnBattlefieldView view)
         {
             _ownerToView[owner] = view;
+            _targetingSystem.RegisterTarget(view.gameObject, owner);
             view.OnClicked += () => _handViewSwitcher.SwitchTo(owner);
         }
 

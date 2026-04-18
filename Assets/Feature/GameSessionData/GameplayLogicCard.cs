@@ -2,6 +2,7 @@ using Feature.Battlefield.Script;
 using Feature.Card.Script;
 using Feature.CardEffect.Script;
 using Feature.GoogleSheets;
+using UnityEngine;
 
 namespace Feature.GameSessionData
 {
@@ -18,7 +19,7 @@ namespace Feature.GameSessionData
             _battlefieldSystem = battlefieldSystem;
         }
 
-        public void CastCard(CardAndHealthEntityOwnerData owner)
+        public void CastCard(CardAndHealthEntityOwnerData owner, CardAndHealthEntityOwnerData target)
         {
             if (!CheckCanCast(owner)) return;
             owner.Chakra -= _cardData.Data.Cost;
@@ -26,24 +27,28 @@ namespace Feature.GameSessionData
             if (_cardData.Data is MinionCardData)
                 SpawnHeroCard(owner);
             else if (_cardData.Data is SpellCardData spell)
-                CastSpell(spell, owner);
+            {
+                CastSpell(spell, owner, target);
+            }
+                
 
             owner.RemoveCardFromHand(_cardData.Data);
         }
-        private void CastSpell(SpellCardData spell, CardAndHealthEntityOwnerData owner)
+
+        private void CastSpell(SpellCardData spell, CardAndHealthEntityOwnerData owner, CardAndHealthEntityOwnerData target)
         {
-            
             for (int i = 0; i < spell.Effects.Count; i++)
             {
                 var context = new EffectContext
                 {
                     Caster = owner,
-                    Target = null,
+                    Target = target,
                     GameSessionModel = _gameSessionModel,
                     BattlefieldSystem = _battlefieldSystem,
                     CardData = spell,
                     ValueIndex = i
                 };
+        
                 
                 spell.Effects[i].Execute(context);
             }
