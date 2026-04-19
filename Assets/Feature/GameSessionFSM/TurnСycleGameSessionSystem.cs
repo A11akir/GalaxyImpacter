@@ -49,6 +49,7 @@ namespace Feature.GameSessionFSM
 
         public void StartGameSession()
         {
+            _timerStageGameSessionSystem.ShowTimer();
             _gameSessionPresenter.SetupEntityViews();
             _gameSessionModel.PlayerHero.InitBoard();
             _battlefieldSystem.Init();

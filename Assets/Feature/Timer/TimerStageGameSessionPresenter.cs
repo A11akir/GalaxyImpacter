@@ -14,6 +14,7 @@ namespace Feature.Timer
             _view = view;
         }
 
+        public void ShowTimer() => _view.gameObject.SetActive(true);
         public void Tick()
         {
             if (!_timerSystem.IsRunning) return;

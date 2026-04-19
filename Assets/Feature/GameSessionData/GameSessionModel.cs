@@ -28,8 +28,8 @@ namespace Feature.GameSessionData
             EnemyHero = enemyHero;
         }
         
-        public float PrepareStartTime = 30f;
-        public float FightStartTime = 20f;
+        public float PrepareStartTime = 10f;
+        public float FightStartTime = 5f;
         
         public bool IsFirstTurn() => Turn == 1;
 

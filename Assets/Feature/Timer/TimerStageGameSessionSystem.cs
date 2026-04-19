@@ -7,16 +7,18 @@ namespace Feature.Timer
     {
         private readonly TimerSystem _timerSystem;
         private readonly GameSessionModel _gameSessionModel;
+        private readonly TimerStageGameSessionPresenter _timerStageGameSessionPresenter;
 
         public event Action OnPrepareTimerEnd;
         public event Action OnFightTimerEnd;
 
         private bool _isFightPhase;
 
-        public TimerStageGameSessionSystem(TimerSystem timerSystem, GameSessionModel gameSessionModel)
+        public TimerStageGameSessionSystem(TimerSystem timerSystem, GameSessionModel gameSessionModel, TimerStageGameSessionPresenter timerStageGameSessionPresenter)
         {
             _timerSystem = timerSystem;
             _gameSessionModel = gameSessionModel;
+            _timerStageGameSessionPresenter = timerStageGameSessionPresenter;
             _timerSystem.OnTimerEnd += OnTimerEnd;
         }
 
@@ -43,5 +45,10 @@ namespace Feature.Timer
         }
 
         public void Stop() => _timerSystem.Stop();
+
+        public void ShowTimer()
+        {
+            _timerStageGameSessionPresenter.ShowTimer();
+        }
     }
 }

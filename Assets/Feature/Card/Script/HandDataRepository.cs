@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Feature.Battlefield.Script;
 using Feature.GameSessionData;
+using Feature.HandLogic;
 using R3;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace Feature.Card.Script
     {
         private readonly Dictionary<CardAndHealthEntityOwnerData, EntityHandState> _entityHands = new();
     
+        private HandCardsPositionSystem  _handCardsPositionSystem;
         private readonly BattlefieldSystem _battlefieldSystem;
         private readonly GameSessionModel _gameSessionModel;
         private readonly HandCardPresenter _handCardPresenter;
@@ -19,13 +21,14 @@ namespace Feature.Card.Script
 
         public HandDataRepository(
             CardCastSystem cardCastSystem, HandCardPresenter handCardPresenter,
-            GameSessionModel gameSessionModel, BattlefieldSystem battlefieldSystem, CombatSystem.CombatSystem combatSystem)
+            GameSessionModel gameSessionModel, BattlefieldSystem battlefieldSystem, CombatSystem.CombatSystem combatSystem, HandCardsPositionSystem handCardsPositionSystem)
         {
             _cardCastSystem = cardCastSystem;
             _handCardPresenter = handCardPresenter;
             _gameSessionModel = gameSessionModel;
             _battlefieldSystem = battlefieldSystem;
             _combatSystem = combatSystem;
+            _handCardsPositionSystem = handCardsPositionSystem;
         }
 
         public void InitHandRepository(CardAndHealthEntityOwnerData owner, HandCardViews handCardViews)
@@ -78,7 +81,9 @@ namespace Feature.Card.Script
 
             state.HandData.Insert(addedIndex, handCardData);
             SetupHandCardBehavioursAndLogic(addedIndex, state);
+            _handCardsPositionSystem.UpdateCardsPosition(state.HandCardViews.transform);
         }
+        
 
         private void OnCardRemovedFromHand(CardStatsData removedCard, EntityHandState state)
         {
