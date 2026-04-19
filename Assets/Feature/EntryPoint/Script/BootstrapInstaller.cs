@@ -12,6 +12,8 @@ using Feature.GameSessionFSM;
 using Feature.Hero;
 using Feature.ShopGamePlay.Script.Currency;
 using Feature.ShopGamePlay.Script.ShopWindow;
+using Feature.StagesGameLogic;
+using Feature.Timer;
 using Feature.UI;
 using Feature.UI.SelectWindowHero;
 using UnityEngine;
@@ -61,10 +63,6 @@ namespace Feature.EntryPoint.Script
             Container.Bind<ChakraManagerSystem>().AsSingle();
             Container.Bind<CardCastSystem>().AsSingle();
             
-            Container.Bind<ShopGameplayView>().FromComponentInHierarchy().AsSingle();
-            Container.Bind<ShopGameplayPresenter>().AsSingle();
-            Container.Bind<ShopGameplayManagerSystem>().AsSingle();
-            
             Container.Bind<HandDataRepository>().AsSingle();            
             Container.Bind<GameplayLogicCard>().AsSingle();
             Container.Bind<TargetingSystem>().AsSingle();
@@ -72,6 +70,24 @@ namespace Feature.EntryPoint.Script
 
             Container.Bind<BattlefieldSystem>().FromComponentInHierarchy().AsSingle();
             Container.Bind<TipPlaceBattlefieldViewSystem>().FromComponentInHierarchy().AsSingle();
+            
+            
+            Container.Bind<ShopGameplayManagerSystem>().AsSingle();            
+            Container.Bind<ShopGameplayPresenter>().AsSingle();             
+            Container.Bind<ShopGameplayView>().FromComponentInHierarchy().AsSingle();   
+            Container.Bind<FightStatePresenter>().AsSingle(); 
+            Container.Bind<FightStateView>().FromComponentInHierarchy().AsSingle();
+            
+            Container.Bind<PrepareStatePresenter>().AsSingle(); 
+            Container.Bind<PrepareStateView>().FromComponentInHierarchy().AsSingle();
+            
+            Container.Bind<ReadyStageBackOrFightSystem>().AsSingle(); 
+            
+            Container.Bind<TimerSystem>().AsSingle();
+            Container.Bind<TimerStageGameSessionSystem>().AsSingle();
+            Container.Bind<TimerStageGameSessionPresenter>().AsSingle();
+            Container.Bind<TimerStageGameSessionSystemView>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<UpdateSystem>().FromComponentInHierarchy().AsSingle();
             
             BindGameSessionFSM();
             BindConfig();

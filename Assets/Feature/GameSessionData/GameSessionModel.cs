@@ -6,7 +6,7 @@ namespace Feature.GameSessionData
 {
     public class GameSessionModel
     {
-        public int Turn;
+        public int Turn = 0;
         
         public GameSessionPlayerData PlayerHero;
         public GameSessionPlayerData EnemyHero;
@@ -28,7 +28,10 @@ namespace Feature.GameSessionData
             EnemyHero = enemyHero;
         }
         
-        public bool IsFirstTurn() => Turn == 0;
+        public float PrepareStartTime = 30f;
+        public float FightStartTime = 20f;
+        
+        public bool IsFirstTurn() => Turn == 1;
 
         public void ChooseFirstPlayer()
         {

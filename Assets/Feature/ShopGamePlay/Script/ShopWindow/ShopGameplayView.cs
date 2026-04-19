@@ -10,17 +10,16 @@ namespace Feature.ShopGamePlay.Script.ShopWindow
         [SerializeField] private Button _showShopWindowButton;
         
         private RectTransform _rectTransform;
-        private Vector2 _hiddenPosition;
-        private Vector2 _visiblePosition;
+        private bool _isLocked;
+
+        private const float VisibleRight = 400f;
+        private const float HiddenRight = 1875f;
+        private const float AnimDuration = 0.6f;
         
         private void Awake()
         {
             _rectTransform = GetComponent<RectTransform>();
-            
-            _visiblePosition = new Vector2(-100, 0);
-            _hiddenPosition = new Vector2(-1600, 0);
-            
-            _rectTransform.anchoredPosition = _hiddenPosition;
+            SetRight(HiddenRight);
         }
         
         private void OnEnable()
@@ -37,31 +36,53 @@ namespace Feature.ShopGamePlay.Script.ShopWindow
             _hideShopWindowButton.onClick.RemoveListener(HideShopWindow);
             _showShopWindowButton.onClick.RemoveListener(ShowShopWindow);
         }
+
+        public void UnlockShop()
+        {
+            _isLocked = false;
+            _showShopWindowButton.gameObject.SetActive(true);
+        }
+
+        public void LockShop()
+        {
+            _isLocked = true;
+            HideShopWindow();
+            _showShopWindowButton.gameObject.SetActive(false);
+            _hideShopWindowButton.gameObject.SetActive(false);
+        }
         
         private void ShowShopWindow()
         {
-            if (_rectTransform == null) return;
-            
-            _rectTransform.DOAnchorPos(_visiblePosition, 0.5f)
-                .SetEase(Ease.OutBack)
-                .OnStart(() => 
-                {
-                    _showShopWindowButton.gameObject.SetActive(false);
-                    _hideShopWindowButton.gameObject.SetActive(true);
-                });
+            if (_isLocked) return;
+            _showShopWindowButton.gameObject.SetActive(false);
+            _hideShopWindowButton.gameObject.SetActive(true);
+            AnimateRight(VisibleRight, Ease.Linear);
         }
-        
+
         private void HideShopWindow()
         {
-            if (_rectTransform == null) return;
-            
-            _rectTransform.DOAnchorPos(_hiddenPosition, 0.5f)
-                .SetEase(Ease.InBack)
-                .OnStart(() => 
-                {
-                    _showShopWindowButton.gameObject.SetActive(true);
-                    _hideShopWindowButton.gameObject.SetActive(false);
-                });
+            if (!_isLocked)
+                _showShopWindowButton.gameObject.SetActive(true);
+            _hideShopWindowButton.gameObject.SetActive(false);
+            AnimateRight(HiddenRight, Ease.Linear);
+        }
+
+        private void AnimateRight(float targetRight, Ease ease)
+        {
+            if (!_rectTransform) return;
+    
+            DOTween.To(
+                    () => -_rectTransform.offsetMax.x,  // ← минус
+                    x => _rectTransform.offsetMax = new Vector2(-x, _rectTransform.offsetMax.y),
+                    targetRight,
+                    AnimDuration)
+                .SetEase(ease);
+        }
+
+        private void SetRight(float right)
+        {
+            var offsetMax = _rectTransform.offsetMax;
+            _rectTransform.offsetMax = new Vector2(-right, offsetMax.y);
         }
     }
 }

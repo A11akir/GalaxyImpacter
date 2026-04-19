@@ -9,7 +9,7 @@ namespace Feature.ShopGamePlay.Script.Currency
 
         public void SetCurrencyText(int currencyAmount)
         {
-            if (_currencyCountText != null)
+            if (_currencyCountText)
             {
                 _currencyCountText.text = currencyAmount.ToString();
             }

@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using Feature.Battlefield.Script;
 using Feature.Card.Script;
 using Feature.GameSessionData;
 using Feature.Hero;
