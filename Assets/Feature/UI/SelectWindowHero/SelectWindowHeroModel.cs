@@ -30,10 +30,12 @@
                     
                     GameSessionPlayerData heroData = new GameSessionPlayerData
                     {
-                        _heroPowerCost = selectedHeroStats.Cost,
+                        _heroPowerCost = selectedHeroStats.HeroPowers[0].Cost,
                         _iconImage = selectedHeroStats.IconImage,
-                        _heroPowerSprite = selectedHeroStats.IconHeroPowerImage
+                        _heroPowerSprite = selectedHeroStats.HeroPowers[0].IconImage,
+                        HeroPowers = selectedHeroStats.HeroPowers
                     };
+
 
                     heroData.MainHeroEntity()._heroName = selectedHeroStats.Name;
                     heroData.MainHeroEntity().HealthValue = selectedHeroStats.Health;

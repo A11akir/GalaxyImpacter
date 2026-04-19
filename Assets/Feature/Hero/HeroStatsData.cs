@@ -1,6 +1,7 @@
+using System.Collections.Generic;
 using Feature.GoogleSheets;
+using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Feature.Hero
 {
@@ -15,27 +16,41 @@ namespace Feature.Hero
         [SerializeField] private int _health;
         [SerializeField] private Sprite _iconImage;
         [SerializeField] private Sprite _iconHeroPowerImage;
-        
+
+        [SerializeField]
+        [ListDrawerSettings(ShowIndexLabels = true, ShowItemCount = true)]
+        private List<SpellCardData> _heroPowers;
+
+        public List<SpellCardData> HeroPowers
+        {
+            get => _heroPowers;
+            set => _heroPowers = value;
+        }
+
         public Sprite IconImage
         {
             get => _iconImage;
             set => _iconImage = value;
-        }        
+        }
+
         public Sprite IconHeroPowerImage
         {
             get => _iconHeroPowerImage;
             set => _iconHeroPowerImage = value;
-        }        
+        }
+
         public int Cost
         {
             get => _heroPowerCost;
             set => _heroPowerCost = value;
         }
+
         public string Name
         {
             get => _name;
             set => _name = value;
         }
+
         public int Health
         {
             get => _health;

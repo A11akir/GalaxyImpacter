@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Feature.Card.Script;
 using Feature.GameSessionData;
 using Feature.Health;
 using TMPro;
@@ -10,6 +12,7 @@ namespace Feature.UI
 {
     public class HeroView : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler, IHealthView, ITargetable
     {
+        [SerializeField] private List<HandCardView> _heroPowerCardView; 
         [SerializeField] private GameObject _wasSelectBotWindow;
         [SerializeField] private GameObject _selectWindow;      
         [SerializeField] private GameObject _nameWindow;
@@ -36,9 +39,21 @@ namespace Feature.UI
             HeroData = data;
             _iconImage.sprite = data._iconImage;
             _nameText.text = data.MainHeroEntity()._heroName;
-            _healthText.text = data.MainHeroEntity().HealthValue.ToString();
-            _heroPowerText.text = data._heroPowerCost.ToString();
+            _heroPowerText.text = data.CurrentHeroPower?.Cost.ToString();
             _heroPowerIcon.sprite = data._heroPowerSprite;
+
+            for (int i = 0; i < _heroPowerCardView.Count; i++)
+            {
+                if (data.HeroPowers != null && i < data.HeroPowers.Count)
+                {
+                    _heroPowerCardView[i].SetDataView(data.HeroPowers[i]);
+                    _heroPowerCardView[i].gameObject.SetActive(false);
+                }
+                else
+                {
+                    _heroPowerCardView[i].gameObject.SetActive(false);
+                }
+            }
         }
         
         public void OnPointerDown(PointerEventData eventData)

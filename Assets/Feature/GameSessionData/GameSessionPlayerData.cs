@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Feature.Card.Script;
 using Feature.GoogleSheets;
 using R3;
 using UnityEngine;
@@ -17,6 +16,9 @@ namespace Feature.GameSessionData
         private readonly ReactiveProperty<List<MinionCardData>> _cardsInBoard = new(new List<MinionCardData>());
         public ReadOnlyReactiveProperty<List<MinionCardData>> CardsInBoard => _cardsInBoard;
         
+        public List<SpellCardData> HeroPowers;
+        public SpellCardData CurrentHeroPower => HeroPowers?[0];
+        
         public List<MinionCardData> CardsInBoardList
         {
             get => _cardsInBoard.Value;
@@ -24,9 +26,7 @@ namespace Feature.GameSessionData
         }
         
         public bool IsPlayerFirst;
-
-        /*public string _heroName;*/
-
+        
         public int _heroPowerCost;
 
         private readonly ReactiveProperty<int> _currencyCount = new();
