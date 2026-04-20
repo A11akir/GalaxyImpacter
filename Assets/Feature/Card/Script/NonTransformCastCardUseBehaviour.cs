@@ -21,14 +21,14 @@ namespace Feature.Card.Script
         private RectTransform _rectTransform;
         private int _hierarchyIndex;
 
-        public bool IsHeroPower { get; set; }
+
         public bool _canCastCard { get; set; }
 
         private CardAndHealthEntityOwnerData _owner;
         public event Action<CardAndHealthEntityOwnerData, CardAndHealthEntityOwnerData> OnTryCardCast;
 
         [Inject] private HandCardsPositionSystem _handCardsPositionSystem;
-        
+
 
         public void SetOwner(CardAndHealthEntityOwnerData owner) => _owner = owner;
 
@@ -53,14 +53,14 @@ namespace Feature.Card.Script
         {
             _hierarchyIndex = transform.GetSiblingIndex();
             transform.SetAsLastSibling();
-    
+
             transform.localPosition = new Vector3(transform.localPosition.x,
-                ((_rectTransform.rect.height/2)*scaleFactor)-5, 
+                ((_rectTransform.rect.height / 2) * scaleFactor) - 5,
                 transform.localPosition.z);
-    
+
             if (isDrag) transform.localScale = Vector3.one;
             else transform.localScale *= scaleFactor;
-    
+
             transform.localRotation = Quaternion.identity;
         }
 
@@ -80,13 +80,13 @@ namespace Feature.Card.Script
         {
             _castCardAreaMinion.gameObject.SetActive(true);
             if (!_canCastCard) return;
-            
+
             if (!isDrag)
             {
                 isDrag = true;
                 transform.localScale = Vector3.one;
             }
-    
+
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
                 _rectTransform.parent as RectTransform,
                 eventData.position,
@@ -105,22 +105,17 @@ namespace Feature.Card.Script
             TryCastCard(this);
             _castCardAreaMinion.CardIsAreaAllTargetUseEffectOff();
             _castCardAreaMinion.CardGoingIsUsed = false;
-            
+
             DragCancel();
         }
 
         private void DragCancel()
         {
             isDrag = false;
-    
-            if (IsHeroPower)
-                _rectTransform.localPosition = Vector2.zero;
-            else
-            {
-                transform.SetSiblingIndex(_hierarchyIndex);
-                _handCardsPositionSystem.UpdateCardsPosition(transform.parent);
-            }
-    
+
+            transform.SetSiblingIndex(_hierarchyIndex);
+            _handCardsPositionSystem.UpdateCardsPosition(transform.parent);
+
             _castCardAreaMinion.gameObject.SetActive(false);
         }
 
@@ -135,4 +130,3 @@ namespace Feature.Card.Script
         public void CanCastCard(bool canCast) => _canCastCard = canCast;
     }
 }
-

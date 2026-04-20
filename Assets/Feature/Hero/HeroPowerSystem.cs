@@ -22,15 +22,11 @@ namespace Feature.Hero
             _combatSystem = combatSystem;
         }
 
-        public void Init(CardAndHealthEntityOwnerData owner, HeroPowerView heroPowerView, SpellCardData heroPower)
+        public void Init(CardAndHealthEntityOwnerData owner, GameObject heroPowerObject, SpellCardData heroPower)
         {
-            var handCardData = new HandCardData(
-                data: heroPower,
-                view: heroPowerView,
-                behaviour: null,
-                logic: null);
-
-            _cardCastSystem.AddBehavioursToCard(handCardData, isHeroPower: true);
+            var handCardData = new HandCardData(data: heroPower, view: null, behaviour: null, logic: null);
+    
+            _cardCastSystem.AddBehavioursToHeroPower(handCardData, heroPowerObject);
             handCardData.Behaviour.SetOwner(owner);
             handCardData.Behaviour.CanCastCard(owner.Chakra >= heroPower.Cost);
 

@@ -49,7 +49,7 @@ namespace Feature.Hero
             _handFillSystem.FillEntityHand(owner);
             _chakraManagerSystem.InitEntityChakra(owner);
             _entityDeathSystem.Init(owner);
-            _heroPowerSystem.Init(owner, heroPowerView, heroPower);
+            _heroPowerSystem.Init(owner, heroPowerView.gameObject, heroPower);
 
             var presenter = new EntityPresenter(owner, healthView);
             _entityPresenters[owner] = presenter;

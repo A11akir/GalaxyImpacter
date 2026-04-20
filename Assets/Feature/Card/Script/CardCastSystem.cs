@@ -1,5 +1,6 @@
 using Feature.GameSessionData;
 using System.Collections.Generic;
+using Feature.Common;
 using Feature.HandLogic;
 using Feature.Hero;
 using UnityEngine;
@@ -11,7 +12,14 @@ namespace Feature.Card.Script
     {
         private IInstantiator _instantiator;
         
-        public CardCastSystem(IInstantiator instantiator) => _instantiator = instantiator;
+        private readonly CursorArrowData _cursorArrowData;
+
+        public CardCastSystem(IInstantiator instantiator, CursorArrowData cursorArrowData)
+        {
+            _instantiator = instantiator;
+            _cursorArrowData = cursorArrowData;
+        }
+        
 
         public void ChakraCheckCanCastCard(List<HandCardData> handData, int chakra)
         {
@@ -19,7 +27,7 @@ namespace Feature.Card.Script
                 cardData.Behaviour.CanCastCard(chakra >= cardData.Data.Cost);
         }
         
-        public void AddBehavioursToCard(HandCardData cardData, bool isHeroPower = false)
+        public void AddBehavioursToCard(HandCardData cardData)
         {
             switch (cardData.Data.TargetType)
             {
@@ -28,39 +36,43 @@ namespace Feature.Card.Script
                         _instantiator.InstantiateComponent<SelectTransformCastCardUseBehaviour>(
                             cardData.View.gameObject);
 
-                    if (isHeroPower && cardData.View is HeroPowerView heroPowerView)
-                        selectObjectTarget.Init(
-                            heroPowerView._heroPowerContainer,
-                            heroPowerView._heroPowerArrowHead,
-                            heroPowerView._heroPowerArrowLine);
-                    else
-                        selectObjectTarget.Init(
-                            cardData.View._cardContainer,
-                            cardData.View._cursorArrowHead,
-                            cardData.View._cursorArrowLine);
+                    selectObjectTarget.Init(
+                        cardData.View._cardContainer,
+                        _cursorArrowData.ArrowHead,
+                        _cursorArrowData.ArrowLine);
 
                     cardData.Behaviour = selectObjectTarget;
                     break;
 
                 case TargetType.All:
-                    var nonTargetBehaviour =
+                    cardData.Behaviour =
                         _instantiator.InstantiateComponent<NonTransformCastCardUseBehaviour>(
                             cardData.View.gameObject);
-                    cardData.Behaviour = nonTargetBehaviour;
-                    break; 
+                    break;
 
                 case TargetType.Hero:
-                    var heroBehaviour =
+                    cardData.Behaviour =
                         _instantiator.InstantiateComponent<HeroTransformCastCardUseBehaviour>(
                             cardData.View.gameObject);
-                    cardData.Behaviour = heroBehaviour;
                     break;
             }
-                            
-            if (cardData.Behaviour is NonTransformCastCardUseBehaviour nonTarget)
-                nonTarget.IsHeroPower = isHeroPower;
-            else if (cardData.Behaviour is SelectTransformCastCardUseBehaviour select)
-                select.IsHeroPower = isHeroPower;
+        }
+
+        public void AddBehavioursToHeroPower(HandCardData cardData, GameObject heroPowerObject)
+        {
+            switch (cardData.Data.TargetType)
+            {
+                case TargetType.AnyTarget:
+                    var behaviour = _instantiator.InstantiateComponent<SelectTargetHeroPowerCastBehaviour>(heroPowerObject);
+                    behaviour.Init(_cursorArrowData.ArrowHead, _cursorArrowData.ArrowLine);
+                    cardData.Behaviour = behaviour;
+                    break;
+                    break;
+                case TargetType.All:
+                case TargetType.Hero:
+                    cardData.Behaviour = _instantiator.InstantiateComponent<NonTargetHeroPowerCastBehaviour>(heroPowerObject);
+                    break;
+            }
         }
 
         public void RemoveBehaviourFromHandCard(HandCardData cardData)
