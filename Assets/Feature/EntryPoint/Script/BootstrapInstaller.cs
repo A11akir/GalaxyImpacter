@@ -47,6 +47,7 @@ namespace Feature.EntryPoint.Script
             Container.BindInterfacesAndSelfTo<GameBootstrap>().AsSingle().NonLazy();
             Container.Bind<CorrectableActivityGameObject>().FromComponentInHierarchy().AsSingle();
             Container.Bind<AIRandomSelectSystem>().AsSingle();
+            Container.Bind<AISystem>().AsSingle();
             Container.Bind<UpdateSystem>().FromComponentInHierarchy().AsSingle();
             Container.Bind<GraphicRaycaster>().FromComponentInHierarchy().AsSingle();
             Container.Bind<EventSystem>().FromComponentInHierarchy().AsSingle();

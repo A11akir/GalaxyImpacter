@@ -42,7 +42,7 @@ namespace Feature.Hero
             _entityDeathSystem.OnEntityDied += DisposeEntity;
         }
         
-        public void CreateEntityPlayer(CardAndHealthEntityOwnerData owner, IHealthView healthView, HeroPowerView heroPowerView, SpellCardData heroPower)
+        public void CreateEntityPlayer(CardAndHealthEntityOwnerData owner, IHealthView healthView)
         {
             _deckFillSystem.InitializeDeck(owner);
             var container = _handViewSwitcher.RegisterOwner(owner);
@@ -51,31 +51,34 @@ namespace Feature.Hero
             _handFillSystem.FillEntityHand(owner);
             _chakraManagerSystem.InitEntityChakra(owner);
             _entityDeathSystem.Init(owner);
-            
 
             var presenter = new EntityPresenter(owner, healthView);
             _entityPresenters[owner] = presenter;
         }
 
         public void CreatePlayersEntity(IHealthView playerHealthView, IHealthView enemyHealthView, 
-            HeroPowerView heroPowerView, SpellCardData heroPower)
+            HeroPowerView heroPowerView, SpellCardData heroPower, HandCardViews enemyHandCardViews)
         {
             var playerEntity = _gameSessionModel.PlayerHero.MainHeroEntity();
-            CreateEntityPlayer(playerEntity, playerHealthView, heroPowerView, heroPower);
+            CreateEntityPlayer(playerEntity, playerHealthView);
             _handViewSwitcher.SwitchTo(playerEntity);
-    
             _heroPowerSystem.Init(playerEntity, heroPowerView.gameObject, heroPower, _gameSessionModel.PlayerHero);
             _heroPowerPresenter.Init(heroPowerView);
+    
+            CreateEntityEnemy(_gameSessionModel.EnemyHero.MainHeroEntity(), enemyHealthView, enemyHandCardViews);
         }
 
-        private void CreateEntityEnemy(CardAndHealthEntityOwnerData cardAndHealthEntityOwnerData)
+        private void CreateEntityEnemy(CardAndHealthEntityOwnerData owner, IHealthView healthView, HandCardViews handCardViews)
         {
-            /*_deckFillSystem.InitializeDeck(owner);
-            var container = _handViewSwitcher.RegisterOwner(owner); // получаем контейнер
-            _handDataRepository.InitHandRepository(owner, container.HandCardViews); // передаём
-            _chakraManagerSystem.Init(owner, container.ChakraWindowView); // передаём вьюху чакры
+            _deckFillSystem.InitializeDeck(owner);
+            _handDataRepository.InitHandRepository(owner, handCardViews, isHidden: true);
             _handFillSystem.FillEntityHand(owner);
-            _chakraManagerSystem.InitEntityChakra(owner);*/
+            _chakraManagerSystem.InitEntityChakra(owner);
+            _entityDeathSystem.Init(owner);
+            _gameSessionModel.EnemyHero.InitBoard(); 
+
+            var presenter = new EntityPresenter(owner, healthView);
+            _entityPresenters[owner] = presenter;
         }
         
         public void DisposeEntity(CardAndHealthEntityOwnerData owner)

@@ -37,9 +37,9 @@ namespace Feature.Battlefield.Script.View
         }
 
         public void SetCanHasAction(bool canCast) => _borderHasAction.SetActive(canCast);
-        public void SetSelected(bool selected) => _selectEntityView.SetActive(selected); // ← новый
+        public void SetSelected(bool selected) => _selectEntityView.SetActive(selected);
 
-        public void OnPointerClick(PointerEventData eventData) => OnClicked?.Invoke(); // ← новый
+        public void OnPointerClick(PointerEventData eventData) => OnClicked?.Invoke();
 
         public void OnPointerEnter(PointerEventData eventData) => _heroDescriptionWindow.SetActive(true);
         public void OnPointerExit(PointerEventData eventData) => _heroDescriptionWindow.SetActive(false);
@@ -51,7 +51,7 @@ namespace Feature.Battlefield.Script.View
         
         public void ClearData()
         {
-            _name.text = "";
+            _name.text = "";    
             _health.text = "";
             _healthBoard.text = "";
             _cost.text = "";
@@ -59,6 +59,7 @@ namespace Feature.Battlefield.Script.View
             _iconMinionBoard.sprite = null;
             _heroDescriptionWindow.SetActive(false);
             _selectEntityView.SetActive(false);
+            Debug.Log("1");
             gameObject.SetActive(false);
         }
     }

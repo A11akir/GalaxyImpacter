@@ -17,8 +17,6 @@ namespace Feature.Hero
         private SpellCardData _heroPower;
         private CardAndHealthEntityOwnerData _owner;
         private GameSessionPlayerData _playerData;
-
-
         
         public event Action OnHeroPowerUsed;
 

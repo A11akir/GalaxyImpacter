@@ -1,3 +1,4 @@
+using Feature.AI;
 using Feature.Battlefield.Script;
 using Feature.Card.Script;
 using Feature.Chakra;
@@ -19,7 +20,7 @@ namespace Feature.GameSessionFSM
         private readonly TimerStageGameSessionSystem _timerStageGameSessionSystem;
         private readonly ReadyStageBackOrFightSystem _readyStageBackOrFightSystem;
         private DeckFillSystem _deckFillSystem { get;  }
-        
+        private AISystem _aiSystem { get; }
         private PrepareStatePresenter _prepareStatePresenter { get;  }
         private FightStatePresenter  _fightStatePresenter { get;  }
         private HandDataRepository _handDataRepository { get;  }
@@ -31,7 +32,7 @@ namespace Feature.GameSessionFSM
         
         public TurnСycleGameSessionSystem(DeckFillSystem deckFillSystem, CurrencyManagerSystem currencyManagerSystem,
             ChakraManagerSystem chakraManagerSystem, HandDataRepository handDataRepository, BattlefieldSystem battlefieldSystem,
-            HandFillSystem handFillSystem, GameSessionModel gameSessionModel, GameSessionPresenter gameSessionPresenter, ShopGameplayManagerSystem shopSystem, FightStatePresenter fightStatePresenter, PrepareStatePresenter prepareStatePresenter, ReadyStageBackOrFightSystem readyStageBackOrFightSystem, TimerStageGameSessionSystem timerStageGameSessionSystem, HeroPowerSystem heroPowerSystem)
+            HandFillSystem handFillSystem, GameSessionModel gameSessionModel, GameSessionPresenter gameSessionPresenter, ShopGameplayManagerSystem shopSystem, FightStatePresenter fightStatePresenter, PrepareStatePresenter prepareStatePresenter, ReadyStageBackOrFightSystem readyStageBackOrFightSystem, TimerStageGameSessionSystem timerStageGameSessionSystem, HeroPowerSystem heroPowerSystem, AISystem aiSystem)
         {
             _deckFillSystem = deckFillSystem;
             _currencyManagerSystem = currencyManagerSystem;
@@ -47,6 +48,7 @@ namespace Feature.GameSessionFSM
             _readyStageBackOrFightSystem = readyStageBackOrFightSystem;
             _timerStageGameSessionSystem = timerStageGameSessionSystem;
             _heroPowerSystem = heroPowerSystem;
+            _aiSystem = aiSystem;
         }
 
         public void StartGameSession()
@@ -56,24 +58,28 @@ namespace Feature.GameSessionFSM
             _gameSessionModel.PlayerHero.InitBoard();
             _battlefieldSystem.Init();
             _currencyManagerSystem.Init();
-            _readyStageBackOrFightSystem.SetEnemyReady();
-            _currencyManagerSystem.NewTurnUpdate();
-            _prepareStatePresenter.StartPrepare();
-            _timerStageGameSessionSystem.StartTimerPrepare(_gameSessionModel.Turn);
-            _shopSystem.UnlockShop();
+    
+            StartPrepareTurn();
         }
 
         public void CycleStartPrepareTurn()
         {
-            _heroPowerSystem.ResetHeroPower(); 
+            _heroPowerSystem.ResetHeroPower();
             _readyStageBackOrFightSystem.Reset();
-            _readyStageBackOrFightSystem.SetEnemyReady();
-            _prepareStatePresenter.StartPrepare();
             _handFillSystem.FillHandDataInDecks();
-            _currencyManagerSystem.NewTurnUpdate();
             _chakraManagerSystem.NewTurnUpdate();
+    
+            StartPrepareTurn();
+        }
+
+        private void StartPrepareTurn()
+        {
+            _readyStageBackOrFightSystem.SetEnemyReady();
+            _currencyManagerSystem.NewTurnUpdate();
+            _prepareStatePresenter.StartPrepare();
             _shopSystem.UnlockShop();
             _timerStageGameSessionSystem.StartTimerPrepare(_gameSessionModel.Turn);
+            _aiSystem.ExecutePreparePhase();
         }
 
         public void CycleStartFightTurn()
@@ -83,6 +89,7 @@ namespace Feature.GameSessionFSM
             _shopSystem.LockShop();
             _fightStatePresenter.StartFight();
             _timerStageGameSessionSystem.StartTimerFight(_gameSessionModel.Turn);
+            _aiSystem.ExecuteFightPhase();
         }
 
         public void CycleEndFightTurn()

@@ -41,6 +41,7 @@ namespace Feature.UI
             HeroData = data;
             _iconImage.sprite = data._iconImage;
             _nameText.text = data.MainHeroEntity()._heroName;
+            _healthText.text = data.MainHeroEntity().HealthValue.ToString(); 
             _heroPowerText.text = data.CurrentHeroPower?.Cost.ToString();
             _heroPowerIcon.sprite = data._heroPowerSprite;
 

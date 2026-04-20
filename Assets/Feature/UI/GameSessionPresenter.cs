@@ -48,7 +48,8 @@ namespace Feature.UI
                 _gameSessionView._heroView,
                 _gameSessionView._enemyView,
                 _gameSessionView._heroView._heroPowerView,
-                _gameSessionModel.PlayerHero.CurrentHeroPower
+                _gameSessionModel.PlayerHero.CurrentHeroPower,
+                _gameSessionView._enemyHandCardViews // ← добавь
             );
         }
 

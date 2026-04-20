@@ -31,10 +31,10 @@ namespace Feature.Card.Script
             _handCardsPositionSystem = handCardsPositionSystem;
         }
 
-        public void InitHandRepository(CardAndHealthEntityOwnerData owner, HandCardViews handCardViews)
+        public void InitHandRepository(CardAndHealthEntityOwnerData owner, HandCardViews handCardViews, bool isHidden = false)
         {
             if (_entityHands.ContainsKey(owner)) return;
-            var state = new EntityHandState(owner, handCardViews);
+            var state = new EntityHandState(owner, handCardViews, isHidden);
             _entityHands[owner] = state;
             SubscribeReactiveHandList(state);
         }
@@ -71,16 +71,17 @@ namespace Feature.Card.Script
 
         private void OnCardAddedToHand(CardStatsData addedCard, int addedIndex, EntityHandState state)
         {
-            var view = state.HandCardViews.AddCardFromHand(addedCard, addedIndex); 
-
-            var handCardData = new HandCardData(
-                data: addedCard,
-                view: view,
-                behaviour: null,
-                logic: null);
-
+            var view = state.IsHiddenForEnemyPlayer
+                ? state.HandCardViews.AddCardAsHiddenForEnemyPlayer(addedIndex)
+                : state.HandCardViews.AddCardFromHand(addedCard, addedIndex);
+            
+            
+            var handCardData = new HandCardData(data: addedCard, view: view, behaviour: null, logic: null);
             state.HandData.Insert(addedIndex, handCardData);
-            SetupHandCardBehavioursAndLogic(addedIndex, state);
+
+            if (!state.IsHiddenForEnemyPlayer)
+                SetupHandCardBehavioursAndLogic(addedIndex, state);
+
             _handCardsPositionSystem.UpdateCardsPosition(state.HandCardViews.transform);
         }
         
@@ -93,6 +94,8 @@ namespace Feature.Card.Script
             _handCardPresenter.RemoveCardFromHand(cardToRemove.View, state.HandCardViews);
             _cardCastSystem.RemoveBehaviourFromHandCard(cardToRemove);
             state.HandData.Remove(cardToRemove);
+    
+            _handCardsPositionSystem.UpdateCardsPosition(state.HandCardViews.transform);
         }
 
         private void SetupHandCardBehavioursAndLogic(int index, EntityHandState state)

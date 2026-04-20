@@ -105,19 +105,6 @@ namespace Feature.Battlefield.Script
 
         private readonly Dictionary<CardAndHealthEntityOwnerData, int> _ownerToSlot = new();
 
-        private void OnCardAddedBoard(MinionCardData addedCard, int addedIndex, GameSessionPlayerData playerData)
-        {
-            var view = SetupBattlefieldView(addedCard, addedIndex, playerData);
-            
-            var newOwner = CreateOwnerFromCard(addedCard);
-            _ownerToSlot[newOwner] = addedIndex;
-            _tipPlaceBattlefieldViewSystem.OccupySlot(addedIndex);
-            playerData.CardAndHealthEntityOwners.Add(newOwner);
-            RegisterOwnerView(newOwner, view);
-
-            _createOwnerCardAndHealthEntitySystem.CreateEntityPlayer(newOwner, view, null, null);
-        }
-
         private CardOnBattlefieldView SetupBattlefieldView(MinionCardData addedCard, int addedIndex, GameSessionPlayerData playerData)
         {
             var view = _battlefieldViews[playerData][addedIndex];
@@ -141,11 +128,25 @@ namespace Feature.Battlefield.Script
             };
         }
 
-        private void RegisterOwnerView(CardAndHealthEntityOwnerData owner, CardOnBattlefieldView view)
+        private void OnCardAddedBoard(MinionCardData addedCard, int addedIndex, GameSessionPlayerData playerData)
+        {
+            var view = SetupBattlefieldView(addedCard, addedIndex, playerData);
+            var newOwner = CreateOwnerFromCard(addedCard);
+            _ownerToSlot[newOwner] = addedIndex;
+            _tipPlaceBattlefieldViewSystem.OccupySlot(addedIndex);
+            playerData.CardAndHealthEntityOwners.Add(newOwner);
+            RegisterOwnerView(newOwner, view, playerData);
+            _createOwnerCardAndHealthEntitySystem.CreateEntityPlayer(newOwner, view);
+        }
+
+        private void RegisterOwnerView(CardAndHealthEntityOwnerData owner, CardOnBattlefieldView view, GameSessionPlayerData playerData)
         {
             _ownerToView[owner] = view;
             _targetingSystem.RegisterTarget(view.gameObject, owner);
-            view.OnClicked += () => _handViewSwitcher.SwitchTo(owner);
+    
+            bool isEnemy = playerData == _gameSessionModel.EnemyHero;
+            if (!isEnemy)
+                view.OnClicked += () => _handViewSwitcher.SwitchTo(owner);
         }
 
         private void OnCardRemovedFromBoard(MinionCardData removedCard, GameSessionPlayerData playerData)
@@ -160,6 +161,7 @@ namespace Feature.Battlefield.Script
                 _tipPlaceBattlefieldViewSystem.FreeSlot(slot);
 
             view.ClearData();
+            Debug.Log(removedCard.name);
 
             if (_handViewSwitcher.CurrentOwner == owner)
                 _handViewSwitcher.SwitchTo(playerData.MainHeroEntity());

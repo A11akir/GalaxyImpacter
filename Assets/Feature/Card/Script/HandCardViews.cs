@@ -21,7 +21,17 @@ namespace Feature.Card.Script
             UpdateViewCard?.Invoke();
             return lastView;
         }
-        
+
+        public HandCardView AddCardAsHiddenForEnemyPlayer(int addedIndex)
+        {
+            Transform handContainer = transform;
+            HandCardView lastView = handContainer.GetChild(handContainer.childCount - 1).GetComponent<HandCardView>();
+            lastView.ShowAsHidden();
+            lastView.transform.SetSiblingIndex(addedIndex);
+            return lastView;
+
+        }
+
         public void RemoveHandCardView(HandCardView view)
         {
             view.ClearData();
