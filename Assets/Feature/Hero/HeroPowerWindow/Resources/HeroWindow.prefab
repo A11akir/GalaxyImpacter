@@ -267,7 +267,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b233087b357641bc8ba0f51a3a4e5397, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cardContainer: {fileID: 0}
+  _healthContainer: {fileID: 0}
+  _name: {fileID: 0}
+  _health: {fileID: 0}
+  _cost: {fileID: 0}
+  _description: {fileID: 0}
+  _iconSpell: {fileID: 0}
+  _iconMinionHand: {fileID: 0}
+  _canAvailableCast: {fileID: 0}
+  _heroCardWindow: {fileID: 0}
+  _spellCardWindow: {fileID: 0}
   _heroPowerDescriptionWindow: {fileID: 6443232595731128880}
+  _canAvailableCastHeroPower: {fileID: 0}
 --- !u!1 &5817177178685773937
 GameObject:
   m_ObjectHideFlags: 0
@@ -739,6 +751,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5538400533566058571, guid: 9384acfa0caaa4143a3c78e9fa4838cd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5555558728533896058, guid: 9384acfa0caaa4143a3c78e9fa4838cd, type: 3}
       propertyPath: m_fontSize
       value: 30
@@ -934,6 +950,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6423933458831542349, guid: f91b620f52a734f4ea0522028177e042, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6902444197665969187, guid: f91b620f52a734f4ea0522028177e042, type: 3}
       propertyPath: m_Name
       value: HPowDesr(HandCard)
@@ -981,4 +1001,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b233087b357641bc8ba0f51a3a4e5397, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cardContainer: {fileID: 0}
+  _healthContainer: {fileID: 0}
+  _name: {fileID: 0}
+  _health: {fileID: 0}
+  _cost: {fileID: 0}
+  _description: {fileID: 0}
+  _iconSpell: {fileID: 0}
+  _iconMinionHand: {fileID: 0}
+  _canAvailableCast: {fileID: 0}
+  _heroCardWindow: {fileID: 0}
+  _spellCardWindow: {fileID: 0}
   _heroPowerDescriptionWindow: {fileID: 37510874251401139}
+  _canAvailableCastHeroPower: {fileID: 0}

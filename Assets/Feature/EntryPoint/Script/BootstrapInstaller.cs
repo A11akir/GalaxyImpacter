@@ -26,78 +26,110 @@ namespace Feature.EntryPoint.Script
     public class BootstrapInstaller : MonoInstaller
     {
         [SerializeField] private GameData _gameData;
+
         public override void InstallBindings()
+        {
+            BindCore();
+            BindUI();
+            BindGameSession();
+            BindCards();
+            BindBattlefield();
+            BindHero();
+            BindShop();
+            BindStages();
+            BindTimer();
+            BindGameSessionFSM();
+            BindConfig();
+        }
+
+        private void BindCore()
         {
             Container.BindInterfacesAndSelfTo<GameBootstrap>().AsSingle().NonLazy();
             Container.Bind<CorrectableActivityGameObject>().FromComponentInHierarchy().AsSingle();
-            Container.Bind<HandCardsPositionSystem>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<AIRandomSelectSystem>().AsSingle();
+            Container.Bind<UpdateSystem>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<GraphicRaycaster>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<EventSystem>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<CombatSystem.CombatSystem>().AsSingle();
+        }
+
+        private void BindUI()
+        {
+            Container.Bind<GameSessionView>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<GameSessionPresenter>().AsSingle();
             Container.Bind<SelectWindowHeroPresenter>().AsSingle();
             Container.Bind<SelectWindowHeroModel>().AsSingle();
             Container.Bind<SelectWindowHeroView>().FromComponentInHierarchy().AsSingle();
-            Container.Bind<HandCardViews>().FromComponentInHierarchy().AsSingle();
-            Container.Bind<GameSessionView>().FromComponentInHierarchy().AsSingle();
-            
             Container.Bind<CurrencyManagePresenter>().AsSingle();
-            Container.Bind<HandCardPresenter>().AsSingle();
-            Container.Bind<CardOnBattlefieldPresenter>().AsSingle();
-            Container.Bind<DeckFillSystem>().AsSingle();            
-            Container.Bind<HandFillSystem>().AsSingle();       
-            Container.Bind<TurnСycleGameSessionSystem>().AsSingle(); 
+            Container.Bind<CurrencyManageView>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<ChakraWindowPresenter>().AsSingle();
+            Container.Bind<ChakraWindowView>().FromComponentInHierarchy().AsSingle();
+        }
+
+        private void BindGameSession()
+        {
             Container.Bind<GameSessionPlayerData>().AsSingle();
             Container.Bind<GameSessionModel>().AsSingle();
-            Container.Bind<GameSessionPresenter>().AsSingle();
-            Container.Bind<AIRandomSelectSystem>().AsSingle();
-
-            
-            Container.Bind<CursorArrowData>().FromComponentInHierarchy().AsSingle();
-            
-            Container.Bind<CombatSystem.CombatSystem>().AsSingle();
-            Container.Bind<GraphicRaycaster>().FromComponentInHierarchy().AsSingle();
-            Container.Bind<EventSystem>().FromComponentInHierarchy().AsSingle();
-            Container.Bind<EntityDeathSystem>().AsSingle();
-            Container.Bind<CreateOwnerCardAndHealthEntitySystem>().AsSingle();
-            
-            Container.Bind<HandViewSwitcher>().FromComponentInHierarchy().AsSingle();
-            Container.Bind<ChakraWindowPresenter>().AsSingle();
-            Container.Bind<CurrencyManageView>().FromComponentInHierarchy().AsSingle();
-            Container.Bind<ChakraWindowView>().FromComponentInHierarchy().AsSingle();
-
+            Container.Bind<TurnСycleGameSessionSystem>().AsSingle();
+            Container.Bind<DeckFillSystem>().AsSingle();
+            Container.Bind<HandFillSystem>().AsSingle();
             Container.Bind<CurrencyManagerSystem>().AsSingle();
             Container.Bind<ChakraManagerSystem>().AsSingle();
-            Container.Bind<CardCastSystem>().AsSingle();
-            
-            Container.Bind<HandDataRepository>().AsSingle();            
-            Container.Bind<GameplayLogicCard>().AsSingle();
+            Container.Bind<EntityDeathSystem>().AsSingle();
+            Container.Bind<CreateOwnerCardAndHealthEntitySystem>().AsSingle();
             Container.Bind<TargetingSystem>().AsSingle();
-            Container.Bind<CastCardAreaMinion>().FromComponentInHierarchy().AsSingle();
+        }
 
+        private void BindCards()
+        {
+            Container.Bind<HandCardViews>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<HandCardPresenter>().AsSingle();
+            Container.Bind<HandDataRepository>().AsSingle();
+            Container.Bind<GameplayLogicCard>().AsSingle();
+            Container.Bind<CardCastSystem>().AsSingle();
+            Container.Bind<CursorArrowData>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<CastCardAreaMinion>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<HandCardsPositionSystem>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<HandViewSwitcher>().FromComponentInHierarchy().AsSingle();
+        }
+
+        private void BindBattlefield()
+        {
             Container.Bind<BattlefieldSystem>().FromComponentInHierarchy().AsSingle();
             Container.Bind<TipPlaceBattlefieldViewSystem>().FromComponentInHierarchy().AsSingle();
-            
-            
-            Container.Bind<HeroPowerSystem>().AsSingle();  
-            Container.Bind<ShopGameplayManagerSystem>().AsSingle();            
-            Container.Bind<ShopGameplayPresenter>().AsSingle();             
-            Container.Bind<ShopGameplayView>().FromComponentInHierarchy().AsSingle();   
-            Container.Bind<FightStatePresenter>().AsSingle(); 
+            Container.Bind<CardOnBattlefieldPresenter>().AsSingle();
+        }
+
+        private void BindHero()
+        {
+            Container.Bind<HeroPowerSystem>().AsSingle();
+            Container.Bind<HeroPowerPresenter>().AsSingle();
+        }
+
+        private void BindShop()
+        {
+            Container.Bind<ShopGameplayManagerSystem>().AsSingle();
+            Container.Bind<ShopGameplayPresenter>().AsSingle();
+            Container.Bind<ShopGameplayView>().FromComponentInHierarchy().AsSingle();
+        }
+
+        private void BindStages()
+        {
+            Container.Bind<FightStatePresenter>().AsSingle();
             Container.Bind<FightStateView>().FromComponentInHierarchy().AsSingle();
-            
-            Container.Bind<PrepareStatePresenter>().AsSingle(); 
+            Container.Bind<PrepareStatePresenter>().AsSingle();
             Container.Bind<PrepareStateView>().FromComponentInHierarchy().AsSingle();
-            
-            Container.Bind<ReadyStageBackOrFightSystem>().AsSingle(); 
-            
+            Container.Bind<ReadyStageBackOrFightSystem>().AsSingle();
+        }
+
+        private void BindTimer()
+        {
             Container.Bind<TimerSystem>().AsSingle();
             Container.Bind<TimerStageGameSessionSystem>().AsSingle();
             Container.Bind<TimerStageGameSessionPresenter>().AsSingle();
             Container.Bind<TimerStageGameSessionSystemView>().FromComponentInHierarchy().AsSingle();
-            Container.Bind<UpdateSystem>().FromComponentInHierarchy().AsSingle();
-            
-            BindGameSessionFSM();
-            BindConfig();
-      
         }
-        
+
         private void BindGameSessionFSM()
         {
             Container.Bind<GameSessionFSM.GameSessionFSM>().FromComponentInHierarchy().AsSingle();

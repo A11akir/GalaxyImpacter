@@ -14,16 +14,16 @@ namespace Feature.Chakra
         private readonly HandCardPresenter _handCardPresenter;
         private readonly HandDataRepository _handDataRepository;
         private readonly CompositeDisposable _disposables = new();
-        private readonly HeroPowerSystem _heroPowerSystem;
+        private readonly HeroPowerPresenter _heroPowerPresenter;
 
         public ChakraWindowPresenter(HandCardPresenter handCardPresenter, 
-            HandDataRepository handDataRepository, CardCastSystem cardCastSystem, HandViewSwitcher handViewSwitcher, HeroPowerSystem heroPowerSystem)
+            HandDataRepository handDataRepository, CardCastSystem cardCastSystem, HandViewSwitcher handViewSwitcher, HeroPowerPresenter heroPowerPresenter)
         {
             _handCardPresenter = handCardPresenter;
             _handDataRepository = handDataRepository;
             _cardCastSystem = cardCastSystem;
             _handViewSwitcher = handViewSwitcher;
-            _heroPowerSystem = heroPowerSystem;
+            _heroPowerPresenter = heroPowerPresenter;
 
             _handViewSwitcher.OnOwnerSwitched += OnOwnerSwitched;
         }
@@ -54,7 +54,7 @@ namespace Feature.Chakra
                     chakraWindowView.SetChakraText(chakra);
                     _handCardPresenter.ChakraCheckCanCastHand(handData, chakra);
                     _cardCastSystem.ChakraCheckCanCastCard(handData, chakra);
-                    _heroPowerSystem.UpdateCanCastView();
+                    _heroPowerPresenter.UpdateCanCastView();
                 })
                 .AddTo(_disposables);
         }

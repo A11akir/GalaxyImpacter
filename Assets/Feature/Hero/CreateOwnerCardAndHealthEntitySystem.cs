@@ -21,13 +21,14 @@ namespace Feature.Hero
         private readonly ChakraManagerSystem _chakraManagerSystem;
         private readonly HandFillSystem _handFillSystem;
         private readonly HeroPowerSystem _heroPowerSystem;
+        private readonly HeroPowerPresenter _heroPowerPresenter;
 
         private readonly Dictionary<CardAndHealthEntityOwnerData, EntityPresenter> _entityPresenters = new();
         
         public CreateOwnerCardAndHealthEntitySystem(GameSessionModel gameSessionModel,
             ChakraManagerSystem chakraManagerSystem, HandDataRepository handDataRepository,
             DeckFillSystem deckFillSystem, HandViewSwitcher handViewSwitcher, HandFillSystem handFillSystem,
-            EntityDeathSystem entityDeathSystem, HeroPowerSystem heroPowerSystem)
+            EntityDeathSystem entityDeathSystem, HeroPowerSystem heroPowerSystem, HeroPowerPresenter heroPowerPresenter)
         {
             _gameSessionModel = gameSessionModel;
             _chakraManagerSystem = chakraManagerSystem;
@@ -37,6 +38,7 @@ namespace Feature.Hero
             _handFillSystem = handFillSystem;
             _entityDeathSystem = entityDeathSystem;
             _heroPowerSystem = heroPowerSystem;
+            _heroPowerPresenter = heroPowerPresenter;
             _entityDeathSystem.OnEntityDied += DisposeEntity;
         }
         
@@ -49,7 +51,7 @@ namespace Feature.Hero
             _handFillSystem.FillEntityHand(owner);
             _chakraManagerSystem.InitEntityChakra(owner);
             _entityDeathSystem.Init(owner);
-            _heroPowerSystem.Init(owner, heroPowerView.gameObject, heroPower, _gameSessionModel.PlayerHero);
+            
 
             var presenter = new EntityPresenter(owner, healthView);
             _entityPresenters[owner] = presenter;
@@ -61,6 +63,9 @@ namespace Feature.Hero
             var playerEntity = _gameSessionModel.PlayerHero.MainHeroEntity();
             CreateEntityPlayer(playerEntity, playerHealthView, heroPowerView, heroPower);
             _handViewSwitcher.SwitchTo(playerEntity);
+    
+            _heroPowerSystem.Init(playerEntity, heroPowerView.gameObject, heroPower, _gameSessionModel.PlayerHero);
+            _heroPowerPresenter.Init(heroPowerView);
         }
 
         private void CreateEntityEnemy(CardAndHealthEntityOwnerData cardAndHealthEntityOwnerData)
