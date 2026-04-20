@@ -1,6 +1,7 @@
 using Feature.Card.Script;
 using Feature.GameSessionData;
 using Feature.HandLogic;
+using Feature.Hero;
 using R3;
 using UnityEngine;
 
@@ -13,14 +14,16 @@ namespace Feature.Chakra
         private readonly HandCardPresenter _handCardPresenter;
         private readonly HandDataRepository _handDataRepository;
         private readonly CompositeDisposable _disposables = new();
+        private readonly HeroPowerSystem _heroPowerSystem;
 
         public ChakraWindowPresenter(HandCardPresenter handCardPresenter, 
-            HandDataRepository handDataRepository, CardCastSystem cardCastSystem, HandViewSwitcher handViewSwitcher)
+            HandDataRepository handDataRepository, CardCastSystem cardCastSystem, HandViewSwitcher handViewSwitcher, HeroPowerSystem heroPowerSystem)
         {
             _handCardPresenter = handCardPresenter;
             _handDataRepository = handDataRepository;
             _cardCastSystem = cardCastSystem;
             _handViewSwitcher = handViewSwitcher;
+            _heroPowerSystem = heroPowerSystem;
 
             _handViewSwitcher.OnOwnerSwitched += OnOwnerSwitched;
         }
@@ -28,7 +31,7 @@ namespace Feature.Chakra
         private void OnOwnerSwitched(CardAndHealthEntityOwnerData owner)
         {
             var container = _handViewSwitcher.GetContainer(owner);
-            if (container == null) return;
+            if (!container) return;
 
             var handData = _handDataRepository.GetHandData(owner);
             if (handData == null) return;
@@ -51,6 +54,7 @@ namespace Feature.Chakra
                     chakraWindowView.SetChakraText(chakra);
                     _handCardPresenter.ChakraCheckCanCastHand(handData, chakra);
                     _cardCastSystem.ChakraCheckCanCastCard(handData, chakra);
+                    _heroPowerSystem.UpdateCanCastView();
                 })
                 .AddTo(_disposables);
         }

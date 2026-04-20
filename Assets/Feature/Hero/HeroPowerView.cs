@@ -8,11 +8,12 @@ namespace Feature.Hero
     {
         [SerializeField] private GameObject _heroPowerDescriptionWindow;
         
-        [SerializeField] public GameObject _heroPowerArrowLine;
-        [SerializeField] public GameObject _heroPowerArrowHead;
-        [SerializeField] public GameObject _heroPowerContainer;
-        
+        [SerializeField] private GameObject _canAvailableCastHeroPower;
         public void OnPointerEnter(PointerEventData eventData) => _heroPowerDescriptionWindow.SetActive(true);
         public void OnPointerExit(PointerEventData eventData) => _heroPowerDescriptionWindow.SetActive(false);
+        
+
+
+        public void SetCanCastView(bool canCast) => _canAvailableCastHeroPower.SetActive(canCast);
     }
 }

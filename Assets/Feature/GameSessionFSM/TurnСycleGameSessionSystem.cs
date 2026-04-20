@@ -2,6 +2,7 @@ using Feature.Battlefield.Script;
 using Feature.Card.Script;
 using Feature.Chakra;
 using Feature.GameSessionData;
+using Feature.Hero;
 using Feature.ShopGamePlay.Script.Currency;
 using Feature.ShopGamePlay.Script.ShopWindow;
 using Feature.StagesGameLogic;
@@ -24,13 +25,13 @@ namespace Feature.GameSessionFSM
         private HandDataRepository _handDataRepository { get;  }
         private CurrencyManagerSystem _currencyManagerSystem { get;  }        
         private ChakraManagerSystem _chakraManagerSystem { get;  }
-        
+        private HeroPowerSystem _heroPowerSystem { get;  }
         private ShopGameplayManagerSystem _shopSystem { get;  }
         private GameSessionPresenter _gameSessionPresenter { get;  }
         
         public TurnСycleGameSessionSystem(DeckFillSystem deckFillSystem, CurrencyManagerSystem currencyManagerSystem,
             ChakraManagerSystem chakraManagerSystem, HandDataRepository handDataRepository, BattlefieldSystem battlefieldSystem,
-            HandFillSystem handFillSystem, GameSessionModel gameSessionModel, GameSessionPresenter gameSessionPresenter, ShopGameplayManagerSystem shopSystem, FightStatePresenter fightStatePresenter, PrepareStatePresenter prepareStatePresenter, ReadyStageBackOrFightSystem readyStageBackOrFightSystem, TimerStageGameSessionSystem timerStageGameSessionSystem)
+            HandFillSystem handFillSystem, GameSessionModel gameSessionModel, GameSessionPresenter gameSessionPresenter, ShopGameplayManagerSystem shopSystem, FightStatePresenter fightStatePresenter, PrepareStatePresenter prepareStatePresenter, ReadyStageBackOrFightSystem readyStageBackOrFightSystem, TimerStageGameSessionSystem timerStageGameSessionSystem, HeroPowerSystem heroPowerSystem)
         {
             _deckFillSystem = deckFillSystem;
             _currencyManagerSystem = currencyManagerSystem;
@@ -45,6 +46,7 @@ namespace Feature.GameSessionFSM
             _prepareStatePresenter = prepareStatePresenter;
             _readyStageBackOrFightSystem = readyStageBackOrFightSystem;
             _timerStageGameSessionSystem = timerStageGameSessionSystem;
+            _heroPowerSystem = heroPowerSystem;
         }
 
         public void StartGameSession()
@@ -63,6 +65,7 @@ namespace Feature.GameSessionFSM
 
         public void CycleStartPrepareTurn()
         {
+            _heroPowerSystem.ResetHeroPower(); 
             _readyStageBackOrFightSystem.Reset();
             _readyStageBackOrFightSystem.SetEnemyReady();
             _prepareStatePresenter.StartPrepare();

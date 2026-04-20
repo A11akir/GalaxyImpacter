@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Feature.GoogleSheets;
 using R3;
@@ -17,6 +18,9 @@ namespace Feature.GameSessionData
         public ReadOnlyReactiveProperty<List<MinionCardData>> CardsInBoard => _cardsInBoard;
         
         public List<SpellCardData> HeroPowers;
+        
+        public bool HeroPowerUsedThisTurn;
+        
         public SpellCardData CurrentHeroPower => HeroPowers?[0];
         
         public List<MinionCardData> CardsInBoardList
@@ -37,6 +41,9 @@ namespace Feature.GameSessionData
             get => _currencyCount.Value;
             set => _currencyCount.Value = value;
         }
+
+        public event Action OnHeroPowerReset;
+        
 
         public Sprite _iconImage;
         public Sprite _heroPowerSprite;

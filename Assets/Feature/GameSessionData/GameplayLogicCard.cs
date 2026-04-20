@@ -31,8 +31,9 @@ namespace Feature.GameSessionData
                 SpawnHeroCard(owner);
             else if (_cardData.Data is SpellCardData spell)
                 CastSpell(spell, owner, target);
-
-            owner.RemoveCardFromHand(_cardData.Data);
+            
+            if (owner.CardsInHand.CurrentValue.Contains(_cardData.Data))
+                owner.RemoveCardFromHand(_cardData.Data);
         }
 
         private void CastSpell(SpellCardData spell, CardAndHealthEntityOwnerData owner, CardAndHealthEntityOwnerData target)
@@ -67,6 +68,8 @@ namespace Feature.GameSessionData
 
             return true;
         }
+        
+        
 
         private void SpawnHeroCard(CardAndHealthEntityOwnerData owner)
         {
