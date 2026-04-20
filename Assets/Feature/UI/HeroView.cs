@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Feature.Card.Script;
 using Feature.GameSessionData;
 using Feature.Health;
+using Feature.Hero;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -12,7 +13,8 @@ namespace Feature.UI
 {
     public class HeroView : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler, IHealthView, ITargetable
     {
-        [SerializeField] private List<HandCardView> _heroPowerCardView; 
+        [SerializeField] public HeroPowerView _heroPowerView;
+        [SerializeField] public List<HandCardView> _heroPowerCardView; 
         [SerializeField] private GameObject _wasSelectBotWindow;
         [SerializeField] private GameObject _selectWindow;      
         [SerializeField] private GameObject _nameWindow;

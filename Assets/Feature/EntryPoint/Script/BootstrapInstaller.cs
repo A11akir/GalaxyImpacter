@@ -72,6 +72,7 @@ namespace Feature.EntryPoint.Script
             Container.Bind<TipPlaceBattlefieldViewSystem>().FromComponentInHierarchy().AsSingle();
             
             
+            Container.Bind<HeroPowerSystem>().AsSingle();  
             Container.Bind<ShopGameplayManagerSystem>().AsSingle();            
             Container.Bind<ShopGameplayPresenter>().AsSingle();             
             Container.Bind<ShopGameplayView>().FromComponentInHierarchy().AsSingle();   

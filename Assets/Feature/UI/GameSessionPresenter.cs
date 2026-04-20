@@ -38,13 +38,17 @@ namespace Feature.UI
             _targetingSystem.RegisterTarget(_gameSessionView._enemyView.gameObject,_gameSessionModel.EnemyHero.MainHeroEntity());
 
             SubscribeHeroViewClick();
+            
+            
         }
 
         public void SetupEntityViews()
         {
             _createOwnerCardAndHealthEntitySystem.CreatePlayersEntity(
                 _gameSessionView._heroView,
-                _gameSessionView._enemyView
+                _gameSessionView._enemyView,
+                _gameSessionView._heroView._heroPowerView,
+                _gameSessionModel.PlayerHero.CurrentHeroPower
             );
         }
 

@@ -28,6 +28,7 @@ namespace Feature.Card.Script
         [Inject] private HandCardsPositionSystem _handCardsPositionSystem;
         [Inject] private TargetingSystem _targetingSystem;
 
+        public bool IsHeroPower { get; set; }
         private RectTransform _rectTransform;
         private RectTransform _lineRectTransform;
         private RectTransform _headRectTransform;
@@ -181,12 +182,24 @@ namespace Feature.Card.Script
 
             _isDragging = false;
 
-            TryCastCard(this); 
+            TryCastCard(this);
             _currentTarget = null;
-            
-            transform.SetSiblingIndex(_hierarchyIndex);
-            _handCardsPositionSystem.UpdateCardsPosition(transform.parent);
             _isPointerEnter = false;
+
+            DragCancel();
+        }
+
+        private void DragCancel()
+        {
+            if (IsHeroPower)
+            {
+                _rectTransform.localPosition = Vector2.zero;
+            }
+            else
+            {
+                transform.SetSiblingIndex(_hierarchyIndex);
+                _handCardsPositionSystem.UpdateCardsPosition(transform.parent);
+            }
         }
 
         #endregion
@@ -196,6 +209,7 @@ namespace Feature.Card.Script
         private void UpdateCursorArrow(PointerEventData eventData)
         {
             RectTransform parentRect = _cardRectTransform.parent as RectTransform;
+            Debug.Log($"parentRect: {parentRect}, _cardRectTransform: {_cardRectTransform}");
 
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
                 parentRect,
@@ -213,19 +227,11 @@ namespace Feature.Card.Script
 
             Vector2 direction = currentLocalPoint - startLocalPoint;
             float distance = direction.magnitude;
+    
+            Debug.Log($"direction: {direction}, distance: {distance}, currentLocalPoint: {currentLocalPoint}, startLocalPoint: {startLocalPoint}");
 
             if (distance <= 0.01f) return;
-
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-            _lineRectTransform.localPosition = startLocalPoint + direction * 0.5f;
-            _lineRectTransform.rotation = Quaternion.Euler(0, 0, angle);
-            _lineRectTransform.sizeDelta =
-                new Vector2(distance, _lineRectTransform.sizeDelta.y);
-
-            _headRectTransform.localPosition = currentLocalPoint;
-            _headRectTransform.rotation =
-                Quaternion.Euler(0, 0, angle + 180);
+            // остальной код
         }
 
         #endregion

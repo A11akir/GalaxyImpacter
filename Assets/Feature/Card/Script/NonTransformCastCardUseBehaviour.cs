@@ -21,6 +21,7 @@ namespace Feature.Card.Script
         private RectTransform _rectTransform;
         private int _hierarchyIndex;
 
+        public bool IsHeroPower { get; set; }
         public bool _canCastCard { get; set; }
 
         private CardAndHealthEntityOwnerData _owner;
@@ -111,8 +112,15 @@ namespace Feature.Card.Script
         private void DragCancel()
         {
             isDrag = false;
-            transform.SetSiblingIndex(_hierarchyIndex);
-            _handCardsPositionSystem.UpdateCardsPosition(transform.parent);
+    
+            if (IsHeroPower)
+                _rectTransform.localPosition = Vector2.zero;
+            else
+            {
+                transform.SetSiblingIndex(_hierarchyIndex);
+                _handCardsPositionSystem.UpdateCardsPosition(transform.parent);
+            }
+    
             _castCardAreaMinion.gameObject.SetActive(false);
         }
 

@@ -17,3 +17,5 @@ MonoBehaviour:
   _health: 80
   _iconImage: {fileID: -4975551959639604210, guid: 3d42ad6566c06451fa26973898ddc8a2, type: 3}
   _iconHeroPowerImage: {fileID: -2859238657272724677, guid: 69f5fd12367cd4613936f2bd119d7421, type: 3}
+  _heroPowers:
+  - {fileID: 11400000, guid: 122c9f08f812940e691bf84ed3c3ab38, type: 2}

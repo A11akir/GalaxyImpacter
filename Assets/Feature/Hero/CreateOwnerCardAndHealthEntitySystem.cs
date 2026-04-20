@@ -3,9 +3,11 @@ using Feature.Card.Script;
 using Feature.Chakra;
 using Feature.Entity.Script;
 using Feature.GameSessionData;
+using Feature.GoogleSheets;
 using Feature.HandLogic;
 using Feature.Health;
 using Feature.UI;
+using UnityEngine;
 
 namespace Feature.Hero
 {
@@ -18,13 +20,14 @@ namespace Feature.Hero
         private readonly EntityDeathSystem _entityDeathSystem;
         private readonly ChakraManagerSystem _chakraManagerSystem;
         private readonly HandFillSystem _handFillSystem;
+        private readonly HeroPowerSystem _heroPowerSystem;
 
         private readonly Dictionary<CardAndHealthEntityOwnerData, EntityPresenter> _entityPresenters = new();
         
         public CreateOwnerCardAndHealthEntitySystem(GameSessionModel gameSessionModel,
             ChakraManagerSystem chakraManagerSystem, HandDataRepository handDataRepository,
             DeckFillSystem deckFillSystem, HandViewSwitcher handViewSwitcher, HandFillSystem handFillSystem,
-            EntityDeathSystem entityDeathSystem)
+            EntityDeathSystem entityDeathSystem, HeroPowerSystem heroPowerSystem)
         {
             _gameSessionModel = gameSessionModel;
             _chakraManagerSystem = chakraManagerSystem;
@@ -33,10 +36,11 @@ namespace Feature.Hero
             _handViewSwitcher = handViewSwitcher;
             _handFillSystem = handFillSystem;
             _entityDeathSystem = entityDeathSystem;
+            _heroPowerSystem = heroPowerSystem;
             _entityDeathSystem.OnEntityDied += DisposeEntity;
         }
         
-        public void CreateEntityPlayer(CardAndHealthEntityOwnerData owner, IHealthView healthView)
+        public void CreateEntityPlayer(CardAndHealthEntityOwnerData owner, IHealthView healthView, HeroPowerView heroPowerView, SpellCardData heroPower)
         {
             _deckFillSystem.InitializeDeck(owner);
             var container = _handViewSwitcher.RegisterOwner(owner);
@@ -45,16 +49,17 @@ namespace Feature.Hero
             _handFillSystem.FillEntityHand(owner);
             _chakraManagerSystem.InitEntityChakra(owner);
             _entityDeathSystem.Init(owner);
-    
+            _heroPowerSystem.Init(owner, heroPowerView, heroPower);
+
             var presenter = new EntityPresenter(owner, healthView);
             _entityPresenters[owner] = presenter;
         }
 
-        public void CreatePlayersEntity(IHealthView playerHealthView, IHealthView enemyHealthView)
+        public void CreatePlayersEntity(IHealthView playerHealthView, IHealthView enemyHealthView, 
+            HeroPowerView heroPowerView, SpellCardData heroPower)
         {
             var playerEntity = _gameSessionModel.PlayerHero.MainHeroEntity();
-            CreateEntityPlayer(playerEntity, playerHealthView);
-            /*CreateEntityEnemy(_gameSessionModel.EnemyHero.MainHeroEntity(), enemyHealthView);*/
+            CreateEntityPlayer(playerEntity, playerHealthView, heroPowerView, heroPower);
             _handViewSwitcher.SwitchTo(playerEntity);
         }
 

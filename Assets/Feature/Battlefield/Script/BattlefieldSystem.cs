@@ -115,7 +115,7 @@ namespace Feature.Battlefield.Script
             playerData.CardAndHealthEntityOwners.Add(newOwner);
             RegisterOwnerView(newOwner, view);
 
-            _createOwnerCardAndHealthEntitySystem.CreateEntityPlayer(newOwner, view);
+            _createOwnerCardAndHealthEntitySystem.CreateEntityPlayer(newOwner, view, null, null);
         }
 
         private CardOnBattlefieldView SetupBattlefieldView(MinionCardData addedCard, int addedIndex, GameSessionPlayerData playerData)
