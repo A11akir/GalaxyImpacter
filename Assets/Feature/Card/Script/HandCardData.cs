@@ -7,9 +7,9 @@ namespace Feature.Card.Script
         public CardStatsData Data;
         public HandCardView View;
         public ITransformCastCardBehaviour Behaviour;
-        public GameplayLogicCard Logic;
+        public HandCardCastHandler Logic;
         
-        public HandCardData(CardStatsData data, HandCardView view, ITransformCastCardBehaviour behaviour, GameplayLogicCard logic)
+        public HandCardData(CardStatsData data, HandCardView view, ITransformCastCardBehaviour behaviour, HandCardCastHandler logic)
         {
             Logic = logic;
             Data = data;

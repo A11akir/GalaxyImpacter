@@ -59,7 +59,6 @@ namespace Feature.Battlefield.Script.View
             _iconMinionBoard.sprite = null;
             _heroDescriptionWindow.SetActive(false);
             _selectEntityView.SetActive(false);
-            Debug.Log("1");
             gameObject.SetActive(false);
         }
     }

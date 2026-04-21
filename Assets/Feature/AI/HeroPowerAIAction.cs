@@ -18,7 +18,7 @@ namespace Feature.AI
             _owner = owner;
         }
 
-        public void Execute(CardAndHealthEntityOwnerData target, GameSessionModel gameSessionModel)
+        public void Execute(CardAndHealthEntityOwnerData target)
         {
             // логика каста хироповера
         }

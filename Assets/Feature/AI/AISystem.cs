@@ -10,15 +10,13 @@ namespace Feature.AI
 {
     public class AISystem
     {
-        private GameSessionModel _gameSessionModel;
-        private CombatSystem.CombatSystem _combatSystem;
-        private BattlefieldSystem _battlefieldSystem;
+        private readonly GameSessionModel _gameSessionModel;
+        private readonly CardCastService _cardCastService;
 
-        public AISystem(GameSessionModel gameSessionModel, CombatSystem.CombatSystem combatSystem, BattlefieldSystem battlefieldSystem)
+        public AISystem(GameSessionModel gameSessionModel, CardCastService cardCastService)
         {
             _gameSessionModel = gameSessionModel;
-            _combatSystem = combatSystem;
-            _battlefieldSystem = battlefieldSystem;
+            _cardCastService = cardCastService;
         }
 
         public void ExecutePreparePhase()
@@ -26,9 +24,15 @@ namespace Feature.AI
             var actions = GetAvailableActions()
                 .Where(a => !(a is CardAIAction card && card.TargetType == TargetType.AnyTarget))
                 .ToList();
-            
-            if (actions.Count > 0)
-                actions[0].Execute(null, _gameSessionModel);
+
+            if (actions.Count == 0) return;
+
+            var action = actions[0];
+    
+            if (action is CardAIAction cardAction)
+                cardAction.OnExecuted += ExecutePreparePhase;
+
+            action.Execute(null);
         }
 
         public void ExecuteFightPhase()
@@ -50,7 +54,7 @@ namespace Feature.AI
 
                 foreach (var card in playableCards)
                 {
-                    actions.Add(new CardAIAction(card, owner, _battlefieldSystem, _combatSystem));
+                    actions.Add(new CardAIAction(card, owner, _cardCastService));
                 }
             }
 

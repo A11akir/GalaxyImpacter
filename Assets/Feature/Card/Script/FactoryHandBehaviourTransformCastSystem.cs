@@ -8,13 +8,13 @@ using Zenject;
 
 namespace Feature.Card.Script
 {
-    public class CardCastSystem
+    public class FactoryHandBehaviourTransformCastSystem
     {
         private IInstantiator _instantiator;
         
         private readonly CursorArrowData _cursorArrowData;
 
-        public CardCastSystem(IInstantiator instantiator, CursorArrowData cursorArrowData)
+        public FactoryHandBehaviourTransformCastSystem(IInstantiator instantiator, CursorArrowData cursorArrowData)
         {
             _instantiator = instantiator;
             _cursorArrowData = cursorArrowData;

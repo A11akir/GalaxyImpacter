@@ -13,22 +13,20 @@ namespace Feature.Card.Script
         private readonly Dictionary<CardAndHealthEntityOwnerData, EntityHandState> _entityHands = new();
     
         private HandCardsPositionSystem  _handCardsPositionSystem;
-        private readonly BattlefieldSystem _battlefieldSystem;
-        private readonly GameSessionModel _gameSessionModel;
+        private readonly CardCastService _cardCastService;
         private readonly HandCardPresenter _handCardPresenter;
-        private readonly CardCastSystem _cardCastSystem;
+        private readonly FactoryHandBehaviourTransformCastSystem _factoryHandBehaviourTransformCastSystem;
         private readonly CombatSystem.CombatSystem _combatSystem;
 
         public HandDataRepository(
-            CardCastSystem cardCastSystem, HandCardPresenter handCardPresenter,
-            GameSessionModel gameSessionModel, BattlefieldSystem battlefieldSystem, CombatSystem.CombatSystem combatSystem, HandCardsPositionSystem handCardsPositionSystem)
+            FactoryHandBehaviourTransformCastSystem factoryHandBehaviourTransformCastSystem, HandCardPresenter handCardPresenter,
+ CombatSystem.CombatSystem combatSystem, HandCardsPositionSystem handCardsPositionSystem, CardCastService cardCastService)
         {
-            _cardCastSystem = cardCastSystem;
+            _factoryHandBehaviourTransformCastSystem = factoryHandBehaviourTransformCastSystem;
             _handCardPresenter = handCardPresenter;
-            _gameSessionModel = gameSessionModel;
-            _battlefieldSystem = battlefieldSystem;
             _combatSystem = combatSystem;
             _handCardsPositionSystem = handCardsPositionSystem;
+            _cardCastService = cardCastService;
         }
 
         public void InitHandRepository(CardAndHealthEntityOwnerData owner, HandCardViews handCardViews, bool isHidden = false)
@@ -92,7 +90,7 @@ namespace Feature.Card.Script
             if (cardToRemove == null) return;
 
             _handCardPresenter.RemoveCardFromHand(cardToRemove.View, state.HandCardViews);
-            _cardCastSystem.RemoveBehaviourFromHandCard(cardToRemove);
+            _factoryHandBehaviourTransformCastSystem.RemoveBehaviourFromHandCard(cardToRemove);
             state.HandData.Remove(cardToRemove);
     
             _handCardsPositionSystem.UpdateCardsPosition(state.HandCardViews.transform);
@@ -100,7 +98,7 @@ namespace Feature.Card.Script
 
         private void SetupHandCardBehavioursAndLogic(int index, EntityHandState state)
         {
-            _cardCastSystem.AddBehavioursToCard(state.HandData[index]);
+            _factoryHandBehaviourTransformCastSystem.AddBehavioursToCard(state.HandData[index]);
 
             state.HandData[index].Behaviour.SetOwner(state.Owner);
     
@@ -108,7 +106,7 @@ namespace Feature.Card.Script
             state.HandData[index].Behaviour.CanCastCard(canCast);
             _handCardPresenter.ChakraCheckCanCastCard(state.HandData[index], state.Owner.Chakra);
     
-            var logic = new GameplayLogicCard(state.HandData[index], _gameSessionModel, _battlefieldSystem, _combatSystem);
+            var logic = new HandCardCastHandler(state.HandData[index], _cardCastService);
             state.HandData[index].Behaviour.OnTryCardCast += logic.CastCard;
             state.HandData[index].Logic = logic;
         }

@@ -84,11 +84,8 @@ namespace Feature.GameSessionData
         
         public void RemoveCardFromBoard(MinionCardData card)
         {
-            Debug.Log($"RemoveCardFromBoard: {card.Name}, id: {card.id}");
             var currentList = new List<MinionCardData>(_cardsInBoard.Value);
-            Debug.Log($"Board before: {currentList.Count}, contains: {currentList.Contains(card)}");
             currentList.Remove(card);
-            Debug.Log($"Board after: {currentList.Count}");
             _cardsInBoard.Value = currentList;
         }
         

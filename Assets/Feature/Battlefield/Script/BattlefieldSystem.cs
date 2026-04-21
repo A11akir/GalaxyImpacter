@@ -74,9 +74,11 @@ namespace Feature.Battlefield.Script
             playerData.CardsInBoard
                 .Subscribe(currentCards =>
                 {
+                    
                     var nonNullCards = currentCards.Where(c => c != null).ToList();
                     var previousNonNullCards = _previousCards[playerData].Where(c => c != null).ToList();
 
+                    
                     var addedCards = nonNullCards
                         .Where(c => previousNonNullCards.All(p => p.id != c.id))
                         .ToList();
@@ -161,7 +163,7 @@ namespace Feature.Battlefield.Script
                 _tipPlaceBattlefieldViewSystem.FreeSlot(slot);
 
             view.ClearData();
-            Debug.Log(removedCard.name);
+
 
             if (_handViewSwitcher.CurrentOwner == owner)
                 _handViewSwitcher.SwitchTo(playerData.MainHeroEntity());

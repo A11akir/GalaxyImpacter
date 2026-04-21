@@ -632,7 +632,7 @@ MonoBehaviour:
   _iconMinionBoard: {fileID: 8349310483852527719}
   _borderHasAction: {fileID: 8169211052180111439}
   _heroDescriptionWindow: {fileID: 8461198785409712509}
-  _selectEntityView: {fileID: 0}
+  _selectEntityView: {fileID: 8169211052180111439}
 --- !u!1 &4846608506428583166
 GameObject:
   m_ObjectHideFlags: 0

@@ -86,8 +86,8 @@ namespace Feature.EntryPoint.Script
             Container.Bind<HandCardViews>().FromComponentInHierarchy().AsSingle();
             Container.Bind<HandCardPresenter>().AsSingle();
             Container.Bind<HandDataRepository>().AsSingle();
-            Container.Bind<GameplayLogicCard>().AsSingle();
-            Container.Bind<CardCastSystem>().AsSingle();
+            Container.Bind<CardCastService>().AsSingle();
+            Container.Bind<FactoryHandBehaviourTransformCastSystem>().AsSingle();
             Container.Bind<CursorArrowData>().FromComponentInHierarchy().AsSingle();
             Container.Bind<CastCardAreaMinion>().FromComponentInHierarchy().AsSingle();
             Container.Bind<HandCardsPositionSystem>().FromComponentInHierarchy().AsSingle();

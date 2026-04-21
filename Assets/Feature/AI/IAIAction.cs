@@ -7,6 +7,6 @@ namespace Feature.AI
     {
         int Cost { get; }
         TargetType TargetType { get; }
-        void Execute(CardAndHealthEntityOwnerData owner, GameSessionModel gameSessionModel);
+        void Execute(CardAndHealthEntityOwnerData owner);
     }
 }

@@ -9,7 +9,7 @@ namespace Feature.Chakra
 {
     public class ChakraWindowPresenter 
     {
-        private readonly CardCastSystem _cardCastSystem;
+        private readonly FactoryHandBehaviourTransformCastSystem _factoryHandBehaviourTransformCastSystem;
         private readonly HandViewSwitcher _handViewSwitcher; 
         private readonly HandCardPresenter _handCardPresenter;
         private readonly HandDataRepository _handDataRepository;
@@ -17,11 +17,11 @@ namespace Feature.Chakra
         private readonly HeroPowerPresenter _heroPowerPresenter;
 
         public ChakraWindowPresenter(HandCardPresenter handCardPresenter, 
-            HandDataRepository handDataRepository, CardCastSystem cardCastSystem, HandViewSwitcher handViewSwitcher, HeroPowerPresenter heroPowerPresenter)
+            HandDataRepository handDataRepository, FactoryHandBehaviourTransformCastSystem factoryHandBehaviourTransformCastSystem, HandViewSwitcher handViewSwitcher, HeroPowerPresenter heroPowerPresenter)
         {
             _handCardPresenter = handCardPresenter;
             _handDataRepository = handDataRepository;
-            _cardCastSystem = cardCastSystem;
+            _factoryHandBehaviourTransformCastSystem = factoryHandBehaviourTransformCastSystem;
             _handViewSwitcher = handViewSwitcher;
             _heroPowerPresenter = heroPowerPresenter;
 
@@ -38,7 +38,7 @@ namespace Feature.Chakra
 
             container.ChakraWindowView.SetChakraText(owner.Chakra);
             _handCardPresenter.ChakraCheckCanCastHand(handData, owner.Chakra);
-            _cardCastSystem.ChakraCheckCanCastCard(handData, owner.Chakra);
+            _factoryHandBehaviourTransformCastSystem.ChakraCheckCanCastCard(handData, owner.Chakra);
         }
 
         public void SubscribeToChakraChanges(CardAndHealthEntityOwnerData owner, ChakraWindowView chakraWindowView)
@@ -53,7 +53,7 @@ namespace Feature.Chakra
 
                     chakraWindowView.SetChakraText(chakra);
                     _handCardPresenter.ChakraCheckCanCastHand(handData, chakra);
-                    _cardCastSystem.ChakraCheckCanCastCard(handData, chakra);
+                    _factoryHandBehaviourTransformCastSystem.ChakraCheckCanCastCard(handData, chakra);
                     _heroPowerPresenter.UpdateCanCastView();
                 })
                 .AddTo(_disposables);
