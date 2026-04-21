@@ -1,6 +1,7 @@
 using Feature.Card.Script;
 using Feature.GameSessionData;
 using Feature.GoogleSheets;
+using UnityEngine;
 
 namespace Feature.AI
 {
@@ -8,19 +9,22 @@ namespace Feature.AI
     {
         private readonly SpellCardData _heroPower;
         private readonly CardAndHealthEntityOwnerData _owner;
+        private readonly CardCastService _cardCastService;
     
         public int Cost => _heroPower.Cost;
         public TargetType TargetType => _heroPower.TargetType;
 
-        public HeroPowerAIAction(SpellCardData heroPower, CardAndHealthEntityOwnerData owner)
+        public HeroPowerAIAction(SpellCardData heroPower, CardAndHealthEntityOwnerData owner, CardCastService cardCastService)
         {
             _heroPower = heroPower;
             _owner = owner;
+            _cardCastService = cardCastService;
         }
-
+        
         public void Execute(CardAndHealthEntityOwnerData target)
         {
-            // логика каста хироповера
+            Debug.Log($"[AI] HeroPower: {_heroPower.Name} | Owner: {_owner._heroName} | Target: {target?._heroName ?? "none"} | Cost: {_heroPower.Cost}");
+            _cardCastService.Cast(_heroPower, _owner, target);
         }
     }
 }

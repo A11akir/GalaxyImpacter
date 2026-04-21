@@ -180,11 +180,12 @@ namespace Feature.Card.Script
 
             _isDragging = false;
 
+            
+            DragCancel();
             TryCastCard(this);
             _currentTarget = null;
             _isPointerEnter = false;
 
-            DragCancel();
         }
 
         private void DragCancel()

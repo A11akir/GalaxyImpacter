@@ -98,15 +98,17 @@ namespace Feature.Card.Script
 
         public void OnEndDrag(PointerEventData eventData)
         {
+                        DragCancel();
             TryCastCard(this);
             _castCardAreaMinion.CardIsAreaAllTargetUseEffectOff();
             _castCardAreaMinion.CardGoingIsUsed = false;
             
-            DragCancel();
+
         }
 
         private void DragCancel()
         {
+
             isDrag = false;
             transform.SetSiblingIndex(_hierarchyIndex);
             _handCardsPositionSystem.UpdateCardsPosition(transform.parent);

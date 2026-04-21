@@ -22,12 +22,12 @@ namespace Feature.Battlefield.Script
 
         [SerializeField] private GameObject enemyBattlefield;
         [SerializeField] private GameObject playerBattlefield;
-                
+
         private readonly Dictionary<GameSessionPlayerData, List<CardOnBattlefieldView>> _battlefieldViews = new();
         private readonly Dictionary<GameSessionPlayerData, List<MinionCardData>> _previousCards = new();
-        
+
         private readonly Dictionary<CardAndHealthEntityOwnerData, CardOnBattlefieldView> _ownerToView = new();
-        
+
         private HandViewSwitcher _handViewSwitcher;
 
         [Inject]
@@ -53,7 +53,7 @@ namespace Feature.Battlefield.Script
 
             _previousCards[_gameSessionModel.PlayerHero] = new();
             _previousCards[_gameSessionModel.EnemyHero] = new();
-            
+
             SubscribeReactiveBoardList(_gameSessionModel.PlayerHero);
             SubscribeReactiveBoardList(_gameSessionModel.EnemyHero);
         }
@@ -66,6 +66,7 @@ namespace Feature.Battlefield.Script
                 var cardView = child.GetComponent<CardOnBattlefieldView>();
                 cardViews.Add(cardView);
             }
+
             return cardViews;
         }
 
@@ -74,11 +75,10 @@ namespace Feature.Battlefield.Script
             playerData.CardsInBoard
                 .Subscribe(currentCards =>
                 {
-                    
                     var nonNullCards = currentCards.Where(c => c != null).ToList();
                     var previousNonNullCards = _previousCards[playerData].Where(c => c != null).ToList();
 
-                    
+
                     var addedCards = nonNullCards
                         .Where(c => previousNonNullCards.All(p => p.id != c.id))
                         .ToList();
@@ -99,6 +99,7 @@ namespace Feature.Battlefield.Script
                     _previousCards[playerData] = currentCards.ToList();
                 });
         }
+
         private void OnOwnerSwitched(CardAndHealthEntityOwnerData owner)
         {
             foreach (var kvp in _ownerToView)
@@ -107,7 +108,8 @@ namespace Feature.Battlefield.Script
 
         private readonly Dictionary<CardAndHealthEntityOwnerData, int> _ownerToSlot = new();
 
-        private CardOnBattlefieldView SetupBattlefieldView(MinionCardData addedCard, int addedIndex, GameSessionPlayerData playerData)
+        private CardOnBattlefieldView SetupBattlefieldView(MinionCardData addedCard, int addedIndex,
+            GameSessionPlayerData playerData)
         {
             var view = _battlefieldViews[playerData][addedIndex];
             _cardOnBattlefieldPresenter.SetCardInBattlefield(view, addedCard);
@@ -130,6 +132,22 @@ namespace Feature.Battlefield.Script
             };
         }
 
+        public int GetRandomFreeSlotForEnemy()
+        {
+            var enemyBoard = _gameSessionModel.EnemyHero.CardsInBoardList;
+
+    
+            var freeSlots = new List<int>();
+            for (int i = 0; i < enemyBoard.Count; i++)
+                if (enemyBoard[i] == null)
+                    freeSlots.Add(i);
+
+
+            int result = freeSlots.Count == 0 ? -1 : freeSlots[Random.Range(0, freeSlots.Count)];
+
+            return result;
+        }
+
         private void OnCardAddedBoard(MinionCardData addedCard, int addedIndex, GameSessionPlayerData playerData)
         {
             var view = SetupBattlefieldView(addedCard, addedIndex, playerData);
@@ -141,11 +159,12 @@ namespace Feature.Battlefield.Script
             _createOwnerCardAndHealthEntitySystem.CreateEntityPlayer(newOwner, view);
         }
 
-        private void RegisterOwnerView(CardAndHealthEntityOwnerData owner, CardOnBattlefieldView view, GameSessionPlayerData playerData)
+        private void RegisterOwnerView(CardAndHealthEntityOwnerData owner, CardOnBattlefieldView view,
+            GameSessionPlayerData playerData)
         {
             _ownerToView[owner] = view;
             _targetingSystem.RegisterTarget(view.gameObject, owner);
-    
+
             bool isEnemy = playerData == _gameSessionModel.EnemyHero;
             if (!isEnemy)
                 view.OnClicked += () => _handViewSwitcher.SwitchTo(owner);
@@ -157,7 +176,7 @@ namespace Feature.Battlefield.Script
             if (owner == null) return;
 
             var view = _ownerToView[owner];
-    
+
             int slot = _battlefieldViews[playerData].IndexOf(view);
             if (slot >= 0)
                 _tipPlaceBattlefieldViewSystem.FreeSlot(slot);
@@ -173,7 +192,15 @@ namespace Feature.Battlefield.Script
             playerData.CardAndHealthEntityOwners.Remove(owner);
         }
 
-        public void AddCardInBattlefield(GameSessionPlayerData playerData, CardStatsData cardData) => 
-            playerData.AddCardToBoard((MinionCardData)cardData, _tipPlaceBattlefieldViewSystem.GetCardIndex());
+        public void AddCardInBattlefield(GameSessionPlayerData playerData, CardStatsData cardData)
+        {
+            bool isEnemy = playerData == _gameSessionModel.EnemyHero;
+            int index = isEnemy
+                ? GetRandomFreeSlotForEnemy()
+                : _tipPlaceBattlefieldViewSystem.GetCardIndex();
+
+            if (index == -1) return;
+            playerData.AddCardToBoard((MinionCardData)cardData, index);
+        }
     }
 }

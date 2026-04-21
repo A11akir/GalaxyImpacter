@@ -5,13 +5,16 @@ namespace Feature.CardEffect.Script
     [CreateAssetMenu(menuName = "Effects/DrawCards", fileName = "DrawCardsEffect")]
     public class DrawCardsEffectSO : CardEffectSO
     {
-        [SerializeField] private int _count = 1;
-
+        
         public override void Execute(EffectContext context)
         {
-            int count = context.CardData.Values[context.ValueIndex];
-            for (int i = 0; i < count+1; i++)
+            Debug.Log($"DrawCards value: {context.CardData.Values[context.ValueIndex]}, ValueIndex: {context.ValueIndex}");
+            for (int i = 0; i < context.CardData.Values[context.ValueIndex]; i++)
+            {
                 context.Caster.DrawCardFromDeck();
+                Debug.Log($"DrawCardsEffectSO iteration: {i}");
+            }
+                
         }
     }
 }

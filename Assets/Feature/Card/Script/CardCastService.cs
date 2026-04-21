@@ -1,8 +1,10 @@
+using System.Linq;
 using Feature.Battlefield.Script;
 using Feature.Card.Script;
 using Feature.CardEffect.Script;
 using Feature.GameSessionData;
 using Feature.GoogleSheets;
+using UnityEngine;
 
 namespace Feature.Card.Script
 {
@@ -40,7 +42,14 @@ namespace Feature.Card.Script
             if (!CheckCanCast(card, owner)) return;
 
             owner.Chakra -= card.Cost;
+            
 
+            var cardInHand = owner.CardsInHand.CurrentValue.FirstOrDefault(c => c.id == card.id);
+            if (cardInHand != null)
+            {
+                owner.RemoveCardFromHand(cardInHand);
+            }
+            
             if (card is MinionCardData)
             {
                 var playerData = _gameSessionModel.GetPlayerDataByOwner(owner);
@@ -60,9 +69,6 @@ namespace Feature.Card.Script
                         ValueIndex = i
                     });
             }
-
-            if (owner.CardsInHand.CurrentValue.Contains(card))
-                owner.RemoveCardFromHand(card);
         }
     }
 }

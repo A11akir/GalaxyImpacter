@@ -86,6 +86,7 @@ namespace Feature.GameSessionData
         {
             var currentList = new List<MinionCardData>(_cardsInBoard.Value);
             currentList.Remove(card);
+
             _cardsInBoard.Value = currentList;
         }
         
