@@ -18,6 +18,7 @@ namespace Feature.Hero
         private CardCastService _cardCastService;
         
         public event Action OnHeroPowerUsed;
+        public bool IsUsedThisTurn => _playerData.HeroPowerUsedThisTurn;
 
         public HeroPowerSystem(FactoryHandBehaviourTransformCastSystem factoryHandBehaviourTransformCastSystem,  CardCastService cardCastService)
         {

@@ -9,7 +9,7 @@ namespace Feature.HandLogic
 {
     public class HandViewSwitcher : MonoBehaviour
     {
-        [SerializeField] private List<CardsOwnerContainer> _containers; // 7 штук в инспекторе
+        [SerializeField] private List<CardsOwnerContainer> _containers;
 
         [Inject] private HandCardsPositionSystem _handCardsPositionSystem;
         private readonly List<CardAndHealthEntityOwnerData> _ownerOrder = new();
@@ -28,6 +28,7 @@ namespace Feature.HandLogic
         public CardsOwnerContainer RegisterOwner(CardAndHealthEntityOwnerData owner)
         {
             int index = _ownerOrder.Count;
+            Debug.Log($"Registered owner at index {index}");
             if (index >= _containers.Count)
             {
                 Debug.LogError("Недостаточно контейнеров!");
@@ -63,6 +64,7 @@ namespace Feature.HandLogic
         [Button]
         public void SwitchToNextOwner()
         {
+            
             if (_ownerOrder.Count < 1) return;
             int nextIndex = (_ownerOrder.IndexOf(_currentOwner) + 1) % _ownerOrder.Count;
             SwitchTo(_ownerOrder[nextIndex]);

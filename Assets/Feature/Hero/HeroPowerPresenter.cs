@@ -30,6 +30,7 @@ namespace Feature.Hero
         private void OnHeroPowerUsed()
         {
             _heroPowerView?.SetCanCastView(false);
+            _heroPowerView?.SetUsedThisTurnView(true); // ← показываем что использована
         }
 
         private void OnOwnerSwitched(CardAndHealthEntityOwnerData owner)
@@ -42,6 +43,7 @@ namespace Feature.Hero
         {
             _heroPowerSystem.UpdateBehaviour();
             _heroPowerView?.SetCanCastView(_heroPowerSystem.CanCast);
+            _heroPowerView?.SetUsedThisTurnView(_heroPowerSystem.IsUsedThisTurn); // ← обновляем статус
         }
     }
 }

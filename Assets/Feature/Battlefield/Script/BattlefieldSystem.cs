@@ -153,19 +153,26 @@ namespace Feature.Battlefield.Script
             var view = SetupBattlefieldView(addedCard, addedIndex, playerData);
             var newOwner = CreateOwnerFromCard(addedCard);
             _ownerToSlot[newOwner] = addedIndex;
-            _tipPlaceBattlefieldViewSystem.OccupySlot(addedIndex);
             playerData.CardAndHealthEntityOwners.Add(newOwner);
-            RegisterOwnerView(newOwner, view, playerData);
-            _createOwnerCardAndHealthEntitySystem.CreateEntityPlayer(newOwner, view);
+    
+            bool isEnemy = playerData == _gameSessionModel.EnemyHero;
+    
+            if (!isEnemy)
+                _tipPlaceBattlefieldViewSystem.OccupySlot(addedIndex);
+    
+            RegisterOwnerView(newOwner, view, isEnemy);
+
+            if (isEnemy)
+                _createOwnerCardAndHealthEntitySystem.CreateEntityEnemy(newOwner, view);
+            else
+                _createOwnerCardAndHealthEntitySystem.CreateEntityPlayer(newOwner, view);
         }
 
-        private void RegisterOwnerView(CardAndHealthEntityOwnerData owner, CardOnBattlefieldView view,
-            GameSessionPlayerData playerData)
+        private void RegisterOwnerView(CardAndHealthEntityOwnerData owner, CardOnBattlefieldView view, bool isEnemy)
         {
             _ownerToView[owner] = view;
             _targetingSystem.RegisterTarget(view.gameObject, owner);
-
-            bool isEnemy = playerData == _gameSessionModel.EnemyHero;
+    
             if (!isEnemy)
                 view.OnClicked += () => _handViewSwitcher.SwitchTo(owner);
         }

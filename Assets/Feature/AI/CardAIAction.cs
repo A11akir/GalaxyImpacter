@@ -25,9 +25,7 @@ namespace Feature.AI
         
         public void Execute(CardAndHealthEntityOwnerData target)
         {
-            Debug.Log($"[AI] Cast: {_card.Name} | Owner: {_owner._heroName} | Target: {target?._heroName ?? "none"} | Cost: {_card.Cost} | Chakra before: {_owner.Chakra}");
             _cardCastService.Cast(_card, _owner, target);
-            Debug.Log($"[AI] After cast | Chakra left: {_owner.Chakra}");
         }
     }
 }
