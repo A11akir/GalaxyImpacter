@@ -74,7 +74,6 @@ namespace Feature.GameSessionFSM
 
         private void StartPrepareTurn()
         {
-            _readyStageBackOrFightSystem.SetEnemyReady();
             _currencyManagerSystem.NewTurnUpdate();
             _prepareStatePresenter.StartPrepare();
             _shopSystem.UnlockShop();
@@ -85,7 +84,6 @@ namespace Feature.GameSessionFSM
         public void CycleStartFightTurn()
         {
             _readyStageBackOrFightSystem.Reset();
-            _readyStageBackOrFightSystem.SetEnemyReady();
             _shopSystem.LockShop();
             _fightStatePresenter.StartFight();
             _timerStageGameSessionSystem.StartTimerFight(_gameSessionModel.Turn);

@@ -4,6 +4,7 @@ using System.Linq;
 using DG.Tweening;
 using Feature.Card.Script;
 using Feature.GameSessionData;
+using Feature.StagesGameLogic;
 
 namespace Feature.AI
 {
@@ -11,11 +12,13 @@ namespace Feature.AI
     {
         private readonly GameSessionModel _gameSessionModel;
         private readonly CardCastService _cardCastService;
+        private readonly ReadyStageBackOrFightSystem _readyStageBackOrFightSystem;
 
-        public AISystem(GameSessionModel gameSessionModel, CardCastService cardCastService)
+        public AISystem(GameSessionModel gameSessionModel, CardCastService cardCastService, ReadyStageBackOrFightSystem readyStageBackOrFightSystem)
         {
             _gameSessionModel = gameSessionModel;
             _cardCastService = cardCastService;
+            _readyStageBackOrFightSystem = readyStageBackOrFightSystem;
         }
 
         public void ExecutePreparePhase()
@@ -26,8 +29,13 @@ namespace Feature.AI
         private void ExecuteNextPrepareAction()
         {
             var actions = GetPrepareActions();
+
+            if (actions.Count == 0)
+            {
+                _readyStageBackOrFightSystem.SetEnemyReady();
+                return;
+            }
             
-            if (actions.Count == 0) return;
 
             var action = PickRandom(actions);
             float delay = UnityEngine.Random.Range(0.5f, 1.5f);

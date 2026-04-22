@@ -19,6 +19,7 @@ namespace Feature.StagesGameLogic
         {
             fightPhone.SetActive(true);
             buttonStepBack.SetActive(true);
+            _readyButton.interactable = true;
         }
 
         public void EndFight()
@@ -26,5 +27,7 @@ namespace Feature.StagesGameLogic
             fightPhone.SetActive(false);
             buttonStepBack.SetActive(false);
         }
+        
+        public void SetReadyButtonInteractable(bool interactable) => _readyButton.interactable = interactable;
     }
 }
