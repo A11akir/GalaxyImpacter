@@ -1,11 +1,9 @@
-using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
-using Feature.Battlefield.Script;
 using Feature.Card.Script;
 using Feature.GameSessionData;
-using UnityEngine;
 
 namespace Feature.AI
 {
@@ -36,16 +34,14 @@ namespace Feature.AI
 
             DOVirtual.DelayedCall(delay, () =>
             {
-                action.Execute(null);
+                action.Execute(GetRandomTarget());
                 ExecuteNextPrepareAction();
             });
         }
         
         private List<IAIAction> GetPrepareActions()
         {
-            return GetAvailableActions()
-                .Where(a => a.TargetType != TargetType.AnyTarget)
-                .ToList();
+            return GetAvailableActions();
         }
 
         private IAIAction PickRandom(List<IAIAction> actions)
@@ -75,6 +71,17 @@ namespace Feature.AI
             return actions;
         }
 
+        private CardAndHealthEntityOwnerData GetRandomTarget()
+        {
+            var targets = new List<CardAndHealthEntityOwnerData>();
+    
+            targets.AddRange(_gameSessionModel.PlayerHero.CardAndHealthEntityOwners);
+    
+            targets.AddRange(_gameSessionModel.EnemyHero.CardAndHealthEntityOwners);
+    
+            return targets[UnityEngine.Random.Range(0, targets.Count)];
+        }
+        
 
         private bool CanUseHeroPower()
         {

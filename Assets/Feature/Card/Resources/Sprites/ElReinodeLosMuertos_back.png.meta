@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ElReinodeLosMuertos_back_0: -8981251997333261886
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
