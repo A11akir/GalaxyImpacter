@@ -28,7 +28,6 @@ namespace Feature.HandLogic
         public CardsOwnerContainer RegisterOwner(CardAndHealthEntityOwnerData owner)
         {
             int index = _ownerOrder.Count;
-            Debug.Log($"Registered owner at index {index}");
             if (index >= _containers.Count)
             {
                 Debug.LogError("Недостаточно контейнеров!");

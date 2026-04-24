@@ -1,49 +1,62 @@
 using Feature.GameSessionData;
 using Feature.HandLogic;
-using UnityEngine;
+using Feature.Hero;
 
-namespace Feature.Hero
+public class HeroPowerPresenter
 {
-    public class HeroPowerPresenter
+    private readonly HeroPowerSystem _heroPowerSystem;
+    private readonly HandViewSwitcher _handViewSwitcher;
+    private readonly GameSessionModel _gameSessionModel;
+    private HeroPowerView _playerHeroPowerView;
+    private HeroPowerView _enemyHeroPowerView;
+
+    public HeroPowerPresenter(HeroPowerSystem heroPowerSystem, HandViewSwitcher handViewSwitcher, GameSessionModel gameSessionModel)
     {
-        private readonly HeroPowerSystem _heroPowerSystem;
-        private readonly HandViewSwitcher _handViewSwitcher;
-        private readonly GameSessionModel _gameSessionModel;
-        private HeroPowerView _heroPowerView;
+        _heroPowerSystem = heroPowerSystem;
+        _handViewSwitcher = handViewSwitcher;
+        _gameSessionModel = gameSessionModel;
 
-        public HeroPowerPresenter(HeroPowerSystem heroPowerSystem, HandViewSwitcher handViewSwitcher, GameSessionModel gameSessionModel)
-        {
-            _heroPowerSystem = heroPowerSystem;
-            _handViewSwitcher = handViewSwitcher;
-            _gameSessionModel = gameSessionModel;
+        _handViewSwitcher.OnOwnerSwitched += OnOwnerSwitched;
+    }
 
-            _heroPowerSystem.OnHeroPowerUsed += OnHeroPowerUsed;
-            _handViewSwitcher.OnOwnerSwitched += OnOwnerSwitched;
-        }
+    public void InitPlayer(HeroPowerView heroPowerView)
+    {
+        _playerHeroPowerView = heroPowerView;
+    
+        /*_gameSessionModel.PlayerHero.OnHeroPowerStateChanged += () =>
+            UpdateHeroPowerView(_playerHeroPowerView, _gameSessionModel.PlayerHero);*/
+    
+        UpdateHeroPowerView(_playerHeroPowerView, _gameSessionModel.PlayerHero);
+    }
 
-        public void Init(HeroPowerView heroPowerView)
-        {
-            _heroPowerView = heroPowerView;
-            UpdateCanCastView();
-        }
+    public void InitEnemy(HeroPowerView heroPowerView)
+    {
+        _enemyHeroPowerView = heroPowerView;
+    
+        /*_gameSessionModel.EnemyHero.OnHeroPowerStateChanged += () =>
+            UpdateHeroPowerView(_enemyHeroPowerView, _gameSessionModel.EnemyHero);*/
+    
+        UpdateHeroPowerView(_enemyHeroPowerView, _gameSessionModel.EnemyHero);
+    }
 
-        private void OnHeroPowerUsed()
-        {
-            _heroPowerView?.SetCanCastView(false);
-            _heroPowerView?.SetUsedThisTurnView(true); // ← показываем что использована
-        }
+    private void UpdateHeroPowerView(HeroPowerView view, GameSessionPlayerData playerData)
+    {
+        if (view == null || playerData.CurrentHeroPower == null) return;
+        bool canCast = !playerData.HeroPowerUsedThisTurn &&
+                       playerData.MainHeroEntity().Chakra >= playerData.CurrentHeroPower.Cost;
+        view.SetCanCastView(canCast);
+        view.SetUsedThisTurnView(playerData.HeroPowerUsedThisTurn);
+    }
 
-        private void OnOwnerSwitched(CardAndHealthEntityOwnerData owner)
-        {
-            if (owner == _gameSessionModel.PlayerHero.MainHeroEntity())
-                _heroPowerView?.SetCanCastView(_heroPowerSystem.CanCast);
-        }
+    private void OnOwnerSwitched(CardAndHealthEntityOwnerData owner)
+    {
+        if (owner == _gameSessionModel.PlayerHero.MainHeroEntity())
+            UpdateHeroPowerView(_playerHeroPowerView, _gameSessionModel.PlayerHero);
+    }
 
-        public void UpdateCanCastView()
-        {
-            _heroPowerSystem.UpdateBehaviour();
-            _heroPowerView?.SetCanCastView(_heroPowerSystem.CanCast);
-            _heroPowerView?.SetUsedThisTurnView(_heroPowerSystem.IsUsedThisTurn); // ← обновляем статус
-        }
+    public void UpdateCanCastView()
+    {
+        _heroPowerSystem.UpdateBehaviour();
+        UpdateHeroPowerView(_playerHeroPowerView, _gameSessionModel.PlayerHero);
     }
 }

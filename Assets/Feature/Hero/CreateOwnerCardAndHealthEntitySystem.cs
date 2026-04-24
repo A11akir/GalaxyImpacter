@@ -44,13 +44,15 @@ namespace Feature.Hero
         
 
         public void CreatePlayersEntity(IHealthView playerHealthView, IHealthView enemyHealthView, 
-            HeroPowerView heroPowerView, SpellCardData heroPower, HandCardViews enemyHandCardViews)
+            HeroPowerView playerHeroPowerView, HeroPowerView enemyHeroPowerView,
+            SpellCardData heroPower, HandCardViews enemyHandCardViews)
         {
             var playerEntity = _gameSessionModel.PlayerHero.MainHeroEntity();
             CreateEntityPlayer(playerEntity, playerHealthView);
             _handViewSwitcher.SwitchTo(playerEntity);
-            _heroPowerSystem.Init(playerEntity, heroPowerView.gameObject, heroPower, _gameSessionModel.PlayerHero);
-            _heroPowerPresenter.Init(heroPowerView);
+            _heroPowerSystem.Init(playerEntity, playerHeroPowerView.gameObject, heroPower, _gameSessionModel.PlayerHero);
+            _heroPowerPresenter.InitPlayer(playerHeroPowerView);
+            _heroPowerPresenter.InitEnemy(enemyHeroPowerView);
 
             CreateMainEnemyEntity(_gameSessionModel.EnemyHero.MainHeroEntity(), enemyHealthView, enemyHandCardViews);
         }

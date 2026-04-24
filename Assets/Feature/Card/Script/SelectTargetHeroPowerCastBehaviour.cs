@@ -43,6 +43,7 @@ namespace Feature.Card.Script
             _startLocalPosition = _rectTransform.localPosition;
         }
 
+        
         public void Init(GameObject arrowHead, GameObject arrowLine)
         {
             _arrowHead = arrowHead;
@@ -53,6 +54,7 @@ namespace Feature.Card.Script
 
         public void OnBeginDrag(PointerEventData eventData)
         {
+            Debug.Log($"HeroPower OnBeginDrag, canCast: {_canCastCard}");
             if (!_canCastCard) return;
             _isDragging = true;
             _startPosition = eventData.pressEventCamera.WorldToScreenPoint(_rectTransform.position);

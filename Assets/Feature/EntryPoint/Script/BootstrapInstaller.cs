@@ -5,6 +5,7 @@ using Feature.Card.Script;
 using Feature.Chakra;
 using Feature.Common;
 using Feature.Data;
+using Feature.EndGameSession;
 using Feature.Entity.Script;
 using Feature.GameSessionData;
 using Feature.HandLogic;
@@ -79,6 +80,9 @@ namespace Feature.EntryPoint.Script
             Container.Bind<EntityDeathSystem>().AsSingle();
             Container.Bind<CreateOwnerCardAndHealthEntitySystem>().AsSingle();
             Container.Bind<TargetingSystem>().AsSingle();
+            Container.Bind<GameOverSystem>().AsSingle();
+            Container.Bind<GameOverPresenter>().AsSingle().NonLazy();
+            Container.Bind<GameOverView>().FromComponentInHierarchy().AsSingle();
         }
 
         private void BindCards()

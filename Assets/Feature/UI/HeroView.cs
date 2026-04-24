@@ -25,6 +25,7 @@ namespace Feature.UI
         [SerializeField] public TextMeshProUGUI _heroPowerText;        
         [SerializeField] public TextMeshProUGUI _healthText;
         [SerializeField] public TextMeshProUGUI _nameText;
+        
 
         public bool _isBlockedForSelect;
         public GameSessionPlayerData HeroData { get; private set; }

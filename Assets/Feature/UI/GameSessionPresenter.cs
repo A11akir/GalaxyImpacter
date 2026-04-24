@@ -15,12 +15,13 @@ namespace Feature.UI
         private TargetingSystem _targetingSystem;
         private CreateOwnerCardAndHealthEntitySystem _createOwnerCardAndHealthEntitySystem;
 
-        public GameSessionPresenter(GameSessionView gameSessionView, GameSessionModel gameSessionModel, HandViewSwitcher handViewSwitcher, CreateOwnerCardAndHealthEntitySystem createOwnerCardAndHealthEntitySystem, TargetingSystem targetingSystem)
+        public GameSessionPresenter(GameSessionView gameSessionView, GameSessionModel gameSessionModel, HandViewSwitcher handViewSwitcher,
+            CreateOwnerCardAndHealthEntitySystem createOwnerCardAndHealthEntitySystem, TargetingSystem targetingSystem)
         {
-            _gameSessionModel = gameSessionModel;
-            _gameSessionView = gameSessionView;
-            _handViewSwitcher = handViewSwitcher;
             _createOwnerCardAndHealthEntitySystem = createOwnerCardAndHealthEntitySystem;
+            _gameSessionModel = gameSessionModel;
+            _handViewSwitcher = handViewSwitcher;
+            _gameSessionView = gameSessionView;
             _targetingSystem = targetingSystem;
         }
 
@@ -38,8 +39,6 @@ namespace Feature.UI
             _targetingSystem.RegisterTarget(_gameSessionView._enemyView.gameObject,_gameSessionModel.EnemyHero.MainHeroEntity());
 
             SubscribeHeroViewClick();
-            
-            
         }
 
         public void SetupEntityViews()
@@ -48,8 +47,9 @@ namespace Feature.UI
                 _gameSessionView._heroView,
                 _gameSessionView._enemyView,
                 _gameSessionView._heroView._heroPowerView,
+                _gameSessionView._enemyView._heroPowerView,
                 _gameSessionModel.PlayerHero.CurrentHeroPower,
-                _gameSessionView._enemyHandCardViews // ← добавь
+                _gameSessionView._enemyHandCardViews
             );
         }
 

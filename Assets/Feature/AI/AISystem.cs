@@ -74,7 +74,7 @@ namespace Feature.AI
             }
 
             if (CanUseHeroPower())
-                actions.Add(new HeroPowerAIAction(enemy.CurrentHeroPower, enemy.MainHeroEntity(), _cardCastService));
+                actions.Add(new HeroPowerAIAction(enemy.CurrentHeroPower, enemy.MainHeroEntity(), _cardCastService, _gameSessionModel));
 
             return actions;
         }
