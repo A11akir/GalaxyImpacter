@@ -1,3 +1,4 @@
+using System;
 using Feature.Card.Script;
 using Feature.GameSessionData;
 using Feature.GoogleSheets;
@@ -14,12 +15,21 @@ namespace Feature.Hero
         private CardAndHealthEntityOwnerData _owner;
         private GameSessionPlayerData _playerData;
         private CardCastService _cardCastService;
+        private GameSessionModel _gameSessionModel;
         
+        public event Action OnHeroPowerUsed;    // для игрока
+        public event Action OnEnemyHeroPowerUsed;
 
-        public HeroPowerSystem(FactoryHandBehaviourTransformCastSystem factoryHandBehaviourTransformCastSystem,  CardCastService cardCastService)
+        public void NotifyEnemyHeroPowerUsed()
+        {
+            OnEnemyHeroPowerUsed?.Invoke();
+        }
+        
+        public HeroPowerSystem(FactoryHandBehaviourTransformCastSystem factoryHandBehaviourTransformCastSystem,  CardCastService cardCastService, GameSessionModel gameSessionModel)
         {
             _factoryHandBehaviourTransformCastSystem = factoryHandBehaviourTransformCastSystem;
             _cardCastService = cardCastService;
+            _gameSessionModel = gameSessionModel;
         }
 
         public void Init(CardAndHealthEntityOwnerData owner, GameObject heroPowerObject, SpellCardData heroPower,
@@ -33,32 +43,38 @@ namespace Feature.Hero
             _factoryHandBehaviourTransformCastSystem.AddBehavioursToHeroPower(handCardData, heroPowerObject);
             handCardData.Behaviour.SetOwner(owner);
             _heroPowerBehaviour = handCardData.Behaviour;
-
+            _heroPowerBehaviour.CanCastCard(CanCast);
+            
             var logic = new HandCardCastHandler(handCardData, _cardCastService);
             handCardData.Behaviour.OnTryCardCast += (o, t) =>
             {
                 _playerData.HeroPowerUsedThisTurn = true;
                 logic.CastCard(o, t);
+                OnHeroPowerUsed?.Invoke();
             };
         }
-        public bool CanCast
-        {
-            get
-            {Debug.Log($"CanCast: {CanCast}, UsedThisTurn: {_playerData.HeroPowerUsedThisTurn}, Chakra: {_owner.Chakra}, Cost: {_heroPower.Cost}");
-                return !_playerData.HeroPowerUsedThisTurn && _owner.Chakra >= _heroPower.Cost;
-            }
-        }
+        public bool CanCast => !_playerData.HeroPowerUsedThisTurn && _owner.Chakra >= _heroPower.Cost;
 
         public void ResetHeroPower()
         {
             _playerData.HeroPowerUsedThisTurn = false;
             _heroPowerBehaviour.CanCastCard(CanCast);
         }
+        
+        public void ResetAllHeroPowers()
+        {
+            _playerData.HeroPowerUsedThisTurn = false;
+            _heroPowerBehaviour.CanCastCard(CanCast);
+            OnHeroPowerUsed?.Invoke(); // обновит вью игрока
+    
+            _gameSessionModel.EnemyHero.HeroPowerUsedThisTurn = false;
+            OnEnemyHeroPowerUsed?.Invoke(); // обновит вью врага
+        }
 
         public void UpdateBehaviour()
         {
-            Debug.Log($"UpdateBehaviour: CanCast={CanCast}, UsedThisTurn={_playerData.HeroPowerUsedThisTurn}, Chakra={_owner.Chakra}, Cost={_heroPower.Cost}");
-            _heroPowerBehaviour?.CanCastCard(CanCast);
+            bool canCast = CanCast;
+            _heroPowerBehaviour?.CanCastCard(canCast);
         }
     }
 }

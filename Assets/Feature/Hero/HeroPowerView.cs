@@ -16,7 +16,8 @@ namespace Feature.Hero
 
         public void SetCanCastView(bool canCast)
         {
-            _canAvailableCastHeroPower.SetActive(canCast);
+            if (_canAvailableCastHeroPower != null)
+                _canAvailableCastHeroPower.SetActive(canCast);
         }
 
         public void SetUsedThisTurnView(bool usedThisTurn)

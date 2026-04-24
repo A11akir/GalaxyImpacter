@@ -64,7 +64,7 @@ namespace Feature.GameSessionFSM
 
         public void CycleStartPrepareTurn()
         {
-            _heroPowerSystem.ResetHeroPower();
+            _heroPowerSystem.ResetAllHeroPowers();
             _readyStageBackOrFightSystem.Reset();
             _handFillSystem.FillHandDataInDecks();
             _chakraManagerSystem.NewTurnUpdate();

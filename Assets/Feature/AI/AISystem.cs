@@ -4,6 +4,7 @@ using System.Linq;
 using DG.Tweening;
 using Feature.Card.Script;
 using Feature.GameSessionData;
+using Feature.Hero;
 using Feature.StagesGameLogic;
 
 namespace Feature.AI
@@ -13,12 +14,14 @@ namespace Feature.AI
         private readonly GameSessionModel _gameSessionModel;
         private readonly CardCastService _cardCastService;
         private readonly ReadyStageBackOrFightSystem _readyStageBackOrFightSystem;
+        private readonly HeroPowerSystem _heroPowerSystem;
 
-        public AISystem(GameSessionModel gameSessionModel, CardCastService cardCastService, ReadyStageBackOrFightSystem readyStageBackOrFightSystem)
+        public AISystem(GameSessionModel gameSessionModel, CardCastService cardCastService, ReadyStageBackOrFightSystem readyStageBackOrFightSystem, HeroPowerSystem heroPowerSystem)
         {
             _gameSessionModel = gameSessionModel;
             _cardCastService = cardCastService;
             _readyStageBackOrFightSystem = readyStageBackOrFightSystem;
+            _heroPowerSystem = heroPowerSystem;
         }
 
         public void ExecutePreparePhase()
@@ -74,7 +77,7 @@ namespace Feature.AI
             }
 
             if (CanUseHeroPower())
-                actions.Add(new HeroPowerAIAction(enemy.CurrentHeroPower, enemy.MainHeroEntity(), _cardCastService, _gameSessionModel));
+                actions.Add(new HeroPowerAIAction(enemy.CurrentHeroPower, enemy.MainHeroEntity(), _cardCastService, _gameSessionModel, _heroPowerSystem));
 
             return actions;
         }
