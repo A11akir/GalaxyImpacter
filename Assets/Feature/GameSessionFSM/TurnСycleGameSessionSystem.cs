@@ -66,9 +66,14 @@ namespace Feature.GameSessionFSM
         {
             _heroPowerSystem.ResetAllHeroPowers();
             _readyStageBackOrFightSystem.Reset();
+    
+
+            foreach (var owner in _gameSessionModel.GetAllEntityOwners())
+                owner.DiscardHand();
+    
             _handFillSystem.FillHandDataInDecks();
             _chakraManagerSystem.NewTurnUpdate();
-    
+
             StartPrepareTurn();
         }
 

@@ -43,7 +43,7 @@ namespace Feature.Card.Script
 
             owner.Chakra -= card.Cost;
             
-
+            
             var cardInHand = owner.CardsInHand.CurrentValue.FirstOrDefault(c => c.id == card.id);
             if (cardInHand != null)
             {

@@ -1,6 +1,5 @@
 using System;
 using Feature.Battlefield.Script.View;
-using Feature.GameSessionData;
 
 namespace Feature.StagesGameLogic
 {

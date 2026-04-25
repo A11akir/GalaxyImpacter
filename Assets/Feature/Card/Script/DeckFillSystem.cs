@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Feature.Data;
 using Feature.GameSessionData;
 
@@ -20,9 +21,9 @@ namespace Feature.Card.Script
         public void InitializeDeck(CardAndHealthEntityOwnerData hero)
         {
             hero.ClearDeck();
-            
-            List<CardStatsData> source;
     
+            List<CardStatsData> source;
+
             if (hero.SpellsList != null && hero.SpellsList.Count > 0)
                 source = new List<CardStatsData>(hero.SpellsList);
             else
@@ -34,13 +35,16 @@ namespace Feature.Card.Script
                 (source[i], source[j]) = (source[j], source[i]);
             }
 
-            for (int i = 0; i < hero.startCardsInDeckCount; i++)
+
+            int count = Mathf.Min(hero.startCardsInDeckCount, source.Count);
+            for (int i = 0; i < count; i++)
             {
-                var originalCard = source[i % source.Count];
-                var cardCopy = ScriptableObject.Instantiate(originalCard);
+                var cardCopy = ScriptableObject.Instantiate(source[i]);
                 cardCopy.id = System.Guid.NewGuid().ToString();
                 hero.AddCardToDeck(cardCopy);
             }
+    
+            hero.SetBaseDeck(hero.CardsInDeck.CurrentValue.ToList());
         }
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Feature.GameSessionData;
 using UnityEngine;
 
@@ -6,6 +7,8 @@ namespace Feature.Card.Script
     public class HandFillSystem
     {
         private readonly GameSessionModel _gameSessionModel;
+
+        
 
         public HandFillSystem(GameSessionModel gameSessionModel) => _gameSessionModel = gameSessionModel;
 
@@ -24,8 +27,6 @@ namespace Feature.Card.Script
 
         private void FillHandFromDeck(CardAndHealthEntityOwnerData entity)
         {
-            entity.ShuffleDeck();
-
             for (int i = 0; i < entity.startCardsInHandToDraw; i++)
                 entity.DrawCardFromDeck();
         }

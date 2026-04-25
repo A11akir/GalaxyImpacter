@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
 using Feature.Card.Script;
+using Feature.Common;
 using Feature.GoogleSheets;
 using R3;
 using UnityEngine;
@@ -10,7 +12,7 @@ namespace Feature.GameSessionData
     {
         public int CountCardsInHand => _cardsInHand.Value.Count;
         private readonly int maxCardsInHandCount = 10;
-        public int startCardsInHandToDraw = 6;
+        public int startCardsInHandToDraw = 4;
         public int startCardsInDeckCount = 10;
         
         public List<SpellCardData> SpellsList;
@@ -20,6 +22,8 @@ namespace Feature.GameSessionData
 
         private readonly ReactiveProperty<List<CardStatsData>> _cardsInHand = new(new List<CardStatsData>(6));
         public ReadOnlyReactiveProperty<List<CardStatsData>> CardsInHand => _cardsInHand;
+        
+        private List<CardStatsData> _baseDeck = new();
         
         public List<CardStatsData> CardsInHandList
         {
@@ -83,16 +87,60 @@ namespace Feature.GameSessionData
             _cardsInDeck.Value = new List<CardStatsData>();
         }
         
+        public void SetBaseDeck(List<CardStatsData> cards)
+        {
+            _baseDeck = new List<CardStatsData>(cards);
+        }
+        
+        private void RefillDeckFromBase()
+        {
+            var refilled = _baseDeck.Select(card => 
+            {
+                var copy = ScriptableObject.Instantiate(card);
+                copy.id = System.Guid.NewGuid().ToString();
+                return copy;
+            }).ToList();
+    
+            for (int i = refilled.Count - 1; i > 0; i--)
+            {
+                int j = UnityEngine.Random.Range(0, i + 1);
+                (refilled[i], refilled[j]) = (refilled[j], refilled[i]);
+            }
+            _cardsInDeck.Value = refilled;
+        
+            GLog.Log($"[Deck] {_heroName} refilled: {_cardsInDeck.Value.Count} cards");
+        }
+        
         public void DrawCardFromDeck()
         {
-            if (_cardsInDeck.Value.Count == 0) return;
+            GLog.Log($"[Deck] {_heroName} DrawPile: {_cardsInDeck.Value.Count}, Hand: {CountCardsInHand}");
     
+            if (_cardsInDeck.Value.Count == 0)
+            {
+                GLog.Log($"[Deck] {_heroName} deck empty — refilling from base ({_baseDeck.Count} cards)");
+                RefillDeckFromBase();
+            }
+    
+            if (_cardsInDeck.Value.Count == 0)
+            {
+                GLog.Log($"[Deck] {_heroName} base deck also empty!");
+                return;
+            }
+
             var deckList = new List<CardStatsData>(_cardsInDeck.Value);
             var drawnCard = deckList[0];
             deckList.RemoveAt(0);
             _cardsInDeck.Value = deckList;
 
+
+            GLog.Log($"[Deck] {_heroName} drew: {drawnCard.Name}, remaining: {_cardsInDeck.Value.Count}");
             AddCardToHand(drawnCard, CountCardsInHand);
+        }
+
+        public void DiscardHand()
+        {
+            GLog.Log($"[Deck] {_heroName} discarding hand ({CountCardsInHand} cards)");
+            _cardsInHand.Value = new List<CardStatsData>();
         }
         
         public void ShuffleDeck()
@@ -100,7 +148,7 @@ namespace Feature.GameSessionData
             var currentList = new List<CardStatsData>(_cardsInDeck.Value);
             for (int i = currentList.Count - 1; i > 0; i--)
             {
-                int randomIndex = UnityEngine.Random.Range(0, i + 1);
+                int randomIndex = Random.Range(0, i + 1);
                 (currentList[i], currentList[randomIndex]) = (currentList[randomIndex], currentList[i]);
             }
             _cardsInDeck.Value = currentList;
