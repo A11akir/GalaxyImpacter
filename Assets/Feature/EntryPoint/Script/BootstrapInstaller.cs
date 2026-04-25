@@ -66,6 +66,7 @@ namespace Feature.EntryPoint.Script
             Container.Bind<CurrencyManageView>().FromComponentInHierarchy().AsSingle();
             Container.Bind<ChakraWindowPresenter>().AsSingle();
             Container.Bind<ChakraWindowView>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<WarFogView>().FromComponentInHierarchy().AsSingle();
         }
 
         private void BindGameSession()

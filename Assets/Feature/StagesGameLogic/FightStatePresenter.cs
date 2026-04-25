@@ -1,4 +1,5 @@
 using System;
+using Feature.Battlefield.Script.View;
 
 namespace Feature.StagesGameLogic
 {
@@ -6,13 +7,15 @@ namespace Feature.StagesGameLogic
     {
         private readonly FightStateView _fightStateView;
         private readonly ReadyStageBackOrFightSystem _readySystem;
+        private readonly WarFogView _warFogView;
         private Action _onReadyClicked;
 
-        public FightStatePresenter(FightStateView fightStateView, ReadyStageBackOrFightSystem readySystem)
+        public FightStatePresenter(FightStateView fightStateView, ReadyStageBackOrFightSystem readySystem, WarFogView warFogView)
         {
             _fightStateView = fightStateView;
             _readySystem = readySystem;
-        
+            _warFogView = warFogView;
+
             _onReadyClicked = () =>
             {
                 _fightStateView.SetReadyButtonInteractable(false);
@@ -24,6 +27,7 @@ namespace Feature.StagesGameLogic
         {
             _fightStateView.StartFight();
             _fightStateView.OnReadyClicked += _onReadyClicked;
+            _warFogView.HideFog();
         }
 
         public void EndFight()
