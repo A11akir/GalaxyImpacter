@@ -129,6 +129,7 @@ namespace Feature.Battlefield.Script
                 _iconImage = card.IconImage,
                 SpellsList = card.SpellsList,
                 StartChakra = card.Chakra,
+                Cost = card.Cost, 
             };
         }
 

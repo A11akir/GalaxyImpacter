@@ -1,3 +1,4 @@
+using Feature.Entity.Script;
 using Feature.GameSessionData;
 
 namespace Feature.ShopGamePlay.Script.Currency
@@ -6,29 +7,61 @@ namespace Feature.ShopGamePlay.Script.Currency
     {
         private readonly GameSessionModel _gameSessionModel;
         private readonly CurrencyManagePresenter _currencyManagePresenter;
+        private readonly EntityDeathSystem _entityDeathSystem;
 
-        public CurrencyManagerSystem(GameSessionModel gameSessionModel, CurrencyManagePresenter currencyManagePresenter)
+        public CurrencyManagerSystem(GameSessionModel gameSessionModel, 
+            CurrencyManagePresenter currencyManagePresenter,
+            EntityDeathSystem entityDeathSystem)
         {
             _gameSessionModel = gameSessionModel;
             _currencyManagePresenter = currencyManagePresenter;
+            _entityDeathSystem = entityDeathSystem;
+            
+            _entityDeathSystem.OnEntityDied += OnEntityKilled;
         }
 
         public void Init()
         {
             _currencyManagePresenter.SubscribeToCurrencyChanges();
         }
+
         public void NewTurnUpdate()
         {
-            AddGoldHeroForNewTurn();
+            AddCurrency(_gameSessionModel.PlayerHero, 15);
+            AddCurrency(_gameSessionModel.EnemyHero, 15);
         }
 
-        private void AddGoldHeroForNewTurn()
+        private void OnEntityKilled(CardAndHealthEntityOwnerData victim, CardAndHealthEntityOwnerData killer)
         {
-            _gameSessionModel.EnemyHero.Currency += 15;
-            _gameSessionModel.PlayerHero.Currency += 15;
+            if (killer == null) return;
+    
+            var killerPlayer = GetPlayerDataForOwner(killer);
+            var victimPlayer = GetPlayerDataForOwner(victim);
+    
+            if (killerPlayer == null || victimPlayer == null) return;
+    
+            // Награда только если убил врага (не своего)
+            if (killerPlayer == victimPlayer) return;
+    
+            AddCurrency(killerPlayer, victim.Cost);
+        }
+
+        private void AddCurrency(GameSessionPlayerData playerData, int amount)
+        {
+            if (playerData == null || amount <= 0) return;
             
-            // _gameSessionModel.EnemyHero.AddCurrency(15);
-            // _gameSessionModel.PlayerHero.AddCurrency(15);
+            playerData.Currency += amount;
+        }
+
+        private GameSessionPlayerData GetPlayerDataForOwner(CardAndHealthEntityOwnerData owner)
+        {
+            if (_gameSessionModel.PlayerHero.CardAndHealthEntityOwners.Contains(owner))
+                return _gameSessionModel.PlayerHero;
+            
+            if (_gameSessionModel.EnemyHero.CardAndHealthEntityOwners.Contains(owner))
+                return _gameSessionModel.EnemyHero;
+            
+            return null;
         }
     }
 }

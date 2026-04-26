@@ -1,3 +1,4 @@
+// 3. EntityDeathSystem - передавай убийцу в событие
 using System;
 using System.Linq;
 using Feature.Card.Script;
@@ -15,7 +16,7 @@ namespace Feature.Entity.Script
         private readonly CompositeDisposable _disposables = new();
         private readonly GameOverSystem _gameOverSystem;
 
-        public event Action<CardAndHealthEntityOwnerData> OnEntityDied;
+        public event Action<CardAndHealthEntityOwnerData, CardAndHealthEntityOwnerData> OnEntityDied; // victim, killer
 
         public EntityDeathSystem(GameSessionModel gameSessionModel, HandDataRepository handDataRepository, GameOverSystem gameOverSystem)
         {
@@ -35,14 +36,14 @@ namespace Feature.Entity.Script
                 .AddTo(_disposables);
         }
 
-        private void HandleEntityDied(CardAndHealthEntityOwnerData owner)
+        private void HandleEntityDied(CardAndHealthEntityOwnerData victim)
         {
-            _handDataRepository.DisposeOwner(owner);
+            _handDataRepository.DisposeOwner(victim);
 
-            var playerData = _gameSessionModel.GetPlayerDataByOwner(owner);
+            var playerData = _gameSessionModel.GetPlayerDataByOwner(victim);
             if (playerData == null) return;
 
-            if (playerData.MainHeroEntity() == owner)
+            if (playerData.MainHeroEntity() == victim)
             {
                 bool isPlayer = playerData == _gameSessionModel.PlayerHero;
                 _gameOverSystem.HandleGameOver(isPlayer);
@@ -50,12 +51,12 @@ namespace Feature.Entity.Script
             }
 
             var cardOnBoard = playerData.CardsInBoard.CurrentValue
-                .FirstOrDefault(c => c != null && c.id == owner.CardId);
+                .FirstOrDefault(c => c != null && c.id == victim.CardId);
+
+            OnEntityDied?.Invoke(victim, victim.LastDamageSource);
 
             if (cardOnBoard != null)
                 playerData.RemoveCardFromBoard(cardOnBoard);
-
-            OnEntityDied?.Invoke(owner);
         }
 
         public void Dispose() => _disposables.Dispose();

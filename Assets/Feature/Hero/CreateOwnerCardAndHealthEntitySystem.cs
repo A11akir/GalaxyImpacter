@@ -94,12 +94,12 @@ namespace Feature.Hero
             _entityPresenters[owner] = presenter;
         }
         
-        public void DisposeEntity(CardAndHealthEntityOwnerData owner)
+        private void DisposeEntity(CardAndHealthEntityOwnerData victim, CardAndHealthEntityOwnerData killer)
         {
-            if (_entityPresenters.TryGetValue(owner, out var presenter))
+            if (_entityPresenters.TryGetValue(victim, out var presenter))
             {
                 presenter.Dispose();
-                _entityPresenters.Remove(owner);
+                _entityPresenters.Remove(victim);
             }
         }
         

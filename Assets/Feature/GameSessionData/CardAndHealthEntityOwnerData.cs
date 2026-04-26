@@ -15,6 +15,8 @@ namespace Feature.GameSessionData
         public int startCardsInHandToDraw = 4;
         public int startCardsInDeckCount = 10;
         
+        public int Cost { get; set; } 
+        public CardAndHealthEntityOwnerData LastDamageSource { get; set; }
         public List<SpellCardData> SpellsList;
         
         private readonly ReactiveProperty<List<CardStatsData>> _cardsInDeck = new(new List<CardStatsData>());
