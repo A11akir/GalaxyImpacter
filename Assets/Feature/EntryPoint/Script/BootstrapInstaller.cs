@@ -104,6 +104,8 @@ namespace Feature.EntryPoint.Script
         private void BindBattlefield()
         {
             Container.Bind<BattlefieldSystem>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<BattlefieldViewManager>().AsSingle();
+            Container.Bind<BoardManager>().AsSingle();
             Container.Bind<TipPlaceBattlefieldViewSystem>().FromComponentInHierarchy().AsSingle();
             Container.Bind<CardOnBattlefieldPresenter>().AsSingle();
         }

@@ -1,4 +1,5 @@
-using System.Collections.Generic;
+// 2. BattlefieldSystem — с EntityOwnerFactory внутри
+
 using System.Linq;
 using Feature.Battlefield.Script.View;
 using Feature.Card.Script;
@@ -6,7 +7,6 @@ using Feature.GameSessionData;
 using Feature.GoogleSheets;
 using Feature.HandLogic;
 using Feature.Hero;
-using R3;
 using UnityEngine;
 using Zenject;
 
@@ -14,108 +14,107 @@ namespace Feature.Battlefield.Script
 {
     public class BattlefieldSystem : MonoBehaviour
     {
-        private TipPlaceBattlefieldViewSystem _tipPlaceBattlefieldViewSystem;
-        private CardOnBattlefieldPresenter _cardOnBattlefieldPresenter;
-        private GameSessionModel _gameSessionModel;
-        private CreateOwnerCardAndHealthEntitySystem _createOwnerCardAndHealthEntitySystem;
-        private TargetingSystem _targetingSystem;
-
         [SerializeField] private GameObject enemyBattlefield;
         [SerializeField] private GameObject playerBattlefield;
 
-        private readonly Dictionary<GameSessionPlayerData, List<CardOnBattlefieldView>> _battlefieldViews = new();
-        private readonly Dictionary<GameSessionPlayerData, List<MinionCardData>> _previousCards = new();
-
-        private readonly Dictionary<CardAndHealthEntityOwnerData, CardOnBattlefieldView> _ownerToView = new();
-
+        private GameSessionModel _gameSessionModel;
+        private BoardManager _boardManager;
+        private BattlefieldViewManager _viewManager;
+        private CreateOwnerCardAndHealthEntitySystem _createOwnerSystem;
+        private TargetingSystem _targetingSystem;
         private HandViewSwitcher _handViewSwitcher;
 
         [Inject]
-        public void Construct(GameSessionModel gameSessionModel,
-            CardOnBattlefieldPresenter cardOnBattlefieldPresenter,
-            TipPlaceBattlefieldViewSystem tipPlaceBattlefieldViewSystem,
-            CreateOwnerCardAndHealthEntitySystem createOwnerCardAndHealthEntitySystem,
-            HandViewSwitcher handViewSwitcher, TargetingSystem targetingSystem)
+        public void Construct(
+            GameSessionModel gameSessionModel,
+            BoardManager boardManager,
+            BattlefieldViewManager viewManager,
+            CreateOwnerCardAndHealthEntitySystem createOwnerSystem,
+            TargetingSystem targetingSystem,
+            HandViewSwitcher handViewSwitcher)
         {
-            _handViewSwitcher = handViewSwitcher;
-            _targetingSystem = targetingSystem;
-            _tipPlaceBattlefieldViewSystem = tipPlaceBattlefieldViewSystem;
-            _cardOnBattlefieldPresenter = cardOnBattlefieldPresenter;
             _gameSessionModel = gameSessionModel;
-            _createOwnerCardAndHealthEntitySystem = createOwnerCardAndHealthEntitySystem;
+            _boardManager = boardManager;
+            _viewManager = viewManager;
+            _createOwnerSystem = createOwnerSystem;
+            _targetingSystem = targetingSystem;
+            _handViewSwitcher = handViewSwitcher;
+
+            _boardManager.OnCardAdded += OnCardAdded;
+            _boardManager.OnCardRemoved += OnCardRemoved;
             _handViewSwitcher.OnOwnerSwitched += OnOwnerSwitched;
         }
 
         public void Init()
         {
-            _battlefieldViews[_gameSessionModel.PlayerHero] = GetCardViewsFromBattlefield(playerBattlefield);
-            _battlefieldViews[_gameSessionModel.EnemyHero] = GetCardViewsFromBattlefield(enemyBattlefield);
+            _viewManager.InitializeViews(_gameSessionModel.PlayerHero, playerBattlefield);
+            _viewManager.InitializeViews(_gameSessionModel.EnemyHero, enemyBattlefield);
 
-            _previousCards[_gameSessionModel.PlayerHero] = new();
-            _previousCards[_gameSessionModel.EnemyHero] = new();
-
-            SubscribeReactiveBoardList(_gameSessionModel.PlayerHero);
-            SubscribeReactiveBoardList(_gameSessionModel.EnemyHero);
+            _boardManager.Subscribe(_gameSessionModel.PlayerHero);
+            _boardManager.Subscribe(_gameSessionModel.EnemyHero);
         }
 
-        private List<CardOnBattlefieldView> GetCardViewsFromBattlefield(GameObject battlefield)
+        public void AddCardInBattlefield(GameSessionPlayerData playerData, CardStatsData cardData)
         {
-            var cardViews = new List<CardOnBattlefieldView>();
-            foreach (Transform child in battlefield.transform)
+            bool isEnemy = playerData == _gameSessionModel.EnemyHero;
+        
+            int index = isEnemy 
+                ? _boardManager.GetRandomFreeSlotForEnemy()
+                : _boardManager.GetFreeSlotForPlayer();
+
+            if (index == -1) return;
+
+            playerData.AddCardToBoard((MinionCardData)cardData, index);
+        }
+
+        private void OnCardAdded(MinionCardData card, int index, GameSessionPlayerData playerData)
+        {
+            var view = _viewManager.SetupView(card, index, playerData);
+            var owner = CreateOwnerFromCard(card); // ← factory внутри
+        
+            playerData.CardAndHealthEntityOwners.Add(owner);
+            _viewManager.RegisterOwnerView(owner, view);
+            _targetingSystem.RegisterTarget(view.gameObject, owner);
+
+            bool isEnemy = playerData == _gameSessionModel.EnemyHero;
+        
+            if (!isEnemy)
             {
-                var cardView = child.GetComponent<CardOnBattlefieldView>();
-                cardViews.Add(cardView);
+                _boardManager.OccupySlot(index);
+                view.OnClicked += () => _handViewSwitcher.SwitchTo(owner);
             }
 
-            return cardViews;
+            if (isEnemy)
+                _createOwnerSystem.CreateEntityEnemy(owner, view);
+            else
+                _createOwnerSystem.CreateEntityPlayer(owner, view);
         }
 
-        private void SubscribeReactiveBoardList(GameSessionPlayerData playerData)
+        private void OnCardRemoved(MinionCardData card, GameSessionPlayerData playerData)
         {
-            playerData.CardsInBoard
-                .Subscribe(currentCards =>
-                {
-                    var nonNullCards = currentCards.Where(c => c != null).ToList();
-                    var previousNonNullCards = _previousCards[playerData].Where(c => c != null).ToList();
+            var owner = playerData.CardAndHealthEntityOwners
+                .FirstOrDefault(o => o.CardId == card.id);
+        
+            if (owner == null) return;
 
+            var view = _viewManager.GetView(owner);
+            int slot = _viewManager.GetViewIndex(view, playerData);
+        
+            if (slot >= 0)
+                _boardManager.FreeSlot(slot);
 
-                    var addedCards = nonNullCards
-                        .Where(c => previousNonNullCards.All(p => p.id != c.id))
-                        .ToList();
+            if (_handViewSwitcher.CurrentOwner == owner)
+                _handViewSwitcher.SwitchTo(playerData.MainHeroEntity());
 
-                    var removedCards = previousNonNullCards
-                        .Where(p => nonNullCards.All(c => c.id != p.id))
-                        .ToList();
-
-                    if (removedCards.Count > 0)
-                        OnCardRemovedFromBoard(removedCards[0], playerData);
-
-                    if (addedCards.Count > 0)
-                    {
-                        int addedIndex = currentCards.FindIndex(c => c != null && c.id == addedCards[0].id);
-                        OnCardAddedBoard(addedCards[0], addedIndex, playerData);
-                    }
-
-                    _previousCards[playerData] = currentCards.ToList();
-                });
+            _viewManager.UnregisterOwnerView(owner);
+            playerData.CardAndHealthEntityOwners.Remove(owner);
         }
 
         private void OnOwnerSwitched(CardAndHealthEntityOwnerData owner)
         {
-            foreach (var kvp in _ownerToView)
-                kvp.Value.SetSelected(kvp.Key == owner);
+            _viewManager.SetSelected(owner, true);
         }
-
-        private readonly Dictionary<CardAndHealthEntityOwnerData, int> _ownerToSlot = new();
-
-        private CardOnBattlefieldView SetupBattlefieldView(MinionCardData addedCard, int addedIndex,
-            GameSessionPlayerData playerData)
-        {
-            var view = _battlefieldViews[playerData][addedIndex];
-            _cardOnBattlefieldPresenter.SetCardInBattlefield(view, addedCard);
-            return view;
-        }
-
+        
         private CardAndHealthEntityOwnerData CreateOwnerFromCard(MinionCardData card)
         {
             return new CardAndHealthEntityOwnerData
@@ -129,97 +128,8 @@ namespace Feature.Battlefield.Script
                 _iconImage = card.IconImage,
                 SpellsList = card.SpellsList,
                 StartChakra = card.Chakra,
-                Cost = card.Cost, 
+                Cost = card.Cost,
             };
-        }
-
-        public int GetRandomFreeSlotForEnemy()
-        {
-            var enemyBoard = _gameSessionModel.EnemyHero.CardsInBoardList;
-    
-            var freeSlots = new List<int>();
-            for (int i = 0; i < enemyBoard.Count; i++)
-                if (enemyBoard[i] == null)
-                    freeSlots.Add(i);
-            
-            int result = freeSlots.Count == 0 ? -1 : freeSlots[Random.Range(0, freeSlots.Count)];
-
-            return result;
-        }
-
-        private void OnCardAddedBoard(MinionCardData addedCard, int addedIndex, GameSessionPlayerData playerData)
-        {
-            var view = SetupBattlefieldView(addedCard, addedIndex, playerData);
-            var newOwner = CreateOwnerFromCard(addedCard);
-            _ownerToSlot[newOwner] = addedIndex;
-            playerData.CardAndHealthEntityOwners.Add(newOwner);
-    
-            bool isEnemy = playerData == _gameSessionModel.EnemyHero;
-    
-            if (!isEnemy)
-                _tipPlaceBattlefieldViewSystem.OccupySlot(addedIndex);
-    
-            RegisterOwnerView(newOwner, view, isEnemy);
-
-            if (isEnemy)
-                _createOwnerCardAndHealthEntitySystem.CreateEntityEnemy(newOwner, view);
-            else
-                _createOwnerCardAndHealthEntitySystem.CreateEntityPlayer(newOwner, view);
-        }
-
-        private void RegisterOwnerView(CardAndHealthEntityOwnerData owner, CardOnBattlefieldView view, bool isEnemy)
-        {
-            _ownerToView[owner] = view;
-            _targetingSystem.RegisterTarget(view.gameObject, owner);
-    
-            if (!isEnemy)
-                view.OnClicked += () => _handViewSwitcher.SwitchTo(owner);
-        }
-
-        private void OnCardRemovedFromBoard(MinionCardData removedCard, GameSessionPlayerData playerData)
-        {
-            var owner = _ownerToView.Keys.FirstOrDefault(o => o.CardId == removedCard.id);
-            if (owner == null) return;
-
-            var view = _ownerToView[owner];
-
-            int slot = _battlefieldViews[playerData].IndexOf(view);
-            if (slot >= 0)
-                _tipPlaceBattlefieldViewSystem.FreeSlot(slot);
-
-            view.ClearData();
-
-
-            if (_handViewSwitcher.CurrentOwner == owner)
-                _handViewSwitcher.SwitchTo(playerData.MainHeroEntity());
-
-            _ownerToView.Remove(owner);
-            _ownerToSlot.Remove(owner);
-            playerData.CardAndHealthEntityOwners.Remove(owner);
-        }
-
-        public void AddCardInBattlefield(GameSessionPlayerData playerData, CardStatsData cardData)
-        {
-            bool isEnemy = playerData == _gameSessionModel.EnemyHero;
-
-            int occupiedSlots = playerData.CardsInBoard.CurrentValue.Count(c => c != null);
-            int freeSlots = playerData.CardsInBoardMax - occupiedSlots;
-            string playerType = isEnemy ? "ENEMY" : "PLAYER";
-
-    
-            int index = isEnemy
-                ? GetRandomFreeSlotForEnemy()
-                : _tipPlaceBattlefieldViewSystem.GetCardIndex();
-
-            if (index == -1)
-            {
-                return;
-            }
-    
-            playerData.AddCardToBoard((MinionCardData)cardData, index);
-    
-            int newOccupiedSlots = playerData.CardsInBoard.CurrentValue.Count(c => c != null);
-            int newFreeSlots = playerData.CardsInBoardMax - newOccupiedSlots;
         }
     }
 }
