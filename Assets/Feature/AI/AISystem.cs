@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using DG.Tweening;
 using Feature.Card.Script;
 using Feature.GameSessionData;
 using Feature.GoogleSheets;
@@ -18,162 +17,176 @@ namespace Feature.AI
         private readonly ReadyStageBackOrFightSystem _readyStageBackOrFightSystem;
         private readonly HeroPowerSystem _heroPowerSystem;
         private readonly TargetingSystem _targetingSystem;
+        private readonly AIActionExecutor _actionExecutor;
 
-        public AISystem(GameSessionModel gameSessionModel, CardCastService cardCastService,
-            ReadyStageBackOrFightSystem readyStageBackOrFightSystem, HeroPowerSystem heroPowerSystem, TargetingSystem targetingSystem)
+        public AISystem(
+            GameSessionModel gameSessionModel, 
+            CardCastService cardCastService,
+            ReadyStageBackOrFightSystem readyStageBackOrFightSystem, 
+            HeroPowerSystem heroPowerSystem, 
+            TargetingSystem targetingSystem, 
+            AIActionExecutor actionExecutor)
         {
             _gameSessionModel = gameSessionModel;
             _cardCastService = cardCastService;
             _readyStageBackOrFightSystem = readyStageBackOrFightSystem;
             _heroPowerSystem = heroPowerSystem;
             _targetingSystem = targetingSystem;
+            _actionExecutor = actionExecutor;
         }
 
-        public void ExecutePreparePhase() => ExecuteNextAction(GetAvailableActions);
-        public void ExecuteFightPhase() => ExecuteNextAction(GetAvailableActions);
+        public void ExecutePreparePhase() => ExecuteNextAction();
+        public void ExecuteFightPhase() => ExecuteNextAction();
 
-        private void ExecuteNextAction(Func<List<IAIAction>> getActions)
+        private void ExecuteNextAction()
         {
-            var actions = getActions();
+            var availableActions = CollectAvailableActions();
 
-            if (actions.Count == 0)
+            if (availableActions.Count == 0)
             {
-                _readyStageBackOrFightSystem.SetEnemyReady();
+                EndTurn();
                 return;
             }
 
-            var action = PickRandom(actions);
-            var target = GetRandomTarget(action);
-    
+            var chosenAction = PickRandomAction(availableActions);
+            var target = PickRandomValidTarget(chosenAction);
+
             if (target == null)
             {
-                ExecuteNextAction(getActions);
+                ExecuteNextAction();
                 return;
             }
 
-            float delay = UnityEngine.Random.Range(0.5f, 1.5f);
-
-            DOVirtual.DelayedCall(delay, () =>
+            _actionExecutor.ExecuteDelayed(() =>
             {
-                action.Execute(target);
-                ExecuteNextAction(getActions);
+                chosenAction.Execute(target);
+                ExecuteNextAction();
             });
         }
 
-        private List<IAIAction> GetAvailableActions()
+
+        private List<IAIAction> CollectAvailableActions()
         {
             var actions = new List<IAIAction>();
-            var enemy = _gameSessionModel.EnemyHero;
-    
-            int occupiedSlots = enemy.CardsInBoard.CurrentValue.Count(c => c != null);
-            bool hasFreeSlots = occupiedSlots < enemy.CardsInBoardMax;
+            var aiPlayer = _gameSessionModel.EnemyHero;
 
-            foreach (var owner in enemy.CardAndHealthEntityOwners.ToList())
-            {
-                var playableCards = owner.CardsInHand.CurrentValue
-                    .Where(c => c.Cost <= owner.Chakra)
-                    .ToList();
-
-                foreach (var card in playableCards)
-                {
-                    if (card is MinionCardData && !hasFreeSlots)
-                        continue;
-            
-                    var action = new CardAIAction(card, owner, _cardCastService);
-            
-                    if (HasValidTarget(action))
-                        actions.Add(action);
-                    else
-                        Debug.Log($"[AI] Skipping '{card.Name}' - no valid targets");
-                }
-            }
-
-            if (CanUseHeroPower())
-            {
-                var heroPowerAction = new HeroPowerAIAction(enemy.CurrentHeroPower, enemy.MainHeroEntity(),
-                    _cardCastService, _gameSessionModel, _heroPowerSystem);
-        
-                if (HasValidTarget(heroPowerAction))
-                    actions.Add(heroPowerAction);
-                else
-                    Debug.Log($"[AI] Skipping HeroPower - no valid targets");
-            }
+            CollectCardActions(aiPlayer, actions);
+            TryAddHeroPowerAction(aiPlayer, actions);
 
             return actions;
         }
 
-        private bool HasValidTarget(IAIAction action)
+        private void CollectCardActions(GameSessionPlayerData aiPlayer, List<IAIAction> actions)
         {
-            var availableTargets = GetAllPossibleTargets();
-    
-            if (action.DealsDamage())
+            bool hasFreeSlots = HasFreeBoardSlots(aiPlayer);
+
+            foreach (var entityOwner in aiPlayer.CardAndHealthEntityOwners.ToList())
             {
-                var enemy = _gameSessionModel.EnemyHero;
-                availableTargets = availableTargets
-                    .Where(t => !enemy.CardAndHealthEntityOwners.Contains(t))
-                    .ToList();
+                var affordableCards = GetAffordableCards(entityOwner);
+
+                foreach (var card in affordableCards)
+                {
+                    if (ShouldSkipCard(card, hasFreeSlots))
+                        continue;
+
+                    var action = new CardAIAction(card, entityOwner, _cardCastService);
+
+                    if (HasValidTargets(action))
+                        actions.Add(action);
+                }
             }
-    
-            if (_targetingSystem.IsPreparePhase)
-            {
-                var enemy = _gameSessionModel.EnemyHero;
-                availableTargets = availableTargets
-                    .Where(t => enemy.CardAndHealthEntityOwners.Contains(t))
-                    .ToList();
-            }
-    
-            return availableTargets.Count > 0;
         }
 
-        private IAIAction PickRandom(List<IAIAction> actions) =>
-            actions[UnityEngine.Random.Range(0, actions.Count)];
-
-        private CardAndHealthEntityOwnerData GetRandomTarget(IAIAction action)
+        private void TryAddHeroPowerAction(GameSessionPlayerData aiPlayer, List<IAIAction> actions)
         {
-            var availableTargets = GetAllPossibleTargets();
-    
+            if (!CanUseHeroPower(aiPlayer))
+                return;
+
+            var action = new HeroPowerAIAction(
+                aiPlayer.CurrentHeroPower, 
+                aiPlayer.MainHeroEntity(),
+                _cardCastService, 
+                _gameSessionModel, 
+                _heroPowerSystem);
+
+            if (HasValidTargets(action))
+                actions.Add(action);
+        }
+
+        private CardAndHealthEntityOwnerData PickRandomValidTarget(IAIAction action)
+        {
+            var validTargets = FilterValidTargets(action);
+            
+            return validTargets.Count > 0 
+                ? validTargets[UnityEngine.Random.Range(0, validTargets.Count)] 
+                : null;
+        }
+
+        private bool HasValidTargets(IAIAction action) =>
+            FilterValidTargets(action).Count > 0;
+
+        private List<CardAndHealthEntityOwnerData> FilterValidTargets(IAIAction action)
+        {
+            var allTargets = GetAllPossibleTargets();
+            
             if (action.DealsDamage())
-            {
-                var enemy = _gameSessionModel.EnemyHero;
-                availableTargets = availableTargets
-                    .Where(t => !enemy.CardAndHealthEntityOwners.Contains(t))
-                    .ToList();
-            }
-    
+                allTargets = FilterEnemiesOnly(allTargets);
+            
             if (_targetingSystem.IsPreparePhase)
-            {
-                var enemy = _gameSessionModel.EnemyHero;
-                availableTargets = availableTargets
-                    .Where(t => enemy.CardAndHealthEntityOwners.Contains(t))
-                    .ToList();
-            }
-    
-            if (availableTargets.Count == 0)
-                return null;
-    
-            return availableTargets[UnityEngine.Random.Range(0, availableTargets.Count)];
+                allTargets = FilterAlliesOnly(allTargets);
+            
+            return allTargets;
         }
 
         private List<CardAndHealthEntityOwnerData> GetAllPossibleTargets()
         {
-            var all = new List<CardAndHealthEntityOwnerData>();
-            all.AddRange(_gameSessionModel.PlayerHero.CardAndHealthEntityOwners);
-            all.AddRange(_gameSessionModel.EnemyHero.CardAndHealthEntityOwners);
-            return all;
+            var targets = new List<CardAndHealthEntityOwnerData>();
+            targets.AddRange(_gameSessionModel.PlayerHero.CardAndHealthEntityOwners);
+            targets.AddRange(_gameSessionModel.EnemyHero.CardAndHealthEntityOwners);
+            return targets;
         }
 
-        
-        private bool CanUseHeroPower()
+        private List<CardAndHealthEntityOwnerData> FilterEnemiesOnly(List<CardAndHealthEntityOwnerData> targets)
         {
-            var enemy = _gameSessionModel.EnemyHero;
-            var owner = enemy.MainHeroEntity();
-            var heroPower = enemy.CurrentHeroPower;
-
-            if (heroPower == null) return false;
-            if (enemy.HeroPowerUsedThisTurn) return false;
-            if (heroPower.Cost > owner.Chakra) return false;
-
-            return true;
+            var aiOwners = _gameSessionModel.EnemyHero.CardAndHealthEntityOwners;
+            return targets.Where(t => !aiOwners.Contains(t)).ToList();
         }
+
+        private List<CardAndHealthEntityOwnerData> FilterAlliesOnly(List<CardAndHealthEntityOwnerData> targets)
+        {
+            var aiOwners = _gameSessionModel.EnemyHero.CardAndHealthEntityOwners;
+            return targets.Where(t => aiOwners.Contains(t)).ToList();
+        }
+        
+        private bool ShouldSkipCard(CardStatsData card, bool hasFreeSlots) => 
+            card is MinionCardData && !hasFreeSlots;
+
+        private List<CardStatsData> GetAffordableCards(CardAndHealthEntityOwnerData owner)
+        {
+            return owner.CardsInHand.CurrentValue
+                .Where(card => card.Cost <= owner.Chakra)
+                .ToList();
+        }
+
+        private bool HasFreeBoardSlots(GameSessionPlayerData player)
+        {
+            int occupiedSlots = player.CardsInBoard.CurrentValue.Count(c => c != null);
+            return occupiedSlots < player.CardsInBoardMax;
+        }
+
+        private bool CanUseHeroPower(GameSessionPlayerData player)
+        {
+            var heroPower = player.CurrentHeroPower;
+            var owner = player.MainHeroEntity();
+
+            return heroPower != null 
+                && !player.HeroPowerUsedThisTurn 
+                && heroPower.Cost <= owner.Chakra;
+        }
+
+        private IAIAction PickRandomAction(List<IAIAction> actions) => 
+            actions[UnityEngine.Random.Range(0, actions.Count)];
+
+        private void EndTurn() => _readyStageBackOrFightSystem.SetEnemyReady();
     }
 }

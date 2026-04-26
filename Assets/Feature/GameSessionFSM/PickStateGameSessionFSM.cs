@@ -1,59 +1,60 @@
 using Feature.AI;
-using Feature.Card.Script;
 using Feature.GameSessionData;
+using Feature.GameSessionFSM;
 using Feature.UI;
 using Feature.UI.SelectWindowHero;
 
-namespace Feature.GameSessionFSM
+public class PickStateGameSessionFSM : StateGameSessionFsm
 {
-    public class PickStateGameSessionFSM : StateGameSessionFsm
+    private SelectWindowHeroPresenter _selectWindowHeroPresenter;
+    private GameSessionPresenter _gameSessionPresenter;
+    private AIActionExecutor _actionExecutor; // ← вместо AIRandomSelectSystem
+    private GameSessionModel _gameSessionModel;
+
+    public PickStateGameSessionFSM(
+        GameSessionFSM gameSessionFsm, 
+        SelectWindowHeroPresenter selectWindowHeroPresenter, 
+        GameSessionModel gameSessionModel, 
+        AIActionExecutor actionExecutor, // ← заменили
+        GameSessionPresenter gameSessionPresenter) : base(gameSessionFsm)
     {
-        private SelectWindowHeroPresenter _selectWindowHeroPresenter { get; }
-        private GameSessionPresenter _gameSessionPresenter { get; }
-        private AIRandomSelectSystem _aiRandomSelectSystem { get;  }
-        private GameSessionModel _gameSessionModel { get; }
+        _selectWindowHeroPresenter = selectWindowHeroPresenter;
+        _actionExecutor = actionExecutor;
+        _gameSessionPresenter = gameSessionPresenter;
+        _gameSessionModel = gameSessionModel;
+    }
 
+    public override void Enter()
+    {   
+        if (_gameSessionModel.PlayerStartGameSessionFirst()) 
+            PickHeroAI();
+        else 
+            PickHeroPlayer();
+    }
 
-        public PickStateGameSessionFSM(GameSessionFSM gameSessionFsm, SelectWindowHeroPresenter selectWindowHeroPresenter, 
-            GameSessionModel gameSessionModel, AIRandomSelectSystem aiRandomSelectSystem, 
-            GameSessionPresenter gameSessionPresenter) : base(gameSessionFsm)
-        {
-            _selectWindowHeroPresenter = selectWindowHeroPresenter;
-            _aiRandomSelectSystem = aiRandomSelectSystem;
-            _gameSessionPresenter = gameSessionPresenter;
-            _gameSessionModel = gameSessionModel;
-        }
+    private void PickHeroPlayer()
+    {
+        _selectWindowHeroPresenter.SetSelectMode();
+        _selectWindowHeroPresenter.OnPlayerPickedHero += PickHeroAI;
+    }
+
+    private void PickHeroAI()
+    {
+        var heroViews = _selectWindowHeroPresenter._selectWindowHeroView.heroViews;
         
-        public override void Enter()
-        {   
-            if (_gameSessionModel.PlayerStartGameSessionFirst()) PickHeroAI();
-            else PickHeroPlayer();
-        }
-
-        private void PickHeroPlayer()
+        _actionExecutor.SelectAndExecute(heroViews, selectedHeroView =>
         {
+            _selectWindowHeroPresenter._selectWindowHeroView._selectHeroView = selectedHeroView;
+            _selectWindowHeroPresenter.SelectHero();
+            _selectWindowHeroPresenter.ChoseSelectedHeroEnemy();
+            _selectWindowHeroPresenter.OnPlayerPickedHero -= PickHeroAI;
             _selectWindowHeroPresenter.SetSelectMode();
-            _selectWindowHeroPresenter.OnPlayerPickedHero += PickHeroAI;
-        }
+        });
+    }
 
-        private void PickHeroAI()
-        {
-            _aiRandomSelectSystem.RandomSelectValue(_selectWindowHeroPresenter._selectWindowHeroView.heroViews)
-                .OnComplete(selectedHeroView =>
-                {
-                    _selectWindowHeroPresenter._selectWindowHeroView._selectHeroView = selectedHeroView;
-                    _selectWindowHeroPresenter.SelectHero();
-                    _selectWindowHeroPresenter.ChoseSelectedHeroEnemy();
-                    _selectWindowHeroPresenter.OnPlayerPickedHero -= PickHeroAI;
-                    _selectWindowHeroPresenter.SetSelectMode(); 
-                })
-                .AIImitation();
-        }
-
-        public override void Exit()
-        {
-            _selectWindowHeroPresenter.SetInactive();
-            _gameSessionPresenter.SetupHeroView();
-        }
+    public override void Exit()
+    {
+        _selectWindowHeroPresenter.SetInactive();
+        _gameSessionPresenter.SetupHeroView();
     }
 }

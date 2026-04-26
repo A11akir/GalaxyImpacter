@@ -6,17 +6,19 @@ namespace Feature.GameSessionFSM
     public class BanStateGameSessionFSM : StateGameSessionFsm
     {
         private GameSessionFSM _gameSessionFsm;
-        private SelectWindowHeroPresenter _selectWindowHeroPresenter { get; set; }
-        private GameSessionData.GameSessionModel GameSessionModel { get; set; }
-        private AIRandomSelectSystem _aiRandomSelectSystem { get; set; }
+        private SelectWindowHeroPresenter _selectWindowHeroPresenter;
+        private GameSessionData.GameSessionModel _gameSessionModel;
+        private AIActionExecutor _actionExecutor;
 
-        public BanStateGameSessionFSM(GameSessionFSM gameSessionFsm,
-            SelectWindowHeroPresenter selectWindowHeroPresenter, GameSessionData.GameSessionModel gameSessionModel,
-            AIRandomSelectSystem aiRandomSelectSystem) : base(gameSessionFsm)
+        public BanStateGameSessionFSM(
+            GameSessionFSM gameSessionFsm,
+            SelectWindowHeroPresenter selectWindowHeroPresenter, 
+            GameSessionData.GameSessionModel gameSessionModel,
+            AIActionExecutor actionExecutor) : base(gameSessionFsm)
         {
             _selectWindowHeroPresenter = selectWindowHeroPresenter;
-            _aiRandomSelectSystem = aiRandomSelectSystem;
-            GameSessionModel = gameSessionModel;
+            _actionExecutor = actionExecutor;
+            _gameSessionModel = gameSessionModel;
             _gameSessionFsm = gameSessionFsm;
         }
 
@@ -26,20 +28,21 @@ namespace Feature.GameSessionFSM
             _selectWindowHeroPresenter.SelectStartRandomHeroes();
             _selectWindowHeroPresenter.SetupRandomHeroes();
             
-            if (GameSessionModel.PlayerStartGameSessionFirst()) 
+            if (_gameSessionModel.PlayerStartGameSessionFirst()) 
                 _selectWindowHeroPresenter.SetBanMode();
-            else BanHeroAI();
+            else 
+                BanHeroAI();
         }
 
         private void BanHeroAI()
         {
-            _aiRandomSelectSystem.RandomSelectValue(_selectWindowHeroPresenter._selectWindowHeroView.heroViews)
-                .OnComplete(selectedHeroView =>
-                {
-                    _selectWindowHeroPresenter._selectWindowHeroView._selectHeroView = selectedHeroView;
-                    _selectWindowHeroPresenter.BanHero();
-                })
-                .AIImitation();
+            var heroViews = _selectWindowHeroPresenter._selectWindowHeroView.heroViews;
+            
+            _actionExecutor.SelectAndExecute(heroViews, selectedHeroView =>
+            {
+                _selectWindowHeroPresenter._selectWindowHeroView._selectHeroView = selectedHeroView;
+                _selectWindowHeroPresenter.BanHero();
+            });
         }
 
         public override void Exit()
