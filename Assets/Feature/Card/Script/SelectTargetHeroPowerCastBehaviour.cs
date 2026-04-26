@@ -138,7 +138,7 @@ namespace Feature.Card.Script
             var current = go.transform;
             while (current != null)
             {
-                var target = _targetingSystem.GetTarget(current.gameObject);
+                var target = _targetingSystem.GetTarget(current.gameObject, _owner);
                 if (target != null) return target;
                 current = current.parent;
             }

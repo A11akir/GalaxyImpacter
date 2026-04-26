@@ -17,6 +17,23 @@ namespace Feature.GameSessionData
             return null;
         }
         
+        public IEnumerable<CardAndHealthEntityOwnerData> GetEnemyOwnersFor(CardAndHealthEntityOwnerData owner)
+        {
+            bool ownerIsPlayer = PlayerHero.GetAllEntityOwners().Contains(owner);
+            var enemyPlayerData = ownerIsPlayer ? EnemyHero : PlayerHero;
+    
+            yield return enemyPlayerData.MainHeroEntity();
+            foreach (var entity in enemyPlayerData.CardAndHealthEntityOwners)
+                yield return entity;
+        }
+        
+        public bool AreAllies(CardAndHealthEntityOwnerData a, CardAndHealthEntityOwnerData b)
+        {
+            var playerOwners = PlayerHero.GetAllEntityOwners();
+            bool bothArePlayerSide = playerOwners.Contains(a) && playerOwners.Contains(b);
+            bool bothAreEnemySide = !playerOwners.Contains(a) && !playerOwners.Contains(b);
+            return bothArePlayerSide || bothAreEnemySide;
+        }
         public IEnumerable<CardAndHealthEntityOwnerData> GetAllEntityOwners()
         {
             return PlayerHero.CardAndHealthEntityOwners

@@ -21,6 +21,11 @@ namespace Feature.GameSessionData
         
         public bool HeroPowerUsedThisTurn;
         
+        public IEnumerable<CardAndHealthEntityOwnerData> GetAllEntityOwners()
+        {
+            return CardAndHealthEntityOwners;
+        }
+        
         public SpellCardData CurrentHeroPower => HeroPowers?[0];
         
         public List<MinionCardData> CardsInBoardList

@@ -108,22 +108,18 @@ namespace Feature.GameSessionData
             }
             _cardsInDeck.Value = refilled;
         
-            GLog.Log($"[Deck] {_heroName} refilled: {_cardsInDeck.Value.Count} cards");
         }
         
         public void DrawCardFromDeck()
         {
-            GLog.Log($"[Deck] {_heroName} DrawPile: {_cardsInDeck.Value.Count}, Hand: {CountCardsInHand}");
     
             if (_cardsInDeck.Value.Count == 0)
             {
-                GLog.Log($"[Deck] {_heroName} deck empty — refilling from base ({_baseDeck.Count} cards)");
                 RefillDeckFromBase();
             }
     
             if (_cardsInDeck.Value.Count == 0)
             {
-                GLog.Log($"[Deck] {_heroName} base deck also empty!");
                 return;
             }
 
@@ -133,13 +129,11 @@ namespace Feature.GameSessionData
             _cardsInDeck.Value = deckList;
 
 
-            GLog.Log($"[Deck] {_heroName} drew: {drawnCard.Name}, remaining: {_cardsInDeck.Value.Count}");
             AddCardToHand(drawnCard, CountCardsInHand);
         }
 
         public void DiscardHand()
         {
-            GLog.Log($"[Deck] {_heroName} discarding hand ({CountCardsInHand} cards)");
             _cardsInHand.Value = new List<CardStatsData>();
         }
         
