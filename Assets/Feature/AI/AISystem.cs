@@ -1,4 +1,4 @@
-
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
@@ -15,50 +15,39 @@ namespace Feature.AI
         private readonly CardCastService _cardCastService;
         private readonly ReadyStageBackOrFightSystem _readyStageBackOrFightSystem;
         private readonly HeroPowerSystem _heroPowerSystem;
+        private readonly TargetingSystem _targetingSystem;
 
-        public AISystem(GameSessionModel gameSessionModel, CardCastService cardCastService, ReadyStageBackOrFightSystem readyStageBackOrFightSystem, HeroPowerSystem heroPowerSystem)
+        public AISystem(GameSessionModel gameSessionModel, CardCastService cardCastService,
+            ReadyStageBackOrFightSystem readyStageBackOrFightSystem, HeroPowerSystem heroPowerSystem, TargetingSystem targetingSystem)
         {
             _gameSessionModel = gameSessionModel;
             _cardCastService = cardCastService;
             _readyStageBackOrFightSystem = readyStageBackOrFightSystem;
             _heroPowerSystem = heroPowerSystem;
+            _targetingSystem = targetingSystem;
         }
 
-        public void ExecutePreparePhase()
-        {
-            ExecuteNextPrepareAction();
-        }
+        public void ExecutePreparePhase() => ExecuteNextAction(GetAvailableActions, GetRandomEnemyTarget);
+        public void ExecuteFightPhase() => ExecuteNextAction(GetAvailableActions, GetRandomEnemyTarget);
 
-        private void ExecuteNextPrepareAction()
+        private void ExecuteNextAction(Func<List<IAIAction>> getActions, Func<CardAndHealthEntityOwnerData> getTarget)
         {
-            var actions = GetPrepareActions();
+            var actions = getActions();
 
             if (actions.Count == 0)
             {
                 _readyStageBackOrFightSystem.SetEnemyReady();
                 return;
             }
-            
 
             var action = PickRandom(actions);
             float delay = UnityEngine.Random.Range(0.5f, 1.5f);
 
             DOVirtual.DelayedCall(delay, () =>
             {
-                action.Execute(GetRandomTarget());
-                ExecuteNextPrepareAction();
+                action.Execute(getTarget());
+                ExecuteNextAction(getActions, getTarget);
             });
-        }
-        
-        private List<IAIAction> GetPrepareActions()
-        {
-            return GetAvailableActions();
-        }
-
-        private IAIAction PickRandom(List<IAIAction> actions)
-        {
-            int index = UnityEngine.Random.Range(0, actions.Count);
-            return actions[index];
         }
 
         private List<IAIAction> GetAvailableActions()
@@ -77,22 +66,24 @@ namespace Feature.AI
             }
 
             if (CanUseHeroPower())
-                actions.Add(new HeroPowerAIAction(enemy.CurrentHeroPower, enemy.MainHeroEntity(), _cardCastService, _gameSessionModel, _heroPowerSystem));
+                actions.Add(new HeroPowerAIAction(enemy.CurrentHeroPower, enemy.MainHeroEntity(),
+                    _cardCastService, _gameSessionModel, _heroPowerSystem));
 
             return actions;
         }
 
-        private CardAndHealthEntityOwnerData GetRandomTarget()
+        private IAIAction PickRandom(List<IAIAction> actions) =>
+            actions[UnityEngine.Random.Range(0, actions.Count)];
+
+        private CardAndHealthEntityOwnerData GetRandomEnemyTarget()
         {
-            var targets = new List<CardAndHealthEntityOwnerData>();
+            var targets = _gameSessionModel.PlayerHero.CardAndHealthEntityOwners;
     
-            targets.AddRange(_gameSessionModel.PlayerHero.CardAndHealthEntityOwners);
-    
-            targets.AddRange(_gameSessionModel.EnemyHero.CardAndHealthEntityOwners);
+            if (_targetingSystem.IsPreparePhase)
+                targets = _gameSessionModel.EnemyHero.CardAndHealthEntityOwners;
     
             return targets[UnityEngine.Random.Range(0, targets.Count)];
         }
-        
 
         private bool CanUseHeroPower()
         {
@@ -105,10 +96,6 @@ namespace Feature.AI
             if (heroPower.Cost > owner.Chakra) return false;
 
             return true;
-        }
-
-        public void ExecuteFightPhase()
-        {
         }
     }
 }
