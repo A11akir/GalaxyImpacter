@@ -7,6 +7,7 @@ namespace Feature.AI
     {
         int Cost { get; }
         TargetType TargetType { get; }
-        void Execute(CardAndHealthEntityOwnerData owner);
+        bool DealsDamage(); // ← метод вместо свойства
+        void Execute(CardAndHealthEntityOwnerData target);
     }
 }

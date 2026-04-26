@@ -1,10 +1,9 @@
-// 3. EntityDeathSystem - передавай убийцу в событие
+
 using System;
 using System.Linq;
 using Feature.Card.Script;
 using Feature.EndGameSession;
 using Feature.GameSessionData;
-using Feature.Hero;
 using R3;
 
 namespace Feature.Entity.Script
@@ -16,7 +15,7 @@ namespace Feature.Entity.Script
         private readonly CompositeDisposable _disposables = new();
         private readonly GameOverSystem _gameOverSystem;
 
-        public event Action<CardAndHealthEntityOwnerData, CardAndHealthEntityOwnerData> OnEntityDied; // victim, killer
+        public event Action<CardAndHealthEntityOwnerData, CardAndHealthEntityOwnerData> OnEntityDied;
 
         public EntityDeathSystem(GameSessionModel gameSessionModel, HandDataRepository handDataRepository, GameOverSystem gameOverSystem)
         {

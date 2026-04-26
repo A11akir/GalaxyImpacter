@@ -40,7 +40,6 @@ namespace Feature.ShopGamePlay.Script.Currency
     
             if (killerPlayer == null || victimPlayer == null) return;
     
-            // Награда только если убил врага (не своего)
             if (killerPlayer == victimPlayer) return;
     
             AddCurrency(killerPlayer, victim.Cost);

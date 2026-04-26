@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Feature.Card.Script;
 using Feature.CardEffect.Script;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace Feature.GoogleSheets
         [SerializeField] private List<int> _values;
         [SerializeField] private string _description;
         [SerializeField] private List<CardEffectSO> _effects;
+
 
         public List<CardEffectSO> Effects => _effects;
         public List<int> Values { get => _values; set => _values = value; }

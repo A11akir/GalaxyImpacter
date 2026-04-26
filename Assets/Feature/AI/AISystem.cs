@@ -27,10 +27,10 @@ namespace Feature.AI
             _targetingSystem = targetingSystem;
         }
 
-        public void ExecutePreparePhase() => ExecuteNextAction(GetAvailableActions, GetRandomEnemyTarget);
-        public void ExecuteFightPhase() => ExecuteNextAction(GetAvailableActions, GetRandomEnemyTarget);
+        public void ExecutePreparePhase() => ExecuteNextAction(GetAvailableActions);
+        public void ExecuteFightPhase() => ExecuteNextAction(GetAvailableActions);
 
-        private void ExecuteNextAction(Func<List<IAIAction>> getActions, Func<CardAndHealthEntityOwnerData> getTarget)
+        private void ExecuteNextAction(Func<List<IAIAction>> getActions)
         {
             var actions = getActions();
 
@@ -41,12 +41,20 @@ namespace Feature.AI
             }
 
             var action = PickRandom(actions);
+            var target = GetRandomTarget(action);
+    
+            if (target == null)
+            {
+                ExecuteNextAction(getActions);
+                return;
+            }
+
             float delay = UnityEngine.Random.Range(0.5f, 1.5f);
 
             DOVirtual.DelayedCall(delay, () =>
             {
-                action.Execute(getTarget());
-                ExecuteNextAction(getActions, getTarget);
+                action.Execute(target);
+                ExecuteNextAction(getActions);
             });
         }
 
@@ -75,14 +83,30 @@ namespace Feature.AI
         private IAIAction PickRandom(List<IAIAction> actions) =>
             actions[UnityEngine.Random.Range(0, actions.Count)];
 
-        private CardAndHealthEntityOwnerData GetRandomEnemyTarget()
+        private CardAndHealthEntityOwnerData GetRandomTarget(IAIAction action)
         {
-            var targets = _gameSessionModel.PlayerHero.CardAndHealthEntityOwners;
+            var targets = GetAllPossibleTargets();
+            
+            if (action.DealsDamage())
+            {
+                var enemy = _gameSessionModel.EnemyHero;
+                targets = targets
+                    .Where(t => !enemy.CardAndHealthEntityOwners.Contains(t))
+                    .ToList();
+            }
     
-            if (_targetingSystem.IsPreparePhase)
-                targets = _gameSessionModel.EnemyHero.CardAndHealthEntityOwners;
+            if (targets.Count == 0)
+                return null;
     
             return targets[UnityEngine.Random.Range(0, targets.Count)];
+        }
+
+        private List<CardAndHealthEntityOwnerData> GetAllPossibleTargets()
+        {
+            var all = new List<CardAndHealthEntityOwnerData>();
+            all.AddRange(_gameSessionModel.PlayerHero.CardAndHealthEntityOwners);
+            all.AddRange(_gameSessionModel.EnemyHero.CardAndHealthEntityOwners);
+            return all;
         }
 
         private bool CanUseHeroPower()

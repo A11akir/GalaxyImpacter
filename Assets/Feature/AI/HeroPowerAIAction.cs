@@ -13,7 +13,7 @@ namespace Feature.AI
         private readonly CardCastService _cardCastService;
         private readonly GameSessionModel _gameSessionModel;
         private readonly HeroPowerSystem _heroPowerSystem;
-    
+        public bool DealsDamage() => _heroPower.DealsDamage(); 
         public int Cost => _heroPower.Cost;
         public TargetType TargetType => _heroPower.TargetType;
 
