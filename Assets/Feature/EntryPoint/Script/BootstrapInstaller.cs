@@ -73,7 +73,9 @@ namespace Feature.EntryPoint.Script
         {
             Container.Bind<GameSessionPlayerData>().AsSingle();
             Container.Bind<GameSessionModel>().AsSingle();
-            Container.Bind<TurnСycleGameSessionSystem>().AsSingle();
+            Container.Bind<TurnCycleGameSessionSystem>().AsSingle();
+            Container.Bind<StageManagerSystem>().AsSingle();
+            Container.Bind<TurnResourceManager>().AsSingle();
             Container.Bind<DeckFillSystem>().AsSingle();
             Container.Bind<HandFillSystem>().AsSingle();
             Container.Bind<CurrencyManagerSystem>().AsSingle();

@@ -201,14 +201,11 @@ namespace Feature.Battlefield.Script
         public void AddCardInBattlefield(GameSessionPlayerData playerData, CardStatsData cardData)
         {
             bool isEnemy = playerData == _gameSessionModel.EnemyHero;
-    
-            // DEBUG: До попытки выставить
+
             int occupiedSlots = playerData.CardsInBoard.CurrentValue.Count(c => c != null);
             int freeSlots = playerData.CardsInBoardMax - occupiedSlots;
             string playerType = isEnemy ? "ENEMY" : "PLAYER";
-    
-            Debug.Log($"[BEFORE] {playerType} attempting to play '{cardData.Name}' (Cost: {cardData.Cost})");
-            Debug.Log($"[BEFORE] Occupied slots: {occupiedSlots}/{playerData.CardsInBoardMax}, Free slots: {freeSlots}");
+
     
             int index = isEnemy
                 ? GetRandomFreeSlotForEnemy()
@@ -216,18 +213,13 @@ namespace Feature.Battlefield.Script
 
             if (index == -1)
             {
-                Debug.LogWarning($"[FAILED] {playerType} - No free slots available!");
                 return;
             }
     
             playerData.AddCardToBoard((MinionCardData)cardData, index);
     
-            // DEBUG: После выставления
             int newOccupiedSlots = playerData.CardsInBoard.CurrentValue.Count(c => c != null);
             int newFreeSlots = playerData.CardsInBoardMax - newOccupiedSlots;
-    
-            Debug.Log($"[AFTER] {playerType} played '{cardData.Name}' to slot {index}");
-            Debug.Log($"[AFTER] Occupied slots: {newOccupiedSlots}/{playerData.CardsInBoardMax}, Free slots: {newFreeSlots}");
         }
     }
 }

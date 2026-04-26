@@ -61,19 +61,16 @@ namespace Feature.GameSessionData
         
         public void AddCardToBoard(MinionCardData card, int index)
         {
-            if (index >= CardsInBoardMax) return;
-            if (_cardsInBoard.Value[index] != null) return;
-            var newList = new List<MinionCardData>();
+            if (index < 0 || index >= CardsInBoardMax) return;
     
-            for (int i = 0; i < CardsInBoardMax; i++)
-            {
-                if (i < _cardsInBoard.Value.Count)
-                    newList.Add(_cardsInBoard.Value[i]);
-                else newList.Add(null);
-            }
+            var newList = new List<MinionCardData>(_cardsInBoard.Value);
+    
+            while (newList.Count <= index)
+                newList.Add(null);
+    
+            if (newList[index] != null) return;
     
             newList[index] = card;
-    
             _cardsInBoard.Value = newList;
         }
         
@@ -90,8 +87,11 @@ namespace Feature.GameSessionData
         public void RemoveCardFromBoard(MinionCardData card)
         {
             var currentList = new List<MinionCardData>(_cardsInBoard.Value);
-            currentList.Remove(card);
-
+            int index = currentList.IndexOf(card);
+    
+            if (index >= 0)
+                currentList[index] = null; 
+    
             _cardsInBoard.Value = currentList;
         }
         

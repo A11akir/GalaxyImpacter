@@ -5,13 +5,13 @@ namespace Feature.GameSessionFSM
 {
     public class FightStateGameSessionFSM : StateGameSessionFsm
     {
-        private readonly TurnСycleGameSessionSystem _turnСycleGameSessionSystem;
+        private readonly TurnCycleGameSessionSystem _turnСycleGameSessionSystem;
         private readonly TimerStageGameSessionSystem _timerStageGameSessionSystem;
         private readonly ReadyStageBackOrFightSystem _readySystem;
 
         public FightStateGameSessionFSM(
             GameSessionFSM gameSessionFsm,
-            TurnСycleGameSessionSystem turnСycleGameSessionSystem,
+            TurnCycleGameSessionSystem turnСycleGameSessionSystem,
             TimerStageGameSessionSystem timerStageGameSessionSystem,
             ReadyStageBackOrFightSystem readySystem) : base(gameSessionFsm)
         {
