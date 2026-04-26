@@ -27,10 +27,29 @@ namespace Feature.Chakra
 
         public void NewTurnUpdate()
         {
+            var playerHero = _gameSessionModel.PlayerHero.MainHeroEntity();
+            var enemyHero = _gameSessionModel.EnemyHero.MainHeroEntity();
+
+            IncrementHeroChakra(playerHero);
+            IncrementHeroChakra(enemyHero);
+
             foreach (var owner in _gameSessionModel.GetAllEntityOwners())
             {
-                AddChakraWithMaxLimit(owner, owner.StartChakra + _gameSessionModel.Turn);
+                if (owner != playerHero && owner != enemyHero)
+                    RefillMinionChakra(owner);
             }
+        }
+        
+        private void IncrementHeroChakra(CardAndHealthEntityOwnerData hero)
+        {
+            int increment = 2;
+            int max = hero.MaxChakraCountBaseIncrease;
+            int newChakra = Mathf.Min(_gameSessionModel.Turn + increment, max);
+            hero.SetChakra(newChakra);
+        }
+        private void RefillMinionChakra(CardAndHealthEntityOwnerData minion)
+        {
+            minion.SetChakra(minion.StartChakra);
         }
 
         private void AddChakraWithMaxLimit(CardAndHealthEntityOwnerData owner, int amount)

@@ -31,7 +31,7 @@ namespace Feature.GameSessionData
             set => _cardsInHand.Value = value;
         }
 
-        public int StartChakra = 4;
+        public int StartChakra = 2;
         
         private readonly ReactiveProperty<List<CardStatsData>> _cardsInBoard = new(new List<CardStatsData>());
         public ReadOnlyReactiveProperty<List<CardStatsData>> CardsInBoard => _cardsInBoard;
