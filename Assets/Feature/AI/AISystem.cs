@@ -4,8 +4,10 @@ using System.Linq;
 using DG.Tweening;
 using Feature.Card.Script;
 using Feature.GameSessionData;
+using Feature.GoogleSheets;
 using Feature.Hero;
 using Feature.StagesGameLogic;
+using UnityEngine;
 
 namespace Feature.AI
 {
@@ -62,6 +64,9 @@ namespace Feature.AI
         {
             var actions = new List<IAIAction>();
             var enemy = _gameSessionModel.EnemyHero;
+    
+            int occupiedSlots = enemy.CardsInBoard.CurrentValue.Count(c => c != null);
+            bool hasFreeSlots = occupiedSlots < enemy.CardsInBoardMax;
 
             foreach (var owner in enemy.CardAndHealthEntityOwners.ToList())
             {
@@ -70,14 +75,54 @@ namespace Feature.AI
                     .ToList();
 
                 foreach (var card in playableCards)
-                    actions.Add(new CardAIAction(card, owner, _cardCastService));
+                {
+                    if (card is MinionCardData && !hasFreeSlots)
+                        continue;
+            
+                    var action = new CardAIAction(card, owner, _cardCastService);
+            
+                    if (HasValidTarget(action))
+                        actions.Add(action);
+                    else
+                        Debug.Log($"[AI] Skipping '{card.Name}' - no valid targets");
+                }
             }
 
             if (CanUseHeroPower())
-                actions.Add(new HeroPowerAIAction(enemy.CurrentHeroPower, enemy.MainHeroEntity(),
-                    _cardCastService, _gameSessionModel, _heroPowerSystem));
+            {
+                var heroPowerAction = new HeroPowerAIAction(enemy.CurrentHeroPower, enemy.MainHeroEntity(),
+                    _cardCastService, _gameSessionModel, _heroPowerSystem);
+        
+                if (HasValidTarget(heroPowerAction))
+                    actions.Add(heroPowerAction);
+                else
+                    Debug.Log($"[AI] Skipping HeroPower - no valid targets");
+            }
 
             return actions;
+        }
+
+        private bool HasValidTarget(IAIAction action)
+        {
+            var availableTargets = GetAllPossibleTargets();
+    
+            if (action.DealsDamage())
+            {
+                var enemy = _gameSessionModel.EnemyHero;
+                availableTargets = availableTargets
+                    .Where(t => !enemy.CardAndHealthEntityOwners.Contains(t))
+                    .ToList();
+            }
+    
+            if (_targetingSystem.IsPreparePhase)
+            {
+                var enemy = _gameSessionModel.EnemyHero;
+                availableTargets = availableTargets
+                    .Where(t => enemy.CardAndHealthEntityOwners.Contains(t))
+                    .ToList();
+            }
+    
+            return availableTargets.Count > 0;
         }
 
         private IAIAction PickRandom(List<IAIAction> actions) =>
@@ -85,20 +130,28 @@ namespace Feature.AI
 
         private CardAndHealthEntityOwnerData GetRandomTarget(IAIAction action)
         {
-            var targets = GetAllPossibleTargets();
-            
+            var availableTargets = GetAllPossibleTargets();
+    
             if (action.DealsDamage())
             {
                 var enemy = _gameSessionModel.EnemyHero;
-                targets = targets
+                availableTargets = availableTargets
                     .Where(t => !enemy.CardAndHealthEntityOwners.Contains(t))
                     .ToList();
             }
     
-            if (targets.Count == 0)
+            if (_targetingSystem.IsPreparePhase)
+            {
+                var enemy = _gameSessionModel.EnemyHero;
+                availableTargets = availableTargets
+                    .Where(t => enemy.CardAndHealthEntityOwners.Contains(t))
+                    .ToList();
+            }
+    
+            if (availableTargets.Count == 0)
                 return null;
     
-            return targets[UnityEngine.Random.Range(0, targets.Count)];
+            return availableTargets[UnityEngine.Random.Range(0, availableTargets.Count)];
         }
 
         private List<CardAndHealthEntityOwnerData> GetAllPossibleTargets()
@@ -109,6 +162,7 @@ namespace Feature.AI
             return all;
         }
 
+        
         private bool CanUseHeroPower()
         {
             var enemy = _gameSessionModel.EnemyHero;
