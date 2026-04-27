@@ -15,12 +15,11 @@ MonoBehaviour:
   _cost: 1
   _name: Hit
   _rarity: Common
-  _iconImage: {fileID: 6100258291000562001, guid: 3be04f498195249a28ee0aea154ef873, type: 3}
+  _iconImage: {fileID: 0}
   _specialization: []
   _level: 0
   targetType: 0
-  id: 3c0eaf1b-b4c1-4f48-bc7f-8f20a22969d8
+  id: 338fbc63-f259-4802-a41e-6714666668bb
   _values: 03000000
   _description: Give 3 damage.
-  _effects:
-  - {fileID: 11400000, guid: 3b5f2e160b1e2c74d9990a57ed5fc8d2, type: 2}
+  _effects: []

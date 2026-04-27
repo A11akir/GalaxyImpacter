@@ -278,7 +278,15 @@ MonoBehaviour:
   _canAvailableCast: {fileID: 0}
   _heroCardWindow: {fileID: 0}
   _spellCardWindow: {fileID: 0}
+  _cardBack: {fileID: 0}
+  _costFrame: {fileID: 0}
+  commonSprite: {fileID: 0}
+  hiddenSprite: {fileID: 0}
+  anomalousSprite: {fileID: 0}
+  primordialSprite: {fileID: 0}
   _heroPowerDescriptionWindow: {fileID: 6443232595731128880}
+  chakraCostFrame: {fileID: 0}
+  _heroPowerUsedThisTurnWindow: {fileID: 0}
   _canAvailableCastHeroPower: {fileID: 0}
 --- !u!1 &5817177178685773937
 GameObject:
@@ -938,6 +946,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3669127194697846889, guid: f91b620f52a734f4ea0522028177e042, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3894050016740728743, guid: f91b620f52a734f4ea0522028177e042, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -100
@@ -969,48 +981,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3669127194697846889, guid: f91b620f52a734f4ea0522028177e042, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3682395251164559764}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f91b620f52a734f4ea0522028177e042, type: 3}
---- !u!1 &37510874251401139 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6902444197665969187, guid: f91b620f52a734f4ea0522028177e042, type: 3}
-  m_PrefabInstance: {fileID: 6867755912978629520}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &4909930490652335454 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1976157032157224654, guid: f91b620f52a734f4ea0522028177e042, type: 3}
   m_PrefabInstance: {fileID: 6867755912978629520}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &7900562945407374329 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3669127194697846889, guid: f91b620f52a734f4ea0522028177e042, type: 3}
-  m_PrefabInstance: {fileID: 6867755912978629520}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3682395251164559764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7900562945407374329}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b233087b357641bc8ba0f51a3a4e5397, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _cardContainer: {fileID: 0}
-  _healthContainer: {fileID: 0}
-  _name: {fileID: 0}
-  _health: {fileID: 0}
-  _cost: {fileID: 0}
-  _description: {fileID: 0}
-  _iconSpell: {fileID: 0}
-  _iconMinionHand: {fileID: 0}
-  _canAvailableCast: {fileID: 0}
-  _heroCardWindow: {fileID: 0}
-  _spellCardWindow: {fileID: 0}
-  _heroPowerDescriptionWindow: {fileID: 37510874251401139}
-  _canAvailableCastHeroPower: {fileID: 0}

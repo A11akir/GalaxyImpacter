@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 1
   _name: Reinforcement
-  _rarity: Primordial
-  _iconImage: {fileID: -3140911068402530301, guid: 931395c010c014fd0b3fd8552fbfb85c, type: 3}
+  _rarity: Anomalous
+  _iconImage: {fileID: 0}
   _specialization:
   - Assasian
   _level: 0
-  targetType: 4
-  id: c9728864-e8d7-459d-86fe-454ca6968f27
-  _health: 2
+  targetType: 0
+  id: 9afab0f3-8ae7-403f-b0eb-b158630db673
+  _health: 1
   _chakra: 2
-  _handCardCount: 4
+  _handCardCount: 2
   _spellsList:
   - {fileID: 11400000, guid: c9ea4eec95e4e43ac90344de12a12d74, type: 2}
-  - {fileID: 11400000, guid: c9ea4eec95e4e43ac90344de12a12d74, type: 2}
   - {fileID: 11400000, guid: 122c9f08f812940e691bf84ed3c3ab38, type: 2}
+  - {fileID: 11400000, guid: c9ea4eec95e4e43ac90344de12a12d74, type: 2}
   - {fileID: 11400000, guid: 122c9f08f812940e691bf84ed3c3ab38, type: 2}

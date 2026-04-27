@@ -66,10 +66,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db03efc06e224dca885a7a23b5729890, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _heroPowerView: {fileID: 3845634917037881966}
   _heroPowerCardView:
   - {fileID: 6863638932820122441}
   _wasSelectBotWindow: {fileID: 4555898984084105891}
-  _selectWindow: {fileID: 1850049352185157076}
+  _selectWindow: {fileID: 7567091732668273194}
   _nameWindow: {fileID: 3592864764503716843}
   _banWindow: {fileID: 3805470002485658676}
   _iconImage: {fileID: 200054665436310926}
@@ -422,7 +423,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b233087b357641bc8ba0f51a3a4e5397, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cardContainer: {fileID: 0}
+  _healthContainer: {fileID: 0}
+  _name: {fileID: 0}
+  _health: {fileID: 0}
+  _cost: {fileID: 0}
+  _description: {fileID: 0}
+  _iconSpell: {fileID: 0}
+  _iconMinionHand: {fileID: 0}
+  _canAvailableCast: {fileID: 0}
+  _heroCardWindow: {fileID: 0}
+  _spellCardWindow: {fileID: 0}
+  _cardBack: {fileID: 0}
+  _costFrame: {fileID: 0}
+  commonSprite: {fileID: 0}
+  hiddenSprite: {fileID: 0}
+  anomalousSprite: {fileID: 0}
+  primordialSprite: {fileID: 0}
   _heroPowerDescriptionWindow: {fileID: 6902444197665969187}
+  chakraCostFrame: {fileID: 0}
+  _heroPowerUsedThisTurnWindow: {fileID: 0}
+  _canAvailableCastHeroPower: {fileID: 0}
 --- !u!1 &3805470002485658676
 GameObject:
   m_ObjectHideFlags: 0
