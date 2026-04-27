@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 1
   _name: Hit
-  _rarity: 
+  _rarity: Common
   _iconImage: {fileID: 6100258291000562001, guid: 3be04f498195249a28ee0aea154ef873, type: 3}
   _specialization: []
   _level: 0

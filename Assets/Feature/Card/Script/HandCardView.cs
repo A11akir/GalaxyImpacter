@@ -23,6 +23,12 @@ namespace Feature.Card.Script
         [SerializeField] private GameObject _cardBack;
         [SerializeField] private GameObject _costFrame;
 
+        [Header("Rarity Sprites")]
+        [SerializeField] private GameObject commonSprite;
+        [SerializeField] private GameObject hiddenSprite;
+        [SerializeField] private GameObject anomalousSprite;
+        [SerializeField] private GameObject primordialSprite;
+        
         public void SetDataView(CardStatsData cardStatsData)
         {
             if (_cardBack) _cardBack.SetActive(false);
@@ -44,8 +50,17 @@ namespace Feature.Card.Script
     
             _name.text = cardStatsData.Name;
             _cost.text = cardStatsData.Cost.ToString();
+            
+            SetRaritySprite(cardStatsData.Rarity);
         }
 
+        private void SetRaritySprite(string rarity)
+        {
+            commonSprite.SetActive(rarity == "Common");
+            hiddenSprite.SetActive(rarity == "Hidden");
+            anomalousSprite.SetActive(rarity == "Anomalous");
+            primordialSprite.SetActive(rarity == "Primordial");
+        }
         public void ClearData()
         {
             _name.text = "";

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Footman
   m_EditorClassIdentifier: 
-  _cost: 3
+  _cost: 0
   _name: Footman
-  _rarity: 
+  _rarity: Anomalous
   _iconImage: {fileID: -2276372485318268192, guid: 2690368afb2f44a88a793de361d7e8c8, type: 3}
   _specialization: []
   _level: 0

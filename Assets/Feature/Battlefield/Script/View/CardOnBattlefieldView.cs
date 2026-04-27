@@ -21,6 +21,12 @@ namespace Feature.Battlefield.Script.View
         [SerializeField] private GameObject _borderHasAction;
         [SerializeField] private GameObject _heroDescriptionWindow;
         [SerializeField] private GameObject _selectEntityView;
+        
+        [Header("Rarity Sprites")]
+        [SerializeField] private GameObject commonSprite;
+        [SerializeField] private GameObject hiddenSprite;
+        [SerializeField] private GameObject anomalousSprite;
+        [SerializeField] private GameObject primordialSprite;
 
         public event Action OnClicked;
 
@@ -34,8 +40,17 @@ namespace Feature.Battlefield.Script.View
             _iconMinionBoard.sprite = cardStatsData.IconImage;
             _name.text = cardStatsData.Name;
             _cost.text = cardStatsData.Cost.ToString();
+            
+            SetRaritySprite(cardStatsData.Rarity);
         }
-
+    
+        private void SetRaritySprite(string rarity)
+        {
+            commonSprite.SetActive(rarity == "Common");
+            hiddenSprite.SetActive(rarity == "Hidden");
+            anomalousSprite.SetActive(rarity == "Anomalous");
+            primordialSprite.SetActive(rarity == "Primordial");
+        }
         public void SetCanHasAction(bool canCast) => _borderHasAction.SetActive(canCast);
         public void SetSelected(bool selected) => _selectEntityView.SetActive(selected);
 

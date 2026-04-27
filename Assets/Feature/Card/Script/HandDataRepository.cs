@@ -16,15 +16,14 @@ namespace Feature.Card.Script
         private readonly CardCastService _cardCastService;
         private readonly HandCardPresenter _handCardPresenter;
         private readonly FactoryHandBehaviourTransformCastSystem _factoryHandBehaviourTransformCastSystem;
-        private readonly CombatSystem.CombatSystem _combatSystem;
 
         public HandDataRepository(
-            FactoryHandBehaviourTransformCastSystem factoryHandBehaviourTransformCastSystem, HandCardPresenter handCardPresenter,
- CombatSystem.CombatSystem combatSystem, HandCardsPositionSystem handCardsPositionSystem, CardCastService cardCastService)
+            FactoryHandBehaviourTransformCastSystem factoryHandBehaviourTransformCastSystem,
+            HandCardPresenter handCardPresenter, HandCardsPositionSystem handCardsPositionSystem,
+            CardCastService cardCastService)
         {
             _factoryHandBehaviourTransformCastSystem = factoryHandBehaviourTransformCastSystem;
             _handCardPresenter = handCardPresenter;
-            _combatSystem = combatSystem;
             _handCardsPositionSystem = handCardsPositionSystem;
             _cardCastService = cardCastService;
         }

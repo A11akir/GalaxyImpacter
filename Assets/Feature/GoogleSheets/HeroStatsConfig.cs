@@ -21,6 +21,7 @@ namespace Feature.GoogleSheets
         public int Level;
     }
     
+    [System.Serializable]
     public class MinionStatsConfig
     {
         public string Name;
