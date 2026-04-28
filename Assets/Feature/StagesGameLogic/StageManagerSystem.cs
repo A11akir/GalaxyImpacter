@@ -11,12 +11,14 @@ namespace Feature.StagesGameLogic
         private readonly PrepareStatePresenter _prepareStatePresenter;
         private readonly FightStatePresenter _fightStatePresenter;
         private readonly AISystem _aiSystem;
-        private readonly ShopGameplayManagerSystem _shopSystem;
+        private readonly ShopGameplaySystem _shopSystem;
         private readonly TimerStageGameSessionSystem _timerSystem;
+
     
         public bool IsPreparePhase { get; private set; }
 
-        public StageManagerSystem(TargetingSystem targetingSystem, PrepareStatePresenter prepareStatePresenter, FightStatePresenter fightStatePresenter, AISystem aiSystem, ShopGameplayManagerSystem shopSystem, TimerStageGameSessionSystem timerSystem /* 6 зависимостей вместо 17 */)
+        public StageManagerSystem(TargetingSystem targetingSystem, PrepareStatePresenter prepareStatePresenter, FightStatePresenter fightStatePresenter, AISystem aiSystem,
+            ShopGameplaySystem shopSystem, TimerStageGameSessionSystem timerSystem)
         {
             _targetingSystem = targetingSystem;
             _prepareStatePresenter = prepareStatePresenter;
@@ -33,6 +35,7 @@ namespace Feature.StagesGameLogic
         
             _prepareStatePresenter.StartPrepare();
             _shopSystem.UnlockShop();
+            _shopSystem.RefreshShop();
             _timerSystem.StartTimerPrepare(turn);
             _aiSystem.ExecutePreparePhase();
         }

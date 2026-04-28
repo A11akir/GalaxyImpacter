@@ -1,6 +1,7 @@
 using Feature.Battlefield.Script;
 using Feature.GameSessionData;
 using Feature.ShopGamePlay.Script.Currency;
+using Feature.ShopGamePlay.Script.ShopWindow;
 using Feature.Timer;
 using Feature.UI;
 
@@ -16,6 +17,7 @@ namespace Feature.StagesGameLogic
         private readonly BattlefieldSystem _battlefieldSystem;
         private readonly CurrencyManagerSystem _currencyManager;
         private readonly TimerStageGameSessionSystem _timerSystem;
+
 
         public TurnCycleGameSessionSystem(StageManagerSystem stageManagerSystem, TurnResourceManager resourceManager, GameSessionModel gameSessionModel, GameSessionPresenter gameSessionPresenter, BattlefieldSystem battlefieldSystem, CurrencyManagerSystem currencyManager, TimerStageGameSessionSystem timerSystem, ReadyStageBackOrFightSystem readySystem)
         {
@@ -45,6 +47,7 @@ namespace Feature.StagesGameLogic
         {
             _readySystem.Reset();
             _resourceManager.StartNewTurn();
+
             _stageManagerSystem.StartPreparePhase(_gameSessionModel.Turn);
         }
 

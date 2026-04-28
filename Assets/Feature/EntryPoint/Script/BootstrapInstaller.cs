@@ -118,7 +118,7 @@ namespace Feature.EntryPoint.Script
 
         private void BindShop()
         {
-            Container.Bind<ShopGameplayManagerSystem>().AsSingle();
+            Container.Bind<ShopGameplaySystem>().AsSingle();
             Container.Bind<ShopGameplayPresenter>().AsSingle();
             Container.Bind<ShopGameplayView>().FromComponentInHierarchy().AsSingle();
         }

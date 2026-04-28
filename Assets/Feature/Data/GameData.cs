@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Feature.Card.Script;
 using Feature.GameSessionData;
 using Feature.Hero;
+using Feature.Items.Scripts;
 using UnityEngine;
 
 namespace Feature.Data
@@ -14,5 +15,6 @@ namespace Feature.Data
     {
         public List<HeroStatsData> allHeroStats = new List<HeroStatsData>();
         public List<CardStatsData> allCards = new List<CardStatsData>();
+        public List<ItemData> allItems = new List<ItemData>();
     }
 }

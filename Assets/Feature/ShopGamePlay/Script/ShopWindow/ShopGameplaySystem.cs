@@ -1,12 +1,16 @@
+using Feature.Data;
+
 namespace Feature.ShopGamePlay.Script.ShopWindow
 {
-    public class ShopGameplayManagerSystem
+    public class ShopGameplaySystem
     {
         private ShopGameplayPresenter _shopGameplayPresenter;
-
-        public ShopGameplayManagerSystem(ShopGameplayPresenter shopGameplayPresenter)
+        
+        private GameData _gameData;
+        public ShopGameplaySystem(ShopGameplayPresenter shopGameplayPresenter, GameData gameData)
         {
             _shopGameplayPresenter = shopGameplayPresenter;
+            _gameData = gameData;
         }
 
         public void UnlockShop()
@@ -17,6 +21,11 @@ namespace Feature.ShopGamePlay.Script.ShopWindow
         public void LockShop()
         {
             _shopGameplayPresenter.LockShop();
+        }
+
+        public void RefreshShop()
+        {
+            _shopGameplayPresenter.RefreshViewShop(_gameData.allItems);
         }
     }
 }

@@ -27,6 +27,7 @@ namespace Feature.GoogleSheets
                     "HeroStats"   => new StatsMinionParser(gameSetting),
                     "SpellStats"  => new SpellParser(gameSetting),
                     "MinionStats" => new MinionParser(gameSetting),
+                    "Items"       => new ItemParser(gameSetting),
                     _             => null
                 };
 
@@ -40,7 +41,7 @@ namespace Feature.GoogleSheets
                 parsers[sheet] = parser;
             }
 
-            var applyOrder = new[] { "SpellStats", "HeroStats", "MinionStats" };
+            var applyOrder = new[] { "SpellStats", "HeroStats", "MinionStats" , "Items" };
 
             foreach (var sheet in applyOrder)
             {

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Feature.Hero;
+using NUnit.Framework;
 
 namespace Feature.GoogleSheets
 {
@@ -8,5 +9,6 @@ namespace Feature.GoogleSheets
         public List<HeroStatsConfig> HeroStats;
         public List<SpellStatsConfig> AllSpellStats;
         public List<MinionStatsConfig> AllMinionStats;
+        public List<ItemStatsConfig> AllItemStats;
     }
 }

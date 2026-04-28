@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
-  m_Name: Tactical Retreat
+  m_Name: Tactical retreat
   m_EditorClassIdentifier: 
   _cost: 2
   _name: Tactical Retreat
@@ -23,4 +23,5 @@ MonoBehaviour:
   id: 85f8ebe6-31d6-46ad-ab51-097bea25b096
   _values: 02000000
   _description: Give 2 health.
-  _effects: []
+  _effects:
+  - {fileID: 11400000, guid: 1d795f3479e6366489631450506eb27b, type: 2}

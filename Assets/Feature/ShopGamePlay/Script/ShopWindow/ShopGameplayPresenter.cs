@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using Feature.Items.Scripts;
+
 namespace Feature.ShopGamePlay.Script.ShopWindow
 {
     public class ShopGameplayPresenter
@@ -17,6 +20,11 @@ namespace Feature.ShopGamePlay.Script.ShopWindow
         public void LockShop()
         {
             _shopGameplayView.LockShop();
+        }
+
+        public void RefreshViewShop(List<ItemData> gameDataAllItems)
+        {
+            _shopGameplayView.RefreshViewShop(gameDataAllItems);
         }
     }
 }

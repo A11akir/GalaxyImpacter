@@ -8,6 +8,14 @@ namespace Feature.GoogleSheets
         public int Health;
         public int HeroPowerCost;
     }
+
+    public class ItemStatsConfig
+    {
+        public string ItemName;
+        public string Description;
+        public int GoldCost;
+        public List<int> Values;
+    }
     
     [System.Serializable]
     public class SpellStatsConfig

@@ -1,6 +1,9 @@
+using System.Collections.Generic;
 using DG.Tweening;
+using Feature.Items.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 namespace Feature.ShopGamePlay.Script.ShopWindow
 {
@@ -8,6 +11,8 @@ namespace Feature.ShopGamePlay.Script.ShopWindow
     {
         [SerializeField] private Button _hideShopWindowButton;
         [SerializeField] private Button _showShopWindowButton;
+        [SerializeField] List<ItemShopView> itemsView = new List<ItemShopView>();
+
         
         private RectTransform _rectTransform;
         private bool _isLocked;
@@ -83,6 +88,16 @@ namespace Feature.ShopGamePlay.Script.ShopWindow
         {
             var offsetMax = _rectTransform.offsetMax;
             _rectTransform.offsetMax = new Vector2(-right, offsetMax.y);
+        }
+
+
+        
+        public void RefreshViewShop(List<ItemData> gameDataAllItems)
+        {
+            for (int i = 0; i < itemsView.Count; i++)
+            {
+                itemsView[i].SetView(gameDataAllItems[i]);
+            }
         }
     }
 }
