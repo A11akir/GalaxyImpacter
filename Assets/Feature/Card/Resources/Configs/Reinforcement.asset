@@ -15,11 +15,11 @@ MonoBehaviour:
   _cost: 1
   _name: Reinforcement
   _rarity: Anomalous
-  _iconImage: {fileID: 0}
+  _iconImage: {fileID: -3140911068402530301, guid: 931395c010c014fd0b3fd8552fbfb85c, type: 3}
   _specialization:
   - Assasian
   _level: 0
-  targetType: 0
+  targetType: 4
   id: 9afab0f3-8ae7-403f-b0eb-b158630db673
   _health: 1
   _chakra: 2

@@ -138,17 +138,6 @@ namespace Feature.GameSessionData
         {
             _cardsInHand.Value = new List<CardStatsData>();
         }
-        
-        public void ShuffleDeck()
-        {
-            var currentList = new List<CardStatsData>(_cardsInDeck.Value);
-            for (int i = currentList.Count - 1; i > 0; i--)
-            {
-                int randomIndex = Random.Range(0, i + 1);
-                (currentList[i], currentList[randomIndex]) = (currentList[randomIndex], currentList[i]);
-            }
-            _cardsInDeck.Value = currentList;
-        }
 
         private void AddCardToHand(CardStatsData card, int index)
         {

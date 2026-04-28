@@ -15,10 +15,10 @@ MonoBehaviour:
   _cost: 3
   _name: Footman
   _rarity: Primordial
-  _iconImage: {fileID: 0}
+  _iconImage: {fileID: -2276372485318268192, guid: 2690368afb2f44a88a793de361d7e8c8, type: 3}
   _specialization: []
   _level: 0
-  targetType: 0
+  targetType: 4
   id: 5064e998-09b9-4589-8f3e-f92bc34ab0ca
   _health: 5
   _chakra: 5

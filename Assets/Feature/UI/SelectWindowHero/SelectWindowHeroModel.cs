@@ -23,7 +23,7 @@
                 
                 int heroesToSelect = Mathf.Min(countPersonForChose, availableHeroes.Count);
         
-                for (int i = 0; i < heroesToSelect; i++)
+                for (int i = 0; i < heroesToSelect; i++)    
                 {
                     int randomIndex = Random.Range(0, availableHeroes.Count);
                     HeroStatsData selectedHeroStats = availableHeroes[randomIndex];
