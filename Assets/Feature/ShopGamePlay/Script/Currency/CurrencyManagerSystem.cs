@@ -23,6 +23,7 @@ namespace Feature.ShopGamePlay.Script.Currency
         public void Init()
         {
             _currencyManagePresenter.SubscribeToCurrencyChanges();
+            NewTurnUpdate();
         }
 
         public void NewTurnUpdate()

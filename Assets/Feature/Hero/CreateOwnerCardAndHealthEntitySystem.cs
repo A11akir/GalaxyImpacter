@@ -74,6 +74,7 @@ namespace Feature.Hero
             _deckFillSystem.InitializeDeck(owner);
             var container = _handViewSwitcher.RegisterOwner(owner);
             _handDataRepository.InitHandRepository(owner, container.HandCardViews);
+            _chakraManagerSystem.Init(owner, container.ChakraWindowView);
             InitEntityCore(owner, healthView);
         }
 
