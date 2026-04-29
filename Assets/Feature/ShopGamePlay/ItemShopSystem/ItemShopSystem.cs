@@ -34,14 +34,21 @@ namespace Feature.ShopGamePlay.ItemShopSystem
         }
         
         private void PurchaseItem(GameSessionPlayerData playerData, ItemData item)
-        
         {
             playerData.Currency -= item.GoldCost;
             
-            Debug.Log($"[ItemShop] Purchased {item.ItemName} for {item.GoldCost} gold. Remaining: {playerData.Currency}");
+            // Добавляем предмет в инвентарь
+            playerData.Inventory.AddItem(item);
             
-            // TODO: Реализация добавления предмета к игроку
-            // ApplyItemToPlayer(playerData, item);
+            Debug.Log($"[ItemShop] Purchased {item.ItemName} for {item.GoldCost} gold. Inventory size: {playerData.Inventory.Items.CurrentValue.Count}");
         }
     }
+    
+    // Интерфейс для модификаторов урона
+
+    // Интерфейс для модификаторов лечения
+
+    // Интерфейс для триггерных эффектов
+
+    // Интерфейс для модификаторов стоимости
 }

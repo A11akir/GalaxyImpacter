@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Feature.GoogleSheets;
+using Feature.Items.Scripts;
 using R3;
 using UnityEngine;
 
@@ -20,6 +21,8 @@ namespace Feature.GameSessionData
         public List<SpellCardData> HeroPowers;
         
         public bool HeroPowerUsedThisTurn;
+        
+        public PlayerInventory Inventory { get; } = new PlayerInventory();
         
         public IEnumerable<CardAndHealthEntityOwnerData> GetAllEntityOwners()
         {
