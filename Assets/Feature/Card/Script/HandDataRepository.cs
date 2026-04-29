@@ -84,8 +84,7 @@ namespace Feature.Card.Script
         
 
         private void OnCardRemovedFromHand(CardStatsData removedCard, EntityHandState state)
-        {
-            var cardToRemove = state.HandData.FirstOrDefault(c => c.Data.id == removedCard.id);
+        { var cardToRemove = state.HandData.FirstOrDefault(c => c.Data.id == removedCard.id);
             if (cardToRemove == null) return;
 
             _handCardPresenter.RemoveCardFromHand(cardToRemove.View, state.HandCardViews);

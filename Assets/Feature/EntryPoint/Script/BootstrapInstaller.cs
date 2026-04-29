@@ -11,6 +11,8 @@ using Feature.GameSessionData;
 using Feature.HandLogic;
 using Feature.GameSessionFSM;
 using Feature.Hero;
+using Feature.Items.Scripts;
+using Feature.ShopGamePlay.ItemShopSystem;
 using Feature.ShopGamePlay.Script.Currency;
 using Feature.ShopGamePlay.Script.ShopWindow;
 using Feature.StagesGameLogic;
@@ -36,7 +38,7 @@ namespace Feature.EntryPoint.Script
             BindCards();
             BindBattlefield();
             BindHero();
-            BindShop();
+            BindEconomy();
             BindStages();
             BindTimer();
             BindGameSessionFSM();
@@ -62,8 +64,6 @@ namespace Feature.EntryPoint.Script
             Container.Bind<SelectWindowHeroPresenter>().AsSingle();
             Container.Bind<SelectWindowHeroModel>().AsSingle();
             Container.Bind<SelectWindowHeroView>().FromComponentInHierarchy().AsSingle();
-            Container.Bind<CurrencyManagePresenter>().AsSingle();
-            Container.Bind<CurrencyManageView>().FromComponentInHierarchy().AsSingle();
             Container.Bind<ChakraWindowPresenter>().AsSingle();
             Container.Bind<ChakraWindowView>().FromComponentInHierarchy().AsSingle();
             Container.Bind<WarFogView>().FromComponentInHierarchy().AsSingle();
@@ -78,7 +78,6 @@ namespace Feature.EntryPoint.Script
             Container.Bind<TurnResourceManager>().AsSingle();
             Container.Bind<DeckFillSystem>().AsSingle();
             Container.Bind<HandFillSystem>().AsSingle();
-            Container.Bind<CurrencyManagerSystem>().AsSingle();
             Container.Bind<ChakraManagerSystem>().AsSingle();
             Container.Bind<EntityDeathSystem>().AsSingle();
             Container.Bind<CreateOwnerCardAndHealthEntitySystem>().AsSingle();
@@ -116,11 +115,20 @@ namespace Feature.EntryPoint.Script
             Container.Bind<HeroPowerPresenter>().AsSingle();
         }
 
-        private void BindShop()
+        private void BindEconomy()
         {
+            // Currency (золото)
+            Container.Bind<CurrencyManagerSystem>().AsSingle();
+            Container.Bind<CurrencyManagePresenter>().AsSingle();
+            Container.Bind<CurrencyManageView>().FromComponentInHierarchy().AsSingle();
+            
+            // Shop (магазин)
             Container.Bind<ShopGameplaySystem>().AsSingle();
             Container.Bind<ShopGameplayPresenter>().AsSingle();
             Container.Bind<ShopGameplayView>().FromComponentInHierarchy().AsSingle();
+            
+            // Items (предметы)
+            Container.Bind<ItemShopSystem>().AsSingle();
         }
 
         private void BindStages()

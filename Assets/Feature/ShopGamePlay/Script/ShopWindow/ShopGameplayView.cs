@@ -17,8 +17,8 @@ namespace Feature.ShopGamePlay.Script.ShopWindow
         private RectTransform _rectTransform;
         private bool _isLocked;
 
-        private const float VisibleRight = 400f;
-        private const float HiddenRight = 1875f;
+        private const float VisibleRight = 450f;
+        private const float HiddenRight = -1035f;
         private const float AnimDuration = 0.6f;
         
         private void Awake()
