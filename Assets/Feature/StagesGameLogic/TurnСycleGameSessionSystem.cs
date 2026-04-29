@@ -1,5 +1,6 @@
 using Feature.Battlefield.Script;
 using Feature.GameSessionData;
+using Feature.Items.Scripts;
 using Feature.ShopGamePlay.Script.Currency;
 using Feature.ShopGamePlay.Script.ShopWindow;
 using Feature.Timer;
@@ -17,9 +18,12 @@ namespace Feature.StagesGameLogic
         private readonly BattlefieldSystem _battlefieldSystem;
         private readonly CurrencyManagerSystem _currencyManager;
         private readonly TimerStageGameSessionSystem _timerSystem;
+        private readonly InventoryPresenter _inventoryPresenter;
 
 
-        public TurnCycleGameSessionSystem(StageManagerSystem stageManagerSystem, TurnResourceManager resourceManager, GameSessionModel gameSessionModel, GameSessionPresenter gameSessionPresenter, BattlefieldSystem battlefieldSystem, CurrencyManagerSystem currencyManager, TimerStageGameSessionSystem timerSystem, ReadyStageBackOrFightSystem readySystem)
+        public TurnCycleGameSessionSystem(StageManagerSystem stageManagerSystem, TurnResourceManager resourceManager, GameSessionModel gameSessionModel, 
+            GameSessionPresenter gameSessionPresenter, BattlefieldSystem battlefieldSystem, CurrencyManagerSystem currencyManager,
+            TimerStageGameSessionSystem timerSystem, ReadyStageBackOrFightSystem readySystem, InventoryPresenter inventoryPresenter)
         {
             _stageManagerSystem = stageManagerSystem;
             _resourceManager = resourceManager;
@@ -29,6 +33,7 @@ namespace Feature.StagesGameLogic
             _currencyManager = currencyManager;
             _timerSystem = timerSystem;
             _readySystem = readySystem;
+            _inventoryPresenter = inventoryPresenter;
         }
 
 
@@ -39,6 +44,7 @@ namespace Feature.StagesGameLogic
             _gameSessionModel.PlayerHero.InitBoard();
             _battlefieldSystem.Init();
             _currencyManager.Init();
+            _inventoryPresenter.Init();
         
             _stageManagerSystem.StartPreparePhase(_gameSessionModel.Turn);
         }

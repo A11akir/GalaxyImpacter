@@ -37,18 +37,11 @@ namespace Feature.ShopGamePlay.ItemShopSystem
         {
             playerData.Currency -= item.GoldCost;
             
-            // Добавляем предмет в инвентарь
+
             playerData.Inventory.AddItem(item);
             
             Debug.Log($"[ItemShop] Purchased {item.ItemName} for {item.GoldCost} gold. Inventory size: {playerData.Inventory.Items.CurrentValue.Count}");
         }
     }
-    
-    // Интерфейс для модификаторов урона
 
-    // Интерфейс для модификаторов лечения
-
-    // Интерфейс для триггерных эффектов
-
-    // Интерфейс для модификаторов стоимости
 }

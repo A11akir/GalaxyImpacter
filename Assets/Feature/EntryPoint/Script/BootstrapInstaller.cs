@@ -67,6 +67,7 @@ namespace Feature.EntryPoint.Script
             Container.Bind<ChakraWindowPresenter>().AsSingle();
             Container.Bind<ChakraWindowView>().FromComponentInHierarchy().AsSingle();
             Container.Bind<WarFogView>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<PlayerHeroEnterPointerView>().FromComponentInHierarchy().AsSingle();
         }
 
         private void BindGameSession()
@@ -121,14 +122,19 @@ namespace Feature.EntryPoint.Script
             Container.Bind<CurrencyManagerSystem>().AsSingle();
             Container.Bind<CurrencyManagePresenter>().AsSingle();
             Container.Bind<CurrencyManageView>().FromComponentInHierarchy().AsSingle();
-            
+    
             // Shop (магазин)
             Container.Bind<ShopGameplaySystem>().AsSingle();
             Container.Bind<ShopGameplayPresenter>().AsSingle();
             Container.Bind<ShopGameplayView>().FromComponentInHierarchy().AsSingle();
-            
+    
             // Items (предметы)
             Container.Bind<ItemShopSystem>().AsSingle();
+
+    
+            // Inventory (инвентарь)
+            Container.Bind<InventoryPresenter>().AsSingle();
+            Container.Bind<InventoryView>().FromComponentInHierarchy().AsSingle();
         }
 
         private void BindStages()
