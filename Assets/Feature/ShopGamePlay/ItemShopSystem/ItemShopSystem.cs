@@ -34,8 +34,8 @@ namespace Feature.ShopGamePlay.ItemShopSystem
         }
         
         private void PurchaseItem(GameSessionPlayerData playerData, ItemData item)
+        
         {
-            // Списываем деньги
             playerData.Currency -= item.GoldCost;
             
             Debug.Log($"[ItemShop] Purchased {item.ItemName} for {item.GoldCost} gold. Remaining: {playerData.Currency}");

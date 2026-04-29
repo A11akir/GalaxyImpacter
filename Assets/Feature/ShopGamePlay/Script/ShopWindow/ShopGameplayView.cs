@@ -17,14 +17,14 @@ namespace Feature.ShopGamePlay.Script.ShopWindow
         private RectTransform _rectTransform;
         private bool _isLocked;
 
-        private const float VisibleRight = 450f;
-        private const float HiddenRight = -1035f;
+        private const float VisibleX = -515f;
+        private const float HiddenX = -2000f;
         private const float AnimDuration = 0.6f;
         
         private void Awake()
         {
             _rectTransform = GetComponent<RectTransform>();
-            SetRight(HiddenRight);
+            SetPositionX(HiddenX);
         }
         
         private void OnEnable()
@@ -61,7 +61,7 @@ namespace Feature.ShopGamePlay.Script.ShopWindow
             if (_isLocked) return;
             _showShopWindowButton.gameObject.SetActive(false);
             _hideShopWindowButton.gameObject.SetActive(true);
-            AnimateRight(VisibleRight, Ease.Linear);
+            AnimatePositionX(VisibleX, Ease.OutBack);
         }
 
         private void HideShopWindow()
@@ -69,35 +69,30 @@ namespace Feature.ShopGamePlay.Script.ShopWindow
             if (!_isLocked)
                 _showShopWindowButton.gameObject.SetActive(true);
             _hideShopWindowButton.gameObject.SetActive(false);
-            AnimateRight(HiddenRight, Ease.Linear);
+            AnimatePositionX(HiddenX, Ease.InBack);
         }
 
-        private void AnimateRight(float targetRight, Ease ease)
+        private void AnimatePositionX(float targetX, Ease ease)
         {
             if (!_rectTransform) return;
     
             DOTween.To(
-                    () => -_rectTransform.offsetMax.x,  // ← минус
-                    x => _rectTransform.offsetMax = new Vector2(-x, _rectTransform.offsetMax.y),
-                    targetRight,
+                    () => _rectTransform.anchoredPosition.x, 
+                    x => _rectTransform.anchoredPosition = new Vector2(x, _rectTransform.anchoredPosition.y),
+                    targetX,
                     AnimDuration)
                 .SetEase(ease);
         }
 
-        private void SetRight(float right)
+        private void SetPositionX(float x)
         {
-            var offsetMax = _rectTransform.offsetMax;
-            _rectTransform.offsetMax = new Vector2(-right, offsetMax.y);
+            _rectTransform.anchoredPosition = new Vector2(x, _rectTransform.anchoredPosition.y);
         }
-
-
         
-        public void RefreshViewShop(List<ItemData> gameDataAllItems)
+        
+        public List<ItemShopView> GetItemViews()
         {
-            for (int i = 0; i < itemsView.Count; i++)
-            {
-                itemsView[i].SetView(gameDataAllItems[i]);
-            }
+            return itemsView;
         }
     }
 }

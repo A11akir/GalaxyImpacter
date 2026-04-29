@@ -548,7 +548,8 @@ MonoBehaviour:
   _name: {fileID: 837870626366338193}
   _description: {fileID: 9055674464756484193}
   _iconImage: {fileID: 6521184928138042880}
-  _descriptionWindow: {fileID: 0}
+  _descriptionWindow: {fileID: 6414590059621601970}
+  _containerForDescription: {fileID: 0}
 --- !u!1 &8548633103372165029
 GameObject:
   m_ObjectHideFlags: 0

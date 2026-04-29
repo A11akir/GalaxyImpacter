@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71140b72410743c4bec8c766cafd6ce9, type: 3}
   m_Name: Armor
   m_EditorClassIdentifier: 
-  _goldCost: 50
+  _goldCost: 10
   _name: Armor
   _values: 02000000
   _effects: []
