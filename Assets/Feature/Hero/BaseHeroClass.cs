@@ -1,10 +1,10 @@
-namespace Feature.GoogleSheets
+namespace Feature.Hero
 {
-    public enum HeroClass
+    public enum BaseHeroClass
     {
         None = 0,
         Alchemist = 1,
-        Assasian = 2,
+        Assassin = 2,
         EarthMage = 3,
         Explorer = 4,
         FireMage = 5,
@@ -12,5 +12,6 @@ namespace Feature.GoogleSheets
         Warrior = 6,
         WaterMage = 8,
         WindMage = 9,
+        All = 10
     }
 }

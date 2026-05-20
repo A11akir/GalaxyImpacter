@@ -50,7 +50,7 @@ namespace Feature.Card.Script
                             cardData.View.gameObject);
                     break;
 
-                case TargetType.Hero:
+                case TargetType.BoardPlace:
                     cardData.Behaviour =
                         _instantiator.InstantiateComponent<HeroTransformCastCardUseBehaviour>(
                             cardData.View.gameObject);
@@ -69,7 +69,7 @@ namespace Feature.Card.Script
                     break;
                     break;
                 case TargetType.All:
-                case TargetType.Hero:
+                case TargetType.BoardPlace:
                     cardData.Behaviour = _instantiator.InstantiateComponent<NonTargetHeroPowerCastBehaviour>(heroPowerObject);
                     break;
             }

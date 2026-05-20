@@ -1,13 +1,12 @@
-
-
 namespace Feature.Card.Script
 {
     public enum TargetType
     {
-        AnyTarget = 0,
-        Player = 1,
-        Enemy = 2,
-        All = 3,
-        Hero = 4,
+        All = 0,
+        BoardPlace = 1,
+        AnyTarget = 2,
+        Enemy = 3,
+        Ally = 4,
+        OtherTarget = 5
     }
 }
