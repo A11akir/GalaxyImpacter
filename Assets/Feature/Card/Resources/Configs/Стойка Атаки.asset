@@ -19,6 +19,7 @@ MonoBehaviour:
   _specialization:
   - Explorer
   - Warrior
+  - Assassin
   _level: 0
   targetType: 0
   id: 640fb7a6-bcc5-4ac6-a730-74c69877f4eb

@@ -17,7 +17,7 @@ MonoBehaviour:
   _rarity: Anomalous
   _iconImage: {fileID: 0}
   _specialization:
-  - Assasian
+  - Assassin
   _level: 0
   targetType: 0
   id: 18586734-d727-4ffc-a4e2-299183baebcd

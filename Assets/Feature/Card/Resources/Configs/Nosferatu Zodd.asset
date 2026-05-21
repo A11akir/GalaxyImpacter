@@ -17,8 +17,9 @@ MonoBehaviour:
   _rarity: Primordial
   _iconImage: {fileID: 0}
   _specialization:
-  - Assasian
+  - Assassin
   - Warrior
+  - Monster
   _level: 0
   targetType: 0
   id: 3436c90d-7819-40f1-a792-41acbcffaceb

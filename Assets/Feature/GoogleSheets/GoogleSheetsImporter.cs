@@ -65,6 +65,8 @@ namespace Feature.GoogleSheets
                 var tableArray = response.Values;
                 Debug.Log($"Downloaded from sheet success {sheetName}");
                 
+                _headers.Clear();
+                
                 var firstRow = tableArray[0];
                 foreach (var cell in firstRow)
                 {
@@ -79,6 +81,8 @@ namespace Feature.GoogleSheets
                         
                         for (int j = 0; j < rowLength; j++)
                         {
+                            if (j >= _headers.Count) break;
+                            
                             var cellValue = row[j];
                             var header = _headers[j];
                             

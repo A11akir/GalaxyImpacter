@@ -19,6 +19,7 @@ MonoBehaviour:
   _specialization:
   - Explorer
   - Alchemist
+  - Monster
   _level: 0
   targetType: 0
   id: 40c2184f-2e60-465c-83e2-a637f45ab749

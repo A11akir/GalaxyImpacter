@@ -19,6 +19,7 @@ MonoBehaviour:
   _specialization:
   - Assassin
   - Warrior
+  - Monster
   _level: 0
   targetType: 0
   id: 8b245b6b-6dcf-4ced-8cd3-643a2db1008b

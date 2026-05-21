@@ -19,7 +19,7 @@ MonoBehaviour:
   _rarity: Anomalous
   _iconImage: {fileID: 0}
   _specialization:
-  - Assasian
+  - Assassin
   - Alchemist
   _level: 0
   targetType: 0

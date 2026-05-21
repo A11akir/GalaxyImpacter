@@ -31,6 +31,7 @@ namespace Feature.GoogleSheets
                     "SpellStats"  => new SpellParser(gameSetting),
                     "MinionStats" => new MinionParser(gameSetting),
                     "Items"       => new ItemParser(gameSetting),
+                    "SpellMinion" => new MinionSpellParser(gameSetting),
                     _             => null
                 };
 
@@ -44,7 +45,7 @@ namespace Feature.GoogleSheets
                 parsers[sheet] = parser;
             }
 
-            var applyOrder = new[] { "SpellStats", "HeroStats", "MinionStats", "Items" };
+            var applyOrder = new[] { "SpellStats", "HeroStats", "MinionStats", "MinionSpells", "Items" };
 
             foreach (var sheet in applyOrder)
             {
@@ -106,12 +107,12 @@ namespace Feature.GoogleSheets
                 { new HashSet<string> { "FireMage", "EarthMage" },                          gameData.metalMageCards },
                 { new HashSet<string> { "WaterMage", "Explorer" },                          gameData.abyssLordCards },
                 { new HashSet<string> { "WindMage", "Explorer" },                           gameData.timeMageCards },
-                { new HashSet<string> { "Assasian", "Alchemist" },                          gameData.witcherCards },
+                { new HashSet<string> { "Assassin", "Alchemist" },                          gameData.witcherCards },
                 { new HashSet<string> { "Warrior", "FireMage" },                            gameData.dragonbornCards },
                 { new HashSet<string> { "EarthMage", "WindMage" },                          gameData.gravityMageCards },
                 { new HashSet<string> { "Alchemist", "Explorer", "Monster" },               gameData.supremeAlchemistCards },
-                { new HashSet<string> { "Warrior", "Assasian", "Explorer" },                gameData.invincibleWandererCards },
-                { new HashSet<string> { "Warrior", "Assasian", "Monster" },                 gameData.absolutePredatorCards },
+                { new HashSet<string> { "Warrior", "Assassin", "Explorer" },                gameData.invincibleWandererCards },
+                { new HashSet<string> { "Warrior", "Assassin", "Monster" },                 gameData.absolutePredatorCards },
                 { new HashSet<string> { "WaterMage", "Warrior", "Monster", "Alchemist" },   gameData.deathKingCards },
                 { new HashSet<string> { "WindMage", "WaterMage", "FireMage", "EarthMage" }, gameData.avatarCards },
             };

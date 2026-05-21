@@ -19,6 +19,7 @@ MonoBehaviour:
   _specialization:
   - WaterMage
   - Monster
+  - Alchemist
   - Warrior
   _level: 0
   targetType: 0

@@ -17,7 +17,7 @@ MonoBehaviour:
   _rarity: Primordial
   _iconImage: {fileID: 0}
   _specialization:
-  - Assasian
+  - Assassin
   _level: 0
   targetType: 0
   id: 860a64a8-a335-41bb-97a1-a1990909a338

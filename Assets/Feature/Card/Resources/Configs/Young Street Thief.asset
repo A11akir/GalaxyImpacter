@@ -17,7 +17,7 @@ MonoBehaviour:
   _rarity: Common
   _iconImage: {fileID: 0}
   _specialization:
-  - Assasian
+  - Assassin
   _level: 0
   targetType: 0
   id: 4f637cd4-1712-4ab3-b5fb-805916fbd433

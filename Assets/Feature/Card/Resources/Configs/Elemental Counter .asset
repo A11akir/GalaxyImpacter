@@ -19,6 +19,7 @@ MonoBehaviour:
   _specialization:
   - WindMage
   - EarthMage
+  - FireMage
   - WaterMage
   _level: 0
   targetType: 0

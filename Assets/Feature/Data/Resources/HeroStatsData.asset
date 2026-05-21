@@ -25,20 +25,11 @@ MonoBehaviour:
   allItems:
   - {fileID: 0}
   baseCards:
-  - {fileID: 11400000, guid: 5d3c2090b95334e41ae3fd3535f1c715, type: 2}
-  - {fileID: 11400000, guid: ee0574e447c4e40dcb6ac9e7d91135e8, type: 2}
-  - {fileID: 11400000, guid: a62f2f566ae75455c9359270d03f29ce, type: 2}
   - {fileID: 11400000, guid: c9ea4eec95e4e43ac90344de12a12d74, type: 2}
   - {fileID: 11400000, guid: ac96bbb76ddc94c40b24d41a2ff9eb1d, type: 2}
   - {fileID: 11400000, guid: 3eb70c461a57d45b4ba07c6f38aae15b, type: 2}
-  - {fileID: 11400000, guid: 3f4a32a0fcde241bb92fd769a37847f4, type: 2}
   - {fileID: 11400000, guid: 1921048127d604326a16d10d8f15b669, type: 2}
-  - {fileID: 11400000, guid: 139d90fd2cfad4364a6d4f457a7d2eb2, type: 2}
   - {fileID: 11400000, guid: 122c9f08f812940e691bf84ed3c3ab38, type: 2}
-  - {fileID: 11400000, guid: 3772962ba0d484db8a4e1b600eeaf198, type: 2}
-  - {fileID: 11400000, guid: bc816aca660534139bee46a43ef6a558, type: 2}
-  - {fileID: 11400000, guid: 7572e73a44caa409d83f28994b188690, type: 2}
-  - {fileID: 11400000, guid: 15b958e225ccc4dd58b58089005f6436, type: 2}
   - {fileID: 11400000, guid: 2fc34e6a07bef41ca8a759bd3e675b2b, type: 2}
   alchemistCards:
   - {fileID: 11400000, guid: 7a02696b7a0774635a88385a48a599ca, type: 2}
@@ -62,9 +53,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0f2d167288ecb4f119067dac7862b1ed, type: 2}
   - {fileID: 11400000, guid: 3c438cca323044240adfd37fe25b16ea, type: 2}
   assassinCards:
+  - {fileID: 11400000, guid: 5d3c2090b95334e41ae3fd3535f1c715, type: 2}
   - {fileID: 11400000, guid: 043d77a8cc64a4a099d651d6e98e77ad, type: 2}
+  - {fileID: 11400000, guid: ee0574e447c4e40dcb6ac9e7d91135e8, type: 2}
+  - {fileID: 11400000, guid: a62f2f566ae75455c9359270d03f29ce, type: 2}
+  - {fileID: 11400000, guid: 3f4a32a0fcde241bb92fd769a37847f4, type: 2}
+  - {fileID: 11400000, guid: 139d90fd2cfad4364a6d4f457a7d2eb2, type: 2}
+  - {fileID: 11400000, guid: 3772962ba0d484db8a4e1b600eeaf198, type: 2}
+  - {fileID: 11400000, guid: bc816aca660534139bee46a43ef6a558, type: 2}
+  - {fileID: 11400000, guid: 7572e73a44caa409d83f28994b188690, type: 2}
   - {fileID: 11400000, guid: 78b4ee00aea734d69b08f561261f303a, type: 2}
   - {fileID: 11400000, guid: 54e7d4e7a3eb9434999eacefe50dd605, type: 2}
+  - {fileID: 11400000, guid: 15b958e225ccc4dd58b58089005f6436, type: 2}
   - {fileID: 11400000, guid: be59849dd90cf49fe880288747973248, type: 2}
   - {fileID: 11400000, guid: f847a6075ebc64527be37dd839b1809c, type: 2}
   - {fileID: 11400000, guid: e926cd98616b34c18b512742067ddc7a, type: 2}
@@ -287,12 +287,21 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e6308fe1f9a154aa587c686be33a27cb, type: 2}
   - {fileID: 11400000, guid: b2958680ef2c646bdb72f2447a78b567, type: 2}
   witcherCards:
+  - {fileID: 11400000, guid: 87b6ff9be887d459c80275cf1199255e, type: 2}
   - {fileID: 11400000, guid: a6821ddd8401d4659bb913830e510db7, type: 2}
+  - {fileID: 11400000, guid: 2ba78eecb5a794344829871898fcd23e, type: 2}
+  - {fileID: 11400000, guid: 8c6f518fa413e4561b181134dad12749, type: 2}
+  - {fileID: 11400000, guid: 5be4a5ba2b9bd4963b2318b73ad55f9a, type: 2}
+  - {fileID: 11400000, guid: 4c61d457c32894dac89018492b2ada4a, type: 2}
+  - {fileID: 11400000, guid: f4787b1761b6844fab18d4da2bd4290d, type: 2}
   - {fileID: 11400000, guid: 083c1348f3c134402a9ef9b2b78f5a17, type: 2}
+  - {fileID: 11400000, guid: 1564ccbc4b71b4e8a812f1f1c7015c25, type: 2}
   - {fileID: 11400000, guid: 41c64ecbd98de427c8e46325dc88ef12, type: 2}
+  - {fileID: 11400000, guid: fd9cf86d3d6be406c836f4ad13778c34, type: 2}
   - {fileID: 11400000, guid: f8a95b17ae2e64c2d861496b57cc59cc, type: 2}
   - {fileID: 11400000, guid: 79a6bd2227e254d1893ac697118357fc, type: 2}
   - {fileID: 11400000, guid: 528fd2549a7b4440f9e99903109ed1f6, type: 2}
+  - {fileID: 11400000, guid: b98a913c7d23d461f94954cd0fbc7bac, type: 2}
   dragonbornCards:
   - {fileID: 11400000, guid: 11004f57ed8ed4b21998e7637c406ef6, type: 2}
   - {fileID: 11400000, guid: 9f2a14a90fc474e2eac313ec8daf58b8, type: 2}
@@ -325,11 +334,54 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 489fd38e8523a4248812c655a7a98c95, type: 2}
   - {fileID: 11400000, guid: 59dc5a264c7344b5d9bd89765605cbea, type: 2}
   - {fileID: 11400000, guid: 6403ec05c0ad44e26903bd183fe06835, type: 2}
-  supremeAlchemistCards: []
-  invincibleWandererCards: []
-  absolutePredatorCards: []
-  deathKingCards: []
-  avatarCards: []
+  supremeAlchemistCards:
+  - {fileID: 11400000, guid: aea8ccb27bbbf437488b418eca578219, type: 2}
+  - {fileID: 11400000, guid: 13988a46923184b24bec71d8d626e93e, type: 2}
+  - {fileID: 11400000, guid: 528dc458eb1db4e78842cc418911a5f8, type: 2}
+  - {fileID: 11400000, guid: b5de16bc883fe43de89db31fa033283e, type: 2}
+  - {fileID: 11400000, guid: 55454157230864dba9af0a3e22afce2b, type: 2}
+  - {fileID: 11400000, guid: 49f3ff0b81d624c83a7b3f84e875cd86, type: 2}
+  - {fileID: 11400000, guid: 0510d8a088f8e4c9facc9feeb4ff1e70, type: 2}
+  - {fileID: 11400000, guid: 8ce0cf7a3707741b6a027d6af0977687, type: 2}
+  - {fileID: 11400000, guid: cc9bb796529b7464fb8c2fb625fb32fb, type: 2}
+  - {fileID: 11400000, guid: f9f15b8eec853465f82a9d7e238def6a, type: 2}
+  - {fileID: 11400000, guid: 54403779220b8468882fbfd83c713272, type: 2}
+  invincibleWandererCards:
+  - {fileID: 11400000, guid: d76542645b8cb4abab594276d0d25bbe, type: 2}
+  - {fileID: 11400000, guid: 0f5989a2d574448a3bb782f52e0c4909, type: 2}
+  - {fileID: 11400000, guid: 226f3dfa510cb4e13a36477a5c06d1cf, type: 2}
+  - {fileID: 11400000, guid: 71106f396747645d59b7a86514b594cd, type: 2}
+  - {fileID: 11400000, guid: 3cb684784f0784be7817310d0f611286, type: 2}
+  - {fileID: 11400000, guid: 3b1cdaf18407f4e898e6d0f0fb58b99c, type: 2}
+  - {fileID: 11400000, guid: a24b0689d166a4f63a66fb8a7c53ac75, type: 2}
+  - {fileID: 11400000, guid: f745960ae8bfe4f10a2f5d515f9ac9de, type: 2}
+  - {fileID: 11400000, guid: 3583bc24e842c41c99c59fbd29011476, type: 2}
+  - {fileID: 11400000, guid: 7a4611f3acb904ef5b338732c0a834ea, type: 2}
+  - {fileID: 11400000, guid: 1f121e0c74de24fa6801f1e26861e52f, type: 2}
+  - {fileID: 11400000, guid: 21377e10b2d04470dad0148f3141a8f9, type: 2}
+  absolutePredatorCards:
+  - {fileID: 11400000, guid: ca74e79d280f54de28794018078181f8, type: 2}
+  - {fileID: 11400000, guid: f998dc285b89f438aa92f28d37a10426, type: 2}
+  - {fileID: 11400000, guid: 61b4c6efe5c9e4dd084d79cc5c55a2d0, type: 2}
+  - {fileID: 11400000, guid: ec1bff85fd6924df0bc084a77f154e9e, type: 2}
+  - {fileID: 11400000, guid: 90d37d0a6776e4bc38e1a980e14d4243, type: 2}
+  - {fileID: 11400000, guid: 604eda8bcb3b148d3835e4b701f07404, type: 2}
+  - {fileID: 11400000, guid: 58c5dcb3084eb4f01a77bbaf1119c691, type: 2}
+  - {fileID: 11400000, guid: 9f09a98fbda244fb9a97392b5d37472d, type: 2}
+  - {fileID: 11400000, guid: d9fa8f82515c34d928e4e95c5c437cc7, type: 2}
+  - {fileID: 11400000, guid: 8289d2b66ccd34495a00336748391cd5, type: 2}
+  deathKingCards:
+  - {fileID: 11400000, guid: 29c361fc9e3804636afe569fb8d33304, type: 2}
+  - {fileID: 11400000, guid: 899eb7dfab0ca4a8ca94c7cb4d9b9ea6, type: 2}
+  - {fileID: 11400000, guid: c27151fa07c134c7494d34e7c9e6661c, type: 2}
+  - {fileID: 11400000, guid: c6defe9a4937942dea70802da872f92d, type: 2}
+  - {fileID: 11400000, guid: cb41c5f34f3d34c22aba8f0dd4b3bc3d, type: 2}
+  avatarCards:
+  - {fileID: 11400000, guid: a93ce502880144ba299df6b678fea899, type: 2}
+  - {fileID: 11400000, guid: e9eb1cef88c6b45eb8ed0ec8b80d8b7e, type: 2}
+  - {fileID: 11400000, guid: ff85a14e067ef4e09a2ebff5c1910ee9, type: 2}
+  - {fileID: 11400000, guid: 67472e727b8f441d8babada42c7e111a, type: 2}
+  - {fileID: 11400000, guid: bf2239a2a727c42f68bb7f056598a3d1, type: 2}
   allCards:
   - {fileID: 11400000, guid: d9e81ff8c508446328c7a84926d69881, type: 2}
   - {fileID: 11400000, guid: 7a02696b7a0774635a88385a48a599ca, type: 2}
