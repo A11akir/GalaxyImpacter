@@ -5,6 +5,7 @@ namespace Feature.Card.Script
         Common = 0,
         Hidden = 1,
         Anomalous = 2,
-        Primordial = 3
+        Primordial = 3,
+        None = 4
     }
 }

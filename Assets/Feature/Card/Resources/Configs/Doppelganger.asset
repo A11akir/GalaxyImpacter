@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: Doppelganger
+  m_EditorClassIdentifier: 
+  _cost: 4
+  _name: Doppelganger
+  _rarity: Anomalous
+  _iconImage: {fileID: 0}
+  _specialization:
+  - Assasian
+  _level: 0
+  targetType: 0
+  id: 86905a9a-0798-4e56-bd0d-85829532aa8c
+  _health: 5
+  _chakra: 4
+  _handCardCount: 2
+  _spellsList: []

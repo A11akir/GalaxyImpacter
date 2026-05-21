@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: Tactical retreat
   m_EditorClassIdentifier: 
   _cost: 2
-  _name: Tactical Retreat
-  _rarity: Hidden
+  _name: Tactical retreat
+  _rarity: 
   _iconImage: {fileID: 8639660358796777332, guid: 06fda0e5423da482ebebe4127f617f9c, type: 3}
   _specialization:
-  - Warrior
+  - All
   _level: 0
   targetType: 3
   id: 85f8ebe6-31d6-46ad-ab51-097bea25b096
   _values: 02000000
-  _description: Give 2 health.
+  _description: Draw 2 cards.
   _effects:
   - {fileID: 11400000, guid: 1d795f3479e6366489631450506eb27b, type: 2}
