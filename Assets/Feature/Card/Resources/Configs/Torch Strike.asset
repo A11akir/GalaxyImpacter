@@ -20,7 +20,7 @@ MonoBehaviour:
   - FireMage
   _level: 0
   targetType: 0
-  id: 25e8b4f6-732c-4ab9-b65b-0041e2150a4e
+  id: 7f466bc9-68a4-4edf-b83b-18ab84472feb
   _values: 0100000000000000
   _description: Hit this turn increases your next damage by 1. Take 0 damage.
   _effects: []

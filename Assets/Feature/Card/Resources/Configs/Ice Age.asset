@@ -20,7 +20,7 @@ MonoBehaviour:
   - WaterMage
   _level: 0
   targetType: 0
-  id: 72f13e03-d2d4-43b1-8085-7bda95104539
+  id: b4fb1999-831f-4f9d-a39e-717659ca0d35
   _values: 02000000
   _description: Multiplies everyone's moisture by 2 and freezes.
   _effects: []

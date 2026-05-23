@@ -20,7 +20,7 @@ MonoBehaviour:
   - FireMage
   _level: 0
   targetType: 0
-  id: b0b10853-76c3-4fbd-8f3e-305c7fc5b3a5
+  id: a51ae44f-b176-4873-89d4-eda3ab61dc22
   _values: 01000000
   _description: When you use a spell before the end of your turn, you receive 1 temporary
     fire spell.

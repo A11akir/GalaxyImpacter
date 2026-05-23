@@ -1,22 +1,38 @@
+#if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Feature.Card.Script;
+using Feature.Common;
 using UnityEditor;
 using UnityEngine;
 
 namespace Feature.GoogleSheets
 {
-#if UNITY_EDITOR
     public class SpellParser : IGoggleSheetsParser
     {
         private readonly AllGameConfig _allGameConfig;
         private SpellStatsConfig _spellStatsConfig;
+        private readonly List<ISpellStatsData> _targetSO = new();
 
         public SpellParser(AllGameConfig allGameConfig)
         {
             _allGameConfig = allGameConfig;
             _allGameConfig.AllSpellStats = new List<SpellStatsConfig>();
+            LoadAllCardsSO();
+        }
+
+        private void LoadAllCardsSO()
+        {
+            string[] guids = AssetDatabase.FindAssets("t:ScriptableObject", new[] { "Assets/Feature" });
+            foreach (var guid in guids)
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guid);
+                ScriptableObject so = AssetDatabase.LoadAssetAtPath<ScriptableObject>(path);
+
+                if (so is ISpellStatsData spell)
+                    _targetSO.Add(spell);
+            }
         }
 
         public void Parse(string header, string token)
@@ -35,46 +51,44 @@ namespace Feature.GoogleSheets
                     break;
 
                 case "Cost":
-                    if (_spellStatsConfig != null && !string.IsNullOrWhiteSpace(token))
+                    if (!string.IsNullOrWhiteSpace(token))
                         _spellStatsConfig.Cost = Convert.ToInt32(token);
                     break;
 
                 case "Rarity":
-                    if (_spellStatsConfig != null)
+                    if (!string.IsNullOrWhiteSpace(token))
                         _spellStatsConfig.Rarity = token;
                     break;
 
                 case "Description":
-                    if (_spellStatsConfig != null)
-                        _spellStatsConfig.Description = token;
+                    _spellStatsConfig.Description = token;
                     break;
 
                 case "MinionNameOwner":
-                    if (_spellStatsConfig != null && !string.IsNullOrWhiteSpace(token))
+                    if (!string.IsNullOrWhiteSpace(token))
                         _spellStatsConfig.MinionNameOwner = token;
                     break;
 
                 case "Type":
-                    if (_spellStatsConfig != null && !string.IsNullOrWhiteSpace(token))
+                    if (!string.IsNullOrWhiteSpace(token))
                         _spellStatsConfig.Type = token;
                     break;
 
                 case "Value1":
                 case "Value2":
                 case "Value3":
-                    if (_spellStatsConfig != null && !string.IsNullOrWhiteSpace(token))
+                    if (!string.IsNullOrWhiteSpace(token))
                     {
                         if (int.TryParse(token, out int value))
                             _spellStatsConfig.Values.Add(value);
                     }
-
                     break;
 
                 case "Specialization1":
                 case "Specialization2":
                 case "Specialization3":
                 case "Specialization4":
-                    if (_spellStatsConfig != null && !string.IsNullOrWhiteSpace(token))
+                    if (!string.IsNullOrWhiteSpace(token))
                         _spellStatsConfig.Specialization.Add(token);
                     break;
             }
@@ -82,39 +96,40 @@ namespace Feature.GoogleSheets
 
         public void ApplyToSO()
         {
+
             const string path = "Assets/Feature/Card/Resources/Configs";
 
-            var freshSpells = AssetDatabase.FindAssets("t:SpellCardData", new[] { path })
-                .Select(guid => AssetDatabase.LoadAssetAtPath<SpellCardData>(AssetDatabase.GUIDToAssetPath(guid)))
-                .Where(s => s != null && (UnityEngine.Object)s != null)
-                .ToList();
+            var allMinionSOs = new Dictionary<string, MinionCardData>();
+            string[] minionGuids = AssetDatabase.FindAssets("t:MinionCardData", new[] { path });
 
-            var freshMinions = AssetDatabase.FindAssets("t:MinionCardData", new[] { path })
-                .Select(guid => AssetDatabase.LoadAssetAtPath<MinionCardData>(AssetDatabase.GUIDToAssetPath(guid)))
-                .Where(m => m != null && (UnityEngine.Object)m != null)
-                .ToList();
-            
-            var expectedNames = _allGameConfig.AllSpellStats
-                .Where(cfg => !string.IsNullOrWhiteSpace(cfg.Name))
-                .Select(cfg => cfg.Name)
-                .ToHashSet();
-            
-            foreach (var spell in freshSpells.ToList())
+            foreach (var guid in minionGuids)
             {
-                if (!expectedNames.Contains(spell.name))
-                {
-                    string assetPath = AssetDatabase.GetAssetPath(spell);
-                    Debug.Log($"[SpellParser] Deleting outdated SO: {spell.name}");
-                    AssetDatabase.DeleteAsset(assetPath);
-                    freshSpells.Remove(spell);
-                }
+                string assetPath = AssetDatabase.GUIDToAssetPath(guid);
+                var minionSO = AssetDatabase.LoadAssetAtPath<MinionCardData>(assetPath);
+                if (minionSO != null)
+                    allMinionSOs[minionSO.name] = minionSO;
             }
+            
+
+            _targetSO.RemoveAll(x => x == null || (x as UnityEngine.Object) == null);
+
+            var processedNames = new HashSet<string>();
 
             foreach (var cfg in _allGameConfig.AllSpellStats)
             {
                 if (string.IsNullOrWhiteSpace(cfg.Name)) continue;
 
-                var so = freshSpells.FirstOrDefault(x => x.name == cfg.Name);
+                if (!processedNames.Add(cfg.Name))
+                {
+                    continue;
+                }
+                
+
+                var so = _targetSO.FirstOrDefault(x =>
+                {
+                    var obj = x as ScriptableObject;
+                    return obj != null && obj.name == cfg.Name;
+                });
 
                 if (so == null)
                 {
@@ -122,13 +137,17 @@ namespace Feature.GoogleSheets
                     string assetPath = $"{path}/{cfg.Name}.asset";
                     AssetDatabase.CreateAsset(newSO, assetPath);
                     so = newSO;
-                    freshSpells.Add(so);
-                    Debug.Log($"✅ Created new SpellCardData SO: {cfg.Name}");
+                    _targetSO.Add(so);
+                }
+                
+                if (so == null || (so as UnityEngine.Object) == null)
+                {
+                    GLog.Log($"[SpellParser] Failed to create SO for: '{cfg.Name}'");
+                    continue;
                 }
 
                 so.Name = cfg.Name;
                 so.Cost = cfg.Cost;
-                so.Rarity = cfg.Rarity;
                 so.Description = cfg.Description;
                 so.Specialization = cfg.Specialization;
                 so.Values = cfg.Values;
@@ -139,42 +158,38 @@ namespace Feature.GoogleSheets
                 {
                     so.Rarity = cfg.Rarity;
                 }
-                else if (!string.IsNullOrWhiteSpace(cfg.MinionNameOwner))
+                else if (!string.IsNullOrWhiteSpace(cfg.MinionNameOwner) &&
+                         allMinionSOs.TryGetValue(cfg.MinionNameOwner, out var owner))
                 {
-                    var minionSO = freshMinions.FirstOrDefault(m => m.name == cfg.MinionNameOwner);
-                    if (minionSO != null)
-                    {
-                        so.Rarity = minionSO.Rarity;
-                    }
+                    so.Rarity = owner.Rarity;
                 }
-
-                EditorUtility.SetDirty(so);
 
                 if (!string.IsNullOrWhiteSpace(cfg.MinionNameOwner))
                 {
-                    var minionSO = freshMinions.FirstOrDefault(m => m.name == cfg.MinionNameOwner);
-
-                    if (minionSO != null)
+                    if (allMinionSOs.TryGetValue(cfg.MinionNameOwner, out var minionSO) 
+                        && minionSO != null 
+                        && minionSO != null)
                     {
                         minionSO.SpellsList ??= new List<SpellCardData>();
 
-                        if (!minionSO.SpellsList.Contains(so))
+                        if (!minionSO.SpellsList.Contains(so as SpellCardData))
                         {
-                            minionSO.SpellsList.Add(so);
+                            minionSO.SpellsList.Add(so as SpellCardData);
                             EditorUtility.SetDirty(minionSO);
-                            Debug.Log($"✅ Added '{cfg.Name}' to '{cfg.MinionNameOwner}' SpellsList");
                         }
                     }
                     else
                     {
-                        Debug.LogWarning($"⚠️ Minion '{cfg.MinionNameOwner}' not found for spell '{cfg.Name}'");
+                        GLog.Log($"[SpellParser] Minion '{cfg.MinionNameOwner}' not found or destroyed for spell '{cfg.Name}'");
                     }
                 }
-            }
 
+                EditorUtility.SetDirty(so as UnityEngine.Object);
+            }
+            
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
         }
     }
-#endif
 }
+#endif

@@ -20,8 +20,12 @@ MonoBehaviour:
   - Explorer
   _level: 0
   targetType: 0
-  id: 28b1b645-fe73-4876-9640-a350f578705a
+  id: b8070871-e067-41d2-9680-77d8364ab5be
   _health: 5
   _chakra: 4
   _handCardCount: 3
-  _spellsList: []
+  _spellsList:
+  - {fileID: 11400000, guid: 7c6660cfeecf26945b57a5e6e96d9d71, type: 2}
+  - {fileID: 11400000, guid: ee0d2396ac182264bae1988571de4464, type: 2}
+  - {fileID: 11400000, guid: d150679437ab5104a98c538a678d173e, type: 2}
+  - {fileID: 11400000, guid: 60b1086e5c73ca94aa92222b9229ca68, type: 2}

@@ -14,14 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 0
   _name: Phoenix Egg
-  _rarity: None
+  _rarity: Primordial
   _iconImage: {fileID: 0}
   _specialization:
   - FireMage
   _level: 0
   targetType: 0
-  id: d472d447-2f73-4c2b-9a77-c87cf557f855
+  id: f28936e4-1625-4f0c-b487-1af55bd28d50
   _health: 4
   _chakra: 0
   _handCardCount: 1
-  _spellsList: []
+  _spellsList:
+  - {fileID: 11400000, guid: a764832765737ee4199bb38b02b12839, type: 2}

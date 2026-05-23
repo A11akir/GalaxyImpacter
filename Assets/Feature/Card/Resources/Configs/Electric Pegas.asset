@@ -21,8 +21,11 @@ MonoBehaviour:
   - WindMage
   _level: 0
   targetType: 0
-  id: 6cb09562-a76d-4db1-982a-b80214bb835b
+  id: 5c3366b3-2afb-45c7-a8ba-d563703c3f94
   _health: 14
   _chakra: 6
   _handCardCount: 3
-  _spellsList: []
+  _spellsList:
+  - {fileID: 11400000, guid: 4e10729651e345c43ae815da05779dbb, type: 2}
+  - {fileID: 11400000, guid: b63c6c71b94a9d14b8870f5700dcfb53, type: 2}
+  - {fileID: 11400000, guid: ad23157812111c44ab488ff55e4131a1, type: 2}

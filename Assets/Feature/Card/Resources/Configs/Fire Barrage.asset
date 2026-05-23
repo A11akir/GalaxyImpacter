@@ -20,7 +20,7 @@ MonoBehaviour:
   - FireMage
   _level: 0
   targetType: 0
-  id: ddd94f58-1008-41b4-9d59-4aac3f058de7
+  id: 2c5c4bf6-3237-4c11-bdc2-f1841058c563
   _values: 01000000
   _description: Take 1 damage random enemy. Repeated the same number of times.
   _effects: []

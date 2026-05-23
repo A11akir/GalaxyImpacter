@@ -20,7 +20,7 @@ MonoBehaviour:
   - WaterMage
   _level: 0
   targetType: 0
-  id: 789fa16c-9dc7-4328-b4b4-dc86cca78c54
+  id: 67faa8d6-71ec-483e-a2cb-19cfa3a1fa5e
   _values: 02000000
   _description: Deals 2 damage and frezees. Zone 3
   _effects: []

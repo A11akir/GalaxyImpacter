@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
+  m_Name: Adult
+  m_EditorClassIdentifier: 
+  _cost: 5
+  _name: Adult
+  _rarity: Primordial
+  _iconImage: {fileID: 0}
+  _specialization: []
+  _level: 0
+  targetType: 0
+  id: f98d7147-54a5-4532-a377-2cdf1d9871b6
+  _values: 
+  _description: Cost 0 if it is on board during the second turn. Cast  random fire
+    spell
+  _effects: []

@@ -20,7 +20,7 @@ MonoBehaviour:
   - FireMage
   _level: 0
   targetType: 0
-  id: 6da93c55-b02b-4273-9697-4d136290cd18
+  id: dc6683d2-84b9-46df-b69e-321e097cd8e5
   _values: 00000000
   _description: 'Hero Power: At the end of the turn, all enemy take 0 damage. This
     effect cannot be dismissed.'

@@ -20,7 +20,7 @@ MonoBehaviour:
   - FireMage
   _level: 0
   targetType: 0
-  id: e9de4bfa-73a4-4fdf-bdd3-0abf642c555d
+  id: 7f647d72-b044-499f-b729-c472cbf64947
   _values: 06000000
   _description: Take 6 damage.
   _effects: []

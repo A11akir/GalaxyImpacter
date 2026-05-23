@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
+  m_Name: "\u0421lumsy freezing"
+  m_EditorClassIdentifier: 
+  _cost: 1
+  _name: "\u0421lumsy freezing"
+  _rarity: Common
+  _iconImage: {fileID: 0}
+  _specialization: []
+  _level: 0
+  targetType: 0
+  id: 2b1a3e32-e6ac-4811-8ae6-c0e656e8d604
+  _values: 
+  _description: Random target freezes.
+  _effects: []

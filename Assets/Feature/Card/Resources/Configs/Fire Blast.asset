@@ -20,7 +20,7 @@ MonoBehaviour:
   - FireMage
   _level: 0
   targetType: 0
-  id: 6338c855-5054-4fa1-8447-7dc7d060404f
+  id: 59860cf6-d486-4b01-979f-6d418bf20b40
   _values: 0a000000
   _description: 'Take 10 damage. If target minion - kill him. Costs 1 less for each
     hero power effect '

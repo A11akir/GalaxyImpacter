@@ -20,7 +20,7 @@ MonoBehaviour:
   - FireMage
   _level: 0
   targetType: 0
-  id: f6dccd1c-8972-4696-8d2f-df8016526c59
+  id: b78b3b9d-418e-44f1-821d-6f4f71c4b34e
   _values: 0100000002000000
   _description: Take 1 damage 2 random minion.
   _effects: []

@@ -20,8 +20,11 @@ MonoBehaviour:
   - Assassin
   _level: 0
   targetType: 0
-  id: 330601ef-79ac-4a7c-9c0d-65649b560661
+  id: 3a83d02c-0d95-492d-b4d9-f67fcec46616
   _health: 1
   _chakra: 2
   _handCardCount: 2
-  _spellsList: []
+  _spellsList:
+  - {fileID: 11400000, guid: bb31b9c8310bb9943bcf00b26a04a369, type: 2}
+  - {fileID: 11400000, guid: f494eb34da25c6d4c9eb11d914d990c5, type: 2}
+  - {fileID: 11400000, guid: 87c20220ca1b7c944b125721aeef6324, type: 2}

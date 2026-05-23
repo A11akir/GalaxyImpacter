@@ -20,7 +20,7 @@ MonoBehaviour:
   - EarthMage
   _level: 0
   targetType: 0
-  id: aee352e9-5681-4906-bcae-cb02b6014be5
+  id: c3518b76-e5d9-41aa-9e2c-45a892032dcb
   _values: 01000000
   _description: Deal all 1 damage.
   _effects: []

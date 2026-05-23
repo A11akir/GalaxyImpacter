@@ -21,8 +21,12 @@ MonoBehaviour:
   - Warrior
   _level: 0
   targetType: 0
-  id: cb0e7aee-ef3d-46a3-a312-57fecfe1c87e
+  id: bf90f6ff-c533-44a1-bb9e-31205d7cc36a
   _health: 12
   _chakra: 4
   _handCardCount: 3
-  _spellsList: []
+  _spellsList:
+  - {fileID: 11400000, guid: 946d1126447a2e6468ccb6b77f6a1994, type: 2}
+  - {fileID: 11400000, guid: e87284be7de1f204d877e080fd6c1650, type: 2}
+  - {fileID: 11400000, guid: ac52c370dcb0a164db14b49546263dc9, type: 2}
+  - {fileID: 11400000, guid: 54f34417ff257d34da4c0470891392cc, type: 2}

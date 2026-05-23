@@ -20,7 +20,7 @@ MonoBehaviour:
   - FireMage
   _level: 0
   targetType: 0
-  id: 71c0847d-c181-4834-972f-61cf3c576ee6
+  id: 061dc052-b0a6-4364-9d04-58a48c0a185f
   _values: 01000000
   _description: Hero power increase 1 damage.
   _effects: []

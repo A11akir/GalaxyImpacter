@@ -20,8 +20,12 @@ MonoBehaviour:
   - FireMage
   _level: 0
   targetType: 0
-  id: 6db727ce-ffcc-4569-b165-c6b52ba05642
+  id: b188a938-0ff5-46cf-9727-6116fd8a2cdf
   _health: 5
   _chakra: 4
   _handCardCount: 3
-  _spellsList: []
+  _spellsList:
+  - {fileID: 11400000, guid: 5acbc8906861cfd48afd6f5a5333e61f, type: 2}
+  - {fileID: 11400000, guid: ed6db80db779b474db6c3927a534eed4, type: 2}
+  - {fileID: 11400000, guid: 625e2c5e262c7e74f97132bc2dc8daac, type: 2}
+  - {fileID: 11400000, guid: 7404a94960f43ec419caabf4a986d19a, type: 2}

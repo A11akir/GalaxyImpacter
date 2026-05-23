@@ -20,7 +20,7 @@ MonoBehaviour:
   - WaterMage
   _level: 0
   targetType: 0
-  id: 22319043-8157-4f2e-bced-a46e56f416a0
+  id: aa8177b3-2b6c-4940-ad1f-19dd24e0f7c7
   _values: 0200000002000000
   _description: Deals 2 damage. Adds 2 moisture. Zone 3
   _effects: []

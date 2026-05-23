@@ -20,7 +20,7 @@ MonoBehaviour:
   - WaterMage
   _level: 0
   targetType: 0
-  id: b046415a-c352-423a-aba2-3cfc54cb0ad4
+  id: e3946060-1410-46fb-aa4f-844e9d9700b6
   _values: 0200000001000000
   _description: Deals 2 damage to enemies and causes each target to drop 1 card.
   _effects: []

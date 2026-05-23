@@ -159,10 +159,7 @@ namespace Feature.GoogleSheets
                 so.Chakra = cfg.Chakra;
                 so.HandCardCount = cfg.HandCardCount;
 
-                so.SpellsList = cfg.SpellNames?
-                    .Select(name => allSpellSOs.TryGetValue(name, out var spellSO) ? spellSO : null)
-                    .Where(s => s != null)
-                    .ToList() ?? new List<SpellCardData>();
+                so.SpellsList = new List<SpellCardData>();
 
                 EditorUtility.SetDirty(so as UnityEngine.Object);
             }

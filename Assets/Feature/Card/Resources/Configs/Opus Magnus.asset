@@ -20,7 +20,7 @@ MonoBehaviour:
   - Alchemist
   _level: 0
   targetType: 0
-  id: 5a58b8cd-71a2-46b5-bd8a-10a1a0746224
+  id: d8a34286-130a-49ea-9c0d-bcfd5524f600
   _values: 
   _description: 'Destroy all your creatures. For each destroyed: deal 3 damage to
     all enemies, restore 3 HP, draw 1 card. '

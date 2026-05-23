@@ -20,7 +20,7 @@ MonoBehaviour:
   - WaterMage
   _level: 0
   targetType: 0
-  id: 229b97f3-f5c5-47bc-8c18-43e40484927d
+  id: 0bb64671-f3b8-4a7a-9621-657323de4fd9
   _values: 19000000
   _description: If the target does not play 5 cards by the end of the next turn,
     it deals 25 damage.

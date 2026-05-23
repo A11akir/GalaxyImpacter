@@ -20,7 +20,7 @@ MonoBehaviour:
   - FireMage
   _level: 0
   targetType: 0
-  id: 8acbd2cd-7fe5-4801-acdc-7b8b1d07b4a4
+  id: e2da8608-4a69-49e0-a5cc-a3509cb67da6
   _values: 0100000002000000
   _description: Take 1 damage at the end of the turn 2 times.
   _effects: []

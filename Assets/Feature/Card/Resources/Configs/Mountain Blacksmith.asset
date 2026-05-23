@@ -21,8 +21,11 @@ MonoBehaviour:
   - EarthMage
   _level: 0
   targetType: 0
-  id: 169d5ac5-0bd4-4393-85bd-fa249022b120
+  id: 7df35553-8ed4-4e7c-b4ce-8e516a5d44e8
   _health: 6
   _chakra: 4
   _handCardCount: 2
-  _spellsList: []
+  _spellsList:
+  - {fileID: 11400000, guid: 9c0d2901916ba484b87a023735fd06de, type: 2}
+  - {fileID: 11400000, guid: 6a9135e0eb4776041aa12fcae621f00e, type: 2}
+  - {fileID: 11400000, guid: 94a51d659a1258a49bb5dd663f21461e, type: 2}

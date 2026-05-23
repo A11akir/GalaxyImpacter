@@ -74,10 +74,6 @@ namespace Feature.GoogleSheets
                         }
                     }
                     break;
-
-                default:
-                    GLog.Log($"  → Unknown header: '{header}'");
-                    break;
             }
         }
 

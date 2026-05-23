@@ -11,5 +11,6 @@ namespace Feature.GoogleSheets
         string Rarity { get; set; }
         List<string> Specialization { get; set; }
         int Level { get; set; }
+        string Type { get; set; }
     }
 }

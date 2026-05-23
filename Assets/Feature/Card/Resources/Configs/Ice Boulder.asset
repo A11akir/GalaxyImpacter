@@ -20,7 +20,7 @@ MonoBehaviour:
   - WaterMage
   _level: 0
   targetType: 0
-  id: d0164a57-38ea-4c29-be08-0bae910ba5b3
+  id: 7c1368af-a8a6-4fbd-be0c-a7f017cf0147
   _values: 0f000000
   _description: Ally get 15 moisture and freezes.
   _effects: []

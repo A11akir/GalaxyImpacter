@@ -20,8 +20,12 @@ MonoBehaviour:
   - Alchemist
   _level: 0
   targetType: 0
-  id: f88a2ece-9d6a-478b-8817-2d292fc47f4e
+  id: 81e9e680-bd93-48f4-8182-f8fbab0aa189
   _health: 20
   _chakra: 4
   _handCardCount: 4
-  _spellsList: []
+  _spellsList:
+  - {fileID: 11400000, guid: 4481f7fd85c8d63459d3427b89107f75, type: 2}
+  - {fileID: 11400000, guid: f535bf8fe3146ba4e9f7cc4d995c9a8b, type: 2}
+  - {fileID: 11400000, guid: c98e2a753d5bec048868ff791e5ed1a8, type: 2}
+  - {fileID: 11400000, guid: b8f3a58c10a04864fa9ef39c8b16582c, type: 2}

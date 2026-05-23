@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
+  m_Name: Divine Aegis
+  m_EditorClassIdentifier: 
+  _cost: 1
+  _name: Divine Aegis
+  _rarity: Primordial
+  _iconImage: {fileID: 0}
+  _specialization: []
+  _level: 0
+  targetType: 0
+  id: edbb7e85-a2b0-4e3e-bd3f-947e721da0dc
+  _values: 
+  _description: "\u041F\u043E\u0441\u0435\u0439\u0434\u043E\u043D \u0438 \u0432\u0441\u0435
+    \u0441\u043E\u044E\u0437\u043D\u0438\u043A\u0438 \u043F\u043E\u043B\u0443\u0447\u0430\u044E\u0442
+    \u0431\u0440\u043E\u043D\u044E \u0440\u0430\u0432\u043D\u0443\u044E \u0443\u0434\u0430\u043B\u0451\u043D\u043D\u043E\u0441\u0442\u0438
+    \u0431\u0435\u0437\u0434\u043D\u044B. "
+  _effects: []

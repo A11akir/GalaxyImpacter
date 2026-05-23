@@ -20,8 +20,11 @@ MonoBehaviour:
   - Monster
   _level: 0
   targetType: 0
-  id: 4de53cc0-01c7-4c64-82d7-48aabe74d708
+  id: 371ea087-2b6d-4795-8821-47995a7a0182
   _health: 1
   _chakra: 2
   _handCardCount: 2
-  _spellsList: []
+  _spellsList:
+  - {fileID: 11400000, guid: a56442367d60e874596f853000c8c3e8, type: 2}
+  - {fileID: 11400000, guid: 7e4f1088654619b439669fbdbb11edd3, type: 2}
+  - {fileID: 11400000, guid: 33bfebcd5a2664d48be08113675e8ebb, type: 2}

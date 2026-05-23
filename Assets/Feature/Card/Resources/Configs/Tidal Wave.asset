@@ -20,7 +20,7 @@ MonoBehaviour:
   - WaterMage
   _level: 0
   targetType: 0
-  id: dce1ab82-c910-413b-90f3-f67e7afe814d
+  id: ab529f46-cb45-4601-aa2c-966d23d1a5b7
   _values: 02000000
   _description: Draw 2 cards.
   _effects: []

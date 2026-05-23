@@ -44,7 +44,7 @@ namespace Feature.GoogleSheets
                 parsers[sheet] = parser;
             }
 
-            var applyOrder = new[] { "SpellStats", "HeroStats", "MinionStats", "Items" };
+            var applyOrder = new[] { "HeroStats", "MinionStats", "SpellStats", "Items" };
 
             foreach (var sheet in applyOrder)
             {

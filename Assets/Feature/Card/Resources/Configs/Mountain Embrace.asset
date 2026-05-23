@@ -20,7 +20,7 @@ MonoBehaviour:
   - EarthMage
   _level: 0
   targetType: 0
-  id: e22a7332-839f-4fe6-bd48-c6802cf7b5ac
+  id: 3bcdc95e-3c8b-4ce8-874a-79fbe3ef3705
   _values: 0200000003000000
   _description: Summon 2 3-health Earth Walls. Deal damage to target equal to each
     wall's current health.

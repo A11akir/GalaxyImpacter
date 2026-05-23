@@ -20,8 +20,12 @@ MonoBehaviour:
   - WaterMage
   _level: 0
   targetType: 0
-  id: d97fa9a7-3494-4ee6-8275-71e47bbe3aca
+  id: 68f0cfd4-1545-47e1-88d6-d2ebb22fc95c
   _health: 16
   _chakra: 4
   _handCardCount: 3
-  _spellsList: []
+  _spellsList:
+  - {fileID: 11400000, guid: 7adf6e92e7e9da4469017652f8094984, type: 2}
+  - {fileID: 11400000, guid: fe4330a5ad0f2bf46b0057161bd265f8, type: 2}
+  - {fileID: 11400000, guid: 7d0b2559986da4c469d4ded53dd9defe, type: 2}
+  - {fileID: 11400000, guid: 24f2a2a84d60e8949adebc77054414c0, type: 2}

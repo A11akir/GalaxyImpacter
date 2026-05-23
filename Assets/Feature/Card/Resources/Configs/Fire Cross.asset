@@ -20,7 +20,7 @@ MonoBehaviour:
   - FireMage
   _level: 0
   targetType: 0
-  id: dffe8c58-1457-4e4e-8a5e-d72c31fb7aad
+  id: 4ecddeaf-bdeb-4e44-9ace-bb7d3f7d366a
   _values: 05000000
   _description: Take 5 pure damage.
   _effects: []

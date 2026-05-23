@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 1
   _name: "\u041B\u0435\u0442\u0443\u0447\u0430\u044F \u041C\u044B\u0448\u044C"
-  _rarity: None
+  _rarity: Primordial
   _iconImage: {fileID: 0}
   _specialization:
   - Monster
@@ -22,7 +22,7 @@ MonoBehaviour:
   - Explorer
   _level: 0
   targetType: 0
-  id: 0abf9a27-d12d-49a1-8f5e-b520bd1d16a0
+  id: 1b331769-a069-496e-9ae3-1ea3b870a698
   _health: 2
   _chakra: 0
   _handCardCount: 0

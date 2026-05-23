@@ -20,7 +20,7 @@ MonoBehaviour:
   - WaterMage
   _level: 0
   targetType: 0
-  id: 84dc24d0-b1cb-4fdb-9b91-cbeefe653af6
+  id: 7de14c19-6ebe-464a-8317-18bf8471c4d0
   _values: 0200000002000000
   _description: The target receives 2 moisture, and the next card costs 2 less
   _effects: []
