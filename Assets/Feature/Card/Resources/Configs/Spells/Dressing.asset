@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
-  m_Name: Hit
+  m_Name: Dressing
   m_EditorClassIdentifier: 
   _cost: 1
-  _name: Hit
+  _name: Dressing
   _rarity: 0
   _iconImage: {fileID: 0}
   _specialization:
@@ -21,7 +21,7 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 0
-  id: e99db7ea-faf0-4429-84e6-b4882bec4a6d
+  id: 99040982-4fe1-4991-a949-ce6a62c51b30
   _values: 03000000
-  _description: Take 3 damage.
+  _description: Restore 3 health.
   _effects: []

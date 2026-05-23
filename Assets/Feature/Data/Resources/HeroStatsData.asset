@@ -26,6 +26,7 @@ MonoBehaviour:
   baseCards:
   - {fileID: 11400000, guid: 05fefde62994d8b4098343754d4db356, type: 2}
   - {fileID: 11400000, guid: 9432b76307fdb4b44a01d9b640b46521, type: 2}
+  - {fileID: 11400000, guid: 9f3481602bd7f5b409f22e09743515a7, type: 2}
   - {fileID: 11400000, guid: fe16b6f48b4fc85499482b15d5372e1c, type: 2}
   - {fileID: 11400000, guid: 2f10fbabfad68534aaea8f0d56815385, type: 2}
   - {fileID: 11400000, guid: f7a48542bfe1868469c62bbc6e54293d, type: 2}
@@ -572,6 +573,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ea0efebc338dc274da8635a60bb9d3cb, type: 2}
   - {fileID: 11400000, guid: 06329121bfe9c374bbc99c5c16422ba1, type: 2}
   - {fileID: 11400000, guid: 2384bfecc37c43c49b9afdba93aac013, type: 2}
+  - {fileID: 11400000, guid: 9f3481602bd7f5b409f22e09743515a7, type: 2}
   - {fileID: 11400000, guid: 60abe10006a9a234d830e58e11e9251f, type: 2}
   - {fileID: 11400000, guid: 790dc955dbf18dc469faf8607b2052e3, type: 2}
   - {fileID: 11400000, guid: f949666e5cbc48d49ba73ff6b2ea70d3, type: 2}
