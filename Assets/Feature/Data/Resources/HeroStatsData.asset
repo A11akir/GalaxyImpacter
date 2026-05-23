@@ -23,7 +23,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f7a3cdd09059db4459323cd6f4cfcb47, type: 2}
   - {fileID: 11400000, guid: b1b39476d51250a4daaba096a52310b7, type: 2}
   allItems: []
-  baseCards: []
+  baseCards:
+  - {fileID: 11400000, guid: 05fefde62994d8b4098343754d4db356, type: 2}
+  - {fileID: 11400000, guid: 9432b76307fdb4b44a01d9b640b46521, type: 2}
+  - {fileID: 11400000, guid: fe16b6f48b4fc85499482b15d5372e1c, type: 2}
+  - {fileID: 11400000, guid: 2f10fbabfad68534aaea8f0d56815385, type: 2}
+  - {fileID: 11400000, guid: f7a48542bfe1868469c62bbc6e54293d, type: 2}
   alchemistCards:
   - {fileID: 11400000, guid: 1c144f6838cf9b84f97a8010ea603727, type: 2}
   - {fileID: 11400000, guid: d09796efb7ecb9e4bafe902a06ffcb23, type: 2}

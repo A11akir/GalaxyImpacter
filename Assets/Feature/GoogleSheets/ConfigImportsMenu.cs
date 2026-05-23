@@ -118,6 +118,7 @@ namespace Feature.GoogleSheets
 
             var baseMap = new Dictionary<string, List<CardStatsData>>
             {
+                { "All",        gameData.baseCards},
                 { "Alchemist",  gameData.alchemistCards },
                 { "Assassin",   gameData.assassinCards },
                 { "EarthMage",  gameData.earthMageCards },
@@ -134,12 +135,18 @@ namespace Feature.GoogleSheets
                 if (card == null) continue;
 
                 gameData.allCards.Add(card);
-                
-                if (!card.InCollection) continue;
 
                 var specs = card.Specialization?
                     .Where(s => !string.IsNullOrWhiteSpace(s))
                     .ToList() ?? new List<string>();
+                
+                if (specs.Count == 1 && specs[0] == "All")
+                {
+                    gameData.baseCards.Add(card);
+                    continue;
+                }
+
+                if (!card.InCollection) continue;
 
                 if (specs.Count == 0) continue;
 
@@ -147,8 +154,6 @@ namespace Feature.GoogleSheets
                 {
                     if (baseMap.TryGetValue(specs[0], out var baseList))
                         baseList.Add(card);
-                    else
-                        gameData.baseCards.Add(card);
                     continue;
                 }
 
