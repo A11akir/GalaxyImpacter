@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: Megaladon
+  m_EditorClassIdentifier: 
+  _cost: 10
+  _name: Megaladon
+  _rarity: Anomalous
+  _iconImage: {fileID: 0}
+  _specialization:
+  - Explorer
+  - WaterMage
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: df0601e8-6b37-435f-b64d-be23e890c15c
+  _health: 12
+  _chakra: 5
+  _handCardCount: 3
+  _spellsList:
+  - {fileID: 11400000, guid: 8ed082bac8af2264880f4ae97a01b921, type: 2}
+  - {fileID: 11400000, guid: 78b1dc795cf042b4e885dd52c465f444, type: 2}
+  - {fileID: 11400000, guid: b368751fe7dfc524cbcef370e387c929, type: 2}
+  - {fileID: 11400000, guid: b700ea097e1c86542ba78d5e6791d47a, type: 2}

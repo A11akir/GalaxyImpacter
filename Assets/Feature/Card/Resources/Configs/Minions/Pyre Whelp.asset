@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: Pyre Whelp
+  m_EditorClassIdentifier: 
+  _cost: 5
+  _name: Pyre Whelp
+  _rarity: Anomalous
+  _iconImage: {fileID: 0}
+  _specialization:
+  - FireMage
+  - Warrior
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: 85aa686b-90af-4134-83c7-fab26e2a03b4
+  _health: 12
+  _chakra: 4
+  _handCardCount: 3
+  _spellsList:
+  - {fileID: 11400000, guid: 08c9223fbee8f0e4e80ac21c9cc30976, type: 2}
+  - {fileID: 11400000, guid: 98cd45b7927145649be622c3c4c92fbb, type: 2}
+  - {fileID: 11400000, guid: 1e4dd3aafb01fe147bb00d2ef42c8b2a, type: 2}
+  - {fileID: 11400000, guid: 99504aa94231e4f44b9b2d59910c5530, type: 2}

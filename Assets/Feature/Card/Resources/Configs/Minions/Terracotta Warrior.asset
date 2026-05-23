@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: Terracotta Warrior
+  m_EditorClassIdentifier: 
+  _cost: 3
+  _name: Terracotta Warrior
+  _rarity: Anomalous
+  _iconImage: {fileID: 0}
+  _specialization:
+  - EarthMage
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: 3e10b602-0ea1-41f8-9200-a98befbca1a1
+  _health: 10
+  _chakra: 6
+  _handCardCount: 3
+  _spellsList:
+  - {fileID: 11400000, guid: e964e03cbbe81e143ae155b48abfedbc, type: 2}
+  - {fileID: 11400000, guid: 7e89baeaaa2f1dc45884e3203434639e, type: 2}
+  - {fileID: 11400000, guid: 336b42f8a86752a4e8631d022f554855, type: 2}
+  - {fileID: 11400000, guid: e5cfb3d22a21b094b8d71ed06d8ce1ce, type: 2}

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: Manticore
+  m_EditorClassIdentifier: 
+  _cost: 6
+  _name: Manticore
+  _rarity: Anomalous
+  _iconImage: {fileID: 0}
+  _specialization:
+  - Monster
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: 841f1b3e-1a0c-4b3d-bfab-b2970b4c5c28
+  _health: 10
+  _chakra: 4
+  _handCardCount: 4
+  _spellsList:
+  - {fileID: 11400000, guid: 4ab54fb037def814792dea998e4686eb, type: 2}
+  - {fileID: 11400000, guid: 8dae26206433b7e4b915b7f73945a986, type: 2}
+  - {fileID: 11400000, guid: c411523ea48bced43a351f55f192ff69, type: 2}
+  - {fileID: 11400000, guid: 440f088877bec5b43a868d18a09e9d1d, type: 2}
+  - {fileID: 11400000, guid: 388085801ba49f941aa7fe1c2494051f, type: 2}

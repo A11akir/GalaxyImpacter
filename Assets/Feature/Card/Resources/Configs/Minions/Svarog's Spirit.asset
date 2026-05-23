@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: Svarog's Spirit
+  m_EditorClassIdentifier: 
+  _cost: 2
+  _name: Svarog's Spirit
+  _rarity: Anomalous
+  _iconImage: {fileID: 0}
+  _specialization:
+  - FireMage
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: fa98d962-4b8d-41ae-82ab-3d5fb63a2fa4
+  _health: 6
+  _chakra: 2
+  _handCardCount: 3
+  _spellsList:
+  - {fileID: 11400000, guid: 940e11b17be6c5f4f996ea79441ff3fa, type: 2}
+  - {fileID: 11400000, guid: 63db00167c39eaf4893b8b1ce5f2eeb9, type: 2}
+  - {fileID: 11400000, guid: 3da8a5366f1d3f941b504bb6d87c240d, type: 2}
+  - {fileID: 11400000, guid: 0621c8c7a99d1e248ab9842c52c93b8e, type: 2}

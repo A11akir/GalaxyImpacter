@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: Parco Molo
+  m_EditorClassIdentifier: 
+  _cost: 6
+  _name: Parco Molo
+  _rarity: Primordial
+  _iconImage: {fileID: 0}
+  _specialization:
+  - Explorer
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: d0465a22-45c4-4e30-82e0-9d7e5bf763bb
+  _health: 10
+  _chakra: 6
+  _handCardCount: 4
+  _spellsList:
+  - {fileID: 11400000, guid: b8f34e2c98b23604c85ca614e90e0487, type: 2}
+  - {fileID: 11400000, guid: 15221b5b39ebe924e8948da71e949e9c, type: 2}
+  - {fileID: 11400000, guid: 0e997ecd41e03314ca3e96b5763ff7be, type: 2}
+  - {fileID: 11400000, guid: 0883d32f59e351f4f9d7273ab5edcc1e, type: 2}
+  - {fileID: 11400000, guid: 30830aa418e84c24d871f67d21d11d51, type: 2}

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: Ancient Kraken
+  m_EditorClassIdentifier: 
+  _cost: 30
+  _name: Ancient Kraken
+  _rarity: Primordial
+  _iconImage: {fileID: 0}
+  _specialization:
+  - Explorer
+  - WaterMage
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: e7ea60ee-9bb4-4c20-827d-62caf330cdbd
+  _health: 40
+  _chakra: 8
+  _handCardCount: 3
+  _spellsList:
+  - {fileID: 11400000, guid: 444c3fdaee09cf04589394cc7a00ded2, type: 2}
+  - {fileID: 11400000, guid: 226b8ebac95134d4a89f621dea8847c8, type: 2}
+  - {fileID: 11400000, guid: 4fb0448bdc8ce5f42ae63bf61a365dbe, type: 2}
+  - {fileID: 11400000, guid: fcc23c4f459cef444b1d36da147dfbc5, type: 2}

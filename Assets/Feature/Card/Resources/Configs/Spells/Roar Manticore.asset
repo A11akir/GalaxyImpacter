@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
+  m_Name: Roar Manticore
+  m_EditorClassIdentifier: 
+  _cost: 3
+  _name: Roar Manticore
+  _rarity: Anomalous
+  _iconImage: {fileID: 0}
+  _specialization: []
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: 5667752f-6f55-494e-8498-37df9ccb5056
+  _values: 
+  _description: "\u0421\u0443\u0449\u0435\u0441\u0442\u0432\u043E \u043F\u043E\u043B\u0443\u0447\u0430\u0435\u0442
+    \u041E\u0446\u0435\u043F\u0435\u043D\u0435\u043D\u0438\u0435. \u0417\u043E\u043D\u0430
+    3."
+  _effects: []

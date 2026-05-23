@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
+  m_Name: Ice Boulder
+  m_EditorClassIdentifier: 
+  _cost: 2
+  _name: Ice Boulder
+  _rarity: Anomalous
+  _iconImage: {fileID: 0}
+  _specialization:
+  - WaterMage
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: 39340de0-3f22-4ef4-920d-0f05fe691022
+  _values: 0f000000
+  _description: Ally get 15 moisture and freezes.
+  _effects: []

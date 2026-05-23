@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: "\u0414\u0440\u0435\u0432\u043D\u0438\u0439 \u0412\u0430\u043C\u043F\u0438\u0440"
+  m_EditorClassIdentifier: 
+  _cost: 2
+  _name: "\u0414\u0440\u0435\u0432\u043D\u0438\u0439 \u0412\u0430\u043C\u043F\u0438\u0440"
+  _rarity: Anomalous
+  _iconImage: {fileID: 0}
+  _specialization:
+  - Monster
+  - Alchemist
+  - Explorer
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: 59252534-fe51-488d-9883-865c3f8a0bde
+  _health: 20
+  _chakra: 5
+  _handCardCount: 3
+  _spellsList:
+  - {fileID: 11400000, guid: 5c68e583ed2d3604aa04890743b04b8d, type: 2}
+  - {fileID: 11400000, guid: 59d769ef1e7fbd94fa0c2cbc09a6e6ed, type: 2}
+  - {fileID: 11400000, guid: d94a27b3d7191894c9bac548d40c68bd, type: 2}
+  - {fileID: 11400000, guid: 844a00f9737ca704781283db65303453, type: 2}

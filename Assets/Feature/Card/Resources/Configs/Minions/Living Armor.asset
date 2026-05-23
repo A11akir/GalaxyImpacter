@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: Living Armor
+  m_EditorClassIdentifier: 
+  _cost: 5
+  _name: Living Armor
+  _rarity: Anomalous
+  _iconImage: {fileID: 0}
+  _specialization:
+  - FireMage
+  - EarthMage
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: 3b4ab333-f07a-4f99-aa07-fc9f9cf9169d
+  _health: 12
+  _chakra: 7
+  _handCardCount: 3
+  _spellsList:
+  - {fileID: 11400000, guid: 325eb8d2660f80746aa40328e0de9f71, type: 2}
+  - {fileID: 11400000, guid: da6abc2a3d882fc4084078bd1770681e, type: 2}
+  - {fileID: 11400000, guid: 952987cf40a80c745b3a52c0f0235b20, type: 2}

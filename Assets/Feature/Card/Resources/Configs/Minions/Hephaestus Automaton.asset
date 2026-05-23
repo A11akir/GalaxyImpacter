@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: Hephaestus Automaton
+  m_EditorClassIdentifier: 
+  _cost: 7
+  _name: Hephaestus Automaton
+  _rarity: Primordial
+  _iconImage: {fileID: 0}
+  _specialization:
+  - FireMage
+  - EarthMage
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: 2d87c5b2-48a9-4b6e-8ddb-d55409824afc
+  _health: 22
+  _chakra: 8
+  _handCardCount: 4
+  _spellsList:
+  - {fileID: 11400000, guid: 1e234528f047bcf46a0e4a9e75528f91, type: 2}
+  - {fileID: 11400000, guid: ae286dc9919ff5242b2920a8340fdeea, type: 2}
+  - {fileID: 11400000, guid: 2975020dfb2681042bfd767848ff0aec, type: 2}
+  - {fileID: 11400000, guid: db991a86b6b40574eb86594fda73808a, type: 2}
+  - {fileID: 11400000, guid: cd67aa46c71fa704892bc8cbd3c42ba8, type: 2}

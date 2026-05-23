@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: "\u0412\u043E\u0438\u043D \u043D\u0430 \u043A\u043E\u043D\u0435"
+  m_EditorClassIdentifier: 
+  _cost: 2
+  _name: "\u0412\u043E\u0438\u043D \u043D\u0430 \u043A\u043E\u043D\u0435"
+  _rarity: Hidden
+  _iconImage: {fileID: 0}
+  _specialization:
+  - Warrior
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: b0058a8e-5c57-481f-a9c1-cfe5494b1512
+  _health: 15
+  _chakra: 3
+  _handCardCount: 4
+  _spellsList:
+  - {fileID: 11400000, guid: 4eb092ac675e2924cb5fe15ef1a55bb7, type: 2}
+  - {fileID: 11400000, guid: 022d556e8ac801347ac5e0b034a259b9, type: 2}
+  - {fileID: 11400000, guid: 6e543e4d8d7a83745bf12be1c6fa188c, type: 2}
+  - {fileID: 11400000, guid: 15f4afa802932a04b8692051ed13da6c, type: 2}

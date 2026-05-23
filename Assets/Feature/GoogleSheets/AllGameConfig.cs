@@ -9,7 +9,7 @@ namespace Feature.GoogleSheets
         public List<HeroStatsConfig> HeroStats;
         public List<SpellStatsConfig> AllSpellStats;
         public List<MinionStatsConfig> AllMinionStats;
+        
         public List<ItemStatsConfig> AllItemStats;
-        public List<MinionSpellConfig> AllMinionSpellStats;
     }
 }

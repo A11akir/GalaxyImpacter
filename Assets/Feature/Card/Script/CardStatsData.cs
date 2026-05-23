@@ -20,6 +20,7 @@ namespace Feature.Card.Script
         [SerializeField] private List<string> _specialization;
         [SerializeField] private int _level;
         [SerializeField] private TargetType targetType;
+        [SerializeField] private bool _inCollection;
 
         public bool DealsDamage()
         {
@@ -39,6 +40,7 @@ namespace Feature.Card.Script
         public List<string> Specialization { get => _specialization; set => _specialization = value; }
         public int Level { get => _level; set => _level = value; }
         public Sprite IconImage { get => _iconImage; set => _iconImage = value; }
+        public bool InCollection { get => _inCollection; set => _inCollection = value; }
 
     }
 }

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: Wendigo Alpha
+  m_EditorClassIdentifier: 
+  _cost: 6
+  _name: Wendigo Alpha
+  _rarity: Anomalous
+  _iconImage: {fileID: 0}
+  _specialization:
+  - Assassin
+  - Warrior
+  - Monster
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: 2e32acb7-1db6-4d83-9fc2-6bbbe3261739
+  _health: 20
+  _chakra: 6
+  _handCardCount: 4
+  _spellsList:
+  - {fileID: 11400000, guid: f3913349f7d140f4a8d77bd4225f2dff, type: 2}
+  - {fileID: 11400000, guid: 48b119e14ed133349ad6bbd9f6b75178, type: 2}
+  - {fileID: 11400000, guid: 4793306f77cb8804ca28fbd3fb7a07d5, type: 2}
+  - {fileID: 11400000, guid: 8078d11c360aa6b48a5a81313a437b3b, type: 2}
+  - {fileID: 11400000, guid: 1c7d1c77572129842bddef190716f5b7, type: 2}

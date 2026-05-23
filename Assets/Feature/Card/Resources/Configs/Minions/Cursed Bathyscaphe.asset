@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: Cursed Bathyscaphe
+  m_EditorClassIdentifier: 
+  _cost: 8
+  _name: Cursed Bathyscaphe
+  _rarity: Anomalous
+  _iconImage: {fileID: 0}
+  _specialization:
+  - Explorer
+  - WaterMage
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: c103e552-8c5a-4550-a927-0a507e18e661
+  _health: 20
+  _chakra: 4
+  _handCardCount: 3
+  _spellsList:
+  - {fileID: 11400000, guid: ca2e1aa12d1d9224782f1fae199b55a4, type: 2}
+  - {fileID: 11400000, guid: 09855779b873e8f4eb0ee798664285b7, type: 2}
+  - {fileID: 11400000, guid: 57432a76186d6b24cb19a189492d685e, type: 2}

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: Poseidon
+  m_EditorClassIdentifier: 
+  _cost: 40
+  _name: Poseidon
+  _rarity: Primordial
+  _iconImage: {fileID: 0}
+  _specialization:
+  - Explorer
+  - WaterMage
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: 27322869-8dbb-49c6-88ae-7a53f5a5fe28
+  _health: 40
+  _chakra: 7
+  _handCardCount: 4
+  _spellsList:
+  - {fileID: 11400000, guid: e3f0df9d2c6f27a4a9a9dff0ed5eb09b, type: 2}
+  - {fileID: 11400000, guid: 04511d6cbbd8c24459c9c474218ecf39, type: 2}
+  - {fileID: 11400000, guid: 63d29246af527f74daeb7dc0b41d3fe7, type: 2}
+  - {fileID: 11400000, guid: 5ebeefa1205d88047b99a0a16a4ef642, type: 2}
+  - {fileID: 11400000, guid: 21c096bf3338c7445bc3494744d311b2, type: 2}

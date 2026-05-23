@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: Sylph Queen
+  m_EditorClassIdentifier: 
+  _cost: 4
+  _name: Sylph Queen
+  _rarity: Anomalous
+  _iconImage: {fileID: 0}
+  _specialization:
+  - WindMage
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: 50f82309-b710-4209-99e5-4b731f83b2d6
+  _health: 5
+  _chakra: 4
+  _handCardCount: 3
+  _spellsList:
+  - {fileID: 11400000, guid: 9be239fe77d93f54aa9bedfe14a13c1f, type: 2}
+  - {fileID: 11400000, guid: d741d1e284a17a048adefc5c3c5ef6a5, type: 2}
+  - {fileID: 11400000, guid: a310c69d659538b469bf67bff2096afa, type: 2}
+  - {fileID: 11400000, guid: ff3cf32c88f34764aa1024dde7798a74, type: 2}

@@ -91,16 +91,20 @@ namespace Feature.GoogleSheets
                     if (!string.IsNullOrWhiteSpace(token))
                         _spellStatsConfig.Specialization.Add(token);
                     break;
+                case "InCollection":
+                    if (_spellStatsConfig != null)
+                        _spellStatsConfig.InCollection = token == "TRUE" || token == "1" || token.ToLower() == "true";
+                    break;
             }
         }
 
         public void ApplyToSO()
         {
-
-            const string path = "Assets/Feature/Card/Resources/Configs";
+            const string spellsPath = "Assets/Feature/Card/Resources/Configs/Spells";
+            const string minionsPath = "Assets/Feature/Card/Resources/Configs/Minions";
 
             var allMinionSOs = new Dictionary<string, MinionCardData>();
-            string[] minionGuids = AssetDatabase.FindAssets("t:MinionCardData", new[] { path });
+            string[] minionGuids = AssetDatabase.FindAssets("t:MinionCardData", new[] { minionsPath });
 
             foreach (var guid in minionGuids)
             {
@@ -134,7 +138,7 @@ namespace Feature.GoogleSheets
                 if (so == null)
                 {
                     var newSO = ScriptableObject.CreateInstance<SpellCardData>();
-                    string assetPath = $"{path}/{cfg.Name}.asset";
+                    string assetPath = $"{spellsPath}/{cfg.Name}.asset"; 
                     AssetDatabase.CreateAsset(newSO, assetPath);
                     so = newSO;
                     _targetSO.Add(so);
@@ -153,6 +157,7 @@ namespace Feature.GoogleSheets
                 so.Values = cfg.Values;
                 so.Level = cfg.Level;
                 so.Type = cfg.Type;
+                so.InCollection = cfg.InCollection;
 
                 if (!string.IsNullOrWhiteSpace(cfg.Rarity))
                 {

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: Barista
+  m_EditorClassIdentifier: 
+  _cost: 3
+  _name: Barista
+  _rarity: Hidden
+  _iconImage: {fileID: 0}
+  _specialization:
+  - WaterMage
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: ea0aa8f0-bb82-4f87-96f7-ced45d6fcd82
+  _health: 6
+  _chakra: 2
+  _handCardCount: 2
+  _spellsList:
+  - {fileID: 11400000, guid: f985036c39ff4d24b87358db376b7064, type: 2}
+  - {fileID: 11400000, guid: 29857f8d74948f14b99c51311191aa7f, type: 2}
+  - {fileID: 11400000, guid: 1f879b86ad0d2094488301860fb5fb5d, type: 2}

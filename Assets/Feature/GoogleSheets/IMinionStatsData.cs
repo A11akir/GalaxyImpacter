@@ -13,5 +13,6 @@ namespace Feature.GoogleSheets
         int Chakra { get; set; }
         int HandCardCount { get; set; }
         List<SpellCardData> SpellsList { get; set; }
+        bool InCollection { get; set; }
     }
 }

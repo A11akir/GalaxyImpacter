@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: Harpy
+  m_EditorClassIdentifier: 
+  _cost: 2
+  _name: Harpy
+  _rarity: Hidden
+  _iconImage: {fileID: 0}
+  _specialization:
+  - WindMage
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: 3a450995-58be-4463-8448-9ac47579863a
+  _health: 3
+  _chakra: 3
+  _handCardCount: 3
+  _spellsList:
+  - {fileID: 11400000, guid: 7dc1209f338336a4c95db84d324c5d19, type: 2}
+  - {fileID: 11400000, guid: 25560f3dfc77cad4b833c0eaf3ec0803, type: 2}
+  - {fileID: 11400000, guid: c610d80780f510d418c4b563b9d45ee4, type: 2}
+  - {fileID: 11400000, guid: a33a09918cdec78449a11a1ca1c68102, type: 2}

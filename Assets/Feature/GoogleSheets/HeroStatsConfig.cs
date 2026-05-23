@@ -29,6 +29,7 @@ namespace Feature.GoogleSheets
         public int Level;
         public string MinionNameOwner { get; set; }
         public string Type { get; set; }
+        public bool InCollection { get; set; }
     }
     
     [System.Serializable]
@@ -45,6 +46,7 @@ namespace Feature.GoogleSheets
         public int Health;
         public int Chakra;
         public int HandCardCount;
-        
+
+        public bool InCollection { get; set; }
     }
 }

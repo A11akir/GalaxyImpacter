@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: Raiju Projection
+  m_EditorClassIdentifier: 
+  _cost: 5
+  _name: Raiju Projection
+  _rarity: Anomalous
+  _iconImage: {fileID: 0}
+  _specialization:
+  - FireMage
+  - WindMage
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: 7d36e835-df2e-4d68-a2a3-37f50337764f
+  _health: 12
+  _chakra: 4
+  _handCardCount: 3
+  _spellsList:
+  - {fileID: 11400000, guid: 44a64c5ab7a44c64190ac26ef441a8f9, type: 2}
+  - {fileID: 11400000, guid: 8a4ca907e38e3724bb08bb58db32146f, type: 2}
+  - {fileID: 11400000, guid: 9543882b1effe2c40a00935b490cce3a, type: 2}

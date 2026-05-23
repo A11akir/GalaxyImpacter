@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: Disabled Robot
+  m_EditorClassIdentifier: 
+  _cost: 2
+  _name: Disabled Robot
+  _rarity: Hidden
+  _iconImage: {fileID: 0}
+  _specialization:
+  - FireMage
+  - EarthMage
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: 615d36de-3aab-4965-92f7-c9e4960ecadc
+  _health: 8
+  _chakra: 3
+  _handCardCount: 2
+  _spellsList:
+  - {fileID: 11400000, guid: 062ec5ebcc0d14446b045fdd5bc24542, type: 2}
+  - {fileID: 11400000, guid: 6be5cd11045f40a40b9944be15d838b6, type: 2}
+  - {fileID: 11400000, guid: 3a2a0e73d64ccf6458fbe8860c1df7e0, type: 2}

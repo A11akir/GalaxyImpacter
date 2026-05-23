@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: Chronos
+  m_EditorClassIdentifier: 
+  _cost: 6
+  _name: Chronos
+  _rarity: Primordial
+  _iconImage: {fileID: 0}
+  _specialization:
+  - Explorer
+  - WindMage
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: 6a717edb-68d0-4700-a381-7a70ddbf6281
+  _health: 20
+  _chakra: 8
+  _handCardCount: 3
+  _spellsList:
+  - {fileID: 11400000, guid: e83f2e033ecec714f9981a6badc1c7db, type: 2}
+  - {fileID: 11400000, guid: 59298dbd7e1741347b64eadf52594970, type: 2}
+  - {fileID: 11400000, guid: 5057830603ecd81448321ee2219e6b96, type: 2}

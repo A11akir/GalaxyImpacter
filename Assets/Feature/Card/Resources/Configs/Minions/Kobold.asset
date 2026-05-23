@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: Kobold
+  m_EditorClassIdentifier: 
+  _cost: 2
+  _name: Kobold
+  _rarity: Hidden
+  _iconImage: {fileID: 0}
+  _specialization:
+  - EarthMage
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: 66337d5c-03d7-4d44-8b99-f0a4cd247d81
+  _health: 5
+  _chakra: 3
+  _handCardCount: 3
+  _spellsList:
+  - {fileID: 11400000, guid: c784def8faa132949b3e3935f67fe38d, type: 2}
+  - {fileID: 11400000, guid: 7c14c444638d04443abc955febb99cc4, type: 2}
+  - {fileID: 11400000, guid: af12bfc02d22f4648abffaf0b0d979c7, type: 2}
+  - {fileID: 11400000, guid: 49e25e7eaee59fc4388a37b548ee42e0, type: 2}

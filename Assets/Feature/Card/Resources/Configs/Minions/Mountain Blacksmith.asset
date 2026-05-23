@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: Mountain Blacksmith
+  m_EditorClassIdentifier: 
+  _cost: 3
+  _name: Mountain Blacksmith
+  _rarity: Hidden
+  _iconImage: {fileID: 0}
+  _specialization:
+  - FireMage
+  - EarthMage
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: 288f42d9-5f10-493a-b6ba-b03c8caa3ac4
+  _health: 6
+  _chakra: 4
+  _handCardCount: 2
+  _spellsList:
+  - {fileID: 11400000, guid: 20f6e61bc0fdd474dab59dcb8b450ca1, type: 2}
+  - {fileID: 11400000, guid: 1654792361c558b40b6dc3fcbd749958, type: 2}
+  - {fileID: 11400000, guid: a9df641dd4e4be249ad5668a2fbc5b87, type: 2}

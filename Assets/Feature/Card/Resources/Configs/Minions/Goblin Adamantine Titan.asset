@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: Goblin Adamantine Titan
+  m_EditorClassIdentifier: 
+  _cost: 6
+  _name: Goblin Adamantine Titan
+  _rarity: Primordial
+  _iconImage: {fileID: 0}
+  _specialization:
+  - FireMage
+  - EarthMage
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: d8ca9bf8-8af8-47e0-9c04-d8f7eca0c5b5
+  _health: 15
+  _chakra: 8
+  _handCardCount: 3
+  _spellsList:
+  - {fileID: 11400000, guid: 55919a3596c752b4db6ed566adbe255f, type: 2}
+  - {fileID: 11400000, guid: 84c88f961b3d5184db18e301e4ed7989, type: 2}
+  - {fileID: 11400000, guid: a7fcd26c007da914dabab5708f31d441, type: 2}
+  - {fileID: 11400000, guid: a09d233ce55e9b142802facc4f581423, type: 2}

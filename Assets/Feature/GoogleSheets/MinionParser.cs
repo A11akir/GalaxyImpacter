@@ -103,15 +103,16 @@ namespace Feature.GoogleSheets
                     }
 
                     break;
-
-                default:
+                case "InCollection":
+                    if (_minionStatsConfig != null)
+                        _minionStatsConfig.InCollection = token == "TRUE" || token == "1" || token.ToLower() == "true";
                     break;
             }
         }
 
         public void ApplyToSO()
         {
-            const string path = "Assets/Feature/Card/Resources/Configs";
+            const string path = "Assets/Feature/Card/Resources/Configs/Minions";
 
             var allSpellSOs = new Dictionary<string, SpellCardData>();
             string[] guids =
@@ -158,6 +159,7 @@ namespace Feature.GoogleSheets
                 so.Health = cfg.Health;
                 so.Chakra = cfg.Chakra;
                 so.HandCardCount = cfg.HandCardCount;
+                so.InCollection = cfg.InCollection;
 
                 so.SpellsList = new List<SpellCardData>();
 

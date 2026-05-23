@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: Treasure Hunter
+  m_EditorClassIdentifier: 
+  _cost: 5
+  _name: Treasure Hunter
+  _rarity: Anomalous
+  _iconImage: {fileID: 0}
+  _specialization:
+  - Explorer
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: f6eb04f6-a998-42e4-942b-1a667a224ac2
+  _health: 8
+  _chakra: 2
+  _handCardCount: 3
+  _spellsList:
+  - {fileID: 11400000, guid: f54df3db50c118e4da8c3a466c7d9f71, type: 2}
+  - {fileID: 11400000, guid: b1b0e8c02a651d348afb960b0d227753, type: 2}
+  - {fileID: 11400000, guid: 5d8bfa22eb5334846b7565bfaaba1b92, type: 2}
+  - {fileID: 11400000, guid: f88b2db9c9021af4fbf27a831a21fa18, type: 2}

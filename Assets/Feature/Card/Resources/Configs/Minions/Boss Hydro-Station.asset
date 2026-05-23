@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: Boss Hydro-Station
+  m_EditorClassIdentifier: 
+  _cost: 4
+  _name: Boss Hydro-Station
+  _rarity: Anomalous
+  _iconImage: {fileID: 0}
+  _specialization:
+  - WaterMage
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: 635e4fe7-36c9-4971-b5bb-01b0ab020341
+  _health: 7
+  _chakra: 3
+  _handCardCount: 2
+  _spellsList:
+  - {fileID: 11400000, guid: ee5a29320fe38e9448523220b2c8609b, type: 2}
+  - {fileID: 11400000, guid: 2d1b808db84378846a58f5c7ee2448b1, type: 2}
+  - {fileID: 11400000, guid: 675e188c018d4ea46af37949cc75b76d, type: 2}

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: Perfect Arcane Fusion
+  m_EditorClassIdentifier: 
+  _cost: 7
+  _name: Perfect Arcane Fusion
+  _rarity: Primordial
+  _iconImage: {fileID: 0}
+  _specialization:
+  - WindMage
+  - EarthMage
+  - FireMage
+  - WaterMage
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: e5bcd2b4-5f94-4677-a470-2dba6c49da88
+  _health: 15
+  _chakra: 7
+  _handCardCount: 3
+  _spellsList:
+  - {fileID: 11400000, guid: 2e61c126d9ed27b489626ab4f06a0e75, type: 2}
+  - {fileID: 11400000, guid: 08f080cb8b89fca44a497de3c4bc785b, type: 2}
+  - {fileID: 11400000, guid: 86644da79ef471347b36d3e9c01e414d, type: 2}

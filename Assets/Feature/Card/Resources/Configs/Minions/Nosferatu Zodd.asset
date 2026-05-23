@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: Nosferatu Zodd
+  m_EditorClassIdentifier: 
+  _cost: 7
+  _name: Nosferatu Zodd
+  _rarity: Primordial
+  _iconImage: {fileID: 0}
+  _specialization:
+  - Assassin
+  - Warrior
+  - Monster
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: 5df25476-99a8-4826-b22c-adaa5b61d86b
+  _health: 50
+  _chakra: 5
+  _handCardCount: 4
+  _spellsList:
+  - {fileID: 11400000, guid: dcf59807b41c6bc40a8829f3d48d4f0b, type: 2}
+  - {fileID: 11400000, guid: e1f819041a43bdf4c9c96a04e1bb71a9, type: 2}
+  - {fileID: 11400000, guid: dd4393eacb111a34e826ab15d8f4331e, type: 2}
+  - {fileID: 11400000, guid: aa390b86c350ac8469641fd5ba4b712d, type: 2}
+  - {fileID: 11400000, guid: aa75c7e19acbc7f428a1e467d641652f, type: 2}

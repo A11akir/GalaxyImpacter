@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: Zephyr
+  m_EditorClassIdentifier: 
+  _cost: 1
+  _name: Zephyr
+  _rarity: Common
+  _iconImage: {fileID: 0}
+  _specialization:
+  - WindMage
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: 1f046def-dd49-492d-8dea-69adb183a4ba
+  _health: 1
+  _chakra: 1
+  _handCardCount: 2
+  _spellsList:
+  - {fileID: 11400000, guid: c981084e9e6040846a3ff52d3462836b, type: 2}
+  - {fileID: 11400000, guid: cb772d132b2e9064bbb04721b10ed6af, type: 2}
+  - {fileID: 11400000, guid: e638482bedc56ec44b2afa14b00fb380, type: 2}

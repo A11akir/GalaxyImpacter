@@ -134,6 +134,8 @@ namespace Feature.GoogleSheets
                 if (card == null) continue;
 
                 gameData.allCards.Add(card);
+                
+                if (!card.InCollection) continue;
 
                 var specs = card.Specialization?
                     .Where(s => !string.IsNullOrWhiteSpace(s))

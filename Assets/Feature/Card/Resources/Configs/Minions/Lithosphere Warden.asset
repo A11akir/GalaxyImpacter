@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: Lithosphere Warden
+  m_EditorClassIdentifier: 
+  _cost: 6
+  _name: Lithosphere Warden
+  _rarity: Primordial
+  _iconImage: {fileID: 0}
+  _specialization:
+  - WindMage
+  - EarthMage
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: 1de0f566-ca98-469d-b4d4-66f615b948f6
+  _health: 25
+  _chakra: 7
+  _handCardCount: 3
+  _spellsList:
+  - {fileID: 11400000, guid: 7bd50cffbf61c1a439e3a4251bb7f9cc, type: 2}
+  - {fileID: 11400000, guid: c113646c075d6bc489b89389c384f0ae, type: 2}
+  - {fileID: 11400000, guid: 496facd6d7078b64d91445fa852e35f0, type: 2}
+  - {fileID: 11400000, guid: ce93feaf68a8ee949a327ef9c3be08ea, type: 2}

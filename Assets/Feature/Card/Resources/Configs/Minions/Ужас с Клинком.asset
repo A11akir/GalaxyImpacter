@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: "\u0423\u0436\u0430\u0441 \u0441 \u041A\u043B\u0438\u043D\u043A\u043E\u043C"
+  m_EditorClassIdentifier: 
+  _cost: 5
+  _name: "\u0423\u0436\u0430\u0441 \u0441 \u041A\u043B\u0438\u043D\u043A\u043E\u043C"
+  _rarity: Primordial
+  _iconImage: {fileID: 0}
+  _specialization:
+  - Assassin
+  - Alchemist
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: c837d305-a54c-4910-9d14-131c20d38f84
+  _health: 20
+  _chakra: 5
+  _handCardCount: 2
+  _spellsList:
+  - {fileID: 11400000, guid: 0e6781daf775b46459361f192572244a, type: 2}
+  - {fileID: 11400000, guid: 8e842bc8063728842b51369b1a052de4, type: 2}
+  - {fileID: 11400000, guid: 2e2539295fea2d94fa28d54349a33b50, type: 2}

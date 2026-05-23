@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: "\u0421\u0442\u0440\u0430\u0436 \u0413\u043E\u0440\u0438\u0437\u043E\u043D\u0442\u0430"
+  m_EditorClassIdentifier: 
+  _cost: 5
+  _name: "\u0421\u0442\u0440\u0430\u0436 \u0413\u043E\u0440\u0438\u0437\u043E\u043D\u0442\u0430"
+  _rarity: Anomalous
+  _iconImage: {fileID: 0}
+  _specialization:
+  - WindMage
+  - EarthMage
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: a2b8b322-4553-4f52-9cff-cdbf38e4ebac
+  _health: 12
+  _chakra: 4
+  _handCardCount: 3
+  _spellsList:
+  - {fileID: 11400000, guid: e2d4b573eec8bcd4cbe46a2948b962ea, type: 2}
+  - {fileID: 11400000, guid: ac014997d7a1bef4c9c817508add9c85, type: 2}
+  - {fileID: 11400000, guid: 028f6f8bc8fc0aa44a0e8886c08ddaf0, type: 2}
+  - {fileID: 11400000, guid: 4ee693d4156445448a9bbb6e26b8d196, type: 2}

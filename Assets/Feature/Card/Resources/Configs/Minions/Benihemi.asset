@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
+  m_Name: Benihemi
+  m_EditorClassIdentifier: 
+  _cost: 7
+  _name: Benihemi
+  _rarity: Primordial
+  _iconImage: {fileID: 0}
+  _specialization:
+  - Explorer
+  - WindMage
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: 79c05a84-14a2-46e6-aa82-743ec2fa2856
+  _health: 20
+  _chakra: 8
+  _handCardCount: 3
+  _spellsList:
+  - {fileID: 11400000, guid: 9537e70088bf47d4faf5c22842c570c8, type: 2}
+  - {fileID: 11400000, guid: 39e7e51e37041d7498acdfc5668c9f3f, type: 2}
+  - {fileID: 11400000, guid: 235df243d12520a49b0259241929fa5f, type: 2}
