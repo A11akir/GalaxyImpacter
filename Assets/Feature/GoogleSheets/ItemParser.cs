@@ -93,7 +93,6 @@ namespace Feature.GoogleSheets
                 {
                     if (string.IsNullOrWhiteSpace(cfg.ItemName))
                     {
-                        GLog.Log($"Skipping config with empty name");
                         continue;
                     }
 
@@ -102,7 +101,6 @@ namespace Feature.GoogleSheets
                     AssetDatabase.CreateAsset(newSO, assetPath);
                     so = newSO;
                     _targetSO.Add(so);
-                    GLog.Log($"✅ Created new ItemCardData SO: {cfg.ItemName}");
                 }
 
                 so.ItemName = cfg.ItemName;
@@ -111,7 +109,6 @@ namespace Feature.GoogleSheets
                 so.Description = cfg.Description;
 
                 EditorUtility.SetDirty(so as UnityEngine.Object);
-                Debug.Log($"✅ Updated ItemCardData SO: {cfg.ItemName}");
             }
 
             AssetDatabase.SaveAssets();

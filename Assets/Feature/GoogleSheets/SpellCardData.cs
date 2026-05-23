@@ -17,5 +17,7 @@ namespace Feature.GoogleSheets
         public List<CardEffectSO> Effects => _effects;
         public List<int> Values { get => _values; set => _values = value; }
         public string Description { get => _description; set => _description = value; }
+        public string Type { get; set; }
+        public string MinionNameOwner { get; set; }
     }
 }

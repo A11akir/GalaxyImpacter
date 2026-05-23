@@ -27,6 +27,8 @@ namespace Feature.GoogleSheets
         public string Rarity;
         public List<string> Specialization;
         public int Level;
+        public string MinionNameOwner { get; set; }
+        public string Type { get; set; }
     }
     
     [System.Serializable]

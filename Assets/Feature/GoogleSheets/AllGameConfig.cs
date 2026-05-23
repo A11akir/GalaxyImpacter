@@ -10,6 +10,6 @@ namespace Feature.GoogleSheets
         public List<SpellStatsConfig> AllSpellStats;
         public List<MinionStatsConfig> AllMinionStats;
         public List<ItemStatsConfig> AllItemStats;
-        public List<MinionSpellConfig> AllMinionSpellStats = new();
+        public List<MinionSpellConfig> AllMinionSpellStats;
     }
 }

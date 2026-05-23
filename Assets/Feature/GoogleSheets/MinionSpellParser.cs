@@ -52,71 +52,46 @@ namespace Feature.GoogleSheets
             }
         }
 
-public void ApplyToSO()
-{
-    const string path = "Assets/Feature/Card/Resources/Configs";
-
-    // Загружаем свежо прямо здесь вместо _targetSO
-    var freshMinions = AssetDatabase.FindAssets("t:MinionCardData",
-            new[] { "Assets/Feature/Card/Resources/Configs" })
-        .Select(guid => AssetDatabase.LoadAssetAtPath<MinionCardData>(
-            AssetDatabase.GUIDToAssetPath(guid)))
-        .Where(m => m != null)
-        .ToList();
-
-    var allSpellSOs = new Dictionary<string, SpellCardData>();
-    string[] guids = AssetDatabase.FindAssets("t:SpellCardData",
-        new[] { "Assets/Feature/Card/Resources/Configs" });
-    foreach (var guid in guids)
-    {
-        string assetPath = AssetDatabase.GUIDToAssetPath(guid);
-        var spellSO = AssetDatabase.LoadAssetAtPath<SpellCardData>(assetPath);
-        if (spellSO != null)
-            allSpellSOs[spellSO.name] = spellSO;
-    }
-
-    foreach (var cfg in _allGameConfig.AllMinionStats)
-    {
-        // Используем freshMinions вместо _targetSO
-        var so = freshMinions.FirstOrDefault(x => x.name == cfg.Name);
-
-        if (so == null)
+        public void ApplyToSO()
         {
-            if (string.IsNullOrWhiteSpace(cfg.Name))
+            const string path = "Assets/Feature/Card/Resources/Configs";
+
+            var freshSpells = AssetDatabase.FindAssets("t:SpellCardData", new[] { path })
+                .Select(guid => AssetDatabase.LoadAssetAtPath<SpellCardData>(AssetDatabase.GUIDToAssetPath(guid)))
+                .Where(s => s != null)
+                .ToList();
+
+            foreach (var cfg in _allGameConfig.AllMinionSpellStats)
             {
-                Debug.LogWarning("Skipping config with empty name");
-                continue;
+                if (string.IsNullOrWhiteSpace(cfg.Name))
+                {
+                    continue;
+                }
+
+                var so = freshSpells.FirstOrDefault(x => x.name == cfg.Name);
+
+                if (so == null)
+                {
+                    var newSO = ScriptableObject.CreateInstance<SpellCardData>();
+                    string assetPath = $"{path}/{cfg.Name}.asset";
+                    AssetDatabase.CreateAsset(newSO, assetPath);
+                    so = newSO;
+                    freshSpells.Add(so);
+                }
+
+                so.Name = cfg.Name;
+                so.Cost = cfg.Cost;
+                so.Values = cfg.Values;
+                so.Description = cfg.Description;
+                so.MinionNameOwner = cfg.MinionNameOwner;
+                so.Type = cfg.Type;
+
+                EditorUtility.SetDirty(so);
             }
 
-            var newSO = ScriptableObject.CreateInstance<MinionCardData>();
-            string assetPath = $"{path}/{cfg.Name}.asset";
-            AssetDatabase.CreateAsset(newSO, assetPath);
-            so = newSO;
-            freshMinions.Add(so);
-            Debug.Log($"✅ Created new MinionCardData SO: {cfg.Name}");
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
         }
-
-        so.Name = cfg.Name;
-        so.Cost = cfg.Cost;
-        so.Rarity = cfg.Rarity;
-        so.Specialization = cfg.Specialization;
-        so.Level = cfg.Level;
-        so.Health = cfg.Health;
-        so.Chakra = cfg.Chakra;
-        so.HandCardCount = cfg.HandCardCount;
-
-        so.SpellsList = cfg.SpellNames?
-            .Select(name => allSpellSOs.TryGetValue(name, out var spellSO) ? spellSO : null)
-            .Where(s => s != null)
-            .ToList() ?? new List<SpellCardData>();
-
-        EditorUtility.SetDirty(so);
-        Debug.Log($"✅ Updated MinionCardData SO: {cfg.Name}");
-    }
-
-    AssetDatabase.SaveAssets();
-    AssetDatabase.Refresh();
-}
     }
 }
 #endif

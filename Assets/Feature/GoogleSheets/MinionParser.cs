@@ -57,24 +57,28 @@ namespace Feature.GoogleSheets
                     {
                         _minionStatsConfig.Cost = Convert.ToInt32(token);
                     }
+
                     break;
                 case "Health":
                     if (!string.IsNullOrWhiteSpace(token))
                     {
                         _minionStatsConfig.Health = Convert.ToInt32(token);
                     }
+
                     break;
                 case "Chakra":
                     if (!string.IsNullOrWhiteSpace(token))
                     {
                         _minionStatsConfig.Chakra = Convert.ToInt32(token);
                     }
+
                     break;
                 case "HandCardCount":
                     if (!string.IsNullOrWhiteSpace(token))
                     {
                         _minionStatsConfig.HandCardCount = Convert.ToInt32(token);
                     }
+
                     break;
                 case "Rarity":
                     _minionStatsConfig.Rarity = token;
@@ -82,7 +86,6 @@ namespace Feature.GoogleSheets
                 case "SpellsList":
                     if (_minionStatsConfig != null && !string.IsNullOrWhiteSpace(token))
                     {
-                        GLog.Log($"  → Splitting SpellsList: '{token}'");
                         _minionStatsConfig.SpellNames = token
                             .Split(',')
                             .Select(s => s.Trim())
@@ -94,15 +97,14 @@ namespace Feature.GoogleSheets
                 case "Specialization2":
                 case "Specialization3":
                 case "Specialization4":
-                    GLog.Log($"  → Parsing {header}");
                     if (_minionStatsConfig != null && !string.IsNullOrWhiteSpace(token))
                     {
                         _minionStatsConfig.Specialization.Add(token);
                     }
+
                     break;
 
                 default:
-                    GLog.Log($"  → Unknown header: '{header}'");
                     break;
             }
         }
@@ -121,10 +123,16 @@ namespace Feature.GoogleSheets
                 if (spellSO != null)
                     allSpellSOs[spellSO.name] = spellSO;
             }
+            
+            _targetSO.RemoveAll(x => x == null || (x as UnityEngine.Object) == null);
 
             foreach (var cfg in _allGameConfig.AllMinionStats)
             {
-                var so = _targetSO.FirstOrDefault(x => (x as ScriptableObject).name == cfg.Name);
+                var so = _targetSO.FirstOrDefault(x =>
+                {
+                    var obj = x as ScriptableObject;
+                    return obj != null && obj.name == cfg.Name;
+                });
 
                 if (so == null)
                 {
@@ -157,7 +165,6 @@ namespace Feature.GoogleSheets
                     .ToList() ?? new List<SpellCardData>();
 
                 EditorUtility.SetDirty(so as UnityEngine.Object);
-                Debug.Log($"✅ Updated MinionCardData SO: {cfg.Name}");
             }
 
             AssetDatabase.SaveAssets();
