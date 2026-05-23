@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 3
   _name: Black Smoker
-  _rarity: Hidden
+  _rarity: 1
   _iconImage: {fileID: 0}
   _specialization:
   - Explorer
   - WaterMage
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: 75c7e55d-53a0-4cc8-b713-d6496b6a227a
   _health: 5

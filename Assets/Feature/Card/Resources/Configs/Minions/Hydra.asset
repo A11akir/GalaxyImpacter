@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 8
   _name: Hydra
-  _rarity: Primordial
+  _rarity: 3
   _iconImage: {fileID: 0}
   _specialization:
   - Monster
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: 050aad69-e7f1-4989-83d8-c8aa0b65a0cd
   _health: 18

@@ -48,5 +48,22 @@ namespace Feature.Data
         
         [Header("All Cards")]
         public List<CardStatsData> allCards = new List<CardStatsData>();
+        
+        public List<CardStatsData> GetCardsByHeroName(string heroName)
+        {
+            return heroName switch
+            {
+                "Alchemist"  => alchemistCards,
+                "Assassin"   => assassinCards,
+                "EarthMage"  => earthMageCards,
+                "Explorer"   => explorerCards,
+                "FireMage"   => fireMageCards,
+                "Monster"    => monsterCards,
+                "Warrior"    => warriorCards,
+                "WaterMage"  => waterMageCards,
+                "WindMage"   => windMageCards,
+                _ => allCards
+            };
+        }
     }
 }

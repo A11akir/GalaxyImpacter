@@ -10379,9 +10379,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shows:
+  - {fileID: 1409142019}
   - {fileID: 184389520}
   - {fileID: 135117873}
-  - {fileID: 1409142019}
   _hides:
   - {fileID: 834107226}
   - {fileID: 569098864}
@@ -17862,7 +17862,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1409142020
 RectTransform:
   m_ObjectHideFlags: 0

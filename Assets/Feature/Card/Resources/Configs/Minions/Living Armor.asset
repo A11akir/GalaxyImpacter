@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 5
   _name: Living Armor
-  _rarity: Anomalous
+  _rarity: 2
   _iconImage: {fileID: 0}
   _specialization:
   - FireMage
   - EarthMage
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: 3b4ab333-f07a-4f99-aa07-fc9f9cf9169d
   _health: 12

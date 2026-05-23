@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 5
   _name: Poseidon's Herald
-  _rarity: Primordial
+  _rarity: 3
   _iconImage: {fileID: 0}
   _specialization:
   - WaterMage
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: 0ce4ca57-a8e7-4014-bde7-69f111fe8025
   _health: 9

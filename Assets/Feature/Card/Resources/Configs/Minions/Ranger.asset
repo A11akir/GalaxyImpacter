@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 3
   _name: Ranger
-  _rarity: Hidden
+  _rarity: 1
   _iconImage: {fileID: 0}
   _specialization:
   - Explorer
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: f1582fda-6961-434f-9ddc-aa89f0c20dca
   _health: 5

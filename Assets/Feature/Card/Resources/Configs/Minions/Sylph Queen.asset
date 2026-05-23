@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 4
   _name: Sylph Queen
-  _rarity: Anomalous
+  _rarity: 2
   _iconImage: {fileID: 0}
   _specialization:
   - WindMage
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: 50f82309-b710-4209-99e5-4b731f83b2d6
   _health: 5

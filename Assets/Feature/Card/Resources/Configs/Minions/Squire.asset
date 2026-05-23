@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 1
   _name: Squire
-  _rarity: Common
+  _rarity: 0
   _iconImage: {fileID: 0}
   _specialization:
   - Warrior
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: 1aefefd8-53aa-440a-8927-2da779c3e68a
   _health: 3

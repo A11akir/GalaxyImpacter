@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 6
   _name: Lithosphere Warden
-  _rarity: Primordial
+  _rarity: 3
   _iconImage: {fileID: 0}
   _specialization:
   - WindMage
   - EarthMage
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: 1de0f566-ca98-469d-b4d4-66f615b948f6
   _health: 25

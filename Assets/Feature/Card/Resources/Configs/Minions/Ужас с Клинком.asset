@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 5
   _name: "\u0423\u0436\u0430\u0441 \u0441 \u041A\u043B\u0438\u043D\u043A\u043E\u043C"
-  _rarity: Primordial
+  _rarity: 3
   _iconImage: {fileID: 0}
   _specialization:
   - Assassin
   - Alchemist
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: c837d305-a54c-4910-9d14-131c20d38f84
   _health: 20

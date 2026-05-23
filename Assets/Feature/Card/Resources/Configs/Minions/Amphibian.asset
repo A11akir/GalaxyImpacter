@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 1
   _name: Amphibian
-  _rarity: Common
+  _rarity: 0
   _iconImage: {fileID: 0}
   _specialization:
   - WaterMage
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: ce6f776d-9fb1-4b4e-b815-03e03a99d106
   _health: 2

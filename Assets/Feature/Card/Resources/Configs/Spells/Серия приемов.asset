@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 2
   _name: "\u0421\u0435\u0440\u0438\u044F \u043F\u0440\u0438\u0435\u043C\u043E\u0432"
-  _rarity: Primordial
+  _rarity: 3
   _iconImage: {fileID: 0}
   _specialization:
   - Assassin

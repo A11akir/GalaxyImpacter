@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 4
   _name: Copper Colossus
-  _rarity: Anomalous
+  _rarity: 2
   _iconImage: {fileID: 0}
   _specialization:
   - FireMage
   - EarthMage
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: ca8bb1eb-bf3a-4fdd-aea2-a1c10d0ac3e1
   _health: 20

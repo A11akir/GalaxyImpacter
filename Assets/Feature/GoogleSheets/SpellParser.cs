@@ -160,14 +160,10 @@ namespace Feature.GoogleSheets
                 so.InCollection = cfg.InCollection;
 
                 if (!string.IsNullOrWhiteSpace(cfg.Rarity))
-                {
-                    so.Rarity = cfg.Rarity;
-                }
+                    so.Rarity = CardRarityConverter.FromString(cfg.Rarity);
                 else if (!string.IsNullOrWhiteSpace(cfg.MinionNameOwner) &&
                          allMinionSOs.TryGetValue(cfg.MinionNameOwner, out var owner))
-                {
                     so.Rarity = owner.Rarity;
-                }
 
                 if (!string.IsNullOrWhiteSpace(cfg.MinionNameOwner))
                 {

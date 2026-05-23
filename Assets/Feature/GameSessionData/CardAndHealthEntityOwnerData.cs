@@ -114,7 +114,6 @@ namespace Feature.GameSessionData
         
         public void DrawCardFromDeck()
         {
-    
             if (_cardsInDeck.Value.Count == 0)
             {
                 RefillDeckFromBase();

@@ -8,7 +8,7 @@ namespace Feature.Card.Script
     {
         string Name { get; set; }
         int Cost { get; set; }
-        string Rarity { get; set; }
+        CardRarity Rarity { get; set; }
         List<string> Specialization { get; set; }
         int Level { get; set; }
         Sprite IconImage { get; set; }

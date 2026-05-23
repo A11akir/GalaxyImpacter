@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 3
   _name: Kupala's Bonfire
-  _rarity: Hidden
+  _rarity: 1
   _iconImage: {fileID: 0}
   _specialization:
   - FireMage
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: b1440ea9-202d-47aa-be97-ef077b517a50
   _health: 5

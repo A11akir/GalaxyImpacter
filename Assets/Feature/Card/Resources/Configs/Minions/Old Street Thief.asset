@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 3
   _name: Old Street Thief
-  _rarity: Hidden
+  _rarity: 1
   _iconImage: {fileID: 0}
   _specialization:
   - Assassin
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: d8529062-b764-4d1e-9375-b6ee5ae9a2b6
   _health: 4

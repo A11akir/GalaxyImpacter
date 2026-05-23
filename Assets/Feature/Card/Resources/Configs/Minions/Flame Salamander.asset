@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 1
   _name: Flame Salamander
-  _rarity: Hidden
+  _rarity: 1
   _iconImage: {fileID: 0}
   _specialization:
   - FireMage
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: 9d6665c4-dc24-4b15-9aa9-12a7ee7fd681
   _health: 2

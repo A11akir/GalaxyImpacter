@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 0
   _name: Groveling
-  _rarity: Common
+  _rarity: 0
   _iconImage: {fileID: 0}
   _specialization:
   - Monster

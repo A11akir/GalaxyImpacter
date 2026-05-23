@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 1
   _name: Noinim
-  _rarity: None
+  _rarity: 4
   _iconImage: {fileID: 0}
   _specialization:
   - All
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 0
   id: 8cbf6ce0-5bc8-4b3f-971e-3c87ab364a09
   _health: 2

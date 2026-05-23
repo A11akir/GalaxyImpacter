@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 2
   _name: Lab Assistant
-  _rarity: Common
+  _rarity: 0
   _iconImage: {fileID: 0}
   _specialization:
   - Alchemist
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: 11606808-0cc1-450e-b503-445bdec711a9
   _health: 2

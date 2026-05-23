@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 6
   _name: Wendigo Alpha
-  _rarity: Anomalous
+  _rarity: 2
   _iconImage: {fileID: 0}
   _specialization:
   - Assassin
   - Warrior
   - Monster
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: 2e32acb7-1db6-4d83-9fc2-6bbbe3261739
   _health: 20

@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 2
   _name: Pyromancer
-  _rarity: Common
+  _rarity: 0
   _iconImage: {fileID: 0}
   _specialization:
   - FireMage
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: 02d0f4b0-1188-4158-8060-521e774ef504
   _health: 2

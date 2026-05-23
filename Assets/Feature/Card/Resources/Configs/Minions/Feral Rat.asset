@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 1
   _name: Feral Rat
-  _rarity: Common
+  _rarity: 0
   _iconImage: {fileID: 0}
   _specialization:
   - Monster
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: 1e9f4933-af45-4ee1-b67b-afedc66ed27b
   _health: 1

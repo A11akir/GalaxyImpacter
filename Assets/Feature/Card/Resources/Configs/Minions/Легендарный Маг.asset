@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 6
   _name: "\u041B\u0435\u0433\u0435\u043D\u0434\u0430\u0440\u043D\u044B\u0439 \u041C\u0430\u0433"
-  _rarity: Primordial
+  _rarity: 3
   _iconImage: {fileID: 0}
   _specialization:
   - WindMage
@@ -22,7 +22,7 @@ MonoBehaviour:
   - FireMage
   - WaterMage
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: a71f0cd5-db8b-4b54-80cf-1f0cd849b502
   _health: 10

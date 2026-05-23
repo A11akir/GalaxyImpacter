@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 1
   _name: Earth Scarab
-  _rarity: Common
+  _rarity: 0
   _iconImage: {fileID: 0}
   _specialization:
   - EarthMage
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: 1e9edcc1-5858-4293-bf55-2b5ff7955e64
   _health: 2

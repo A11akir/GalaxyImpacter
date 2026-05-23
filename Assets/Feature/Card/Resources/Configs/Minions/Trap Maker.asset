@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 1
   _name: Trap Maker
-  _rarity: Common
+  _rarity: 0
   _iconImage: {fileID: 0}
   _specialization:
   - Explorer
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: b01540f2-13ef-46d6-b7fc-97d5caacfee1
   _health: 2

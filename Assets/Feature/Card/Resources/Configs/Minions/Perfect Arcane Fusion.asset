@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 7
   _name: Perfect Arcane Fusion
-  _rarity: Primordial
+  _rarity: 3
   _iconImage: {fileID: 0}
   _specialization:
   - WindMage
@@ -22,7 +22,7 @@ MonoBehaviour:
   - FireMage
   - WaterMage
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: e5bcd2b4-5f94-4677-a470-2dba6c49da88
   _health: 15

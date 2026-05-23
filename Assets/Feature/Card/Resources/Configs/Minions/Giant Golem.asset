@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 8
   _name: Giant Golem
-  _rarity: Primordial
+  _rarity: 3
   _iconImage: {fileID: 0}
   _specialization:
   - EarthMage
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: cb9b0721-86e8-4f0c-8c6c-492643969fec
   _health: 25

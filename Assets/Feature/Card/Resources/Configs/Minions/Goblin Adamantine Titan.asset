@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 6
   _name: Goblin Adamantine Titan
-  _rarity: Primordial
+  _rarity: 3
   _iconImage: {fileID: 0}
   _specialization:
   - FireMage
   - EarthMage
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: d8ca9bf8-8af8-47e0-9c04-d8f7eca0c5b5
   _health: 15

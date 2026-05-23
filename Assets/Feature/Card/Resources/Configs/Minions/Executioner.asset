@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 3
   _name: Executioner
-  _rarity: Anomalous
+  _rarity: 2
   _iconImage: {fileID: 0}
   _specialization:
   - Warrior
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: e6ba6584-533b-476d-803b-0e6df92c19de
   _health: 8

@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 2
   _name: Shinobi
-  _rarity: Hidden
+  _rarity: 1
   _iconImage: {fileID: 0}
   _specialization:
   - Assassin
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: 97de7811-fc31-4f53-b862-862688f73432
   _health: 4

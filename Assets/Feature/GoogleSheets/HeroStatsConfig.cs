@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Feature.Card.Script;
 
 namespace Feature.GoogleSheets
 {
@@ -48,5 +49,6 @@ namespace Feature.GoogleSheets
         public int HandCardCount;
 
         public bool InCollection { get; set; }
+        public TargetType TargetType { get; set; } = TargetType.BoardPlace;
     }
 }

@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 1
   _name: Firefly
-  _rarity: Common
+  _rarity: 0
   _iconImage: {fileID: 0}
   _specialization:
   - FireMage
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: 69af7178-79ae-45ad-919f-0573e44c4aea
   _health: 1

@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 3
   _name: Tengu
-  _rarity: Hidden
+  _rarity: 1
   _iconImage: {fileID: 0}
   _specialization:
   - WindMage
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: dc2065ce-98ae-4839-9535-d5d3cf242a51
   _health: 6

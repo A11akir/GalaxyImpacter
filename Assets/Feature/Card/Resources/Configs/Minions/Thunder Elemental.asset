@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 3
   _name: Thunder Elemental
-  _rarity: Hidden
+  _rarity: 1
   _iconImage: {fileID: 0}
   _specialization:
   - FireMage
   - WindMage
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: 602f5b37-bed7-4112-bed0-7e64140bcd78
   _health: 5

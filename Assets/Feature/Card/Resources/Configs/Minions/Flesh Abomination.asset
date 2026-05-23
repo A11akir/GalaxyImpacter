@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 6
   _name: Flesh Abomination
-  _rarity: Primordial
+  _rarity: 3
   _iconImage: {fileID: 0}
   _specialization:
   - WaterMage
@@ -22,7 +22,7 @@ MonoBehaviour:
   - Alchemist
   - Warrior
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: 14f84079-8b3b-4163-85f2-6212430cc6da
   _health: 25

@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 1
   _name: Shield Bearer
-  _rarity: Common
+  _rarity: 0
   _iconImage: {fileID: 0}
   _specialization:
   - Warrior
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: 43368a5a-9b08-4975-aca8-2206f5003f2c
   _health: 10

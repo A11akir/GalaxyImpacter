@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 2
   _name: Harpy
-  _rarity: Hidden
+  _rarity: 1
   _iconImage: {fileID: 0}
   _specialization:
   - WindMage
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: 3a450995-58be-4463-8448-9ac47579863a
   _health: 3

@@ -16,13 +16,13 @@ MonoBehaviour:
   _cost: 3
   _name: "\u0421\u043A\u043E\u0440\u043F\u0438\u043E\u043D \u041F\u0440\u043E\u0448\u043B\u044B\u0439
     \u042D\u0440\u044B"
-  _rarity: Hidden
+  _rarity: 1
   _iconImage: {fileID: 0}
   _specialization:
   - WindMage
   - EarthMage
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: 86fb967e-78c1-4d3f-add9-453b7912e80c
   _health: 5

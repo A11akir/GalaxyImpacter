@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 5
   _name: Fujin
-  _rarity: Primordial
+  _rarity: 3
   _iconImage: {fileID: 0}
   _specialization:
   - WindMage
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: b8498756-1dba-4b19-b5a9-a1bf7169c171
   _health: 13

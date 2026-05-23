@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 6
   _name: Parco Molo
-  _rarity: Primordial
+  _rarity: 3
   _iconImage: {fileID: 0}
   _specialization:
   - Explorer
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: d0465a22-45c4-4e30-82e0-9d7e5bf763bb
   _health: 10

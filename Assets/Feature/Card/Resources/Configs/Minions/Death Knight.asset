@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 7
   _name: Death Knight
-  _rarity: Primordial
+  _rarity: 3
   _iconImage: {fileID: 0}
   _specialization:
   - WaterMage
@@ -22,7 +22,7 @@ MonoBehaviour:
   - Alchemist
   - Warrior
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: ee146a63-0ab1-48fa-aa77-1059e8904b79
   _health: 17

@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 2
   _name: Acid Slime
-  _rarity: Common
+  _rarity: 0
   _iconImage: {fileID: 0}
   _specialization:
   - Alchemist
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: a1a5b3ff-1afe-40e8-b561-deb87d1a7609
   _health: 4

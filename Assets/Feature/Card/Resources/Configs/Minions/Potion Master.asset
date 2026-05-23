@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 3
   _name: Potion Master
-  _rarity: Hidden
+  _rarity: 1
   _iconImage: {fileID: 0}
   _specialization:
   - Alchemist
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: 3249bf24-4499-41a2-84fa-d91857728a27
   _health: 4

@@ -16,7 +16,7 @@ MonoBehaviour:
   _cost: 5
   _name: "\u041F\u0443\u0442\u0435\u0448\u0435\u0441\u0442\u0432\u0438\u0435 \u043D\u0430
     \u043A\u0440\u0430\u0439 \u0437\u0435\u043C\u043B\u0438"
-  _rarity: Primordial
+  _rarity: 3
   _iconImage: {fileID: 0}
   _specialization: []
   _level: 0

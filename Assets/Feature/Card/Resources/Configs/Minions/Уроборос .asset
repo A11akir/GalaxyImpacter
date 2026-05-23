@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 8
   _name: "\u0423\u0440\u043E\u0431\u043E\u0440\u043E\u0441 "
-  _rarity: Primordial
+  _rarity: 3
   _iconImage: {fileID: 0}
   _specialization:
   - Alchemist
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: 504e36df-7bb1-487b-96ce-928d41473d4c
   _health: 20

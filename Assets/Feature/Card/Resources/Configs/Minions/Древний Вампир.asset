@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 2
   _name: "\u0414\u0440\u0435\u0432\u043D\u0438\u0439 \u0412\u0430\u043C\u043F\u0438\u0440"
-  _rarity: Anomalous
+  _rarity: 2
   _iconImage: {fileID: 0}
   _specialization:
   - Monster
   - Alchemist
   - Explorer
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: 59252534-fe51-488d-9883-865c3f8a0bde
   _health: 20

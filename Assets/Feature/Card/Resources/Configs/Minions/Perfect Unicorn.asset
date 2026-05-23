@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 4
   _name: Perfect Unicorn
-  _rarity: Primordial
+  _rarity: 3
   _iconImage: {fileID: 0}
   _specialization:
   - Monster
   - Alchemist
   - Explorer
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: 5787c547-ab97-452d-8aac-0089954e72ad
   _health: 15

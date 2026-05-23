@@ -54,12 +54,12 @@ namespace Feature.Card.Script
             SetRaritySprite(cardStatsData.Rarity);
         }
 
-        private void SetRaritySprite(string rarity)
+        private void SetRaritySprite(CardRarity rarity)
         {
-            commonSprite.SetActive(rarity == "Common");
-            hiddenSprite.SetActive(rarity == "Hidden");
-            anomalousSprite.SetActive(rarity == "Anomalous");
-            primordialSprite.SetActive(rarity == "Primordial");
+            commonSprite.SetActive(rarity == CardRarity.Common);
+            hiddenSprite.SetActive(rarity == CardRarity.Hidden);
+            anomalousSprite.SetActive(rarity == CardRarity.Anomalous);
+            primordialSprite.SetActive(rarity == CardRarity.Primordial);
         }
         public void ClearData()
         {

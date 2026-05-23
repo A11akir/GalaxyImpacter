@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 2
   _name: "\u041D\u0435\u0432\u0435\u0440\u043E\u044F\u0442\u043D\u044B\u0439 \u0440\u0435\u0432"
-  _rarity: Primordial
+  _rarity: 3
   _iconImage: {fileID: 0}
   _specialization:
   - Monster

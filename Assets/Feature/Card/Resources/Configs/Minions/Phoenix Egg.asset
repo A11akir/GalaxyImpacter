@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 0
   _name: Phoenix Egg
-  _rarity: Primordial
+  _rarity: 3
   _iconImage: {fileID: 0}
   _specialization:
   - FireMage
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 0
   id: 6659fea8-a611-4340-ba12-c17f9b05c7da
   _health: 4

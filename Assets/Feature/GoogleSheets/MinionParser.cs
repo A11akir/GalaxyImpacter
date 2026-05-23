@@ -153,14 +153,16 @@ namespace Feature.GoogleSheets
 
                 so.Name = cfg.Name;
                 so.Cost = cfg.Cost;
-                so.Rarity = cfg.Rarity;
+                so.Rarity = CardRarityConverter.FromString(cfg.Rarity);
                 so.Specialization = cfg.Specialization;
                 so.Level = cfg.Level;
                 so.Health = cfg.Health;
                 so.Chakra = cfg.Chakra;
                 so.HandCardCount = cfg.HandCardCount;
                 so.InCollection = cfg.InCollection;
-
+                so.TargetType = cfg.TargetType;
+                
+                
                 so.SpellsList = new List<SpellCardData>();
 
                 EditorUtility.SetDirty(so as UnityEngine.Object);

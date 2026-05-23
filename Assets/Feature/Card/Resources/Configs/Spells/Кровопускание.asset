@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 5
   _name: "\u041A\u0440\u043E\u0432\u043E\u043F\u0443\u0441\u043A\u0430\u043D\u0438\u0435"
-  _rarity: Primordial
+  _rarity: 3
   _iconImage: {fileID: 0}
   _specialization: []
   _level: 0

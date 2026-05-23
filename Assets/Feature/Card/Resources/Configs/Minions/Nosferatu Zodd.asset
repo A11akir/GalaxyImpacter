@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 7
   _name: Nosferatu Zodd
-  _rarity: Primordial
+  _rarity: 3
   _iconImage: {fileID: 0}
   _specialization:
   - Assassin
   - Warrior
   - Monster
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: 5df25476-99a8-4826-b22c-adaa5b61d86b
   _health: 50

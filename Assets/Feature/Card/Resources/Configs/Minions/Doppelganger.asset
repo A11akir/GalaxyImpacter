@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 4
   _name: Doppelganger
-  _rarity: Anomalous
+  _rarity: 2
   _iconImage: {fileID: 0}
   _specialization:
   - Assassin
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: 38e5f174-6661-4a68-907f-1c7dbf5b5e38
   _health: 5

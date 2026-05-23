@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 0
   _name: "\u041A\u043E\u043B\u0431\u0430 \u0438\u043D\u0442\u0435\u043B\u043B\u0435\u043A\u0442\u0430"
-  _rarity: Anomalous
+  _rarity: 2
   _iconImage: {fileID: 0}
   _specialization:
   - Alchemist

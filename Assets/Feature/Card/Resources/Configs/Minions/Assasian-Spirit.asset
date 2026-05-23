@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cost: 6
   _name: Assasian-Spirit
-  _rarity: Primordial
+  _rarity: 3
   _iconImage: {fileID: 0}
   _specialization:
   - Assassin
   _level: 0
-  targetType: 0
+  targetType: 1
   _inCollection: 1
   id: 5a5850d8-89fe-4aa1-be97-86afca648263
   _health: 1

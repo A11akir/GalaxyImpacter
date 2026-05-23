@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Feature.Card.Script;
 
 namespace Feature.GoogleSheets
 {
@@ -6,7 +7,9 @@ namespace Feature.GoogleSheets
     {
         string Name { get; set; }
         int Cost { get; set; }
-        string Rarity { get; set; }
+        CardRarity Rarity { get; set; }
+        
+        TargetType TargetType { get; set; }
         List<string> Specialization { get; set; }
         int Level { get; set; }
         int Health { get; set; }

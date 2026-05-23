@@ -1,4 +1,5 @@
 using System;
+using Feature.Card.Script;
 using Feature.GameSessionData;
 using Feature.GoogleSheets;
 using Feature.Health;
@@ -9,7 +10,7 @@ using UnityEngine.UI;
 
 namespace Feature.Battlefield.Script.View
 {
-    public class CardOnBattlefieldView : MonoBehaviour, 
+    public class CardOnBattlefieldView : MonoBehaviour,
         IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IHealthView, ITargetable
     {
         [SerializeField] private TextMeshProUGUI _name;
@@ -21,9 +22,10 @@ namespace Feature.Battlefield.Script.View
         [SerializeField] private GameObject _borderHasAction;
         [SerializeField] private GameObject _heroDescriptionWindow;
         [SerializeField] private GameObject _selectEntityView;
-        
-        [Header("Rarity Sprites")]
-        [SerializeField] private GameObject commonSprite;
+
+        [Header("Rarity Sprites")] [SerializeField]
+        private GameObject commonSprite;
+
         [SerializeField] private GameObject hiddenSprite;
         [SerializeField] private GameObject anomalousSprite;
         [SerializeField] private GameObject primordialSprite;
@@ -40,17 +42,18 @@ namespace Feature.Battlefield.Script.View
             _iconMinionBoard.sprite = cardStatsData.IconImage;
             _name.text = cardStatsData.Name;
             _cost.text = cardStatsData.Cost.ToString();
-            
+
             SetRaritySprite(cardStatsData.Rarity);
         }
-    
-        private void SetRaritySprite(string rarity)
+        
+        private void SetRaritySprite(CardRarity rarity)
         {
-            commonSprite.SetActive(rarity == "Common");
-            hiddenSprite.SetActive(rarity == "Hidden");
-            anomalousSprite.SetActive(rarity == "Anomalous");
-            primordialSprite.SetActive(rarity == "Primordial");
+            commonSprite.SetActive(rarity == CardRarity.Common);
+            hiddenSprite.SetActive(rarity == CardRarity.Hidden);
+            anomalousSprite.SetActive(rarity == CardRarity.Anomalous);
+            primordialSprite.SetActive(rarity == CardRarity.Primordial);
         }
+
         public void SetCanHasAction(bool canCast) => _borderHasAction.SetActive(canCast);
         public void SetSelected(bool selected) => _selectEntityView.SetActive(selected);
 
@@ -58,15 +61,16 @@ namespace Feature.Battlefield.Script.View
 
         public void OnPointerEnter(PointerEventData eventData) => _heroDescriptionWindow.SetActive(true);
         public void OnPointerExit(PointerEventData eventData) => _heroDescriptionWindow.SetActive(false);
+
         public void SetHealth(int hp)
         {
             _health.text = hp.ToString();
             _healthBoard.text = hp.ToString();
         }
-        
+
         public void ClearData()
         {
-            _name.text = "";    
+            _name.text = "";
             _health.text = "";
             _healthBoard.text = "";
             _cost.text = "";
