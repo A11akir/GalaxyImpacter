@@ -21,6 +21,6 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: cf2ef586-170b-45a2-ac71-f9fb5febf596
-  _values: 
-  _description: 'Passive: All allies deal  more damage'
+  _values: 01000000
+  _description: 'Passive: All allies deal 1 more damage'
   _effects: []

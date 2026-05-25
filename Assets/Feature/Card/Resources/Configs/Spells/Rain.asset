@@ -21,6 +21,6 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: e42b8b1d-82e6-4dd9-b0b5-951c759dc624
-  _values: 
-  _description: All creatures receive  moisture.
+  _values: 01000000
+  _description: All creatures receive 1 moisture.
   _effects: []

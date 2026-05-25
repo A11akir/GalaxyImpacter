@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: "\u0424\u0438\u043D\u0442 \u041A\u0438\u043D\u0436\u0430\u043B\u043E\u043C"
   m_EditorClassIdentifier: 
-  _cost: 1
+  _cost: 2
   _name: "\u0424\u0438\u043D\u0442 \u041A\u0438\u043D\u0436\u0430\u043B\u043E\u043C"
   _rarity: 1
   _iconImage: {fileID: 0}
@@ -21,7 +21,8 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: 560c4fdd-f27f-4e2a-a344-63c593caa6ea
-  _values: 
+  _values: 01000000
   _description: "\u041F\u0440\u0438\u043C\u0435\u043D\u044F\u0435\u0442 \u0423\u0434\u0430\u0440
-    \u041A\u0438\u043D\u0436\u0430\u043B\u043E\u043C \u0433\u0435\u0440\u043E\u044F."
+    \u041A\u0438\u043D\u0436\u0430\u043B\u043E\u043C \u0433\u0435\u0440\u043E\u044F
+    1 \u0440\u0430\u0437."
   _effects: []

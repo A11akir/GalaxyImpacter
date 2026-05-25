@@ -21,7 +21,7 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: 601a7250-8f4b-4191-9a53-b49879bdbb9b
-  _values: 
+  _values: 00000000
   _description: If you have 3 Poseidon's Herald on the field, give Poseidon random
     0 cost card.
   _effects: []

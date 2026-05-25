@@ -21,8 +21,8 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: 75d16644-c767-4671-9c3e-b6090b679621
-  _values: 
+  _values: 01000000
   _description: "Passive: \u0435\u0441\u043B\u0438 \u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u0441\u044F
     \u0446\u0435\u043B\u044C\u044E \u043E\u0433\u043B\u0443\u0448\u0430\u0435\u0442
-    \u0432\u043B\u0430\u0434\u0435\u043B\u044C\u0446\u0430"
+    \u0432\u043B\u0430\u0434\u0435\u043B\u044C\u0446\u0430 1 \u0440\u0430\u0437."
   _effects: []

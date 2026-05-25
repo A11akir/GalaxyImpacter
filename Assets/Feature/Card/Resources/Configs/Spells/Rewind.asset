@@ -23,7 +23,8 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: 47c3054e-ca58-4be0-9193-ed53c7ffd144
-  _values: 
+  _values: 01000000
   _description: "\u041F\u0440\u0438\u043C\u0435\u043D\u0438\u0442\u0435 \u043F\u0435\u0440\u0435\u043C\u043E\u0442\u043A\u0443
-    \u0432\u0440\u0435\u043C\u0435\u043D\u0438 \u043D\u0430 \u0446\u0435\u043B\u044C."
+    \u0432\u0440\u0435\u043C\u0435\u043D\u0438 \u043D\u0430 \u0446\u0435\u043B\u044C
+    1 \u0440\u0430\u0437."
   _effects: []

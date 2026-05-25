@@ -21,6 +21,6 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: 5f579e30-d321-4693-80ce-b7c012626b2f
-  _values: 
-  _description: Take  damage.
+  _values: 01000000
+  _description: Take 1 damage.
   _effects: []

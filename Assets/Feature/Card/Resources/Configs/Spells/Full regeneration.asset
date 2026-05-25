@@ -22,5 +22,5 @@ MonoBehaviour:
   _inCollection: 1
   id: 0145c511-3f7a-4d9e-b7b6-250dbbf34417
   _values: 
-  _description: 'Passive: Restores health when frozen'
+  _description: 'Passive: Restores health when frozen.'
   _effects: []

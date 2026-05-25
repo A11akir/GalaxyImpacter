@@ -21,6 +21,6 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: ac3980b6-b4c4-4dbd-a884-02ab354bb75c
-  _values: 
-  _description: All creatures gain  chakra and draw card.
+  _values: 01000000
+  _description: All creatures gain 1 chakra and draw card.
   _effects: []

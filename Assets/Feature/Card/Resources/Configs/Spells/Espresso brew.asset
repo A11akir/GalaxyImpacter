@@ -21,6 +21,6 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: 339bae94-9720-4a54-828b-49b1b2b0b4cd
-  _values: 
-  _description: Get target  chakra. Next turn, the target has  fewer chakras.
+  _values: 0200000002000000
+  _description: Get target 2 chakra. Next turn, the target has 2 fewer chakras.
   _effects: []

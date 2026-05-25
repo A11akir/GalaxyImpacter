@@ -23,6 +23,5 @@ MonoBehaviour:
   _inCollection: 1
   id: d06b3f4f-50fe-42ed-ad9a-3794b4f7ef4a
   _values: 00000000
-  _description: 'Hero Power: At the end of the turn, all enemy take 0 damage. This
-    effect cannot be dismissed.'
+  _description: 'Hero Power: At the end of the turn, all enemy take 0 damage.'
   _effects: []

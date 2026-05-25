@@ -21,7 +21,7 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: 22dc2962-133e-443a-a806-14c71619895a
-  _values: 
-  _description: Cost 0 if it is on board during the second turn. Cast  random fire
+  _values: 05000000
+  _description: Cost 0 if it is on board during the second turn. Cast 5 random fire
     spell
   _effects: []

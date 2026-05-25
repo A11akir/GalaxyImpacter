@@ -21,8 +21,9 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: c4118dca-0c49-4819-93bb-968d3ce3d1ea
-  _values: 
+  _values: 140000000500000002000000
   _description: "\u041F\u043E\u043B\u0443\u0447\u0430\u0435\u0442 20 \u0431\u0440\u043E\u043D\u0438,
     5 \u043C\u0430\u043D\u044B, \u0441\u043E\u043A\u0440\u0430\u0449\u0430\u0435\u0442
-    \u0445\u043F \u0434\u043E 2."
+    \u043C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0435 \u0445\u043F
+    \u0434\u043E 2."
   _effects: []

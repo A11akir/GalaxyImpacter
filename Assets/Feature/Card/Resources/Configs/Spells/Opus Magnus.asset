@@ -22,7 +22,7 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: e5a95d88-7775-4f20-af4a-3bdd0c0dffa9
-  _values: 
+  _values: 030000000300000001000000
   _description: 'Destroy all your creatures. For each destroyed: deal 3 damage to
     all enemies, restore 3 HP, draw 1 card. '
   _effects: []

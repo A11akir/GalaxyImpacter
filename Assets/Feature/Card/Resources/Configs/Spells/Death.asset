@@ -21,7 +21,7 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: 888039fa-d1d1-4d13-aaf1-1ac9b59b05b4
-  _values: 
-  _description: Cost 0 if it is on board during the third turn. Hero get  random
+  _values: 05000000
+  _description: Cost 0 if it is on board during the third turn. Hero get 5 random
     tempory fire spell which cost 0
   _effects: []

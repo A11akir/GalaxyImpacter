@@ -21,6 +21,6 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: 5c9481ad-f631-4879-9e0b-18f6be355d1a
-  _values: 
-  _description: The hero receives  temporary underwater explorer cards.
+  _values: 0300000000000000
+  _description: The hero receives 3 temporary Lord Of Abyss cards.
   _effects: []

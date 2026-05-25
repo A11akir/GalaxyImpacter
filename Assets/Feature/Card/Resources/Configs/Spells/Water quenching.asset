@@ -21,6 +21,6 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: 7c43f854-75cf-4126-b166-31c5febd3b9a
-  _values: 
-  _description: Get  moisture and freezes.
+  _values: 03000000
+  _description: Get 3 moisture and freezes.
   _effects: []

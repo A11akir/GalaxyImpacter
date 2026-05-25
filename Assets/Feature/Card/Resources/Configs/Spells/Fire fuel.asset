@@ -21,6 +21,6 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: 0756ed86-bbd1-4654-9efb-686c8de4ee9c
-  _values: 
-  _description: Give hero  Salamander Hit.
+  _values: 01000000
+  _description: Give hero 1 Salamander Hit.
   _effects: []

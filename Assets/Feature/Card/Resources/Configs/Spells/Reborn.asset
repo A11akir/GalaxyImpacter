@@ -21,6 +21,6 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: ed3195e9-7fba-4ee3-9b26-aa44fb046d71
-  _values: 
+  _values: 00000000
   _description: 'Passive: After death summon Phoenix Egg'
   _effects: []

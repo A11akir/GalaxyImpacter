@@ -21,6 +21,6 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: 80471d2f-2c7b-4606-aad6-006fd55e6dc8
-  _values: 
-  _description: Give  fire temporary spell, it is cost  less.
+  _values: 010000000100000000000000
+  _description: Give 1 fire temporary spell, it is cost 1 less.
   _effects: []

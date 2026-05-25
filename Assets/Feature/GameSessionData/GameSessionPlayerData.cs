@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Feature.GoogleSheets;
+using Feature.Hero;
 using Feature.Items.Scripts;
 using R3;
 using UnityEngine;
@@ -11,6 +12,8 @@ namespace Feature.GameSessionData
     {
         public List<CardAndHealthEntityOwnerData> CardAndHealthEntityOwners = new List<CardAndHealthEntityOwnerData>{new CardAndHealthEntityOwnerData()};
 
+        public HeroClassData HeroClassData { get; } = new HeroClassData();
+        
         public CardAndHealthEntityOwnerData MainHeroEntity() => CardAndHealthEntityOwners[0];
         
         public int CardsInBoardMax = 6;

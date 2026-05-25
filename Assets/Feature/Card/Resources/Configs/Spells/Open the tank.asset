@@ -21,6 +21,6 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: 4027df6d-98af-4efb-b6ba-f7829040e953
-  _values: 
-  _description: Randomly gives  target moisture, the effect is repeated by 1 less.
+  _values: 05000000
+  _description: Randomly gives 5 target moisture, the effect is repeated by 1 less.
   _effects: []

@@ -21,6 +21,6 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: 0e37e3b9-6d3c-4324-846b-35e56a860dde
-  _values: 
-  _description: Take  damage, if it kill target give Burn spell.
+  _values: 01000000
+  _description: Take 1 damage, if it kill target give Burn spell.
   _effects: []

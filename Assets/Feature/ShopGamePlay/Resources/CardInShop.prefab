@@ -84,6 +84,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7237819626483410564}
+  - component: {fileID: 8882923944636594266}
   m_Layer: 5
   m_Name: CardInShop
   m_TagString: Untagged
@@ -112,6 +113,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 140, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8882923944636594266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1300372444464279534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a93326e0fb3743418eec50d69b55a82c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _handCardView: {fileID: 6256224280857162366}
+  _descriptionWindow: {fileID: 0}
+  _containerForDescription: {fileID: 0}
 --- !u!1 &7183916193156182382
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,3 +417,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2589654829714384801, guid: 9384acfa0caaa4143a3c78e9fa4838cd, type: 3}
   m_PrefabInstance: {fileID: 2046927174942691633}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6256224280857162366 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5384818329001632591, guid: 9384acfa0caaa4143a3c78e9fa4838cd, type: 3}
+  m_PrefabInstance: {fileID: 2046927174942691633}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 129c002591494728bd9754ced3a54a83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -22,6 +22,7 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: 00de1570-231e-4fa3-a599-e5b6bd59b2ff
-  _values: 
-  _description: "\u0426\u0435\u043B\u044C \u0430\u0434\u0430\u043F\u0442\u0438\u0440\u0443\u0435\u0442\u0441\u044F."
+  _values: 01000000
+  _description: "\u0426\u0435\u043B\u044C \u0430\u0434\u0430\u043F\u0442\u0438\u0440\u0443\u0435\u0442\u0441\u044F
+    1 \u0440\u0430\u0437."
   _effects: []

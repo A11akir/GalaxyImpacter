@@ -21,6 +21,6 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: 5681d242-f2a8-4e6b-9a8b-8e20f1052ea0
-  _values: 
+  _values: 01000000
   _description: Walls gain 1 health on this turn
   _effects: []

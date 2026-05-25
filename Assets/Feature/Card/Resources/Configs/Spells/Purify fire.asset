@@ -21,6 +21,6 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: cfa4c63c-f4e2-467b-819f-3de54a845051
-  _values: 
-  _description: Take  pure damage all enemy.
+  _values: 02000000
+  _description: Take 2 pure damage all enemy.
   _effects: []

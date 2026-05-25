@@ -21,6 +21,6 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: 8cde6629-317e-48dd-8504-daf93ba88326
-  _values: 
-  _description: ' Random targets become the target of a water spell.'
+  _values: 02000000
+  _description: 2 Random targets become the target of a water spell.
   _effects: []

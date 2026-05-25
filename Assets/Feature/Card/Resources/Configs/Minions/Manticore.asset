@@ -26,7 +26,7 @@ MonoBehaviour:
   _chakra: 4
   _handCardCount: 4
   _spellsList:
-  - {fileID: 11400000, guid: 4ab54fb037def814792dea998e4686eb, type: 2}
+  - {fileID: 11400000, guid: 395197a0a77614d3ab0f0eb10ee154e3, type: 2}
   - {fileID: 11400000, guid: 8dae26206433b7e4b915b7f73945a986, type: 2}
   - {fileID: 11400000, guid: c411523ea48bced43a351f55f192ff69, type: 2}
   - {fileID: 11400000, guid: 440f088877bec5b43a868d18a09e9d1d, type: 2}

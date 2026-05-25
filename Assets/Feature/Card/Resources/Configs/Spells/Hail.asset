@@ -21,6 +21,6 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: ef684cde-72c4-4d49-ba0e-ea3149d5f40f
-  _values: 
-  _description: All creatures gain  moisture and frezes.
+  _values: 01000000
+  _description: All creatures gain 1 moisture and frezes.
   _effects: []

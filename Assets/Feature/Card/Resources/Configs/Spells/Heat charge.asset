@@ -21,6 +21,6 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: 6be34e6e-9043-4dc7-8f98-d0e47c93b31c
-  _values: 
-  _description: At the beginning of the turn, the hero receives  random fire spell.
+  _values: 0100000000000000
+  _description: At the beginning of the turn, the hero receives 1 random fire spell.
   _effects: []

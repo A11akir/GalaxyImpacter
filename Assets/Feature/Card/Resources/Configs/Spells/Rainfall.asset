@@ -21,6 +21,6 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: 44d1cd73-3168-45f0-b137-7f5be252e66b
-  _values: 
+  _values: 02000000
   _description: 'Passive: At the end of the turn, all creatures gain  moisture.'
   _effects: []

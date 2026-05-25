@@ -1,3 +1,4 @@
+// GameData.cs
 using System.Collections.Generic;
 using Feature.Card.Script;
 using Feature.Hero;
@@ -6,10 +7,7 @@ using UnityEngine;
 
 namespace Feature.Data
 {
-    [CreateAssetMenu(
-        fileName = "GameData",
-        menuName = "Configs/GameData",
-        order = 1)]
+    [CreateAssetMenu(fileName = "GameData", menuName = "Configs/GameData", order = 1)]
     public class GameData : ScriptableObject
     {
         [Header("Heroes")]
@@ -48,22 +46,52 @@ namespace Feature.Data
         
         [Header("All Cards")]
         public List<CardStatsData> allCards = new List<CardStatsData>();
-        
+
+        public List<CardStatsData> GetCardsByClass(AllHeroClass heroClass)
+        {
+            return heroClass switch
+            {
+                AllHeroClass.Alchemist         => alchemistCards,
+                AllHeroClass.Assassin          => assassinCards,
+                AllHeroClass.EarthMage         => earthMageCards,
+                AllHeroClass.Explorer          => explorerCards,
+                AllHeroClass.FireMage          => fireMageCards,
+                AllHeroClass.Monster           => monsterCards,
+                AllHeroClass.Warrior           => warriorCards,
+                AllHeroClass.WaterMage         => waterMageCards,
+                AllHeroClass.WindMage          => windMageCards,
+                AllHeroClass.All               => baseCards,
+                AllHeroClass.LightningMage     => lightningMageCards,
+                AllHeroClass.MetalMage         => metalMageCards,
+                AllHeroClass.AbyssLord         => abyssLordCards,
+                AllHeroClass.TimeMage          => timeMageCards,
+                AllHeroClass.Witcher           => witcherCards,
+                AllHeroClass.Dragonborn        => dragonbornCards,
+                AllHeroClass.GravityMage       => gravityMageCards,
+                AllHeroClass.SupremeAlchemist  => supremeAlchemistCards,
+                AllHeroClass.InvincibleWanderer=> invincibleWandererCards,
+                AllHeroClass.AbsolutePredator  => absolutePredatorCards,
+                AllHeroClass.DeathKing         => deathKingCards,
+                AllHeroClass.Avatar            => avatarCards,
+                _                           => allCards
+            };
+        }
+
+        public List<List<CardStatsData>> GetAllBaseClassCards()
+        {
+            return new List<List<CardStatsData>>
+            {
+                alchemistCards, assassinCards, earthMageCards,
+                explorerCards, fireMageCards, monsterCards,
+                warriorCards, waterMageCards, windMageCards
+            };
+        }
+
         public List<CardStatsData> GetCardsByHeroName(string heroName)
         {
-            return heroName switch
-            {
-                "Alchemist"  => alchemistCards,
-                "Assassin"   => assassinCards,
-                "EarthMage"  => earthMageCards,
-                "Explorer"   => explorerCards,
-                "FireMage"   => fireMageCards,
-                "Monster"    => monsterCards,
-                "Warrior"    => warriorCards,
-                "WaterMage"  => waterMageCards,
-                "WindMage"   => windMageCards,
-                _ => allCards
-            };
+            if (System.Enum.TryParse<AllHeroClass>(heroName, out var heroClass))
+                return GetCardsByClass(heroClass);
+            return allCards;
         }
     }
 }

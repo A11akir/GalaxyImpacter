@@ -21,6 +21,6 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: ec7310e5-6876-4715-922c-d315db5a387c
-  _values: 
-  _description: Get target  chakra. Next turn, the target has 1 more chakra.
+  _values: 0100000001000000
+  _description: Get target 1 chakra. Next turn, the target has 1 more chakra.
   _effects: []

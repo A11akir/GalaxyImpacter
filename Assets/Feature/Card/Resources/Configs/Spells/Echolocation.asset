@@ -21,6 +21,6 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: 264a752f-e10a-4410-800a-d195466ba816
-  _values: 
-  _description: The hero chooses  card from the deck and puts it in his hand.
+  _values: 01000000
+  _description: The hero chooses 1 card from the deck and puts it in his hand.
   _effects: []

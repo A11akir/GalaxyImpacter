@@ -21,6 +21,6 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: c94bfa68-b246-4ea8-bc3b-75c381c95013
-  _values: 
+  _values: 01000000
   _description: 'Passive: Your spells give this creature instead of damaging it.'
   _effects: []

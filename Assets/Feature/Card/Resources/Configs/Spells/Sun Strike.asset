@@ -21,6 +21,6 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: 3da4b6db-78cd-4cb3-a4bb-89269ff33f1b
-  _values: 
-  _description: Take  pure damage random enemy.
+  _values: 05000000
+  _description: Take 5 pure damage random enemy.
   _effects: []

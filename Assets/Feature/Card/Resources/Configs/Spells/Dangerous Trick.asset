@@ -21,6 +21,6 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: 0fe160a7-179c-461a-be5b-8952d0ae0ad7
-  _values: 
-  _description: Take  damage. % chance of dealing damage to yourself.
+  _values: 0200000032000000
+  _description: Take 2 damage. 50% chance of dealing damage to yourself.
   _effects: []

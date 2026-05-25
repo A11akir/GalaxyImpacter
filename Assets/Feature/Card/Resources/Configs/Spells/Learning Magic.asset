@@ -21,6 +21,6 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: 008f455a-d6b6-4eb8-b0f1-ba102d57a4a4
-  _values: 
-  _description: 'Passive:  "Each hit this turn increases your next damage by 1".'
+  _values: 01000000
+  _description: 'Passive: Each hit this turn increases your next damage by 1.'
   _effects: []

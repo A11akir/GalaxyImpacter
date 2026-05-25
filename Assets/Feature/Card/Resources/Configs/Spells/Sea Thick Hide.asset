@@ -21,6 +21,6 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: 8746818d-1f27-422b-84bf-92821f1a706f
-  _values: 
-  _description: 'Passive: Blue Whale gains  moisture after taking damage.'
+  _values: 01000000
+  _description: 'Passive: Blue Whale gains 1 moisture after taking damage.'
   _effects: []

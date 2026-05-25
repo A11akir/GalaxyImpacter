@@ -29,5 +29,5 @@ MonoBehaviour:
   _spellsList:
   - {fileID: 11400000, guid: 3d9302ec579eeb647b7d61f2748af541, type: 2}
   - {fileID: 11400000, guid: 3495b10ab1fa5144d9f99a463ab463c5, type: 2}
-  - {fileID: 11400000, guid: cc27c621df1049547a3f261d59798483, type: 2}
+  - {fileID: 11400000, guid: 4190356dd1247423ca11fea6ab12656b, type: 2}
   - {fileID: 11400000, guid: d81744983a1a4cf4098e91041ebe78b4, type: 2}

@@ -21,6 +21,6 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: b3cf60d5-7d73-423e-a8a3-2baa0c0023c9
-  _values: 
-  _description: Random target get  moisture.
+  _values: 01000000
+  _description: Random target get 1 moisture.
   _effects: []

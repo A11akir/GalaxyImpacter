@@ -7,23 +7,26 @@ namespace Feature.ShopGamePlay.Script.ShopWindow
     {
         private ShopGameplayPresenter _shopGameplayPresenter;
         private ItemShopSystem.ItemShopSystem _itemShopSystem;
+        private readonly BuyCardShopPresenter _cardShopPresenter;
         private GameData _gameData;
         
         public ShopGameplaySystem(
             ShopGameplayPresenter shopGameplayPresenter, 
             GameData gameData,
-            ItemShopSystem.ItemShopSystem itemShopSystem)
+            ItemShopSystem.ItemShopSystem itemShopSystem, BuyCardShopPresenter cardShopPresenter)
         {
             _shopGameplayPresenter = shopGameplayPresenter;
             _gameData = gameData;
             _itemShopSystem = itemShopSystem;
-            
+            _cardShopPresenter = cardShopPresenter;
+
             _shopGameplayPresenter.OnItemClicked += HandleItemClicked;
         }
 
         public void UnlockShop()
         {
             _shopGameplayPresenter.UnlockShop();
+            _cardShopPresenter.RefreshCardOffers();
         }
 
         public void LockShop()
@@ -34,6 +37,7 @@ namespace Feature.ShopGamePlay.Script.ShopWindow
         public void RefreshShop()
         {
             _shopGameplayPresenter.RefreshViewShop(_gameData.allItems);
+            _cardShopPresenter.RefreshCardOffers();
         }
         
         private void HandleItemClicked(ItemData item, ItemShopView itemView)

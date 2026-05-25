@@ -21,6 +21,6 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: 0966d62f-0000-4b79-acc1-9745ef93e17e
-  _values: 
-  _description: Take  pure damage and enemy hero.
+  _values: 03000000
+  _description: Take 3 pure damage and enemy hero.
   _effects: []

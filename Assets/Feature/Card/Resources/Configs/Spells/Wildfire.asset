@@ -22,7 +22,7 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: 259df7f1-585c-4a38-9d89-e9b2b2a38bee
-  _values: 01000000
+  _values: 0100000000000000
   _description: When you use a spell before the end of your turn, you receive 1 temporary
     fire spell.
   _effects: []

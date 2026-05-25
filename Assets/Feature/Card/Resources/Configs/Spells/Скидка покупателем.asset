@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: "\u0421\u043A\u0438\u0434\u043A\u0430 \u043F\u043E\u043A\u0443\u043F\u0430\u0442\u0435\u043B\u0435\u043C"
   m_EditorClassIdentifier: 
-  _cost: 2
+  _cost: 3
   _name: "\u0421\u043A\u0438\u0434\u043A\u0430 \u043F\u043E\u043A\u0443\u043F\u0430\u0442\u0435\u043B\u0435\u043C"
   _rarity: 3
   _iconImage: {fileID: 0}

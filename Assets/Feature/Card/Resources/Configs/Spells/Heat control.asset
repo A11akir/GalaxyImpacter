@@ -21,7 +21,7 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: a3137026-6a19-4628-afd0-35e01e8c20da
-  _values: 
-  _description: At the beginning of the turn, the hero reduce cost by  random fire
+  _values: 0100000001000000
+  _description: At the beginning of the turn, the hero reduce cost by 1 random fire
     spell.
   _effects: []

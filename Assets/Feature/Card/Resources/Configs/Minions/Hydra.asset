@@ -28,3 +28,4 @@ MonoBehaviour:
   _spellsList:
   - {fileID: 11400000, guid: 6615897fad76d804eaebb7439265002d, type: 2}
   - {fileID: 11400000, guid: 5fc1330d029f6db4e9e24e18ca112f80, type: 2}
+  - {fileID: 11400000, guid: 9f66393d6a960574785859aaacaf645e, type: 2}

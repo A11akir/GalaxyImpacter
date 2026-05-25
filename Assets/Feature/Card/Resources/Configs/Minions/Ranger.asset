@@ -27,6 +27,7 @@ MonoBehaviour:
   _handCardCount: 3
   _spellsList:
   - {fileID: 11400000, guid: ca6fdb3ea7b752641849b2c7f65c5ccc, type: 2}
+  - {fileID: 11400000, guid: 6c46cbb1e1abb4fadb150835c4c6e35d, type: 2}
   - {fileID: 11400000, guid: c436752171aa78f49a8700d5279c0521, type: 2}
   - {fileID: 11400000, guid: 9f017dc7b22983a4199fd049ddee4107, type: 2}
   - {fileID: 11400000, guid: e18cb43e1c621a041b247d7c30af7ee5, type: 2}

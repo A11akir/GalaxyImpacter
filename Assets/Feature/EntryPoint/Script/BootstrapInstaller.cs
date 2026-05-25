@@ -12,6 +12,7 @@ using Feature.HandLogic;
 using Feature.GameSessionFSM;
 using Feature.Hero;
 using Feature.Items.Scripts;
+using Feature.ShopGamePlay;
 using Feature.ShopGamePlay.ItemShopSystem;
 using Feature.ShopGamePlay.Script.Currency;
 using Feature.ShopGamePlay.Script.ShopWindow;
@@ -68,6 +69,8 @@ namespace Feature.EntryPoint.Script
             Container.Bind<ChakraWindowView>().FromComponentInHierarchy().AsSingle();
             Container.Bind<WarFogView>().FromComponentInHierarchy().AsSingle();
             Container.Bind<PlayerHeroEnterPointerView>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<BuyCardShopPresenter>().AsSingle();
+            Container.Bind<CardBuyShopView>().FromComponentInHierarchy().AsSingle();
         }
 
         private void BindGameSession()
@@ -127,14 +130,18 @@ namespace Feature.EntryPoint.Script
             Container.Bind<ShopGameplaySystem>().AsSingle();
             Container.Bind<ShopGameplayPresenter>().AsSingle();
             Container.Bind<ShopGameplayView>().FromComponentInHierarchy().AsSingle();
-    
+            Container.Bind<ShopCardOfferSystem>().AsSingle();
+            Container.Bind<BuyCardShopSystem>().AsSingle();
+            Container.Bind<CardsShopContainerView>().FromComponentInHierarchy().AsSingle();
+            
+            
             // Items (предметы)
             Container.Bind<ItemShopSystem>().AsSingle();
-
     
             // Inventory (инвентарь)
             Container.Bind<InventoryPresenter>().AsSingle();
             Container.Bind<InventoryView>().FromComponentInHierarchy().AsSingle();
+            
         }
 
         private void BindStages()

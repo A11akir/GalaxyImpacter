@@ -21,6 +21,6 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: 4b0720e6-c2cf-4b9c-805b-31ebd89e9ce5
-  _values: 
-  _description: Target get  moisture.
+  _values: 02000000
+  _description: Target get 2 moisture.
   _effects: []
