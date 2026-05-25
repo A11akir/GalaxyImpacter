@@ -33,7 +33,12 @@ namespace Feature.Card.Script
         {
             if (_cardBack) _cardBack.SetActive(false);
             gameObject.SetActive(true);
-    
+
+            _heroCardWindow.SetActive(false);
+            _spellCardWindow.SetActive(false);
+            _healthContainer.SetActive(false);
+            _description.gameObject.SetActive(false);
+
             if (cardStatsData is MinionCardData minion)
             {
                 _healthContainer.SetActive(true);
@@ -43,14 +48,15 @@ namespace Feature.Card.Script
             }
             else if (cardStatsData is SpellCardData spell)
             {
+                _description.gameObject.SetActive(true);
                 _spellCardWindow.SetActive(true);
                 _description.text = spell.Description;
                 _iconSpell.sprite = spell.IconImage;
             }
-    
+
             _name.text = cardStatsData.Name;
             _cost.text = cardStatsData.Cost.ToString();
-            
+    
             SetRaritySprite(cardStatsData.Rarity);
         }
 

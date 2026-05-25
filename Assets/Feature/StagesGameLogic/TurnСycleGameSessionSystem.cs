@@ -1,5 +1,7 @@
 using Feature.Battlefield.Script;
+using Feature.ClassBranchWindow.Script;
 using Feature.GameSessionData;
+using Feature.Hero;
 using Feature.Items.Scripts;
 using Feature.ShopGamePlay.Script.Currency;
 using Feature.ShopGamePlay.Script.ShopWindow;
@@ -19,11 +21,13 @@ namespace Feature.StagesGameLogic
         private readonly CurrencyManagerSystem _currencyManager;
         private readonly TimerStageGameSessionSystem _timerSystem;
         private readonly InventoryPresenter _inventoryPresenter;
+        private readonly HeroClassLevelSystem _heroClassLevelSystem;
+        private readonly ClassLevelWindowPresenter _classLevelWindowPresenter;
 
 
         public TurnCycleGameSessionSystem(StageManagerSystem stageManagerSystem, TurnResourceManager resourceManager, GameSessionModel gameSessionModel, 
             GameSessionPresenter gameSessionPresenter, BattlefieldSystem battlefieldSystem, CurrencyManagerSystem currencyManager,
-            TimerStageGameSessionSystem timerSystem, ReadyStageBackOrFightSystem readySystem, InventoryPresenter inventoryPresenter)
+            TimerStageGameSessionSystem timerSystem, ReadyStageBackOrFightSystem readySystem, InventoryPresenter inventoryPresenter, HeroClassLevelSystem heroClassLevelSystem, ClassLevelWindowPresenter classLevelWindowPresenter)
         {
             _stageManagerSystem = stageManagerSystem;
             _resourceManager = resourceManager;
@@ -34,6 +38,8 @@ namespace Feature.StagesGameLogic
             _timerSystem = timerSystem;
             _readySystem = readySystem;
             _inventoryPresenter = inventoryPresenter;
+            _heroClassLevelSystem = heroClassLevelSystem;
+            _classLevelWindowPresenter = classLevelWindowPresenter;
         }
 
 
@@ -45,6 +51,8 @@ namespace Feature.StagesGameLogic
             _battlefieldSystem.Init();
             _currencyManager.Init();
             _inventoryPresenter.Init();
+            _heroClassLevelSystem.Init();
+            _classLevelWindowPresenter.Init();
         
             _stageManagerSystem.StartPreparePhase(_gameSessionModel.Turn);
         }

@@ -1,3 +1,5 @@
+
+using Feature.ClassBranchWindow.Script;
 using Feature.Items.Scripts;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -6,16 +8,19 @@ namespace Feature.Hero
 {
     public class PlayerHeroEnterPointerView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        [SerializeField] private InventoryView _inventoryView;
-        
+        [SerializeField] private InventoryView inventoryView;
+        [SerializeField] private ClassLevelWindowView classLevelWindowView; 
+
         public void OnPointerEnter(PointerEventData eventData)
         {
-            _inventoryView.Show();
+            inventoryView.Show();
+            classLevelWindowView.Show(); 
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            _inventoryView.Hide();
+            inventoryView.Hide();
+            classLevelWindowView.Hide(); 
         }
     }
 }

@@ -3,6 +3,7 @@ using Feature.Battlefield.Script;
 using Feature.Battlefield.Script.View;
 using Feature.Card.Script;
 using Feature.Chakra;
+using Feature.ClassBranchWindow.Script;
 using Feature.Common;
 using Feature.Data;
 using Feature.EndGameSession;
@@ -30,6 +31,7 @@ namespace Feature.EntryPoint.Script
     public class BootstrapInstaller : MonoInstaller
     {
         [SerializeField] private GameData _gameData;
+        [SerializeField] private HeroClassColorConfig _heroClassColorConfig;
 
         public override void InstallBindings()
         {
@@ -142,6 +144,11 @@ namespace Feature.EntryPoint.Script
             Container.Bind<InventoryPresenter>().AsSingle();
             Container.Bind<InventoryView>().FromComponentInHierarchy().AsSingle();
             
+            
+            Container.Bind<ClassLevelWindowPresenter>().AsSingle();
+            Container.Bind<ClassLevelWindowView>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<HeroClassLevelSystem>().AsSingle();
+            
         }
 
         private void BindStages()
@@ -175,6 +182,7 @@ namespace Feature.EntryPoint.Script
         private void BindConfig()
         {
             Container.Bind<GameData>().FromInstance(_gameData).AsSingle().Lazy();
+            Container.Bind<HeroClassColorConfig>().FromInstance(_heroClassColorConfig).AsSingle().Lazy();
             Container.Bind<HeroStatsData>().AsSingle();
             Container.Bind<CardStatsData>().AsSingle();
         }

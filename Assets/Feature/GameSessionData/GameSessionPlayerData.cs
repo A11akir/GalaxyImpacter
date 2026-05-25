@@ -13,6 +13,7 @@ namespace Feature.GameSessionData
         public List<CardAndHealthEntityOwnerData> CardAndHealthEntityOwners = new List<CardAndHealthEntityOwnerData>{new CardAndHealthEntityOwnerData()};
 
         public HeroClassData HeroClassData { get; } = new HeroClassData();
+        public HeroClassLevel HeroClassLevel { get; } = new HeroClassLevel();
         
         public CardAndHealthEntityOwnerData MainHeroEntity() => CardAndHealthEntityOwners[0];
         
