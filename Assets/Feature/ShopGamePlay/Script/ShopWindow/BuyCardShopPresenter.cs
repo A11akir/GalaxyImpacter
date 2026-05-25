@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Feature.Card.Script;
+using Feature.GameSessionData;
 using Feature.GoogleSheets;
 using UnityEngine;
 
@@ -10,15 +11,18 @@ namespace Feature.ShopGamePlay.Script.ShopWindow
         private readonly CardsShopContainerView _containerView;
         private readonly ShopCardOfferSystem _cardOfferSystem;
         private readonly BuyCardShopSystem _buyCardSystem;
+        private readonly GameSessionModel _gameSessionModel;
 
         public BuyCardShopPresenter(
             CardsShopContainerView containerView,
             ShopCardOfferSystem cardOfferSystem,
-            BuyCardShopSystem buyCardSystem)
+            BuyCardShopSystem buyCardSystem,
+            GameSessionModel gameSessionModel)
         {
             _containerView = containerView;
             _cardOfferSystem = cardOfferSystem;
             _buyCardSystem = buyCardSystem;
+            _gameSessionModel = gameSessionModel;
 
             foreach (var buyView in _containerView.GetBuyViews())
                 buyView.OnCardClicked += HandleCardClicked;
@@ -27,21 +31,22 @@ namespace Feature.ShopGamePlay.Script.ShopWindow
         public void RefreshCardOffers()
         {
             var offers = _cardOfferSystem.GenerateCardOffers();
-            
             _containerView.SetCards(offers);
         }
 
-        private void HandleCardClicked(CardStatsData card)
+        private void HandleCardClicked(CardStatsData card, CardBuyShopView clickedView)
         {
-            _buyCardSystem.BuyCard(card);
+            var playerData = _gameSessionModel.PlayerHero;
 
-            var buyViews = _containerView.GetBuyViews();
-            foreach (var view in buyViews)
+            if (playerData.Currency < card.Cost)
             {
-                // TODO: передать view в BuyCardShopSystem для анимации
-                view.PlayPurchaseAnimation();
-                break;
+                clickedView.PlayCannotAffordAnimation();
+                return;
             }
+
+            playerData.Currency -= card.Cost;
+            _buyCardSystem.BuyCard(card);
+            clickedView.PlayPurchaseAnimation();
         }
     }
 }

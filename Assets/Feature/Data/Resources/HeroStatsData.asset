@@ -22,7 +22,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8e82bd8ecee6d7841b7dded3fd7f04e3, type: 2}
   - {fileID: 11400000, guid: f7a3cdd09059db4459323cd6f4cfcb47, type: 2}
   - {fileID: 11400000, guid: b1b39476d51250a4daaba096a52310b7, type: 2}
-  allItems: []
+  allItems:
+  - {fileID: 11400000, guid: f341a0787faa4ea48954071ffce7b654, type: 2}
+  - {fileID: 11400000, guid: a2fc8e56b1200d84c8bd97effb1829a1, type: 2}
+  - {fileID: 11400000, guid: 41e72cf32affd89478c4bcc6fdf49675, type: 2}
   baseCards:
   - {fileID: 11400000, guid: 05fefde62994d8b4098343754d4db356, type: 2}
   - {fileID: 11400000, guid: 9432b76307fdb4b44a01d9b640b46521, type: 2}

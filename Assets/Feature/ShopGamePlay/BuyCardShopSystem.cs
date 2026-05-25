@@ -1,4 +1,6 @@
 // BuyCardShopSystem.cs
+
+using System.Collections.Generic;
 using Feature.Card.Script;
 using Feature.Data;
 using Feature.GameSessionData;
@@ -18,6 +20,7 @@ namespace Feature.ShopGamePlay
 
         public void BuyCard(CardStatsData card)
         {
+            Debug.Log($"[BuyCard] Buying: {card.Name}, specs: {string.Join(", ", card.Specialization)}");
             AddCardToDeck(card);
             AddClassFromCard(card);
         }
@@ -26,9 +29,15 @@ namespace Feature.ShopGamePlay
         {
             var cardCopy = ScriptableObject.Instantiate(card);
             cardCopy.id = System.Guid.NewGuid().ToString();
-            _gameSessionModel.PlayerHero.MainHeroEntity().AddCardToDeck(cardCopy);
+    
+            var hero = _gameSessionModel.PlayerHero.MainHeroEntity();
+    
+            var updatedBaseDeck = new List<CardStatsData>(hero.BaseDeck) { cardCopy };
+            hero.SetBaseDeck(updatedBaseDeck);
+    
+            hero.AddCardToDeck(cardCopy);
         }
-
+    
         private void AddClassFromCard(CardStatsData card)
         {
             var specs = card.Specialization;

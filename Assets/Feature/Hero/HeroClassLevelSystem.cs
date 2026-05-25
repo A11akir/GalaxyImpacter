@@ -1,5 +1,6 @@
 using Feature.GameSessionData;
 using R3;
+using UnityEngine;
 
 namespace Feature.Hero
 {
@@ -18,9 +19,10 @@ namespace Feature.Hero
             _gameSessionModel.PlayerHero.MainHeroEntity().CardsInDeck
                 .Subscribe(_ =>
                 {
+                    Debug.Log("[HeroClassLevelSystem] CardsInDeck changed, recalculating...");
                     var baseDeck = _gameSessionModel.PlayerHero.MainHeroEntity().BaseDeck;
-                    _gameSessionModel.PlayerHero.HeroClassLevel
-                        .RecalculateFromDeck(baseDeck);
+                    Debug.Log($"[HeroClassLevelSystem] BaseDeck count: {baseDeck.Count}");
+                    _gameSessionModel.PlayerHero.HeroClassLevel.RecalculateFromDeck(baseDeck);
                 })
                 .AddTo(_disposables);
         }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using R3;
+using UnityEngine;
 
 namespace Feature.Hero
 {
@@ -26,11 +27,11 @@ namespace Feature.Hero
                 foreach (var spec in card.Specialization)
                 {
                     if (!System.Enum.TryParse<AllHeroClass>(spec, out var heroClass)) continue;
-            
                     if (heroClass == AllHeroClass.All) continue;
 
                     EnsureExists(heroClass);
                     _classLevels[heroClass].Value++;
+                    Debug.Log($"[HeroClassLevel] {heroClass} level: {_classLevels[heroClass].Value}");
                 }
             }
         }

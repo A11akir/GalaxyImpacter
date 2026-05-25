@@ -14,7 +14,8 @@ namespace Feature.ShopGamePlay.Script.ShopWindow
         private Transform _nativeContainerForDescription;
 
         private CardStatsData _cardData;
-        public System.Action<CardStatsData> OnCardClicked;
+        public System.Action<CardStatsData, CardBuyShopView> OnCardClicked;
+
 
         private void Awake()
         {
@@ -57,9 +58,10 @@ namespace Feature.ShopGamePlay.Script.ShopWindow
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            OnCardClicked?.Invoke(_cardData);
+            OnCardClicked?.Invoke(_cardData, this);
         }
 
+        
         private void OnDisable()
         {
             if (_descriptionWindow != null && _nativeContainerForDescription != null)
@@ -71,13 +73,29 @@ namespace Feature.ShopGamePlay.Script.ShopWindow
 
         public void PlayPurchaseAnimation()
         {
-            _handCardView.transform.DOScale(Vector3.one * 1.2f, 0.15f)
-                .OnComplete(() => _handCardView.transform.DOScale(Vector3.one, 0.1f));
+            var iconTransform = _handCardView.transform;
+            var originalScale = iconTransform.localScale;
+            
+            var sequence = DOTween.Sequence();
+            
+            sequence.Append(iconTransform.DOScale(originalScale * 1.2f, 0.15f));
+            sequence.Append(iconTransform.DOScale(originalScale * 0.9f, 0.1f));
+            sequence.Append(iconTransform.DOScale(originalScale, 0.1f));
+            
+            sequence.Join(iconTransform.DORotate(new Vector3(0, 0, 10f), 0.2f).SetLoops(2, LoopType.Yoyo));
+            
+            sequence.Play();
         }
 
         public void PlayCannotAffordAnimation()
         {
-            _handCardView.transform.DOShakePosition(0.3f, strength: 10f, vibrato: 20);
+            var iconTransform = _handCardView.transform;
+            
+            var sequence = DOTween.Sequence();
+            
+            sequence.Append(iconTransform.DOShakePosition(0.3f, strength: 10f, vibrato: 20));
+            
+            sequence.Play();
         }
 
         private void AdjustPositionIfOutOfBounds()
