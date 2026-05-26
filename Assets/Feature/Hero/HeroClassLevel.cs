@@ -31,7 +31,6 @@ namespace Feature.Hero
 
                     EnsureExists(heroClass);
                     _classLevels[heroClass].Value++;
-                    Debug.Log($"[HeroClassLevel] {heroClass} level: {_classLevels[heroClass].Value}");
                 }
             }
         }

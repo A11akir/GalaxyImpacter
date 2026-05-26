@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using Feature.Items.Scripts;
@@ -13,6 +14,10 @@ namespace Feature.ShopGamePlay.Script.ShopWindow
         [SerializeField] private Button _showShopWindowButton;
         [SerializeField] List<ItemShopView> itemsView = new List<ItemShopView>();
 
+        [SerializeField] private Button _refreshShopButton;
+        public event System.Action OnRefreshButtonClicked; 
+
+        private void HandleRefreshClicked() => OnRefreshButtonClicked?.Invoke();
         
         private RectTransform _rectTransform;
         private bool _isLocked;
@@ -31,6 +36,7 @@ namespace Feature.ShopGamePlay.Script.ShopWindow
         {
             _hideShopWindowButton.onClick.AddListener(HideShopWindow);
             _showShopWindowButton.onClick.AddListener(ShowShopWindow);
+            _refreshShopButton.onClick.AddListener(HandleRefreshClicked); 
             
             _showShopWindowButton.gameObject.SetActive(true);
             _hideShopWindowButton.gameObject.SetActive(false);
@@ -40,6 +46,7 @@ namespace Feature.ShopGamePlay.Script.ShopWindow
         {
             _hideShopWindowButton.onClick.RemoveListener(HideShopWindow);
             _showShopWindowButton.onClick.RemoveListener(ShowShopWindow);
+            _refreshShopButton.onClick.RemoveListener(HandleRefreshClicked);
         }
 
         public void UnlockShop()

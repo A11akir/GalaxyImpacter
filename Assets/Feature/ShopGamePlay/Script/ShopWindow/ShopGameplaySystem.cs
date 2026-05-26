@@ -21,6 +21,7 @@ namespace Feature.ShopGamePlay.Script.ShopWindow
             _cardShopPresenter = cardShopPresenter;
 
             _shopGameplayPresenter.OnItemClicked += HandleItemClicked;
+            _shopGameplayPresenter.OnRefreshRequested += RefreshShop;
         }
 
         public void UnlockShop()

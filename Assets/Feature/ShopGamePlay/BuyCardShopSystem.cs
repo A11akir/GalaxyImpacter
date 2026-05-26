@@ -1,4 +1,4 @@
-// BuyCardShopSystem.cs
+
 
 using System.Collections.Generic;
 using Feature.Card.Script;
