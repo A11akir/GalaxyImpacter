@@ -45,8 +45,12 @@ namespace Feature.ShopGamePlay
 
             foreach (var spec in specs)
             {
-                if (System.Enum.TryParse<AllHeroClass>(spec, out var heroClass))
-                    _gameSessionModel.PlayerHero.HeroClassData.AddClass(heroClass);
+                if (!System.Enum.TryParse<AllHeroClass>(spec, out var heroClass)) continue;
+                if (heroClass == AllHeroClass.All) continue;
+
+                _gameSessionModel.PlayerHero.HeroClassData.AddClass(heroClass);
+                _gameSessionModel.PlayerHero.HeroClassPurchaseCount
+                    .AddPurchase(heroClass, card.Rarity); // ← передаём редкость карты
             }
         }
     }

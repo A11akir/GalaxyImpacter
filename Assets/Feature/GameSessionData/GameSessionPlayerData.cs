@@ -15,6 +15,9 @@ namespace Feature.GameSessionData
         public HeroClassData HeroClassData { get; } = new HeroClassData();
         public HeroClassLevel HeroClassLevel { get; } = new HeroClassLevel();
         
+
+        public HeroClassPurchaseCount HeroClassPurchaseCount { get; } = new HeroClassPurchaseCount();
+        
         public CardAndHealthEntityOwnerData MainHeroEntity() => CardAndHealthEntityOwners[0];
         
         public int CardsInBoardMax = 6;
