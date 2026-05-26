@@ -12,7 +12,8 @@ namespace Feature.GoogleSheets
         CardRarity Rarity { get; set; }
         List<string> Specialization { get; set; }
         int Level { get; set; }
-        string Type { get; set; }
+
         bool InCollection { get; set; }
+        TargetType TargetType { get; set; }
     }
 }

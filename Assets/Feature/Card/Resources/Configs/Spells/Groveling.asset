@@ -19,7 +19,7 @@ MonoBehaviour:
   _specialization:
   - Monster
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
   id: 00de1570-231e-4fa3-a599-e5b6bd59b2ff
   _values: 01000000

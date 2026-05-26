@@ -20,7 +20,7 @@ MonoBehaviour:
   - FireMage
   - WindMage
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
   id: d89bf41f-cad1-444b-8849-063e980501b0
   _values: 010000000100000001000000

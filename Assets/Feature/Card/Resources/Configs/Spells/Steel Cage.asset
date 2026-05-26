@@ -20,7 +20,7 @@ MonoBehaviour:
   - FireMage
   - EarthMage
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
   id: 1cfea4d7-9e86-4527-a7ae-baa952457d7f
   _values: 14000000

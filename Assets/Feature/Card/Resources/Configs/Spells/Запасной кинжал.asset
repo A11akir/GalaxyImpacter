@@ -19,7 +19,7 @@ MonoBehaviour:
   _specialization:
   - Assassin
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
   id: 270f3e12-31e6-4afb-b74e-3bf05396ab02
   _values: 01000000

@@ -20,7 +20,7 @@ MonoBehaviour:
   - FireMage
   - Warrior
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
   id: 4e19a2fb-adfe-423b-acf9-5c4396164c4a
   _values: 03000000

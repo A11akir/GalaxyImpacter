@@ -19,7 +19,7 @@ MonoBehaviour:
   _specialization:
   - Alchemist
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
   id: 46cdacdd-6d6d-4d76-82da-09ce935ed0f3
   _values: 0200000003000000

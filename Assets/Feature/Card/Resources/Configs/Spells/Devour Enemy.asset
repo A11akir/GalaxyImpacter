@@ -21,7 +21,7 @@ MonoBehaviour:
   - Warrior
   - Monster
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
   id: fdf4c533-beb1-4cc9-a845-b3f582318ef3
   _values: 00000000

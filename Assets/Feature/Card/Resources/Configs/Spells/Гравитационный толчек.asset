@@ -22,7 +22,7 @@ MonoBehaviour:
   - EarthMage
   - WindMage
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
   id: 6d40229a-6dc2-43a4-b1d2-4bc3f1b348d9
   _values: 05000000

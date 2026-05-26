@@ -19,7 +19,7 @@ MonoBehaviour:
   _specialization:
   - Explorer
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
   id: e84a9fe4-0293-405d-be62-aacb68f477e7
   _values: 020000000100000000000000

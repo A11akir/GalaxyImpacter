@@ -71,7 +71,8 @@ namespace Feature.GoogleSheets
 
                 case "Type":
                     if (!string.IsNullOrWhiteSpace(token))
-                        _spellStatsConfig.Type = token;
+                        if (Enum.TryParse<TargetType>(token, out var targetType))
+                            _spellStatsConfig.TargetType = targetType;
                     break;
 
                 case "Value1":
@@ -156,7 +157,7 @@ namespace Feature.GoogleSheets
                 so.Specialization = cfg.Specialization;
                 so.Values = cfg.Values;
                 so.Level = cfg.Level;
-                so.Type = cfg.Type;
+                so.TargetType = cfg.TargetType;
                 so.InCollection = cfg.InCollection;
 
                 if (!string.IsNullOrWhiteSpace(cfg.Rarity))

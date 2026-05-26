@@ -22,7 +22,7 @@ MonoBehaviour:
   - Alchemist
   - Warrior
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
   id: c0518304-f6e5-4f6c-aca3-37f323afba67
   _values: 

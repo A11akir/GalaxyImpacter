@@ -19,7 +19,7 @@ MonoBehaviour:
   _specialization:
   - EarthMage
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
   id: 7f3c1984-392d-47fe-8387-dcf4e007505b
   _values: 03000000

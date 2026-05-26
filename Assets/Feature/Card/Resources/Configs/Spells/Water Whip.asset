@@ -19,7 +19,7 @@ MonoBehaviour:
   _specialization:
   - WaterMage
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
   id: 0282713d-ce67-477e-92ba-96fdc45db875
   _values: 0200000002000000

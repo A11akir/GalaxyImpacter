@@ -29,7 +29,8 @@ namespace Feature.GoogleSheets
         public List<string> Specialization;
         public int Level;
         public string MinionNameOwner { get; set; }
-        public string Type { get; set; }
+        public TargetType TargetType { get; set; } = TargetType.All;
+
         public bool InCollection { get; set; }
     }
     

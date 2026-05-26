@@ -20,7 +20,7 @@ MonoBehaviour:
   - Explorer
   - WindMage
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
   id: 48f8e7e9-a077-4b44-9f72-3aaf9e93de44
   _values: 

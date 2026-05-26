@@ -19,7 +19,7 @@ MonoBehaviour:
   _specialization:
   - FireMage
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
   id: b56c206a-38d7-4731-9efe-34a325c1a4b3
   _values: 06000000

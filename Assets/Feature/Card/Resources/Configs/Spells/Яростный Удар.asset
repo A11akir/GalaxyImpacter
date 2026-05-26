@@ -19,7 +19,7 @@ MonoBehaviour:
   _specialization:
   - Warrior
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
   id: e6a00f0a-deb6-4cb1-9079-dfb01b623c84
   _values: 0300000006000000

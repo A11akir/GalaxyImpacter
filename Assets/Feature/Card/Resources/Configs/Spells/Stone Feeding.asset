@@ -21,7 +21,7 @@ MonoBehaviour:
   - Alchemist
   - Monster
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
   id: b8428b8b-5132-479f-be11-5e1efc4372f7
   _values: 02000000

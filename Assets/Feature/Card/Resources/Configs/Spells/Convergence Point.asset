@@ -22,7 +22,7 @@ MonoBehaviour:
   - FireMage
   - WaterMage
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
   id: 5ef85581-e28d-48f3-baad-6485c03d83c6
   _values: 01000000

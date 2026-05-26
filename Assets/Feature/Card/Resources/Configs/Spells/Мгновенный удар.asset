@@ -21,7 +21,7 @@ MonoBehaviour:
   - Warrior
   - Assassin
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
   id: de380c3b-327a-44ee-886d-aa25879ed3e1
   _values: 0a000000

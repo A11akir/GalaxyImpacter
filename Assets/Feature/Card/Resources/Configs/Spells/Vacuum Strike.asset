@@ -19,7 +19,7 @@ MonoBehaviour:
   _specialization:
   - WindMage
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
   id: 451829b6-53d3-4e99-b788-6b0d0782fb35
   _values: 01000000
