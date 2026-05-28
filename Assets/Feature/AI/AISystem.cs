@@ -179,9 +179,9 @@ namespace Feature.AI
             var heroPower = player.CurrentHeroPower;
             var owner = player.MainHeroEntity();
 
-            return heroPower != null 
-                && !player.HeroPowerUsedThisTurn 
-                && heroPower.Cost <= owner.Chakra;
+            return heroPower != null
+                   && !player.HeroPowerUsage.IsUsed(0) // ← индекс 0 для первой силы врага
+                   && heroPower.Cost <= owner.Chakra;
         }
 
         private IAIAction PickRandomAction(List<IAIAction> actions) => 

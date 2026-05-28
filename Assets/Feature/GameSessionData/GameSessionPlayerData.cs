@@ -27,7 +27,7 @@ namespace Feature.GameSessionData
         
         public List<SpellCardData> HeroPowers;
         
-        public bool HeroPowerUsedThisTurn;
+        public HeroPowerUsageTracker HeroPowerUsage { get; } = new HeroPowerUsageTracker();
         
         public PlayerInventory Inventory { get; } = new PlayerInventory();
         
@@ -60,7 +60,6 @@ namespace Feature.GameSessionData
         
 
         public Sprite _iconImage;
-        public Sprite _heroPowerSprite;
 
         public bool PlayerHasHero()
         {
@@ -105,5 +104,10 @@ namespace Feature.GameSessionData
         }
         
         public void ClearBoard() => _cardsInBoard.Value = new List<MinionCardData>();
+    }
+
+// HeroPowerUsageTracker.cs
+    namespace Feature.GameSessionData
+    {
     }
 }

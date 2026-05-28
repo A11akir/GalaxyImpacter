@@ -28,7 +28,7 @@ namespace Feature.AI
         
         public void Execute(CardAndHealthEntityOwnerData target)
         {
-            _gameSessionModel.EnemyHero.HeroPowerUsedThisTurn = true;
+            _gameSessionModel.EnemyHero.HeroPowerUsage.SetUsed(0); // ← индекс 0 для врага
             _heroPowerSystem.NotifyEnemyHeroPowerUsed();
             _cardCastService.Cast(_heroPower, _owner, target);
         }

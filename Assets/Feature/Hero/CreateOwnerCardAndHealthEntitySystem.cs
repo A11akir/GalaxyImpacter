@@ -46,8 +46,8 @@ namespace Feature.Hero
             IHealthView playerHealthView,
             IHealthView enemyHealthView,
             List<HeroPowerGameplayView> playerHeroPowerViews, // ← список
-            List<HeroPowerGameplayView> enemyHeroPowerViews,  // ← список
-            List<SpellCardData> heroPowers,           // ← список
+            List<HeroPowerGameplayView> enemyHeroPowerViews, // ← список
+            List<SpellCardData> heroPowers, // ← список
             HandCardViews enemyHandCardViews)
         {
             CreateMainEnemyPlayer(playerHealthView, playerHeroPowerViews, enemyHeroPowerViews, heroPowers);
@@ -64,24 +64,24 @@ namespace Feature.Hero
             CreateEntityPlayer(playerEntity, playerHealthView);
             _handViewSwitcher.SwitchTo(playerEntity);
 
-            // Инициализируем каждую силу героя
+            _gameSessionModel.PlayerHero.HeroPowerUsage.Init(heroPowers.Count);
+
             for (int i = 0; i < heroPowers.Count && i < playerHeroPowerViews.Count; i++)
             {
                 _heroPowerSystem.Init(
                     playerEntity,
                     playerHeroPowerViews[i].gameObject,
                     heroPowers[i],
-                    _gameSessionModel.PlayerHero);
-        
-                _heroPowerPresenter.InitPlayer(playerHeroPowerViews[i]);
+                    _gameSessionModel.PlayerHero,
+                    i);
             }
 
-            // Инициализируем вью врага
-            for (int i = 0; i < enemyHeroPowerViews.Count; i++)
-                _heroPowerPresenter.InitEnemy(enemyHeroPowerViews[i]);
+            _heroPowerPresenter.InitPlayer(playerHeroPowerViews, heroPowers.Count);
+            _heroPowerPresenter.InitEnemy(enemyHeroPowerViews);
         }
 
-        private void CreateMainEnemyEntity(CardAndHealthEntityOwnerData owner, IHealthView healthView, HandCardViews handCardViews)
+        private void CreateMainEnemyEntity(CardAndHealthEntityOwnerData owner, IHealthView healthView,
+            HandCardViews handCardViews)
         {
             _deckFillSystem.InitializeDeck(owner);
             _handDataRepository.InitHandRepository(owner, handCardViews, isHidden: true);

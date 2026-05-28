@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Feature.Card.Script;
 using Feature.GameSessionData;
 using Feature.GoogleSheets;
@@ -10,8 +11,8 @@ namespace Feature.Hero
     {
         private readonly FactoryHandBehaviourTransformCastSystem _factoryHandBehaviourTransformCastSystem;
 
-        private ITransformCastCardBehaviour _heroPowerBehaviour;
-        private SpellCardData _heroPower;
+        private readonly List<SpellCardData> _heroPowers = new();
+        private readonly List<ITransformCastCardBehaviour> _heroPowerBehaviours = new();
         private CardAndHealthEntityOwnerData _owner;
         private GameSessionPlayerData _playerData;
         private CardCastService _cardCastService;
@@ -32,49 +33,51 @@ namespace Feature.Hero
             _gameSessionModel = gameSessionModel;
         }
 
-        public void Init(CardAndHealthEntityOwnerData owner, GameObject heroPowerObject, SpellCardData heroPower,
-            GameSessionPlayerData playerData)
+        public void Init(CardAndHealthEntityOwnerData owner, GameObject heroPowerObject,
+            SpellCardData heroPower, GameSessionPlayerData playerData, int index) // ← добавить index
         {
             _owner = owner;
-            _heroPower = heroPower;
             _playerData = playerData;
+            _heroPowers.Add(heroPower);
 
             var handCardData = new HandCardData(data: heroPower, view: null, behaviour: null, logic: null);
             _factoryHandBehaviourTransformCastSystem.AddBehavioursToHeroPower(handCardData, heroPowerObject);
             handCardData.Behaviour.SetOwner(owner);
-            _heroPowerBehaviour = handCardData.Behaviour;
-            _heroPowerBehaviour.CanCastCard(CanCast);
-            
+    
+            _heroPowerBehaviours.Add(handCardData.Behaviour);
+    
+            var currentIndex = index;
+            handCardData.Behaviour.CanCastCard(CanCast(currentIndex));
+    
             var logic = new HandCardCastHandler(handCardData, _cardCastService);
             handCardData.Behaviour.OnTryCardCast += (o, t) =>
             {
-                _playerData.HeroPowerUsedThisTurn = true;
+                _playerData.HeroPowerUsage.SetUsed(currentIndex);
                 logic.CastCard(o, t);
                 OnHeroPowerUsed?.Invoke();
             };
         }
-        public bool CanCast => !_playerData.HeroPowerUsedThisTurn && _owner.Chakra >= _heroPower.Cost;
-
-        public void ResetHeroPower()
-        {
-            _playerData.HeroPowerUsedThisTurn = false;
-            _heroPowerBehaviour.CanCastCard(CanCast);
-        }
+        public bool CanCast(int index) =>
+            !_playerData.HeroPowerUsage.IsUsed(index) &&
+            _owner.Chakra >= _heroPowers[index].Cost;
         
         public void ResetAllHeroPowers()
         {
-            _playerData.HeroPowerUsedThisTurn = false;
-            _heroPowerBehaviour.CanCastCard(CanCast);
-            OnHeroPowerUsed?.Invoke(); // обновит вью игрока
+            _playerData.HeroPowerUsage.Reset();
     
-            _gameSessionModel.EnemyHero.HeroPowerUsedThisTurn = false;
-            OnEnemyHeroPowerUsed?.Invoke(); // обновит вью врага
+            for (int i = 0; i < _heroPowerBehaviours.Count; i++)
+                _heroPowerBehaviours[i]?.CanCastCard(CanCast(i));
+    
+            OnHeroPowerUsed?.Invoke();
+
+            _gameSessionModel.EnemyHero.HeroPowerUsage.Reset();
+            OnEnemyHeroPowerUsed?.Invoke();
         }
 
         public void UpdateBehaviour()
         {
-            bool canCast = CanCast;
-            _heroPowerBehaviour?.CanCastCard(canCast);
+            for (int i = 0; i < _heroPowerBehaviours.Count; i++)
+                _heroPowerBehaviours[i]?.CanCastCard(CanCast(i));
         }
     }
 }
