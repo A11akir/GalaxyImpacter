@@ -56,12 +56,10 @@ namespace Feature.ShopGamePlay.Script.ShopWindow
             _descriptionWindow.SetActive(false);
         }
 
-        public void OnPointerClick(PointerEventData eventData)
-        {
+        public void OnPointerClick(PointerEventData eventData) =>
             OnCardClicked?.Invoke(_cardData, this);
-        }
 
-        
+
         private void OnDisable()
         {
             if (_descriptionWindow != null && _nativeContainerForDescription != null)
@@ -74,27 +72,36 @@ namespace Feature.ShopGamePlay.Script.ShopWindow
         public void PlayPurchaseAnimation()
         {
             var iconTransform = _handCardView.transform;
-            var originalScale = iconTransform.localScale;
-            
+            var originalScale = iconTransform.localScale; // ← запоминаем ДО DOKill
+
+            iconTransform.DOKill();
+            iconTransform.localScale = originalScale;
+            iconTransform.localRotation = Quaternion.identity;
+
             var sequence = DOTween.Sequence();
-            
             sequence.Append(iconTransform.DOScale(originalScale * 1.2f, 0.15f));
             sequence.Append(iconTransform.DOScale(originalScale * 0.9f, 0.1f));
             sequence.Append(iconTransform.DOScale(originalScale, 0.1f));
-            
             sequence.Join(iconTransform.DORotate(new Vector3(0, 0, 10f), 0.2f).SetLoops(2, LoopType.Yoyo));
-            
+            sequence.OnComplete(() =>
+            {
+                iconTransform.localScale = originalScale;
+                iconTransform.localRotation = Quaternion.identity;
+            });
             sequence.Play();
         }
 
         public void PlayCannotAffordAnimation()
         {
             var iconTransform = _handCardView.transform;
-            
+    
+            // Убиваем предыдущую анимацию и сбрасываем transform
+            iconTransform.DOKill();
+            iconTransform.localScale = Vector3.one;
+            iconTransform.localRotation = Quaternion.identity;
+    
             var sequence = DOTween.Sequence();
-            
             sequence.Append(iconTransform.DOShakePosition(0.3f, strength: 10f, vibrato: 20));
-            
             sequence.Play();
         }
 

@@ -28,16 +28,16 @@ namespace Feature.ShopGamePlay
 
             for (int i = 0; i < OfferedCardsCount; i++)
             {
-                int randomIndex = Random.Range(0, allBaseLists.Count);
+                // Взвешенный выбор класса вместо Random.Range
+                int randomIndex = GetClassIndex(allBaseLists, purchaseCount);
                 var randomClassList = allBaseLists[randomIndex];
                 var randomClass = GetClassByIndex(randomIndex);
 
-                // Получаем количество купленных карт каждой редкости для этого класса
                 int commonPurchases    = purchaseCount.GetPurchaseCount(randomClass, CardRarity.Common);
                 int hiddenPurchases    = purchaseCount.GetPurchaseCount(randomClass, CardRarity.Hidden);
                 int anomalousPurchases = purchaseCount.GetPurchaseCount(randomClass, CardRarity.Anomalous);
                 int primordialPurchases = purchaseCount.GetPurchaseCount(randomClass, CardRarity.Primordial);
-                
+
                 var rarity = RollRarity(randomClass, commonPurchases, hiddenPurchases, anomalousPurchases, primordialPurchases);
                 var card = PickCardByRarity(randomClassList, randomClass, rarity);
 
@@ -77,6 +77,44 @@ namespace Feature.ShopGamePlay
             return CardRarity.Primordial;
         }
 
+        private int GetClassIndex(List<List<CardStatsData>> allBaseLists, HeroClassPurchaseCount purchaseCount)
+        {
+            // Базовый вес каждого класса = 10
+            // +1 за каждую купленную карту этого класса
+            var weights = new int[allBaseLists.Count];
+    
+            for (int i = 0; i < allBaseLists.Count; i++)
+            {
+                var heroClass = GetClassByIndex(i);
+                int totalPurchases = 
+                    purchaseCount.GetPurchaseCount(heroClass, CardRarity.Common) +
+                    purchaseCount.GetPurchaseCount(heroClass, CardRarity.Hidden) +
+                    purchaseCount.GetPurchaseCount(heroClass, CardRarity.Anomalous) +
+                    purchaseCount.GetPurchaseCount(heroClass, CardRarity.Primordial);
+        
+                weights[i] = 10 + totalPurchases;
+            }
+
+            // Взвешенный рандом
+            int total = weights.Sum();
+            int roll = Random.Range(0, total);
+    
+            int cumulative = 0;
+            for (int i = 0; i < weights.Length; i++)
+            {
+                cumulative += weights[i];
+                if (roll < cumulative)
+                {
+                    Debug.Log($"[ShopOffer] Class roll: {GetClassByIndex(i)} " +
+                              $"weight={weights[i]}/{total} " +
+                              $"({100f * weights[i] / total:F1}%)");
+                    return i;
+                }
+            }
+
+            return weights.Length - 1;
+        }
+        
         private CardStatsData PickCardByRarity(
             List<CardStatsData> classCards,
             AllHeroClass heroClass,
