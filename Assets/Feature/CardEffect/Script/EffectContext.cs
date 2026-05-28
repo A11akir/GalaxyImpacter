@@ -13,5 +13,6 @@ namespace Feature.CardEffect.Script
         public CombatSystem.CombatSystem CombatSystem;
         public SpellCardData CardData;
         public int ValueIndex;
+        public CardPoolPickSystem CardPoolPickSystem { get; set; }
     }
 }

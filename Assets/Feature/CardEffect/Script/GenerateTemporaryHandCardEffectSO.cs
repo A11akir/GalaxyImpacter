@@ -5,13 +5,17 @@ namespace Feature.CardEffect.Script
     [CreateAssetMenu(menuName = "Effects/GenerateTemporaryHandCards", fileName = "GenerateTemporaryHandCardEffect")]
     public class GenerateTemporaryHandCardEffectSO : CardEffectSO
     {
-        public override void Execute(EffectContext context)
+        [SerializeField] private CardPickQuery _query;
+        
+        public override void Execute(EffectContext ctx)
         {
-            for (int i = 0; i < context.CardData.Values[context.ValueIndex]; i++)
+            int count = ctx.CardData.Values[ctx.ValueIndex];
+            for (int i = 0; i < count; i++)
             {
-                /*context.Caster.AddCardToHand(CardStatsData data, context.Caster.CountCardsInHand);*/
-            }
-                
+                var card = ctx.CardPoolPickSystem.Pick(_query, ctx);
+                if (card != null)
+                    ctx.Caster.AddCardToHand(card, ctx.Caster.CountCardsInHand);
+            }  
         }
     }
 }

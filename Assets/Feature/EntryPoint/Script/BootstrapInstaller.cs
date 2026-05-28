@@ -2,6 +2,7 @@ using Feature.AI;
 using Feature.Battlefield.Script;
 using Feature.Battlefield.Script.View;
 using Feature.Card.Script;
+using Feature.CardEffect.Script;
 using Feature.Chakra;
 using Feature.ClassBranchWindow.Script;
 using Feature.Common;
@@ -104,6 +105,9 @@ namespace Feature.EntryPoint.Script
             Container.Bind<CastCardAreaMinion>().FromComponentInHierarchy().AsSingle();
             Container.Bind<HandCardsPositionSystem>().FromComponentInHierarchy().AsSingle();
             Container.Bind<HandViewSwitcher>().FromComponentInHierarchy().AsSingle();
+            
+            Container.Bind<CardPoolPickSystem>().AsSingle();
+            
         }
 
         private void BindBattlefield()
@@ -185,6 +189,7 @@ namespace Feature.EntryPoint.Script
             Container.Bind<HeroClassColorConfig>().FromInstance(_heroClassColorConfig).AsSingle().Lazy();
             Container.Bind<HeroStatsData>().AsSingle();
             Container.Bind<CardStatsData>().AsSingle();
+            
         }
     }
 }

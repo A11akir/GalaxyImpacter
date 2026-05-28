@@ -11,14 +11,16 @@ namespace Feature.Card.Script
         private readonly GameSessionModel _gameSessionModel;
         private readonly BattlefieldSystem _battlefieldSystem;
         private readonly CombatSystem.CombatSystem _combatSystem;
+        private readonly CardPoolPickSystem _cardPoolPickSystem;
 
         public CardCastService(GameSessionModel gameSessionModel,
             BattlefieldSystem battlefieldSystem,
-            CombatSystem.CombatSystem combatSystem)
+            CombatSystem.CombatSystem combatSystem, CardPoolPickSystem cardPoolPickSystem)
         {
             _gameSessionModel = gameSessionModel;
             _battlefieldSystem = battlefieldSystem;
             _combatSystem = combatSystem;
+            _cardPoolPickSystem = cardPoolPickSystem;
         }
 
         public bool CheckCanCast(CardStatsData card, CardAndHealthEntityOwnerData owner)
@@ -64,7 +66,8 @@ namespace Feature.Card.Script
                         BattlefieldSystem = _battlefieldSystem,
                         CombatSystem = _combatSystem,
                         CardData = spell,
-                        ValueIndex = i
+                        ValueIndex = i,
+                        CardPoolPickSystem = _cardPoolPickSystem
                     });
             }
         }

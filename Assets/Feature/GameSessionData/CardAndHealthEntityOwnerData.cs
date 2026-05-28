@@ -139,7 +139,7 @@ namespace Feature.GameSessionData
             _cardsInHand.Value = new List<CardStatsData>();
         }
 
-        private void AddCardToHand(CardStatsData card, int index)
+        public void AddCardToHand(CardStatsData card, int index)
         {
             if (_cardsInHand.Value.Count >= maxCardsInHandCount) return;
     
