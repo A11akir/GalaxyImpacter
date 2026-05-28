@@ -106,7 +106,7 @@ namespace Feature.GameSessionData
     
             for (int i = refilled.Count - 1; i > 0; i--)
             {
-                int j = UnityEngine.Random.Range(0, i + 1);
+                int j = Random.Range(0, i + 1);
                 (refilled[i], refilled[j]) = (refilled[j], refilled[i]);
             }
             _cardsInDeck.Value = refilled;
