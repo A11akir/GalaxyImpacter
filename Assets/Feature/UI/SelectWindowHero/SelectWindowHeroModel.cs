@@ -30,9 +30,7 @@
                     
                     GameSessionPlayerData heroData = new GameSessionPlayerData
                     {
-                        _heroPowerCost = selectedHeroStats.HeroPowers[0].Cost,
                         _iconImage = selectedHeroStats.IconImage,
-                        _heroPowerSprite = selectedHeroStats.HeroPowers[0].IconImage,
                         HeroPowers = selectedHeroStats.HeroPowers
                     };
 

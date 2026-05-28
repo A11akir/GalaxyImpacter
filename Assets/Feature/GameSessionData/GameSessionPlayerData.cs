@@ -46,7 +46,6 @@ namespace Feature.GameSessionData
         
         public bool IsPlayerFirst;
         
-        public int _heroPowerCost;
 
         private readonly ReactiveProperty<int> _currencyCount = new();
         public ReadOnlyReactiveProperty<int> CurrencyCount => _currencyCount;
@@ -106,11 +105,5 @@ namespace Feature.GameSessionData
         }
         
         public void ClearBoard() => _cardsInBoard.Value = new List<MinionCardData>();
-    }
-
-    public class HeroPowerData
-    {
-        private int cost;
-        
     }
 }

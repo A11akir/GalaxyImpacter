@@ -40,15 +40,15 @@ namespace Feature.UI
 
             SubscribeHeroViewClick();
         }
-
+        
         public void SetupEntityViews()
         {
             _createOwnerCardAndHealthEntitySystem.CreatePlayersEntity(
                 _gameSessionView._heroView,
                 _gameSessionView._enemyView,
-                _gameSessionView._heroView._heroPowerView,
-                _gameSessionView._enemyView._heroPowerView,
-                _gameSessionModel.PlayerHero.CurrentHeroPower,
+                _gameSessionView._heroView.heroPowerGameplayViews,
+                _gameSessionView._enemyView.heroPowerGameplayViews,
+                _gameSessionModel.PlayerHero.HeroPowers,
                 _gameSessionView._enemyHandCardViews
             );
         }

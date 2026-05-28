@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Feature.Card.Script;
 using Feature.GameSessionData;
 using Feature.Health;
 using Feature.Hero;
@@ -13,20 +12,19 @@ namespace Feature.UI
 {
     public class HeroView : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler, IHealthView, ITargetable
     {
-        [SerializeField] public HeroPowerView _heroPowerView;
-        [SerializeField] public List<HandCardView> _heroPowerCardView; 
-        [SerializeField] private GameObject _wasSelectBotWindow;
+        [SerializeField] private List<HeroPowerPreview> heroPowerPreviewViews;
+        [SerializeField] public List<HeroPowerGameplayView> heroPowerGameplayViews; 
+        
+        [SerializeField] private GameObject wasSelectBotWindow;
         [SerializeField] private GameObject _selectWindow;      
         [SerializeField] private GameObject _nameWindow;
         [SerializeField] private GameObject _banWindow;
         
         [SerializeField] private Image _iconImage;
-        [SerializeField] public Image _heroPowerIcon;
-        [SerializeField] public TextMeshProUGUI _heroPowerText;        
+        
         [SerializeField] public TextMeshProUGUI _healthText;
         [SerializeField] public TextMeshProUGUI _nameText;
         
-
         public bool _isBlockedForSelect;
         public GameSessionPlayerData HeroData { get; private set; }
         
@@ -35,31 +33,38 @@ namespace Feature.UI
         
         private bool _isGameplayMode;
 
-        public void SetGameplayMode(bool isGameplay) => _isGameplayMode = isGameplay;
-
         public void SetViewData(GameSessionPlayerData data)
         {
             HeroData = data;
             _iconImage.sprite = data._iconImage;
             _nameText.text = data.MainHeroEntity()._heroName;
-            _healthText.text = data.MainHeroEntity().HealthValue.ToString(); 
-            _heroPowerText.text = data.CurrentHeroPower?.Cost.ToString();
-            _heroPowerIcon.sprite = data._heroPowerSprite;
+            _healthText.text = data.MainHeroEntity().HealthValue.ToString();
 
-            for (int i = 0; i < _heroPowerCardView.Count; i++)
+            SetHeroPowerViews(heroPowerPreviewViews, data);
+        }
+
+        public void SetGameplayMode(bool isGameplay)
+        {
+            _isGameplayMode = isGameplay;
+            if (isGameplay && HeroData != null)
+                SetHeroPowerViews(heroPowerGameplayViews, HeroData);
+        }
+
+        private void SetHeroPowerViews<T>(List<T> views, GameSessionPlayerData data)
+            where T : HeroPowerPreview
+        {
+            if (data.HeroPowers == null) return;
+
+            for (int i = 0; i < views.Count; i++)
             {
-                if (data.HeroPowers != null && i < data.HeroPowers.Count)
-                {
-                    _heroPowerCardView[i].SetDataView(data.HeroPowers[i]);
-                    _heroPowerCardView[i].gameObject.SetActive(false);
-                }
-                else
-                {
-                    _heroPowerCardView[i].gameObject.SetActive(false);
-                }
+                bool hasPower = i < data.HeroPowers.Count;
+                views[i].gameObject.SetActive(hasPower);
+
+                if (hasPower)
+                    views[i].SetDataView(data.HeroPowers[i]);
             }
         }
-        
+
         public void OnPointerDown(PointerEventData eventData)
         {
             if (_isGameplayMode)
@@ -88,7 +93,7 @@ namespace Feature.UI
 
         public void WasSetHeroEnemy()
         {
-            _wasSelectBotWindow.SetActive(true);
+            wasSelectBotWindow.SetActive(true);
             _isBlockedForSelect = true;
         }
         

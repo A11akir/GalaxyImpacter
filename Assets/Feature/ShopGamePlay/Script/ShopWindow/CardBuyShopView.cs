@@ -72,7 +72,7 @@ namespace Feature.ShopGamePlay.Script.ShopWindow
         public void PlayPurchaseAnimation()
         {
             var iconTransform = _handCardView.transform;
-            var originalScale = iconTransform.localScale; // ← запоминаем ДО DOKill
+            var originalScale = iconTransform.localScale;
 
             iconTransform.DOKill();
             iconTransform.localScale = originalScale;

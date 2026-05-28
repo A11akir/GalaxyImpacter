@@ -32,13 +32,6 @@ namespace Feature.Hero
             get => _iconImage;
             set => _iconImage = value;
         }
-
-        public Sprite IconHeroPowerImage
-        {
-            get => _iconHeroPowerImage;
-            set => _iconHeroPowerImage = value;
-        }
-
         public int Cost
         {
             get => _heroPowerCost;

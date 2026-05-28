@@ -42,23 +42,43 @@ namespace Feature.Hero
             _entityDeathSystem.OnEntityDied += DisposeEntity;
         }
 
-        public void CreatePlayersEntity(IHealthView playerHealthView, IHealthView enemyHealthView,
-            HeroPowerView playerHeroPowerView, HeroPowerView enemyHeroPowerView,
-            SpellCardData heroPower, HandCardViews enemyHandCardViews)
+        public void CreatePlayersEntity(
+            IHealthView playerHealthView,
+            IHealthView enemyHealthView,
+            List<HeroPowerGameplayView> playerHeroPowerViews, // ← список
+            List<HeroPowerGameplayView> enemyHeroPowerViews,  // ← список
+            List<SpellCardData> heroPowers,           // ← список
+            HandCardViews enemyHandCardViews)
         {
-            CreateMainEnemyPlayer(playerHealthView, playerHeroPowerView, enemyHeroPowerView, heroPower);
+            CreateMainEnemyPlayer(playerHealthView, playerHeroPowerViews, enemyHeroPowerViews, heroPowers);
             CreateMainEnemyEntity(_gameSessionModel.EnemyHero.MainHeroEntity(), enemyHealthView, enemyHandCardViews);
         }
 
-        private void CreateMainEnemyPlayer(IHealthView playerHealthView, HeroPowerView playerHeroPowerView,
-            HeroPowerView enemyHeroPowerView, SpellCardData heroPower)
+        private void CreateMainEnemyPlayer(
+            IHealthView playerHealthView,
+            List<HeroPowerGameplayView> playerHeroPowerViews,
+            List<HeroPowerGameplayView> enemyHeroPowerViews,
+            List<SpellCardData> heroPowers)
         {
             var playerEntity = _gameSessionModel.PlayerHero.MainHeroEntity();
             CreateEntityPlayer(playerEntity, playerHealthView);
             _handViewSwitcher.SwitchTo(playerEntity);
-            _heroPowerSystem.Init(playerEntity, playerHeroPowerView.gameObject, heroPower, _gameSessionModel.PlayerHero);
-            _heroPowerPresenter.InitPlayer(playerHeroPowerView);
-            _heroPowerPresenter.InitEnemy(enemyHeroPowerView);
+
+            // Инициализируем каждую силу героя
+            for (int i = 0; i < heroPowers.Count && i < playerHeroPowerViews.Count; i++)
+            {
+                _heroPowerSystem.Init(
+                    playerEntity,
+                    playerHeroPowerViews[i].gameObject,
+                    heroPowers[i],
+                    _gameSessionModel.PlayerHero);
+        
+                _heroPowerPresenter.InitPlayer(playerHeroPowerViews[i]);
+            }
+
+            // Инициализируем вью врага
+            for (int i = 0; i < enemyHeroPowerViews.Count; i++)
+                _heroPowerPresenter.InitEnemy(enemyHeroPowerViews[i]);
         }
 
         private void CreateMainEnemyEntity(CardAndHealthEntityOwnerData owner, IHealthView healthView, HandCardViews handCardViews)

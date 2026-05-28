@@ -12,9 +12,9 @@ namespace Feature.Card.Script
         [SerializeField] public GameObject _healthContainer;
         [SerializeField] public TextMeshProUGUI _name;
         [SerializeField] private TextMeshProUGUI _health;
-        [SerializeField] private TextMeshProUGUI _cost;
-        [SerializeField] private TextMeshProUGUI _description;
-        [SerializeField] private Image _iconSpell;
+        [SerializeField] protected TextMeshProUGUI _cost;
+        [SerializeField] protected TextMeshProUGUI _description;
+        [SerializeField] protected Image _iconSpell;
         [SerializeField] private Image _iconMinionHand;
 
         [SerializeField] private GameObject _canAvailableCast;
@@ -29,7 +29,7 @@ namespace Feature.Card.Script
         [SerializeField] private GameObject anomalousSprite;
         [SerializeField] private GameObject primordialSprite;
         
-        public void SetDataView(CardStatsData cardStatsData)
+        public  virtual void SetDataView(CardStatsData cardStatsData)
         {
             if (_cardBack) _cardBack.SetActive(false);
             gameObject.SetActive(true);

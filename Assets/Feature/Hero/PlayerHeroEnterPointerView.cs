@@ -13,14 +13,14 @@ namespace Feature.Hero
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            inventoryView.Show();
-            classLevelWindowView.Show(); 
+            inventoryView?.Show();
+            classLevelWindowView?.Show(); 
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            inventoryView.Hide();
-            classLevelWindowView.Hide(); 
+            inventoryView?.Hide();
+            classLevelWindowView?.Hide(); 
         }
     }
 }

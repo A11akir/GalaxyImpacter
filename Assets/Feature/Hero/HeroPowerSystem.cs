@@ -17,7 +17,7 @@ namespace Feature.Hero
         private CardCastService _cardCastService;
         private GameSessionModel _gameSessionModel;
         
-        public event Action OnHeroPowerUsed;    // для игрока
+        public event Action OnHeroPowerUsed;
         public event Action OnEnemyHeroPowerUsed;
 
         public void NotifyEnemyHeroPowerUsed()
