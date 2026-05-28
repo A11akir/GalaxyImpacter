@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
+  m_Name: Fire Element
+  m_EditorClassIdentifier: 
+  _cost: 1
+  _name: Fire Element
+  _rarity: 0
+  _iconImage: {fileID: 21300000, guid: 076633d88beb847348bd33907c79a6a8, type: 3}
+  _specialization:
+  - FireMage
+  _level: 0
+  targetType: 0
+  _inCollection: 0
+  id: 51d68199-7c79-4755-a602-bdd1dfe5ce49
+  _values: 0100000001000000
+  _description: Give 1 current level element time-cards, it is cost 1 less.
+  _effects: []
