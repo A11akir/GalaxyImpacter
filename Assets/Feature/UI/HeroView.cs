@@ -46,6 +46,9 @@ namespace Feature.UI
         public void SetGameplayMode(bool isGameplay)
         {
             _isGameplayMode = isGameplay;
+            foreach (var heroPowerPreview in heroPowerPreviewViews)
+                heroPowerPreview.gameObject.SetActive(false);
+            
             if (isGameplay && HeroData != null)
                 SetHeroPowerViews(heroPowerGameplayViews, HeroData);
         }

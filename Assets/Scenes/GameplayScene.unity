@@ -14926,17 +14926,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9384acfa0caaa4143a3c78e9fa4838cd, type: 3}
---- !u!114 &1039610031 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8449129549431426349, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
-  m_PrefabInstance: {fileID: 6563728320408715167}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b233087b357641bc8ba0f51a3a4e5397, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1046275609
 GameObject:
   m_ObjectHideFlags: 0
@@ -15607,17 +15596,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1976157032157224654, guid: f91b620f52a734f4ea0522028177e042, type: 3}
   m_PrefabInstance: {fileID: 1901647692}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1091006655 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8449129549431426349, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
-  m_PrefabInstance: {fileID: 1995079768}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b233087b357641bc8ba0f51a3a4e5397, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1104809806 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8169211052180111439, guid: 18e75da9d6acdeb42b493aba594d8105, type: 3}
@@ -25955,23 +25933,35 @@ PrefabInstance:
     - target: {fileID: 8304432329169127823, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
       propertyPath: '_heroPowerViews.Array.data[3]'
       value: 
-      objectReference: {fileID: 1091006655}
+      objectReference: {fileID: 0}
     - target: {fileID: 8304432329169127823, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
       propertyPath: '_heroPowerViews.Array.data[4]'
       value: 
-      objectReference: {fileID: 1091006655}
+      objectReference: {fileID: 0}
     - target: {fileID: 8304432329169127823, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
       propertyPath: '_heroPowerViews.Array.data[5]'
       value: 
-      objectReference: {fileID: 1091006655}
+      objectReference: {fileID: 0}
     - target: {fileID: 8304432329169127823, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
       propertyPath: '_heroPowerViews.Array.data[6]'
       value: 
-      objectReference: {fileID: 1091006655}
+      objectReference: {fileID: 0}
     - target: {fileID: 8304432329169127823, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
       propertyPath: '_heroPowerViews.Array.data[7]'
       value: 
-      objectReference: {fileID: 1091006655}
+      objectReference: {fileID: 0}
+    - target: {fileID: 8575917147812018929, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8575917147812018929, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8575917147812018929, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 285
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -28149,46 +28139,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8055260958098099859, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8304432329169127823, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
-      propertyPath: _heroPowerViews.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8304432329169127823, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
-      propertyPath: '_heroPowerViews.Array.data[0]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8304432329169127823, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
-      propertyPath: '_heroPowerViews.Array.data[1]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8304432329169127823, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
-      propertyPath: '_heroPowerViews.Array.data[2]'
-      value: 
-      objectReference: {fileID: 1039610031}
-    - target: {fileID: 8304432329169127823, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
-      propertyPath: '_heroPowerViews.Array.data[3]'
-      value: 
-      objectReference: {fileID: 1039610031}
-    - target: {fileID: 8304432329169127823, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
-      propertyPath: '_heroPowerViews.Array.data[4]'
-      value: 
-      objectReference: {fileID: 1039610031}
-    - target: {fileID: 8304432329169127823, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
-      propertyPath: '_heroPowerViews.Array.data[5]'
-      value: 
-      objectReference: {fileID: 1039610031}
-    - target: {fileID: 8304432329169127823, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
-      propertyPath: '_heroPowerViews.Array.data[6]'
-      value: 
-      objectReference: {fileID: 1039610031}
-    - target: {fileID: 8304432329169127823, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
-      propertyPath: '_heroPowerViews.Array.data[7]'
-      value: 
-      objectReference: {fileID: 1039610031}
     - target: {fileID: 9073229366211206328, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
       propertyPath: inventoryView
       value: 
