@@ -37,6 +37,9 @@
 
                     heroData.MainHeroEntity()._heroName = selectedHeroStats.Name;
                     heroData.MainHeroEntity().HealthValue = selectedHeroStats.Health;
+
+                    if (System.Enum.TryParse<AllHeroClass>(selectedHeroStats.Name, out var heroClass))
+                        heroData.HeroClassData.SetMainClass(heroClass);
                     _heroesForChose.Add(heroData);
                     availableHeroes.RemoveAt(randomIndex);
                 }

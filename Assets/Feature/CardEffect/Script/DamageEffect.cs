@@ -1,9 +1,10 @@
+using System;
 using UnityEngine;
 
 namespace Feature.CardEffect.Script
 {
-    [CreateAssetMenu(menuName = "Effects/Damage", fileName = "DamageEffect")]
-    public class DamageEffectSO : CardEffectSO
+    [Serializable]
+    public class DamageEffect : CardEffect
     {
         public override void Execute(EffectContext context)
         {

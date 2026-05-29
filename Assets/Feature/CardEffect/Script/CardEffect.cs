@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 
 namespace Feature.CardEffect.Script
 {
-    public abstract class CardEffectSO : ScriptableObject
+    [Serializable]
+    public abstract class CardEffect
     {
         public abstract void Execute(EffectContext context);
     }

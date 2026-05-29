@@ -24,4 +24,17 @@ MonoBehaviour:
   id: 51d68199-7c79-4755-a602-bdd1dfe5ce49
   _values: 0100000001000000
   _description: Give 1 current level element time-cards, it is cost 1 less.
-  _effects: []
+  _effects:
+  - rid: 5323832666482802688
+  references:
+    version: 2
+    RefIds:
+    - rid: 5323832666482802688
+      type: {class: GenerateTemporaryHandCardEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        _query:
+          ClassSource: 0
+          ManualClass: 0
+          CardType: 1
+          RaritySource: 0
+          ManualRarities: 

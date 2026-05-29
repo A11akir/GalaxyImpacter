@@ -28055,6 +28055,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 799219097}
     m_Modifications:
+    - target: {fileID: 533717690367301205, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 559170481851466703, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
       propertyPath: m_Name
       value: HeroWindow
@@ -28137,6 +28141,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5778531318514038528, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6172399391150780767, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9073229366211206328, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}

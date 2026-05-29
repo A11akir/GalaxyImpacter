@@ -1,9 +1,10 @@
+using System;
 using UnityEngine;
 
 namespace Feature.CardEffect.Script
 {
-    [CreateAssetMenu(menuName = "Effects/Heal", fileName = "HealEffect")]
-    public class HealEffectSO : CardEffectSO
+    [Serializable]
+    public class HealEffect : CardEffect
     {
         [SerializeField] private int _amount;
 

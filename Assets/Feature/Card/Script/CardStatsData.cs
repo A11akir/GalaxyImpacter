@@ -20,7 +20,7 @@ public class CardStatsData : ScriptableObject, ICardStatsData
     public bool DealsDamage()
     {
         if (this is SpellCardData spell)
-            return spell.Effects.Any(e => e is DamageEffectSO);
+            return spell.Effects.Any(e => e is DamageEffect);
         return false;
     }
     
