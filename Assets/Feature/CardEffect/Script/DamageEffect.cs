@@ -9,7 +9,7 @@ namespace Feature.CardEffect.Script
         public override void Execute(EffectContext context)
         {
             int damage = context.CardData.Values[context.ValueIndex];
-            context.CombatSystem.TakeDamage(context.Target, damage, context.Caster);
+            context.CombatSystem.TakeDamage(context.Target, damage, context.Caster, context.CardData);
         }
     }
 }

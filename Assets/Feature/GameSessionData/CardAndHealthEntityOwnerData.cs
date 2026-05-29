@@ -3,6 +3,7 @@ using System.Linq;
 using Feature.Card.Script;
 using Feature.Common;
 using Feature.GoogleSheets;
+using Feature.PassiveEffect.Script;
 using R3;
 using UnityEngine;
 
@@ -15,9 +16,24 @@ namespace Feature.GameSessionData
         public int startCardsInHandToDraw = 4;
         public int startCardsInDeckCount = 10;
         
-        public int Cost { get; set; } 
+        public int Cost { get; set; }
         public CardAndHealthEntityOwnerData LastDamageSource { get; set; }
         public List<SpellCardData> SpellsList;
+
+        public List<PassiveEffect.Script.PassiveEffect> ActivePassives { get; } = new();
+
+        public void AddPassive(PassiveEffect.Script.PassiveEffect passive, CombatSystem.CombatSystem combatSystem)
+        {
+            ActivePassives.Add(passive);
+            passive.Register(this, combatSystem);
+        }
+
+        public void RemoveAllPassives()
+        {
+            foreach (var passive in ActivePassives)
+                passive.Unregister();
+            ActivePassives.Clear();
+        }
         
         private readonly ReactiveProperty<List<CardStatsData>> _cardsInDeck = new(new List<CardStatsData>());
         public ReadOnlyReactiveProperty<List<CardStatsData>> CardsInDeck => _cardsInDeck;

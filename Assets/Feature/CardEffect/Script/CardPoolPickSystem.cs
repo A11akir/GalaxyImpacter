@@ -23,7 +23,6 @@ namespace Feature.CardEffect.Script
                 .Where(c => MatchesType(c, query.CardType) && allowedRarities.Contains(c.Rarity))
                 .ToList();
 
-            Debug.Log($"[CardPoolPickSystem] class={heroClass} rarities=[{string.Join(",", allowedRarities)}] type={query.CardType} pool={pool.Count}");
 
             if (pool.Count == 0) return null;
             return pool[Random.Range(0, pool.Count)];
@@ -36,7 +35,6 @@ namespace Feature.CardEffect.Script
 
             var playerData = ctx.GameSessionModel.GetPlayerDataByOwner(ctx.Caster);
             var heroClass = playerData.HeroClassData.MainClass;
-            Debug.Log($"[CardPoolPickSystem] ResolveClass: caster={ctx.Caster._heroName} playerData={playerData != null} mainClass={heroClass}");
             return heroClass;
         }
 
@@ -54,7 +52,6 @@ namespace Feature.CardEffect.Script
                 .Where(c => c.Specialization.Contains(classStr))
                 .Select(c => c.Rarity)
                 .ToHashSet();
-            Debug.Log($"[CardPoolPickSystem] ResolveRarities: baseDeck={baseDeck.Count} classStr={classStr} matchingCards={baseDeck.Count(c => c.Specialization.Contains(classStr))} rarities=[{string.Join(",", rarities)}]");
             return rarities;
         }
 
