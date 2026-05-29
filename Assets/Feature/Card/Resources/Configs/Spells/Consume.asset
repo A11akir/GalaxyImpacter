@@ -16,8 +16,7 @@ MonoBehaviour:
   _name: Consume
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization:
-  - Monster
+  _specialization: 06000000
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -28,3 +27,6 @@ MonoBehaviour:
     \u043F\u0440\u0438\u0437\u043E\u0432\u0438\u0442\u0435 \u0441\u0442\u043E\u043B\u044C\u043A\u043E
     \u0436\u0435."
   _effects: []
+  references:
+    version: 2
+    RefIds: []

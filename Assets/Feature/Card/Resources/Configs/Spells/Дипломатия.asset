@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: "\u0414\u0438\u043F\u043B\u043E\u043C\u0430\u0442\u0438\u044F"
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization: []
+  _specialization: 
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -26,3 +26,6 @@ MonoBehaviour:
     Molo \u043D\u0435 \u043C\u043E\u0436\u0435\u0442 \u0431\u044B\u0442\u044C \u0446\u0435\u043B\u044C\u044E
     \u043F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A\u043E\u0432."
   _effects: []
+  references:
+    version: 2
+    RefIds: []

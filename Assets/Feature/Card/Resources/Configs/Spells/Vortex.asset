@@ -16,8 +16,7 @@ MonoBehaviour:
   _name: Vortex
   _rarity: 1
   _iconImage: {fileID: 0}
-  _specialization:
-  - WindMage
+  _specialization: 09000000
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -27,3 +26,6 @@ MonoBehaviour:
     \u043F\u0440\u043E\u0442\u0432\u0438\u043D\u0438\u043A\u0430 \u0432\u043E\u0437\u0432\u0440\u0430\u0449\u0435\u0442\u0441\u044F
     \u0432 \u0440\u0443\u043A\u0443."
   _effects: []
+  references:
+    version: 2
+    RefIds: []

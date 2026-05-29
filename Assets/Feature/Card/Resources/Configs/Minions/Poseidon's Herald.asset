@@ -16,8 +16,7 @@ MonoBehaviour:
   _name: Poseidon's Herald
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization:
-  - WaterMage
+  _specialization: 08000000
   _level: 0
   targetType: 1
   _inCollection: 1

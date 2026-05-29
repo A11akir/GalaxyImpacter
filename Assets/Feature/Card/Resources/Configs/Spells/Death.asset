@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Death
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization: []
+  _specialization: 
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -25,3 +25,6 @@ MonoBehaviour:
   _description: Cost 0 if it is on board during the third turn. Hero get 5 random
     tempory fire spell which cost 0
   _effects: []
+  references:
+    version: 2
+    RefIds: []

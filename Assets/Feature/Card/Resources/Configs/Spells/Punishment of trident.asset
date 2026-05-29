@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Punishment of trident
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization: []
+  _specialization: 
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -24,3 +24,6 @@ MonoBehaviour:
   _values: 
   _description: Kill creature.
   _effects: []
+  references:
+    version: 2
+    RefIds: []

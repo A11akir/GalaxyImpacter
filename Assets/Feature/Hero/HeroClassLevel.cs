@@ -24,9 +24,8 @@ namespace Feature.Hero
             {
                 if (card?.Specialization == null) continue;
 
-                foreach (var spec in card.Specialization)
+                foreach (var heroClass in card.Specialization)
                 {
-                    if (!System.Enum.TryParse<AllHeroClass>(spec, out var heroClass)) continue;
                     if (heroClass == AllHeroClass.All) continue;
 
                     EnsureExists(heroClass);

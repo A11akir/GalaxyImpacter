@@ -16,8 +16,7 @@ MonoBehaviour:
   _name: Water Prison
   _rarity: 2
   _iconImage: {fileID: 0}
-  _specialization:
-  - WaterMage
+  _specialization: 08000000
   _level: 0
   targetType: 2
   _inCollection: 1
@@ -26,3 +25,6 @@ MonoBehaviour:
   _description: If the target does not play 5 cards by the end of the next turn,
     it deals 25 damage.
   _effects: []
+  references:
+    version: 2
+    RefIds: []

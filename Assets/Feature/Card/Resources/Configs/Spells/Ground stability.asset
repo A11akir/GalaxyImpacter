@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Ground stability
   _rarity: 0
   _iconImage: {fileID: 0}
-  _specialization: []
+  _specialization: 
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -24,3 +24,6 @@ MonoBehaviour:
   _values: 
   _description: "Passive: \u0421annot be stunned"
   _effects: []
+  references:
+    version: 2
+    RefIds: []

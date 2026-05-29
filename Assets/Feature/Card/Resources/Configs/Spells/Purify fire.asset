@@ -16,11 +16,14 @@ MonoBehaviour:
   _name: Purify fire
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization: []
+  _specialization: 05000000
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
   id: cfa4c63c-f4e2-467b-819f-3de54a845051
   _values: 02000000
   _description: Take 2 pure damage all enemy.
   _effects: []
+  references:
+    version: 2
+    RefIds: []

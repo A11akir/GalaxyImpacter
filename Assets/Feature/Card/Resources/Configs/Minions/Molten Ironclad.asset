@@ -16,9 +16,7 @@ MonoBehaviour:
   _name: Molten Ironclad
   _rarity: 2
   _iconImage: {fileID: 0}
-  _specialization:
-  - FireMage
-  - Warrior
+  _specialization: 0500000007000000
   _level: 0
   targetType: 1
   _inCollection: 1

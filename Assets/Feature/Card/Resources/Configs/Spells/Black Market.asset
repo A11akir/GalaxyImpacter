@@ -16,8 +16,7 @@ MonoBehaviour:
   _name: Black Market
   _rarity: 2
   _iconImage: {fileID: 0}
-  _specialization:
-  - Assassin
+  _specialization: 02000000
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -29,3 +28,6 @@ MonoBehaviour:
     \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D\u0438\u0435
     \u0443\u043B\u0443\u0447\u0448\u0430\u0435\u0442 \u0435\u0433\u043E)"
   _effects: []
+  references:
+    version: 2
+    RefIds: []

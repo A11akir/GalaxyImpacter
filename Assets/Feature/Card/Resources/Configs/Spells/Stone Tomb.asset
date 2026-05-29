@@ -16,8 +16,7 @@ MonoBehaviour:
   _name: Stone Tomb
   _rarity: 2
   _iconImage: {fileID: 0}
-  _specialization:
-  - EarthMage
+  _specialization: 03000000
   _level: 0
   targetType: 2
   _inCollection: 1
@@ -26,3 +25,6 @@ MonoBehaviour:
   _description: "\u0426\u0435\u043B\u044C \u043E\u0433\u043B\u0443\u0448\u0430\u0435\u0442\u0441\u044F
     3 \u0440\u0430\u0437\u0430."
   _effects: []
+  references:
+    version: 2
+    RefIds: []

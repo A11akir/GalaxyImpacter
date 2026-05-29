@@ -16,8 +16,7 @@ MonoBehaviour:
   _name: Fireball
   _rarity: 1
   _iconImage: {fileID: 0}
-  _specialization:
-  - FireMage
+  _specialization: 05000000
   _level: 0
   targetType: 2
   _inCollection: 1
@@ -25,3 +24,6 @@ MonoBehaviour:
   _values: 06000000
   _description: Take 6 damage.
   _effects: []
+  references:
+    version: 2
+    RefIds: []

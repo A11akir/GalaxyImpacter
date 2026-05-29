@@ -61,8 +61,16 @@ namespace Feature.StagesGameLogic
         {
             _readySystem.Reset();
             _resourceManager.StartNewTurn();
+            ResetAllPassives();
 
             _stageManagerSystem.StartPreparePhase(_gameSessionModel.Turn);
+        }
+
+        private void ResetAllPassives()
+        {
+            foreach (var owner in _gameSessionModel.GetAllEntityOwners())
+                foreach (var passive in owner.ActivePassives)
+                    passive.OnTurnEnd();
         }
 
         public void CycleStartFightTurn()

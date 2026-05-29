@@ -3,6 +3,7 @@ using System.Linq;
 using Feature.Card.Script;
 using Feature.CardEffect.Script;
 using Feature.GoogleSheets;
+using Feature.Hero;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "HeroStatsData", menuName = "Configs/Card/Card Stats Data", order = 1)]
@@ -10,9 +11,9 @@ public class CardStatsData : ScriptableObject, ICardStatsData
 {
     [SerializeField] private int _cost;
     [SerializeField] private string _name;
-    [SerializeField] private CardRarity _rarity; // ← enum вместо string
+    [SerializeField] private CardRarity _rarity;
     [SerializeField] private Sprite _iconImage;
-    [SerializeField] private List<string> _specialization;
+    [SerializeField] private List<AllHeroClass> _specialization;
     [SerializeField] private int _level;
     [SerializeField] private TargetType targetType;
     [SerializeField] private bool _inCollection;
@@ -30,7 +31,7 @@ public class CardStatsData : ScriptableObject, ICardStatsData
     public int Cost { get => _cost; set => _cost = value; }
     public TargetType TargetType { get => targetType; set => targetType = value; }
     public CardRarity Rarity { get => _rarity; set => _rarity = value; } // ← enum
-    public List<string> Specialization { get => _specialization; set => _specialization = value; }
+    public List<AllHeroClass> Specialization { get => _specialization; set => _specialization = value; }
     public int Level { get => _level; set => _level = value; }
     public Sprite IconImage { get => _iconImage; set => _iconImage = value; }
     public bool InCollection { get => _inCollection; set => _inCollection = value; }

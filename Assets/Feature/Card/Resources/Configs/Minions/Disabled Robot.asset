@@ -16,9 +16,7 @@ MonoBehaviour:
   _name: Disabled Robot
   _rarity: 1
   _iconImage: {fileID: 0}
-  _specialization:
-  - FireMage
-  - EarthMage
+  _specialization: 0500000003000000
   _level: 0
   targetType: 1
   _inCollection: 1

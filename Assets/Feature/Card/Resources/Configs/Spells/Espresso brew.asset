@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Espresso brew
   _rarity: 1
   _iconImage: {fileID: 0}
-  _specialization: []
+  _specialization: 
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -24,3 +24,6 @@ MonoBehaviour:
   _values: 0200000002000000
   _description: Get target 2 chakra. Next turn, the target has 2 fewer chakras.
   _effects: []
+  references:
+    version: 2
+    RefIds: []

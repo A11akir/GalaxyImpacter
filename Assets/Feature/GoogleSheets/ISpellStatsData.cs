@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Feature.Card.Script;
+using Feature.Hero;
 
 namespace Feature.GoogleSheets
 {
@@ -10,7 +11,7 @@ namespace Feature.GoogleSheets
         List<int> Values { get; set; }
         string Description { get; set; }
         CardRarity Rarity { get; set; }
-        List<string> Specialization { get; set; }
+        List<AllHeroClass> Specialization { get; set; }
         int Level { get; set; }
 
         bool InCollection { get; set; }

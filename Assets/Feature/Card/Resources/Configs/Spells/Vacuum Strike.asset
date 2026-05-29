@@ -16,8 +16,7 @@ MonoBehaviour:
   _name: Vacuum Strike
   _rarity: 1
   _iconImage: {fileID: 0}
-  _specialization:
-  - WindMage
+  _specialization: 09000000
   _level: 0
   targetType: 2
   _inCollection: 1
@@ -29,3 +28,6 @@ MonoBehaviour:
     \u0447\u0442\u043E \u0432\u044B \u0440\u0430\u0437\u044B\u0433\u0440\u0430\u043B\u0438
     \u043D\u0430 \u044D\u0442\u043E\u043C \u0445\u043E\u0434\u0443."
   _effects: []
+  references:
+    version: 2
+    RefIds: []

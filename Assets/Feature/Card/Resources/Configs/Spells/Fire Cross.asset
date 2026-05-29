@@ -16,8 +16,7 @@ MonoBehaviour:
   _name: Fire Cross
   _rarity: 2
   _iconImage: {fileID: 0}
-  _specialization:
-  - FireMage
+  _specialization: 05000000
   _level: 0
   targetType: 2
   _inCollection: 1
@@ -25,3 +24,6 @@ MonoBehaviour:
   _values: 05000000
   _description: Take 5 pure damage.
   _effects: []
+  references:
+    version: 2
+    RefIds: []

@@ -16,10 +16,7 @@ MonoBehaviour:
   _name: "\u0427\u0443\u0434\u0438\u0449\u0435"
   _rarity: 2
   _iconImage: {fileID: 0}
-  _specialization:
-  - Monster
-  - Alchemist
-  - Explorer
+  _specialization: 060000000100000004000000
   _level: 0
   targetType: 1
   _inCollection: 1

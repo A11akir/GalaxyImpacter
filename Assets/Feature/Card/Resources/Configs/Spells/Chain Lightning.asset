@@ -16,9 +16,7 @@ MonoBehaviour:
   _name: Chain Lightning
   _rarity: 1
   _iconImage: {fileID: 0}
-  _specialization:
-  - FireMage
-  - WindMage
+  _specialization: 0500000009000000
   _level: 0
   targetType: 2
   _inCollection: 1
@@ -27,3 +25,6 @@ MonoBehaviour:
   _description: "\u041D\u0430\u043D\u043E\u0441\u0438\u0442 6 \u0447\u0438\u0441\u0442\u043E\u0433\u043E
     \u0443\u0440\u043E\u043D\u0430."
   _effects: []
+  references:
+    version: 2
+    RefIds: []

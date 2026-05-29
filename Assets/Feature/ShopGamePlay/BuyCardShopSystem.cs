@@ -43,14 +43,13 @@ namespace Feature.ShopGamePlay
             var specs = card.Specialization;
             if (specs == null || specs.Count == 0) return;
 
-            foreach (var spec in specs)
+            foreach (var heroClass in specs)
             {
-                if (!System.Enum.TryParse<AllHeroClass>(spec, out var heroClass)) continue;
                 if (heroClass == AllHeroClass.All) continue;
 
                 _gameSessionModel.PlayerHero.HeroClassData.AddClass(heroClass);
                 _gameSessionModel.PlayerHero.HeroClassPurchaseCount
-                    .AddPurchase(heroClass, card.Rarity); // ← передаём редкость карты
+                    .AddPurchase(heroClass, card.Rarity);
             }
         }
     }

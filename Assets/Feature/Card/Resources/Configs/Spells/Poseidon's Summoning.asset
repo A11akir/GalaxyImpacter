@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Poseidon's Summoning
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization: []
+  _specialization: 
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -25,3 +25,6 @@ MonoBehaviour:
   _description: If you have 3 Poseidon's Herald on the field, give Poseidon random
     0 cost card.
   _effects: []
+  references:
+    version: 2
+    RefIds: []

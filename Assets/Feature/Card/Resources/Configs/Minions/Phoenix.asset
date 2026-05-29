@@ -16,8 +16,7 @@ MonoBehaviour:
   _name: Phoenix
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization:
-  - FireMage
+  _specialization: 05000000
   _level: 0
   targetType: 1
   _inCollection: 1

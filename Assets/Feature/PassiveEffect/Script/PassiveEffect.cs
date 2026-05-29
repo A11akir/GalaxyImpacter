@@ -8,5 +8,6 @@ namespace Feature.PassiveEffect.Script
     {
         public abstract void Register(CardAndHealthEntityOwnerData owner, CombatSystem.CombatSystem combatSystem);
         public abstract void Unregister();
+        public virtual void OnTurnEnd() { }
     }
 }

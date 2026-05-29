@@ -16,9 +16,7 @@ MonoBehaviour:
   _name: Isekai Hero
   _rarity: 2
   _iconImage: {fileID: 0}
-  _specialization:
-  - Explorer
-  - WindMage
+  _specialization: 0400000009000000
   _level: 0
   targetType: 1
   _inCollection: 1

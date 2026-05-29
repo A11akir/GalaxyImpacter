@@ -16,9 +16,7 @@ MonoBehaviour:
   _name: Indra
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization:
-  - FireMage
-  - WindMage
+  _specialization: 0500000009000000
   _level: 0
   targetType: 1
   _inCollection: 1

@@ -16,8 +16,7 @@ MonoBehaviour:
   _name: Fire Element
   _rarity: 0
   _iconImage: {fileID: 21300000, guid: 076633d88beb847348bd33907c79a6a8, type: 3}
-  _specialization:
-  - FireMage
+  _specialization: 05000000
   _level: 0
   targetType: 0
   _inCollection: 0

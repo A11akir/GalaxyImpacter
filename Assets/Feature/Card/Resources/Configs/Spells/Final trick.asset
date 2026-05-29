@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Final trick
   _rarity: 0
   _iconImage: {fileID: 0}
-  _specialization: []
+  _specialization: 
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -24,3 +24,6 @@ MonoBehaviour:
   _values: 0400000064000000
   _description: Take 4 damage. 100% chance of dealing damage to yourself.
   _effects: []
+  references:
+    version: 2
+    RefIds: []

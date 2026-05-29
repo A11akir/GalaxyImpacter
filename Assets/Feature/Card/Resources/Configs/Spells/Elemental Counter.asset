@@ -16,11 +16,7 @@ MonoBehaviour:
   _name: Elemental Counter
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization:
-  - WindMage
-  - EarthMage
-  - FireMage
-  - WaterMage
+  _specialization: 09000000030000000500000008000000
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -33,3 +29,6 @@ MonoBehaviour:
     \u043A\u0430\u0440\u0442\u0443 \u0441 \u0443\u043D\u0438\u043A\u0430\u043B\u044C\u043D\u043E\u0439
     \u0441\u0442\u0438\u0445\u0438\u0435\u0439 \u0432 \u0440\u0443\u043A\u0435."
   _effects: []
+  references:
+    version: 2
+    RefIds: []

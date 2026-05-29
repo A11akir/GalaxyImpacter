@@ -16,11 +16,7 @@ MonoBehaviour:
   _name: Perfect Arcane Fusion
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization:
-  - WindMage
-  - EarthMage
-  - FireMage
-  - WaterMage
+  _specialization: 09000000030000000500000008000000
   _level: 0
   targetType: 1
   _inCollection: 1

@@ -16,8 +16,7 @@ MonoBehaviour:
   _name: Whisper
   _rarity: 0
   _iconImage: {fileID: 0}
-  _specialization:
-  - WindMage
+  _specialization: 09000000
   _level: 0
   targetType: 2
   _inCollection: 1
@@ -26,3 +25,6 @@ MonoBehaviour:
   _description: "\u0412\u043E\u0437\u0432\u0440\u0430\u0449\u0430\u0435\u0442 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u043E
     \u0432 \u0440\u0443\u043A\u0443 \u0433\u0435\u0440\u043E\u044F."
   _effects: []
+  references:
+    version: 2
+    RefIds: []

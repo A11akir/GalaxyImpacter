@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Feature.Card.Script;
+using Feature.Hero;
 
 namespace Feature.GoogleSheets
 {
@@ -26,7 +27,7 @@ namespace Feature.GoogleSheets
         public List<int> Values;
         public string Description;
         public string Rarity;
-        public List<string> Specialization;
+        public List<AllHeroClass> Specialization;
         public int Level;
         public string MinionNameOwner { get; set; }
         public TargetType TargetType { get; set; } = TargetType.All;
@@ -43,7 +44,7 @@ namespace Feature.GoogleSheets
         public List<ISpellStatsData> SpellsList;
         public List<string> SpellNames = new List<string>();
         public string Rarity;
-        public List<string> Specialization;
+        public List<AllHeroClass> Specialization;
         public int Level;
         public int Health;
         public int Chakra;

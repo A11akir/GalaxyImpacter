@@ -16,8 +16,7 @@ MonoBehaviour:
   _name: Tactical retreat
   _rarity: 0
   _iconImage: {fileID: 0}
-  _specialization:
-  - All
+  _specialization: 0a000000
   _level: 0
   targetType: 0
   _inCollection: 0
@@ -25,3 +24,6 @@ MonoBehaviour:
   _values: 02000000
   _description: Draw 2 cards.
   _effects: []
+  references:
+    version: 2
+    RefIds: []

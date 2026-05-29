@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Feature.Card.Script;
 using Sirenix.OdinInspector;
 using UnityEngine;
 

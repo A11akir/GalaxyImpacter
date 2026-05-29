@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Clouds
   _rarity: 2
   _iconImage: {fileID: 0}
-  _specialization: []
+  _specialization: 
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -25,3 +25,6 @@ MonoBehaviour:
   _description: 'Passive: All creatures gains 1 more moisture until the end of the
     turn.'
   _effects: []
+  references:
+    version: 2
+    RefIds: []

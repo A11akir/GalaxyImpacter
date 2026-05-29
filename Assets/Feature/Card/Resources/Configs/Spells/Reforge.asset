@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Reforge
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization: []
+  _specialization: 
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -28,3 +28,6 @@ MonoBehaviour:
     \u0432\u0435\u0440\u0441\u0438\u044E \u0441\u043E \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u0435\u043C
     \u0432 2 \u0440\u0430\u0437\u0430 \u0431\u043E\u043B\u044C\u0448\u0435."
   _effects: []
+  references:
+    version: 2
+    RefIds: []

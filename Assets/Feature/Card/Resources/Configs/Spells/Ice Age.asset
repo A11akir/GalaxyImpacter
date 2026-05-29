@@ -16,8 +16,7 @@ MonoBehaviour:
   _name: Ice Age
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization:
-  - WaterMage
+  _specialization: 08000000
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -25,3 +24,6 @@ MonoBehaviour:
   _values: 02000000
   _description: Multiplies everyone's moisture by 2 and freezes.
   _effects: []
+  references:
+    version: 2
+    RefIds: []

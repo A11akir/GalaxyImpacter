@@ -16,8 +16,7 @@ MonoBehaviour:
   _name: Tsunami
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization:
-  - WaterMage
+  _specialization: 08000000
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -25,3 +24,6 @@ MonoBehaviour:
   _values: 0200000001000000
   _description: Deals 2 damage to enemies and causes each target to drop 1 card.
   _effects: []
+  references:
+    version: 2
+    RefIds: []

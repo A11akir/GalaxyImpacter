@@ -16,8 +16,7 @@ MonoBehaviour:
   _name: Block Generation
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization:
-  - EarthMage
+  _specialization: 03000000
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -30,3 +29,6 @@ MonoBehaviour:
     \u0441\u0442\u0435\u043D\u0443 \u0440\u0430\u0432\u043D\u043E\u0439 \u0435\u0433\u043E
     \u0441\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u0438."
   _effects: []
+  references:
+    version: 2
+    RefIds: []

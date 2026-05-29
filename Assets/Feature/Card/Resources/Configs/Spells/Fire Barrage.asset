@@ -16,12 +16,14 @@ MonoBehaviour:
   _name: Fire Barrage
   _rarity: 2
   _iconImage: {fileID: 0}
-  _specialization:
-  - FireMage
+  _specialization: 05000000
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
   id: 30108a4d-223a-4fd0-9236-b79546adf83f
   _values: 01000000
   _description: Take 1 damage random enemy. Repeated the same number of times.
   _effects: []
+  references:
+    version: 2
+    RefIds: []

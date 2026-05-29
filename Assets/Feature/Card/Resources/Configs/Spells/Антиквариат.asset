@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: "\u0410\u043D\u0442\u0438\u043A\u0432\u0430\u0440\u0438\u0430\u0442"
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization: []
+  _specialization: 
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -27,3 +27,6 @@ MonoBehaviour:
     1 \u0432\u0440\u0435\u043C\u0435\u043D\u043D\u0443\u044E \u043A\u0430\u0440\u0442\u0443
     \u0410\u0441\u0441\u0430\u0441\u0438\u043D\u0430."
   _effects: []
+  references:
+    version: 2
+    RefIds: []

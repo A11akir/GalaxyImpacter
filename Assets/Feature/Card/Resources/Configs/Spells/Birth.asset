@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Birth
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization: []
+  _specialization: 
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -24,3 +24,6 @@ MonoBehaviour:
   _values: 05000000
   _description: Cost 0 if it is on board during the first turn. Deal enemy 5 damage
   _effects: []
+  references:
+    version: 2
+    RefIds: []

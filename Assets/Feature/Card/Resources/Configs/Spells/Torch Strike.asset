@@ -16,12 +16,18 @@ MonoBehaviour:
   _name: Torch Strike
   _rarity: 0
   _iconImage: {fileID: 0}
-  _specialization:
-  - FireMage
+  _specialization: 05000000
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
   id: 631c45b7-da75-4849-8a17-ad8453b37e95
   _values: 0100000000000000
   _description: Hit this turn increases your next damage by 1. Take 0 damage.
-  _effects: []
+  _effects:
+  - rid: 5323832666482802694
+  references:
+    version: 2
+    RefIds:
+    - rid: 5323832666482802694
+      type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data: 

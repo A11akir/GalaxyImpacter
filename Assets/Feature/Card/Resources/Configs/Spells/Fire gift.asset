@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Fire gift
   _rarity: 2
   _iconImage: {fileID: 0}
-  _specialization: []
+  _specialization: 05000000
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -24,3 +24,6 @@ MonoBehaviour:
   _values: 010000000100000000000000
   _description: Give 1 fire temporary spell, it is cost 1 less.
   _effects: []
+  references:
+    version: 2
+    RefIds: []

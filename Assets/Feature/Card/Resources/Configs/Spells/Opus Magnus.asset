@@ -16,8 +16,7 @@ MonoBehaviour:
   _name: Opus Magnus
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization:
-  - Alchemist
+  _specialization: 01000000
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -26,3 +25,6 @@ MonoBehaviour:
   _description: 'Destroy all your creatures. For each destroyed: deal 3 damage to
     all enemies, restore 3 HP, draw 1 card. '
   _effects: []
+  references:
+    version: 2
+    RefIds: []

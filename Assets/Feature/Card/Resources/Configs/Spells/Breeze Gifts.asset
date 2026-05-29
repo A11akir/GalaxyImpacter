@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Breeze Gifts
   _rarity: 1
   _iconImage: {fileID: 0}
-  _specialization: []
+  _specialization: 
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -25,3 +25,6 @@ MonoBehaviour:
   _description: "\u0412\u044B \u043F\u043E\u043B\u0443\u0447\u0430\u0435\u0442\u0435
     2 Gust"
   _effects: []
+  references:
+    version: 2
+    RefIds: []

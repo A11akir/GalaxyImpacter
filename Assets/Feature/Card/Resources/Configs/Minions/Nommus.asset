@@ -16,8 +16,7 @@ MonoBehaviour:
   _name: Nommus
   _rarity: 4
   _iconImage: {fileID: 0}
-  _specialization:
-  - All
+  _specialization: 0a000000
   _level: 0
   targetType: 1
   _inCollection: 0

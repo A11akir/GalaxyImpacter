@@ -16,12 +16,23 @@ MonoBehaviour:
   _name: Burning
   _rarity: 0
   _iconImage: {fileID: 21300000, guid: dea5417e9f8f34a2a819a1a24d7d0fd3, type: 3}
-  _specialization:
-  - FireMage
+  _specialization: 05000000
   _level: 0
   targetType: 0
   _inCollection: 0
   id: 0e9630ea-b2ab-41df-ad1d-c237fd53c32e
   _values: 
   _description: Each fire hit this turn increases your fire next damage by 1.
-  _effects: []
+  _effects:
+  - rid: 5323832666482802689
+  references:
+    version: 2
+    RefIds:
+    - rid: 5323832666482802689
+      type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        _passive:
+          rid: 5323832666482802690
+    - rid: 5323832666482802690
+      type: {class: FireDamageBonusPassive, ns: Feature.PassiveEffect.Script, asm: Assembly-CSharp}
+      data: 

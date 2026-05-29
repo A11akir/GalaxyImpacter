@@ -16,12 +16,18 @@ MonoBehaviour:
   _name: Hit
   _rarity: 0
   _iconImage: {fileID: 0}
-  _specialization:
-  - All
+  _specialization: 0a000000
   _level: 0
   targetType: 2
   _inCollection: 0
   id: e99db7ea-faf0-4429-84e6-b4882bec4a6d
   _values: 03000000
   _description: Take 3 damage.
-  _effects: []
+  _effects:
+  - rid: 5323832666482802696
+  references:
+    version: 2
+    RefIds:
+    - rid: 5323832666482802696
+      type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data: 

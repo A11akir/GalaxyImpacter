@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Arcane Creation
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization: []
+  _specialization: 
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -32,3 +32,6 @@ MonoBehaviour:
     1 \u0438 \u0442\u0440\u0430\u0442\u0438\u0442 \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u0435
     \u0432\u043C\u0435\u0441\u0442\u043E \u0447\u0430\u043A\u0440\u044B."
   _effects: []
+  references:
+    version: 2
+    RefIds: []

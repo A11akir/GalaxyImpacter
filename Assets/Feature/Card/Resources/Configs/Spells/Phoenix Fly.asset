@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Phoenix Fly
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization: []
+  _specialization: 
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -24,3 +24,6 @@ MonoBehaviour:
   _values: 
   _description: 'Passive: Cannot be targeted by attacks until next turn.'
   _effects: []
+  references:
+    version: 2
+    RefIds: []

@@ -16,10 +16,7 @@ MonoBehaviour:
   _name: Perfect Block
   _rarity: 2
   _iconImage: {fileID: 0}
-  _specialization:
-  - Explorer
-  - Warrior
-  - Assassin
+  _specialization: 040000000700000002000000
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -30,3 +27,6 @@ MonoBehaviour:
     \u043C\u0430\u043D\u0443 \u043F\u0440\u0438 \u0431\u043B\u043E\u043A\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0438
     \u0443\u0440\u043E\u043D\u0430 \u043C\u0435\u043D\u044C\u0448\u0435 5."
   _effects: []
+  references:
+    version: 2
+    RefIds: []

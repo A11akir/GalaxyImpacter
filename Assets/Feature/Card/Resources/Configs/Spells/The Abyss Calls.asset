@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: The Abyss Calls
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization: []
+  _specialization: 
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -26,3 +26,6 @@ MonoBehaviour:
     \u043D\u0430 3. \u0413\u0435\u0440\u043E\u0439 \u043F\u043E\u043B\u0443\u0447\u0430\u0435\u0442
     \u0417\u0430\u0442\u0435\u0440\u044F\u043D\u043D\u044B\u0435 \u0426\u0435\u043D\u043D\u043E\u0441\u0442\u0438."
   _effects: []
+  references:
+    version: 2
+    RefIds: []

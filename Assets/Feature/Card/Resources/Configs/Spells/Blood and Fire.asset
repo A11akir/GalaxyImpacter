@@ -16,9 +16,7 @@ MonoBehaviour:
   _name: Blood and Fire
   _rarity: 2
   _iconImage: {fileID: 0}
-  _specialization:
-  - FireMage
-  - Warrior
+  _specialization: 0500000007000000
   _level: 0
   targetType: 2
   _inCollection: 1
@@ -28,3 +26,6 @@ MonoBehaviour:
     \u0432\u043E\u0437\u044C\u043C\u0438\u0442\u0435 \u0441\u0442\u043E\u043B\u044C\u043A\u043E
     \u0436\u0435 \u043A\u0430\u0440\u0442."
   _effects: []
+  references:
+    version: 2
+    RefIds: []

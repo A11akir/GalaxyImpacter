@@ -16,10 +16,7 @@ MonoBehaviour:
   _name: Extinction Event
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization:
-  - Assassin
-  - Warrior
-  - Monster
+  _specialization: 020000000700000006000000
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -30,3 +27,6 @@ MonoBehaviour:
     \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u043E \u043D\u0430 \u043D\u0435\u0433\u043E
     \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0435\u0442\u0441\u044F Claw."
   _effects: []
+  references:
+    version: 2
+    RefIds: []

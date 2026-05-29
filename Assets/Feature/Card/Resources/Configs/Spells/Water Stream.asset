@@ -16,8 +16,7 @@ MonoBehaviour:
   _name: Water Stream
   _rarity: 0
   _iconImage: {fileID: 0}
-  _specialization:
-  - WaterMage
+  _specialization: 08000000
   _level: 0
   targetType: 2
   _inCollection: 1
@@ -25,3 +24,6 @@ MonoBehaviour:
   _values: 0200000002000000
   _description: The target receives 2 moisture, and the next card costs 2 less
   _effects: []
+  references:
+    version: 2
+    RefIds: []

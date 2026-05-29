@@ -46,13 +46,11 @@ namespace Feature.CardEffect.Script
             if (query.RaritySource == RaritySource.Manual)
                 return new HashSet<CardRarity>(query.ManualRarities);
 
-            var classStr = heroClass.ToString();
             var baseDeck = ctx.GameSessionModel.GetPlayerDataByOwner(ctx.Caster).MainHeroEntity().BaseDeck;
-            var rarities = baseDeck
-                .Where(c => c.Specialization.Contains(classStr))
+            return baseDeck
+                .Where(c => c.Specialization.Contains(heroClass))
                 .Select(c => c.Rarity)
                 .ToHashSet();
-            return rarities;
         }
 
         private bool MatchesType(CardStatsData card, CardTypeFilter filter) => filter switch

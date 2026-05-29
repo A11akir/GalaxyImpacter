@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Diffusion of beings
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization: []
+  _specialization: 
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -27,3 +27,6 @@ MonoBehaviour:
     \u043F\u043E\u0442\u0432\u043E\u0440\u044F\u0435\u0442\u0441\u044F 10 \u0440\u0430\u0437
     \u043D\u0430 1 \u0431\u043E\u043B\u044C\u0448\u0435."
   _effects: []
+  references:
+    version: 2
+    RefIds: []

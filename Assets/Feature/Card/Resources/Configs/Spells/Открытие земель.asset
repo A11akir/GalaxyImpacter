@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: "\u041E\u0442\u043A\u0440\u044B\u0442\u0438\u0435 \u0437\u0435\u043C\u0435\u043B\u044C"
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization: []
+  _specialization: 
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -27,3 +27,6 @@ MonoBehaviour:
     \u0443\u043B\u0443\u0447\u0448\u0435\u043D\u043D\u0443\u044E 1 \u0440\u0430\u0437
     \u0432\u0435\u0440\u0441\u0438\u044E Parco Molo."
   _effects: []
+  references:
+    version: 2
+    RefIds: []

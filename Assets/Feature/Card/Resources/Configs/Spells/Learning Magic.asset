@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Learning Magic
   _rarity: 2
   _iconImage: {fileID: 0}
-  _specialization: []
+  _specialization: 
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -24,3 +24,6 @@ MonoBehaviour:
   _values: 01000000
   _description: 'Passive: Each hit this turn increases your next damage by 1.'
   _effects: []
+  references:
+    version: 2
+    RefIds: []

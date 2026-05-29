@@ -16,8 +16,7 @@ MonoBehaviour:
   _name: "\u0417\u0435\u043B\u044C\u0435 \u0431\u0435\u0441\u0441\u043C\u0435\u0440\u0442\u0438\u044F"
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization:
-  - Alchemist
+  _specialization: 01000000
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -27,3 +26,6 @@ MonoBehaviour:
     \u043D\u0435 \u043C\u043E\u0433\u0443\u0442 \u0443\u043C\u0435\u0440\u0435\u0442\u044C
     \u043D\u0430 \u044D\u0442\u043E\u043C \u0445\u043E\u0434\u0443. \u0421\u0436\u0438\u0433\u0430\u0435\u0442\u0441\u044F"
   _effects: []
+  references:
+    version: 2
+    RefIds: []

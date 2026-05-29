@@ -16,8 +16,7 @@ MonoBehaviour:
   _name: Giant Golem
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization:
-  - EarthMage
+  _specialization: 03000000
   _level: 0
   targetType: 1
   _inCollection: 1

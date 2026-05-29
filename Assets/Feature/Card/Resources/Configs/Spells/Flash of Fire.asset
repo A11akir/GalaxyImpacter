@@ -16,12 +16,18 @@ MonoBehaviour:
   _name: Flash of Fire
   _rarity: 0
   _iconImage: {fileID: 0}
-  _specialization:
-  - FireMage
+  _specialization: 05000000
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
   id: 878b8997-4530-4cf7-bf74-8f5bc0f555ee
   _values: 0100000002000000
   _description: Take 1 damage 2 random minion.
-  _effects: []
+  _effects:
+  - rid: 5323832666482802691
+  references:
+    version: 2
+    RefIds:
+    - rid: 5323832666482802691
+      type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data: 

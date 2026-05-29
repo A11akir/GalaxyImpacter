@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Citrinitas
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization: []
+  _specialization: 
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -26,3 +26,6 @@ MonoBehaviour:
     \u0432\u0441\u0435\u0445 \u0441\u0443\u0449\u0435\u0441\u0442\u0432 \u043D\u0430
     \u0441\u0442\u043E\u043B\u0435 1 \u0440\u0430\u0437"
   _effects: []
+  references:
+    version: 2
+    RefIds: []

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Feature.Card.Script;
 using Feature.Data;
+using Feature.Hero;
 using UnityEditor;
 using UnityEngine;
 
@@ -100,34 +101,34 @@ namespace Feature.GoogleSheets
             gameData.avatarCards.Clear();
             gameData.allCards.Clear();
 
-            var comboMap = new Dictionary<HashSet<string>, List<CardStatsData>>(HashSet<string>.CreateSetComparer())
+            var comboMap = new Dictionary<HashSet<AllHeroClass>, List<CardStatsData>>(HashSet<AllHeroClass>.CreateSetComparer())
             {
-                { new HashSet<string> { "FireMage", "WindMage" },                           gameData.lightningMageCards },
-                { new HashSet<string> { "FireMage", "EarthMage" },                          gameData.metalMageCards },
-                { new HashSet<string> { "WaterMage", "Explorer" },                          gameData.abyssLordCards },
-                { new HashSet<string> { "WindMage", "Explorer" },                           gameData.timeMageCards },
-                { new HashSet<string> { "Assassin", "Alchemist" },                          gameData.witcherCards },
-                { new HashSet<string> { "Warrior", "FireMage" },                            gameData.dragonbornCards },
-                { new HashSet<string> { "EarthMage", "WindMage" },                          gameData.gravityMageCards },
-                { new HashSet<string> { "Alchemist", "Explorer", "Monster" },               gameData.supremeAlchemistCards },
-                { new HashSet<string> { "Warrior", "Assassin", "Explorer" },                gameData.invincibleWandererCards },
-                { new HashSet<string> { "Warrior", "Assassin", "Monster" },                 gameData.absolutePredatorCards },
-                { new HashSet<string> { "WaterMage", "Warrior", "Monster", "Alchemist" },   gameData.deathKingCards },
-                { new HashSet<string> { "WindMage", "WaterMage", "FireMage", "EarthMage" }, gameData.avatarCards },
+                { new HashSet<AllHeroClass> { AllHeroClass.FireMage,  AllHeroClass.WindMage },                                                      gameData.lightningMageCards },
+                { new HashSet<AllHeroClass> { AllHeroClass.FireMage,  AllHeroClass.EarthMage },                                                     gameData.metalMageCards },
+                { new HashSet<AllHeroClass> { AllHeroClass.WaterMage, AllHeroClass.Explorer },                                                      gameData.abyssLordCards },
+                { new HashSet<AllHeroClass> { AllHeroClass.WindMage,  AllHeroClass.Explorer },                                                      gameData.timeMageCards },
+                { new HashSet<AllHeroClass> { AllHeroClass.Assassin,  AllHeroClass.Alchemist },                                                     gameData.witcherCards },
+                { new HashSet<AllHeroClass> { AllHeroClass.Warrior,   AllHeroClass.FireMage },                                                      gameData.dragonbornCards },
+                { new HashSet<AllHeroClass> { AllHeroClass.EarthMage, AllHeroClass.WindMage },                                                      gameData.gravityMageCards },
+                { new HashSet<AllHeroClass> { AllHeroClass.Alchemist, AllHeroClass.Explorer,  AllHeroClass.Monster },                               gameData.supremeAlchemistCards },
+                { new HashSet<AllHeroClass> { AllHeroClass.Warrior,   AllHeroClass.Assassin,  AllHeroClass.Explorer },                              gameData.invincibleWandererCards },
+                { new HashSet<AllHeroClass> { AllHeroClass.Warrior,   AllHeroClass.Assassin,  AllHeroClass.Monster },                               gameData.absolutePredatorCards },
+                { new HashSet<AllHeroClass> { AllHeroClass.WaterMage, AllHeroClass.Warrior,   AllHeroClass.Monster,  AllHeroClass.Alchemist },       gameData.deathKingCards },
+                { new HashSet<AllHeroClass> { AllHeroClass.WindMage,  AllHeroClass.WaterMage, AllHeroClass.FireMage, AllHeroClass.EarthMage },       gameData.avatarCards },
             };
 
-            var baseMap = new Dictionary<string, List<CardStatsData>>
+            var baseMap = new Dictionary<AllHeroClass, List<CardStatsData>>
             {
-                { "All",        gameData.baseCards},
-                { "Alchemist",  gameData.alchemistCards },
-                { "Assassin",   gameData.assassinCards },
-                { "EarthMage",  gameData.earthMageCards },
-                { "Explorer",   gameData.explorerCards },
-                { "FireMage",   gameData.fireMageCards },
-                { "Monster",    gameData.monsterCards },
-                { "Warrior",    gameData.warriorCards },
-                { "WaterMage",  gameData.waterMageCards },
-                { "WindMage",   gameData.windMageCards },
+                { AllHeroClass.All,       gameData.baseCards },
+                { AllHeroClass.Alchemist, gameData.alchemistCards },
+                { AllHeroClass.Assassin,  gameData.assassinCards },
+                { AllHeroClass.EarthMage, gameData.earthMageCards },
+                { AllHeroClass.Explorer,  gameData.explorerCards },
+                { AllHeroClass.FireMage,  gameData.fireMageCards },
+                { AllHeroClass.Monster,   gameData.monsterCards },
+                { AllHeroClass.Warrior,   gameData.warriorCards },
+                { AllHeroClass.WaterMage, gameData.waterMageCards },
+                { AllHeroClass.WindMage,  gameData.windMageCards },
             };
 
             foreach (var card in allCards)
@@ -136,11 +137,9 @@ namespace Feature.GoogleSheets
 
                 gameData.allCards.Add(card);
 
-                var specs = card.Specialization?
-                    .Where(s => !string.IsNullOrWhiteSpace(s))
-                    .ToList() ?? new List<string>();
-                
-                if (specs.Count == 1 && specs[0] == "All")
+                var specs = card.Specialization ?? new List<AllHeroClass>();
+
+                if (specs.Count == 1 && specs[0] == AllHeroClass.All)
                 {
                     gameData.baseCards.Add(card);
                     continue;
@@ -157,7 +156,7 @@ namespace Feature.GoogleSheets
                     continue;
                 }
 
-                var specSet = new HashSet<string>(specs);
+                var specSet = new HashSet<AllHeroClass>(specs);
                 bool matched = false;
 
                 foreach (var kvp in comboMap)

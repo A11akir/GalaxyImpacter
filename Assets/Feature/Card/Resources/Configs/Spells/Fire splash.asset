@@ -16,11 +16,18 @@ MonoBehaviour:
   _name: Fire splash
   _rarity: 2
   _iconImage: {fileID: 0}
-  _specialization: []
+  _specialization: 05000000
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
   id: 63fd606e-79bd-4b41-8598-e12db243af50
   _values: 0100000003000000
   _description: Take 1 damage with zone 3.
-  _effects: []
+  _effects:
+  - rid: 5323832666482802692
+  references:
+    version: 2
+    RefIds:
+    - rid: 5323832666482802692
+      type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data: 

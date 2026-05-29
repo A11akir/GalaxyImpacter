@@ -16,10 +16,7 @@ MonoBehaviour:
   _name: "\u0414\u043E\u043C\u0438\u043D\u0430\u0446\u0438\u044F"
   _rarity: 2
   _iconImage: {fileID: 0}
-  _specialization:
-  - Explorer
-  - Warrior
-  - Assassin
+  _specialization: 040000000700000002000000
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -30,3 +27,6 @@ MonoBehaviour:
     2 \u043A\u0430\u0440\u0442\u044B \u0438 \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u0435
     2 \u043C\u0430\u043D\u044B."
   _effects: []
+  references:
+    version: 2
+    RefIds: []

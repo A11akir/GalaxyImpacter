@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Night Forece
   _rarity: 1
   _iconImage: {fileID: 0}
-  _specialization: []
+  _specialization: 
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -25,3 +25,6 @@ MonoBehaviour:
   _description: "\u041F\u0430\u0441\u0441\u0438\u0432\u043D\u043E: \u043D\u0430 \u0432\u0440\u0435\u043C\u044F
     \u0431\u043E\u044F \u0438\u043C\u0435\u0435\u0442 \u0435\u0449\u0435 2 \u0447\u0430\u043A\u0440\u044B."
   _effects: []
+  references:
+    version: 2
+    RefIds: []

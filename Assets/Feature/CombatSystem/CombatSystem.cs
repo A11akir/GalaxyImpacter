@@ -1,5 +1,6 @@
 using System;
 using Feature.GameSessionData;
+using UnityEngine;
 
 namespace Feature.CombatSystem
 {
@@ -12,15 +13,19 @@ namespace Feature.CombatSystem
             if (target == null) return;
 
             target.LastDamageSource = source;
+            Debug.Log($"Taking damage {damage}");
+            Debug.Log(target._heroName);
             target.HealthValue -= damage;
 
             OnDamageDealt?.Invoke(new DamageDealtInfo
             {
+                
                 Source = source,
                 Target = target,
                 SourceCard = sourceCard,
                 Amount = damage
             });
+            Debug.Log($"Damage dealt: {damage} from {source} to {target}");
         }
     }
 }

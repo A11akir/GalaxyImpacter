@@ -16,10 +16,7 @@ MonoBehaviour:
   _name: Death Leap
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization:
-  - Assassin
-  - Warrior
-  - Monster
+  _specialization: 020000000700000006000000
   _level: 0
   targetType: 2
   _inCollection: 1
@@ -31,3 +28,6 @@ MonoBehaviour:
     \u043D\u0430 \u0431\u043B\u0438\u0436\u0430\u0439\u0448\u0435\u0435 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u043E
     \u0446\u0435\u043B\u0438 \u0433\u0435\u0440\u043E\u044F."
   _effects: []
+  references:
+    version: 2
+    RefIds: []

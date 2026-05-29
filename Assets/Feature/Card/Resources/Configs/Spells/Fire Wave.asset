@@ -16,12 +16,18 @@ MonoBehaviour:
   _name: Fire Wave
   _rarity: 1
   _iconImage: {fileID: 0}
-  _specialization:
-  - FireMage
+  _specialization: 05000000
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
   id: 17141509-38fb-4b71-9f4c-fd1e679c78ce
   _values: 01000000
   _description: Take 1 damage all enemies
-  _effects: []
+  _effects:
+  - rid: 5323832666482802693
+  references:
+    version: 2
+    RefIds:
+    - rid: 5323832666482802693
+      type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data: 

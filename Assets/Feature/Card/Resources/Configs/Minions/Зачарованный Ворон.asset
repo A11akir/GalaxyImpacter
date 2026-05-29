@@ -18,9 +18,7 @@ MonoBehaviour:
     \u0412\u043E\u0440\u043E\u043D"
   _rarity: 2
   _iconImage: {fileID: 0}
-  _specialization:
-  - Assassin
-  - Alchemist
+  _specialization: 0200000001000000
   _level: 0
   targetType: 1
   _inCollection: 1

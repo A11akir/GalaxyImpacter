@@ -16,8 +16,7 @@ MonoBehaviour:
   _name: Doppelganger
   _rarity: 2
   _iconImage: {fileID: 0}
-  _specialization:
-  - Assassin
+  _specialization: 02000000
   _level: 0
   targetType: 1
   _inCollection: 1

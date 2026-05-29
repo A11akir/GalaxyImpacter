@@ -16,12 +16,18 @@ MonoBehaviour:
   _name: Spark
   _rarity: 0
   _iconImage: {fileID: 0}
-  _specialization:
-  - FireMage
+  _specialization: 05000000
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
   id: de1bc61d-1610-469b-9da2-47459d5fd0ef
   _values: 01000000
   _description: Take 1 damage.
-  _effects: []
+  _effects:
+  - rid: 5323832666482802695
+  references:
+    version: 2
+    RefIds:
+    - rid: 5323832666482802695
+      type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data: 

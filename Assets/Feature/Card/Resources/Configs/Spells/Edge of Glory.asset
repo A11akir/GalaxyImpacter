@@ -16,10 +16,7 @@ MonoBehaviour:
   _name: Edge of Glory
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization:
-  - Explorer
-  - Warrior
-  - Assassin
+  _specialization: 040000000700000002000000
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -29,3 +26,6 @@ MonoBehaviour:
     \u043F\u043E\u043B\u0443\u0447\u0430\u0435\u0442\u0435 \u0438 \u043D\u0430\u043D\u043E\u0441\u0438\u0442\u0435
     \u043D\u0430 100% \u0431\u043E\u043B\u044C\u0448\u0435 \u0443\u0440\u043E\u043D\u0430."
   _effects: []
+  references:
+    version: 2
+    RefIds: []

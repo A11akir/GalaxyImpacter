@@ -16,8 +16,7 @@ MonoBehaviour:
   _name: Earth Wall
   _rarity: 0
   _iconImage: {fileID: 0}
-  _specialization:
-  - EarthMage
+  _specialization: 03000000
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -25,3 +24,6 @@ MonoBehaviour:
   _values: 03000000
   _description: Summon Eath Wall with 3 health.
   _effects: []
+  references:
+    version: 2
+    RefIds: []

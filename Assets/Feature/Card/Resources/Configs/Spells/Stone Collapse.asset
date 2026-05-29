@@ -16,8 +16,7 @@ MonoBehaviour:
   _name: Stone Collapse
   _rarity: 2
   _iconImage: {fileID: 0}
-  _specialization:
-  - EarthMage
+  _specialization: 03000000
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -27,3 +26,6 @@ MonoBehaviour:
     \u0437\u0435\u043C\u043B\u0438 \u0446\u0435\u043B\u044C\u044E \u043A\u043E\u0442\u043E\u0440\u044B\u0445
     \u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442\u0441\u044F \u043F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A\u0438."
   _effects: []
+  references:
+    version: 2
+    RefIds: []

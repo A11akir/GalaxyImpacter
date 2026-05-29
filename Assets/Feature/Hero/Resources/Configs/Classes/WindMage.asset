@@ -18,5 +18,5 @@ MonoBehaviour:
   _iconImage: {fileID: 2437554326289776482, guid: 6b159de4f9a91490c823dd07fcae1d8e, type: 3}
   _iconHeroPowerImage: {fileID: -4529121875680807664, guid: e95c68e33427c4d828c0b56e28dd233b, type: 3}
   _heroPowers:
-  - {fileID: 11400000, guid: 43b2741b30ffcf147bd32d2123092233, type: 2}
   - {fileID: 11400000, guid: ea3c96913a866476582b6afb084a41dc, type: 2}
+  - {fileID: 11400000, guid: 1052b59fd34c84a448f27be840ffb662, type: 2}

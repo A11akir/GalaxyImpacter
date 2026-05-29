@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Feature.Card.Script;
 using Feature.Common;
+using Feature.Hero;
 using UnityEditor;
 using UnityEngine;
 
@@ -48,7 +49,7 @@ namespace Feature.GoogleSheets
                     {
                         Name = token,
                         Values = new List<int>(),
-                        Specialization = new List<string>()
+                        Specialization = new List<AllHeroClass>()
                     };
                     _allGameConfig.AllMinionStats.Add(_minionStatsConfig);
                     break;
@@ -97,11 +98,8 @@ namespace Feature.GoogleSheets
                 case "Specialization2":
                 case "Specialization3":
                 case "Specialization4":
-                    if (_minionStatsConfig != null && !string.IsNullOrWhiteSpace(token))
-                    {
-                        _minionStatsConfig.Specialization.Add(token);
-                    }
-
+                    if (_minionStatsConfig != null && !string.IsNullOrWhiteSpace(token) && Enum.TryParse<AllHeroClass>(token, out var minionClass))
+                        _minionStatsConfig.Specialization.Add(minionClass);
                     break;
                 case "InCollection":
                     if (_minionStatsConfig != null)

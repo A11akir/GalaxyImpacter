@@ -16,9 +16,7 @@ MonoBehaviour:
   _name: "\u0420\u0430\u0437\u0440\u044B\u0432"
   _rarity: 2
   _iconImage: {fileID: 0}
-  _specialization:
-  - EarthMage
-  - WindMage
+  _specialization: 0300000009000000
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -30,3 +28,6 @@ MonoBehaviour:
     \u0440\u0430\u0437\u0430 \u0431\u043E\u043B\u044C\u0448\u0435 \u0440\u0430\u0432\u043D\u044B\u043C
     \u0441\u0431\u0440\u043E\u0448\u0435\u043D\u043D\u044B\u043C \u0441\u0442\u0430\u043A\u0430\u043C."
   _effects: []
+  references:
+    version: 2
+    RefIds: []

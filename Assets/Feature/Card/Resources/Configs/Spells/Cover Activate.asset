@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Cover Activate
   _rarity: 1
   _iconImage: {fileID: 0}
-  _specialization: []
+  _specialization: 
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -24,3 +24,6 @@ MonoBehaviour:
   _values: 01000000
   _description: 'Passive: Your spells give this creature instead of damaging it.'
   _effects: []
+  references:
+    version: 2
+    RefIds: []

@@ -16,9 +16,7 @@ MonoBehaviour:
   _name: Core Meltdown
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization:
-  - FireMage
-  - EarthMage
+  _specialization: 0500000003000000
   _level: 0
   targetType: 2
   _inCollection: 1
@@ -28,3 +26,6 @@ MonoBehaviour:
     \u0438\u043B\u0438 \u0449\u0438\u0442 \u043D\u0430 \u0446\u0435\u043B\u0438.
     \u0412\u043E\u0437\u044C\u043C\u0438\u0442\u0435 1 \u043A\u0430\u0440\u0442\u0443."
   _effects: []
+  references:
+    version: 2
+    RefIds: []

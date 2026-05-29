@@ -16,7 +16,7 @@ MonoBehaviour:
   _name: Burn Egg
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization: []
+  _specialization: 
   _level: 0
   targetType: 0
   _inCollection: 0
@@ -24,3 +24,6 @@ MonoBehaviour:
   _values: 00000000
   _description: 'Passive: At the start of the turn dies and summons a Phoenix.'
   _effects: []
+  references:
+    version: 2
+    RefIds: []

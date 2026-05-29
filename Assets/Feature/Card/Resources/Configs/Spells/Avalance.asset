@@ -16,8 +16,7 @@ MonoBehaviour:
   _name: Avalance
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization:
-  - EarthMage
+  _specialization: 03000000
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -30,3 +29,6 @@ MonoBehaviour:
     \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u044E \u0440\u0430\u0437\u0440\u0443\u0448\u0435\u043D\u043D\u044B\u0445
     \u0441\u0442\u0435\u043D."
   _effects: []
+  references:
+    version: 2
+    RefIds: []

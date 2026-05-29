@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Feature.Card.Script;
 using Feature.Common;
+using Feature.Hero;
 using UnityEditor;
 using UnityEngine;
 
@@ -45,7 +46,7 @@ namespace Feature.GoogleSheets
                     {
                         Name = token,
                         Values = new List<int>(),
-                        Specialization = new List<string>()
+                        Specialization = new List<AllHeroClass>()
                     };
                     _allGameConfig.AllSpellStats.Add(_spellStatsConfig);
                     break;
@@ -89,8 +90,8 @@ namespace Feature.GoogleSheets
                 case "Specialization2":
                 case "Specialization3":
                 case "Specialization4":
-                    if (!string.IsNullOrWhiteSpace(token))
-                        _spellStatsConfig.Specialization.Add(token);
+                    if (!string.IsNullOrWhiteSpace(token) && Enum.TryParse<AllHeroClass>(token, out var spellClass))
+                        _spellStatsConfig.Specialization.Add(spellClass);
                     break;
                 case "InCollection":
                     if (_spellStatsConfig != null)

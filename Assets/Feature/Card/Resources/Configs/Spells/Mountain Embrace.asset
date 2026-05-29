@@ -16,8 +16,7 @@ MonoBehaviour:
   _name: Mountain Embrace
   _rarity: 2
   _iconImage: {fileID: 0}
-  _specialization:
-  - EarthMage
+  _specialization: 03000000
   _level: 0
   targetType: 2
   _inCollection: 1
@@ -26,3 +25,6 @@ MonoBehaviour:
   _description: Summon 2 3-health Earth Walls. Deal damage to target equal to each
     wall's current health.
   _effects: []
+  references:
+    version: 2
+    RefIds: []

@@ -16,11 +16,7 @@ MonoBehaviour:
   _name: Death Knight
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization:
-  - WaterMage
-  - Monster
-  - Alchemist
-  - Warrior
+  _specialization: 08000000060000000100000007000000
   _level: 0
   targetType: 1
   _inCollection: 1

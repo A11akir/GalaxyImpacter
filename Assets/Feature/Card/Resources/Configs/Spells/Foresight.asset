@@ -16,9 +16,7 @@ MonoBehaviour:
   _name: Foresight
   _rarity: 1
   _iconImage: {fileID: 0}
-  _specialization:
-  - Explorer
-  - WindMage
+  _specialization: 0400000009000000
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -27,3 +25,6 @@ MonoBehaviour:
   _description: " \u0414\u043E 1 \u043F\u043E\u043A\u0443\u043F\u043A\u0438 \u043E\u0431\u043D\u043E\u0432\u043B\u0435\u043D\u0438\u0435
     \u043C\u0430\u0433\u0430\u0437\u0438\u043D\u0430 \u0431\u0435\u0441\u043F\u043B\u0430\u0442\u043D\u043E\u0435."
   _effects: []
+  references:
+    version: 2
+    RefIds: []

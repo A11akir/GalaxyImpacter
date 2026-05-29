@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Feature.Card.Script;
+using Feature.CardEffect.Script;
 using Feature.Chakra;
 using Feature.Entity.Script;
 using Feature.GameSessionData;
@@ -22,13 +23,15 @@ namespace Feature.Hero
         private readonly HandFillSystem _handFillSystem;
         private readonly HeroPowerSystem _heroPowerSystem;
         private readonly HeroPowerPresenter _heroPowerPresenter;
+        private readonly CombatSystem.CombatSystem _combatSystem;
 
         private readonly Dictionary<CardAndHealthEntityOwnerData, EntityPresenter> _entityPresenters = new();
 
         public CreateOwnerCardAndHealthEntitySystem(GameSessionModel gameSessionModel,
             ChakraManagerSystem chakraManagerSystem, HandDataRepository handDataRepository,
             DeckFillSystem deckFillSystem, HandViewSwitcher handViewSwitcher, HandFillSystem handFillSystem,
-            EntityDeathSystem entityDeathSystem, HeroPowerSystem heroPowerSystem, HeroPowerPresenter heroPowerPresenter)
+            EntityDeathSystem entityDeathSystem, HeroPowerSystem heroPowerSystem, HeroPowerPresenter heroPowerPresenter,
+            CombatSystem.CombatSystem combatSystem)
         {
             _gameSessionModel = gameSessionModel;
             _chakraManagerSystem = chakraManagerSystem;
@@ -39,6 +42,7 @@ namespace Feature.Hero
             _entityDeathSystem = entityDeathSystem;
             _heroPowerSystem = heroPowerSystem;
             _heroPowerPresenter = heroPowerPresenter;
+            _combatSystem = combatSystem;
             _entityDeathSystem.OnEntityDied += DisposeEntity;
         }
 
@@ -76,6 +80,8 @@ namespace Feature.Hero
                     i);
             }
 
+            ApplyHeroPowerPassives(playerEntity, heroPowers);
+
             _heroPowerPresenter.InitPlayer(playerHeroPowerViews, heroPowers.Count);
             _heroPowerPresenter.InitEnemy(enemyHeroPowerViews);
         }
@@ -110,6 +116,24 @@ namespace Feature.Hero
             _chakraManagerSystem.InitEntityChakra(owner);
             _entityDeathSystem.Init(owner);
             _entityPresenters[owner] = new EntityPresenter(owner, healthView);
+        }
+
+        private void ApplyHeroPowerPassives(CardAndHealthEntityOwnerData owner, List<SpellCardData> heroPowers)
+        {
+            foreach (var heroPower in heroPowers)
+            {
+                foreach (var effect in heroPower.Effects)
+                {
+                    if (effect is AddPassiveEffect addPassive)
+                        addPassive.Execute(new EffectContext
+                        {
+                            Caster = owner,
+                            CombatSystem = _combatSystem,
+                            GameSessionModel = _gameSessionModel,
+                            CardData = heroPower
+                        });
+                }
+            }
         }
 
         private void DisposeEntity(CardAndHealthEntityOwnerData victim, CardAndHealthEntityOwnerData killer)

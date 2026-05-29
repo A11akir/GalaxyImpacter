@@ -16,8 +16,7 @@ MonoBehaviour:
   _name: Wildfire
   _rarity: 2
   _iconImage: {fileID: 0}
-  _specialization:
-  - FireMage
+  _specialization: 05000000
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -26,3 +25,6 @@ MonoBehaviour:
   _description: When you use a spell before the end of your turn, you receive 1 temporary
     fire spell.
   _effects: []
+  references:
+    version: 2
+    RefIds: []

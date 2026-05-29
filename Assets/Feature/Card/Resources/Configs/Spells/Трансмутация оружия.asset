@@ -18,8 +18,7 @@ MonoBehaviour:
     \u043E\u0440\u0443\u0436\u0438\u044F"
   _rarity: 1
   _iconImage: {fileID: 0}
-  _specialization:
-  - Alchemist
+  _specialization: 01000000
   _level: 0
   targetType: 0
   _inCollection: 1
@@ -28,3 +27,6 @@ MonoBehaviour:
   _description: "\u041F\u043E\u043B\u0443\u0447\u0438\u0442\u0435 3 hit, \u043E\u043D\u0438
     \u0441\u0442\u043E\u044F\u0442 0."
   _effects: []
+  references:
+    version: 2
+    RefIds: []
