@@ -28063,6 +28063,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HeroWindow
       objectReference: {fileID: 0}
+    - target: {fileID: 559170481851466703, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5778531318514038528, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
