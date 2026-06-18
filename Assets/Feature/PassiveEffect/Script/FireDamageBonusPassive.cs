@@ -16,7 +16,7 @@ namespace Feature.PassiveEffect.Script
 
         public override void Register(CardAndHealthEntityOwnerData owner, CombatSystem.CombatSystem combatSystem)
         {
-            _owner = owner;
+            _owner = owner; 
             _combatSystem = combatSystem;
             _handler = OnDamageDealt;
             combatSystem.OnDamageDealt += _handler;
@@ -28,6 +28,8 @@ namespace Feature.PassiveEffect.Script
         {
             _combatSystem.OnDamageDealt -= _handler;
         }
+
+        public void AddBonus(int amount) => _bonusAccumulated += amount;
 
         public override void OnTurnEnd() => _bonusAccumulated = 0;
 

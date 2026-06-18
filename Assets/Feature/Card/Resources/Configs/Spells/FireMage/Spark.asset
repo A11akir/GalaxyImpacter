@@ -18,12 +18,16 @@ MonoBehaviour:
   _iconImage: {fileID: 0}
   _specialization: 05000000
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
   id: 22086cc8-d90d-4049-acc4-af8cae5f8241
   _values: 01000000
   _description: Take 1 damage.
-  _effects: []
+  _effects:
+  - rid: 5943948185077547015
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 5943948185077547015
+      type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data: 

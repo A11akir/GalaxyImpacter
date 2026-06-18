@@ -23,7 +23,11 @@ MonoBehaviour:
   id: 601b1664-0a66-493d-932b-0c8408b8df53
   _values: 03000000
   _description: Restore 3 health.
-  _effects: []
+  _effects:
+  - rid: 5943948185077547011
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 5943948185077547011
+      type: {class: HealEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data: 

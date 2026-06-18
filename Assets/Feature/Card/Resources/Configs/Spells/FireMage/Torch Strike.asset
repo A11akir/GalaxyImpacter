@@ -18,12 +18,20 @@ MonoBehaviour:
   _iconImage: {fileID: 0}
   _specialization: 05000000
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
   id: 5a034ec1-37f6-4d96-8f24-dadfac797db9
   _values: 0100000000000000
   _description: Hit this turn increases your next damage by 1. Take 0 damage.
-  _effects: []
+  _effects:
+  - rid: 5943948185077547013
+  - rid: 5943948185077547014
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 5943948185077547013
+      type: {class: AddFlatFireDamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data: 
+    - rid: 5943948185077547014
+      type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data: 
