@@ -256,7 +256,8 @@ MonoBehaviour:
   iconHeroPower:
   - {fileID: 3009234101761129957}
   - {fileID: 3437855621466500726}
-  _chakraCostFrame: {fileID: 5510804089709015689}
+  healthFrame: {fileID: 4706229086579772270}
+  _costFrame: {fileID: 1493974642320079547}
   _heroPowerUsedThisTurnWindow: {fileID: 7205896499036770386}
   _canAvailableCastHeroPower: {fileID: 3935327985222221156}
 --- !u!1 &3935327985222221156
@@ -693,6 +694,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5345866140389829669, guid: 9384acfa0caaa4143a3c78e9fa4838cd, type: 3}
   m_PrefabInstance: {fileID: 8084797787730003986}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4706229086579772270 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3566035805240558460, guid: 9384acfa0caaa4143a3c78e9fa4838cd, type: 3}
+  m_PrefabInstance: {fileID: 8084797787730003986}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6035586116722290611 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2589654829714384801, guid: 9384acfa0caaa4143a3c78e9fa4838cd, type: 3}
@@ -806,6 +812,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 055421e66aba42f43a65640c1ef31f3d, type: 3}
+--- !u!1 &1493974642320079547 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7391296515708475287, guid: 055421e66aba42f43a65640c1ef31f3d, type: 3}
+  m_PrefabInstance: {fileID: 8225968758142741804}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1932953310597083770 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7564844284235669334, guid: 055421e66aba42f43a65640c1ef31f3d, type: 3}
@@ -820,10 +831,5 @@ MonoBehaviour:
 --- !u!224 &2004928151710421101 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7636535452357262657, guid: 055421e66aba42f43a65640c1ef31f3d, type: 3}
-  m_PrefabInstance: {fileID: 8225968758142741804}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5510804089709015689 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4490876215773568933, guid: 055421e66aba42f43a65640c1ef31f3d, type: 3}
   m_PrefabInstance: {fileID: 8225968758142741804}
   m_PrefabAsset: {fileID: 0}

@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ChakraCrystall_0: 5017038632760328772
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

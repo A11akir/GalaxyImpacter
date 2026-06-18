@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      CardInsideMinion_0: -5683621532412290846
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

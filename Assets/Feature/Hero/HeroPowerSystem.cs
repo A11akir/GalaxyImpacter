@@ -58,6 +58,7 @@ namespace Feature.Hero
             };
         }
         public bool CanCast(int index) =>
+            !_heroPowers[index].IsPassive &&
             !_playerData.HeroPowerUsage.IsUsed(index) &&
             _owner.Chakra >= _heroPowers[index].Cost;
         

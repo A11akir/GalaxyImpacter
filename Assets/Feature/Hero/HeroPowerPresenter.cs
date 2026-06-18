@@ -56,6 +56,12 @@ namespace Feature.Hero
         {
             if (!view || playerData.HeroPowers == null || index >= playerData.HeroPowers.Count) return;
 
+            if (playerData.HeroPowers[index].IsPassive)
+            {
+                view.SetPassiveView();
+                return;
+            }
+            
             bool canCast = !playerData.HeroPowerUsage.IsUsed(index) &&
                            playerData.MainHeroEntity().Chakra >= playerData.HeroPowers[index].Cost;
 

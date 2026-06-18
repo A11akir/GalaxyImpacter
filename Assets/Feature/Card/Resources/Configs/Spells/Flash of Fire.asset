@@ -24,10 +24,10 @@ MonoBehaviour:
   _values: 0100000002000000
   _description: Take 1 damage 2 random minion.
   _effects:
-  - rid: 5323832666482802691
+  - rid: 5943948166252462081
   references:
     version: 2
     RefIds:
-    - rid: 5323832666482802691
+    - rid: 5943948166252462081
       type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data: 

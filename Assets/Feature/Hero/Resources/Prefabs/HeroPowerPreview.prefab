@@ -207,6 +207,8 @@ MonoBehaviour:
   iconHeroPower:
   - {fileID: 1561716275716884386}
   - {fileID: 4425107682746261974}
+  healthFrame: {fileID: 6189128884046600029}
+  _costFrame: {fileID: 7467462654139116499}
 --- !u!1 &4866225687626431566
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,6 +353,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 055421e66aba42f43a65640c1ef31f3d, type: 3}
+--- !u!1 &7467462654139116499 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7391296515708475287, guid: 055421e66aba42f43a65640c1ef31f3d, type: 3}
+  m_PrefabInstance: {fileID: 86387241472490564}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &7550430141163864325 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7636535452357262657, guid: 055421e66aba42f43a65640c1ef31f3d, type: 3}
@@ -615,6 +622,11 @@ MonoBehaviour:
 --- !u!224 &5145754132229206912 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2589654829714384801, guid: 9384acfa0caaa4143a3c78e9fa4838cd, type: 3}
+  m_PrefabInstance: {fileID: 7248870457615914017}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6189128884046600029 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3566035805240558460, guid: 9384acfa0caaa4143a3c78e9fa4838cd, type: 3}
   m_PrefabInstance: {fileID: 7248870457615914017}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &7526390870982164608 stripped
