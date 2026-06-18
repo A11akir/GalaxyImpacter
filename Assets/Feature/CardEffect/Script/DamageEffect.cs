@@ -10,7 +10,7 @@ namespace Feature.CardEffect.Script
         {
             int damage = context.CardData.Values[context.ValueIndex];
 
-            foreach (var passive in context.Caster.ActivePassives)
+            foreach (var passive in context.Caster.PassiveEffects.ActivePassives.CurrentValue)
                 if (passive is IDamageModifier modifier)
                     damage += modifier.GetDamageBonus(context.CardData);
 

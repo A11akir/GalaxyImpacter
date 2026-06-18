@@ -10,7 +10,7 @@ namespace Feature.CardEffect.Script
         {
             int amount = context.CardData.Values[context.ValueIndex];
             
-            foreach (var passive in context.Caster.ActivePassives)
+            foreach (var passive in context.Caster.PassiveEffects.ActivePassives.CurrentValue)
                 if (passive is FlatFireDamageBonus flatBonus)
                 {
                     flatBonus.AddBonus(amount);
@@ -18,7 +18,7 @@ namespace Feature.CardEffect.Script
                 }
             
             var newBonus = new FlatFireDamageBonus();
-            context.Caster.AddPassive(newBonus, context.CombatSystem);
+            context.Caster.PassiveEffects.AddPassive(newBonus, context.CombatSystem);
             newBonus.AddBonus(amount);
         }
     }

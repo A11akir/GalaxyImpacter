@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Feature.Card.Script;
 using Feature.Common;
+using Feature.Entity.Script;
 using Feature.GoogleSheets;
 using Feature.PassiveEffect.Script;
 using R3;
@@ -11,6 +12,7 @@ namespace Feature.GameSessionData
 {
     public class CardAndHealthEntityOwnerData
     {
+        //TODO: убрать всю логику в отдельные классы
         public int CountCardsInHand => _cardsInHand.Value.Count;
         private readonly int maxCardsInHandCount = 10;
         public int startCardsInHandToDraw = 4;
@@ -20,20 +22,16 @@ namespace Feature.GameSessionData
         public CardAndHealthEntityOwnerData LastDamageSource { get; set; }
         public List<SpellCardData> SpellsList;
 
-        public List<PassiveEffect.Script.PassiveEffect> ActivePassives { get; } = new();
+        public PassiveEffectsData PassiveEffects { get; private set; } = new PassiveEffectsData();
+        /*public List<PassiveEffect.Script.PassiveEffect> ActivePassives { get; } = new();
+        */
 
-        public void AddPassive(PassiveEffect.Script.PassiveEffect passive, CombatSystem.CombatSystem combatSystem)
+        /*public void AddPassive(PassiveEffect.Script.PassiveEffect passive, CombatSystem.CombatSystem combatSystem)
         {
             ActivePassives.Add(passive);
             passive.Register(this, combatSystem);
-        }
-
-        public void RemoveAllPassives()
-        {
-            foreach (var passive in ActivePassives)
-                passive.Unregister();
-            ActivePassives.Clear();
-        }
+        }*/
+        
         
         private readonly ReactiveProperty<List<CardStatsData>> _cardsInDeck = new(new List<CardStatsData>());
         public ReadOnlyReactiveProperty<List<CardStatsData>> CardsInDeck => _cardsInDeck;

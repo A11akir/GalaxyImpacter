@@ -14,7 +14,7 @@ namespace Feature.CardEffect.Script
             if (_passive == null) return;
             
             Debug.Log($"Adding passive {_passive.GetType().Name} to {ctx.Caster}");
-            ctx.Caster.AddPassive(_passive, ctx.CombatSystem);
+            ctx.Caster.PassiveEffects.AddPassive(_passive, ctx.CombatSystem);
         }
     }
 }

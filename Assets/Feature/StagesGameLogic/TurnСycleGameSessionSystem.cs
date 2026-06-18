@@ -4,7 +4,6 @@ using Feature.GameSessionData;
 using Feature.Hero;
 using Feature.Items.Scripts;
 using Feature.ShopGamePlay.Script.Currency;
-using Feature.ShopGamePlay.Script.ShopWindow;
 using Feature.Timer;
 using Feature.UI;
 
@@ -69,7 +68,7 @@ namespace Feature.StagesGameLogic
         private void ResetAllPassives()
         {
             foreach (var owner in _gameSessionModel.GetAllEntityOwners())
-                foreach (var passive in owner.ActivePassives)
+                foreach (var passive in owner.PassiveEffects.ActivePassives.CurrentValue)
                     passive.OnTurnEnd();
         }
 
