@@ -20,9 +20,9 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
-  id: d186a2fd-a8fd-4871-872a-67f2f37f1eed
+  id: 552b3f94-3e63-46a2-9a0d-a1c470de986a
   _health: 3
   _chakra: 1
   _handCardCount: 1
   _spellsList:
-  - {fileID: 11400000, guid: e86f1e9a67310294aafb43aed0f79b81, type: 2}
+  - {fileID: 11400000, guid: 965ebfffe494640f6b147e781d183212, type: 2}

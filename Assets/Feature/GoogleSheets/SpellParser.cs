@@ -1,6 +1,7 @@
 #if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Feature.Card.Script;
 using Feature.Common;
@@ -140,7 +141,9 @@ namespace Feature.GoogleSheets
                 if (so == null)
                 {
                     var newSO = ScriptableObject.CreateInstance<SpellCardData>();
-                    string assetPath = $"{spellsPath}/{cfg.Name}.asset"; 
+                    string folder = GetSpellFolder(cfg, spellsPath);
+                    EnsureFolderExists(folder);
+                    string assetPath = $"{folder}/{cfg.Name}.asset";
                     AssetDatabase.CreateAsset(newSO, assetPath);
                     so = newSO;
                     _targetSO.Add(so);
@@ -192,6 +195,45 @@ namespace Feature.GoogleSheets
             
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
+        }
+
+        private string GetSpellFolder(SpellStatsConfig cfg, string spellsPath)
+        {
+            if (!string.IsNullOrWhiteSpace(cfg.MinionNameOwner))
+                return $"{spellsPath}/{cfg.MinionNameOwner}";
+
+            if (cfg.Specialization == null || cfg.Specialization.Count == 0)
+                return spellsPath;
+
+            if (cfg.Specialization.Count == 1)
+                return $"{spellsPath}/{cfg.Specialization[0]}";
+
+            var combo = FindComboClass(cfg.Specialization);
+            return combo.HasValue
+                ? $"{spellsPath}/{combo.Value}"
+                : $"{spellsPath}/{cfg.Specialization[0]}";
+        }
+
+        private ComboHeroClass? FindComboClass(List<AllHeroClass> specializations)
+        {
+            foreach (var kvp in ComboClassRequirements.Requirements)
+            {
+                var required = kvp.Value;
+                if (required.Count != specializations.Count) continue;
+
+                bool matches = required.All(baseClass =>
+                    specializations.Contains(ComboClassRequirements.ToAllHeroClass(baseClass)));
+
+                if (matches) return kvp.Key;
+            }
+            return null;
+        }
+
+        private void EnsureFolderExists(string assetFolderPath)
+        {
+            string fullPath = Path.Combine(Application.dataPath, assetFolderPath.Substring("Assets/".Length));
+            if (!Directory.Exists(fullPath))
+                Directory.CreateDirectory(fullPath);
         }
     }
 }

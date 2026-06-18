@@ -6,11 +6,13 @@ namespace Feature.CardEffect.Script
     [Serializable]
     public class HealEffect : CardEffect
     {
-        [SerializeField] private int _amount;
-
         public override void Execute(EffectContext context)
         {
-            context.Caster.HealthValue += _amount;
+            int heal = context.CardData.Values[context.ValueIndex];
+            int max = context.Target.MaxHealth;
+            context.Target.HealthValue = max > 0
+                ? Math.Min(context.Target.HealthValue + heal, max)
+                : context.Target.HealthValue + heal;
         }
     }
 }

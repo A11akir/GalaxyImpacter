@@ -37,6 +37,7 @@
 
                     heroData.MainHeroEntity()._heroName = selectedHeroStats.Name;
                     heroData.MainHeroEntity().HealthValue = selectedHeroStats.Health;
+                    heroData.MainHeroEntity().MaxHealth = selectedHeroStats.Health;
 
                     if (System.Enum.TryParse<AllHeroClass>(selectedHeroStats.Name, out var heroClass))
                         heroData.HeroClassData.SetMainClass(heroClass);

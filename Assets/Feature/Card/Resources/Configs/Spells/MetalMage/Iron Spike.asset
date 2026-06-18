@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
+  m_Name: Iron Spike
+  m_EditorClassIdentifier: 
+  _cost: 1
+  _name: Iron Spike
+  _rarity: 1
+  _iconImage: {fileID: 0}
+  _specialization: 0500000003000000
+  _level: 0
+  targetType: 2
+  _inCollection: 1
+  id: f0663fea-87fb-4e50-b5a8-0f8891194dd1
+  _values: 0200000005000000
+  _description: "\u041D\u0430\u043D\u043E\u0441\u0438\u0442 2 \u0443\u0440\u043E\u043D\u0430
+    5 \u0440\u0430\u0437."
+  _effects: []
+  references:
+    version: 2
+    RefIds: []

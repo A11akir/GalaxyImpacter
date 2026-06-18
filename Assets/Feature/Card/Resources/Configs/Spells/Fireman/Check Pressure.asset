@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
+  m_Name: Check Pressure
+  m_EditorClassIdentifier: 
+  _cost: 0
+  _name: Check Pressure
+  _rarity: 1
+  _iconImage: {fileID: 0}
+  _specialization: 
+  _level: 0
+  targetType: 0
+  _inCollection: 1
+  id: 90ba51c7-b42f-4b86-bf2b-bd535df31f02
+  _values: 01000000
+  _description: Random target get 1 moisture.
+  _effects: []
+  references:
+    version: 2
+    RefIds: []

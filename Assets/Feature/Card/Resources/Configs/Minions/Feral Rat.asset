@@ -20,11 +20,11 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
-  id: 1e9f4933-af45-4ee1-b67b-afedc66ed27b
+  id: 103ff9b4-d415-403b-a804-2149a3daa876
   _health: 1
   _chakra: 2
   _handCardCount: 2
   _spellsList:
-  - {fileID: 11400000, guid: b0fbedaa4052d4b44aec05c54624e148, type: 2}
-  - {fileID: 11400000, guid: 8161e72030c578e4a8ca09ea506fbd26, type: 2}
-  - {fileID: 11400000, guid: c1e54200e3de7f8419d056c3fe06aa89, type: 2}
+  - {fileID: 11400000, guid: 171f70974b01d4393b5db3557970f430, type: 2}
+  - {fileID: 11400000, guid: 85f499cda012d4926b11be158eebc7d4, type: 2}
+  - {fileID: 11400000, guid: 27542b9afdb8946629095bbfe0ae5838, type: 2}

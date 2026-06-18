@@ -1,6 +1,7 @@
 #if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Feature.Card.Script;
 using Feature.Common;
@@ -147,6 +148,8 @@ namespace Feature.GoogleSheets
                     so = newSO;
                     _targetSO.Add(so);
                     GLog.Log($"✅ Created new MinionCardData SO: {cfg.Name}");
+
+                    EnsureSpellsFolderForMinion(cfg.Name);
                 }
 
                 so.Name = cfg.Name;
@@ -168,6 +171,17 @@ namespace Feature.GoogleSheets
 
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
+        }
+
+        private void EnsureSpellsFolderForMinion(string minionName)
+        {
+            const string spellsPath = "Assets/Feature/Card/Resources/Configs/Spells";
+            string fullPath = Path.Combine(
+                Application.dataPath,
+                $"{spellsPath.Substring("Assets/".Length)}/{minionName}");
+
+            if (!Directory.Exists(fullPath))
+                Directory.CreateDirectory(fullPath);
         }
     }
 }

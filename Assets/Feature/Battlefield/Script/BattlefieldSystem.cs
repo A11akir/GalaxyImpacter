@@ -124,6 +124,7 @@ namespace Feature.Battlefield.Script
                 startCardsInHandToDraw = card.HandCardCount,
                 _heroName = card.Name,
                 HealthValue = card.Health,
+                MaxHealth = card.Health,
                 Chakra = card.Chakra,
                 _iconImage = card.IconImage,
                 SpellsList = card.SpellsList,

@@ -64,6 +64,8 @@ namespace Feature.GameSessionData
         private readonly ReactiveProperty<int> _health = new();
         public ReadOnlyReactiveProperty<int> Health => _health;
 
+        public int MaxHealth { get; set; }
+
         public int HealthValue
         {
             get => _health.Value;
