@@ -1,4 +1,4 @@
-// PassiveEffectsContainerView.cs — пул иконок, без логики
+
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +8,7 @@ namespace Feature.CardEffect.Script
     {
         [SerializeField] private List<PassiveEffectIconView> _pool;
 
-        public PassiveEffectIconView GetFreeIcon()
+        public PassiveEffectIconView GetFreeSlot()
         {
             foreach (var icon in _pool)
                 if (!icon.gameObject.activeSelf) return icon;

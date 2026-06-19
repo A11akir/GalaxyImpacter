@@ -54,20 +54,18 @@ namespace Feature.Hero
             List<SpellCardData> heroPowers,
             HandCardViews enemyHandCardViews)
         {
-            CreateMainEnemyPlayer(playerHealthView,  playerHeroPowerViews, enemyHeroPowerViews,
-                heroPowers);
-            CreateMainEnemyEntity(_gameSessionModel.EnemyHero.MainHeroEntity(), enemyHealthView,
-                enemyHandCardViews);
+            CreateMainEnemyPlayer(playerHealthView,  playerHeroPowerViews, enemyHeroPowerViews, heroPowers);
+            CreateMainEnemyEntity(_gameSessionModel.EnemyHero.MainHeroEntity(), enemyHealthView, enemyHandCardViews);
         }
 
         private void CreateMainEnemyPlayer(
-            IHealthView playerHealthView, // ← добавили
+            IHealthView playerHealthView,
             List<HeroPowerGameplayView> playerHeroPowerViews,
             List<HeroPowerGameplayView> enemyHeroPowerViews,
             List<SpellCardData> heroPowers)
         {
             var playerEntity = _gameSessionModel.PlayerHero.MainHeroEntity();
-            CreateEntityPlayer(playerEntity, playerHealthView); // ← передали дальше
+            CreateEntityPlayer(playerEntity, playerHealthView);
 
             _handViewSwitcher.SwitchTo(playerEntity);
             _gameSessionModel.PlayerHero.HeroPowerUsage.Init(heroPowers.Count);
@@ -134,7 +132,6 @@ namespace Feature.Hero
             {
                 foreach (var effect in heroPower.Effects)
                 {
-                    Debug.Log($"[Init] owner hash={owner.GetHashCode()}, name={owner._heroName}");
                     if (effect is AddPassiveEffect addPassive)
                         addPassive.Execute(new EffectContext
                         {

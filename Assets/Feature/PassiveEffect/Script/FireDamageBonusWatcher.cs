@@ -8,9 +8,9 @@ using UnityEngine;
 namespace Feature.PassiveEffect.Script
 {
     [Serializable]
-    public class FireDamageBonusWatcher : PassiveEffect
+    public class FireDamageBonusWatcher : PassiveEffectBase
     {
-        [SerializeField] private PassiveEffectConfig _bonusConfig; // ← отдельное поле для дочерней пассивки
+        [SerializeField] private PassiveEffectConfig _bonusConfig;
 
         private CardAndHealthEntityOwnerData _owner;
         private CombatSystem.CombatSystem _combatSystem;
@@ -29,20 +29,20 @@ namespace Feature.PassiveEffect.Script
         private void OnDamageDealt(DamageDealtInfo info)
         {
             if (info.Source != _owner) return;
-            if (info.SourceCard == null) return;
+            if (!info.SourceCard) return;
             if (!info.SourceCard.Specialization.Contains(AllHeroClass.FireMage)) return;
 
-            var bonus = _owner.PassiveEffects.GetPassive<FireDamageBonus>();
+            var bonus = _owner.PassiveEffects.Find<FireDamageBonus>();
+
             if (bonus == null)
             {
                 bonus = new FireDamageBonus();
                 bonus.SetConfig(_bonusConfig);
-                Debug.Log($"[Watcher] Bonus created/incremented");
                 _owner.PassiveEffects.AddPassive(bonus, _combatSystem);
             }
             bonus.AddBonus(1);
         }
 
-        public override PassiveEffect Clone() => new FireDamageBonusWatcher { _bonusConfig = _bonusConfig };
+        public override PassiveEffectBase Clone() => new FireDamageBonusWatcher { _bonusConfig = _bonusConfig };
     }
 }

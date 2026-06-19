@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Feature.PassiveEffect.Script
 {
     [Serializable]
-    public abstract class PassiveEffect
+    public abstract class PassiveEffectBase
     {
         [SerializeField] protected PassiveEffectConfig Config;
         [SerializeField] protected DurationType Duration = DurationType.Permanent;
@@ -27,6 +27,6 @@ namespace Feature.PassiveEffect.Script
 
         protected virtual void OnTurnTick() { }
 
-        public abstract PassiveEffect Clone();
+        public abstract PassiveEffectBase Clone();
     }
 }

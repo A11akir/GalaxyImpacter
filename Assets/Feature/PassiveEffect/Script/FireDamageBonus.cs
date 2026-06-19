@@ -1,5 +1,3 @@
-// FireDamageBonus.cs — теперь только про данные, не про "когда умирать"
-
 using System;
 using Feature.CardEffect.Script;
 using Feature.GameSessionData;
@@ -9,7 +7,7 @@ using R3;
 namespace Feature.PassiveEffect.Script
 {
     [Serializable]
-    public class FireDamageBonus : PassiveEffect, IDamageModifier, IStackablePassive, IValueProvider
+    public class FireDamageBonus : PassiveEffectBase, IDamageModifier, IStackablePassive, IValueProvider
     {
         private int _bonus;
         private readonly ReactiveProperty<int> _value = new(0);
@@ -18,7 +16,7 @@ namespace Feature.PassiveEffect.Script
 
         public FireDamageBonus()
         {
-            Duration = DurationType.UntilTurnEnd; // ← явно декларирует своё время жизни
+            Duration = DurationType.UntilTurnEnd;
         }
 
         public void AddBonus(int amount)
@@ -43,6 +41,6 @@ namespace Feature.PassiveEffect.Script
             return _bonus;
         }
 
-        public override PassiveEffect Clone() => new FireDamageBonus { Config = Config, Duration = Duration };
+        public override PassiveEffectBase Clone() => new FireDamageBonus { Config = Config, Duration = Duration };
     }
 }

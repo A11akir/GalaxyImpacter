@@ -1,47 +1,54 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Feature.CardEffect.Script;
+using Feature.PassiveEffect.Script;
 using R3;
-using UnityEngine;
 
 namespace Feature.Entity.Script
 {
-    public class PassiveEffectsPresenter : IDisposable
+    public class PassiveEffectsPresenter
     {
         private readonly PassiveEffectsContainerView _view;
-        private readonly PassiveEffectsData _data;
-        private readonly Dictionary<PassiveEffect.Script.PassiveEffect, PassiveEffectIconView> _activeIcons = new();
-        private readonly Dictionary<PassiveEffect.Script.PassiveEffect, IDisposable> _valueSubscriptions = new();
+        private readonly Dictionary<PassiveEffectBase, PassiveEffectIconView> _activeIcons = new();
+        private readonly Dictionary<PassiveEffectBase, IDisposable> _valueSubscriptions = new();
+        private readonly IDisposable _subscription;
+
+        private List<PassiveEffectBase> _previousList = new();
 
         public PassiveEffectsPresenter(PassiveEffectsContainerView view, PassiveEffectsData data)
         {
             _view = view;
-            _data = data;
 
-            _data.OnPassiveAdded += HandlePassiveAdded;
-            _data.OnPassiveRemoved += HandlePassiveRemoved;
-
-            foreach (var passive in data.PassivesList)
-                HandlePassiveAdded(passive);
+            _subscription = data.ActivePassives.Subscribe(HandlePassivesChanged);
         }
 
-        private void HandlePassiveAdded(PassiveEffect.Script.PassiveEffect passive)
+        private void HandlePassivesChanged(List<PassiveEffectBase> currentList)
         {
-            Debug.Log($"[Presenter] HandlePassiveAdded: passive={passive.GetType().Name}, Icon={passive.Icon}");
+            var added = currentList.Except(_previousList);
+            var removed = _previousList.Except(currentList);
 
-            if (passive.Icon == null)
-            {
-                Debug.Log("[Presenter] SKIPPED, Icon is null");
-                return;
-            }
-            var icon = _view.GetFreeIcon();
+            foreach (var passive in removed)
+                HandlePassiveRemoved(passive);
+
+            foreach (var passive in added)
+                HandlePassiveAdded(passive);
+
+            _previousList = new List<PassiveEffectBase>(currentList);
+        }
+
+        private void HandlePassiveAdded(PassiveEffectBase passive)
+        {
+            if (passive.Icon == null) return;
+
+            var icon = _view.GetFreeSlot();
             if (icon == null) return;
 
             icon.gameObject.SetActive(true);
             icon.SetIcon(passive.Icon);
             _activeIcons[passive] = icon;
 
-            if (passive is IStackablePassive stackable && passive is IValueProvider valueProvider)
+            if (passive is IValueProvider valueProvider)
             {
                 var sub = valueProvider.Value.Subscribe(value =>
                 {
@@ -56,7 +63,7 @@ namespace Feature.Entity.Script
             }
         }
 
-        private void HandlePassiveRemoved(PassiveEffect.Script.PassiveEffect passive)
+        private void HandlePassiveRemoved(PassiveEffectBase passive)
         {
             if (_activeIcons.TryGetValue(passive, out var icon))
             {
@@ -73,9 +80,7 @@ namespace Feature.Entity.Script
 
         public void Dispose()
         {
-            _data.OnPassiveAdded -= HandlePassiveAdded;
-            _data.OnPassiveRemoved -= HandlePassiveRemoved;
-
+            _subscription.Dispose();
             foreach (var sub in _valueSubscriptions.Values)
                 sub.Dispose();
             _valueSubscriptions.Clear();

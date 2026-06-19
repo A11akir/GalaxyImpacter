@@ -1,97 +1,85 @@
-// PassiveEffectsData.cs
 using System;
 using System.Collections.Generic;
-using Feature.CardEffect.Script;
 using Feature.GameSessionData;
+using Feature.PassiveEffect.Script;
 using R3;
 
 namespace Feature.Entity.Script
 {
-    [Serializable]
-    public class PassiveEffectsData : IDisposable
+    public class PassiveEffectsData
     {
         private readonly CardAndHealthEntityOwnerData _owner;
 
-        private readonly ReactiveProperty<List<PassiveEffect.Script.PassiveEffect>> _activePassives =
-            new(new List<PassiveEffect.Script.PassiveEffect>());
+        private readonly ReactiveProperty<List<PassiveEffectBase>> _activePassives =
+            new(new List<PassiveEffectBase>());
 
-        public ReadOnlyReactiveProperty<List<PassiveEffect.Script.PassiveEffect>> ActivePassives => _activePassives;
-        public IReadOnlyList<PassiveEffect.Script.PassiveEffect> PassivesList => _activePassives.Value;
-
-        public event Action<PassiveEffect.Script.PassiveEffect> OnPassiveAdded;
-        public event Action<PassiveEffect.Script.PassiveEffect> OnPassiveRemoved;
+        public ReadOnlyReactiveProperty<List<PassiveEffectBase>> ActivePassives => _activePassives;
 
         public PassiveEffectsData(CardAndHealthEntityOwnerData owner)
         {
             _owner = owner;
         }
 
-        public void AddPassive(PassiveEffect.Script.PassiveEffect passive, CombatSystem.CombatSystem combatSystem)
+        public void AddPassive(PassiveEffectBase passive, CombatSystem.CombatSystem combatSystem)
         {
-            if (passive == null || _activePassives.Value.Contains(passive)) return;
+            if (passive == null)
+                throw new ArgumentNullException(nameof(passive));
 
-            var newList = new List<PassiveEffect.Script.PassiveEffect>(_activePassives.Value);
-            newList.Add(passive);
-            _activePassives.Value = newList;
+            if (_activePassives.Value.Contains(passive))
+                throw new InvalidOperationException(
+                    $"Passive '{passive.GetType().Name}' is already added to this owner.");
 
             passive.Register(_owner, combatSystem);
-            OnPassiveAdded?.Invoke(passive);
+
+            var newList = new List<PassiveEffectBase>(_activePassives.Value);
+            newList.Add(passive);
+            _activePassives.Value = newList;
         }
 
-        public void RemovePassive(PassiveEffect.Script.PassiveEffect passive)
+        public void RemovePassive(PassiveEffectBase passive)
         {
             if (passive == null || !_activePassives.Value.Contains(passive)) return;
 
-            var newList = new List<PassiveEffect.Script.PassiveEffect>(_activePassives.Value);
+            passive.Unregister();
+
+            var newList = new List<PassiveEffectBase>(_activePassives.Value);
             newList.Remove(passive);
             _activePassives.Value = newList;
-
-            passive.Unregister();
-            OnPassiveRemoved?.Invoke(passive);
-        }
-
-        public void RemoveAllPassives()
-        {
-            foreach (var passive in _activePassives.Value)
-                passive.Unregister();
-
-            _activePassives.Value = new List<PassiveEffect.Script.PassiveEffect>();
         }
 
         public void OnTurnEnd()
         {
-            var toRemove = new List<PassiveEffect.Script.PassiveEffect>();
+            var toRemove = new List<PassiveEffectBase>();
 
             foreach (var passive in _activePassives.Value)
-            {
-                bool expired = passive.TickTurnEnd();
-                if (expired)
+                if (passive.TickTurnEnd())
                     toRemove.Add(passive);
-            }
 
             foreach (var p in toRemove)
                 RemovePassive(p);
         }
-        
-        public T GetPassive<T>() where T : PassiveEffect.Script.PassiveEffect
+
+        public PassiveEffectBase Find(Type type)
         {
             foreach (var passive in _activePassives.Value)
-                if (passive is T typedPassive) return typedPassive;
+                if (passive.GetType() == type)
+                    return passive;
             return null;
         }
 
-        public PassiveEffect.Script.PassiveEffect GetPassive(Type type)
+        public T Find<T>() where T : PassiveEffectBase
         {
             foreach (var passive in _activePassives.Value)
-                if (passive.GetType() == type) return passive;
+                if (passive is T typed)
+                    return typed;
             return null;
         }
 
-        public void Dispose()
+        public PassiveEffectBase Create(PassiveEffectBase template, CombatSystem.CombatSystem combatSystem)
         {
-            RemoveAllPassives();
-            OnPassiveAdded = null;
-            OnPassiveRemoved = null;
+            var newPassive = template.Clone();
+            AddPassive(newPassive, combatSystem);
+            return newPassive;
         }
     }
 }

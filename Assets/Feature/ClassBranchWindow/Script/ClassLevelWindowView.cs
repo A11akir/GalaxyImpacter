@@ -1,4 +1,3 @@
-// ClassLevelWindowView.cs
 
 using System.Collections.Generic;
 using DG.Tweening;
