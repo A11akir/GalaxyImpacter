@@ -1,3 +1,4 @@
+// PassiveEffectsData.cs
 using System;
 using System.Collections.Generic;
 using Feature.GameSessionData;
@@ -8,29 +9,25 @@ namespace Feature.Entity.Script
     [Serializable]
     public class PassiveEffectsData : IDisposable
     {
-        private CardAndHealthEntityOwnerData _owner;
-        
-        private readonly ReactiveProperty<List<PassiveEffect.Script.PassiveEffect>> _activePassives = 
+        private readonly CardAndHealthEntityOwnerData _owner;
+
+        private readonly ReactiveProperty<List<PassiveEffect.Script.PassiveEffect>> _activePassives =
             new(new List<PassiveEffect.Script.PassiveEffect>());
-        
+
         public ReadOnlyReactiveProperty<List<PassiveEffect.Script.PassiveEffect>> ActivePassives => _activePassives;
         public IReadOnlyList<PassiveEffect.Script.PassiveEffect> PassivesList => _activePassives.Value;
 
         public event Action<PassiveEffect.Script.PassiveEffect> OnPassiveAdded;
         public event Action<PassiveEffect.Script.PassiveEffect> OnPassiveRemoved;
 
-        public void Initialize(CardAndHealthEntityOwnerData owner)
+        public PassiveEffectsData(CardAndHealthEntityOwnerData owner)
         {
             _owner = owner;
         }
 
-        public void AddPassive(
-            PassiveEffect.Script.PassiveEffect passive, 
-            CombatSystem.CombatSystem combatSystem)
+        public void AddPassive(PassiveEffect.Script.PassiveEffect passive, CombatSystem.CombatSystem combatSystem)
         {
             if (passive == null || _activePassives.Value.Contains(passive)) return;
-            if (_owner == null) 
-                throw new InvalidOperationException("PassiveEffectsData not initialized with owner");
 
             var newList = new List<PassiveEffect.Script.PassiveEffect>(_activePassives.Value);
             newList.Add(passive);
@@ -55,19 +52,22 @@ namespace Feature.Entity.Script
         public void RemoveAllPassives()
         {
             foreach (var passive in _activePassives.Value)
-            {
                 passive.Unregister();
-            }
-            
+
             _activePassives.Value = new List<PassiveEffect.Script.PassiveEffect>();
         }
 
         public T GetPassive<T>() where T : PassiveEffect.Script.PassiveEffect
         {
             foreach (var passive in _activePassives.Value)
-            {
                 if (passive is T typedPassive) return typedPassive;
-            }
+            return null;
+        }
+
+        public PassiveEffect.Script.PassiveEffect GetPassive(Type type)
+        {
+            foreach (var passive in _activePassives.Value)
+                if (passive.GetType() == type) return passive;
             return null;
         }
 
@@ -76,7 +76,6 @@ namespace Feature.Entity.Script
             RemoveAllPassives();
             OnPassiveAdded = null;
             OnPassiveRemoved = null;
-            _owner = null;
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using Feature.Card.Script;
+using Feature.CardEffect.Script;
 using Feature.GameSessionData;
 using Feature.GoogleSheets;
 using Feature.Health;
@@ -11,7 +12,7 @@ using UnityEngine.UI;
 namespace Feature.Battlefield.Script.View
 {
     public class CardOnBattlefieldView : MonoBehaviour,
-        IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IHealthView, ITargetable
+        IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IHealthView, ITargetable, IPassiveEffectsHost
     {
         [SerializeField] private TextMeshProUGUI _name;
         [SerializeField] private TextMeshProUGUI _health;
@@ -30,6 +31,11 @@ namespace Feature.Battlefield.Script.View
         [SerializeField] private GameObject anomalousSprite;
         [SerializeField] private GameObject primordialSprite;
 
+        
+        [SerializeField] private PassiveEffectsContainerView _passiveEffectsView; // ← добавили
+        public PassiveEffectsContainerView PassiveEffectsView => _passiveEffectsView; // ← добавили
+
+        
         public event Action OnClicked;
 
         public void SetDataView(MinionCardData cardStatsData)

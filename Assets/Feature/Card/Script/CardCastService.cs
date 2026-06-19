@@ -39,6 +39,7 @@ namespace Feature.Card.Script
 
         public void Cast(CardStatsData card, CardAndHealthEntityOwnerData owner, CardAndHealthEntityOwnerData target)
         {
+            
             if (!CheckCanCast(card, owner)) return;
 
             owner.Chakra -= card.Cost;

@@ -49,25 +49,27 @@ namespace Feature.Hero
         public void CreatePlayersEntity(
             IHealthView playerHealthView,
             IHealthView enemyHealthView,
-            List<HeroPowerGameplayView> playerHeroPowerViews, // ← список
-            List<HeroPowerGameplayView> enemyHeroPowerViews, // ← список
-            List<SpellCardData> heroPowers, // ← список
+            List<HeroPowerGameplayView> playerHeroPowerViews,
+            List<HeroPowerGameplayView> enemyHeroPowerViews,
+            List<SpellCardData> heroPowers,
             HandCardViews enemyHandCardViews)
         {
-            CreateMainEnemyPlayer(playerHealthView, playerHeroPowerViews, enemyHeroPowerViews, heroPowers);
-            CreateMainEnemyEntity(_gameSessionModel.EnemyHero.MainHeroEntity(), enemyHealthView, enemyHandCardViews);
+            CreateMainEnemyPlayer(playerHealthView,  playerHeroPowerViews, enemyHeroPowerViews,
+                heroPowers);
+            CreateMainEnemyEntity(_gameSessionModel.EnemyHero.MainHeroEntity(), enemyHealthView,
+                enemyHandCardViews);
         }
 
         private void CreateMainEnemyPlayer(
-            IHealthView playerHealthView,
+            IHealthView playerHealthView, // ← добавили
             List<HeroPowerGameplayView> playerHeroPowerViews,
             List<HeroPowerGameplayView> enemyHeroPowerViews,
             List<SpellCardData> heroPowers)
         {
             var playerEntity = _gameSessionModel.PlayerHero.MainHeroEntity();
-            CreateEntityPlayer(playerEntity, playerHealthView);
-            _handViewSwitcher.SwitchTo(playerEntity);
+            CreateEntityPlayer(playerEntity, playerHealthView); // ← передали дальше
 
+            _handViewSwitcher.SwitchTo(playerEntity);
             _gameSessionModel.PlayerHero.HeroPowerUsage.Init(heroPowers.Count);
 
             for (int i = 0; i < heroPowers.Count && i < playerHeroPowerViews.Count; i++)
@@ -86,7 +88,9 @@ namespace Feature.Hero
             _heroPowerPresenter.InitEnemy(enemyHeroPowerViews);
         }
 
-        private void CreateMainEnemyEntity(CardAndHealthEntityOwnerData owner, IHealthView healthView,
+        private void CreateMainEnemyEntity(
+            CardAndHealthEntityOwnerData owner,
+            IHealthView healthView,
             HandCardViews handCardViews)
         {
             _deckFillSystem.InitializeDeck(owner);
@@ -95,7 +99,9 @@ namespace Feature.Hero
             InitEntityCore(owner, healthView);
         }
 
-        public void CreateEntityPlayer(CardAndHealthEntityOwnerData owner, IHealthView healthView)
+        public void CreateEntityPlayer(
+            CardAndHealthEntityOwnerData owner,
+            IHealthView healthView) 
         {
             _deckFillSystem.InitializeDeck(owner);
             var container = _handViewSwitcher.RegisterOwner(owner);
@@ -104,7 +110,9 @@ namespace Feature.Hero
             InitEntityCore(owner, healthView);
         }
 
-        public void CreateEntityEnemy(CardAndHealthEntityOwnerData owner, IHealthView healthView)
+        public void CreateEntityEnemy(
+            CardAndHealthEntityOwnerData owner,
+            IHealthView healthView) 
         {
             _deckFillSystem.InitializeDeck(owner);
             InitEntityCore(owner, healthView);
@@ -115,7 +123,9 @@ namespace Feature.Hero
             _handFillSystem.FillEntityHand(owner);
             _chakraManagerSystem.InitEntityChakra(owner);
             _entityDeathSystem.Init(owner);
-            _entityPresenters[owner] = new EntityPresenter(owner, healthView);
+
+            var passiveView = (healthView as IPassiveEffectsHost)?.PassiveEffectsView; // ← достаём отсюда
+            _entityPresenters[owner] = new EntityPresenter(owner, healthView, passiveView);
         }
 
         private void ApplyHeroPowerPassives(CardAndHealthEntityOwnerData owner, List<SpellCardData> heroPowers)
@@ -124,6 +134,7 @@ namespace Feature.Hero
             {
                 foreach (var effect in heroPower.Effects)
                 {
+                    Debug.Log($"[Init] owner hash={owner.GetHashCode()}, name={owner._heroName}");
                     if (effect is AddPassiveEffect addPassive)
                         addPassive.Execute(new EffectContext
                         {

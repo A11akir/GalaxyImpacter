@@ -22,16 +22,13 @@ namespace Feature.GameSessionData
         public CardAndHealthEntityOwnerData LastDamageSource { get; set; }
         public List<SpellCardData> SpellsList;
 
-        public PassiveEffectsData PassiveEffects { get; private set; } = new PassiveEffectsData();
-        /*public List<PassiveEffect.Script.PassiveEffect> ActivePassives { get; } = new();
-        */
+        public PassiveEffectsData PassiveEffects { get; }
 
-        /*public void AddPassive(PassiveEffect.Script.PassiveEffect passive, CombatSystem.CombatSystem combatSystem)
+// и добавить конструктор класса (если его сейчас нет вообще)
+        public CardAndHealthEntityOwnerData()
         {
-            ActivePassives.Add(passive);
-            passive.Register(this, combatSystem);
-        }*/
-        
+            PassiveEffects = new PassiveEffectsData(this);
+        }
         
         private readonly ReactiveProperty<List<CardStatsData>> _cardsInDeck = new(new List<CardStatsData>());
         public ReadOnlyReactiveProperty<List<CardStatsData>> CardsInDeck => _cardsInDeck;

@@ -15,7 +15,7 @@ MonoBehaviour:
   _cost: 0
   _name: Burning
   _rarity: 0
-  _iconImage: {fileID: 0}
+  _iconImage: {fileID: 21300000, guid: dea5417e9f8f34a2a819a1a24d7d0fd3, type: 3}
   _specialization: 05000000
   _level: 0
   targetType: 0
@@ -31,8 +31,9 @@ MonoBehaviour:
     - rid: 5943948185077547008
       type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
-        _passive:
-          rid: 5943948185077547009
-    - rid: 5943948185077547009
-      type: {class: FireDamageBonusPassive, ns: Feature.PassiveEffect.Script, asm: Assembly-CSharp}
-      data: 
+        _passiveTemplate:
+          rid: 7964668059962310662
+    - rid: 7964668059962310662
+      type: {class: FireDamageBonusWatcher, ns: Feature.PassiveEffect.Script, asm: Assembly-CSharp}
+      data:
+        Config: {fileID: 11400000, guid: 6c8b6a000c4779a4bbd7f9ffd4cfa2ef, type: 2}

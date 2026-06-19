@@ -71,6 +71,7 @@ namespace Feature.Battlefield.Script
         {
             var view = _viewManager.SetupView(card, index, playerData);
             var owner = CreateOwnerFromCard(card); // ← factory внутри
+            
         
             playerData.CardAndHealthEntityOwners.Add(owner);
             _viewManager.RegisterOwnerView(owner, view);

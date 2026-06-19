@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Feature.CardEffect.Script;
 using Feature.GameSessionData;
 using Feature.Health;
 using Feature.Hero;
@@ -10,7 +11,7 @@ using UnityEngine.UI;
 
 namespace Feature.UI
 {
-    public class HeroView : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler, IHealthView, ITargetable
+    public class HeroView : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler, IHealthView, ITargetable, IPassiveEffectsHost
     {
         [SerializeField] private List<HeroPowerPreview> heroPowerPreviewViews;
         [SerializeField] public List<HeroPowerGameplayView> heroPowerGameplayViews; 
@@ -24,6 +25,9 @@ namespace Feature.UI
         
         [SerializeField] public TextMeshProUGUI _healthText;
         [SerializeField] public TextMeshProUGUI _nameText;
+        
+        [SerializeField] private PassiveEffectsContainerView _passiveEffectsView; // ← добавили
+        public PassiveEffectsContainerView PassiveEffectsView => _passiveEffectsView; // ← добавили
         
         public bool _isBlockedForSelect;
         public GameSessionPlayerData HeroData { get; private set; }
@@ -101,5 +105,7 @@ namespace Feature.UI
         }
         
         public void SetHealth(int hp) => _healthText.text = hp.ToString();
+
+
     }
 }
