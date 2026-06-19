@@ -1,11 +1,10 @@
-// PassiveEffectsLifecycleSystem.cs — добавить метод
 using System.Collections.Generic;
 using System.Linq;
+using Feature.Entity.Script;
 using Feature.GameSessionData;
-using Feature.PassiveEffect.Script;
 using R3;
 
-namespace Feature.Entity.Script
+namespace Feature.PassiveEffect.Script
 {
     public class PassiveEffectsLifecycleSystem
     {
@@ -38,18 +37,6 @@ namespace Feature.Entity.Script
                 passive.Register(_owner, _combatSystem);
 
             _previousList = new List<PassiveEffectBase>(currentList);
-        }
-
-        public void TickTurnEnd() // ← новый метод, заменяет старый PassiveEffectsData.OnTurnEnd()
-        {
-            var toRemove = new List<PassiveEffectBase>();
-
-            foreach (var passive in _data.ActivePassives.CurrentValue)
-                if (passive.TickTurnEnd())
-                    toRemove.Add(passive);
-
-            foreach (var p in toRemove)
-                _data.Remove(p); // ← Remove просто меняет список, HandleChanged сам поймает изменение и вызовет Unregister
         }
     }
 }

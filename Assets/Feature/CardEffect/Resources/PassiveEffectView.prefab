@@ -354,6 +354,7 @@ GameObject:
   - component: {fileID: 2184869097220594694}
   - component: {fileID: 5607192099456034806}
   - component: {fileID: 6415399100236961360}
+  - component: {fileID: 6822886488430865671}
   m_Layer: 5
   m_Name: PassiveEffectView
   m_TagString: Untagged
@@ -403,10 +404,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9802cbe3a344f908c497bdb1dc539fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canvasGroup: {fileID: 6822886488430865671}
   icon: {fileID: 8685098416494555137}
   mainValueText: {fileID: 8177530965686170405}
   descriptionWindow: {fileID: 3203476198275042245}
   descriptionText: {fileID: 8764717793628797192}
+  _pulseDuration: 1
+  _pulseScale: 1.2
+--- !u!225 &6822886488430865671
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2933370226430195121}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &3203476198275042245
 GameObject:
   m_ObjectHideFlags: 0
@@ -424,7 +440,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8082326656457801818
 RectTransform:
   m_ObjectHideFlags: 0

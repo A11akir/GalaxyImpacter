@@ -8,11 +8,10 @@ namespace Feature.PassiveEffect.Script
     public abstract class PassiveEffectBase
     {
         [SerializeField] protected PassiveEffectConfig Config;
-        [SerializeField] protected DurationType Duration = DurationType.Permanent;
-
+        [SerializeField] protected DurationType Duration;
         public Sprite Icon => Config?.Icon;
         public string GetDescription(int value) =>
-            Config != null ? string.Format(Config.Description, value) : "";
+            Config ? string.Format(Config.Description, value) : "";
 
         public void SetConfig(PassiveEffectConfig config) => Config = config;
 

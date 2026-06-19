@@ -7,7 +7,7 @@ namespace Feature.PassiveEffect.Script
     {
         public Sprite Icon;
 
-        [TextArea] [Tooltip("Используй {0} для подстановки текущего значения бонуса")]
+        [TextArea]
         public string Description;
     }
 }

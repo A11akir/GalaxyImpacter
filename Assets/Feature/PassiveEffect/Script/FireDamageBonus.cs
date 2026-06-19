@@ -28,12 +28,6 @@ namespace Feature.PassiveEffect.Script
         public override void Register(CardAndHealthEntityOwnerData owner, CombatSystem.CombatSystem combatSystem) { }
         public override void Unregister() { }
 
-        protected override void OnTurnTick()
-        {
-            _bonus = 0;
-            _value.Value = 0;
-        }
-
         public int GetDamageBonus(CardStatsData sourceCard)
         {
             if (!sourceCard) return 0;

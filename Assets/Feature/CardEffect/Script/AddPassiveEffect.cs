@@ -1,5 +1,5 @@
-
 using System;
+using Feature.PassiveEffect.Script;
 using UnityEngine;
 
 namespace Feature.CardEffect.Script
@@ -7,7 +7,7 @@ namespace Feature.CardEffect.Script
     [Serializable]
     public class AddPassiveEffect : CardEffect
     {
-        [SerializeReference] private PassiveEffect.Script.PassiveEffectBase _passiveTemplate;
+        [SerializeReference] private PassiveEffectBase _passiveTemplate;
 
         public override void Execute(EffectContext ctx)
         {

@@ -25,6 +25,8 @@ namespace Feature.Battlefield.Script.View
             DOTween.Sequence()
                 .Join(_rectTransform.DOAnchorPosY(-350f, 1f).SetEase(Ease.OutQuad))
                 .Join(_canvasGroup.DOFade(1f, 1f));
+            
+            _canvasGroup.blocksRaycasts = true;
         }
 
         public void HideFog()
@@ -33,6 +35,8 @@ namespace Feature.Battlefield.Script.View
                 .Join(_rectTransform.DOAnchorPosY(100f, 1f).SetEase(Ease.InQuad))
                 .Join(_canvasGroup.DOFade(0f, 1f))
                 .OnComplete(() => fogWarView.SetActive(false));
+            
+            _canvasGroup.blocksRaycasts = false;
         }
         
         
