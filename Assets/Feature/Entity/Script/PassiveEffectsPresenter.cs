@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Feature.CardEffect.Script;
 using R3;
+using UnityEngine;
 
 namespace Feature.Entity.Script
 {
@@ -26,6 +27,13 @@ namespace Feature.Entity.Script
 
         private void HandlePassiveAdded(PassiveEffect.Script.PassiveEffect passive)
         {
+            Debug.Log($"[Presenter] HandlePassiveAdded: passive={passive.GetType().Name}, Icon={passive.Icon}");
+
+            if (passive.Icon == null)
+            {
+                Debug.Log("[Presenter] SKIPPED, Icon is null");
+                return;
+            }
             var icon = _view.GetFreeIcon();
             if (icon == null) return;
 

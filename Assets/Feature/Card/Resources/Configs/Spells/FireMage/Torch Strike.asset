@@ -40,4 +40,5 @@ MonoBehaviour:
     - rid: 7964668059962310664
       type: {class: FireDamageBonus, ns: Feature.PassiveEffect.Script, asm: Assembly-CSharp}
       data:
-        Config: {fileID: 0}
+        Config: {fileID: 11400000, guid: 6c8b6a000c4779a4bbd7f9ffd4cfa2ef, type: 2}
+        Duration: 1

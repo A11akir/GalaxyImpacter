@@ -33,7 +33,7 @@ namespace Feature.GameSessionData
         private readonly ReactiveProperty<List<CardStatsData>> _cardsInDeck = new(new List<CardStatsData>());
         public ReadOnlyReactiveProperty<List<CardStatsData>> CardsInDeck => _cardsInDeck;
 
-        private readonly ReactiveProperty<List<CardStatsData>> _cardsInHand = new(new List<CardStatsData>(6));
+        private readonly ReactiveProperty<List<CardStatsData>> _cardsInHand = new(new List<CardStatsData>(6)); 
         public ReadOnlyReactiveProperty<List<CardStatsData>> CardsInHand => _cardsInHand;
         
         private List<CardStatsData> _baseDeck = new();

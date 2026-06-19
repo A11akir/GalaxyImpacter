@@ -6,6 +6,7 @@ using Feature.Items.Scripts;
 using Feature.ShopGamePlay.Script.Currency;
 using Feature.Timer;
 using Feature.UI;
+using UnityEngine;
 
 namespace Feature.StagesGameLogic
 {
@@ -67,9 +68,9 @@ namespace Feature.StagesGameLogic
 
         private void ResetAllPassives()
         {
+            Debug.Log($"[TurnCycle] ResetAllPassives called, Turn={_gameSessionModel.Turn}");
             foreach (var owner in _gameSessionModel.GetAllEntityOwners())
-                foreach (var passive in owner.PassiveEffects.ActivePassives.CurrentValue)
-                    passive.OnTurnEnd();
+                owner.PassiveEffects.OnTurnEnd();
         }
 
         public void CycleStartFightTurn()

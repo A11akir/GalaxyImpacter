@@ -1,6 +1,7 @@
 // PassiveEffectsData.cs
 using System;
 using System.Collections.Generic;
+using Feature.CardEffect.Script;
 using Feature.GameSessionData;
 using R3;
 
@@ -57,6 +58,21 @@ namespace Feature.Entity.Script
             _activePassives.Value = new List<PassiveEffect.Script.PassiveEffect>();
         }
 
+        public void OnTurnEnd()
+        {
+            var toRemove = new List<PassiveEffect.Script.PassiveEffect>();
+
+            foreach (var passive in _activePassives.Value)
+            {
+                bool expired = passive.TickTurnEnd();
+                if (expired)
+                    toRemove.Add(passive);
+            }
+
+            foreach (var p in toRemove)
+                RemovePassive(p);
+        }
+        
         public T GetPassive<T>() where T : PassiveEffect.Script.PassiveEffect
         {
             foreach (var passive in _activePassives.Value)
