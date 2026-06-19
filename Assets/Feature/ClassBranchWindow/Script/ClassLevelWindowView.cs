@@ -13,9 +13,9 @@ namespace Feature.ClassBranchWindow.Script
         
         private RectTransform _rectTransform;
         
-        private const float VisibleY = 250f;
-        private const float HiddenY = -250f;
-        private const float AnimDuration = 0.6f;
+        private const float VisibleY = 75f;
+        private const float HiddenY = -75f;
+        private const float AnimDuration = 0.5f;
 
         private void Awake()
         {

@@ -86,8 +86,17 @@ namespace Feature.UI
 
         public void SetSelected(bool selected) => _selectWindow.SetActive(selected);
         public void SelectHeroView() => _selectWindow.SetActive(true);
-        public void OnPointerEnter(PointerEventData eventData) => _nameWindow.SetActive(true);
-        public void OnPointerExit(PointerEventData eventData) => _nameWindow.SetActive(false);
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            _nameWindow.SetActive(true);
+            _passiveEffectsView.gameObject.SetActive(true);
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            _nameWindow.SetActive(false);
+            _passiveEffectsView.gameObject.SetActive(false);
+        }
 
         public void BanHeroView()
         {
