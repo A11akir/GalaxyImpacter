@@ -1,29 +1,26 @@
-using System;
+// PassiveEffectsPresenter.cs — следит за тем же списком, только для UI
 using System.Collections.Generic;
 using System.Linq;
-using Feature.CardEffect.Script;
+using Feature.Entity.Script;
 using Feature.PassiveEffect.Script;
 using R3;
 
-namespace Feature.Entity.Script
+namespace Feature.CardEffect.Script
 {
     public class PassiveEffectsPresenter
     {
         private readonly PassiveEffectsContainerView _view;
         private readonly Dictionary<PassiveEffectBase, PassiveEffectIconView> _activeIcons = new();
-        private readonly Dictionary<PassiveEffectBase, IDisposable> _valueSubscriptions = new();
-        private readonly IDisposable _subscription;
-
+        private readonly Dictionary<PassiveEffectBase, System.IDisposable> _valueSubscriptions = new();
         private List<PassiveEffectBase> _previousList = new();
 
         public PassiveEffectsPresenter(PassiveEffectsContainerView view, PassiveEffectsData data)
         {
             _view = view;
-
-            _subscription = data.ActivePassives.Subscribe(HandlePassivesChanged);
+            data.ActivePassives.Subscribe(HandleChanged);
         }
 
-        private void HandlePassivesChanged(List<PassiveEffectBase> currentList)
+        private void HandleChanged(List<PassiveEffectBase> currentList)
         {
             var added = currentList.Except(_previousList);
             var removed = _previousList.Except(currentList);
@@ -76,14 +73,6 @@ namespace Feature.Entity.Script
                 sub.Dispose();
                 _valueSubscriptions.Remove(passive);
             }
-        }
-
-        public void Dispose()
-        {
-            _subscription.Dispose();
-            foreach (var sub in _valueSubscriptions.Values)
-                sub.Dispose();
-            _valueSubscriptions.Clear();
         }
     }
 }

@@ -122,8 +122,8 @@ namespace Feature.Hero
             _chakraManagerSystem.InitEntityChakra(owner);
             _entityDeathSystem.Init(owner);
 
-            var passiveView = (healthView as IPassiveEffectsHost)?.PassiveEffectsView; // ← достаём отсюда
-            _entityPresenters[owner] = new EntityPresenter(owner, healthView, passiveView);
+            var passiveView = (healthView as IPassiveEffectsHost)?.PassiveEffectsView;
+            _entityPresenters[owner] = new EntityPresenter(owner, healthView, passiveView, _combatSystem); // ← добавили _combatSystem
         }
 
         private void ApplyHeroPowerPassives(CardAndHealthEntityOwnerData owner, List<SpellCardData> heroPowers)

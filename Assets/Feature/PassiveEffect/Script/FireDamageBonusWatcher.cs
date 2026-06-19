@@ -1,4 +1,3 @@
-// FireDamageBonusWatcher.cs
 using System;
 using Feature.CombatSystem;
 using Feature.GameSessionData;
@@ -25,7 +24,7 @@ namespace Feature.PassiveEffect.Script
         }
 
         public override void Unregister() => _combatSystem.OnDamageDealt -= _handler;
-        
+
         private void OnDamageDealt(DamageDealtInfo info)
         {
             if (info.Source != _owner) return;
@@ -38,7 +37,7 @@ namespace Feature.PassiveEffect.Script
             {
                 bonus = new FireDamageBonus();
                 bonus.SetConfig(_bonusConfig);
-                _owner.PassiveEffects.AddPassive(bonus, _combatSystem);
+                _owner.PassiveEffects.Add(bonus);
             }
             bonus.AddBonus(1);
         }

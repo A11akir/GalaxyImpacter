@@ -22,13 +22,7 @@ namespace Feature.GameSessionData
         public CardAndHealthEntityOwnerData LastDamageSource { get; set; }
         public List<SpellCardData> SpellsList;
 
-        public PassiveEffectsData PassiveEffects { get; }
-
-// и добавить конструктор класса (если его сейчас нет вообще)
-        public CardAndHealthEntityOwnerData()
-        {
-            PassiveEffects = new PassiveEffectsData(this);
-        }
+        public PassiveEffectsData PassiveEffects { get; } = new PassiveEffectsData();
         
         private readonly ReactiveProperty<List<CardStatsData>> _cardsInDeck = new(new List<CardStatsData>());
         public ReadOnlyReactiveProperty<List<CardStatsData>> CardsInDeck => _cardsInDeck;

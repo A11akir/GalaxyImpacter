@@ -68,9 +68,8 @@ namespace Feature.StagesGameLogic
 
         private void ResetAllPassives()
         {
-            Debug.Log($"[TurnCycle] ResetAllPassives called, Turn={_gameSessionModel.Turn}");
             foreach (var owner in _gameSessionModel.GetAllEntityOwners())
-                owner.PassiveEffects.OnTurnEnd();
+                owner.PassiveEffects.TickTurnEnd();
         }
 
         public void CycleStartFightTurn()

@@ -1,6 +1,7 @@
 using Feature.CardEffect.Script;
 using Feature.GameSessionData;
 using Feature.Health;
+using Feature.PassiveEffect.Script;
 using R3;
 
 namespace Feature.Entity.Script
@@ -10,12 +11,14 @@ namespace Feature.Entity.Script
         private readonly IHealthView _healthView;
         private readonly CardAndHealthEntityOwnerData _owner;
         private readonly CompositeDisposable _disposables = new();
+        private readonly PassiveEffectsLifecycleSystem _lifecycleSystem;
         private readonly PassiveEffectsPresenter _passiveEffectsPresenter;
 
         public EntityPresenter(
             CardAndHealthEntityOwnerData owner,
             IHealthView healthView,
-            PassiveEffectsContainerView passiveEffectsView)
+            PassiveEffectsContainerView passiveEffectsView,
+            CombatSystem.CombatSystem combatSystem)
         {
             _owner = owner;
             _healthView = healthView;
@@ -24,14 +27,15 @@ namespace Feature.Entity.Script
                 .Subscribe(hp => _healthView.SetHealth(hp))
                 .AddTo(_disposables);
 
+            _lifecycleSystem = new PassiveEffectsLifecycleSystem(owner, combatSystem, owner.PassiveEffects);
+
             if (passiveEffectsView != null)
-                _passiveEffectsPresenter = new PassiveEffectsPresenter(passiveEffectsView, _owner.PassiveEffects);
+                _passiveEffectsPresenter = new PassiveEffectsPresenter(passiveEffectsView, owner.PassiveEffects);
         }
 
         public void Dispose()
         {
             _disposables.Dispose();
-            _passiveEffectsPresenter?.Dispose();
         }
     }
 }

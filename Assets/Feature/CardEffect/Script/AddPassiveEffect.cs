@@ -14,7 +14,7 @@ namespace Feature.CardEffect.Script
             var passive = ctx.Caster.PassiveEffects.Find(_passiveTemplate.GetType());
 
             if (passive == null)
-                passive = ctx.Caster.PassiveEffects.Create(_passiveTemplate, ctx.CombatSystem);
+                passive = ctx.Caster.PassiveEffects.Create(_passiveTemplate);
 
             if (passive is IStackablePassive stackable)
                 stackable.AddBonus(ctx.CardData.Values[ctx.ValueIndex]);
