@@ -405,9 +405,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvasGroup: {fileID: 6822886488430865671}
+  _descriptionCanvasGroup: {fileID: 3402337854290733636}
   icon: {fileID: 8685098416494555137}
   mainValueText: {fileID: 8177530965686170405}
-  descriptionWindow: {fileID: 3203476198275042245}
   descriptionText: {fileID: 8764717793628797192}
   _pulseDuration: 1
   _pulseScale: 1.2
@@ -420,8 +420,8 @@ CanvasGroup:
   m_GameObject: {fileID: 2933370226430195121}
   m_Enabled: 1
   m_Alpha: 1
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!1 &3203476198275042245
 GameObject:
@@ -434,13 +434,14 @@ GameObject:
   - component: {fileID: 8082326656457801818}
   - component: {fileID: 4361885147029333083}
   - component: {fileID: 7951092495316496061}
+  - component: {fileID: 3402337854290733636}
   m_Layer: 5
   m_Name: DescriptionFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8082326656457801818
 RectTransform:
   m_ObjectHideFlags: 0
@@ -499,3 +500,15 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!225 &3402337854290733636
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3203476198275042245}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0

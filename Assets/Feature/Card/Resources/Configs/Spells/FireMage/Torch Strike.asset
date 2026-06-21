@@ -12,33 +12,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: Torch Strike
   m_EditorClassIdentifier: 
-  _cost: 2
+  _cost: 1
   _name: Torch Strike
   _rarity: 0
-  _iconImage: {fileID: 0}
+  _iconImage: {fileID: 21300000, guid: 1538fd42a073b49eb89d682ab630d5db, type: 3}
   _specialization: 05000000
   _level: 0
   targetType: 2
   _inCollection: 1
   id: 5a034ec1-37f6-4d96-8f24-dadfac797db9
   _values: 0100000000000000
-  _description: Hit this turn increases your next damage by 1. Take 0 damage.
+  _description: Fire Hit this turn increases your next damage by 1. Take 0 damage.
   _effects:
   - rid: 7964668059962310656
   - rid: 7964668059962310658
   references:
     version: 2
     RefIds:
-    - rid: 7964668059962310656
-      type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
-      data:
-        _passiveTemplate:
-          rid: 7964668059962310664
-    - rid: 7964668059962310658
-      type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
-      data: 
-    - rid: 7964668059962310664
+    - rid: 5943948251302461440
       type: {class: FireDamageBonus, ns: Feature.PassiveEffect.Script, asm: Assembly-CSharp}
       data:
         Config: {fileID: 11400000, guid: 6c8b6a000c4779a4bbd7f9ffd4cfa2ef, type: 2}
         Duration: 1
+    - rid: 7964668059962310656
+      type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        _passiveTemplate:
+          rid: 5943948251302461440
+    - rid: 7964668059962310658
+      type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data: 

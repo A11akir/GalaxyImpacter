@@ -1,11 +1,12 @@
 // PassiveEffectsPresenter.cs — следит за тем же списком, только для UI
+
 using System.Collections.Generic;
 using System.Linq;
-using Feature.Entity.Script;
+using Feature.CardEffect.Script;
 using Feature.PassiveEffect.Script;
 using R3;
 
-namespace Feature.CardEffect.Script
+namespace Feature.Entity.Script
 {
     public class PassiveEffectsPresenter
     {
@@ -41,9 +42,7 @@ namespace Feature.CardEffect.Script
             var icon = _view.GetFreeSlot();
             if (icon == null) return;
 
-            icon.gameObject.SetActive(true);
             icon.SetIcon(passive.Icon);
-            _activeIcons[passive] = icon;
 
             if (passive is IValueProvider valueProvider)
             {
@@ -64,7 +63,7 @@ namespace Feature.CardEffect.Script
         {
             if (_activeIcons.TryGetValue(passive, out var icon))
             {
-                icon.gameObject.SetActive(false);
+                icon.ForceHide();
                 _activeIcons.Remove(passive);
             }
 

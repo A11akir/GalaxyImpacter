@@ -2,22 +2,32 @@
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Feature.CardEffect.Script
 {
-    public class PassiveEffectIconView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public class PassiveEffectIconView : MonoBehaviour
     {
+        [SerializeField] private CanvasGroup _canvasGroup;
+        [SerializeField] private CanvasGroup _descriptionCanvasGroup;
         [SerializeField] private Image icon;
         [SerializeField] private TextMeshProUGUI mainValueText;
-        [SerializeField] private GameObject descriptionWindow;
         [SerializeField] private TextMeshProUGUI descriptionText;
 
         [SerializeField] private float _pulseDuration = 1f;
         [SerializeField] private float _pulseScale = 1.2f;
 
-        public void SetIcon(Sprite sprite) => icon.sprite = sprite;
+        public bool IsInUse { get; private set; }
+
+        private bool _isHovered;
+
+        public void SetIcon(Sprite sprite)
+        {
+            icon.sprite = sprite;
+            IsInUse = true;
+            _canvasGroup.alpha = 0f;
+            _descriptionCanvasGroup.alpha = 0f;
+        }
 
         public void SetValue(int value)
         {
@@ -27,22 +37,61 @@ namespace Feature.CardEffect.Script
 
         public void SetDescription(string text) => descriptionText.text = text;
 
-        public void OnPointerEnter(PointerEventData eventData) => descriptionWindow.SetActive(true);
-        public void OnPointerExit(PointerEventData eventData) => descriptionWindow.SetActive(false);
+        public void SetHoverState(bool hovered)
+        {
+            if (!IsInUse) return;
 
-private void PlayPulse()
-{
-    transform.DOKill();
-    transform.localScale = Vector3.one;
+            _isHovered = hovered;
 
-    gameObject.SetActive(true);
+            if (hovered)
+            {
+                _canvasGroup.DOKill();
+                _canvasGroup.alpha = 1f;
 
-    transform.DOScale(_pulseScale, _pulseDuration * 0.2f)
-        .SetEase(Ease.OutQuad)
-        .OnComplete(() =>
-            transform.DOScale(Vector3.one, _pulseDuration * 0.8f)
-                .SetEase(Ease.InQuad)
-                .OnComplete(() => gameObject.SetActive(false)));
-}
+                _descriptionCanvasGroup.DOKill();
+                _descriptionCanvasGroup.alpha = 1f;
+            }
+            else
+            {
+                _descriptionCanvasGroup.DOKill();
+                _descriptionCanvasGroup.alpha = 0f;
+
+                if (!IsPulseActive())
+                    _canvasGroup.DOFade(0f, 0.3f);
+            }
+        }
+
+        public void ForceHide()
+        {
+            IsInUse = false;
+            _canvasGroup.DOKill();
+            _descriptionCanvasGroup.DOKill();
+            transform.DOKill();
+            _canvasGroup.alpha = 0f;
+            _descriptionCanvasGroup.alpha = 0f;
+            transform.localScale = Vector3.one;
+        }
+
+        private bool IsPulseActive() => DOTween.IsTweening(transform);
+
+        private void PlayPulse()
+        {
+            transform.DOKill();
+            _canvasGroup.DOKill();
+
+            transform.localScale = Vector3.one;
+            _canvasGroup.alpha = 1f;
+
+            transform.DOScale(_pulseScale, _pulseDuration * 0.2f)
+                .SetEase(Ease.OutQuad)
+                .OnComplete(() =>
+                    transform.DOScale(Vector3.one, _pulseDuration * 0.8f)
+                        .SetEase(Ease.InQuad)
+                        .OnComplete(() =>
+                        {
+                            if (!_isHovered)
+                                _canvasGroup.DOFade(0f, 0.3f);
+                        }));
+        }
     }
 }

@@ -34,6 +34,7 @@ namespace Feature.UI
             _gameSessionView._heroView._isBlockedForSelect = true;
 
             _gameSessionView._heroView.SetGameplayMode(true);
+            _gameSessionView._enemyView.SetGameplayMode(true);
             
             _targetingSystem.RegisterTarget(_gameSessionView._heroView.gameObject,_gameSessionModel.PlayerHero.MainHeroEntity());
             _targetingSystem.RegisterTarget(_gameSessionView._enemyView.gameObject,_gameSessionModel.EnemyHero.MainHeroEntity());

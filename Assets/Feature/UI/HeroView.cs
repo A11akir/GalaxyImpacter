@@ -47,16 +47,6 @@ namespace Feature.UI
             SetHeroPowerViews(heroPowerPreviewViews, data);
         }
 
-        public void SetGameplayMode(bool isGameplay)
-        {
-            _isGameplayMode = isGameplay;
-            foreach (var heroPowerPreview in heroPowerPreviewViews)
-                heroPowerPreview.gameObject.SetActive(false);
-            
-            if (isGameplay && HeroData != null)
-                SetHeroPowerViews(heroPowerGameplayViews, HeroData);
-        }
-
         private void SetHeroPowerViews<T>(List<T> views, GameSessionPlayerData data)
             where T : HeroPowerPreview
         {
@@ -86,16 +76,28 @@ namespace Feature.UI
 
         public void SetSelected(bool selected) => _selectWindow.SetActive(selected);
         public void SelectHeroView() => _selectWindow.SetActive(true);
+// HeroView.cs — контейнер всегда активен, наведение просто сообщает о hover
         public void OnPointerEnter(PointerEventData eventData)
         {
             _nameWindow.SetActive(true);
-            _passiveEffectsView.gameObject.SetActive(true);
+            _passiveEffectsView.SetHovered(true);
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
             _nameWindow.SetActive(false);
-            _passiveEffectsView.gameObject.SetActive(false);
+            _passiveEffectsView.SetHovered(false);
+        }
+
+        public void SetGameplayMode(bool isGameplay)
+        {
+            _isGameplayMode = isGameplay;
+            foreach (var heroPowerPreview in heroPowerPreviewViews)
+                heroPowerPreview.gameObject.SetActive(false);
+
+            if (isGameplay && HeroData != null)
+                SetHeroPowerViews(heroPowerGameplayViews, HeroData);
+
         }
 
         public void BanHeroView()

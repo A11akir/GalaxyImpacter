@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
-  m_Name: 'Electric Imp  '
+  m_Name: Electric Imp
   m_EditorClassIdentifier: 
   _cost: 2
-  _name: 'Electric Imp  '
+  _name: Electric Imp
   _rarity: 1
   _iconImage: {fileID: 0}
   _specialization: 0500000009000000
   _level: 0
   targetType: 1
   _inCollection: 1
-  id: dadafa8e-67c6-41ff-8ae7-d674df76fbd5
+  id: aff7f704-7bd3-4145-8bd5-f8880a477fef
   _health: 4
   _chakra: 3
   _handCardCount: 2
   _spellsList:
-  - {fileID: 11400000, guid: c4115e64270e44652b1e8fa86102e8c9, type: 2}
-  - {fileID: 11400000, guid: 7a55ed5d8bfe94cb5911bd68081df0f5, type: 2}
+  - {fileID: 11400000, guid: c26e08c52638744689b3664bdb5505f8, type: 2}
+  - {fileID: 11400000, guid: b37ad3046f63546c988d4060f6f7cec5, type: 2}
