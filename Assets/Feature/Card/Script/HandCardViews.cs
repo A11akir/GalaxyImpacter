@@ -15,8 +15,6 @@ namespace Feature.Card.Script
         public HandCardView AddCardFromHand(CardStatsData cardStatsData, int addedIndex)
         {
             Transform handContainer = transform;
-    
-
             
             HandCardView freeView = null;
             for (int i = 0; i < handContainer.childCount; i++)

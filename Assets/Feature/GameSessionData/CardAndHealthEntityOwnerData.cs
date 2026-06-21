@@ -155,7 +155,6 @@ namespace Feature.GameSessionData
             newList.Insert(index, card);
     
             _cardsInHand.Value = newList;
-    
         }
         
         public void RemoveCardFromHand(CardStatsData data)

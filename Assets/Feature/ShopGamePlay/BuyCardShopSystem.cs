@@ -1,8 +1,4 @@
-
-
 using System.Collections.Generic;
-using Feature.Card.Script;
-using Feature.Data;
 using Feature.GameSessionData;
 using Feature.Hero;
 using UnityEngine;
@@ -20,9 +16,7 @@ namespace Feature.ShopGamePlay
 
         public void BuyCard(CardStatsData card)
         {
-            Debug.Log($"[BuyCard] Buying: {card.Name}, specs: {string.Join(", ", card.Specialization)}");
             AddCardToDeck(card);
-            AddClassFromCard(card);
         }
 
         private void AddCardToDeck(CardStatsData card)
@@ -36,6 +30,7 @@ namespace Feature.ShopGamePlay
             hero.SetBaseDeck(updatedBaseDeck);
     
             hero.AddCardToDeck(cardCopy);
+            AddClassFromCard(card);
         }
     
         private void AddClassFromCard(CardStatsData card)
