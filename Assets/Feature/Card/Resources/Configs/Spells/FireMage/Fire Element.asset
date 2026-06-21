@@ -31,8 +31,10 @@ MonoBehaviour:
     - rid: 7964668059962310663
       type: {class: GenerateTemporaryHandCardEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
+        TargetSelection: 1
+        RandomSingleTarget: 0
         _query:
-          ClassSource: 0
+          ClassSource: 1
           ManualClass: 5
           CardType: 1
           RaritySource: 0

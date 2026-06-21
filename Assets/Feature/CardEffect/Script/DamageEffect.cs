@@ -1,3 +1,4 @@
+// DamageEffect.cs — теперь работает через общий ResolveTargets, без своей логики выбора цели
 using System;
 using Feature.PassiveEffect.Script;
 
@@ -10,11 +11,15 @@ namespace Feature.CardEffect.Script
         {
             int damage = context.CardData.Values[context.ValueIndex];
 
+            int bonus = 0;
             foreach (var passive in context.Caster.PassiveEffects.ActivePassives.CurrentValue)
                 if (passive is IDamageModifier modifier)
-                    damage += modifier.GetDamageBonus(context.CardData);
+                    bonus += modifier.GetDamageBonus(context.CardData);
 
-            context.CombatSystem.TakeDamage(context.Target, damage, context.Caster, context.CardData);
+            var targets = ResolveTargets(context);
+
+            foreach (var target in targets)
+                context.CombatSystem.TakeDamage(target, damage + bonus, context.Caster, context.CardData);
         }
     }
 }

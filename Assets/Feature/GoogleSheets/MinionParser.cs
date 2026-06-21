@@ -59,28 +59,24 @@ namespace Feature.GoogleSheets
                     {
                         _minionStatsConfig.Cost = Convert.ToInt32(token);
                     }
-
                     break;
                 case "Health":
                     if (!string.IsNullOrWhiteSpace(token))
                     {
                         _minionStatsConfig.Health = Convert.ToInt32(token);
                     }
-
                     break;
                 case "Chakra":
                     if (!string.IsNullOrWhiteSpace(token))
                     {
                         _minionStatsConfig.Chakra = Convert.ToInt32(token);
                     }
-
                     break;
                 case "HandCardCount":
                     if (!string.IsNullOrWhiteSpace(token))
                     {
                         _minionStatsConfig.HandCardCount = Convert.ToInt32(token);
                     }
-
                     break;
                 case "Rarity":
                     _minionStatsConfig.Rarity = token;

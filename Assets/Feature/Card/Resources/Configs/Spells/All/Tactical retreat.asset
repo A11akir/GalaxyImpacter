@@ -23,7 +23,13 @@ MonoBehaviour:
   id: 2dfc7d73-a1b7-4283-a28e-ff0a6bced925
   _values: 02000000
   _description: Draw 2 cards.
-  _effects: []
+  _effects:
+  - rid: 5943948251302461441
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 5943948251302461441
+      type: {class: DrawCardsEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 1
+        RandomSingleTarget: 0
