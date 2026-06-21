@@ -23,7 +23,13 @@ MonoBehaviour:
   id: e21d0535-0006-4a8f-8d0f-87b4b4671bf8
   _values: 01000000
   _description: Take 1 damage all enemies
-  _effects: []
+  _effects:
+  - rid: 5943948251302461444
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 5943948251302461444
+      type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 8
+        RandomSingleTarget: 0

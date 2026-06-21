@@ -68,6 +68,7 @@ namespace Feature.Card.Script
                         CombatSystem = _combatSystem,
                         CardData = spell,
                         ValueIndex = i,
+                        CurrentEffectsList = spell.Effects,
                         CardPoolPickSystem = _cardPoolPickSystem
                     });
             }

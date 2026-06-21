@@ -21,6 +21,6 @@ namespace Feature.GoogleSheets
         public string MinionNameOwner { get; set; }
 
         public bool IsPassive => _effects != null && _effects.Count > 0 &&
-                                 _effects.TrueForAll(e => e is CardEffect.Script.AddPassiveEffect);
+                                 _effects.TrueForAll(e => e is AddPassiveEffect);
     }
 }

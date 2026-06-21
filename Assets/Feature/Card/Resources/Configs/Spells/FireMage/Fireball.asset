@@ -23,7 +23,13 @@ MonoBehaviour:
   id: 1021bc19-0b06-4f96-ba05-160c7cbc54b8
   _values: 06000000
   _description: Take 6 damage.
-  _effects: []
+  _effects:
+  - rid: 5943948251302461445
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 5943948251302461445
+      type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 0
+        RandomSingleTarget: 0

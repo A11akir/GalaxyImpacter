@@ -23,7 +23,33 @@ MonoBehaviour:
   id: c15b2643-5a04-42fd-a903-c569e56c52a1
   _values: 0100000002000000
   _description: Take 1 damage at the end of the turn 2 times.
-  _effects: []
+  _effects:
+  - rid: 5943948251302461446
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 5943948251302461446
+      type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 0
+        RandomSingleTarget: 0
+        _passiveTemplate:
+          rid: 5943948251302461447
+    - rid: 5943948251302461447
+      type: {class: TurnEndEffectPassive, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        Config: {fileID: 11400000, guid: f9fa568a56c604da8b977f7f08473d79, type: 2}
+        Duration: 1
+        _effects:
+        - rid: 5943948251302461448
+        - rid: 5943948251302461451
+    - rid: 5943948251302461448
+      type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 0
+        RandomSingleTarget: 0
+    - rid: 5943948251302461451
+      type: {class: RepeatEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 0
+        RandomSingleTarget: 0
