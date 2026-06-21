@@ -99,7 +99,8 @@ namespace Feature.GoogleSheets
                 case "Specialization2":
                 case "Specialization3":
                 case "Specialization4":
-                    if (_minionStatsConfig != null && !string.IsNullOrWhiteSpace(token) && Enum.TryParse<AllHeroClass>(token, out var minionClass))
+                    if (_minionStatsConfig != null && !string.IsNullOrWhiteSpace(token) &&
+                        Enum.TryParse<AllHeroClass>(token, out var minionClass))
                         _minionStatsConfig.Specialization.Add(minionClass);
                     break;
                 case "InCollection":
@@ -123,7 +124,13 @@ namespace Feature.GoogleSheets
                 if (spellSO != null)
                     allSpellSOs[spellSO.name] = spellSO;
             }
-            
+
+            var baseSpells = allSpellSOs.Values
+                .Where(s => s.Specialization != null
+                            && s.Specialization.Count == 1
+                            && s.Specialization[0] == AllHeroClass.All)
+                .ToList();
+
             _targetSO.RemoveAll(x => x == null || (x as UnityEngine.Object) == null);
 
             foreach (var cfg in _allGameConfig.AllMinionStats)
@@ -162,9 +169,14 @@ namespace Feature.GoogleSheets
                 so.HandCardCount = cfg.HandCardCount;
                 so.InCollection = cfg.InCollection;
                 so.TargetType = cfg.TargetType;
-                
-                
-                so.SpellsList = new List<SpellCardData>();
+
+                bool isBaseMinion = cfg.Specialization != null
+                                    && cfg.Specialization.Count == 1
+                                    && cfg.Specialization[0] == AllHeroClass.All;
+
+                so.SpellsList = isBaseMinion
+                    ? new List<SpellCardData>(baseSpells)
+                    : new List<SpellCardData>();
 
                 EditorUtility.SetDirty(so as UnityEngine.Object);
             }
