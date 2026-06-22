@@ -23,6 +23,8 @@ namespace Feature.UI
         
         [SerializeField] private Image _iconImage;
         
+        [SerializeField] private GameObject _armorRoot;
+        [SerializeField] private TextMeshProUGUI _armorText;
         [SerializeField] public TextMeshProUGUI _healthText;
         [SerializeField] public TextMeshProUGUI _nameText;
         
@@ -76,7 +78,18 @@ namespace Feature.UI
 
         public void SetSelected(bool selected) => _selectWindow.SetActive(selected);
         public void SelectHeroView() => _selectWindow.SetActive(true);
-// HeroView.cs — контейнер всегда активен, наведение просто сообщает о hover
+        
+        public void SetArmor(int armor)
+        {
+            bool hasArmor = armor > 0;
+
+            _armorRoot.SetActive(hasArmor);
+
+            _armorText.text = hasArmor 
+                ? armor.ToString() 
+                : "";
+        }
+        
         public void OnPointerEnter(PointerEventData eventData)
         {
             _nameWindow.SetActive(true);

@@ -15,7 +15,11 @@ namespace Feature.Battlefield.Script.View
         IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IHealthView, ITargetable, IPassiveEffectsHost
     {
         [SerializeField] private TextMeshProUGUI _name;
+        
+        [SerializeField] private GameObject _armorRoot;
+        [SerializeField] private TextMeshProUGUI _armorText;
         [SerializeField] private TextMeshProUGUI _health;
+        
         [SerializeField] private TextMeshProUGUI _healthBoard;
         [SerializeField] private TextMeshProUGUI _cost;
         [SerializeField] private Image _iconMinionHand;
@@ -50,6 +54,17 @@ namespace Feature.Battlefield.Script.View
             _cost.text = cardStatsData.Cost.ToString();
 
             SetRaritySprite(cardStatsData.Rarity);
+        }
+        
+        public void SetArmor(int armor)
+        {
+            bool hasArmor = armor > 0;
+
+            _armorRoot.SetActive(hasArmor);
+
+            _armorText.text = hasArmor 
+                ? armor.ToString() 
+                : "";
         }
         
         private void SetRaritySprite(CardRarity rarity)

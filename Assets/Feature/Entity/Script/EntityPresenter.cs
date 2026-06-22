@@ -14,6 +14,7 @@ namespace Feature.Entity.Script
         private readonly PassiveEffectsLifecycleSystem _lifecycleSystem;
         private readonly PassiveEffectsPresenter _passiveEffectsPresenter;
 
+
         public EntityPresenter(
             CardAndHealthEntityOwnerData owner,
             IHealthView healthView,
@@ -23,15 +24,32 @@ namespace Feature.Entity.Script
             _owner = owner;
             _healthView = healthView;
 
+
             _owner.Health
                 .Subscribe(hp => _healthView.SetHealth(hp))
                 .AddTo(_disposables);
 
-            _lifecycleSystem = new PassiveEffectsLifecycleSystem(owner, combatSystem, owner.PassiveEffects);
+
+            _owner.Armor
+                .Subscribe(armor => _healthView.SetArmor(armor))
+                .AddTo(_disposables);
+
+
+            _lifecycleSystem = new PassiveEffectsLifecycleSystem(
+                owner,
+                combatSystem,
+                owner.PassiveEffects
+            );
+
 
             if (passiveEffectsView != null)
-                _passiveEffectsPresenter = new PassiveEffectsPresenter(passiveEffectsView, owner.PassiveEffects);
+                _passiveEffectsPresenter =
+                    new PassiveEffectsPresenter(
+                        passiveEffectsView,
+                        owner.PassiveEffects
+                    );
         }
+
 
         public void Dispose()
         {

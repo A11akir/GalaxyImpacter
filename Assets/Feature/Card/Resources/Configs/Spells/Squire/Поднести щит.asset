@@ -18,14 +18,20 @@ MonoBehaviour:
   _iconImage: {fileID: 0}
   _specialization: 
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
   id: 628e647c-0691-492d-b2ba-7f90a2984e97
   _values: 01000000
   _description: "\u0413\u0435\u0440\u043E\u0439 \u042D\u043A\u0438\u043F\u0438\u0440\u0443\u0435\u0442
     \u0449\u0438\u0442 \u0438\u043B\u0438 \u0434\u043E\u0431\u0430\u0432\u0442\u0435
     (1) \u043F\u0440\u043E\u0447\u043D\u043E\u0441\u0442\u0438."
-  _effects: []
+  _effects:
+  - rid: 5943948276110983169
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 5943948276110983169
+      type: {class: AddArmorEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 0
+        RandomSingleTarget: 0

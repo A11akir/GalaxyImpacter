@@ -61,6 +61,16 @@ namespace Feature.GameSessionData
             set => _health.Value = value;
         }
         
+        private readonly ReactiveProperty<int> _armor = new(0);
+
+        public ReadOnlyReactiveProperty<int> Armor => _armor;
+
+
+        public int ArmorValue
+        {
+            get => _armor.Value;
+            set => _armor.Value = Mathf.Max(0, value);
+        }
         public string _heroName;
         
         private readonly ReactiveProperty<int> _chakraCount = new();

@@ -42,13 +42,13 @@ MonoBehaviour:
         Duration: 1
         _effects:
         - rid: 5943948251302461448
-        - rid: 5943948251302461451
+        - rid: 5943948276110983168
     - rid: 5943948251302461448
       type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
         TargetSelection: 0
         RandomSingleTarget: 0
-    - rid: 5943948251302461451
+    - rid: 5943948276110983168
       type: {class: RepeatEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
         TargetSelection: 0
