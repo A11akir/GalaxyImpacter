@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using Feature.CardEffect.Script;
 using Feature.PassiveEffect.Script;
 using R3;
+using UnityEngine;
 
 namespace Feature.Entity.Script
 {
@@ -50,14 +52,43 @@ namespace Feature.Entity.Script
         
         public void TickTurnEnd()
         {
+            // Снимок текущего состояния на начало фазы
+            var startPassives = new List<PassiveEffectBase>(_activePassives.Value);
+
+
+            // 1. Сначала выполняем эффекты конца хода
+            foreach (var passive in startPassives)
+            {
+                if (passive is TurnEndEffectPassive)
+                {
+                    passive.TickTurnEnd();
+                }
+            }
+
+
+            // 2. После выполнения эффектов берём актуальный список
+            // потому что TurnEndEffectPassive мог создать новые пассивки
+            var allPassives = new List<PassiveEffectBase>(_activePassives.Value);
+
+
+            // 3. Собираем всё что должно исчезнуть
             var toRemove = new List<PassiveEffectBase>();
 
-            foreach (var passive in _activePassives.Value)
-                if (passive.TickTurnEnd())
+            foreach (var passive in allPassives)
+            {
+                if (passive.Duration == DurationType.UntilTurnEnd)
+                {
                     toRemove.Add(passive);
+                }
+            }
 
-            foreach (var p in toRemove)
-                Remove(p);
+
+            // 4. Удаляем после завершения всех эффектов
+            foreach (var passive in toRemove)
+            {
+                passive.Unregister();
+                Remove(passive);
+            }
         }
     }
 }

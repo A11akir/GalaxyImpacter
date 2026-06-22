@@ -1,6 +1,6 @@
-// DamageEffect.cs — теперь работает через общий ResolveTargets, без своей логики выбора цели
 using System;
 using Feature.PassiveEffect.Script;
+using UnityEngine;
 
 namespace Feature.CardEffect.Script
 {
@@ -9,6 +9,7 @@ namespace Feature.CardEffect.Script
     {
         public override void Execute(EffectContext context)
         {
+            Debug.Log(context.CardData.Values[context.ValueIndex]);
             int damage = context.CardData.Values[context.ValueIndex];
 
             int bonus = 0;

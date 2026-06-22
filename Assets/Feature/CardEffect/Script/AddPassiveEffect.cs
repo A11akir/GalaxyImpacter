@@ -1,4 +1,3 @@
-// AddPassiveEffect.cs — нужно вызвать Setup, если шаблон оказался TurnEndEffectPassive
 using System;
 using Feature.PassiveEffect.Script;
 using UnityEngine;
@@ -12,18 +11,29 @@ namespace Feature.CardEffect.Script
 
         public override void Execute(EffectContext ctx)
         {
-            var passive = ctx.Caster.PassiveEffects.Find(_passiveTemplate.GetType());
-
-            if (passive == null)
+            if (_passiveTemplate is IStackablePassive)
             {
-                passive = ctx.Caster.PassiveEffects.Create(_passiveTemplate);
+                var passive = ctx.Caster.PassiveEffects.Find(_passiveTemplate.GetType());
 
-                if (passive is TurnEndEffectPassive turnEndPassive)
-                    turnEndPassive.Setup(ctx);
+                if (passive == null)
+                {
+                    passive = ctx.Caster.PassiveEffects.Create(_passiveTemplate);
+                }
+
+                if (passive is IStackablePassive stackable)
+                {
+                    stackable.AddBonus(ctx.CardData.Values[ctx.ValueIndex]);
+                }
+
+                return;
             }
 
-            if (passive is IStackablePassive stackable)
-                stackable.AddBonus(ctx.CardData.Values[ctx.ValueIndex]);
+            var newPassive = ctx.Caster.PassiveEffects.Create(_passiveTemplate);
+
+            if (newPassive is TurnEndEffectPassive turnEndPassive)
+            {
+                turnEndPassive.Setup(ctx);
+            }
         }
     }
 }

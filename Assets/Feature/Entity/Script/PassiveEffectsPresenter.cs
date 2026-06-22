@@ -42,7 +42,10 @@ namespace Feature.Entity.Script
             var icon = _view.GetFreeSlot();
             if (icon == null) return;
 
+            _activeIcons[passive] = icon;
+
             icon.SetIcon(passive.Icon);
+
 
             if (passive is IValueProvider valueProvider)
             {
@@ -51,10 +54,12 @@ namespace Feature.Entity.Script
                     icon.SetValue(value);
                     icon.SetDescription(passive.GetDescription(value));
                 });
+
                 _valueSubscriptions[passive] = sub;
             }
             else
             {
+                icon.HideValue(); // <-- скрываем число
                 icon.SetDescription(passive.GetDescription(0));
             }
         }

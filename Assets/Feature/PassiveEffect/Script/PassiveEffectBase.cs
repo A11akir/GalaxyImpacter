@@ -8,13 +8,14 @@ namespace Feature.PassiveEffect.Script
     public abstract class PassiveEffectBase
     {
         [SerializeField] protected PassiveEffectConfig Config;
-        [SerializeField] protected DurationType Duration;
+        [SerializeField] public DurationType Duration;
         public Sprite Icon => Config?.Icon;
         public string GetDescription(int value) =>
             Config ? string.Format(Config.Description, value) : "";
 
         public void SetConfig(PassiveEffectConfig config) => Config = config;
 
+        public virtual int GetDisplayValue(int duplicateCount) => duplicateCount;
         
         public abstract void Register(CardAndHealthEntityOwnerData owner, CombatSystem.CombatSystem combatSystem);
         public abstract void Unregister();

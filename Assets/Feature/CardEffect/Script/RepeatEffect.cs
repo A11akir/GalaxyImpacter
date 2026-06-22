@@ -7,7 +7,6 @@ namespace Feature.CardEffect.Script
     {
         public override void Execute(EffectContext context)
         {
-
             int repeatCount = context.CardData.Values[context.ValueIndex] - 1;
             int previousIndex = context.ValueIndex - 1;
             

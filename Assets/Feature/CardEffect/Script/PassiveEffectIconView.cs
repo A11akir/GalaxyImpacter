@@ -35,6 +35,11 @@ namespace Feature.CardEffect.Script
             PlayPulse();
         }
 
+        public void HideValue()
+        {
+            mainValueText.text = "";
+        }
+        
         public void SetDescription(string text) => descriptionText.text = text;
 
         public void SetHoverState(bool hovered)
@@ -64,11 +69,16 @@ namespace Feature.CardEffect.Script
         public void ForceHide()
         {
             IsInUse = false;
+
             _canvasGroup.DOKill();
             _descriptionCanvasGroup.DOKill();
             transform.DOKill();
+
             _canvasGroup.alpha = 0f;
             _descriptionCanvasGroup.alpha = 0f;
+
+            HideValue();
+
             transform.localScale = Vector3.one;
         }
 

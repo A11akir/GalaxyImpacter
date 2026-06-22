@@ -13,7 +13,6 @@ namespace Feature.CombatSystem
             if (target == null) return;
 
             target.LastDamageSource = source;
-            Debug.Log($"Taking damage {damage}");
             Debug.Log(target._heroName);
             target.HealthValue -= damage;
 
@@ -25,7 +24,6 @@ namespace Feature.CombatSystem
                 SourceCard = sourceCard,
                 Amount = damage
             });
-            Debug.Log($"Damage dealt: {damage} from {source} to {target}");
         }
     }
 }
