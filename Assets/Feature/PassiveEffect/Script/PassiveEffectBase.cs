@@ -1,4 +1,6 @@
 using System;
+using Feature.Card.Script;
+using Feature.CardEffect.Script;
 using Feature.GameSessionData;
 using UnityEngine;
 
@@ -15,6 +17,12 @@ namespace Feature.PassiveEffect.Script
 
         public void SetConfig(PassiveEffectConfig config) => Config = config;
 
+        public virtual void InjectServices(
+        CardCastService castService,
+            CardPoolPickSystem cardPoolPickSystem)
+        {
+            
+        }
         public virtual int GetDisplayValue(int duplicateCount) => duplicateCount;
         
         public abstract void Register(CardAndHealthEntityOwnerData owner, CombatSystem.CombatSystem combatSystem);

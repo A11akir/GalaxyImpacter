@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Feature.Battlefield.Script;
 using Feature.CardEffect.Script;
@@ -12,6 +13,8 @@ namespace Feature.Card.Script
         private readonly BattlefieldSystem _battlefieldSystem;
         private readonly CombatSystem.CombatSystem _combatSystem;
         private readonly CardPoolPickSystem _cardPoolPickSystem;
+        
+        public event Action<CardStatsData, CardAndHealthEntityOwnerData> OnCardCast;
 
         public CardCastService(GameSessionModel gameSessionModel,
             BattlefieldSystem battlefieldSystem,
@@ -72,6 +75,7 @@ namespace Feature.Card.Script
                         CardPoolPickSystem = _cardPoolPickSystem
                     });
             }
+            OnCardCast?.Invoke(card, owner);
         }
     }
 }
