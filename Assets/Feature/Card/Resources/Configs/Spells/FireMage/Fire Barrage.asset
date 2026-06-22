@@ -23,7 +23,13 @@ MonoBehaviour:
   id: 50a9de40-cd4e-4e51-8307-ad580b90deba
   _values: 01000000
   _description: Take 1 damage random enemy. Repeated the same number of times.
-  _effects: []
+  _effects:
+  - rid: 5943948276110983171
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 5943948276110983171
+      type: {class: BarrageRepeatEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 8
+        RandomSingleTarget: 1
