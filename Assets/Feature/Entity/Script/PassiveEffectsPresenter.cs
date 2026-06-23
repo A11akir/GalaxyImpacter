@@ -59,7 +59,7 @@ namespace Feature.Entity.Script
             }
             else
             {
-                icon.HideValue(); // <-- скрываем число
+                icon.HideValue();
                 icon.SetDescription(passive.GetDescription(0));
             }
         }

@@ -24,7 +24,7 @@ namespace Feature.PassiveEffect.Script
             _sourceCard = context.CardData;
             _valueIndex = context.ValueIndex;
             _gameSessionModel = context.GameSessionModel;
-            _cardPoolPickSystem = context.CardPoolPickSystem; // ← тоже берём отсюда, не из Register
+            _cardPoolPickSystem = context.CardPoolPickSystem;
         }
 
         public override void Register(CardAndHealthEntityOwnerData owner)
