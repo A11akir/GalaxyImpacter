@@ -28,7 +28,7 @@ namespace Feature.PassiveEffect.Script
             _value.Value = _bonus;
         }
 
-        public override void Register(CardAndHealthEntityOwnerData owner, CombatSystem.CombatSystem combatSystem, CardCastService cardCastService, CardPoolPickSystem cardPoolPickSystem) { }
+        public override void Register(CardAndHealthEntityOwnerData owner) { }
         public override void Unregister() { }
 
         public int GetDamageBonus(CardStatsData sourceCard)

@@ -4,6 +4,8 @@ using Feature.Battlefield.Script;
 using Feature.CardEffect.Script;
 using Feature.GameSessionData;
 using Feature.GoogleSheets;
+using Feature.PassiveEffect;
+using Feature.PassiveEffect.Script;
 
 namespace Feature.Card.Script
 {
@@ -13,17 +15,19 @@ namespace Feature.Card.Script
         private readonly BattlefieldSystem _battlefieldSystem;
         private readonly CombatSystem.CombatSystem _combatSystem;
         private readonly CardPoolPickSystem _cardPoolPickSystem;
+        private readonly GameEventDispatcher _eventDispatcher;
         
         public event Action<CardStatsData, CardAndHealthEntityOwnerData> OnCardCast;
 
         public CardCastService(GameSessionModel gameSessionModel,
             BattlefieldSystem battlefieldSystem,
-            CombatSystem.CombatSystem combatSystem, CardPoolPickSystem cardPoolPickSystem)
+            CombatSystem.CombatSystem combatSystem, CardPoolPickSystem cardPoolPickSystem, GameEventDispatcher eventDispatcher)
         {
             _gameSessionModel = gameSessionModel;
             _battlefieldSystem = battlefieldSystem;
             _combatSystem = combatSystem;
             _cardPoolPickSystem = cardPoolPickSystem;
+            _eventDispatcher = eventDispatcher;
         }
 
         public bool CheckCanCast(CardStatsData card, CardAndHealthEntityOwnerData owner)
@@ -75,7 +79,8 @@ namespace Feature.Card.Script
                         CardPoolPickSystem = _cardPoolPickSystem
                     });
             }
-            OnCardCast?.Invoke(card, owner);
+            /*OnCardCast?.Invoke(card, owner);*/
+            _eventDispatcher.Notify(owner, new CardCastInfo { Caster = owner, Card = card });
         }
     }
 }

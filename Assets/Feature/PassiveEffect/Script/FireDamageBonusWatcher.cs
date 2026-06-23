@@ -9,29 +9,26 @@ using UnityEngine;
 namespace Feature.PassiveEffect.Script
 {
     [Serializable]
-    public class FireDamageBonusWatcher : PassiveEffectBase, IStackablePassive, ICardContextConsumer
+    public class FireDamageBonusWatcher : PassiveEffectBase, IStackablePassive, ICardContextConsumer, IGameEventListener<DamageDealtInfo>
     {
         [SerializeField] private PassiveEffectConfig _bonusConfig;
 
         private int _bonusPerHit;
-
         private CardAndHealthEntityOwnerData _owner;
-        private CombatSystem.CombatSystem _combatSystem;
-        private Action<DamageDealtInfo> _handler;
 
         public void AddBonus(int amount) => _bonusPerHit = amount;
 
-        public override void Register(CardAndHealthEntityOwnerData owner, CombatSystem.CombatSystem combatSystem, CardCastService cardCastService, CardPoolPickSystem cardPoolPickSystem)
+        public void OnAppliedFromCard(EffectContext context) =>
+            AddBonus(context.CardData.Values[context.ValueIndex]);
+
+        public override void Register(CardAndHealthEntityOwnerData owner)
         {
             _owner = owner;
-            _combatSystem = combatSystem;
-            _handler = OnDamageDealt;
-            combatSystem.OnDamageDealt += _handler;
         }
 
-        public override void Unregister() => _combatSystem.OnDamageDealt -= _handler;
+        public override void Unregister() { } // ← пусто, нечего отписывать
 
-        private void OnDamageDealt(DamageDealtInfo info)
+        public void OnEvent(DamageDealtInfo info)
         {
             if (info.Source != _owner) return;
             if (!info.SourceCard) return;
@@ -50,8 +47,5 @@ namespace Feature.PassiveEffect.Script
 
         public override PassiveEffectBase Clone() =>
             new FireDamageBonusWatcher { _bonusConfig = _bonusConfig };
-
-        public void OnAppliedFromCard(EffectContext context) =>
-            AddBonus(context.CardData.Values[context.ValueIndex]);
     }
 }

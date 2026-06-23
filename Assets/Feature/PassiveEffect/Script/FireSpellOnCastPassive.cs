@@ -1,4 +1,4 @@
-// FireSpellOnCastPassive.cs — сохраняем весь нужный набор данных при OnAppliedFromCard
+// FireSpellOnCastPassive.cs — полностью на новой модели
 using System;
 using Feature.Card.Script;
 using Feature.CardEffect.Script;
@@ -9,48 +9,36 @@ using UnityEngine;
 namespace Feature.PassiveEffect.Script
 {
     [Serializable]
-    public class FireSpellOnCastPassive : PassiveEffectBase, ICardContextConsumer
+    public class FireSpellOnCastPassive : PassiveEffectBase, ICardContextConsumer, IGameEventListener<CardCastInfo>
     {
         [SerializeField] private GenerateTemporaryHandCardEffect _generator;
 
-        private CardCastService _castService;
-        private CardPoolPickSystem _cardPoolPickSystem;
         private CardAndHealthEntityOwnerData _owner;
-
         private SpellCardData _sourceCard;
         private int _valueIndex;
-        private GameSessionModel _gameSessionModel; // ← добавили
+        private GameSessionModel _gameSessionModel;
+        private CardPoolPickSystem _cardPoolPickSystem;
 
         public void OnAppliedFromCard(EffectContext context)
         {
             _sourceCard = context.CardData;
             _valueIndex = context.ValueIndex;
-            _gameSessionModel = context.GameSessionModel; // ← сохраняем
+            _gameSessionModel = context.GameSessionModel;
+            _cardPoolPickSystem = context.CardPoolPickSystem; // ← тоже берём отсюда, не из Register
         }
 
-        public override void Register(
-            CardAndHealthEntityOwnerData owner,
-            CombatSystem.CombatSystem combatSystem,
-            CardCastService cardCastService,
-            CardPoolPickSystem cardPoolPickSystem)
+        public override void Register(CardAndHealthEntityOwnerData owner)
         {
             _owner = owner;
-            _castService = cardCastService;
-            _cardPoolPickSystem = cardPoolPickSystem;
-            _castService.OnCardCast += OnCardCast;
         }
 
-        public override void Unregister()
-        {
-            if (_castService != null)
-                _castService.OnCardCast -= OnCardCast;
-        }
+        public override void Unregister() { }
 
-        private void OnCardCast(CardStatsData card, CardAndHealthEntityOwnerData caster)
+        public void OnEvent(CardCastInfo info)
         {
-            if (caster != _owner) return;
-            if (card is not SpellCardData) return;
-            if (card == _sourceCard) return;
+            if (info.Caster != _owner) return;
+            if (info.Card is not SpellCardData) return;
+            if (info.Card == _sourceCard) return;
 
             _generator.Execute(new EffectContext
             {
@@ -58,7 +46,7 @@ namespace Feature.PassiveEffect.Script
                 CardData = _sourceCard,
                 ValueIndex = _valueIndex,
                 CardPoolPickSystem = _cardPoolPickSystem,
-                GameSessionModel = _gameSessionModel // ← теперь заполнено
+                GameSessionModel = _gameSessionModel
             });
         }
 

@@ -20,10 +20,7 @@ namespace Feature.PassiveEffect.Script
         public virtual int GetDisplayValue(int duplicateCount) => duplicateCount;
         
         public abstract void Register(
-            CardAndHealthEntityOwnerData owner,
-            CombatSystem.CombatSystem combatSystem,
-            CardCastService cardCastService,
-            CardPoolPickSystem cardPoolPickSystem);
+            CardAndHealthEntityOwnerData owner);
         
         public abstract void Unregister();
 

@@ -39,7 +39,7 @@ namespace Feature.CardEffect.Script
             _cardData = sourceContext.CardData;
         }
 
-        public override void Register(CardAndHealthEntityOwnerData owner, CombatSystem.CombatSystem combatSystem, CardCastService cardCastService, CardPoolPickSystem cardPoolPickSystem) { }
+        public override void Register(CardAndHealthEntityOwnerData owner) { }
         public override void Unregister() { }
 
 

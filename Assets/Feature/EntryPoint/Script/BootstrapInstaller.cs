@@ -14,6 +14,8 @@ using Feature.HandLogic;
 using Feature.GameSessionFSM;
 using Feature.Hero;
 using Feature.Items.Scripts;
+using Feature.PassiveEffect;
+using Feature.PassiveEffect.Script;
 using Feature.ShopGamePlay;
 using Feature.ShopGamePlay.ItemShopSystem;
 using Feature.ShopGamePlay.Script.Currency;
@@ -59,6 +61,7 @@ namespace Feature.EntryPoint.Script
             Container.Bind<GraphicRaycaster>().FromComponentInHierarchy().AsSingle();
             Container.Bind<EventSystem>().FromComponentInHierarchy().AsSingle();
             Container.Bind<CombatSystem.CombatSystem>().AsSingle();
+            Container.Bind<GameEventDispatcher>().AsSingle();
         }
 
         private void BindUI()

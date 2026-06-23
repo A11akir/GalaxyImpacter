@@ -1,4 +1,5 @@
-using Feature.Card.Script;
+// EntityPresenter.cs — убираем CombatSystem, CardCastService, CardPoolPickSystem из конструктора
+
 using Feature.CardEffect.Script;
 using Feature.GameSessionData;
 using Feature.Health;
@@ -14,48 +15,28 @@ namespace Feature.Entity.Script
         private readonly CompositeDisposable _disposables = new();
         private readonly PassiveEffectsLifecycleSystem _lifecycleSystem;
         private readonly PassiveEffectsPresenter _passiveEffectsPresenter;
-        private readonly CardCastService _cardCastService;
-        private readonly CardPoolPickSystem _cardPoolPickSystem;
 
         public EntityPresenter(
             CardAndHealthEntityOwnerData owner,
             IHealthView healthView,
-            PassiveEffectsContainerView passiveEffectsView,
-            CombatSystem.CombatSystem combatSystem,
-            CardCastService cardCastService, CardPoolPickSystem cardPoolPickSystem)
+            PassiveEffectsContainerView passiveEffectsView)
         {
             _owner = owner;
             _healthView = healthView;
-            _cardCastService = cardCastService;
-            _cardPoolPickSystem = cardPoolPickSystem;
-
 
             _owner.Health
                 .Subscribe(hp => _healthView.SetHealth(hp))
                 .AddTo(_disposables);
 
-
             _owner.Armor
                 .Subscribe(armor => _healthView.SetArmor(armor))
                 .AddTo(_disposables);
 
-
-            _lifecycleSystem = new PassiveEffectsLifecycleSystem(
-                owner,
-                combatSystem,
-                owner.PassiveEffects,
-                cardCastService, cardPoolPickSystem
-            );
-
+            _lifecycleSystem = new PassiveEffectsLifecycleSystem(owner, owner.PassiveEffects);
 
             if (passiveEffectsView != null)
-                _passiveEffectsPresenter =
-                    new PassiveEffectsPresenter(
-                        passiveEffectsView,
-                        owner.PassiveEffects
-                    );
+                _passiveEffectsPresenter = new PassiveEffectsPresenter(passiveEffectsView, owner.PassiveEffects);
         }
-
 
         public void Dispose()
         {

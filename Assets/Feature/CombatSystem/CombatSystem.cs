@@ -1,12 +1,20 @@
 using System;
 using Feature.GameSessionData;
+using Feature.PassiveEffect;
+using Feature.PassiveEffect.Script;
 using UnityEngine;
 
 namespace Feature.CombatSystem
 {
     public class CombatSystem
     {
-        public event Action<DamageDealtInfo> OnDamageDealt;
+        private readonly GameEventDispatcher _eventDispatcher;
+
+        public CombatSystem(GameEventDispatcher eventDispatcher)
+        {
+            _eventDispatcher = eventDispatcher;
+        }
+        
         public void TakePureDamage(
             CardAndHealthEntityOwnerData target,
             int damage,
@@ -19,13 +27,8 @@ namespace Feature.CombatSystem
 
             target.HealthValue -= damage;
             
-            OnDamageDealt?.Invoke(new DamageDealtInfo
-            {
-                Source = source,
-                Target = target,
-                SourceCard = sourceCard,
-                Amount = damage
-            });
+            var info = new DamageDealtInfo { Source = source, Target = target, SourceCard = sourceCard, Amount = damage };
+            _eventDispatcher.Notify(source, info); 
         }
         
         public void TakeDamage(
@@ -52,13 +55,8 @@ namespace Feature.CombatSystem
             
             target.LastDamageSource = source;
             
-            OnDamageDealt?.Invoke(new DamageDealtInfo
-            {
-                Source = source,
-                Target = target,
-                SourceCard = sourceCard,
-                Amount = damage
-            });
+            var info = new DamageDealtInfo { Source = source, Target = target, SourceCard = sourceCard, Amount = damage };
+            _eventDispatcher.Notify(source, info); 
         }
     }
 }
