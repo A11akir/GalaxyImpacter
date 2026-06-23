@@ -12,6 +12,7 @@ namespace Feature.CardEffect.Script
         public override void Execute(EffectContext ctx)
         {
             int count = ctx.CardData.Values[ctx.ValueIndex];
+            
             for (int i = 0; i < count; i++)
             {
                 var template = ctx.CardPoolPickSystem.Pick(_query, ctx);

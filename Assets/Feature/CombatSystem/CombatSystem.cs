@@ -59,8 +59,6 @@ namespace Feature.CombatSystem
                 SourceCard = sourceCard,
                 Amount = damage
             });
-            
-            Debug.Log(damage);
         }
     }
 }

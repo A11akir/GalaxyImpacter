@@ -1,3 +1,4 @@
+// FireSpellOnCastPassive.cs — сохраняем весь нужный набор данных при OnAppliedFromCard
 using System;
 using Feature.Card.Script;
 using Feature.CardEffect.Script;
@@ -8,7 +9,7 @@ using UnityEngine;
 namespace Feature.PassiveEffect.Script
 {
     [Serializable]
-    public class FireSpellOnCastPassive : PassiveEffectBase
+    public class FireSpellOnCastPassive : PassiveEffectBase, ICardContextConsumer
     {
         [SerializeField] private GenerateTemporaryHandCardEffect _generator;
 
@@ -16,20 +17,26 @@ namespace Feature.PassiveEffect.Script
         private CardPoolPickSystem _cardPoolPickSystem;
         private CardAndHealthEntityOwnerData _owner;
 
-        public override void InjectServices(
-            CardCastService castService,
-            CardPoolPickSystem cardPoolPickSystem)
+        private SpellCardData _sourceCard;
+        private int _valueIndex;
+        private GameSessionModel _gameSessionModel; // ← добавили
+
+        public void OnAppliedFromCard(EffectContext context)
         {
-            _castService = castService;
-            _cardPoolPickSystem = cardPoolPickSystem;
+            _sourceCard = context.CardData;
+            _valueIndex = context.ValueIndex;
+            _gameSessionModel = context.GameSessionModel; // ← сохраняем
         }
 
         public override void Register(
             CardAndHealthEntityOwnerData owner,
-            CombatSystem.CombatSystem combatSystem)
+            CombatSystem.CombatSystem combatSystem,
+            CardCastService cardCastService,
+            CardPoolPickSystem cardPoolPickSystem)
         {
             _owner = owner;
-
+            _castService = cardCastService;
+            _cardPoolPickSystem = cardPoolPickSystem;
             _castService.OnCardCast += OnCardCast;
         }
 
@@ -43,28 +50,24 @@ namespace Feature.PassiveEffect.Script
         {
             if (caster != _owner) return;
             if (card is not SpellCardData) return;
+            if (card == _sourceCard) return;
 
             _generator.Execute(new EffectContext
             {
                 Caster = _owner,
-                Target = null,
-                GameSessionModel = null,
-                BattlefieldSystem = null,
-                CombatSystem = null,
-                CardData = new SpellCardData(), // заглушка ок
+                CardData = _sourceCard,
+                ValueIndex = _valueIndex,
                 CardPoolPickSystem = _cardPoolPickSystem,
-                ValueIndex = 0,
-                CurrentEffectsList = null
+                GameSessionModel = _gameSessionModel // ← теперь заполнено
             });
         }
 
-        public override PassiveEffectBase Clone()
-        {
-            return new FireSpellOnCastPassive
+        public override PassiveEffectBase Clone() =>
+            new FireSpellOnCastPassive
             {
                 Config = Config,
-                Duration = Duration
+                Duration = Duration,
+                _generator = _generator
             };
-        }
     }
 }

@@ -21,10 +21,23 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 1
   id: e6951659-b140-4752-b816-77d0342f44e3
-  _values: 0100000000000000
+  _values: 0100000001000000
   _description: When you use a spell before the end of your turn, you receive 1 temporary
     fire spell.
-  _effects: []
+  _effects:
+  - rid: 7964668149625520128
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 7964668149625520128
+      type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 1
+        RandomSingleTarget: 0
+        _passiveTemplate:
+          rid: 7964668149625520129
+    - rid: 7964668149625520129
+      type: {class: FireSpellOnCastPassive, ns: Feature.PassiveEffect.Script, asm: Assembly-CSharp}
+      data:
+        Config: {fileID: 11400000, guid: 2ede78c5552a5bd488fa09dcb9dbf550, type: 2}
+        Duration: 1

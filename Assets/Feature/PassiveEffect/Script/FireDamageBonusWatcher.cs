@@ -1,4 +1,5 @@
 using System;
+using Feature.Card.Script;
 using Feature.CardEffect.Script;
 using Feature.CombatSystem;
 using Feature.GameSessionData;
@@ -8,7 +9,7 @@ using UnityEngine;
 namespace Feature.PassiveEffect.Script
 {
     [Serializable]
-    public class FireDamageBonusWatcher : PassiveEffectBase, IStackablePassive
+    public class FireDamageBonusWatcher : PassiveEffectBase, IStackablePassive, ICardContextConsumer
     {
         [SerializeField] private PassiveEffectConfig _bonusConfig;
 
@@ -20,7 +21,7 @@ namespace Feature.PassiveEffect.Script
 
         public void AddBonus(int amount) => _bonusPerHit = amount;
 
-        public override void Register(CardAndHealthEntityOwnerData owner, CombatSystem.CombatSystem combatSystem)
+        public override void Register(CardAndHealthEntityOwnerData owner, CombatSystem.CombatSystem combatSystem, CardCastService cardCastService, CardPoolPickSystem cardPoolPickSystem)
         {
             _owner = owner;
             _combatSystem = combatSystem;
@@ -49,5 +50,8 @@ namespace Feature.PassiveEffect.Script
 
         public override PassiveEffectBase Clone() =>
             new FireDamageBonusWatcher { _bonusConfig = _bonusConfig };
+
+        public void OnAppliedFromCard(EffectContext context) =>
+            AddBonus(context.CardData.Values[context.ValueIndex]);
     }
 }

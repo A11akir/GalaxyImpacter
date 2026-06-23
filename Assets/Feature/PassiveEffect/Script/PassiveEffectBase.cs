@@ -16,16 +16,15 @@ namespace Feature.PassiveEffect.Script
             Config ? string.Format(Config.Description, value) : "";
 
         public void SetConfig(PassiveEffectConfig config) => Config = config;
-
-        public virtual void InjectServices(
-        CardCastService castService,
-            CardPoolPickSystem cardPoolPickSystem)
-        {
-            
-        }
+        
         public virtual int GetDisplayValue(int duplicateCount) => duplicateCount;
         
-        public abstract void Register(CardAndHealthEntityOwnerData owner, CombatSystem.CombatSystem combatSystem);
+        public abstract void Register(
+            CardAndHealthEntityOwnerData owner,
+            CombatSystem.CombatSystem combatSystem,
+            CardCastService cardCastService,
+            CardPoolPickSystem cardPoolPickSystem);
+        
         public abstract void Unregister();
 
         public bool TickTurnEnd()

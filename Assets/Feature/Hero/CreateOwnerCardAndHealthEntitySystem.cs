@@ -24,6 +24,8 @@ namespace Feature.Hero
         private readonly HeroPowerSystem _heroPowerSystem;
         private readonly HeroPowerPresenter _heroPowerPresenter;
         private readonly CombatSystem.CombatSystem _combatSystem;
+        private readonly CardCastService _cardCastService;
+        private readonly CardPoolPickSystem _cardPoolPickSystem;
 
         private readonly Dictionary<CardAndHealthEntityOwnerData, EntityPresenter> _entityPresenters = new();
 
@@ -31,7 +33,7 @@ namespace Feature.Hero
             ChakraManagerSystem chakraManagerSystem, HandDataRepository handDataRepository,
             DeckFillSystem deckFillSystem, HandViewSwitcher handViewSwitcher, HandFillSystem handFillSystem,
             EntityDeathSystem entityDeathSystem, HeroPowerSystem heroPowerSystem, HeroPowerPresenter heroPowerPresenter,
-            CombatSystem.CombatSystem combatSystem)
+            CombatSystem.CombatSystem combatSystem, CardCastService cardCastService, CardPoolPickSystem cardPoolPickSystem)
         {
             _gameSessionModel = gameSessionModel;
             _chakraManagerSystem = chakraManagerSystem;
@@ -43,6 +45,8 @@ namespace Feature.Hero
             _heroPowerSystem = heroPowerSystem;
             _heroPowerPresenter = heroPowerPresenter;
             _combatSystem = combatSystem;
+            _cardCastService = cardCastService;
+            _cardPoolPickSystem = cardPoolPickSystem;
             _entityDeathSystem.OnEntityDied += DisposeEntity;
         }
 
@@ -123,7 +127,7 @@ namespace Feature.Hero
             _entityDeathSystem.Init(owner);
 
             var passiveView = (healthView as IPassiveEffectsHost)?.PassiveEffectsView;
-            _entityPresenters[owner] = new EntityPresenter(owner, healthView, passiveView, _combatSystem); // ← добавили _combatSystem
+            _entityPresenters[owner] = new EntityPresenter(owner, healthView, passiveView, _combatSystem, _cardCastService, _cardPoolPickSystem); // ← добавили _combatSystem
         }
 
         private void ApplyHeroPowerPassives(CardAndHealthEntityOwnerData owner, List<SpellCardData> heroPowers)

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Feature.Card.Script;
 using Feature.GameSessionData;
 using Feature.GoogleSheets;
 using Feature.PassiveEffect.Script;
@@ -9,7 +10,7 @@ using UnityEngine;
 namespace Feature.CardEffect.Script
 {
     [Serializable]
-    public class TurnEndEffectPassive : PassiveEffectBase
+    public class TurnEndEffectPassive : PassiveEffectBase, ICardContextConsumer
     {
         [SerializeReference] private List<CardEffect> _effects = new();
 
@@ -26,6 +27,8 @@ namespace Feature.CardEffect.Script
             Duration = DurationType.UntilTurnEnd;
         }
 
+        public void OnAppliedFromCard(EffectContext context) => Setup(context);
+        
         public void Setup(EffectContext sourceContext)
         {
             _caster = sourceContext.Caster;
@@ -36,7 +39,7 @@ namespace Feature.CardEffect.Script
             _cardData = sourceContext.CardData;
         }
 
-        public override void Register(CardAndHealthEntityOwnerData owner, CombatSystem.CombatSystem combatSystem) { }
+        public override void Register(CardAndHealthEntityOwnerData owner, CombatSystem.CombatSystem combatSystem, CardCastService cardCastService, CardPoolPickSystem cardPoolPickSystem) { }
         public override void Unregister() { }
 
 

@@ -1,3 +1,4 @@
+using Feature.Card.Script;
 using Feature.CardEffect.Script;
 using Feature.GameSessionData;
 using Feature.Health;
@@ -13,16 +14,20 @@ namespace Feature.Entity.Script
         private readonly CompositeDisposable _disposables = new();
         private readonly PassiveEffectsLifecycleSystem _lifecycleSystem;
         private readonly PassiveEffectsPresenter _passiveEffectsPresenter;
-
+        private readonly CardCastService _cardCastService;
+        private readonly CardPoolPickSystem _cardPoolPickSystem;
 
         public EntityPresenter(
             CardAndHealthEntityOwnerData owner,
             IHealthView healthView,
             PassiveEffectsContainerView passiveEffectsView,
-            CombatSystem.CombatSystem combatSystem)
+            CombatSystem.CombatSystem combatSystem,
+            CardCastService cardCastService, CardPoolPickSystem cardPoolPickSystem)
         {
             _owner = owner;
             _healthView = healthView;
+            _cardCastService = cardCastService;
+            _cardPoolPickSystem = cardPoolPickSystem;
 
 
             _owner.Health
@@ -38,7 +43,8 @@ namespace Feature.Entity.Script
             _lifecycleSystem = new PassiveEffectsLifecycleSystem(
                 owner,
                 combatSystem,
-                owner.PassiveEffects
+                owner.PassiveEffects,
+                cardCastService, cardPoolPickSystem
             );
 
 
