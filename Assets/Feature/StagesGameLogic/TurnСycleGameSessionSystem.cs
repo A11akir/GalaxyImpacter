@@ -3,6 +3,7 @@ using Feature.ClassBranchWindow.Script;
 using Feature.GameSessionData;
 using Feature.Hero;
 using Feature.Items.Scripts;
+using Feature.PassiveEffect.Script;
 using Feature.ShopGamePlay.Script.Currency;
 using Feature.Timer;
 using Feature.UI;
@@ -23,11 +24,12 @@ namespace Feature.StagesGameLogic
         private readonly InventoryPresenter _inventoryPresenter;
         private readonly HeroClassLevelSystem _heroClassLevelSystem;
         private readonly ClassLevelWindowPresenter _classLevelWindowPresenter;
+        private readonly TurnEndEffectQueue _turnEndEffectQueue;
 
 
         public TurnCycleGameSessionSystem(StageManagerSystem stageManagerSystem, TurnResourceManager resourceManager, GameSessionModel gameSessionModel, 
             GameSessionPresenter gameSessionPresenter, BattlefieldSystem battlefieldSystem, CurrencyManagerSystem currencyManager,
-            TimerStageGameSessionSystem timerSystem, ReadyStageBackOrFightSystem readySystem, InventoryPresenter inventoryPresenter, HeroClassLevelSystem heroClassLevelSystem, ClassLevelWindowPresenter classLevelWindowPresenter)
+            TimerStageGameSessionSystem timerSystem, ReadyStageBackOrFightSystem readySystem, InventoryPresenter inventoryPresenter, HeroClassLevelSystem heroClassLevelSystem, ClassLevelWindowPresenter classLevelWindowPresenter, TurnEndEffectQueue turnEndEffectQueue)
         {
             _stageManagerSystem = stageManagerSystem;
             _resourceManager = resourceManager;
@@ -40,6 +42,7 @@ namespace Feature.StagesGameLogic
             _inventoryPresenter = inventoryPresenter;
             _heroClassLevelSystem = heroClassLevelSystem;
             _classLevelWindowPresenter = classLevelWindowPresenter;
+            _turnEndEffectQueue = turnEndEffectQueue;
         }
 
 
@@ -68,8 +71,7 @@ namespace Feature.StagesGameLogic
 
         private void ResetAllPassives()
         {
-            foreach (var owner in _gameSessionModel.GetAllEntityOwners())
-                owner.PassiveEffects.TriggerTurnEndEffects();
+            _turnEndEffectQueue.TriggerAll();
 
             foreach (var owner in _gameSessionModel.GetAllEntityOwners())
                 owner.PassiveEffects.CleanupExpiredPassives();

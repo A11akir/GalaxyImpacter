@@ -11,16 +11,26 @@ namespace Feature.CardEffect.Script
     {
         [SerializeReference] private PassiveEffectBase _passiveTemplate;
 
+// AddPassiveEffect.cs
         public override void Execute(EffectContext ctx)
         {
             var targets = ResolveTargets(ctx);
+            Debug.Log($"[AddPassiveEffect] targets count={targets.Count}");
 
             foreach (var target in targets)
             {
                 var passive = ResolvePassive(ctx, target);
+                Debug.Log($"[AddPassiveEffect] passive type={passive.GetType().Name}, target={target._heroName}");
 
                 if (passive is ICardContextConsumer consumer)
+                {
                     consumer.OnAppliedFromCard(ctx);
+                    Debug.Log("[AddPassiveEffect] OnAppliedFromCard called");
+                }
+                else
+                {
+                    Debug.Log("[AddPassiveEffect] passive is NOT ICardContextConsumer");
+                }
             }
         }
 

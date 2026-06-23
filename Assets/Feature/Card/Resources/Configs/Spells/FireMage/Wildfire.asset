@@ -45,8 +45,8 @@ MonoBehaviour:
           TargetSelection: 1
           RandomSingleTarget: 0
           _query:
-            ClassSource: 0
-            ManualClass: 0
+            ClassSource: 1
+            ManualClass: 5
             CardType: 1
             RaritySource: 0
             ManualRarities: 

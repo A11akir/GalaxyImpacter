@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Feature.Battlefield.Script;
 using Feature.GameSessionData;
 using Feature.GoogleSheets;
+using Feature.PassiveEffect.Script;
 
 namespace Feature.CardEffect.Script
 {
@@ -17,5 +18,6 @@ namespace Feature.CardEffect.Script
         public int ValueIndex;
         public CardPoolPickSystem CardPoolPickSystem { get; set; }
         public List<CardEffect> CurrentEffectsList { get; set; }
+        public TurnEndEffectQueue TurnEndEffectQueue;
     }
 }

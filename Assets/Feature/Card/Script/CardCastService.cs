@@ -16,18 +16,18 @@ namespace Feature.Card.Script
         private readonly CombatSystem.CombatSystem _combatSystem;
         private readonly CardPoolPickSystem _cardPoolPickSystem;
         private readonly GameEventDispatcher _eventDispatcher;
-        
-        public event Action<CardStatsData, CardAndHealthEntityOwnerData> OnCardCast;
+        private readonly TurnEndEffectQueue _turnEndEffectQueue;
 
         public CardCastService(GameSessionModel gameSessionModel,
             BattlefieldSystem battlefieldSystem,
-            CombatSystem.CombatSystem combatSystem, CardPoolPickSystem cardPoolPickSystem, GameEventDispatcher eventDispatcher)
+            CombatSystem.CombatSystem combatSystem, CardPoolPickSystem cardPoolPickSystem, GameEventDispatcher eventDispatcher, TurnEndEffectQueue turnEndEffectQueue)
         {
             _gameSessionModel = gameSessionModel;
             _battlefieldSystem = battlefieldSystem;
             _combatSystem = combatSystem;
             _cardPoolPickSystem = cardPoolPickSystem;
             _eventDispatcher = eventDispatcher;
+            _turnEndEffectQueue = turnEndEffectQueue;
         }
 
         public bool CheckCanCast(CardStatsData card, CardAndHealthEntityOwnerData owner)
@@ -46,11 +46,9 @@ namespace Feature.Card.Script
 
         public void Cast(CardStatsData card, CardAndHealthEntityOwnerData owner, CardAndHealthEntityOwnerData target)
         {
-            
             if (!CheckCanCast(card, owner)) return;
 
             owner.Chakra -= card.Cost;
-            
             
             var cardInHand = owner.CardsInHand.CurrentValue.FirstOrDefault(c => c.id == card.id);
             if (cardInHand != null)
@@ -76,10 +74,11 @@ namespace Feature.Card.Script
                         CardData = spell,
                         ValueIndex = i,
                         CurrentEffectsList = spell.Effects,
-                        CardPoolPickSystem = _cardPoolPickSystem
+                        CardPoolPickSystem = _cardPoolPickSystem,
+                        TurnEndEffectQueue = _turnEndEffectQueue 
                     });
             }
-            /*OnCardCast?.Invoke(card, owner);*/
+
             _eventDispatcher.Notify(owner, new CardCastInfo { Caster = owner, Card = card });
         }
     }

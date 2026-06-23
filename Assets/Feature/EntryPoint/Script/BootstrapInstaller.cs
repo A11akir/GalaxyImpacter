@@ -62,6 +62,7 @@ namespace Feature.EntryPoint.Script
             Container.Bind<EventSystem>().FromComponentInHierarchy().AsSingle();
             Container.Bind<CombatSystem.CombatSystem>().AsSingle();
             Container.Bind<GameEventDispatcher>().AsSingle();
+            Container.Bind<TurnEndEffectQueue>().AsSingle();
         }
 
         private void BindUI()
