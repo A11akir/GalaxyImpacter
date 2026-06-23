@@ -69,7 +69,10 @@ namespace Feature.StagesGameLogic
         private void ResetAllPassives()
         {
             foreach (var owner in _gameSessionModel.GetAllEntityOwners())
-                owner.PassiveEffects.TickTurnEnd();
+                owner.PassiveEffects.TriggerTurnEndEffects();
+
+            foreach (var owner in _gameSessionModel.GetAllEntityOwners())
+                owner.PassiveEffects.CleanupExpiredPassives();
         }
 
         public void CycleStartFightTurn()

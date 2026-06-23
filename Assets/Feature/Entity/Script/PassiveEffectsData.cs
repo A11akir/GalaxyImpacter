@@ -50,40 +50,24 @@ namespace Feature.Entity.Script
             return null;
         }
         
-        public void TickTurnEnd()
+        public void TriggerTurnEndEffects()
         {
-            // Снимок текущего состояния на начало фазы
-            var startPassives = new List<PassiveEffectBase>(_activePassives.Value);
+            var passives = new List<PassiveEffectBase>(_activePassives.Value);
 
-
-            // 1. Сначала выполняем эффекты конца хода
-            foreach (var passive in startPassives)
-            {
+            foreach (var passive in passives)
                 if (passive is TurnEndEffectPassive)
-                {
                     passive.TickTurnEnd();
-                }
-            }
+        }
 
-
-            // 2. После выполнения эффектов берём актуальный список
-            // потому что TurnEndEffectPassive мог создать новые пассивки
-            var allPassives = new List<PassiveEffectBase>(_activePassives.Value);
-
-
-            // 3. Собираем всё что должно исчезнуть
+        public void CleanupExpiredPassives()
+        {
+            var passives = new List<PassiveEffectBase>(_activePassives.Value);
             var toRemove = new List<PassiveEffectBase>();
 
-            foreach (var passive in allPassives)
-            {
+            foreach (var passive in passives)
                 if (passive.Duration == DurationType.UntilTurnEnd)
-                {
                     toRemove.Add(passive);
-                }
-            }
 
-
-            // 4. Удаляем после завершения всех эффектов
             foreach (var passive in toRemove)
             {
                 passive.Unregister();

@@ -1,5 +1,6 @@
-// AddPassiveEffect.cs
+
 using System;
+using Feature.GameSessionData;
 using Feature.PassiveEffect.Script;
 using UnityEngine;
 
@@ -12,19 +13,24 @@ namespace Feature.CardEffect.Script
 
         public override void Execute(EffectContext ctx)
         {
-            var passive = ResolvePassive(ctx);
+            var targets = ResolveTargets(ctx);
 
-            if (passive is ICardContextConsumer consumer)
-                consumer.OnAppliedFromCard(ctx);
+            foreach (var target in targets)
+            {
+                var passive = ResolvePassive(ctx, target);
+
+                if (passive is ICardContextConsumer consumer)
+                    consumer.OnAppliedFromCard(ctx);
+            }
         }
 
-        private PassiveEffectBase ResolvePassive(EffectContext ctx)
+        private PassiveEffectBase ResolvePassive(EffectContext ctx, CardAndHealthEntityOwnerData owner)
         {
             if (_passiveTemplate is not IStackablePassive)
-                return ctx.Caster.PassiveEffects.Create(_passiveTemplate);
+                return owner.PassiveEffects.Create(_passiveTemplate);
 
-            return ctx.Caster.PassiveEffects.Find(_passiveTemplate.GetType())
-                   ?? ctx.Caster.PassiveEffects.Create(_passiveTemplate);
+            return owner.PassiveEffects.Find(_passiveTemplate.GetType())
+                   ?? owner.PassiveEffects.Create(_passiveTemplate);
         }
     }
 }

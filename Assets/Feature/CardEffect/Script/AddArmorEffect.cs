@@ -10,7 +10,7 @@ namespace Feature.CardEffect.Script
         {
             int armor = context.CardData.Values[context.ValueIndex];
 
-            context.Caster.ArmorValue += armor;
+            context.Target.ArmorValue += armor;
         }
     }
 }
