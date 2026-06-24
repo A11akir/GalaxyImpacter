@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ede3092beecbb524d9fc86b091363df4
+guid: 9005d435ff09a504085736bf6f1513ad
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2451946448528740540
-    second: ChakraFrame_0
+      213: 7461948651490713045
+    second: ClassFrame_0
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -98,13 +98,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ChakraFrame_0
+      name: ClassFrame_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 132
-        height: 155
+        y: 2
+        width: 390
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,8 +112,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cb016d0dd40170220800000000000000
-      internalID: 2451946448528740540
+      spriteID: 5dd1f4073ca2e8760800000000000000
+      internalID: 7461948651490713045
       vertices: []
       indices: 
       edges: []
@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ClassFrame_0: 7461948651490713045
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

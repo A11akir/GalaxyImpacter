@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ede3092beecbb524d9fc86b091363df4
+guid: e0dab8e487719e141998fe2f9b917528
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2451946448528740540
-    second: ChakraFrame_0
+      213: 878618568630324068
+    second: RightStone_0
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -98,13 +98,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ChakraFrame_0
+      name: RightStone_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 132
-        height: 155
+        width: 512
+        height: 838
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,8 +112,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cb016d0dd40170220800000000000000
-      internalID: 2451946448528740540
+      spriteID: 46bc54cdeea713c00800000000000000
+      internalID: 878618568630324068
       vertices: []
       indices: 
       edges: []
@@ -121,14 +121,15 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      RightStone_0: 878618568630324068
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

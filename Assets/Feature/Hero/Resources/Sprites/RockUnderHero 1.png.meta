@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: ede3092beecbb524d9fc86b091363df4
+guid: 76c7b72bb4a4cd5489109c2127ebb426
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2451946448528740540
-    second: ChakraFrame_0
+      213: -3446203416760550346
+    second: RockUnderHero 1_0
+  - first:
+      213: 1443668833952807983
+    second: RockUnderHero 1_1
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -46,7 +49,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -98,13 +101,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ChakraFrame_0
+      name: RockUnderHero 1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 132
-        height: 155
+        width: 333
+        height: 311
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,8 +115,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cb016d0dd40170220800000000000000
-      internalID: 2451946448528740540
+      spriteID: 63cff305040ac20d0800000000000000
+      internalID: -3446203416760550346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RockUnderHero 1_1
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 16
+        width: 348
+        height: 290
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2c3f05d721f80410800000000000000
+      internalID: 1443668833952807983
       vertices: []
       indices: 
       edges: []
@@ -121,14 +145,16 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      RockUnderHero 1_0: -3446203416760550346
+      RockUnderHero 1_1: 1443668833952807983
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
