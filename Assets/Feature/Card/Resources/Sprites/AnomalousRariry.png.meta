@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5531b2a89ee704d8f9e10dd5ec01f00d
+guid: fedd9424ece144ab0ac28521929d1468
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6586375975497755297
-    second: MainBoard_0
+      213: 1928637613848573629
+    second: AnomalousRariry_0
   externalObjects: {}
   serializedVersion: 12
   mipmaps:
@@ -98,13 +98,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MainBoard_0
+      name: AnomalousRariry_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 111
-        width: 8400
-        height: 4454
+        y: 0
+        width: 61
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,8 +112,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1aae5b8bd02876b50800000000000000
-      internalID: 6586375975497755297
+      spriteID: db6b6e101b5e3ca10800000000000000
+      internalID: 1928637613848573629
       vertices: []
       indices: 
       edges: []
@@ -128,8 +128,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      MainBoard_0: 6586375975497755297
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

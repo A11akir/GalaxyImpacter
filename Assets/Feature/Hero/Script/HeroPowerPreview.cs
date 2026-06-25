@@ -14,7 +14,6 @@ namespace Feature.Hero
         [SerializeField] private TextMeshProUGUI costHeroPower;
         [SerializeField] private TextMeshProUGUI descriptionHeroPower;
         [SerializeField] private List<Image> iconHeroPower;
-        [SerializeField] private GameObject healthFrame;
         [SerializeField] protected GameObject _costFrame;
 
         public void OnPointerEnter(PointerEventData eventData) => heroPowerDescriptionWindow.SetActive(true);
@@ -26,7 +25,6 @@ namespace Feature.Hero
             nameHeroPower.text = spell.Name;
             costHeroPower.text = spell.Cost.ToString();
             descriptionHeroPower.text = spell.Description;
-            healthFrame.SetActive(false);
             
             foreach (var sprite in iconHeroPower)
                 sprite.sprite = spell.IconImage;
