@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      RarityWindow 1_0: -7023490023997451210
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
