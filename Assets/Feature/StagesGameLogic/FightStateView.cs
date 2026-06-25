@@ -6,7 +6,6 @@ namespace Feature.StagesGameLogic
 {
     public class FightStateView : MonoBehaviour
     {
-        [SerializeField] private GameObject fightPhone;
         [SerializeField] private GameObject buttonStepBack;
         [SerializeField] private Button _readyButton;
 
@@ -17,14 +16,12 @@ namespace Feature.StagesGameLogic
 
         public void StartFight()
         {
-            fightPhone.SetActive(true);
             buttonStepBack.SetActive(true);
             _readyButton.interactable = true;
         }
 
         public void EndFight()
         {
-            fightPhone.SetActive(false);
             buttonStepBack.SetActive(false);
         }
         

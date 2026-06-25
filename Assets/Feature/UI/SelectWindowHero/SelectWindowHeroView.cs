@@ -11,6 +11,8 @@ namespace Feature.UI.SelectWindowHero
         [SerializeField] public Button buttonSelectHero;
         [SerializeField] public Button buttonBanHero;
 
+        [SerializeField] public List<GameObject> BlurObjects;
+        
         [HideInInspector]public HeroView _selectHeroView;
         public event Action OnSelectWindowHeroView;
         public event Action OnChoseHeroButtonClicked;       
@@ -49,6 +51,21 @@ namespace Feature.UI.SelectWindowHero
             foreach (var hero in heroViews)
             {
                 hero.ClearSelectWindow();
+            }
+        }
+
+        public void SetActiveView()
+        {
+            foreach (var go in BlurObjects)
+            {
+                go.SetActive(true);
+            }
+        }
+        public void SetInactiveView()
+        {
+            foreach (var go in BlurObjects)
+            {
+                go.SetActive(false);
             }
         }
     }

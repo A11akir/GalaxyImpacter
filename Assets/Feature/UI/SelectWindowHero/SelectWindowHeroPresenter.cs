@@ -110,8 +110,9 @@ namespace Feature.UI.SelectWindowHero
 
         public void SelectStartRandomHeroes() => _selectWindowHeroModel.SelectStartRandomHeroes();
 
-        public void SetActive() => _selectWindowHeroView.gameObject.SetActive(true);
-        public void SetInactive() => _selectWindowHeroView.gameObject.SetActive(false);
+        public void SetActive() => _selectWindowHeroView.SetActiveView();
+
+        public void SetInactive() => _selectWindowHeroView.SetInactiveView();
 
         public void SetBanMode()
         {

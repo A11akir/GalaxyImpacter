@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      InnerShadowHeroPowerIcon_0: -1547666869700349374
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

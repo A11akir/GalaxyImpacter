@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      AnomalousRariry_0: 1928637613848573629
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

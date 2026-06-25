@@ -6,7 +6,6 @@ namespace Feature.StagesGameLogic
 {
     public class PrepareStateView : MonoBehaviour
     {
-        [SerializeField] private GameObject preparePhone;
         [SerializeField] private GameObject buttonFight;
         [SerializeField] private Button _readyButton;
 
@@ -17,14 +16,12 @@ namespace Feature.StagesGameLogic
         
         public void StartPrepare()
         {
-            preparePhone.SetActive(true);
             buttonFight.SetActive(true);
             _readyButton.interactable = true;
         }
 
         public void EndPrepare()
         {
-            preparePhone.SetActive(false);  
             buttonFight.SetActive(false);
         }
         

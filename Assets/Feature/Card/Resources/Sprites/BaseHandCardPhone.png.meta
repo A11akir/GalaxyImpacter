@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BaseHandCardPhone_0: 5868300264908156098
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

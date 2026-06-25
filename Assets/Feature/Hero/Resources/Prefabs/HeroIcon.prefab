@@ -2057,11 +2057,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3388386716292964412, guid: 7e81dc3d5b3811e48bdb428a1b6f860a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 40
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3388386716292964412, guid: 7e81dc3d5b3811e48bdb428a1b6f860a, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 40
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 3388386716292964412, guid: 7e81dc3d5b3811e48bdb428a1b6f860a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2097,7 +2097,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3388386716292964412, guid: 7e81dc3d5b3811e48bdb428a1b6f860a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 163
+      value: 156.84
       objectReference: {fileID: 0}
     - target: {fileID: 3388386716292964412, guid: 7e81dc3d5b3811e48bdb428a1b6f860a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2114,6 +2114,18 @@ PrefabInstance:
     - target: {fileID: 5925882792800625793, guid: 7e81dc3d5b3811e48bdb428a1b6f860a, type: 3}
       propertyPath: m_Name
       value: Armor
+      objectReference: {fileID: 0}
+    - target: {fileID: 5925882792800625793, guid: 7e81dc3d5b3811e48bdb428a1b6f860a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987515836218049188, guid: 7e81dc3d5b3811e48bdb428a1b6f860a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987515836218049188, guid: 7e81dc3d5b3811e48bdb428a1b6f860a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
