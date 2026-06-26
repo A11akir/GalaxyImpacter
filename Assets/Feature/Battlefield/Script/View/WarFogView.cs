@@ -23,7 +23,7 @@ namespace Feature.Battlefield.Script.View
             _rectTransform.anchoredPosition = new Vector2(_rectTransform.anchoredPosition.x, 100f);
             
             DOTween.Sequence()
-                .Join(_rectTransform.DOAnchorPosY(-350f, 1f).SetEase(Ease.OutQuad))
+                .Join(_rectTransform.DOAnchorPosY(-115f, 1f).SetEase(Ease.OutQuad))
                 .Join(_canvasGroup.DOFade(1f, 1f));
             
             _canvasGroup.blocksRaycasts = true;

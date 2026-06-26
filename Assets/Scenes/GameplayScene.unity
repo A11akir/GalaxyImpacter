@@ -26291,6 +26291,8 @@ RectTransform:
   - {fileID: 159820153}
   - {fileID: 55011798}
   - {fileID: 1388548513}
+  - {fileID: 265948392}
+  - {fileID: 1389614881}
   - {fileID: 63396371}
   - {fileID: 2018109799}
   - {fileID: 320300352}
@@ -26299,8 +26301,6 @@ RectTransform:
   - {fileID: 752396158}
   - {fileID: 614793531}
   - {fileID: 1134302565}
-  - {fileID: 265948392}
-  - {fileID: 1389614881}
   - {fileID: 1336914078}
   m_Father: {fileID: 569098865}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
