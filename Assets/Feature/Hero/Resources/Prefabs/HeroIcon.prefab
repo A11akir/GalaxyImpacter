@@ -79,7 +79,7 @@ MonoBehaviour:
   _selectWindow: {fileID: 7567091732668273194}
   _nameWindow: {fileID: 3592864764503716843}
   _banWindow: {fileID: 3805470002485658676}
-  _iconImage: {fileID: 200054665436310926}
+  _iconImage: {fileID: 4351774323647259443}
   _armorRoot: {fileID: 1484092904373701645}
   _armorText: {fileID: 2384772990218983623}
   _healthText: {fileID: 6329764275106759652}
