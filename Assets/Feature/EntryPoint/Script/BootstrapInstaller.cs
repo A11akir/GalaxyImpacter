@@ -111,7 +111,8 @@ namespace Feature.EntryPoint.Script
             Container.Bind<HandViewSwitcher>().FromComponentInHierarchy().AsSingle();
             
             Container.Bind<CardPoolPickSystem>().AsSingle();
-            
+            Container.Bind<HandCardCastabilitySystem>().AsSingle();
+
         }
 
         private void BindBattlefield()
