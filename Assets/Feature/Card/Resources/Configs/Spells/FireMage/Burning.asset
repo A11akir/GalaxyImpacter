@@ -20,6 +20,8 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 0
+  _baseCost: 0
+  _passiveCardEffects: []
   id: 0af6d695-3de7-40be-a9db-dce2edc6d781
   _values: 01000000
   _description: Each fire hit this turn increases your fire next damage by 1.
@@ -39,5 +41,5 @@ MonoBehaviour:
       type: {class: FireDamageBonusWatcher, ns: Feature.PassiveEffect.Script, asm: Assembly-CSharp}
       data:
         Config: {fileID: 0}
-        Duration: 1
+        Duration: 0
         _bonusConfig: {fileID: 11400000, guid: 6c8b6a000c4779a4bbd7f9ffd4cfa2ef, type: 2}

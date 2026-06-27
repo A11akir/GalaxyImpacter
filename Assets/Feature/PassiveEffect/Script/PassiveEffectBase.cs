@@ -17,6 +17,7 @@ namespace Feature.PassiveEffect.Script
 
         public void SetConfig(PassiveEffectConfig config) => Config = config;
         
+        public virtual bool IsPermanent => Duration == DurationType.Permanent;
         public virtual int GetDisplayValue(int duplicateCount) => duplicateCount;
         
         public abstract void Register(

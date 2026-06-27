@@ -20,6 +20,8 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 0
+  _baseCost: 1
+  _passiveCardEffects: []
   id: 544ee488-0dfc-4023-aba2-5edea11eccfa
   _values: 0100000001000000
   _description: Give 1 current level element time-cards, it is cost 1 less.

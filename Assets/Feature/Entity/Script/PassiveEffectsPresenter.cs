@@ -1,10 +1,9 @@
-// PassiveEffectsPresenter.cs — следит за тем же списком, только для UI
-
 using System.Collections.Generic;
 using System.Linq;
 using Feature.CardEffect.Script;
 using Feature.PassiveEffect.Script;
 using R3;
+using UnityEngine;
 
 namespace Feature.Entity.Script
 {
@@ -37,31 +36,28 @@ namespace Feature.Entity.Script
 
         private void HandlePassiveAdded(PassiveEffectBase passive)
         {
-            if (passive.Icon == null) return;
-
+            if (passive.IsPermanent) return; 
+            
             var icon = _view.GetFreeSlot();
-            if (icon == null) return;
 
             _activeIcons[passive] = icon;
-
             icon.SetIcon(passive.Icon);
-
 
             if (passive is IValueProvider valueProvider)
             {
-                var sub = valueProvider.Value.Subscribe(value =>
-                {
-                    icon.SetValue(value);
-                    icon.SetDescription(passive.GetDescription(value));
-                });
-
+                var sub = valueProvider.Value.Subscribe(value => UpdateIcon(icon, passive, value));
                 _valueSubscriptions[passive] = sub;
             }
             else
             {
-                icon.HideValue();
-                icon.SetDescription(passive.GetDescription(0));
+                UpdateIcon(icon, passive, null);
             }
+        }
+
+        private void UpdateIcon(PassiveEffectIconView icon, PassiveEffectBase passive, int? value)
+        {
+            icon.SetValue(value);
+            icon.SetDescription(passive.GetDescription(value ?? 0));
         }
 
         private void HandlePassiveRemoved(PassiveEffectBase passive)

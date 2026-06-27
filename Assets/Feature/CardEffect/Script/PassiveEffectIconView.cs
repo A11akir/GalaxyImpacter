@@ -27,19 +27,19 @@ namespace Feature.CardEffect.Script
             IsInUse = true;
             _canvasGroup.alpha = 0f;
             _descriptionCanvasGroup.alpha = 0f;
-            PlayPulse();
         }
 
-        public void SetValue(int value)
+        public void SetValue(int? value)
         {
-            mainValueText.text = value.ToString();
-            
+            mainValueText.text = value.HasValue ? value.Value.ToString() : "";
+            PlayPulse();
         }
 
         public void HideValue()
         {
             mainValueText.text = "";
         }
+        
         
         public void SetDescription(string text) => descriptionText.text = text;
 
@@ -85,7 +85,7 @@ namespace Feature.CardEffect.Script
 
         private bool IsPulseActive() => DOTween.IsTweening(transform);
 
-        private void PlayPulse()
+        public void PlayPulse()
         {
             transform.DOKill();
             _canvasGroup.DOKill();

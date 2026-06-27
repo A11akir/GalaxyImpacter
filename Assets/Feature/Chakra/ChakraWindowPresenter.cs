@@ -6,21 +6,22 @@ using R3;
 
 namespace Feature.Chakra
 {
-    public class ChakraWindowPresenter 
+    public class ChakraWindowPresenter
     {
-        private readonly FactoryHandBehaviourTransformCastSystem _factoryHandBehaviourTransformCastSystem;
-        private readonly HandViewSwitcher _handViewSwitcher; 
-        private readonly HandCardPresenter _handCardPresenter;
+        private readonly HandCardCastabilitySystem _castabilitySystem;
+        private readonly HandViewSwitcher _handViewSwitcher;
         private readonly HandDataRepository _handDataRepository;
         private readonly CompositeDisposable _disposables = new();
         private readonly HeroPowerPresenter _heroPowerPresenter;
 
-        public ChakraWindowPresenter(HandCardPresenter handCardPresenter, 
-            HandDataRepository handDataRepository, FactoryHandBehaviourTransformCastSystem factoryHandBehaviourTransformCastSystem, HandViewSwitcher handViewSwitcher, HeroPowerPresenter heroPowerPresenter)
+        public ChakraWindowPresenter(
+            HandCardCastabilitySystem castabilitySystem,
+            HandDataRepository handDataRepository,
+            HandViewSwitcher handViewSwitcher,
+            HeroPowerPresenter heroPowerPresenter)
         {
-            _handCardPresenter = handCardPresenter;
+            _castabilitySystem = castabilitySystem;
             _handDataRepository = handDataRepository;
-            _factoryHandBehaviourTransformCastSystem = factoryHandBehaviourTransformCastSystem;
             _handViewSwitcher = handViewSwitcher;
             _heroPowerPresenter = heroPowerPresenter;
 
@@ -36,8 +37,7 @@ namespace Feature.Chakra
             if (handData == null) return;
 
             container.ChakraWindowView.SetChakraText(owner.Chakra);
-            _handCardPresenter.ChakraCheckCanCastHand(handData, owner.Chakra);
-            _factoryHandBehaviourTransformCastSystem.ChakraCheckCanCastCard(handData, owner.Chakra);
+            _castabilitySystem.RefreshHand(handData, owner.Chakra); // ← один вызов вместо двух
         }
 
         public void SubscribeToChakraChanges(CardAndHealthEntityOwnerData owner, ChakraWindowView chakraWindowView)
@@ -51,8 +51,7 @@ namespace Feature.Chakra
                     if (handData == null) return;
 
                     chakraWindowView.SetChakraText(chakra);
-                    _handCardPresenter.ChakraCheckCanCastHand(handData, chakra);
-                    _factoryHandBehaviourTransformCastSystem.ChakraCheckCanCastCard(handData, chakra);
+                    _castabilitySystem.RefreshHand(handData, chakra); // ← один вызов вместо двух
                     _heroPowerPresenter.UpdateCanCastView();
                 })
                 .AddTo(_disposables);

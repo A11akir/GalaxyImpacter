@@ -17,15 +17,18 @@ namespace Feature.Card.Script
         private readonly HandCardPresenter _handCardPresenter;
         private readonly FactoryHandBehaviourTransformCastSystem _factoryHandBehaviourTransformCastSystem;
 
+        private readonly HandCardCastabilitySystem _castabilitySystem;
+        
         public HandDataRepository(
             FactoryHandBehaviourTransformCastSystem factoryHandBehaviourTransformCastSystem,
             HandCardPresenter handCardPresenter, HandCardsPositionSystem handCardsPositionSystem,
-            CardCastService cardCastService)
+            CardCastService cardCastService, HandCardCastabilitySystem castabilitySystem)
         {
             _factoryHandBehaviourTransformCastSystem = factoryHandBehaviourTransformCastSystem;
             _handCardPresenter = handCardPresenter;
             _handCardsPositionSystem = handCardsPositionSystem;
             _cardCastService = cardCastService;
+            _castabilitySystem = castabilitySystem;
         }
 
         public void InitHandRepository(CardAndHealthEntityOwnerData owner, HandCardViews handCardViews, bool isHidden = false)
@@ -84,8 +87,8 @@ namespace Feature.Card.Script
                     view,
                     addedCard,
                     state.Owner,
-                    state.HandData, // ← вся рука целиком
-                    _factoryHandBehaviourTransformCastSystem); // ← у тебя уже есть это поле в HandDataRepository
+                    handCardData, // ← одна карта, а не весь handData список
+                    _castabilitySystem);
             }
 
             _handCardsPositionSystem.UpdateCardsPosition(state.HandCardViews.transform);
@@ -102,17 +105,14 @@ namespace Feature.Card.Script
     
             _handCardsPositionSystem.UpdateCardsPosition(state.HandCardViews.transform);
         }
-
+        
         private void SetupHandCardBehavioursAndLogic(int index, EntityHandState state)
         {
             _factoryHandBehaviourTransformCastSystem.AddBehavioursToCard(state.HandData[index]);
-
             state.HandData[index].Behaviour.SetOwner(state.Owner);
-    
-            bool canCast = state.Owner.Chakra >= state.HandData[index].Data.Cost;
-            state.HandData[index].Behaviour.CanCastCard(canCast);
-            _handCardPresenter.ChakraCheckCanCastCard(state.HandData[index], state.Owner.Chakra);
-    
+
+            _castabilitySystem.Refresh(state.HandData[index], state.Owner.Chakra); // ← один вызов вместо двух отдельных строк
+
             var logic = new HandCardCastHandler(state.HandData[index], _cardCastService);
             state.HandData[index].Behaviour.OnTryCardCast += logic.CastCard;
             state.HandData[index].Logic = logic;
