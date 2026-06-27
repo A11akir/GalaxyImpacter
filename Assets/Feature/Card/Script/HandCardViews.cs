@@ -10,7 +10,6 @@ namespace Feature.Card.Script
         [FormerlySerializedAs("_cardsInDeck")] [SerializeField] public List<HandCardView> _cardsInHand;
 
         public event Action UpdateViewCard;
-
         
         public HandCardView AddCardFromHand(CardStatsData cardStatsData, int addedIndex)
         {

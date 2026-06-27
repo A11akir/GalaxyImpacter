@@ -18,5 +18,6 @@ namespace Feature.GoogleSheets
         int HandCardCount { get; set; }
         List<SpellCardData> SpellsList { get; set; }
         bool InCollection { get; set; }
+        int BaseCost { get; set; }
     }
 }

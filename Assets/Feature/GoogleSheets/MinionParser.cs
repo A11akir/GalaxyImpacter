@@ -165,6 +165,7 @@ namespace Feature.GoogleSheets
                 so.HandCardCount = cfg.HandCardCount;
                 so.InCollection = cfg.InCollection;
                 so.TargetType = cfg.TargetType;
+                so.BaseCost = cfg.Cost; 
 
                 bool isBaseMinion = cfg.Specialization != null
                                     && cfg.Specialization.Count == 1

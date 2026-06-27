@@ -163,6 +163,7 @@ namespace Feature.GoogleSheets
                 so.Level = cfg.Level;
                 so.TargetType = cfg.TargetType;
                 so.InCollection = cfg.InCollection;
+                so.BaseCost = cfg.Cost; 
 
                 if (!string.IsNullOrWhiteSpace(cfg.Rarity))
                     so.Rarity = CardRarityConverter.FromString(cfg.Rarity);

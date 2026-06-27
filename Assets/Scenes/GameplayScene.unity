@@ -15496,7 +15496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameData: {fileID: 11400000, guid: e7a49d18cdb3acd448fe17fa2db3161b, type: 2}
-  _cardName: 
+  _cardName: Spark
   _target: 0
 --- !u!4 &488387878
 Transform:
@@ -24359,12 +24359,6 @@ MonoBehaviour:
   - {fileID: 1739212609}
   - {fileID: 283072378}
   - {fileID: 1109528613}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 753455598}
   - {fileID: 1123372666}
   - {fileID: 65847506}
@@ -41425,7 +41419,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -960.1917, y: -539.8922}
+  m_AnchoredPosition: {x: -960.1918, y: -539.8921}
   m_SizeDelta: {x: -0.38330078, y: -0.21557617}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1336914079

@@ -27,12 +27,13 @@ namespace Feature.CardEffect.Script
             IsInUse = true;
             _canvasGroup.alpha = 0f;
             _descriptionCanvasGroup.alpha = 0f;
+            PlayPulse();
         }
 
         public void SetValue(int value)
         {
             mainValueText.text = value.ToString();
-            PlayPulse();
+            
         }
 
         public void HideValue()

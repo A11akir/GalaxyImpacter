@@ -6,6 +6,7 @@ using Feature.GameSessionData;
 using Feature.GoogleSheets;
 using Feature.PassiveEffect;
 using Feature.PassiveEffect.Script;
+using UnityEngine;
 
 namespace Feature.Card.Script
 {
@@ -46,7 +47,13 @@ namespace Feature.Card.Script
 
         public void Cast(CardStatsData card, CardAndHealthEntityOwnerData owner, CardAndHealthEntityOwnerData target)
         {
-            if (!CheckCanCast(card, owner)) return;
+            Debug.Log($"[CardCastService] Cast called, card={card.Name}, Cost={card.Cost}, BaseCost={card.BaseCost}, hash={card.GetHashCode()}");
+
+            if (!CheckCanCast(card, owner))
+            {
+                Debug.Log($"[CardCastService] CheckCanCast FAILED, owner.Chakra={owner.Chakra}, card.Cost={card.Cost}");
+                return;
+            }
 
             owner.Chakra -= card.Cost;
             

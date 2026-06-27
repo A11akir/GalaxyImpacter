@@ -16,5 +16,6 @@ namespace Feature.GoogleSheets
 
         bool InCollection { get; set; }
         TargetType TargetType { get; set; }
+        int BaseCost { get; set; }
     }
 }

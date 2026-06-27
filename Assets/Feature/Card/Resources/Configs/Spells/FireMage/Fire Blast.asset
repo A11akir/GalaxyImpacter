@@ -20,11 +20,28 @@ MonoBehaviour:
   _level: 0
   targetType: 2
   _inCollection: 1
+  _baseCost: 6
+  _passiveCardEffects:
+  - rid: 5943948389448941568
   id: 522b2125-4709-404f-a52e-483d60ebf600
   _values: 0a000000
-  _description: 'Take 10 damage. If target minion - kill him. Costs 1 less for each
-    hero power effect '
-  _effects: []
+  _description: Take 10 damage. If target minion - kill him. Costs 1 less for each
+    Burning effect.
+  _effects:
+  - rid: 5943948389448941570
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 5943948389448941568
+      type: {class: ReduceCostCardEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        _valueSource:
+          rid: 5943948389448941569
+    - rid: 5943948389448941569
+      type: {class: FireDamageBonusValueSource, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data: 
+    - rid: 5943948389448941570
+      type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 0
+        RandomSingleTarget: 0

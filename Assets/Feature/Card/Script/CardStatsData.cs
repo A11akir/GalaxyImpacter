@@ -18,6 +18,12 @@ public class CardStatsData : ScriptableObject, ICardStatsData
     [SerializeField] private TargetType targetType;
     [SerializeField] private bool _inCollection;
 
+    
+    [SerializeField] private int _baseCost;
+    [SerializeReference] private List<PassiveCardEffect> _passiveCardEffects = new();
+
+    public int BaseCost { get => _baseCost; set => _baseCost = value; }
+    public List<PassiveCardEffect> PassiveCardEffects => _passiveCardEffects;
     public bool DealsDamage()
     {
         if (this is SpellCardData spell)

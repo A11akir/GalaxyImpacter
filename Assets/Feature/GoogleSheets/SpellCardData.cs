@@ -13,7 +13,7 @@ namespace Feature.GoogleSheets
         [SerializeField] private string _description;
         [SerializeReference] private List<CardEffect.Script.CardEffect> _effects;
 
-
+        
         public List<CardEffect.Script.CardEffect> Effects => _effects;
         public List<int> Values { get => _values; set => _values = value; }
         public string Description { get => _description; set => _description = value; }

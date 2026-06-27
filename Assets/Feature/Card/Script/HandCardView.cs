@@ -1,4 +1,6 @@
+using System;
 using Feature.GoogleSheets;
+using R3;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -30,6 +32,8 @@ namespace Feature.Card.Script
         [SerializeField] private GameObject anomalousSprite;
         [SerializeField] private GameObject primordialSprite;
         
+        private readonly CompositeDisposable _passiveSubscriptions = new();
+        
         public  virtual void SetDataView(CardStatsData cardStatsData)
         {
             if (_cardBack) _cardBack.SetActive(false);
@@ -58,11 +62,13 @@ namespace Feature.Card.Script
             }
 
             
-            _cost.text = cardStatsData.Cost.ToString();
+            SetCost(cardStatsData.Cost);
     
             SetRaritySprite(cardStatsData.Rarity);
         }
 
+        public void SetCost(int cost) => _cost.text = cost.ToString();
+        
         private void SetRaritySprite(CardRarity rarity)
         {
             commonSprite.SetActive(rarity == CardRarity.Common);
@@ -72,6 +78,7 @@ namespace Feature.Card.Script
         }
         public void ClearData()
         {
+            _passiveSubscriptions.Clear();
             _nameSpell.text = "";
             _nameMinion.text = "";
             _health.text = "";
@@ -99,6 +106,12 @@ namespace Feature.Card.Script
         public void ShowAsOpen()
         {
             _cardBack.SetActive(false);
+        }
+        
+        public void SetPassiveSubscriptions(IDisposable subscriptions) // ← новый метод
+        {
+            _passiveSubscriptions.Clear();
+            _passiveSubscriptions.Add(subscriptions);
         }
         
         public void SetCanCastView(bool canCast) => _canAvailableCast.SetActive(canCast);

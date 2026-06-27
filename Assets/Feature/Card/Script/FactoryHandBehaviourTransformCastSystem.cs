@@ -23,8 +23,14 @@ namespace Feature.Card.Script
 
         public void ChakraCheckCanCastCard(List<HandCardData> handData, int chakra)
         {
+            Debug.Log($"[FactoryHand] ChakraCheckCanCastCard called, handData.Count={handData.Count}, chakra={chakra}");
+
             foreach (var cardData in handData)
-                cardData.Behaviour.CanCastCard(chakra >= cardData.Data.Cost);
+            {
+                bool canCast = chakra >= cardData.Data.Cost;
+                Debug.Log($"[FactoryHand] card={cardData.Data.Name}, Cost={cardData.Data.Cost}, canCast={canCast}, Behaviour={cardData.Behaviour != null}");
+                cardData.Behaviour.CanCastCard(canCast);
+            }
         }
         
         public void AddBehavioursToCard(HandCardData cardData)

@@ -66,18 +66,27 @@ namespace Feature.Card.Script
             }).AddTo(state.Disposables);
         }
 
+// HandDataRepository.cs
         private void OnCardAddedToHand(CardStatsData addedCard, int addedIndex, EntityHandState state)
         {
             var view = state.IsHiddenForEnemyPlayer
                 ? state.HandCardViews.AddCardAsHiddenForEnemyPlayer(addedIndex)
                 : state.HandCardViews.AddCardFromHand(addedCard, addedIndex);
-            
-            
+
             var handCardData = new HandCardData(data: addedCard, view: view, behaviour: null, logic: null);
             state.HandData.Insert(addedIndex, handCardData);
 
             if (!state.IsHiddenForEnemyPlayer)
+            {
                 SetupHandCardBehavioursAndLogic(addedIndex, state);
+
+                _handCardPresenter.ActivatePassiveEffects(
+                    view,
+                    addedCard,
+                    state.Owner,
+                    state.HandData, // ← вся рука целиком
+                    _factoryHandBehaviourTransformCastSystem); // ← у тебя уже есть это поле в HandDataRepository
+            }
 
             _handCardsPositionSystem.UpdateCardsPosition(state.HandCardViews.transform);
         }
