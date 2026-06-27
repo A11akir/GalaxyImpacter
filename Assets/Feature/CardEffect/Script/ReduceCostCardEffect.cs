@@ -1,8 +1,6 @@
-// ReduceCostCardEffect.cs
 using System;
 using Feature.GameSessionData;
 using UnityEngine;
-using R3;
 
 namespace Feature.CardEffect.Script
 {
@@ -16,8 +14,7 @@ namespace Feature.CardEffect.Script
             return _valueSource.Subscribe(owner, value =>
             {
                 card.Cost = Mathf.Max(0, card.BaseCost - value);
-                Debug.Log($"[ReduceCostCardEffect] card={card.Name}, new Cost={card.Cost}, hash={card.GetHashCode()}");
-                onChanged();
+                onChanged?.Invoke(); 
             });
         }
     }

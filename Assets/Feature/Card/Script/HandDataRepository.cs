@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Feature.Battlefield.Script;
+using Feature.CardEffect.Script;
 using Feature.GameSessionData;
 using Feature.HandLogic;
 using R3;
@@ -69,7 +70,6 @@ namespace Feature.Card.Script
             }).AddTo(state.Disposables);
         }
 
-// HandDataRepository.cs
         private void OnCardAddedToHand(CardStatsData addedCard, int addedIndex, EntityHandState state)
         {
             var view = state.IsHiddenForEnemyPlayer
@@ -87,8 +87,11 @@ namespace Feature.Card.Script
                     view,
                     addedCard,
                     state.Owner,
-                    handCardData, // ← одна карта, а не весь handData список
-                    _castabilitySystem);
+                    effect =>
+                    {
+                        if (effect is ReduceCostCardEffect)
+                            _castabilitySystem.Refresh(handCardData, state.Owner.Chakra);
+                    });
             }
 
             _handCardsPositionSystem.UpdateCardsPosition(state.HandCardViews.transform);
@@ -111,7 +114,7 @@ namespace Feature.Card.Script
             _factoryHandBehaviourTransformCastSystem.AddBehavioursToCard(state.HandData[index]);
             state.HandData[index].Behaviour.SetOwner(state.Owner);
 
-            _castabilitySystem.Refresh(state.HandData[index], state.Owner.Chakra); // ← один вызов вместо двух отдельных строк
+            _castabilitySystem.Refresh(state.HandData[index], state.Owner.Chakra);
 
             var logic = new HandCardCastHandler(state.HandData[index], _cardCastService);
             state.HandData[index].Behaviour.OnTryCardCast += logic.CastCard;

@@ -1,4 +1,5 @@
-// HandCardPresenter.cs — убираем оба метода ChakraCheckCanCast*, оставляем только то, что реально его касается
+using System;
+using Feature.CardEffect.Script;
 using R3;
 using Feature.GameSessionData;
 
@@ -6,17 +7,14 @@ namespace Feature.Card.Script
 {
     public class HandCardPresenter
     {
-        public void RemoveCardFromHand(HandCardView view, HandCardViews handCardViews)
-        {
+        public void RemoveCardFromHand(HandCardView view, HandCardViews handCardViews) => 
             handCardViews.RemoveHandCardView(view);
-        }
 
         public void ActivatePassiveEffects(
             HandCardView view,
             CardStatsData cardData,
             CardAndHealthEntityOwnerData owner,
-            HandCardData handCardData, // ← теперь нужна только ОДНА карта, не вся рука (вернёмся к этому в проблеме №2)
-            HandCardCastabilitySystem castabilitySystem)
+            Action<PassiveCardEffect> onEffectChanged)
         {
             var composite = new CompositeDisposable();
 
@@ -24,8 +22,8 @@ namespace Feature.Card.Script
             {
                 var sub = effect.Activate(owner, cardData, () =>
                 {
-                    view.SetCost(cardData.Cost);
-                    castabilitySystem.Refresh(handCardData, owner.Chakra);
+                    view.SetDataView(cardData);
+                    onEffectChanged?.Invoke(effect);
                 });
                 composite.Add(sub);
             }

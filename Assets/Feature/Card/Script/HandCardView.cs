@@ -108,7 +108,7 @@ namespace Feature.Card.Script
             _cardBack.SetActive(false);
         }
         
-        public void SetPassiveSubscriptions(IDisposable subscriptions) // ← новый метод
+        public void SetPassiveSubscriptions(IDisposable subscriptions)
         {
             _passiveSubscriptions.Clear();
             _passiveSubscriptions.Add(subscriptions);

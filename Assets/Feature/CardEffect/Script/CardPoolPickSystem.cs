@@ -17,18 +17,14 @@ namespace Feature.CardEffect.Script
         public CardStatsData Pick(CardPickQuery query, EffectContext ctx)
         {
             var heroClass = ResolveClass(query, ctx);
-            Debug.Log($"[CardPoolPickSystem] heroClass={heroClass}");
 
             var allowedRarities = ResolveRarities(query, ctx, heroClass);
-            Debug.Log($"[CardPoolPickSystem] allowedRarities=[{string.Join(",", allowedRarities)}]");
 
             var allCardsOfClass = _gameData.GetCardsByClass(heroClass);
-            Debug.Log($"[CardPoolPickSystem] cards in class={allCardsOfClass.Count}");
 
             var pool = allCardsOfClass
                 .Where(c => MatchesType(c, query.CardType) && allowedRarities.Contains(c.Rarity))
                 .ToList();
-            Debug.Log($"[CardPoolPickSystem] pool after filter={pool.Count}");
 
             if (pool.Count == 0) return null;
             return pool[Random.Range(0, pool.Count)];
@@ -60,7 +56,7 @@ namespace Feature.CardEffect.Script
                 .ToHashSet();
 
             if (rarities.Count == 0)
-                rarities.Add(CardRarity.Common); // ← fallback, если в колоде нет карт этого класса
+                rarities.Add(CardRarity.Common);
 
             return rarities;
         }
