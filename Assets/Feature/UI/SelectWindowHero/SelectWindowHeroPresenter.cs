@@ -49,6 +49,7 @@ namespace Feature.UI.SelectWindowHero
             if (_selectWindowHeroView._selectHeroView == null) return;
             var selectedHero = _selectWindowHeroView._selectHeroView;
             
+            
             selectedHero.BanHeroView();
             
             RemoveHeroFromSelectList(selectedHero);
@@ -124,6 +125,7 @@ namespace Feature.UI.SelectWindowHero
         {
             _selectWindowHeroView.buttonBanHero.gameObject.SetActive(false);
             _selectWindowHeroView.buttonSelectHero.gameObject.SetActive(true);
+            
         }
         
         public void SetupRandomHeroes()
@@ -133,6 +135,26 @@ namespace Feature.UI.SelectWindowHero
                 var data = _selectWindowHeroModel._heroesForChose[i];
                 _selectWindowHeroView.heroViews[i].SetViewData(data);
             }
+        }
+
+        public void ShowTipBanHeroText()
+        {
+            _selectWindowHeroView.ShowTipBanHeroText();
+        }
+        
+        public void ShowTipBanEnemyText()
+        {
+            _selectWindowHeroView.ShowTipBanEnemyText();
+        }
+
+        public void ShowTipPickEnemyText()
+        {
+            _selectWindowHeroView.ShowTipPickEnemyText();
+        }
+
+        public void SetTextPickHero()
+        {
+            _selectWindowHeroView.ShowTipPickHeroText();
         }
     }
 }

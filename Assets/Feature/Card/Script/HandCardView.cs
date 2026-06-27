@@ -10,7 +10,8 @@ namespace Feature.Card.Script
     {
         [SerializeField] public GameObject _cardContainer;
         [SerializeField] public GameObject _healthContainer;
-        [SerializeField] public TextMeshProUGUI _name;
+        [SerializeField] public TextMeshProUGUI _nameSpell;
+        [SerializeField] public TextMeshProUGUI _nameMinion;
         [SerializeField] private TextMeshProUGUI _health;
         [SerializeField] protected TextMeshProUGUI _cost;
         [SerializeField] protected TextMeshProUGUI _description;
@@ -41,6 +42,7 @@ namespace Feature.Card.Script
 
             if (cardStatsData is MinionCardData minion)
             {
+                _nameMinion.text = cardStatsData.Name;
                 _healthContainer.SetActive(true);
                 _heroCardWindow.SetActive(true);
                 _health.text = minion.Health.ToString();
@@ -48,13 +50,14 @@ namespace Feature.Card.Script
             }
             else if (cardStatsData is SpellCardData spell)
             {
+                _nameSpell.text = cardStatsData.Name;
                 _description.gameObject.SetActive(true);
                 _spellCardWindow.SetActive(true);
                 _description.text = spell.Description;
                 _iconSpell.sprite = spell.IconImage;
             }
 
-            _name.text = cardStatsData.Name;
+            
             _cost.text = cardStatsData.Cost.ToString();
     
             SetRaritySprite(cardStatsData.Rarity);
@@ -69,7 +72,8 @@ namespace Feature.Card.Script
         }
         public void ClearData()
         {
-            _name.text = "";
+            _nameSpell.text = "";
+            _nameMinion.text = "";
             _health.text = "";
             _cost.text = "";
             _description.text = "";

@@ -35,12 +35,14 @@ namespace Feature.GameSessionFSM
 
         private void PickHeroPlayer()
         {
+            _selectWindowHeroPresenter.SetTextPickHero();
             _selectWindowHeroPresenter.SetSelectMode();
             _selectWindowHeroPresenter.OnPlayerPickedHero += PickHeroAI;
         }
 
         private void PickHeroAI()
         {
+            _selectWindowHeroPresenter.ShowTipPickEnemyText();
             var heroViews = _selectWindowHeroPresenter._selectWindowHeroView.heroViews;
         
             _actionExecutor.SelectAndExecute(heroViews, selectedHeroView =>

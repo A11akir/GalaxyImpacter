@@ -1497,7 +1497,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cardContainer: {fileID: 2383824398865969493}
   _healthContainer: {fileID: 3566035805240558460}
-  _name: {fileID: 6600433546763498728}
+  _nameSpell: {fileID: 6600433546763498728}
+  _nameMinion: {fileID: 4925081841955058931}
   _health: {fileID: 6498080372395740383}
   _cost: {fileID: 5555558728533896058}
   _description: {fileID: 930615477127320737}

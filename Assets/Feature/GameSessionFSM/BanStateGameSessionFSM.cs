@@ -27,15 +27,19 @@ namespace Feature.GameSessionFSM
             _selectWindowHeroPresenter.SetActive();
             _selectWindowHeroPresenter.SelectStartRandomHeroes();
             _selectWindowHeroPresenter.SetupRandomHeroes();
-            
-            if (_gameSessionModel.PlayerStartGameSessionFirst()) 
+
+            if (_gameSessionModel.PlayerStartGameSessionFirst())
+            {
                 _selectWindowHeroPresenter.SetBanMode();
+                _selectWindowHeroPresenter.ShowTipBanHeroText();
+            }
             else 
                 BanHeroAI();
         }
 
         private void BanHeroAI()
         {
+            _selectWindowHeroPresenter.ShowTipBanEnemyText();
             var heroViews = _selectWindowHeroPresenter._selectWindowHeroView.heroViews;
             
             _actionExecutor.SelectAndExecute(heroViews, selectedHeroView =>

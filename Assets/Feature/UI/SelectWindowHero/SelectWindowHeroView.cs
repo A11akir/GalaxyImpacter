@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ namespace Feature.UI.SelectWindowHero
         [SerializeField] public List<HeroView> heroViews;
         [SerializeField] public Button buttonSelectHero;
         [SerializeField] public Button buttonBanHero;
+        [SerializeField] public TextMeshProUGUI textSelectHero;
 
         [SerializeField] public List<GameObject> BlurObjects;
         
@@ -67,6 +69,25 @@ namespace Feature.UI.SelectWindowHero
             {
                 go.SetActive(false);
             }
+        }
+        
+        public void ShowTipBanHeroText()
+        {
+            textSelectHero.text = "Забаньте героя";
+        }
+
+        public void ShowTipBanEnemyText()
+        {
+            textSelectHero.text = "Противник банит героя";
+        }
+        public void ShowTipPickEnemyText()
+        {
+            textSelectHero.text = "Противник выберает героя";
+        }
+
+        public void ShowTipPickHeroText()
+        {
+            textSelectHero.text = "Выберите героя";
         }
     }
 }
