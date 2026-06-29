@@ -1,20 +1,21 @@
-using System.Collections.Generic;
-using System.Linq;
 using Feature.Entity.Script;
 using Feature.GameSessionData;
 using Feature.Hero.Script;
 using Feature.PassiveEffect.Script;
-using R3;
 
 namespace Feature.PassiveEffect
 {
+    /// <summary>
+    /// Решает, в какую вьюху должен попасть конкретный пассивный эффект:
+    /// в окно силы героя (permanent-пассивки героя) или в обычный контейнер пассивных эффектов.
+    /// Не хранит состояние, не следит за списками — только маршрутизация одного эффекта за раз.
+    /// </summary>
     public class PassiveEffectRouter
     {
         private readonly CardAndHealthEntityOwnerData _owner;
         private readonly GameSessionModel _gameSessionModel;
         private readonly PassiveEffectsPresenter _passiveEffectsPresenter;
         private readonly HeroPowerPresenter _heroPowerPresenter;
-        private List<PassiveEffectBase> _previousList = new();
 
         public PassiveEffectRouter(
             CardAndHealthEntityOwnerData owner,
@@ -28,42 +29,33 @@ namespace Feature.PassiveEffect
             _passiveEffectsPresenter = passiveEffectsPresenter;
             _heroPowerPresenter = heroPowerPresenter;
 
-            data.ActivePassives.Subscribe(HandleChanged);
+            data.PassiveAdded.Subscribe(HandleAdded);
+            data.PassiveRemoved.Subscribe(HandleRemoved);
         }
+
+        private void HandleAdded(PassiveEffectBase passive)
+        {
+            if (RoutesToHeroPower(passive))
+                _heroPowerPresenter.HandlePassiveAdded(passive, passive.SourceCard, _owner);
+            else
+                _passiveEffectsPresenter?.HandlePassiveAdded(passive);
+        }
+
+        private void HandleRemoved(PassiveEffectBase passive)
+        {
+            if (RoutesToHeroPower(passive))
+                _heroPowerPresenter.HandlePassiveRemoved(passive);
+            else
+                _passiveEffectsPresenter?.HandlePassiveRemoved(passive);
+        }
+
+        private bool RoutesToHeroPower(PassiveEffectBase passive) =>
+            passive.Duration == DurationType.Permanent && IsHero();
 
         private bool IsHero()
         {
             var playerData = _gameSessionModel.GetPlayerDataByOwner(_owner);
             return playerData != null && _owner == playerData.MainHeroEntity();
-        }
-
-        private void HandleChanged(List<PassiveEffectBase> currentList)
-        {
-            var added = currentList.Except(_previousList);
-            var removed = _previousList.Except(currentList);
-
-            bool isPermanentRoutedToHeroPower = IsHero();
-
-            foreach (var passive in removed)
-            {
-                if (passive.Duration == DurationType.Permanent && isPermanentRoutedToHeroPower)
-                    _heroPowerPresenter.HandlePassiveRemoved(passive);
-                else
-                    _passiveEffectsPresenter?.HandlePassiveRemoved(passive);
-            }
-            foreach (var passive in added)
-            {
-                if (passive.Duration == DurationType.Permanent && isPermanentRoutedToHeroPower)
-                {
-                    _heroPowerPresenter.HandlePassiveAdded(passive, passive.SourceCard, _owner); // ← добавили _owner
-                }
-                else
-                {
-                    _passiveEffectsPresenter?.HandlePassiveAdded(passive);
-                }
-            }
-
-            _previousList = new List<PassiveEffectBase>(currentList);
         }
     }
 }

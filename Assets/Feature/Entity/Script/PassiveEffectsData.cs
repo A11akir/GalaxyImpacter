@@ -14,10 +14,17 @@ namespace Feature.Entity.Script
 
         public ReadOnlyReactiveProperty<List<PassiveEffectBase>> ActivePassives => _activePassives;
 
+        private readonly Subject<PassiveEffectBase> _passiveAdded = new();
+        public Observable<PassiveEffectBase> PassiveAdded => _passiveAdded;
+
+        private readonly Subject<PassiveEffectBase> _passiveRemoved = new();
+        public Observable<PassiveEffectBase> PassiveRemoved => _passiveRemoved;
+
         public void Add(PassiveEffectBase passive)
         {
             var newList = new List<PassiveEffectBase>(_activePassives.Value) { passive };
             _activePassives.Value = newList;
+            _passiveAdded.OnNext(passive);
         }
 
         public void Remove(PassiveEffectBase passive)
@@ -25,8 +32,9 @@ namespace Feature.Entity.Script
             var newList = new List<PassiveEffectBase>(_activePassives.Value);
             newList.Remove(passive);
             _activePassives.Value = newList;
+            _passiveRemoved.OnNext(passive);
         }
-        
+
         public PassiveEffectBase Find(Type type)
         {
             foreach (var passive in _activePassives.Value)
@@ -41,7 +49,7 @@ namespace Feature.Entity.Script
             Add(newPassive);
             return newPassive;
         }
-        
+
         public T Find<T>() where T : PassiveEffectBase
         {
             foreach (var passive in _activePassives.Value)
@@ -50,15 +58,6 @@ namespace Feature.Entity.Script
             return null;
         }
         
-        public void TriggerTurnEndEffects()
-        {
-            var passives = new List<PassiveEffectBase>(_activePassives.Value);
-
-            foreach (var passive in passives)
-                if (passive is TurnEndEffectPassive)
-                    passive.TickTurnEnd();
-        }
-
         public void CleanupExpiredPassives()
         {
             var passives = new List<PassiveEffectBase>(_activePassives.Value);

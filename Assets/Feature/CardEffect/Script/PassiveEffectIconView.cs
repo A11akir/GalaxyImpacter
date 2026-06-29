@@ -1,4 +1,3 @@
-// PassiveEffectIconView.cs
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
