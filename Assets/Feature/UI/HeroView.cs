@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Feature.CardEffect.Script;
+using Feature.Entity.Script;
 using Feature.GameSessionData;
 using Feature.Health;
 using Feature.Hero;
@@ -8,10 +9,11 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using ITargetable = Feature.GameSessionData.ITargetable;
 
 namespace Feature.UI
 {
-    public class HeroView : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler, IHealthView, ITargetable, IPassiveEffectsHost
+    public class HeroView : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler, ITargetable, IEntityView
     {
         [SerializeField] private List<HeroPowerPreview> heroPowerPreviewViews;
         [SerializeField] public List<HeroPowerGameplayView> heroPowerGameplayViews; 
@@ -28,8 +30,8 @@ namespace Feature.UI
         [SerializeField] public TextMeshProUGUI _healthText;
         [SerializeField] public TextMeshProUGUI _nameText;
         
-        [SerializeField] private PassiveEffectsContainerView _passiveEffectsView; // ← добавили
-        public PassiveEffectsContainerView PassiveEffectsView => _passiveEffectsView; // ← добавили
+        [SerializeField] private PassiveEffectsContainerView _passiveEffectsView;
+        public PassiveEffectsContainerView PassiveEffectsView => _passiveEffectsView;
         
         public bool _isBlockedForSelect;
         public GameSessionPlayerData HeroData { get; private set; }

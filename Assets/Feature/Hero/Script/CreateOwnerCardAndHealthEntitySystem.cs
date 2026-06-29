@@ -47,8 +47,8 @@ namespace Feature.Hero
         }
 
         public void CreatePlayersEntity(
-            IHealthView playerHealthView,
-            IHealthView enemyHealthView,
+            IEntityView playerHealthView,
+            IEntityView enemyHealthView,
             List<HeroPowerGameplayView> playerHeroPowerViews,
             List<HeroPowerGameplayView> enemyHeroPowerViews,
             List<SpellCardData> heroPowers,
@@ -59,7 +59,7 @@ namespace Feature.Hero
         }
 
         private void CreateMainEnemyPlayer(
-            IHealthView playerHealthView,
+            IEntityView playerHealthView,
             List<HeroPowerGameplayView> playerHeroPowerViews,
             List<HeroPowerGameplayView> enemyHeroPowerViews,
             List<SpellCardData> heroPowers)
@@ -88,7 +88,7 @@ namespace Feature.Hero
 
         private void CreateMainEnemyEntity(
             CardAndHealthEntityOwnerData owner,
-            IHealthView healthView,
+            IEntityView healthView,
             HandCardViews handCardViews)
         {
             _deckFillSystem.InitializeDeck(owner);
@@ -97,33 +97,28 @@ namespace Feature.Hero
             InitEntityCore(owner, healthView);
         }
 
-        public void CreateEntityPlayer(
-            CardAndHealthEntityOwnerData owner,
-            IHealthView healthView) 
+        public void CreateEntityPlayer(CardAndHealthEntityOwnerData owner, IEntityView entityView)
         {
             _deckFillSystem.InitializeDeck(owner);
             var container = _handViewSwitcher.RegisterOwner(owner);
             _handDataRepository.InitHandRepository(owner, container.HandCardViews);
             _chakraManagerSystem.Init(owner, container.ChakraWindowView);
-            InitEntityCore(owner, healthView);
+            InitEntityCore(owner, entityView);
         }
 
-        public void CreateEntityEnemy(
-            CardAndHealthEntityOwnerData owner,
-            IHealthView healthView) 
+        public void CreateEntityEnemy(CardAndHealthEntityOwnerData owner, IEntityView entityView)
         {
             _deckFillSystem.InitializeDeck(owner);
-            InitEntityCore(owner, healthView);
+            InitEntityCore(owner, entityView);
         }
 
-        private void InitEntityCore(CardAndHealthEntityOwnerData owner, IHealthView healthView)
+        private void InitEntityCore(CardAndHealthEntityOwnerData owner, IEntityView entityView)
         {
             _handFillSystem.FillEntityHand(owner);
             _chakraManagerSystem.InitEntityChakra(owner);
             _entityDeathSystem.Init(owner);
 
-            var passiveView = (healthView as IPassiveEffectsHost)?.PassiveEffectsView;
-            _entityPresenters[owner] = new EntityPresenter(owner, healthView, passiveView);
+            _entityPresenters[owner] = new EntityPresenter(owner, entityView, entityView.PassiveEffectsView);
         }
 
         private void ApplyHeroPowerPassives(CardAndHealthEntityOwnerData owner, List<SpellCardData> heroPowers)

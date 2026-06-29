@@ -1,18 +1,19 @@
 using System;
 using Feature.Card.Script;
 using Feature.CardEffect.Script;
-using Feature.GameSessionData;
+using Feature.Entity.Script;
 using Feature.GoogleSheets;
 using Feature.Health;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using ITargetable = Feature.GameSessionData.ITargetable;
 
 namespace Feature.Battlefield.Script.View
 {
     public class CardOnBattlefieldView : MonoBehaviour,
-        IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IHealthView, ITargetable, IPassiveEffectsHost
+        IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, ITargetable, IEntityView
     {
         [SerializeField] private TextMeshProUGUI _name;
         
@@ -36,8 +37,8 @@ namespace Feature.Battlefield.Script.View
         [SerializeField] private GameObject primordialSprite;
 
         
-        [SerializeField] private PassiveEffectsContainerView _passiveEffectsView; // ← добавили
-        public PassiveEffectsContainerView PassiveEffectsView => _passiveEffectsView; // ← добавили
+        [SerializeField] private PassiveEffectsContainerView _passiveEffectsView;
+        public PassiveEffectsContainerView PassiveEffectsView => _passiveEffectsView;
 
         
         public event Action OnClicked;

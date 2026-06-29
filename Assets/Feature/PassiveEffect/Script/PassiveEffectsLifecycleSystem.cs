@@ -11,7 +11,6 @@ namespace Feature.PassiveEffect.Script
     public class PassiveEffectsLifecycleSystem
     {
         private readonly CardAndHealthEntityOwnerData _owner;
-        private readonly PassiveEffectsData _data;
         private List<PassiveEffectBase> _previousList = new();
 
 
@@ -20,7 +19,6 @@ namespace Feature.PassiveEffect.Script
             PassiveEffectsData data)
         {
             _owner = owner;
-            _data = data;
 
             data.ActivePassives.Subscribe(HandleChanged);
         }

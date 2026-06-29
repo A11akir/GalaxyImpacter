@@ -115,9 +115,4 @@ namespace Feature.GameSessionData
         
         public void ClearBoard() => _cardsInBoard.Value = new List<MinionCardData>();
     }
-
-// HeroPowerUsageTracker.cs
-    namespace Feature.GameSessionData
-    {
-    }
 }

@@ -20,16 +20,19 @@ MonoBehaviour:
   _level: 0
   targetType: 2
   _inCollection: 1
+  _baseCost: 0
+  _passiveCardEffects: []
   id: ba93ac68-b3c2-41f8-83ab-0fc10e5ff1ee
   _values: 05000000
   _description: Take 5 pure damage.
   _effects:
-  - rid: 5943948276110983170
+  - rid: 5943948431632105472
   references:
     version: 2
     RefIds:
-    - rid: 5943948276110983170
-      type: {class: PureDamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+    - rid: 5943948431632105472
+      type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
         TargetSelection: 0
         RandomSingleTarget: 0
+        _damageType: 1
