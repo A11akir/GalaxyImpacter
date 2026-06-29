@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Feature.Hero
+namespace Feature.Hero.Script
 {
     public class HeroPowerGameplayView : HeroPowerPreview
     {

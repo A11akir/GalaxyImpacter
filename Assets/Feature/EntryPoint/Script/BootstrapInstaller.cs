@@ -13,6 +13,7 @@ using Feature.GameSessionData;
 using Feature.HandLogic;
 using Feature.GameSessionFSM;
 using Feature.Hero;
+using Feature.Hero.Script;
 using Feature.Items.Scripts;
 using Feature.PassiveEffect;
 using Feature.PassiveEffect.Script;

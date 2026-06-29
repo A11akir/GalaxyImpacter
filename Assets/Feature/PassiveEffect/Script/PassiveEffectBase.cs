@@ -1,7 +1,6 @@
 using System;
-using Feature.Card.Script;
-using Feature.CardEffect.Script;
 using Feature.GameSessionData;
+using Feature.GoogleSheets;
 using UnityEngine;
 
 namespace Feature.PassiveEffect.Script
@@ -11,13 +10,15 @@ namespace Feature.PassiveEffect.Script
     {
         [SerializeField] protected PassiveEffectConfig Config;
         [SerializeField] public DurationType Duration;
+        public SpellCardData SourceCard { get; set; }
         public Sprite Icon => Config?.Icon;
-        public string GetDescription(int value) =>
-            Config ? string.Format(Config.Description, value) : "";
+        public string GetDescription(int value)
+        {
+            return Config ? string.Format(Config.Description, value) : "";
+        }
 
         public void SetConfig(PassiveEffectConfig config) => Config = config;
         
-        public virtual bool IsPermanent => Duration == DurationType.Permanent;
         public virtual int GetDisplayValue(int duplicateCount) => duplicateCount;
         
         public abstract void Register(

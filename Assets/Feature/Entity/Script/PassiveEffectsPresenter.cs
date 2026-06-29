@@ -1,9 +1,7 @@
 using System.Collections.Generic;
-using System.Linq;
 using Feature.CardEffect.Script;
 using Feature.PassiveEffect.Script;
 using R3;
-using UnityEngine;
 
 namespace Feature.Entity.Script
 {
@@ -12,33 +10,16 @@ namespace Feature.Entity.Script
         private readonly PassiveEffectsContainerView _view;
         private readonly Dictionary<PassiveEffectBase, PassiveEffectIconView> _activeIcons = new();
         private readonly Dictionary<PassiveEffectBase, System.IDisposable> _valueSubscriptions = new();
-        private List<PassiveEffectBase> _previousList = new();
 
-        public PassiveEffectsPresenter(PassiveEffectsContainerView view, PassiveEffectsData data)
+        public PassiveEffectsPresenter(PassiveEffectsContainerView view)
         {
             _view = view;
-            data.ActivePassives.Subscribe(HandleChanged);
         }
 
-        private void HandleChanged(List<PassiveEffectBase> currentList)
+        public void HandlePassiveAdded(PassiveEffectBase passive)
         {
-            var added = currentList.Except(_previousList);
-            var removed = _previousList.Except(currentList);
-
-            foreach (var passive in removed)
-                HandlePassiveRemoved(passive);
-
-            foreach (var passive in added)
-                HandlePassiveAdded(passive);
-
-            _previousList = new List<PassiveEffectBase>(currentList);
-        }
-
-        private void HandlePassiveAdded(PassiveEffectBase passive)
-        {
-            if (passive.IsPermanent) return; 
-            
             var icon = _view.GetFreeSlot();
+            if (icon == null) return;
 
             _activeIcons[passive] = icon;
             icon.SetIcon(passive.Icon);
@@ -60,7 +41,7 @@ namespace Feature.Entity.Script
             icon.SetDescription(passive.GetDescription(value ?? 0));
         }
 
-        private void HandlePassiveRemoved(PassiveEffectBase passive)
+        public void HandlePassiveRemoved(PassiveEffectBase passive)
         {
             if (_activeIcons.TryGetValue(passive, out var icon))
             {

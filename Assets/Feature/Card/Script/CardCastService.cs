@@ -47,11 +47,9 @@ namespace Feature.Card.Script
 
         public void Cast(CardStatsData card, CardAndHealthEntityOwnerData owner, CardAndHealthEntityOwnerData target)
         {
-            Debug.Log($"[CardCastService] Cast called, card={card.Name}, Cost={card.Cost}, BaseCost={card.BaseCost}, hash={card.GetHashCode()}");
 
             if (!CheckCanCast(card, owner))
             {
-                Debug.Log($"[CardCastService] CheckCanCast FAILED, owner.Chakra={owner.Chakra}, card.Cost={card.Cost}");
                 return;
             }
 

@@ -1,5 +1,8 @@
+// EntityPresenter.cs — убираем лишний параметр passiveEffectRouter
 using Feature.CardEffect.Script;
 using Feature.GameSessionData;
+using Feature.Hero.Script;
+using Feature.PassiveEffect;
 using Feature.PassiveEffect.Script;
 using R3;
 
@@ -10,28 +13,28 @@ namespace Feature.Entity.Script
         private readonly IEntityView _entityView;
         private readonly CardAndHealthEntityOwnerData _owner;
         private readonly CompositeDisposable _disposables = new();
-        private PassiveEffectsLifecycleSystem _lifecycleSystem;
-        private PassiveEffectsPresenter _passiveEffectsPresenter;
+        private readonly PassiveEffectsLifecycleSystem _lifecycleSystem;
+        private readonly PassiveEffectsPresenter _passiveEffectsPresenter;
+        private readonly PassiveEffectRouter _passiveEffectRouter;
 
         public EntityPresenter(
             CardAndHealthEntityOwnerData owner,
             IEntityView entityView,
-            PassiveEffectsContainerView passiveEffectsView)
+            PassiveEffectsContainerView passiveEffectsView,
+            HeroPowerPresenter heroPowerPresenter,
+            GameSessionModel gameSessionModel)
         {
             _owner = owner;
             _entityView = entityView;
 
             InitHealth();
 
-            InitPassiveEffects(owner, passiveEffectsView);
-        }
+            _passiveEffectsPresenter = passiveEffectsView != null
+                ? new PassiveEffectsPresenter(passiveEffectsView)
+                : null;
 
-        private void InitPassiveEffects(CardAndHealthEntityOwnerData owner, PassiveEffectsContainerView passiveEffectsView)
-        {
+            _passiveEffectRouter = new PassiveEffectRouter(owner, gameSessionModel, owner.PassiveEffects, _passiveEffectsPresenter, heroPowerPresenter);
             _lifecycleSystem = new PassiveEffectsLifecycleSystem(owner, owner.PassiveEffects);
-
-            if (passiveEffectsView != null)
-                _passiveEffectsPresenter = new PassiveEffectsPresenter(passiveEffectsView, owner.PassiveEffects);
         }
 
         private void InitHealth()
@@ -45,9 +48,6 @@ namespace Feature.Entity.Script
                 .AddTo(_disposables);
         }
 
-        public void Dispose()
-        {
-            _disposables.Dispose();
-        }
+        public void Dispose() => _disposables.Dispose();
     }
 }

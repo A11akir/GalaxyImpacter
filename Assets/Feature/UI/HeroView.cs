@@ -5,6 +5,7 @@ using Feature.Entity.Script;
 using Feature.GameSessionData;
 using Feature.Health;
 using Feature.Hero;
+using Feature.Hero.Script;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;

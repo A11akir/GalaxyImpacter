@@ -6,11 +6,8 @@ using Feature.Entity.Script;
 using Feature.GameSessionData;
 using Feature.GoogleSheets;
 using Feature.HandLogic;
-using Feature.Health;
-using Feature.UI;
-using UnityEngine;
 
-namespace Feature.Hero
+namespace Feature.Hero.Script
 {
     public class CreateOwnerCardAndHealthEntitySystem
     {
@@ -54,8 +51,13 @@ namespace Feature.Hero
             List<SpellCardData> heroPowers,
             HandCardViews enemyHandCardViews)
         {
-            CreateMainEnemyPlayer(playerHealthView,  playerHeroPowerViews, enemyHeroPowerViews, heroPowers);
+            CreateMainEnemyPlayer(playerHealthView, playerHeroPowerViews, enemyHeroPowerViews, heroPowers);
             CreateMainEnemyEntity(_gameSessionModel.EnemyHero.MainHeroEntity(), enemyHealthView, enemyHandCardViews);
+
+            ApplyHeroPowerPassives(
+                _gameSessionModel.EnemyHero.MainHeroEntity(),
+                _gameSessionModel.EnemyHero.HeroPowers,
+                enemyHeroPowerViews);
         }
 
         private void CreateMainEnemyPlayer(
@@ -72,18 +74,13 @@ namespace Feature.Hero
 
             for (int i = 0; i < heroPowers.Count && i < playerHeroPowerViews.Count; i++)
             {
-                _heroPowerSystem.Init(
-                    playerEntity,
-                    playerHeroPowerViews[i].gameObject,
-                    heroPowers[i],
-                    _gameSessionModel.PlayerHero,
-                    i);
+                _heroPowerSystem.Init(playerEntity, playerHeroPowerViews[i].gameObject, heroPowers[i], _gameSessionModel.PlayerHero, i);
             }
-
-            ApplyHeroPowerPassives(playerEntity, heroPowers);
 
             _heroPowerPresenter.InitPlayer(playerHeroPowerViews, heroPowers.Count);
             _heroPowerPresenter.InitEnemy(enemyHeroPowerViews);
+
+            ApplyHeroPowerPassives(playerEntity, heroPowers, playerHeroPowerViews);
         }
 
         private void CreateMainEnemyEntity(
@@ -118,13 +115,24 @@ namespace Feature.Hero
             _chakraManagerSystem.InitEntityChakra(owner);
             _entityDeathSystem.Init(owner);
 
-            _entityPresenters[owner] = new EntityPresenter(owner, entityView, entityView.PassiveEffectsView);
+            _entityPresenters[owner] = new EntityPresenter(
+                owner,
+                entityView,
+                entityView.PassiveEffectsView,
+                _heroPowerPresenter,
+                _gameSessionModel);
         }
 
-        private void ApplyHeroPowerPassives(CardAndHealthEntityOwnerData owner, List<SpellCardData> heroPowers)
+        private void ApplyHeroPowerPassives(
+            CardAndHealthEntityOwnerData owner,
+            List<SpellCardData> heroPowers,
+            List<HeroPowerGameplayView> views)
         {
-            foreach (var heroPower in heroPowers)
+            for (int i = 0; i < heroPowers.Count && i < views.Count; i++) // ← добавил защиту от выхода за границы
             {
+                var heroPower = heroPowers[i];
+                var view = views[i];
+
                 foreach (var effect in heroPower.Effects)
                 {
                     if (effect is AddPassiveEffect addPassive)

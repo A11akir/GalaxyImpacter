@@ -1,22 +1,28 @@
 using System;
-using Feature.Card.Script;
 using Feature.CardEffect.Script;
 using Feature.CombatSystem;
 using Feature.GameSessionData;
 using Feature.Hero;
+using R3;
 using UnityEngine;
 
 namespace Feature.PassiveEffect.Script
 {
     [Serializable]
-    public class FireDamageBonusWatcher : PassiveEffectBase, IStackablePassive, ICardContextConsumer, IGameEventListener<DamageDealtInfo>
+    public class FireDamageBonusWatcher : PassiveEffectBase, IStackablePassive, ICardContextConsumer, IGameEventListener<DamageDealtInfo>, IValueProvider
     {
         [SerializeField] private PassiveEffectConfig _bonusConfig;
 
-        private int _bonusPerHit;
+        private readonly ReactiveProperty<int> _bonusPerHit = new(0);
+        public ReadOnlyReactiveProperty<int> Value => _bonusPerHit;
+
         private CardAndHealthEntityOwnerData _owner;
 
-        public void AddBonus(int amount) => _bonusPerHit = amount;
+        public void AddBonus(int amount)
+        {
+            _bonusPerHit.Value += amount; 
+            Debug.Log(_bonusPerHit.CurrentValue);
+        }
 
         public void OnAppliedFromCard(EffectContext context) =>
             AddBonus(context.CardData.Values[context.ValueIndex]);
@@ -26,7 +32,7 @@ namespace Feature.PassiveEffect.Script
             _owner = owner;
         }
 
-        public override void Unregister() { } // ← пусто, нечего отписывать
+        public override void Unregister() { }
 
         public void OnEvent(DamageDealtInfo info)
         {
@@ -42,10 +48,10 @@ namespace Feature.PassiveEffect.Script
                 bonus.SetConfig(_bonusConfig);
                 _owner.PassiveEffects.Add(bonus);
             }
-            bonus.AddBonus(_bonusPerHit);
+            bonus.AddBonus(_bonusPerHit.Value);
         }
 
         public override PassiveEffectBase Clone() =>
-            new FireDamageBonusWatcher { _bonusConfig = _bonusConfig };
+            new FireDamageBonusWatcher { _bonusConfig = _bonusConfig, Config = Config };
     }
 }

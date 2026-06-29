@@ -3,6 +3,7 @@ using Feature.Card.Script;
 using Feature.GameSessionData;
 using Feature.HandLogic;
 using Feature.Hero;
+using Feature.Hero.Script;
 using UnityEngine;
 
 namespace Feature.UI
