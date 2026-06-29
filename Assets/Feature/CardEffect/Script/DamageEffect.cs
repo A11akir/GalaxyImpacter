@@ -9,7 +9,7 @@ namespace Feature.CardEffect.Script
     [Serializable]
     public class DamageEffect : CardEffect
     {
-        [SerializeField] private DamageType _damageType = DamageType.Normal; // ← выпадающий список в инспекторе
+        [SerializeField] private DamageType _damageType = DamageType.Normal;
 
         public override void Execute(EffectContext context)
         {
@@ -18,7 +18,7 @@ namespace Feature.CardEffect.Script
 
             foreach (var target in targets)
             {
-                context.CombatSystem.DealDamage( // ← переименован из TakeDamage
+                context.CombatSystem.DealDamage(
                     target,
                     finalDamage,
                     context.Caster,
@@ -39,4 +39,12 @@ namespace Feature.CardEffect.Script
             return damage + bonus;
         }
     }
+    
+    // Приступаем к следующей карте. 
+    //     Add Burning or increase 1 damage. 
+    //     Нужно найти у кастера fireDamageBonusWatcher
+    //     в пассивных эффектах и прибавить у него
+    //     получаемый бонус на 1(теперь от урона
+    //         прибавляется не 1 урон а два). Если нет то создать пасивку
+        
 }

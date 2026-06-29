@@ -20,9 +20,11 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
+  _baseCost: 0
+  _passiveCardEffects: []
   id: 25fb0d20-fc4c-41a6-b108-e9c8207a7654
   _values: 01000000
-  _description: Hero power increase 1 damage.
+  _description: Add Burning or increase 1 damage.
   _effects: []
   references:
     version: 2
