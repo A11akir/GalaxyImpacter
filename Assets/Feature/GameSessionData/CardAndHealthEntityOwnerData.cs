@@ -32,7 +32,7 @@ namespace Feature.GameSessionData
         
         private List<CardStatsData> _baseDeck = new();
         
-        public IReadOnlyList<CardStatsData> BaseDeck => _baseDeck;
+        public IReadOnlyList<CardStatsData> BaseDeck => _baseDeck;      
         public List<CardStatsData> CardsInHandList
         {
             get => _cardsInHand.Value;

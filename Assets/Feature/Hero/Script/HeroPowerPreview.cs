@@ -19,6 +19,7 @@ namespace Feature.Hero.Script
         [SerializeField] private List<Image> iconHeroPower;
         [SerializeField] protected GameObject _costFrame;
 
+        
         private string _baseDescription;
 
         public void OnPointerEnter(PointerEventData eventData) => heroPowerDescriptionWindow.SetActive(true);
@@ -32,8 +33,7 @@ namespace Feature.Hero.Script
 
             _baseDescription = spell.Description;
             descriptionHeroPower.text = _baseDescription;
-
-            GLog.Log(_baseDescription);
+            
             foreach (var sprite in iconHeroPower)
                 sprite.sprite = spell.IconImage;
 

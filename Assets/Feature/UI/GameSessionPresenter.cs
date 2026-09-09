@@ -45,6 +45,7 @@ namespace Feature.UI
         
         public void SetupEntityViews()
         {
+            Debug.Log($"[SetupEntityViews] playerHeroPowerViews.Count={_gameSessionView._heroView.heroPowerGameplayViews.Count}");
             _createOwnerCardAndHealthEntitySystem.CreatePlayersEntity(
                 _gameSessionView._heroView,
                 _gameSessionView._enemyView,

@@ -6,6 +6,7 @@ using Feature.Entity.Script;
 using Feature.GameSessionData;
 using Feature.GoogleSheets;
 using Feature.HandLogic;
+using UnityEngine;
 
 namespace Feature.Hero.Script
 {
@@ -67,21 +68,25 @@ namespace Feature.Hero.Script
             List<SpellCardData> heroPowers)
         {
             var playerEntity = _gameSessionModel.PlayerHero.MainHeroEntity();
-            CreateEntityPlayer(playerEntity, playerHealthView);
 
-            _handViewSwitcher.SwitchTo(playerEntity);
             _gameSessionModel.PlayerHero.HeroPowerUsage.Init(heroPowers.Count);
 
             for (int i = 0; i < heroPowers.Count && i < playerHeroPowerViews.Count; i++)
-            {
                 _heroPowerSystem.Init(playerEntity, playerHeroPowerViews[i].gameObject, heroPowers[i], _gameSessionModel.PlayerHero, i);
-            }
 
+            // 1. заполняем вьюхи
             _heroPowerPresenter.InitPlayer(playerHeroPowerViews, heroPowers.Count);
             _heroPowerPresenter.InitEnemy(enemyHeroPowerViews);
 
+            // 2. создаём EntityPresenter — RegisterOwner здесь же
+            CreateEntityPlayer(playerEntity, playerHealthView);
+
+            // 3. теперь SwitchTo найдёт owner в словаре
+            _handViewSwitcher.SwitchTo(playerEntity);
+
+            // 4. применяем пассивки
             ApplyHeroPowerPassives(playerEntity, heroPowers, playerHeroPowerViews);
-        }
+        }       
 
         private void CreateMainEnemyEntity(
             CardAndHealthEntityOwnerData owner,
@@ -128,13 +133,16 @@ namespace Feature.Hero.Script
             List<SpellCardData> heroPowers,
             List<HeroPowerGameplayView> views)
         {
+            Debug.Log($"[ApplyHeroPowerPassives] старт для owner: {owner._heroName}, heroPowers.Count={heroPowers.Count}");
             for (int i = 0; i < heroPowers.Count && i < views.Count; i++) // ← добавил защиту от выхода за границы
             {
                 var heroPower = heroPowers[i];
+                Debug.Log($"[ApplyHeroPowerPassives] карта: {heroPower.name}, effects.Count={heroPower.Effects.Count}");
                 var view = views[i];
 
                 foreach (var effect in heroPower.Effects)
                 {
+                    Debug.Log($"[ApplyHeroPowerPassives] effect: {effect.GetType().Name}");
                     if (effect is AddPassiveEffect addPassive)
                         addPassive.Execute(new EffectContext
                         {

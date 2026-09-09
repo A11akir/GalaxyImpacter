@@ -1,7 +1,5 @@
 // AddPassiveEffect.cs
 using System;
-using Feature.GameSessionData;
-using Feature.GoogleSheets;
 using Feature.PassiveEffect.Script;
 using UnityEngine;
 

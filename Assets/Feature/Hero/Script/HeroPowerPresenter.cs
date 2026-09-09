@@ -6,6 +6,7 @@ using Feature.GoogleSheets;
 using Feature.HandLogic;
 using Feature.PassiveEffect.Script;
 using R3;
+using UnityEngine;
 
 namespace Feature.Hero.Script
 {
@@ -23,7 +24,7 @@ namespace Feature.Hero.Script
 
         private readonly Dictionary<PassiveEffectBase, HeroPowerGameplayView> _passiveToView = new();
         private readonly Dictionary<PassiveEffectBase, IDisposable> _valueSubscriptions = new();
-
+        
         public HeroPowerPresenter(HeroPowerSystem heroPowerSystem, HandViewSwitcher handViewSwitcher, GameSessionModel gameSessionModel)
         {
             _heroPowerSystem = heroPowerSystem;
@@ -33,19 +34,33 @@ namespace Feature.Hero.Script
             _handViewSwitcher.OnOwnerSwitched += OnOwnerSwitched;
         }
 
+        //Принимает все внутриконтейнерные вьюхи, стартовое количество абилок
         public void InitPlayer(List<HeroPowerGameplayView> views, int count)
         {
+            Debug.Log($"[InitPlayer] views.Count={views.Count}, count={count}");
+            //Цикл срабатывает столько раз сколько абилок было на старте
             for (int i = 0; i < views.Count && i < count; i++)
             {
                 var index = i;
                 var view = views[i];
+                //нахуято отдельная вьюха для каждого героя заполняется
                 _playerViews.Add(view);
 
+                //дата карты
                 var heroPower = _gameSessionModel.PlayerHero.HeroPowers[i];
+                
+                //словарь дата+вьюха
                 _playerCardToView[heroPower] = view;
 
+                //привязка для реакции на использование передается отдельно вьюха герой и индекс хотя как будто уже можно передавать _playerCardToView
                 _heroPowerSystem.OnHeroPowerUsed += () => UpdateHeroPowerView(view, _gameSessionModel.PlayerHero, index);
                 UpdateHeroPowerView(view, _gameSessionModel.PlayerHero, index);
+            }
+            
+            for (int i = count; i < views.Count; i++)
+            {
+                _playerViews.Add(views[i]); // ← добавляем в список
+                views[i].gameObject.SetActive(false);
             }
         }
 
@@ -69,34 +84,71 @@ namespace Feature.Hero.Script
 
                 UpdateHeroPowerView(view, _gameSessionModel.EnemyHero, 0);
             }
+
+            // скрываем слоты после количества сил героя 
+            for (int i = enemyHeroPowers.Count; i < views.Count; i++)
+            {
+                _enemyViews.Add(views[i]);
+                views[i].gameObject.SetActive(false);
+            }
+               
         }
 
-        public void HandlePassiveAdded(PassiveEffectBase passive, SpellCardData sourceCard, CardAndHealthEntityOwnerData owner)
+        private HeroPowerGameplayView GetFreePassiveSlot(CardAndHealthEntityOwnerData owner)
         {
-            bool isPlayer = owner == _gameSessionModel.PlayerHero.MainHeroEntity();
-            var dict = isPlayer ? _playerCardToView : _enemyCardToView;
+            var views = owner == _gameSessionModel.PlayerHero.MainHeroEntity()
+                ? _playerViews
+                : _enemyViews;
 
-            if (!dict.TryGetValue(sourceCard, out var view)) return;
+            var cardToView = owner == _gameSessionModel.PlayerHero.MainHeroEntity()
+                ? _playerCardToView
+                : _enemyCardToView;
 
-            _passiveToView[passive] = view;
+            string ownerName = owner == _gameSessionModel.PlayerHero.MainHeroEntity() ? "Player" : "Enemy";
+            Debug.Log($"[GetFreePassiveSlot] owner={ownerName}, всего вьюх={views.Count}, карточных слотов={cardToView.Count}, занятых пассивками={_passiveToView.Count}");
+
+            foreach (var view in views)
+            {
+                bool occupiedByPassive = _passiveToView.ContainsValue(view);
+                bool occupiedByCard = cardToView.ContainsValue(view);
+                Debug.Log($"[GetFreePassiveSlot] view={view.gameObject.name} | занят пассивкой={occupiedByPassive} | карточный слот={occupiedByCard}");
+
+                if (!occupiedByPassive && !occupiedByCard)
+                {
+                    Debug.Log($"[GetFreePassiveSlot] → свободный слот найден: {view.gameObject.name}");
+                    return view;
+                }
+            }
+
+            Debug.Log($"[GetFreePassiveSlot] → свободных слотов нет, возвращаем null");
+            return null;
+        }
+        
+        public void HandlePassiveAdded(PassiveEffectBase passive, CardAndHealthEntityOwnerData owner)
+        {
+            Debug.Log($"[HeroPowerPresenter] HandlePassiveAdded: {passive.GetType().Name}");        
+            var slot = GetFreePassiveSlot(owner); // ← передаём owner
+            if (slot == null) return;
+
+            slot.gameObject.SetActive(true);
+            slot.SetDataView(passive.SourceCard);
+            _passiveToView[passive] = slot;
 
             if (passive is IValueProvider valueProvider)
             {
-                var sub = valueProvider.Value.Subscribe(_ => view.SetPassiveEffectData(passive));
+                var sub = valueProvider.Value.Subscribe(_ => slot.SetPassiveEffectData(passive));
                 _valueSubscriptions[passive] = sub;
-                view.SetPassiveEffectData(passive);
             }
-            else
-            {
-                view.SetPassiveEffectData(passive);
-            }
+
+            slot.SetPassiveEffectData(passive);
         }
 
         public void HandlePassiveRemoved(PassiveEffectBase passive)
         {
-            if (_passiveToView.TryGetValue(passive, out var view))
+            if (_passiveToView.TryGetValue(passive, out var slot))
             {
-                view.ClearPassiveEffectData();
+                slot.ClearPassiveEffectData();
+                slot.gameObject.SetActive(false);
                 _passiveToView.Remove(passive);
             }
 
@@ -106,21 +158,26 @@ namespace Feature.Hero.Script
                 _valueSubscriptions.Remove(passive);
             }
         }
-
+        //пока что обработка устаноавленной абилки а не полнцоенного слота, реакция на использование опять же можно обойтись только _playerCardToView в параметрах
         private void UpdateHeroPowerView(HeroPowerGameplayView view, GameSessionPlayerData playerData, int index)
         {
+            // если данные сущетсвует то запускаем
             if (!view || playerData.HeroPowers == null || index >= playerData.HeroPowers.Count) return;
 
+            //если пасивка то не нужно реакция на трату маны или уже использование
             if (playerData.HeroPowers[index].IsPassive)
             {
+                //убирает крисатл маны и окно использования
                 view.SetPassiveView();
                 return;
             }
 
+            //можео ли сыграть, хватает ли маны или играл ли до этого
             bool canCast = !playerData.HeroPowerUsage.IsUsed(index) &&
                            playerData.MainHeroEntity().Chakra >= playerData.HeroPowers[index].Cost;
 
             view.SetCanCastView(canCast);
+            //сюда можно передавать canCast тоже вроде надо потестить
             view.SetUsedThisTurnView(playerData.HeroPowerUsage.IsUsed(index));
         }
 

@@ -20,10 +20,13 @@ namespace Feature.Entity.Script
         private readonly Subject<PassiveEffectBase> _passiveRemoved = new();
         public Observable<PassiveEffectBase> PassiveRemoved => _passiveRemoved;
 
+// PassiveEffectsData.Add
         public void Add(PassiveEffectBase passive)
         {
+            Debug.Log($"[PassiveEffectsData] Add: {passive.GetType().Name}");
             var newList = new List<PassiveEffectBase>(_activePassives.Value) { passive };
             _activePassives.Value = newList;
+            Debug.Log($"[PassiveEffectsData] OnNext fired, подписчиков на PassiveAdded: ");
             _passiveAdded.OnNext(passive);
         }
 

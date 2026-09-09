@@ -3,6 +3,7 @@ using Feature.GameSessionData;
 using Feature.Hero.Script;
 using Feature.PassiveEffect.Script;
 using R3;
+using UnityEngine;
 
 namespace Feature.PassiveEffect
 {
@@ -36,12 +37,12 @@ namespace Feature.PassiveEffect
 
         private void HandleAdded(PassiveEffectBase passive)
         {
+            Debug.Log($"[Router] HandleAdded: {passive.GetType().Name}, RoutesToHeroPower={RoutesToHeroPower(passive)}");
             if (RoutesToHeroPower(passive))
-                _heroPowerPresenter.HandlePassiveAdded(passive, passive.SourceCard, _owner);
+                _heroPowerPresenter.HandlePassiveAdded(passive, _owner);
             else
                 _passiveEffectsPresenter?.HandlePassiveAdded(passive);
         }
-
         private void HandleRemoved(PassiveEffectBase passive)
         {
             if (RoutesToHeroPower(passive))

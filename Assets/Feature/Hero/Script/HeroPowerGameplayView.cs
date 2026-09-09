@@ -23,4 +23,4 @@ namespace Feature.Hero.Script
             _canAvailableCastHeroPower.SetActive(false);
         }
     }
-}
+}               

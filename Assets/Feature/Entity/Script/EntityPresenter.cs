@@ -5,6 +5,7 @@ using Feature.Hero.Script;
 using Feature.PassiveEffect;
 using Feature.PassiveEffect.Script;
 using R3;
+using UnityEngine;
 
 namespace Feature.Entity.Script
 {
@@ -34,6 +35,7 @@ namespace Feature.Entity.Script
                 : null;
 
             _passiveEffectRouter = new PassiveEffectRouter(owner, gameSessionModel, owner.PassiveEffects, _passiveEffectsPresenter, heroPowerPresenter);
+            Debug.Log($"[EntityPresenter] Router создан для owner: {owner._heroName}");
             _lifecycleSystem = new PassiveEffectsLifecycleSystem(owner, owner.PassiveEffects);
         }
 

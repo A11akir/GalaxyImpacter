@@ -185,10 +185,6 @@ namespace Feature.GoogleSheets
                             EditorUtility.SetDirty(minionSO);
                         }
                     }
-                    else
-                    {
-                        GLog.Log($"[SpellParser] Minion '{cfg.MinionNameOwner}' not found or destroyed for spell '{cfg.Name}'");
-                    }
                 }
 
                 EditorUtility.SetDirty(so as UnityEngine.Object);
