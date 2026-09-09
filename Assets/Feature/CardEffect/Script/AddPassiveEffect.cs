@@ -25,7 +25,7 @@ namespace Feature.CardEffect.Script
                 bool isNew = existing == null;
                 var passive = existing ?? _passiveTemplate.Clone();
 
-                passive.SourceCard = (SpellCardData)ctx.CardData;
+                passive.SourceCard = ctx.CardData;
 
                 if (passive is ICardContextConsumer consumer)
                     consumer.OnAppliedFromCard(ctx); // ← AddBonus/Value меняется ЗДЕСЬ, до Add

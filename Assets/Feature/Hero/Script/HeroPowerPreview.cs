@@ -19,7 +19,7 @@ namespace Feature.Hero.Script
         [SerializeField] private List<Image> iconHeroPower;
         [SerializeField] protected GameObject _costFrame;
 
-        private string _baseDescription; // ← хранит исходное описание силы героя
+        private string _baseDescription;
 
         public void OnPointerEnter(PointerEventData eventData) => heroPowerDescriptionWindow.SetActive(true);
         public void OnPointerExit(PointerEventData eventData) => heroPowerDescriptionWindow.SetActive(false);

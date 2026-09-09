@@ -14,7 +14,7 @@ namespace Feature.PassiveEffect.Script
         [SerializeField] private PassiveEffectConfig _bonusConfig;
 
         private readonly ReactiveProperty<int> _bonusPerHit = new(0);
-        public ReadOnlyReactiveProperty<int> Value => _bonusPerHit;
+        public ReadOnlyReactiveProperty<int> Value => _bonusPerHit;             
 
         private CardAndHealthEntityOwnerData _owner;
 

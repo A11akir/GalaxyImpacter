@@ -2,6 +2,7 @@ using Feature.Entity.Script;
 using Feature.GameSessionData;
 using Feature.Hero.Script;
 using Feature.PassiveEffect.Script;
+using R3;
 
 namespace Feature.PassiveEffect
 {
@@ -29,8 +30,8 @@ namespace Feature.PassiveEffect
             _passiveEffectsPresenter = passiveEffectsPresenter;
             _heroPowerPresenter = heroPowerPresenter;
 
-            data.PassiveAdded.Subscribe(HandleAdded);
-            data.PassiveRemoved.Subscribe(HandleRemoved);
+            data.PassiveAdded.Subscribe(passive => HandleAdded(passive));
+            data.PassiveRemoved.Subscribe(passive => HandleRemoved(passive));
         }
 
         private void HandleAdded(PassiveEffectBase passive)

@@ -47,7 +47,6 @@ namespace Feature.Card.Script
 
         public void Cast(CardStatsData card, CardAndHealthEntityOwnerData owner, CardAndHealthEntityOwnerData target)
         {
-
             if (!CheckCanCast(card, owner))
             {
                 return;
@@ -61,7 +60,7 @@ namespace Feature.Card.Script
                 owner.RemoveCardFromHand(cardInHand);
             }
             
-            if (card is MinionCardData)
+            if (card is MinionCardData)     
             {
                 var playerData = _gameSessionModel.GetPlayerDataByOwner(owner);
                 _battlefieldSystem.AddCardInBattlefield(playerData, card);
