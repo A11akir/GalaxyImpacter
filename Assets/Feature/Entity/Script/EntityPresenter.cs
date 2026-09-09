@@ -35,7 +35,6 @@ namespace Feature.Entity.Script
                 : null;
 
             _passiveEffectRouter = new PassiveEffectRouter(owner, gameSessionModel, owner.PassiveEffects, _passiveEffectsPresenter, heroPowerPresenter);
-            Debug.Log($"[EntityPresenter] Router создан для owner: {owner._heroName}");
             _lifecycleSystem = new PassiveEffectsLifecycleSystem(owner, owner.PassiveEffects);
         }
 

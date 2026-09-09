@@ -37,7 +37,6 @@ namespace Feature.Hero.Script
         //Принимает все внутриконтейнерные вьюхи, стартовое количество абилок
         public void InitPlayer(List<HeroPowerGameplayView> views, int count)
         {
-            Debug.Log($"[InitPlayer] views.Count={views.Count}, count={count}");
             //Цикл срабатывает столько раз сколько абилок было на старте
             for (int i = 0; i < views.Count && i < count; i++)
             {
@@ -104,29 +103,22 @@ namespace Feature.Hero.Script
                 ? _playerCardToView
                 : _enemyCardToView;
 
-            string ownerName = owner == _gameSessionModel.PlayerHero.MainHeroEntity() ? "Player" : "Enemy";
-            Debug.Log($"[GetFreePassiveSlot] owner={ownerName}, всего вьюх={views.Count}, карточных слотов={cardToView.Count}, занятых пассивками={_passiveToView.Count}");
-
             foreach (var view in views)
             {
                 bool occupiedByPassive = _passiveToView.ContainsValue(view);
                 bool occupiedByCard = cardToView.ContainsValue(view);
-                Debug.Log($"[GetFreePassiveSlot] view={view.gameObject.name} | занят пассивкой={occupiedByPassive} | карточный слот={occupiedByCard}");
 
                 if (!occupiedByPassive && !occupiedByCard)
                 {
-                    Debug.Log($"[GetFreePassiveSlot] → свободный слот найден: {view.gameObject.name}");
                     return view;
                 }
             }
-
-            Debug.Log($"[GetFreePassiveSlot] → свободных слотов нет, возвращаем null");
+            
             return null;
         }
         
         public void HandlePassiveAdded(PassiveEffectBase passive, CardAndHealthEntityOwnerData owner)
         {
-            Debug.Log($"[HeroPowerPresenter] HandlePassiveAdded: {passive.GetType().Name}");        
             var slot = GetFreePassiveSlot(owner); // ← передаём owner
             if (slot == null) return;
 

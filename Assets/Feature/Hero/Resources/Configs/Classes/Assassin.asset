@@ -20,4 +20,4 @@ MonoBehaviour:
   _heroPowers:
   - {fileID: 11400000, guid: 54be019a6dfbe47cd8329df40df6562d, type: 2}
   - {fileID: 11400000, guid: ce25c7bd176e346029f0fb45d4e49b4f, type: 2}
-  - {fileID: 11400000, guid: 191fc8689ec6f406abd09e9a05be73da, type: 2}
+  - {fileID: 11400000, guid: 97872ac76f96547d9b2be883f8bb14fe, type: 2}
