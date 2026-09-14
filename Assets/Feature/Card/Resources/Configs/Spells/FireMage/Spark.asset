@@ -20,14 +20,12 @@ MonoBehaviour:
   _level: 0
   targetType: 2
   _inCollection: 1
+  _baseCost: 0
+  _passiveCardEffects: []
   id: 22086cc8-d90d-4049-acc4-af8cae5f8241
   _values: 01000000
   _description: Take 1 damage.
-  _effects:
-  - rid: 5943948185077547015
+  _effects: []
   references:
     version: 2
-    RefIds:
-    - rid: 5943948185077547015
-      type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
-      data: 
+    RefIds: []
