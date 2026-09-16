@@ -7,6 +7,8 @@ Shader "Custom/RadialFill"
         _ColorStart ("Color Start", Color) = (0.5, 0, 0.8, 1)
         _ColorEnd ("Color End", Color) = (1, 0, 1, 1)
         _FadeLength ("Fade Length", Range(0.01, 1)) = 0.3
+        _GlowStrength ("Glow Strength", Range(0, 1)) = 1.0
+        _AlphaFadeLength ("Alpha Fade Length", Range(0.01, 1)) = 0.3
     }
 
     SubShader
@@ -42,6 +44,8 @@ Shader "Custom/RadialFill"
             float4 _ColorStart;
             float4 _ColorEnd;
             float _FadeLength;
+            float _GlowStrength;
+            float _AlphaFadeLength;
 
             Varyings vert(Attributes IN)
             {
@@ -55,22 +59,21 @@ Shader "Custom/RadialFill"
             {
                 float2 uv = IN.uv - 0.5;
 
-                // угол 0..1 сверху по часовой
                 float angle = atan2(uv.x, uv.y) / (6.28318) + 0.5;
-
-                // обрезаем по fillAmount
                 float fill = step(angle, _FillAmount);
 
-                // градиент: 0 у стрелки, 1 далеко позади
                 float distFromEdge = (_FillAmount - angle) / max(_FadeLength, 0.001);
-                float fadeAlpha = saturate(distFromEdge);
+                float distFromEdgeAlpha = (_FillAmount - angle) / max(_AlphaFadeLength, 0.001);
 
-                // форма руны
+                // градиент цвета — независимый от альфы
+                float colorT = smoothstep(0.0, 1.0, saturate(distFromEdge));
+                float3 color = lerp(_ColorEnd.rgb, _ColorStart.rgb, colorT);
+
+                // альфа затухает у стрелки независимо от цвета
+                float alphaFade = smoothstep(0.0, 1.0, saturate(distFromEdgeAlpha));
+
                 float shape = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, IN.uv).a;
-
-                // градиент цвета от начала к стрелке
-                float3 color = lerp(_ColorEnd.rgb, _ColorStart.rgb, fadeAlpha);
-                float alpha = shape * fill * fadeAlpha * lerp(_ColorEnd.a, _ColorStart.a, fadeAlpha);
+                float alpha = shape * fill * alphaFade * _GlowStrength;
 
                 return half4(color, alpha);
             }

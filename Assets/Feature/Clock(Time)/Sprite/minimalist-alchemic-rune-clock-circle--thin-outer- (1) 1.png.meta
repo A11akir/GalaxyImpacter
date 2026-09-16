@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      minimalist-alchemic-rune-clock-circle--thin-outer- (1) 1_0: -4970257717076056232
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

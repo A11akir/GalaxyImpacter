@@ -12,7 +12,8 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _BLENDMODE_ADDITIVE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -53,14 +54,17 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AlphaFadeLength: 0.091
+    - _BlendMode: 1
     - _EdgeSoftness: 0.01
     - _EnableExternalAlpha: 0
-    - _FadeLength: 0.103
-    - _FillAmount: 0.344
+    - _FadeLength: 0.473
+    - _FillAmount: 0.536
     - _Float: 0.4
     - _GlowIntensity: 1
     - _GlowRadius: 0
     - _GlowSize: 0.0371
+    - _GlowStrength: 1
     - _HDRMultiplier: 10
     - _InnerRadius: 0.38
     - _OuterRadius: 0.48
@@ -68,8 +72,8 @@ Material:
     - _QueueOffset: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorEnd: {r: 0, g: 0, b: 0, a: 1}
-    - _ColorStart: {r: 0.7924528, g: 0.03364185, b: 0.7924528, a: 1}
+    - _ColorEnd: {r: 0.370669, g: 0.12148452, b: 0.3962264, a: 0}
+    - _ColorStart: {r: 0.84313726, g: 0.23137255, b: 0.98039216, a: 1}
     - _GlowColor: {r: 0.24528301, g: 0, b: 0.22039929, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
