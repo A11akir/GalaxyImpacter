@@ -13,7 +13,10 @@ Shader "Custom/RadialFill"
 
     SubShader
     {
-        Tags { "RenderType"="Transparent" "Queue"="Transparent" "RenderPipeline"="UniversalPipeline" }
+        Tags
+        {
+            "RenderType"="Transparent" "Queue"="Transparent" "RenderPipeline"="UniversalPipeline"
+        }
         Blend SrcAlpha OneMinusSrcAlpha
         ZWrite Off
         Cull Off
@@ -65,15 +68,15 @@ Shader "Custom/RadialFill"
                 float distFromEdge = (_FillAmount - angle) / max(_FadeLength, 0.001);
                 float distFromEdgeAlpha = (_FillAmount - angle) / max(_AlphaFadeLength, 0.001);
 
-                // градиент цвета — независимый от альфы
                 float colorT = smoothstep(0.0, 1.0, saturate(distFromEdge));
                 float3 color = lerp(_ColorEnd.rgb, _ColorStart.rgb, colorT);
 
-                // альфа затухает у стрелки независимо от цвета
                 float alphaFade = smoothstep(0.0, 1.0, saturate(distFromEdgeAlpha));
 
+                float adjustedAlpha = alphaFade;
+
                 float shape = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, IN.uv).a;
-                float alpha = shape * fill * alphaFade * _GlowStrength;
+                float alpha = shape * fill * adjustedAlpha * _GlowStrength;
 
                 return half4(color, alpha);
             }

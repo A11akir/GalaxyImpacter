@@ -25,6 +25,7 @@ using Feature.StagesGameLogic;
 using Feature.Timer;
 using Feature.UI;
 using Feature.UI.SelectWindowHero;
+using Shaders;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -176,6 +177,7 @@ namespace Feature.EntryPoint.Script
             Container.Bind<TimerStageGameSessionSystem>().AsSingle();
             Container.Bind<TimerStageGameSessionPresenter>().AsSingle();
             Container.Bind<TimerStageGameSessionSystemView>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<TimeClockView>().FromComponentInHierarchy().AsSingle();
         }
 
         private void BindGameSessionFSM()
