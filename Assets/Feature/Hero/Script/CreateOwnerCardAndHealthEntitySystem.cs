@@ -6,6 +6,7 @@ using Feature.Entity.Script;
 using Feature.GameSessionData;
 using Feature.GoogleSheets;
 using Feature.HandLogic;
+using Feature.PassiveEffect;
 using UnityEngine;
 
 namespace Feature.Hero.Script
@@ -22,6 +23,7 @@ namespace Feature.Hero.Script
         private readonly HeroPowerSystem _heroPowerSystem;
         private readonly HeroPowerPresenter _heroPowerPresenter;
         private readonly CombatSystem.CombatSystem _combatSystem;
+        private readonly GameEventDispatcher  _gameEventDispatcher;
 
         private readonly Dictionary<CardAndHealthEntityOwnerData, EntityPresenter> _entityPresenters = new();
 
@@ -29,7 +31,7 @@ namespace Feature.Hero.Script
             ChakraManagerSystem chakraManagerSystem, HandDataRepository handDataRepository,
             DeckFillSystem deckFillSystem, HandViewSwitcher handViewSwitcher, HandFillSystem handFillSystem,
             EntityDeathSystem entityDeathSystem, HeroPowerSystem heroPowerSystem, HeroPowerPresenter heroPowerPresenter,
-            CombatSystem.CombatSystem combatSystem)
+            CombatSystem.CombatSystem combatSystem, GameEventDispatcher gameEventDispatcher)
         {
             _gameSessionModel = gameSessionModel;
             _chakraManagerSystem = chakraManagerSystem;
@@ -41,6 +43,7 @@ namespace Feature.Hero.Script
             _heroPowerSystem = heroPowerSystem;
             _heroPowerPresenter = heroPowerPresenter;
             _combatSystem = combatSystem;
+            _gameEventDispatcher = gameEventDispatcher;
             _entityDeathSystem.OnEntityDied += DisposeEntity;
         }
 
@@ -125,7 +128,7 @@ namespace Feature.Hero.Script
                 entityView,
                 entityView.PassiveEffectsView,
                 _heroPowerPresenter,
-                _gameSessionModel);
+                _gameSessionModel, _gameEventDispatcher);
         }
 
         private void ApplyHeroPowerPassives(

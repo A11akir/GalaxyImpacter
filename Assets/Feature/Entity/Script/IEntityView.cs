@@ -6,5 +6,7 @@ namespace Feature.Entity.Script
     public interface IEntityView : IHealthView
     {
         PassiveEffectsContainerView PassiveEffectsView { get; }
+        void ShowDamage(int amount);
+        
     }
 }

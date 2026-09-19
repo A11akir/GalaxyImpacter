@@ -1,6 +1,7 @@
 using System;
 using Feature.Card.Script;
 using Feature.CardEffect.Script;
+using Feature.DamageEffect;
 using Feature.Entity.Script;
 using Feature.GoogleSheets;
 using Feature.Health;
@@ -21,6 +22,7 @@ namespace Feature.Battlefield.Script.View
         [SerializeField] private TextMeshProUGUI _armorText;
         [SerializeField] private TextMeshProUGUI _health;
         
+        [SerializeField] private DamagePopupView _damagePopup;
         [SerializeField] private TextMeshProUGUI _healthBoard;
         [SerializeField] private TextMeshProUGUI _cost;
         [SerializeField] private Image _iconMinionHand;
@@ -37,6 +39,10 @@ namespace Feature.Battlefield.Script.View
 
         [SerializeField] private PassiveEffectsContainerView _passiveEffectsView;
         public PassiveEffectsContainerView PassiveEffectsView => _passiveEffectsView;
+        public void ShowDamage(int amount)
+        {
+            throw new NotImplementedException();
+        }
 
         public event Action OnClicked;
 

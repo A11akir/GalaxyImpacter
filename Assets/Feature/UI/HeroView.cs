@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Feature.CardEffect.Script;
+using Feature.DamageEffect;
 using Feature.Entity.Script;
 using Feature.GameSessionData;
 using Feature.Health;
@@ -31,9 +32,10 @@ namespace Feature.UI
         [SerializeField] public TextMeshProUGUI _healthText;
         [SerializeField] public TextMeshProUGUI _nameText;
         
+        [SerializeField] private DamagePopupView _damagePopup;
         [SerializeField] private PassiveEffectsContainerView _passiveEffectsView;
         public PassiveEffectsContainerView PassiveEffectsView => _passiveEffectsView;
-        
+        public void ShowDamage(int amount) => _damagePopup.Show(amount);
         public bool _isBlockedForSelect;
         public GameSessionPlayerData HeroData { get; private set; }
         
