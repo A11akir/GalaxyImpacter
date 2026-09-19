@@ -133,16 +133,13 @@ namespace Feature.Hero.Script
             List<SpellCardData> heroPowers,
             List<HeroPowerGameplayView> views)
         {
-            Debug.Log($"[ApplyHeroPowerPassives] старт для owner: {owner._heroName}, heroPowers.Count={heroPowers.Count}");
             for (int i = 0; i < heroPowers.Count && i < views.Count; i++) // ← добавил защиту от выхода за границы
             {
                 var heroPower = heroPowers[i];
-                Debug.Log($"[ApplyHeroPowerPassives] карта: {heroPower.name}, effects.Count={heroPower.Effects.Count}");
                 var view = views[i];
 
                 foreach (var effect in heroPower.Effects)
                 {
-                    Debug.Log($"[ApplyHeroPowerPassives] effect: {effect.GetType().Name}");
                     if (effect is AddPassiveEffect addPassive)
                         addPassive.Execute(new EffectContext
                         {

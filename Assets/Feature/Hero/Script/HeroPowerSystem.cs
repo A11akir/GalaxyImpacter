@@ -5,7 +5,7 @@ using Feature.GameSessionData;
 using Feature.GoogleSheets;
 using UnityEngine;
 
-namespace Feature.Hero
+namespace Feature.Hero.Script
 {
     public class HeroPowerSystem
     {
@@ -34,7 +34,7 @@ namespace Feature.Hero
         }
 
         public void Init(CardAndHealthEntityOwnerData owner, GameObject heroPowerObject,
-            SpellCardData heroPower, GameSessionPlayerData playerData, int index) // ← добавить index
+            SpellCardData heroPower, GameSessionPlayerData playerData, int index)
         {
             _owner = owner;
             _playerData = playerData;

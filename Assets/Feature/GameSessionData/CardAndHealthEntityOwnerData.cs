@@ -95,6 +95,8 @@ namespace Feature.GameSessionData
             _cardsInDeck.Value = currentList;
         }
         
+        
+        
         public void RemoveCardFromDeck(CardStatsData card)
         {
             var currentList = new List<CardStatsData>(_cardsInDeck.Value);

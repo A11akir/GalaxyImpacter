@@ -119,7 +119,8 @@ namespace Feature.Hero.Script
         
         public void HandlePassiveAdded(PassiveEffectBase passive, CardAndHealthEntityOwnerData owner)
         {
-            var slot = GetFreePassiveSlot(owner); // ← передаём owner
+            Debug.Log($"[HeroPowerPresenter] HandlePassiveAdded: {passive.GetType().Name}");
+            var slot = GetSlotForPassive(passive, owner); // ← было GetFreePassiveSlot(owner)
             if (slot == null) return;
 
             slot.gameObject.SetActive(true);
@@ -133,6 +134,20 @@ namespace Feature.Hero.Script
             }
 
             slot.SetPassiveEffectData(passive);
+        }
+
+        private HeroPowerGameplayView GetSlotForPassive(PassiveEffectBase passive, CardAndHealthEntityOwnerData owner)
+        {
+            var cardToView = owner == _gameSessionModel.PlayerHero.MainHeroEntity()
+                ? _playerCardToView
+                : _enemyCardToView;
+
+            // пассивка от карты силы героя → её собственный слот
+            if (passive.SourceCard != null && cardToView.TryGetValue(passive.SourceCard, out var cardSlot))
+                return cardSlot;
+
+            // иначе — свободный слот
+            return GetFreePassiveSlot(owner);
         }
 
         public void HandlePassiveRemoved(PassiveEffectBase passive)

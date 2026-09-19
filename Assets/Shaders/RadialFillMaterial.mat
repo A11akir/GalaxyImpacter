@@ -59,7 +59,7 @@ Material:
     - _EdgeSoftness: 0.01
     - _EnableExternalAlpha: 0
     - _FadeLength: 1
-    - _FillAmount: 0.496
+    - _FillAmount: 0
     - _Float: 0.4
     - _GlobalAlpha: 1
     - _GlowIntensity: 1

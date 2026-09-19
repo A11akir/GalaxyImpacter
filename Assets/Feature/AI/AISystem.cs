@@ -5,6 +5,7 @@ using Feature.Card.Script;
 using Feature.GameSessionData;
 using Feature.GoogleSheets;
 using Feature.Hero;
+using Feature.Hero.Script;
 using Feature.StagesGameLogic;
 using UnityEngine;
 

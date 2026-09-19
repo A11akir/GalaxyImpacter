@@ -21,7 +21,6 @@ namespace Feature.PassiveEffect.Script
         public void AddBonus(int amount)
         {
             _bonusPerHit.Value += amount; 
-            Debug.Log(_bonusPerHit.CurrentValue);
         }
 
         public void OnAppliedFromCard(EffectContext context) =>

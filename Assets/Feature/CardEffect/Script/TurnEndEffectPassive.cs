@@ -57,6 +57,6 @@ namespace Feature.CardEffect.Script
         }
 
         public override PassiveEffectBase Clone() =>
-            new TurnEndEffectPassive { _effects = _effects, Config = Config };
+            new TurnEndEffectPassive { _effects = _effects, Config = Config, Duration = Duration };
     }
 }

@@ -71,6 +71,9 @@ namespace Feature.StagesGameLogic
 
         private void ResetAllPassives()
         {
+            foreach (var owner in _gameSessionModel.GetAllEntityOwners())
+                owner.PassiveEffects.EnqueuePermanentTurnEndEffects(_turnEndEffectQueue);
+
             _turnEndEffectQueue.TriggerAll();
 
             foreach (var owner in _gameSessionModel.GetAllEntityOwners())

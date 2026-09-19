@@ -2,6 +2,7 @@ using Feature.Card.Script;
 using Feature.Chakra;
 using Feature.GameSessionData;
 using Feature.Hero;
+using Feature.Hero.Script;
 using Feature.ShopGamePlay.Script.Currency;
 
 namespace Feature.StagesGameLogic

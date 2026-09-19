@@ -20,18 +20,24 @@ namespace Feature.Entity.Script
         private readonly Subject<PassiveEffectBase> _passiveRemoved = new();
         public Observable<PassiveEffectBase> PassiveRemoved => _passiveRemoved;
 
-// PassiveEffectsData.Add
+        public void EnqueuePermanentTurnEndEffects(TurnEndEffectQueue queue)
+        {
+            foreach (var passive in _activePassives.Value)
+                if (passive is TurnEndEffectPassive turnEnd && passive.Duration == DurationType.Permanent)
+                    queue.Enqueue(turnEnd);
+        }
+
         public void Add(PassiveEffectBase passive)
         {
-            Debug.Log($"[PassiveEffectsData] Add: {passive.GetType().Name}");
+            Debug.Log($"[PassiveEffectsData] Add: {passive.GetType().Name}, hash={passive.GetHashCode()}, instance={GetHashCode()}");
             var newList = new List<PassiveEffectBase>(_activePassives.Value) { passive };
             _activePassives.Value = newList;
-            Debug.Log($"[PassiveEffectsData] OnNext fired, подписчиков на PassiveAdded: ");
             _passiveAdded.OnNext(passive);
         }
 
         public void Remove(PassiveEffectBase passive)
         {
+            Debug.Log($"[PassiveEffectsData] Remove: {passive.GetType().Name}, hash={passive.GetHashCode()}");
             var newList = new List<PassiveEffectBase>(_activePassives.Value);
             newList.Remove(passive);
             _activePassives.Value = newList;
@@ -60,7 +66,7 @@ namespace Feature.Entity.Script
                     return typed;
             return null;
         }
-        
+
         public void CleanupExpiredPassives()
         {
             var passives = new List<PassiveEffectBase>(_activePassives.Value);
