@@ -368,7 +368,8 @@ MonoBehaviour:
   iconHeroPower:
   - {fileID: 678919855604256372}
   - {fileID: 4257236421413046940}
-  _costFrame: {fileID: 540639442887690585}
+  _costFrame:
+  - {fileID: 540639442887690585}
   _heroPowerUsedThisTurnWindow: {fileID: 7205896499036770386}
   _canAvailableCastHeroPower: {fileID: 3935327985222221156}
 --- !u!1 &3905796533030238657

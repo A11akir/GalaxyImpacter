@@ -556,7 +556,9 @@ MonoBehaviour:
   iconHeroPower:
   - {fileID: 2599082950805503019}
   - {fileID: 7268817317775253510}
-  _costFrame: {fileID: 3248120572970421759}
+  _costFrame:
+  - {fileID: 3631025814450583814}
+  - {fileID: 3248120572970421759}
 --- !u!1 &7277912209710946287
 GameObject:
   m_ObjectHideFlags: 0

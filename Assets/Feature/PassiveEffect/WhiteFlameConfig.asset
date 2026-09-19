@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: WhiteFlameConfig
   m_EditorClassIdentifier: 
   Icon: {fileID: 0}
-  Description: 
+  Description: At the end of the turn, all enemy take take damage equel Burning.

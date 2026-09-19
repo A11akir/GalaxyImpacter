@@ -13,12 +13,15 @@ namespace Feature.Hero.Script
         public void SetUsedThisTurnView(bool usedThisTurn)
         {
             _heroPowerUsedThisTurnWindow.SetActive(usedThisTurn);
-            _costFrame.SetActive(!usedThisTurn);
+            
+            foreach (var go in _costFrame)
+                go.SetActive(!usedThisTurn);
         }
         
         public override void SetPassiveView()
         {
-            _costFrame.SetActive(false);
+            foreach (var go in _costFrame)
+                go.SetActive(false);
             _heroPowerUsedThisTurnWindow.SetActive(false);
             _canAvailableCastHeroPower.SetActive(false);
         }

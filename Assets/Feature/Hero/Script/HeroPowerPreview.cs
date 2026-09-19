@@ -17,7 +17,7 @@ namespace Feature.Hero.Script
         [SerializeField] private TextMeshProUGUI costHeroPower;
         [SerializeField] private TextMeshProUGUI descriptionHeroPower;
         [SerializeField] private List<Image> iconHeroPower;
-        [SerializeField] protected GameObject _costFrame;
+        [SerializeField] protected List<GameObject> _costFrame;
 
         
         private string _baseDescription;
@@ -44,7 +44,8 @@ namespace Feature.Hero.Script
         public virtual void SetPassiveView()
         {
             if (_costFrame != null)
-                _costFrame.SetActive(false);
+                foreach (var go in _costFrame)
+                    go.SetActive(false);
         }
 
         public void SetPassiveEffectData(PassiveEffectBase passive)

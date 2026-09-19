@@ -24,7 +24,8 @@ MonoBehaviour:
   _passiveCardEffects: []
   id: 774f20d8-36c4-4a5e-9876-b835f42c85f1
   _values: 00000000
-  _description: 'Hero Power: At the end of the turn, all enemy take 0 damage.'
+  _description: 'Hero Power: At the end of the turn, all enemy take damage equel
+    Burning.'
   _effects:
   - rid: 6542063845839470593
   references:
@@ -40,7 +41,7 @@ MonoBehaviour:
     - rid: 6542063845839470594
       type: {class: TurnEndEffectPassive, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
-        Config: {fileID: 0}
+        Config: {fileID: 11400000, guid: 8c88fb88c15f5d4468bbb6bf7919846e, type: 2}
         Duration: 0
         _effects:
         - rid: 6542063845839470595

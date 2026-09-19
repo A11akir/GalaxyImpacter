@@ -34284,6 +34284,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 1546336225847376548, guid: f91b620f52a734f4ea0522028177e042, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1553389831208199239, guid: f91b620f52a734f4ea0522028177e042, type: 3}
       propertyPath: m_Layer
       value: 5
@@ -34467,6 +34471,10 @@ PrefabInstance:
     - target: {fileID: 2630393879976011970, guid: f91b620f52a734f4ea0522028177e042, type: 3}
       propertyPath: m_Layer
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2630393879976011970, guid: f91b620f52a734f4ea0522028177e042, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2711624491183998081, guid: f91b620f52a734f4ea0522028177e042, type: 3}
       propertyPath: m_fontAsset
@@ -49375,7 +49383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1852101373
 RectTransform:
   m_ObjectHideFlags: 0
