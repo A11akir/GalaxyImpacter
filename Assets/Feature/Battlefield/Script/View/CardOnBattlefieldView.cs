@@ -39,10 +39,7 @@ namespace Feature.Battlefield.Script.View
 
         [SerializeField] private PassiveEffectsContainerView _passiveEffectsView;
         public PassiveEffectsContainerView PassiveEffectsView => _passiveEffectsView;
-        public void ShowDamage(int amount)
-        {
-            throw new NotImplementedException();
-        }
+        public void ShowDamage(int amount) => _damagePopup.Show(amount);
 
         public event Action OnClicked;
 

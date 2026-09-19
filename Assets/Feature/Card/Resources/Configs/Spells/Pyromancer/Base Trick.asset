@@ -18,12 +18,35 @@ MonoBehaviour:
   _iconImage: {fileID: 0}
   _specialization: 
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
+  _baseCost: 0
+  _passiveCardEffects: []
   id: 9bac4e17-5c85-4d63-8b0f-a89fcbed5ba7
-  _values: 0100000019000000
+  _values: 010000001900000001000000
   _description: Take 1 damage. 25% chance of dealing damage to yourself.
-  _effects: []
+  _effects:
+  - rid: 6542063849380773889
+  - rid: 6542063849380773890
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 6542063849380773889
+      type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 0
+        RandomSingleTarget: 0
+        _damageType: 0
+    - rid: 6542063849380773890
+      type: {class: ChanceEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 1
+        RandomSingleTarget: 0
+        _effects:
+        - rid: 6542063849380773891
+    - rid: 6542063849380773891
+      type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 1
+        RandomSingleTarget: 0
+        _damageType: 0

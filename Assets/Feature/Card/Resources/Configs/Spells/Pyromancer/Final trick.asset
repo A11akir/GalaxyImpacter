@@ -18,12 +18,35 @@ MonoBehaviour:
   _iconImage: {fileID: 0}
   _specialization: 
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
+  _baseCost: 0
+  _passiveCardEffects: []
   id: 5a9bbda3-2b71-4f4d-8332-4a4c1a2d7b3b
-  _values: 0400000064000000
+  _values: 040000006300000004000000
   _description: Take 4 damage. 100% chance of dealing damage to yourself.
-  _effects: []
+  _effects:
+  - rid: 6542063849380773895
+  - rid: 6542063849380773896
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 6542063849380773895
+      type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 0
+        RandomSingleTarget: 0
+        _damageType: 0
+    - rid: 6542063849380773896
+      type: {class: ChanceEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 1
+        RandomSingleTarget: 0
+        _effects:
+        - rid: 6542063849380773897
+    - rid: 6542063849380773897
+      type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 1
+        RandomSingleTarget: 0
+        _damageType: 0
