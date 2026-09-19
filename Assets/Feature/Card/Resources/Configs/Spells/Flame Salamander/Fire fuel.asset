@@ -20,10 +20,25 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
+  _baseCost: 0
+  _passiveCardEffects: []
   id: 561fbadb-214b-4170-a964-d3d1d2d7a191
   _values: 01000000
   _description: Give hero 1 Salamander Hit.
-  _effects: []
+  _effects:
+  - rid: 6542063849380773899
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 6542063849380773899
+      type: {class: GenerateTemporaryHandCardEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 3
+        RandomSingleTarget: 0
+        _query:
+          ClassSource: 0
+          ManualClass: 0
+          CardType: 0
+          RaritySource: 0
+          ManualRarities: 
+          SpecificCard: {fileID: 11400000, guid: 24aaf4febbd6a4a7991808f44846d767, type: 2}

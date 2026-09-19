@@ -23,7 +23,7 @@ namespace Feature.DevTools
         private void AddCardToHand()
         {
             var card = _gameData.allCards
-                .FirstOrDefault(c => c.Name == _cardName);
+                .FirstOrDefault(c => string.Equals(c.Name, _cardName, System.StringComparison.OrdinalIgnoreCase));
 
             if (card == null)
             { 

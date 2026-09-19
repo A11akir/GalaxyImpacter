@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Feature.Card.Script;
 using Feature.Hero;
+using UnityEngine;
 
 namespace Feature.CardEffect.Script
 {
@@ -13,5 +14,7 @@ namespace Feature.CardEffect.Script
         public CardTypeFilter CardType;
         public RaritySource RaritySource;
         public List<CardRarity> ManualRarities;
+
+        [SerializeField] public CardStatsData SpecificCard;
     }
 }

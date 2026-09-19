@@ -11,21 +11,23 @@ namespace Feature.CardEffect.Script
         
         public override void Execute(EffectContext ctx)
         {
-
             int count = ctx.CardData.Values[ctx.ValueIndex];
+            var targets = ResolveTargets(ctx);
 
-            for (int i = 0; i < count; i++)
+            foreach (var target in targets)
             {
-                var template = ctx.CardPoolPickSystem.Pick(_query, ctx);
-
-                if (!template)
+                for (int i = 0; i < count; i++)
                 {
-                    return;
-                }
+                    var template = _query.SpecificCard != null
+                        ? _query.SpecificCard
+                        : ctx.CardPoolPickSystem.Pick(_query, ctx);
 
-                var card = Object.Instantiate(template);
-                card.id = Guid.NewGuid().ToString();
-                ctx.Caster.AddCardToHand(card, ctx.Caster.CountCardsInHand);        
+                    if (!template) return;
+
+                    var card = Object.Instantiate(template);
+                    card.id = Guid.NewGuid().ToString();
+                    target.AddCardToHand(card, target.CountCardsInHand);
+                }
             }
         }
     }
