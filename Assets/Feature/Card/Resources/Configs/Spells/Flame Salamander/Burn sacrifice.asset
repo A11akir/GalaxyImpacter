@@ -20,10 +20,28 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
+  _baseCost: 0
+  _passiveCardEffects: []
   id: 469f2eac-1059-4e48-aef6-833343b4c1ce
   _values: 
   _description: Deals damage to the target equal to his own health and dies
-  _effects: []
+  _effects:
+  - rid: 6542063914513596416
+  - rid: 6542063914513596417
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 6542063914513596416
+      type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 0
+        RandomSingleTarget: 0
+        _damageType: 0
+        _damageSource: 1
+    - rid: 6542063914513596417
+      type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 1
+        RandomSingleTarget: 0
+        _damageType: 0
+        _damageSource: 1
