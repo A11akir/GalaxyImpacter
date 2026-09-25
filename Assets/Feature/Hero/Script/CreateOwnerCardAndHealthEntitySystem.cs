@@ -119,6 +119,7 @@ namespace Feature.Hero.Script
 
         private void InitEntityCore(CardAndHealthEntityOwnerData owner, IEntityView entityView)
         {
+            Debug.Log($"[InitEntityCore] owner={owner._heroName}, entityView={entityView.GetType().Name}, PassiveEffectsView={(entityView.PassiveEffectsView != null ? "OK" : "NULL")}");
             _handFillSystem.FillEntityHand(owner);
             _chakraManagerSystem.InitEntityChakra(owner);
             _entityDeathSystem.Init(owner);

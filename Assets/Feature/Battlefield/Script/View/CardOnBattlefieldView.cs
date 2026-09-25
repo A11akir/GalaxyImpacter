@@ -54,8 +54,7 @@ namespace Feature.Battlefield.Script.View
             _cost.text = cardStatsData.Cost.ToString();
 
             SetRaritySprite(cardStatsData.Rarity);
-
-            // заполняем превью и скрываем до наведения
+            
             _cardPreview.SetDataView(cardStatsData);
             _cardPreview.gameObject.SetActive(false);
         }
@@ -80,9 +79,17 @@ namespace Feature.Battlefield.Script.View
 
         public void OnPointerClick(PointerEventData eventData) => OnClicked?.Invoke();
 
-        public void OnPointerEnter(PointerEventData eventData) => _cardPreview.gameObject.SetActive(true);
-        public void OnPointerExit(PointerEventData eventData) => _cardPreview.gameObject.SetActive(false);
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            _cardPreview.gameObject.SetActive(true);
+            _passiveEffectsView.SetHovered(true);
+        }
 
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            _cardPreview.gameObject.SetActive(false);
+            _passiveEffectsView.SetHovered(false);
+        }
         public void SetHealth(int hp)
         {
             _health.text = hp.ToString();

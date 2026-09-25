@@ -1,47 +1,55 @@
 using DG.Tweening;
+using Feature.Card.Script;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace Feature.CardEffect.Script
 {
-    public class PassiveEffectIconView : MonoBehaviour
+    public class PassiveEffectIconView : EffectIconViewBase, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField] private CanvasGroup _canvasGroup;
         [SerializeField] private CanvasGroup _descriptionCanvasGroup;
-        [SerializeField] private Image icon;
-        [SerializeField] private TextMeshProUGUI mainValueText;
-        [SerializeField] private TextMeshProUGUI descriptionText;
+        [SerializeField] private TextMeshProUGUI _descriptionText;
 
         [SerializeField] private float _pulseDuration = 1f;
         [SerializeField] private float _pulseScale = 1.2f;
 
-        public bool IsInUse { get; private set; }
-
         private bool _isHovered;
 
-        public void SetIcon(Sprite sprite)
+        public override void SetIcon(Sprite sprite)
         {
-            icon.sprite = sprite;
-            IsInUse = true;
+            base.SetIcon(sprite);
             _canvasGroup.alpha = 0f;
             _descriptionCanvasGroup.alpha = 0f;
         }
 
-        public void SetValue(int? value)
+        public override void SetValue(int? value)
         {
-            mainValueText.text = value.HasValue ? value.Value.ToString() : "";
+            base.SetValue(value);
             PlayPulse();
         }
 
-        public void HideValue()
+        public override void SetDescription(string text)  // ← добавили сюда
         {
-            mainValueText.text = "";
+            base.SetDescription(text);
+            _descriptionText.text = text;
         }
         
-        
-        public void SetDescription(string text) => descriptionText.text = text;
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            if (!IsInUse) return;
+            _descriptionCanvasGroup.DOKill();
+            _descriptionCanvasGroup.alpha = 1f;
+        }
 
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            if (!IsInUse) return;
+            _descriptionCanvasGroup.DOKill();
+            _descriptionCanvasGroup.alpha = 0f;
+        }
+        
         public void SetHoverState(bool hovered)
         {
             if (!IsInUse) return;
@@ -66,19 +74,15 @@ namespace Feature.CardEffect.Script
             }
         }
 
-        public void ForceHide()
+        public override void ForceHide()
         {
             IsInUse = false;
-
             _canvasGroup.DOKill();
             _descriptionCanvasGroup.DOKill();
             transform.DOKill();
-
             _canvasGroup.alpha = 0f;
             _descriptionCanvasGroup.alpha = 0f;
-
             HideValue();
-
             transform.localScale = Vector3.one;
         }
 

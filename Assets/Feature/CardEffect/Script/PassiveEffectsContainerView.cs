@@ -1,29 +1,32 @@
-// PassiveEffectsContainerView.cs
 using System.Collections.Generic;
+using Feature.Battlefield.Script;
+using Feature.Card.Script;
 using UnityEngine;
 
 namespace Feature.CardEffect.Script
 {
     public class PassiveEffectsContainerView : MonoBehaviour
     {
-        [SerializeField] private List<PassiveEffectIconView> _pool;
+        [SerializeField] private List<EffectIconViewBase> _pool;
 
-        private bool _isHovered;
-
-        public PassiveEffectIconView GetFreeSlot()
+        public EffectIconViewBase GetFreeSlot()
         {
             foreach (var icon in _pool)
                 if (!icon.IsInUse) return icon;
 
-            Debug.LogWarning("No free passive effect icon slots in pool!");
+            Debug.LogWarning("No free effect icon slots in pool!");
             return null;
         }
 
         public void SetHovered(bool hovered)
         {
-            _isHovered = hovered;
             foreach (var icon in _pool)
-                icon.SetHoverState(hovered);
+            {
+                if (icon is PassiveEffectIconView passiveIcon)
+                    passiveIcon.SetHoverState(hovered);
+                else if (icon is EffectHeroOnBoardView boardIcon)
+                    boardIcon.SetBoardHoverState(hovered);
+            }
         }
 
         public void HideAll()

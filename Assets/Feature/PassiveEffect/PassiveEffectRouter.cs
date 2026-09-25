@@ -37,6 +37,7 @@ namespace Feature.PassiveEffect
 
         private void HandleAdded(PassiveEffectBase passive)
         {
+            Debug.Log($"[Router] {_owner._heroName} - {passive.GetType().Name}, RoutesToHeroPower={RoutesToHeroPower(passive)}, presenter={(_passiveEffectsPresenter != null ? "OK" : "NULL")}");
             if (RoutesToHeroPower(passive))
                 _heroPowerPresenter.HandlePassiveAdded(passive, _owner);
             else

@@ -404,11 +404,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9802cbe3a344f908c497bdb1dc539fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _icon: {fileID: 8685098416494555137}
+  _valueText: {fileID: 8177530965686170405}
   _canvasGroup: {fileID: 6822886488430865671}
   _descriptionCanvasGroup: {fileID: 3402337854290733636}
-  icon: {fileID: 8685098416494555137}
-  mainValueText: {fileID: 8177530965686170405}
-  descriptionText: {fileID: 8764717793628797192}
+  _descriptionText: {fileID: 8764717793628797192}
   _pulseDuration: 1
   _pulseScale: 1.2
 --- !u!225 &6822886488430865671
