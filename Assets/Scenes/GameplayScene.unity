@@ -49356,7 +49356,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 100.00003}
+  m_AnchoredPosition: {x: 0, y: 100}
   m_SizeDelta: {x: 1800, y: 700}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1837858083
@@ -55374,7 +55374,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 110.00003}
+  m_AnchoredPosition: {x: 0, y: 110}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &2019674810
@@ -58435,6 +58435,10 @@ PrefabInstance:
     - target: {fileID: 3957329006784650177, guid: 176e4c841912e4447bcef11352e48fdd, type: 3}
       propertyPath: m_Name
       value: EnemyWindow
+      objectReference: {fileID: 0}
+    - target: {fileID: 5894808551669368161, guid: 176e4c841912e4447bcef11352e48fdd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6996523211771096846, guid: 176e4c841912e4447bcef11352e48fdd, type: 3}
       propertyPath: m_Pivot.x
