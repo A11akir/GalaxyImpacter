@@ -18,12 +18,27 @@ MonoBehaviour:
   _iconImage: {fileID: 0}
   _specialization: 
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 1
+  _baseCost: 0
+  _passiveCardEffects: []
   id: 59d5c9db-4483-45ff-bf76-08ab1ee5b2f6
   _values: 01000000
   _description: 'Passive: Your spells give this creature instead of damaging it.'
-  _effects: []
+  _effects:
+  - rid: 6542063998875992064
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 6542063998875992064
+      type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 0
+        RandomSingleTarget: 0
+        _passiveTemplate:
+          rid: 6542063998875992065
+    - rid: 6542063998875992065
+      type: {class: SpellHealInsteadOfDamagePassive, ns: Feature.PassiveEffect.Script, asm: Assembly-CSharp}
+      data:
+        Config: {fileID: 11400000, guid: 1eb663a81c404eb46b7960550ed78947, type: 2}
+        Duration: 0

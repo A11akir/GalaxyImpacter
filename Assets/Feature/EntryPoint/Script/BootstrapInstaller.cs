@@ -5,6 +5,7 @@ using Feature.Card.Script;
 using Feature.CardEffect.Script;
 using Feature.Chakra;
 using Feature.ClassBranchWindow.Script;
+using Feature.CombatSystem;
 using Feature.Common;
 using Feature.Data;
 using Feature.EndGameSession;
@@ -63,6 +64,7 @@ namespace Feature.EntryPoint.Script
             Container.Bind<GraphicRaycaster>().FromComponentInHierarchy().AsSingle();
             Container.Bind<EventSystem>().FromComponentInHierarchy().AsSingle();
             Container.Bind<CombatSystem.CombatSystem>().AsSingle();
+            Container.Bind<HealthReactionSystem>().AsSingle();
             Container.Bind<GameEventDispatcher>().AsSingle();
             Container.Bind<TurnEndEffectQueue>().AsSingle();
         }

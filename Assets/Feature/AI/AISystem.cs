@@ -100,18 +100,34 @@ namespace Feature.AI
 
         private void TryAddHeroPowerAction(GameSessionPlayerData aiPlayer, List<IAIAction> actions)
         {
-            if (!CanUseHeroPower(aiPlayer))
-                return;
+            var heroPowers = aiPlayer.HeroPowers;
+            if (heroPowers == null) return;
 
-            var action = new HeroPowerAIAction(
-                aiPlayer.CurrentHeroPower, 
-                aiPlayer.MainHeroEntity(),
-                _cardCastService, 
-                _gameSessionModel, 
-                _heroPowerSystem);
+            for (int i = 0; i < heroPowers.Count; i++)
+            {
+                var heroPower = heroPowers[i];
+                if (heroPower.IsPassive) continue; // пассивные не кастуются вручную
 
-            if (HasValidTargets(action))
-                actions.Add(action);
+                if (!CanUseHeroPower(aiPlayer, heroPower, i)) continue;
+
+                var action = new HeroPowerAIAction(
+                    heroPower,
+                    i,
+                    aiPlayer.MainHeroEntity(),
+                    _cardCastService,
+                    _gameSessionModel,
+                    _heroPowerSystem);
+
+                if (HasValidTargets(action))
+                    actions.Add(action);
+            }
+        }
+
+        private bool CanUseHeroPower(GameSessionPlayerData player, SpellCardData heroPower, int index)
+        {
+            var owner = player.MainHeroEntity();
+            return !player.HeroPowerUsage.IsUsed(index)
+                   && heroPower.Cost <= owner.Chakra;
         }
 
         private CardAndHealthEntityOwnerData PickRandomValidTarget(IAIAction action)
