@@ -21,6 +21,11 @@ namespace Feature.DamageEffect
 
         }
 
+        public void ForceHide()
+        {
+            _sequence?.Kill();
+            _canvasGroup.alpha = 0f;
+        }
         public void Show(int amount)
         {
             _damageText.text = amount.ToString();

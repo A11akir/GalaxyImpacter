@@ -107,6 +107,9 @@ namespace Feature.Battlefield.Script.View
             _selectEntityView.SetActive(false);
             _cardPreview.gameObject.SetActive(false);
             gameObject.SetActive(false);
+            
+            _damagePopup.ForceHide();
+            _passiveEffectsView.HideAll();
         }
     }
 }

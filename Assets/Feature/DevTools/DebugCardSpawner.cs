@@ -1,6 +1,7 @@
 using System.Linq;
 using Feature.Data;
 using Feature.GameSessionData;
+using Feature.HandLogic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
@@ -11,11 +12,12 @@ namespace Feature.DevTools
     {
         [SerializeField] private GameData _gameData;
         [Inject] private GameSessionModel _gameSessionModel;
+        [Inject] private HandViewSwitcher _handViewSwitcher;
 
         [Title("Добавить карту в руку")]
         [SerializeField] private string _cardName;
 
-        public enum TargetSide { Player, Enemy }
+        public enum TargetSide { Player, Enemy, CurrentActiveOwner }
 
         [SerializeField] private TargetSide _target;
 
@@ -26,14 +28,24 @@ namespace Feature.DevTools
                 .FirstOrDefault(c => string.Equals(c.Name, _cardName, System.StringComparison.OrdinalIgnoreCase));
 
             if (card == null)
-            { 
+            {
                 Debug.LogWarning($"[DebugCardSpawner] Card '{_cardName}' not found in GameData.allCards");
                 return;
             }
 
-            var owner = _target == TargetSide.Player
-                ? _gameSessionModel.PlayerHero.MainHeroEntity()
-                : _gameSessionModel.EnemyHero.MainHeroEntity();
+            var owner = _target switch
+            {
+                TargetSide.Player => _gameSessionModel.PlayerHero.MainHeroEntity(),
+                TargetSide.Enemy => _gameSessionModel.EnemyHero.MainHeroEntity(),
+                TargetSide.CurrentActiveOwner => _handViewSwitcher.CurrentOwner,
+                _ => null
+            };
+
+            if (owner == null)
+            {
+                Debug.LogWarning("[DebugCardSpawner] No active owner found");
+                return;
+            }
 
             var cardCopy = ScriptableObject.Instantiate(card);
             cardCopy.id = System.Guid.NewGuid().ToString();

@@ -9,8 +9,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 328840574726919559, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 328840574726919559, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 328840574726919559, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 328840574726919559, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 328840574726919559, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 55
+      value: -55
+      objectReference: {fileID: 0}
+    - target: {fileID: 328840574726919559, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -55
       objectReference: {fileID: 0}
     - target: {fileID: 559170481851466703, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
       propertyPath: m_Name
@@ -27,6 +47,42 @@ PrefabInstance:
     - target: {fileID: 2819259320092827831, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -225
+      objectReference: {fileID: 0}
+    - target: {fileID: 2819829443275618177, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2819829443275618177, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2819829443275618177, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 4710886982498346019, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4710886982498346019, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4710886982498346019, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4710886982498346019, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4710886982498346019, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -55
+      objectReference: {fileID: 0}
+    - target: {fileID: 4710886982498346019, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 5778531318514038528, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
       propertyPath: m_Pivot.x
@@ -124,6 +180,18 @@ PrefabInstance:
       propertyPath: 'heroPowerGameplayViews.Array.data[2]'
       value: 
       objectReference: {fileID: 5251971115899460004}
+    - target: {fileID: 8549119375412690482, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8549119375412690482, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8549119375412690482, guid: 703e1a7e585ee5a46845f1d71f76827d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 55
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
