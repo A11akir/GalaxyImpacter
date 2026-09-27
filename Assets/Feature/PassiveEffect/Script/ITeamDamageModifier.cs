@@ -1,10 +1,7 @@
 namespace Feature.PassiveEffect.Script
 {
-    public interface IDamageModifier
+    public interface ITeamDamageModifier
     {
         int GetDamageBonus(CardStatsData sourceCard);
     }
-    
-    
 }
-

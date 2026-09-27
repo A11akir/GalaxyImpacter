@@ -23,7 +23,7 @@ MonoBehaviour:
   _baseCost: 0
   _passiveCardEffects: []
   id: 4cb946bd-16e9-402c-8612-1bf89479b435
-  _values: 
+  _values: 64000000
   _description: 'Passive: Cannot take damage from attacks against the target until
     end turn.'
   _effects:

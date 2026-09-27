@@ -20,6 +20,8 @@ MonoBehaviour:
   _level: 0
   targetType: 2
   _inCollection: 1
+  _baseCost: 0
+  _passiveCardEffects: []
   id: 5a034ec1-37f6-4d96-8f24-dadfac797db9
   _values: 0100000000000000
   _description: Fire Hit this turn increases your next damage by 1. Take 0 damage.
@@ -37,8 +39,13 @@ MonoBehaviour:
     - rid: 7964668059962310656
       type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
+        TargetSelection: 1
+        RandomSingleTarget: 0
         _passiveTemplate:
           rid: 5943948251302461440
     - rid: 7964668059962310658
       type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
-      data: 
+      data:
+        TargetSelection: 0
+        RandomSingleTarget: 0
+        _damageType: 0

@@ -20,10 +20,25 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
+  _baseCost: 0
+  _passiveCardEffects: []
   id: e2585eaa-7d35-4798-a87b-dc4adf8305a7
   _values: 01000000
   _description: 'Passive: All allies deal 1 more damage'
-  _effects: []
+  _effects:
+  - rid: 6542064022344957954
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 6542064022344957954
+      type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 1
+        RandomSingleTarget: 0
+        _passiveTemplate:
+          rid: 6542064022344957955
+    - rid: 6542064022344957955
+      type: {class: DamageBonusAura, ns: Feature.PassiveEffect.Script, asm: Assembly-CSharp}
+      data:
+        Config: {fileID: 11400000, guid: b4a46d17c7a92b543bffc61b99a1afa5, type: 2}
+        Duration: 0
