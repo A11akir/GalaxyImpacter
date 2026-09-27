@@ -20,10 +20,26 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
+  _baseCost: 0
+  _passiveCardEffects: []
   id: 4cb946bd-16e9-402c-8612-1bf89479b435
   _values: 
-  _description: 'Passive: Cannot be targeted by attacks.'
-  _effects: []
+  _description: 'Passive: Cannot take damage from attacks against the target until
+    end turn.'
+  _effects:
+  - rid: 6542064022344957952
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 6542064022344957952
+      type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 1
+        RandomSingleTarget: 0
+        _passiveTemplate:
+          rid: 6542064022344957953
+    - rid: 6542064022344957953
+      type: {class: DodgeChancePassive, ns: Feature.PassiveEffect.Script, asm: Assembly-CSharp}
+      data:
+        Config: {fileID: 11400000, guid: 08542c4ee2241d4439a705f3264cd712, type: 2}
+        Duration: 1

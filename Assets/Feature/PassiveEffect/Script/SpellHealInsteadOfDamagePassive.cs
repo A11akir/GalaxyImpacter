@@ -30,6 +30,8 @@ namespace Feature.PassiveEffect.Script
 
         public override void Unregister() { }
 
+        public int Priority => 1;
+
         public bool ReactToDamage(CardAndHealthEntityOwnerData target, int finalDamage, CardAndHealthEntityOwnerData source)
         {
             if (!MatchesFilter(source)) return false;

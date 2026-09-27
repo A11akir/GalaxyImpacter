@@ -1,9 +1,10 @@
 using Feature.GameSessionData;
 
-namespace Feature.CombatSystem
+namespace Feature.PassiveEffect.Script
 {
     public interface IDamageReaction
     {
+        int Priority { get; }
         bool ReactToDamage(CardAndHealthEntityOwnerData target, int finalDamage, CardAndHealthEntityOwnerData source);
     }
 }

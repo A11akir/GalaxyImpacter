@@ -1,3 +1,4 @@
+using System.Linq;
 using Feature.GameSessionData;
 using Feature.PassiveEffect.Script;
 using UnityEngine;
@@ -10,9 +11,13 @@ namespace Feature.CombatSystem
         {
             int finalDamage = CalculateFinalDamage(target, damage, type, targetIsHero);
 
-            foreach (var passive in target.PassiveEffects.ActivePassives.CurrentValue)
+            var reactions = target.PassiveEffects.ActivePassives.CurrentValue
+                .OfType<IDamageReaction>()
+                .OrderBy(r => r.Priority);
+
+            foreach (var reaction in reactions)
             {
-                if (passive is IDamageReaction reaction && reaction.ReactToDamage(target, finalDamage, source))
+                if (reaction.ReactToDamage(target, finalDamage, source))
                     return;
             }
 
