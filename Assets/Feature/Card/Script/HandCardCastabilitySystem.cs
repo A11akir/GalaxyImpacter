@@ -1,6 +1,4 @@
-// HandCardCastabilitySystem.cs — без лишних зависимостей
 using System.Collections.Generic;
-using Feature.GameSessionData;
 
 namespace Feature.Card.Script
 {

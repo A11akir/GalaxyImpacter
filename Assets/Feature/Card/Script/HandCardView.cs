@@ -34,7 +34,7 @@ namespace Feature.Card.Script
         
         private readonly CompositeDisposable _passiveSubscriptions = new();
         
-        public  virtual void SetDataView(CardStatsData cardStatsData)
+        public virtual void SetDataView(CardStatsData cardStatsData)
         {
             if (_cardBack) _cardBack.SetActive(false);
             gameObject.SetActive(true);
@@ -61,9 +61,11 @@ namespace Feature.Card.Script
                 _iconSpell.sprite = spell.IconImage;
             }
 
-            
-            SetCost(cardStatsData.Cost);
-    
+            _passiveSubscriptions.Clear();
+            cardStatsData.CostReactive
+                .Subscribe(cost => SetCost(cost))
+                .AddTo(_passiveSubscriptions);
+
             SetRaritySprite(cardStatsData.Rarity);
         }
 

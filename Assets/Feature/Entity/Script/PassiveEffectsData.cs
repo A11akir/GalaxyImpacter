@@ -28,7 +28,7 @@ namespace Feature.Entity.Script
         }
         public void Add(PassiveEffectBase passive)
         {
-            Debug.Log($"[PassiveEffectsData] Add: {passive.GetType().Name}, hash={passive.GetHashCode()}, instance={GetHashCode()}");
+
             var newList = new List<PassiveEffectBase>(_activePassives.Value) { passive };
             _activePassives.Value = newList;
             _passiveAdded.OnNext(passive);
@@ -36,7 +36,7 @@ namespace Feature.Entity.Script
 
         public void Remove(PassiveEffectBase passive)
         {
-            Debug.Log($"[PassiveEffectsData] Remove: {passive.GetType().Name}, hash={passive.GetHashCode()}");
+
             var newList = new List<PassiveEffectBase>(_activePassives.Value);
             newList.Remove(passive);
             _activePassives.Value = newList;

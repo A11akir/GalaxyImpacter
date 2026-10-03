@@ -18,10 +18,15 @@ namespace Feature.Card.Script
         private readonly CardPoolPickSystem _cardPoolPickSystem;
         private readonly GameEventDispatcher _eventDispatcher;
         private readonly TurnTriggerEffectQueue _turnTriggerEffectQueue;
+        private readonly HandCostModifierSystem _handCostModifierSystem;
 
         public CardCastService(GameSessionModel gameSessionModel,
             BattlefieldSystem battlefieldSystem,
-            CombatSystem.CombatSystem combatSystem, CardPoolPickSystem cardPoolPickSystem, GameEventDispatcher eventDispatcher, TurnTriggerEffectQueue turnTriggerEffectQueue)
+            CombatSystem.CombatSystem combatSystem,
+            CardPoolPickSystem cardPoolPickSystem,
+            GameEventDispatcher eventDispatcher,
+            TurnTriggerEffectQueue turnTriggerEffectQueue,
+            HandCostModifierSystem handCostModifierSystem)
         {
             _gameSessionModel = gameSessionModel;
             _battlefieldSystem = battlefieldSystem;
@@ -29,6 +34,7 @@ namespace Feature.Card.Script
             _cardPoolPickSystem = cardPoolPickSystem;
             _eventDispatcher = eventDispatcher;
             _turnTriggerEffectQueue = turnTriggerEffectQueue;
+            _handCostModifierSystem = handCostModifierSystem;
         }
 
         public bool CheckCanCast(CardStatsData card, CardAndHealthEntityOwnerData owner)
@@ -48,19 +54,15 @@ namespace Feature.Card.Script
         public void Cast(CardStatsData card, CardAndHealthEntityOwnerData owner, CardAndHealthEntityOwnerData target)
         {
             if (!CheckCanCast(card, owner))
-            {
                 return;
-            }
 
             owner.Chakra -= card.Cost;
-            
+
             var cardInHand = owner.CardsInHand.CurrentValue.FirstOrDefault(c => c.id == card.id);
             if (cardInHand != null)
-            {
                 owner.RemoveCardFromHand(cardInHand);
-            }
-            
-            if (card is MinionCardData)     
+
+            if (card is MinionCardData)
             {
                 var playerData = _gameSessionModel.GetPlayerDataByOwner(owner);
                 _battlefieldSystem.AddCardInBattlefield(playerData, card);
@@ -79,7 +81,8 @@ namespace Feature.Card.Script
                         ValueIndex = i,
                         CurrentEffectsList = spell.Effects,
                         CardPoolPickSystem = _cardPoolPickSystem,
-                        TurnEffectQueue = _turnTriggerEffectQueue 
+                        TurnEffectQueue = _turnTriggerEffectQueue,
+                        HandCostModifierSystem = _handCostModifierSystem
                     });
             }
 

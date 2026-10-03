@@ -20,10 +20,40 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
+  _baseCost: 0
+  _passiveCardEffects: []
   id: 4a8fd37e-7e95-455d-8737-843d6ebfd8fb
   _values: 0100000000000000
   _description: At the beginning of the turn, the hero receives 1 random fire spell.
-  _effects: []
+  _effects:
+  - rid: 5245221404554821636
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 5245221404554821636
+      type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 3
+        RandomSingleTarget: 0
+        _passiveTemplate:
+          rid: 5245221404554821637
+    - rid: 5245221404554821637
+      type: {class: TurnStartEffectPassive, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        Config: {fileID: 0}
+        UseSourceCardAsDescription: 1
+        Duration: 1
+        Effects:
+        - rid: 5245221404554821638
+    - rid: 5245221404554821638
+      type: {class: GenerateTemporaryHandCardEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 3
+        RandomSingleTarget: 0
+        _query:
+          ClassSource: 1
+          ManualClass: 5
+          CardType: 1
+          RaritySource: 0
+          ManualRarities: 
+          SpecificCard: {fileID: 0}

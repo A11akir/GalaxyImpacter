@@ -20,11 +20,27 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
+  _baseCost: 0
+  _passiveCardEffects: []
   id: 1a9609e5-750b-4909-a7d7-506dbbd55f7d
   _values: 0100000001000000
   _description: At the beginning of the turn, the hero reduce cost by 1 random fire
     spell.
-  _effects: []
+  _effects:
+  - rid: 5245221404554821639
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 5245221404554821639
+      type: {class: ModifyHandCardCostEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 1
+        RandomSingleTarget: 0
+        _query:
+          ClassSource: 1
+          ManualClass: 5
+          CardType: 1
+          RaritySource: 0
+          ManualRarities: 
+          SpecificCard: {fileID: 0}
+        _direction: 1

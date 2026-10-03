@@ -52,7 +52,6 @@ namespace Feature.DevTools
 
             owner.AddCardToHand(cardCopy, owner.CountCardsInHand);
 
-            Debug.Log($"[DebugCardSpawner] Added '{card.Name}' to {_target} hand");
         }
     }
 }

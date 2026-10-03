@@ -119,7 +119,7 @@ namespace Feature.Hero.Script
         
         public void HandlePassiveAdded(PassiveEffectBase passive, CardAndHealthEntityOwnerData owner)
         {
-            Debug.Log($"[HeroPowerPresenter] HandlePassiveAdded: {passive.GetType().Name}");
+
             var slot = GetSlotForPassive(passive, owner); // ← было GetFreePassiveSlot(owner)
             if (slot == null) return;
 
