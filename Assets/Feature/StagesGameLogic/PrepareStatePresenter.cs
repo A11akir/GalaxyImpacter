@@ -27,7 +27,7 @@ namespace Feature.StagesGameLogic
         {
             _prepareStateView.StartPrepare(); 
             _prepareStateView.OnReadyClicked += _onReadyClicked;
-            /*_warFogView.ShowFog();*/
+            _warFogView.ShowFog();
         }
 
         public void EndPrepare()

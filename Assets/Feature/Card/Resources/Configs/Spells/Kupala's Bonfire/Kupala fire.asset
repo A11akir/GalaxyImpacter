@@ -24,7 +24,7 @@ MonoBehaviour:
   _passiveCardEffects: []
   id: e2585eaa-7d35-4798-a87b-dc4adf8305a7
   _values: 01000000
-  _description: 'Passive: All allies deal 1 more damage'
+  _description: 'Passive: All allies deal {1} more damage'
   _effects:
   - rid: 6542064022344957954
   references:

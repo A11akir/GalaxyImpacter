@@ -1,4 +1,5 @@
 using Feature.Battlefield.Script;
+using Feature.CardEffect.Script;
 using Feature.ClassBranchWindow.Script;
 using Feature.GameSessionData;
 using Feature.Hero;
@@ -24,12 +25,12 @@ namespace Feature.StagesGameLogic
         private readonly InventoryPresenter _inventoryPresenter;
         private readonly HeroClassLevelSystem _heroClassLevelSystem;
         private readonly ClassLevelWindowPresenter _classLevelWindowPresenter;
-        private readonly TurnEndEffectQueue _turnEndEffectQueue;
+        private readonly TurnTriggerEffectQueue _turnEffectQueue;
 
 
         public TurnCycleGameSessionSystem(StageManagerSystem stageManagerSystem, TurnResourceManager resourceManager, GameSessionModel gameSessionModel, 
             GameSessionPresenter gameSessionPresenter, BattlefieldSystem battlefieldSystem, CurrencyManagerSystem currencyManager,
-            TimerStageGameSessionSystem timerSystem, ReadyStageBackOrFightSystem readySystem, InventoryPresenter inventoryPresenter, HeroClassLevelSystem heroClassLevelSystem, ClassLevelWindowPresenter classLevelWindowPresenter, TurnEndEffectQueue turnEndEffectQueue)
+            TimerStageGameSessionSystem timerSystem, ReadyStageBackOrFightSystem readySystem, InventoryPresenter inventoryPresenter, HeroClassLevelSystem heroClassLevelSystem, ClassLevelWindowPresenter classLevelWindowPresenter, TurnTriggerEffectQueue turnEffectQueue)
         {
             _stageManagerSystem = stageManagerSystem;
             _resourceManager = resourceManager;
@@ -42,7 +43,7 @@ namespace Feature.StagesGameLogic
             _inventoryPresenter = inventoryPresenter;
             _heroClassLevelSystem = heroClassLevelSystem;
             _classLevelWindowPresenter = classLevelWindowPresenter;
-            _turnEndEffectQueue = turnEndEffectQueue;
+            _turnEffectQueue = turnEffectQueue;
         }
 
 
@@ -64,20 +65,10 @@ namespace Feature.StagesGameLogic
         {
             _readySystem.Reset();
             _resourceManager.StartNewTurn();
-            ResetAllPassives();
+
+            TriggerTurnStartEffects(); // ← начало фазы подготовки
 
             _stageManagerSystem.StartPreparePhase(_gameSessionModel.Turn);
-        }
-
-        private void ResetAllPassives()
-        {
-            foreach (var owner in _gameSessionModel.GetAllEntityOwners())
-                owner.PassiveEffects.EnqueuePermanentTurnEndEffects(_turnEndEffectQueue);
-
-            _turnEndEffectQueue.TriggerAll();
-
-            foreach (var owner in _gameSessionModel.GetAllEntityOwners())
-                owner.PassiveEffects.CleanupExpiredPassives();
         }
 
         public void CycleStartFightTurn()
@@ -86,7 +77,31 @@ namespace Feature.StagesGameLogic
             _stageManagerSystem.StartFightPhase(_gameSessionModel.Turn);
         }
 
-        public void CycleEndFightTurn() => _stageManagerSystem.EndFightPhase();
+        public void CycleEndFightTurn()
+        {
+            TriggerTurnEndEffects(); // ← конец фазы боя
+            _stageManagerSystem.EndFightPhase();
+        }
+
         public void CycleEndPrepareTurn() => _stageManagerSystem.EndPreparePhase();
+        
+        private void TriggerTurnStartEffects()
+        {
+            foreach (var owner in _gameSessionModel.GetAllEntityOwners())
+                owner.PassiveEffects.EnqueuePermanentTurnEffects(_turnEffectQueue, TurnTriggerTiming.TurnStart);
+
+            _turnEffectQueue.TriggerAll(TurnTriggerTiming.TurnStart);
+        }
+
+        private void TriggerTurnEndEffects()
+        {
+            foreach (var owner in _gameSessionModel.GetAllEntityOwners())
+                owner.PassiveEffects.EnqueuePermanentTurnEffects(_turnEffectQueue, TurnTriggerTiming.TurnEnd);
+
+            _turnEffectQueue.TriggerAll(TurnTriggerTiming.TurnEnd);
+
+            foreach (var owner in _gameSessionModel.GetAllEntityOwners())
+                owner.PassiveEffects.CleanupExpiredPassives();
+        }
     }
 }

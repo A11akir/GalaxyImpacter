@@ -20,13 +20,12 @@ namespace Feature.Entity.Script
         private readonly Subject<PassiveEffectBase> _passiveRemoved = new();
         public Observable<PassiveEffectBase> PassiveRemoved => _passiveRemoved;
 
-        public void EnqueuePermanentTurnEndEffects(TurnEndEffectQueue queue)
+        public void EnqueuePermanentTurnEffects(TurnTriggerEffectQueue queue, TurnTriggerTiming timing)
         {
             foreach (var passive in _activePassives.Value)
-                if (passive is TurnEndEffectPassive turnEnd && passive.Duration == DurationType.Permanent)
-                    queue.Enqueue(turnEnd);
+                if (passive is TurnTriggerEffectPassiveBase trigger && trigger.Timing == timing && passive.Duration == DurationType.Permanent)
+                    queue.Enqueue(trigger);
         }
-
         public void Add(PassiveEffectBase passive)
         {
             Debug.Log($"[PassiveEffectsData] Add: {passive.GetType().Name}, hash={passive.GetHashCode()}, instance={GetHashCode()}");

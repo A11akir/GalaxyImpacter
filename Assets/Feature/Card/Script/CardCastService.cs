@@ -17,18 +17,18 @@ namespace Feature.Card.Script
         private readonly CombatSystem.CombatSystem _combatSystem;
         private readonly CardPoolPickSystem _cardPoolPickSystem;
         private readonly GameEventDispatcher _eventDispatcher;
-        private readonly TurnEndEffectQueue _turnEndEffectQueue;
+        private readonly TurnTriggerEffectQueue _turnTriggerEffectQueue;
 
         public CardCastService(GameSessionModel gameSessionModel,
             BattlefieldSystem battlefieldSystem,
-            CombatSystem.CombatSystem combatSystem, CardPoolPickSystem cardPoolPickSystem, GameEventDispatcher eventDispatcher, TurnEndEffectQueue turnEndEffectQueue)
+            CombatSystem.CombatSystem combatSystem, CardPoolPickSystem cardPoolPickSystem, GameEventDispatcher eventDispatcher, TurnTriggerEffectQueue turnTriggerEffectQueue)
         {
             _gameSessionModel = gameSessionModel;
             _battlefieldSystem = battlefieldSystem;
             _combatSystem = combatSystem;
             _cardPoolPickSystem = cardPoolPickSystem;
             _eventDispatcher = eventDispatcher;
-            _turnEndEffectQueue = turnEndEffectQueue;
+            _turnTriggerEffectQueue = turnTriggerEffectQueue;
         }
 
         public bool CheckCanCast(CardStatsData card, CardAndHealthEntityOwnerData owner)
@@ -79,7 +79,7 @@ namespace Feature.Card.Script
                         ValueIndex = i,
                         CurrentEffectsList = spell.Effects,
                         CardPoolPickSystem = _cardPoolPickSystem,
-                        TurnEndEffectQueue = _turnEndEffectQueue 
+                        TurnEffectQueue = _turnTriggerEffectQueue 
                     });
             }
 
