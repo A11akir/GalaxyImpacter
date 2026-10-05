@@ -18,18 +18,18 @@ namespace Feature.Card.Script
         private readonly HandCardPresenter _handCardPresenter;
         private readonly FactoryHandBehaviourTransformCastSystem _factoryHandBehaviourTransformCastSystem;
 
-        private readonly HandCardCastabilitySystem _castabilitySystem;
+        private readonly HandCardCastabilitySystem _handCardCastabilitySystem;
         
         public HandDataRepository(
             FactoryHandBehaviourTransformCastSystem factoryHandBehaviourTransformCastSystem,
             HandCardPresenter handCardPresenter, HandCardsPositionSystem handCardsPositionSystem,
-            CardCastService cardCastService, HandCardCastabilitySystem castabilitySystem)
+            CardCastService cardCastService, HandCardCastabilitySystem handCardCastabilitySystem)
         {
             _factoryHandBehaviourTransformCastSystem = factoryHandBehaviourTransformCastSystem;
             _handCardPresenter = handCardPresenter;
             _handCardsPositionSystem = handCardsPositionSystem;
             _cardCastService = cardCastService;
-            _castabilitySystem = castabilitySystem;
+            _handCardCastabilitySystem = handCardCastabilitySystem;
         }
 
         public void InitHandRepository(CardAndHealthEntityOwnerData owner, HandCardViews handCardViews, bool isHidden = false)
@@ -83,15 +83,12 @@ namespace Feature.Card.Script
             {
                 SetupHandCardBehavioursAndLogic(addedIndex, state);
 
-                _handCardPresenter.ActivatePassiveEffects(
-                    view,
-                    addedCard,
-                    state.Owner,
-                    effect =>
-                    {
-                        if (effect is ReduceCostCardEffect)
-                            _castabilitySystem.Refresh(handCardData, state.Owner.Chakra);
-                    });
+                handCardData.Subscriptions.Add(
+                    _handCardPresenter.ActivatePassiveEffects(addedCard, state.Owner));
+
+                addedCard.CostReactive
+                    .Subscribe(_ => _handCardCastabilitySystem.Refresh(handCardData, state.Owner.Chakra))
+                    .AddTo(handCardData.Subscriptions);
             }
 
             _handCardsPositionSystem.UpdateCardsPosition(state.HandCardViews.transform);
@@ -102,6 +99,8 @@ namespace Feature.Card.Script
         { var cardToRemove = state.HandData.FirstOrDefault(c => c.Data.id == removedCard.id);
             if (cardToRemove == null) return;
 
+            cardToRemove.Subscriptions.Dispose();
+            
             _handCardPresenter.RemoveCardFromHand(cardToRemove.View, state.HandCardViews);
             _factoryHandBehaviourTransformCastSystem.RemoveBehaviourFromHandCard(cardToRemove);
             state.HandData.Remove(cardToRemove);
@@ -113,8 +112,6 @@ namespace Feature.Card.Script
         {
             _factoryHandBehaviourTransformCastSystem.AddBehavioursToCard(state.HandData[index]);
             state.HandData[index].Behaviour.SetOwner(state.Owner);
-
-            _castabilitySystem.Refresh(state.HandData[index], state.Owner.Chakra);
 
             var logic = new HandCardCastHandler(state.HandData[index], _cardCastService);
             state.HandData[index].Behaviour.OnTryCardCast += logic.CastCard;

@@ -26,12 +26,12 @@ namespace Feature.StagesGameLogic
         private readonly HeroClassLevelSystem _heroClassLevelSystem;
         private readonly ClassLevelWindowPresenter _classLevelWindowPresenter;
         private readonly TurnTriggerEffectQueue _turnEffectQueue;
-        private readonly HandCostModifierSystem  _handCostModifierSystem;
 
 
         public TurnCycleGameSessionSystem(StageManagerSystem stageManagerSystem, TurnResourceManager resourceManager, GameSessionModel gameSessionModel, 
             GameSessionPresenter gameSessionPresenter, BattlefieldSystem battlefieldSystem, CurrencyManagerSystem currencyManager,
-            TimerStageGameSessionSystem timerSystem, ReadyStageBackOrFightSystem readySystem, InventoryPresenter inventoryPresenter, HeroClassLevelSystem heroClassLevelSystem, ClassLevelWindowPresenter classLevelWindowPresenter, TurnTriggerEffectQueue turnEffectQueue, HandCostModifierSystem handCostModifierSystem)
+            TimerStageGameSessionSystem timerSystem, ReadyStageBackOrFightSystem readySystem, InventoryPresenter inventoryPresenter, 
+            HeroClassLevelSystem heroClassLevelSystem, ClassLevelWindowPresenter classLevelWindowPresenter, TurnTriggerEffectQueue turnEffectQueue)
         {
             _stageManagerSystem = stageManagerSystem;
             _resourceManager = resourceManager;
@@ -45,7 +45,6 @@ namespace Feature.StagesGameLogic
             _heroClassLevelSystem = heroClassLevelSystem;
             _classLevelWindowPresenter = classLevelWindowPresenter;
             _turnEffectQueue = turnEffectQueue;
-            _handCostModifierSystem = handCostModifierSystem;
         }
 
 
@@ -82,7 +81,6 @@ namespace Feature.StagesGameLogic
         public void CycleEndFightTurn()
         {
             TriggerTurnEndEffects();
-            _handCostModifierSystem.ClearAllModifiers();
             _stageManagerSystem.EndFightPhase();
         }
 

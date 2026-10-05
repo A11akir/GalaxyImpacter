@@ -10,25 +10,14 @@ namespace Feature.Card.Script
         public void RemoveCardFromHand(HandCardView view, HandCardViews handCardViews) => 
             handCardViews.RemoveHandCardView(view);
 
-        public void ActivatePassiveEffects(
-            HandCardView view,
-            CardStatsData cardData,
-            CardAndHealthEntityOwnerData owner,
-            Action<PassiveCardEffect> onEffectChanged)
+        public IDisposable ActivatePassiveEffects(CardStatsData cardData, CardAndHealthEntityOwnerData owner)
         {
             var composite = new CompositeDisposable();
 
             foreach (var effect in cardData.PassiveCardEffects)
-            {
-                var sub = effect.Activate(owner, cardData, () =>
-                {
-                    view.SetDataView(cardData);
-                    onEffectChanged?.Invoke(effect);
-                });
-                composite.Add(sub);
-            }
+                composite.Add(effect.Activate(owner, cardData));
 
-            view.SetPassiveSubscriptions(composite);
+            return composite;
         }
     }
 }

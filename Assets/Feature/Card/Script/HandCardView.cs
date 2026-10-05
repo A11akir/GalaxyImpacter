@@ -32,7 +32,7 @@ namespace Feature.Card.Script
         [SerializeField] private GameObject anomalousSprite;
         [SerializeField] private GameObject primordialSprite;
         
-        private readonly CompositeDisposable _passiveSubscriptions = new();
+        private readonly CompositeDisposable _costSubscription = new();
         
         public virtual void SetDataView(CardStatsData cardStatsData)
         {
@@ -61,10 +61,8 @@ namespace Feature.Card.Script
                 _iconSpell.sprite = spell.IconImage;
             }
 
-            _passiveSubscriptions.Clear();
-            cardStatsData.CostReactive
-                .Subscribe(cost => SetCost(cost))
-                .AddTo(_passiveSubscriptions);
+            _costSubscription.Clear();
+            cardStatsData.CostReactive.Subscribe(SetCost).AddTo(_costSubscription);
 
             SetRaritySprite(cardStatsData.Rarity);
         }
@@ -80,7 +78,7 @@ namespace Feature.Card.Script
         }
         public void ClearData()
         {
-            _passiveSubscriptions.Clear();
+            _costSubscription.Clear();
             _nameSpell.text = "";
             _nameMinion.text = "";
             _health.text = "";
@@ -108,12 +106,6 @@ namespace Feature.Card.Script
         public void ShowAsOpen()
         {
             _cardBack.SetActive(false);
-        }
-        
-        public void SetPassiveSubscriptions(IDisposable subscriptions)
-        {
-            _passiveSubscriptions.Clear();
-            _passiveSubscriptions.Add(subscriptions);
         }
         
         public void SetCanCastView(bool canCast) => _canAvailableCast.SetActive(canCast);

@@ -9,13 +9,10 @@ namespace Feature.CardEffect.Script
     {
         [SerializeReference] private IDynamicCostValueSource _valueSource;
 
-        public override IDisposable Activate(CardAndHealthEntityOwnerData owner, CardStatsData card, Action onChanged)
+        public override IDisposable Activate(CardAndHealthEntityOwnerData owner, CardStatsData card)
         {
             return _valueSource.Subscribe(owner, value =>
-            {
-                card.Cost = Mathf.Max(0, card.BaseCost - value);
-                onChanged?.Invoke(); 
-            });
+                card.Cost = Mathf.Max(0, card.BaseCost - value));
         }
     }
 }

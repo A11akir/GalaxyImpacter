@@ -18,7 +18,7 @@ namespace Feature.CardEffect.Script
         public int ValueIndex;
         public CardPoolPickSystem CardPoolPickSystem { get; set; }
         public List<CardEffect> CurrentEffectsList { get; set; }
+
         public TurnTriggerEffectQueue TurnEffectQueue;
-        public HandCostModifierSystem HandCostModifierSystem;
     }
 }

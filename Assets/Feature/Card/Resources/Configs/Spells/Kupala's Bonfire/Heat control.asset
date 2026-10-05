@@ -43,4 +43,4 @@ MonoBehaviour:
           RaritySource: 0
           ManualRarities: 
           SpecificCard: {fileID: 0}
-        _direction: 1
+        _direction: 0

@@ -37,11 +37,16 @@ public class CardStatsData : ScriptableObject, ICardStatsData
     public string Name { get => _name; set => _name = value; }
 
     private ReactiveProperty<int> _costReactive;
-    public ReactiveProperty<int> CostReactive => _costReactive ??= new ReactiveProperty<int>(_cost);
+    public ReadOnlyReactiveProperty<int> CostReactive => _costReactive ??= new ReactiveProperty<int>(_cost);
+
     public int Cost
     {
-        get => CostReactive.Value;
-        set => CostReactive.Value = value;
+        get => CostReactive.CurrentValue;
+        set
+        {
+            _cost = value;
+            ((ReactiveProperty<int>)CostReactive).Value = value;
+        }
     }
 
     public TargetType TargetType { get => targetType; set => targetType = value; }

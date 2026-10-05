@@ -116,7 +116,6 @@ namespace Feature.EntryPoint.Script
             
             Container.Bind<CardPoolPickSystem>().AsSingle();
             Container.Bind<HandCardCastabilitySystem>().AsSingle();
-            Container.Bind<HandCostModifierSystem>().AsSingle();
 
         }
 
