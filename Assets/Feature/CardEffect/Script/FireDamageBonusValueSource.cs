@@ -11,19 +11,21 @@ namespace Feature.CardEffect.Script
         public IDisposable Subscribe(CardAndHealthEntityOwnerData owner, Action<int> onValueChanged)
         {
             var composite = new CompositeDisposable();
-            IDisposable innerSubscription = null;
+            var inner = new SerialDisposable();
+            composite.Add(inner);
 
             owner.PassiveEffects.ActivePassives
                 .Subscribe(_ =>
                 {
-                    innerSubscription?.Dispose();
-
                     var bonus = owner.PassiveEffects.Find<FireDamageBonus>();
 
                     if (bonus != null)
-                        innerSubscription = bonus.Value.Subscribe(onValueChanged);
+                        inner.Disposable = bonus.Value.Subscribe(onValueChanged);
                     else
+                    {
+                        inner.Disposable = null;
                         onValueChanged(0);
+                    }
                 })
                 .AddTo(composite);
 

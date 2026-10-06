@@ -15,7 +15,7 @@ namespace Feature.Card.Script
             var composite = new CompositeDisposable();
 
             foreach (var effect in cardData.PassiveCardEffects)
-                composite.Add(effect.Activate(owner, cardData));
+                composite.Add(effect.BindPassiveEffect(owner, cardData));
 
             return composite;
         }

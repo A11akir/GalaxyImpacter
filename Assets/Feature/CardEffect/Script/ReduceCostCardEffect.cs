@@ -9,7 +9,7 @@ namespace Feature.CardEffect.Script
     {
         [SerializeReference] private IDynamicCostValueSource _valueSource;
 
-        public override IDisposable Activate(CardAndHealthEntityOwnerData owner, CardStatsData card)
+        public override IDisposable BindPassiveEffect(CardAndHealthEntityOwnerData owner, CardStatsData card)
         {
             return _valueSource.Subscribe(owner, value =>
                 card.Cost = Mathf.Max(0, card.BaseCost - value));
