@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Fireman
   m_EditorClassIdentifier: 
-  _cost: 3
   _name: Fireman
   _rarity: 1
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 3
+  _passiveCardEffects: []
   id: 980547ee-61ec-4951-983e-21762024a9aa
   _health: 6
   _chakra: 3
@@ -29,3 +30,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 095e2061c00424759b46497c6f8f521d, type: 2}
   - {fileID: 11400000, guid: b2374d4e7816e4dc6acf66c3d10a0fa5, type: 2}
   - {fileID: 11400000, guid: 0999888a7562c45bd9a59781704fe5be, type: 2}
+  references:
+    version: 2
+    RefIds: []

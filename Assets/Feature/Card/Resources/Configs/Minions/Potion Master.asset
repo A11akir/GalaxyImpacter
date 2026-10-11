@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Potion Master
   m_EditorClassIdentifier: 
-  _cost: 3
   _name: Potion Master
   _rarity: 1
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 3
+  _passiveCardEffects: []
   id: d2923312-ac3f-4a8c-9c67-665467225d93
   _health: 4
   _chakra: 3
@@ -29,3 +30,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e3eff24c12b0e41ffb03588c427e8e38, type: 2}
   - {fileID: 11400000, guid: 9f1b9784c50b7456ba24d3395ac1ca08, type: 2}
   - {fileID: 11400000, guid: a8638880d4f144489971289ce252e018, type: 2}
+  references:
+    version: 2
+    RefIds: []

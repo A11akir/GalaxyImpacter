@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: "\u0412\u043B\u0430\u0434\u044B\u043A\u0430 \u041A\u0440\u043E\u0432\u0438"
   m_EditorClassIdentifier: 
-  _cost: 5
   _name: "\u0412\u043B\u0430\u0434\u044B\u043A\u0430 \u041A\u0440\u043E\u0432\u0438"
   _rarity: 3
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 5
+  _passiveCardEffects: []
   id: e8f7be35-7190-4ebb-b650-7cf9e2fa9edf
   _health: 20
   _chakra: 4
@@ -29,3 +30,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e6b71e39238994ec590d4a8f08a5dd52, type: 2}
   - {fileID: 11400000, guid: 578ad9e5e29e94102b765df7c55b8b0f, type: 2}
   - {fileID: 11400000, guid: e4baea93ff9944be3a2ea0bbda9281f6, type: 2}
+  references:
+    version: 2
+    RefIds: []

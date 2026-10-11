@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Parco Molo
   m_EditorClassIdentifier: 
-  _cost: 6
   _name: Parco Molo
   _rarity: 3
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 6
+  _passiveCardEffects: []
   id: 1885960a-f3b7-4d2c-b0c6-64c01de05797
   _health: 10
   _chakra: 6
@@ -30,3 +31,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4c5c249aaa51e499dba899546a0d70d5, type: 2}
   - {fileID: 11400000, guid: e3778448615d9454d8e5398d674ed4ed, type: 2}
   - {fileID: 11400000, guid: 8bc65900b5eb94d799baac1b0e53450f, type: 2}
+  references:
+    version: 2
+    RefIds: []

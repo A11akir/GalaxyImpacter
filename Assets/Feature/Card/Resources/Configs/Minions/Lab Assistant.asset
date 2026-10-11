@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Lab Assistant
   m_EditorClassIdentifier: 
-  _cost: 2
   _name: Lab Assistant
   _rarity: 0
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 2
+  _passiveCardEffects: []
   id: cbcc9657-039a-43ac-80a0-a7687bce0bf7
   _health: 2
   _chakra: 2
@@ -28,3 +29,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e8567e4f2dfc34741a763d566f8e480e, type: 2}
   - {fileID: 11400000, guid: cc7d84e826bc84bf3988b9485dabc1d8, type: 2}
   - {fileID: 11400000, guid: 5defec82cc265470aa73c6e4d1e63a26, type: 2}
+  references:
+    version: 2
+    RefIds: []

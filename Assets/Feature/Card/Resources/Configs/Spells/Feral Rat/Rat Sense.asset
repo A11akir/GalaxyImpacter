@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: Rat Sense
   m_EditorClassIdentifier: 
-  _cost: 2
   _name: Rat Sense
   _rarity: 0
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
+  _baseCost: 2
+  _passiveCardEffects: []
   id: 1e4c79f8-d59a-4e60-a08a-269da3da4191
   _values: 03000000
   _description: "\u0413\u0435\u0440\u043E\u0439 \u0432\u044B\u0431\u0438\u0440\u0430\u0435\u0442

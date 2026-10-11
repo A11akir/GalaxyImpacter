@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Living Armor
   m_EditorClassIdentifier: 
-  _cost: 5
   _name: Living Armor
   _rarity: 2
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 5
+  _passiveCardEffects: []
   id: 13d04d40-a499-4097-9750-969423d2ec3b
   _health: 12
   _chakra: 7
@@ -28,3 +29,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4101cf8db221643d99105a7aceb1e837, type: 2}
   - {fileID: 11400000, guid: 18bddbce667a44e8c8f305f3f661fa04, type: 2}
   - {fileID: 11400000, guid: 0e7072d22a2c64618aac7d84cef0c857, type: 2}
+  references:
+    version: 2
+    RefIds: []

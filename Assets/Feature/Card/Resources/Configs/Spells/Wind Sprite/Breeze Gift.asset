@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: Breeze Gift
   m_EditorClassIdentifier: 
-  _cost: 1
   _name: Breeze Gift
   _rarity: 0
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
+  _baseCost: 1
+  _passiveCardEffects: []
   id: d967433a-b913-4ee3-9a03-4f6029b0b734
   _values: 0100000000000000
   _description: "\u0412\u044B \u043F\u043E\u043B\u0443\u0447\u0430\u0435\u0442\u0435

@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: Eat Metal
   m_EditorClassIdentifier: 
-  _cost: 2
   _name: Eat Metal
   _rarity: 3
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
+  _baseCost: 2
+  _passiveCardEffects: []
   id: 3a55a9c8-7490-428d-93c5-b52a0949c925
   _values: 
   _description: "\u0414\u043E \u043A\u043E\u043D\u0446\u0430 \u0445\u043E\u0434\u0430

@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Megaladon
   m_EditorClassIdentifier: 
-  _cost: 10
   _name: Megaladon
   _rarity: 2
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 10
+  _passiveCardEffects: []
   id: 87bfb546-c9b4-42e9-b2ff-9a0fa13a048d
   _health: 12
   _chakra: 5
@@ -29,3 +30,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c6ebc1d4068b94e6c99dafcdee5a9306, type: 2}
   - {fileID: 11400000, guid: 955b8900393a242abb42f4e8fa5b2c84, type: 2}
   - {fileID: 11400000, guid: 56a45556629dc446a9f0410215a00231, type: 2}
+  references:
+    version: 2
+    RefIds: []

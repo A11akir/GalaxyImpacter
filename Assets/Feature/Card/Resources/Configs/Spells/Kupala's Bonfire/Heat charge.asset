@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: Heat charge
   m_EditorClassIdentifier: 
-  _cost: 1
   _name: Heat charge
   _rarity: 1
   _iconImage: {fileID: 0}
@@ -20,7 +19,7 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
-  _baseCost: 0
+  _baseCost: 1
   _passiveCardEffects: []
   id: 4a8fd37e-7e95-455d-8737-843d6ebfd8fb
   _values: 0100000000000000

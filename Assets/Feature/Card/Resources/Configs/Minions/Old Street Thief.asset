@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Old Street Thief
   m_EditorClassIdentifier: 
-  _cost: 3
   _name: Old Street Thief
   _rarity: 1
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 3
+  _passiveCardEffects: []
   id: 4f401b59-129b-4e4e-ba43-0add5ec00808
   _health: 4
   _chakra: 3
@@ -29,3 +30,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 66ef7f792efa241a683acc4ce01bb82c, type: 2}
   - {fileID: 11400000, guid: 4e4474fc98dad4a488662119b9c1f4ae, type: 2}
   - {fileID: 11400000, guid: abd47d22d0a7540d0bd5843ad5797df7, type: 2}
+  references:
+    version: 2
+    RefIds: []

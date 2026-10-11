@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Ancient Kraken
   m_EditorClassIdentifier: 
-  _cost: 30
   _name: Ancient Kraken
   _rarity: 3
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 30
+  _passiveCardEffects: []
   id: 10707dd0-a3d6-46a0-aa85-ec90675e10ce
   _health: 40
   _chakra: 8
@@ -29,3 +30,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fb79ac51672b7479b8263b1b95bbbd93, type: 2}
   - {fileID: 11400000, guid: 14704ce4f7d1f4243a19229b10a9210c, type: 2}
   - {fileID: 11400000, guid: 5ebdfbc85e665463db1339af42cab229, type: 2}
+  references:
+    version: 2
+    RefIds: []

@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: Sonic Boom
   m_EditorClassIdentifier: 
-  _cost: 4
   _name: Sonic Boom
   _rarity: 2
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
+  _baseCost: 4
+  _passiveCardEffects: []
   id: e90b8605-f642-4e88-b42e-b6f72a78e372
   _values: 
   _description: "\u0412\u0441\u0435 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0430

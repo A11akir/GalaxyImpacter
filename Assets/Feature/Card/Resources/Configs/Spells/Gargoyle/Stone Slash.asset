@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: Stone Slash
   m_EditorClassIdentifier: 
-  _cost: 3
   _name: Stone Slash
   _rarity: 2
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
+  _baseCost: 3
+  _passiveCardEffects: []
   id: 17814f7e-b69a-4472-ae6b-281fde754af7
   _values: 020000000300000002000000
   _description: "\u041D\u0430\u043D\u043E\u0441\u0438\u0442 2 \u0443\u0440\u043E\u043D\u0430.

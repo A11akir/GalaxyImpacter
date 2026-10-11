@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Benihemi
   m_EditorClassIdentifier: 
-  _cost: 7
   _name: Benihemi
   _rarity: 3
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 7
+  _passiveCardEffects: []
   id: ec64a91a-2665-46bc-9821-bd1cbba6f575
   _health: 20
   _chakra: 8
@@ -28,3 +29,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f1cb6af85dbda45389475beb50298e7a, type: 2}
   - {fileID: 11400000, guid: 737d092a8a85b4635bd7c634ef133a58, type: 2}
   - {fileID: 11400000, guid: c1b7a4dca0adf4a07b43d6911beb3274, type: 2}
+  references:
+    version: 2
+    RefIds: []

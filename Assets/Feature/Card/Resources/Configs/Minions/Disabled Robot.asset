@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Disabled Robot
   m_EditorClassIdentifier: 
-  _cost: 2
   _name: Disabled Robot
   _rarity: 1
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 2
+  _passiveCardEffects: []
   id: 6c8ce04a-bf4f-4c16-9573-10b9f401920d
   _health: 8
   _chakra: 3
@@ -28,3 +29,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0cb67aa62766e424788e5836b16394d1, type: 2}
   - {fileID: 11400000, guid: 8a8db4e20cd484c0cbc57c44d59da0de, type: 2}
   - {fileID: 11400000, guid: d8bb5277301db45f6bb76d34a7e6259e, type: 2}
+  references:
+    version: 2
+    RefIds: []

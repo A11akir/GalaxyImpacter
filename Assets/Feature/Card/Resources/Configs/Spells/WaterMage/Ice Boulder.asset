@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: Ice Boulder
   m_EditorClassIdentifier: 
-  _cost: 2
   _name: Ice Boulder
   _rarity: 2
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 2
   _inCollection: 1
+  _baseCost: 2
+  _passiveCardEffects: []
   id: c32b39e6-1480-4ee7-a5ce-3c02ad7f82aa
   _values: 0f000000
   _description: Ally get 15 moisture and freezes.

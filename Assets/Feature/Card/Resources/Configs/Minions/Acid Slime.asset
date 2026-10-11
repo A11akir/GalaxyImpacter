@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Acid Slime
   m_EditorClassIdentifier: 
-  _cost: 2
   _name: Acid Slime
   _rarity: 0
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 2
+  _passiveCardEffects: []
   id: 6e5cd50a-cfe4-47de-8d28-4dbe375573c7
   _health: 4
   _chakra: 2
@@ -27,3 +28,6 @@ MonoBehaviour:
   _spellsList:
   - {fileID: 11400000, guid: c7fc1be5c53954518a64357767f26517, type: 2}
   - {fileID: 11400000, guid: 81e49a63d003c4ec8adeb42409d614d0, type: 2}
+  references:
+    version: 2
+    RefIds: []

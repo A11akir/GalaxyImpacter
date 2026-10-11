@@ -1,6 +1,5 @@
 using System;
 using Feature.GoogleSheets;
-using R3;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -31,9 +30,7 @@ namespace Feature.Card.Script
         [SerializeField] private GameObject hiddenSprite;
         [SerializeField] private GameObject anomalousSprite;
         [SerializeField] private GameObject primordialSprite;
-        
-        private readonly CompositeDisposable _costSubscription = new();
-        
+
         public virtual void SetDataView(CardStatsData cardStatsData)
         {
             if (_cardBack) _cardBack.SetActive(false);
@@ -61,8 +58,7 @@ namespace Feature.Card.Script
                 _iconSpell.sprite = spell.IconImage;
             }
 
-            _costSubscription.Clear();
-            cardStatsData.CostReactive.Subscribe(SetCost).AddTo(_costSubscription);
+            SetCost(cardStatsData.Cost);
 
             SetRaritySprite(cardStatsData.Rarity);
         }
@@ -78,7 +74,6 @@ namespace Feature.Card.Script
         }
         public void ClearData()
         {
-            _costSubscription.Clear();
             _nameSpell.text = "";
             _nameMinion.text = "";
             _health.text = "";

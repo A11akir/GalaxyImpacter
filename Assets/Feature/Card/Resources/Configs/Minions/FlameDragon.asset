@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: FlameDragon
   m_EditorClassIdentifier: 
-  _cost: 6
   _name: FlameDragon
   _rarity: 3
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 6
+  _passiveCardEffects: []
   id: 769f6c02-d1cc-476d-989b-47285d0b3dd5
   _health: 25
   _chakra: 7
@@ -29,3 +30,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 50dbe2c43f665412199c0ef97b593fac, type: 2}
   - {fileID: 11400000, guid: ab83f027ca4d44899ae0118ec3ab7f97, type: 2}
   - {fileID: 11400000, guid: c5d6a96a1c0d543fea288ede68c0418b, type: 2}
+  references:
+    version: 2
+    RefIds: []

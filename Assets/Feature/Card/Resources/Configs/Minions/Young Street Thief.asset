@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Young Street Thief
   m_EditorClassIdentifier: 
-  _cost: 1
   _name: Young Street Thief
   _rarity: 0
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 1
+  _passiveCardEffects: []
   id: 3db9f69f-af7c-4e84-a5d1-750b3c86953e
   _health: 2
   _chakra: 2
@@ -28,3 +29,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 111d22ce31a684c408dddb1d095e2c0d, type: 2}
   - {fileID: 11400000, guid: d068dc8b255c14716b87fc360f377317, type: 2}
   - {fileID: 11400000, guid: 03ef5e44141aa4d699834db4ec08f2ab, type: 2}
+  references:
+    version: 2
+    RefIds: []

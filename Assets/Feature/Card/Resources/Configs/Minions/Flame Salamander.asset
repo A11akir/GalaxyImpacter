@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Flame Salamander
   m_EditorClassIdentifier: 
-  _cost: 1
   _name: Flame Salamander
   _rarity: 1
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 1
+  _passiveCardEffects: []
   id: d549d91c-3ce0-4678-81cc-ba3aaecdee7e
   _health: 2
   _chakra: 1
@@ -29,3 +30,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 24aaf4febbd6a4a7991808f44846d767, type: 2}
   - {fileID: 11400000, guid: 16af884d8955040c7b06de093e0a295b, type: 2}
   - {fileID: 11400000, guid: babdd712a761e47a591b45e44c14c705, type: 2}
+  references:
+    version: 2
+    RefIds: []

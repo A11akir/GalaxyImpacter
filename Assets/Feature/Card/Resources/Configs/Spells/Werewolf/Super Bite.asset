@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: Super Bite
   m_EditorClassIdentifier: 
-  _cost: 2
   _name: Super Bite
   _rarity: 1
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
+  _baseCost: 2
+  _passiveCardEffects: []
   id: 1295bbcb-df69-458b-893a-2c1dd127530f
   _values: 00000000
   _description: "\u041F\u0430\u0441\u0441\u0438\u0432\u043D\u043E: \u0415\u0441\u043B\u0438

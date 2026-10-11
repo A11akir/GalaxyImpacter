@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Water carrier
   m_EditorClassIdentifier: 
-  _cost: 2
   _name: Water carrier
   _rarity: 0
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 2
+  _passiveCardEffects: []
   id: 7ef24bc6-eca1-4739-bc94-c53a8484b091
   _health: 4
   _chakra: 2
@@ -28,3 +29,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 90aa12279220e4a9a910aa87db62d27f, type: 2}
   - {fileID: 11400000, guid: c77fdea4581164b33abe073ded920345, type: 2}
   - {fileID: 11400000, guid: a66aa11498c2e4c3ebc5ebc8b082c4ab, type: 2}
+  references:
+    version: 2
+    RefIds: []

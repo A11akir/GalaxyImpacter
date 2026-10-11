@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Scout Boy
   m_EditorClassIdentifier: 
-  _cost: 1
   _name: Scout Boy
   _rarity: 0
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 1
+  _passiveCardEffects: []
   id: fce92605-5e32-4f4a-9100-241ba31ffd6d
   _health: 2
   _chakra: 2
@@ -28,3 +29,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: eb71a1bf26f1247b081ab096f74a651d, type: 2}
   - {fileID: 11400000, guid: 51bd705ea9a3f4145a7a74830c33202c, type: 2}
   - {fileID: 11400000, guid: d81291bb64ebd45ecaa58a63e6a39a88, type: 2}
+  references:
+    version: 2
+    RefIds: []

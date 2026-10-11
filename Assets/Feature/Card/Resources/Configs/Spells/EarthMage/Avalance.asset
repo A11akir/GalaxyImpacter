@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: Avalance
   m_EditorClassIdentifier: 
-  _cost: 8
   _name: Avalance
   _rarity: 3
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
+  _baseCost: 8
+  _passiveCardEffects: []
   id: a74b9ef9-7835-4c30-8986-66d27ec08914
   _values: 01000000
   _description: "\u0421\u0442\u0435\u043D\u044B \u0437\u0435\u043C\u043B\u0438 \u043F\u043E\u043B\u0443\u0447\u0430\u044E\u0442

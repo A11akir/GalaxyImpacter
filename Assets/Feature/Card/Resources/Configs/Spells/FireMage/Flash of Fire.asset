@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: Flash of Fire
   m_EditorClassIdentifier: 
-  _cost: 2
   _name: Flash of Fire
   _rarity: 0
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
+  _baseCost: 2
+  _passiveCardEffects: []
   id: a2f7139d-1596-4409-a065-ae08efd719ca
   _values: 0100000002000000
   _description: Take 1 damage 2 random minion.
@@ -34,6 +35,7 @@ MonoBehaviour:
       data:
         TargetSelection: 8
         RandomSingleTarget: 1
+        _damageType: 0
     - rid: 5943948251302461443
       type: {class: RepeatEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:

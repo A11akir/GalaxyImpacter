@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Sylph Queen
   m_EditorClassIdentifier: 
-  _cost: 4
   _name: Sylph Queen
   _rarity: 2
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 4
+  _passiveCardEffects: []
   id: 4cfd60e9-47e6-43a8-af0f-181da8f2d331
   _health: 5
   _chakra: 4
@@ -29,3 +30,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a95fa23906aaa4235b1b825850012ae8, type: 2}
   - {fileID: 11400000, guid: 417441096d76143d2823c21a311d88fd, type: 2}
   - {fileID: 11400000, guid: c2930d342c0b743d288ffeeabca32bbb, type: 2}
+  references:
+    version: 2
+    RefIds: []

@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: Thunderstorm gift
   m_EditorClassIdentifier: 
-  _cost: 1
   _name: Thunderstorm gift
   _rarity: 2
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
+  _baseCost: 1
+  _passiveCardEffects: []
   id: 34c52793-bc32-4252-9d7c-ff3e512eee53
   _values: 010000000100000000000000
   _description: Give 1 lightning temporary spell, it is cost 1 less.

@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: Chimera Form
   m_EditorClassIdentifier: 
-  _cost: 4
   _name: Chimera Form
   _rarity: 3
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
+  _baseCost: 4
+  _passiveCardEffects: []
   id: 0568e720-2337-4a56-8e34-c6f5dd53f2ea
   _values: 0300000001000000
   _description: "\u041D\u0430 3 \u0445\u043E\u0434\u0430: \u0420\u0435\u0433\u0435\u043D\u0435\u0440\u0430\u0446\u0438\u044F

@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Kobold
   m_EditorClassIdentifier: 
-  _cost: 2
   _name: Kobold
   _rarity: 1
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 2
+  _passiveCardEffects: []
   id: 0d3dc724-8680-4496-a4de-937550d561ac
   _health: 5
   _chakra: 3
@@ -29,3 +30,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: db9f8b3b479a1428cb322d26e53dbe8c, type: 2}
   - {fileID: 11400000, guid: f6dda7bc2cae34df9b181ad6df90bf11, type: 2}
   - {fileID: 11400000, guid: 0b0c0cf19cf9b410a92c5f3baf737c49, type: 2}
+  references:
+    version: 2
+    RefIds: []

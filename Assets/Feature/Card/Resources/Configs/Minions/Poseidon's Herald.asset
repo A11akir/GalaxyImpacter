@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Poseidon's Herald
   m_EditorClassIdentifier: 
-  _cost: 5
   _name: Poseidon's Herald
   _rarity: 3
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 5
+  _passiveCardEffects: []
   id: 5ea9d124-4770-4d61-ab4e-d156b9defd78
   _health: 9
   _chakra: 4
@@ -29,3 +30,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ca2fb6f13d8fb4ffdbce9228c57d4421, type: 2}
   - {fileID: 11400000, guid: 97ee379ca01e14bcdaf2b693309ad01e, type: 2}
   - {fileID: 11400000, guid: 6e12b7bcf72f74e2fb2b7f7f409cc966, type: 2}
+  references:
+    version: 2
+    RefIds: []

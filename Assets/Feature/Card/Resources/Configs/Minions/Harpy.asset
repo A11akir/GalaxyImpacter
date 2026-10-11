@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Harpy
   m_EditorClassIdentifier: 
-  _cost: 2
   _name: Harpy
   _rarity: 1
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 2
+  _passiveCardEffects: []
   id: 55af1d4f-109d-4df6-a00e-e86407e4d97a
   _health: 3
   _chakra: 3
@@ -29,3 +30,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 07c823cdccd904ebcb2873704bf896a2, type: 2}
   - {fileID: 11400000, guid: b165339af9cbb4f83a3f5940511e1416, type: 2}
   - {fileID: 11400000, guid: a991e8433f67b4dc18cfb6318bbcde31, type: 2}
+  references:
+    version: 2
+    RefIds: []

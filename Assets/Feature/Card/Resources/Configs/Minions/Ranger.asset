@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Ranger
   m_EditorClassIdentifier: 
-  _cost: 3
   _name: Ranger
   _rarity: 1
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 3
+  _passiveCardEffects: []
   id: 22e729e5-2be4-43cd-8076-c25224aa4ff2
   _health: 5
   _chakra: 4
@@ -30,3 +31,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c8d4b5d8ec0fb433ca3b118f3d7067ac, type: 2}
   - {fileID: 11400000, guid: 27452efc7099548e88a843217d1df38e, type: 2}
   - {fileID: 11400000, guid: c205cfdeea0b44da39f98fdc5681057f, type: 2}
+  references:
+    version: 2
+    RefIds: []

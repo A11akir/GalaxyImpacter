@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Earth Scarab
   m_EditorClassIdentifier: 
-  _cost: 1
   _name: Earth Scarab
   _rarity: 0
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 1
+  _passiveCardEffects: []
   id: 20e4e569-b4a7-445e-9883-8088a3589aa8
   _health: 2
   _chakra: 1
@@ -28,3 +29,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a06f7e0ab94f4401a839325604b29ad9, type: 2}
   - {fileID: 11400000, guid: 8f79f856ac3934ad1a6b0a0e2a64f4a0, type: 2}
   - {fileID: 11400000, guid: e12e60bd5a0c641ddac4222faf64f3ae, type: 2}
+  references:
+    version: 2
+    RefIds: []

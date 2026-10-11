@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Amphibian
   m_EditorClassIdentifier: 
-  _cost: 1
   _name: Amphibian
   _rarity: 0
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 1
+  _passiveCardEffects: []
   id: 5283ed72-29ca-49fe-b982-cfba4b212092
   _health: 2
   _chakra: 1
@@ -28,3 +29,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b38c4f1d194d24d16a7e3459e3fcf3d2, type: 2}
   - {fileID: 11400000, guid: 8f9bfd0525f9342c5bb9a718af07571b, type: 2}
   - {fileID: 11400000, guid: ee77b4702b0c8463aac71fd7ca83af76, type: 2}
+  references:
+    version: 2
+    RefIds: []

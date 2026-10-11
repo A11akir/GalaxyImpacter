@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Terracotta Warrior
   m_EditorClassIdentifier: 
-  _cost: 3
   _name: Terracotta Warrior
   _rarity: 2
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 3
+  _passiveCardEffects: []
   id: 7072f8fc-8f70-4da2-bd36-94b075380051
   _health: 10
   _chakra: 6
@@ -29,3 +30,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 236e8c2f0987045ee93835f0bfb64040, type: 2}
   - {fileID: 11400000, guid: c9b6228a75c2a42e9bca30a7474b9ad8, type: 2}
   - {fileID: 11400000, guid: c3e4010710190450eb6c21527feb0225, type: 2}
+  references:
+    version: 2
+    RefIds: []

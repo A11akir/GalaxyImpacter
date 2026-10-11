@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Assasian-Spirit
   m_EditorClassIdentifier: 
-  _cost: 6
   _name: Assasian-Spirit
   _rarity: 3
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 6
+  _passiveCardEffects: []
   id: d5ef418c-4830-4a3e-9f61-09115738348a
   _health: 1
   _chakra: 1
@@ -30,3 +31,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3bd93599b8cf043c7aa26f45f3ba045b, type: 2}
   - {fileID: 11400000, guid: 10a55c19b907441acb569f894e3a59d9, type: 2}
   - {fileID: 11400000, guid: c00a1645e983e4ec59899cf0921bc016, type: 2}
+  references:
+    version: 2
+    RefIds: []

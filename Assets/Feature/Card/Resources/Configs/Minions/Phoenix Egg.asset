@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Phoenix Egg
   m_EditorClassIdentifier: 
-  _cost: 0
   _name: Phoenix Egg
   _rarity: 3
   _iconImage: {fileID: 0}
@@ -20,9 +19,14 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 0
+  _baseCost: 0
+  _passiveCardEffects: []
   id: a380d469-7c50-45e3-af47-a3fe5840c723
   _health: 4
   _chakra: 0
   _handCardCount: 1
   _spellsList:
   - {fileID: 11400000, guid: e4288e231afa14121a5e0f0a1a835ad1, type: 2}
+  references:
+    version: 2
+    RefIds: []

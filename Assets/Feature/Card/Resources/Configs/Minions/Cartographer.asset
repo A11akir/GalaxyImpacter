@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Cartographer
   m_EditorClassIdentifier: 
-  _cost: 2
   _name: Cartographer
   _rarity: 1
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 2
+  _passiveCardEffects: []
   id: 9ee633fe-066d-4e62-88d3-070d76a15e1b
   _health: 4
   _chakra: 3
@@ -29,3 +30,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f71cc4830244f4ae2a14bc8d2e21afc5, type: 2}
   - {fileID: 11400000, guid: b03e80b9c30fd4c87bcb5c497c761159, type: 2}
   - {fileID: 11400000, guid: bf2c8ad1338fc45ae8810c9595bbafde, type: 2}
+  references:
+    version: 2
+    RefIds: []

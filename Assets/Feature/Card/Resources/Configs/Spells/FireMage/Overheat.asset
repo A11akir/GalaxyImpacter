@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: Overheat
   m_EditorClassIdentifier: 
-  _cost: 0
   _name: Overheat
   _rarity: 1
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 2
   _inCollection: 1
+  _baseCost: 0
+  _passiveCardEffects: []
   id: c15b2643-5a04-42fd-a903-c569e56c52a1
   _values: 0100000002000000
   _description: Take 1 damage at the end of the turn 2 times.
@@ -39,17 +40,6 @@ MonoBehaviour:
       type: {class: TurnEndEffectPassive, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
         Config: {fileID: 11400000, guid: f9fa568a56c604da8b977f7f08473d79, type: 2}
+        UseSourceCardAsDescription: 0
         Duration: 1
-        _effects:
-        - rid: 5943948251302461448
-        - rid: 5943948276110983168
-    - rid: 5943948251302461448
-      type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
-      data:
-        TargetSelection: 0
-        RandomSingleTarget: 0
-    - rid: 5943948276110983168
-      type: {class: RepeatEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
-      data:
-        TargetSelection: 0
-        RandomSingleTarget: 0
+        Effects: []

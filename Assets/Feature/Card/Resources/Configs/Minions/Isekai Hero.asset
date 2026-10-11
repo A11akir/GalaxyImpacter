@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Isekai Hero
   m_EditorClassIdentifier: 
-  _cost: 4
   _name: Isekai Hero
   _rarity: 2
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 4
+  _passiveCardEffects: []
   id: 2f9c07cf-9a80-4ade-9d37-fc1a6ff34bea
   _health: 10
   _chakra: 4
@@ -29,3 +30,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d0cb1a87982a948eea24086cc0b07211, type: 2}
   - {fileID: 11400000, guid: 2861bc9e9d7574d6992129418c7ecb75, type: 2}
   - {fileID: 11400000, guid: beb98238ad4fd4c169ab101c3c8d862f, type: 2}
+  references:
+    version: 2
+    RefIds: []

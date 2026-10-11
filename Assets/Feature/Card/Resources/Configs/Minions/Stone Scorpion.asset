@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Stone Scorpion
   m_EditorClassIdentifier: 
-  _cost: 2
   _name: Stone Scorpion
   _rarity: 0
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 2
+  _passiveCardEffects: []
   id: 88eee1c4-5207-45fe-95d3-6c8b28668278
   _health: 1
   _chakra: 2
@@ -28,3 +29,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0dc3fa70b658948f4b33ae868c799c82, type: 2}
   - {fileID: 11400000, guid: abfa04cc5471e470ca8fa344109a314a, type: 2}
   - {fileID: 11400000, guid: 4ed98f512589c413a9cd886d829e3f75, type: 2}
+  references:
+    version: 2
+    RefIds: []

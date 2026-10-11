@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Hydra
   m_EditorClassIdentifier: 
-  _cost: 8
   _name: Hydra
   _rarity: 3
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 8
+  _passiveCardEffects: []
   id: 04364d5a-5cf9-41a9-8178-b1bd7fffa8e6
   _health: 18
   _chakra: 3
@@ -28,3 +29,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8d0521ea8804245faa4e8642b327d485, type: 2}
   - {fileID: 11400000, guid: f2c5069b8d1e94cb7951f58f70968e7a, type: 2}
   - {fileID: 11400000, guid: bdfde901d21f74a48bc3d8d2e9d047be, type: 2}
+  references:
+    version: 2
+    RefIds: []

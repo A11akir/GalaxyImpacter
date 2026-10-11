@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Warlord
   m_EditorClassIdentifier: 
-  _cost: 3
   _name: Warlord
   _rarity: 2
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 3
+  _passiveCardEffects: []
   id: a9901208-42bf-4986-a7d2-b590b4bf41b5
   _health: 12
   _chakra: 3
@@ -30,3 +31,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8a5dd8d83e18b40fd9b56e598ec5c70d, type: 2}
   - {fileID: 11400000, guid: 2c5e9ad1d015b4cdd96a90d7c5870dd8, type: 2}
   - {fileID: 11400000, guid: d8b71cc73ee2e4de8a1515c2e6977444, type: 2}
+  references:
+    version: 2
+    RefIds: []

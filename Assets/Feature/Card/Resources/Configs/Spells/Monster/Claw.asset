@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: Claw
   m_EditorClassIdentifier: 
-  _cost: 1
   _name: Claw
   _rarity: 0
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 2
   _inCollection: 1
+  _baseCost: 1
+  _passiveCardEffects: []
   id: dd31e5f4-ea8f-452c-a1d9-909ea1b4c9e1
   _values: 02000000
   _description: "\u041D\u0430\u043D\u043E\u0441\u0438\u0442 2 \u0443\u0440\u043E\u043D\u0430.

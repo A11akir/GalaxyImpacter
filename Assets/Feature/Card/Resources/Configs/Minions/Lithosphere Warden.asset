@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Lithosphere Warden
   m_EditorClassIdentifier: 
-  _cost: 6
   _name: Lithosphere Warden
   _rarity: 3
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 6
+  _passiveCardEffects: []
   id: 4c29900a-1052-4674-a1f8-e0201e9db0e2
   _health: 25
   _chakra: 7
@@ -29,3 +30,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 499956f5020664cd598f03de1fbc65eb, type: 2}
   - {fileID: 11400000, guid: 264bd5fc8d04a4450bca0939a53f3340, type: 2}
   - {fileID: 11400000, guid: 3580e35b3677c4f46b2b48a9c751fc67, type: 2}
+  references:
+    version: 2
+    RefIds: []

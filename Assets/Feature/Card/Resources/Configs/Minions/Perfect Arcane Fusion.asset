@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Perfect Arcane Fusion
   m_EditorClassIdentifier: 
-  _cost: 7
   _name: Perfect Arcane Fusion
   _rarity: 3
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 7
+  _passiveCardEffects: []
   id: 0bce5fef-3a70-4b09-91b3-5c30a65230c0
   _health: 15
   _chakra: 7
@@ -28,3 +29,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1b9f236cd5e7e4fe6be48721a19b7b26, type: 2}
   - {fileID: 11400000, guid: 11f0b6b26ffa842e9a08cb7c6e72f302, type: 2}
   - {fileID: 11400000, guid: cdecb2ebcd8da455fb437b413b8b305e, type: 2}
+  references:
+    version: 2
+    RefIds: []

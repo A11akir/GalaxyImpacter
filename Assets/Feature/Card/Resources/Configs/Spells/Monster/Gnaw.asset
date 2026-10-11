@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: Gnaw
   m_EditorClassIdentifier: 
-  _cost: 1
   _name: Gnaw
   _rarity: 0
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 2
   _inCollection: 1
+  _baseCost: 1
+  _passiveCardEffects: []
   id: 20886565-1973-46ac-85a4-9b458534fed8
   _values: 0200000002000000
   _description: "\u0426\u0435\u043B\u044C \u043F\u043E\u043B\u0443\u0447\u0430\u0435\u0442

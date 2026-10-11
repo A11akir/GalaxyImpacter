@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Svarog's Spirit
   m_EditorClassIdentifier: 
-  _cost: 2
   _name: Svarog's Spirit
   _rarity: 2
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 2
+  _passiveCardEffects: []
   id: 464aa0e9-646f-43b3-add0-64e7f7f07759
   _health: 6
   _chakra: 2
@@ -29,3 +30,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d7304234b1b054bf49cf10d8b49bcd41, type: 2}
   - {fileID: 11400000, guid: 3c32b88c7caf84fa0ad6dedf9d9a11ff, type: 2}
   - {fileID: 11400000, guid: d6ebcd9c2124e4b7a95e11b9f55219c4, type: 2}
+  references:
+    version: 2
+    RefIds: []

@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Raiju Projection
   m_EditorClassIdentifier: 
-  _cost: 5
   _name: Raiju Projection
   _rarity: 2
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 5
+  _passiveCardEffects: []
   id: c7b5cc67-560d-41a5-9166-9eecb7715664
   _health: 12
   _chakra: 4
@@ -28,3 +29,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 741f8223049f148259111e22f3835f12, type: 2}
   - {fileID: 11400000, guid: f2d14a46b46394e47a017e3d778b0cd9, type: 2}
   - {fileID: 11400000, guid: 556189d95402344bfb095e41aaea769f, type: 2}
+  references:
+    version: 2
+    RefIds: []

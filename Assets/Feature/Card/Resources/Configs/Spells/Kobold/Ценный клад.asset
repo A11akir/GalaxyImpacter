@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: "\u0426\u0435\u043D\u043D\u044B\u0439 \u043A\u043B\u0430\u0434"
   m_EditorClassIdentifier: 
-  _cost: 1
   _name: "\u0426\u0435\u043D\u043D\u044B\u0439 \u043A\u043B\u0430\u0434"
   _rarity: 1
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
+  _baseCost: 1
+  _passiveCardEffects: []
   id: 343dbac9-1a9f-491e-9d00-8c110af95b57
   _values: 00000000
   _description: "\u0413\u0435\u0440\u043E\u0439 \u043F\u043E\u043B\u0443\u0447\u0430\u0435\u0442

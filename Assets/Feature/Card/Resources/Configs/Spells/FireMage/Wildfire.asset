@@ -12,18 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: Wildfire
   m_EditorClassIdentifier: 
-  _cost: 1
   _name: Wildfire
   _rarity: 2
   _iconImage: {fileID: 0}
   _specialization: 05000000
   _level: 0
-  targetType: 2
+  targetType: 0
   _inCollection: 1
-  _baseCost: 0
+  _baseCost: 1
   _passiveCardEffects: []
   id: e6951659-b140-4752-b816-77d0342f44e3
-  _values: 0100000001000000
+  _values: 0100000000000000
   _description: When you use a spell before the end of your turn, you receive 1 temporary
     fire spell.
   _effects:
@@ -42,6 +41,7 @@ MonoBehaviour:
       type: {class: FireSpellOnCastPassive, ns: Feature.PassiveEffect.Script, asm: Assembly-CSharp}
       data:
         Config: {fileID: 11400000, guid: 2ede78c5552a5bd488fa09dcb9dbf550, type: 2}
+        UseSourceCardAsDescription: 0
         Duration: 1
         _generator:
           TargetSelection: 1

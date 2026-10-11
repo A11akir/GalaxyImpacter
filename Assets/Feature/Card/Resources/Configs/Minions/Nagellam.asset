@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Nagellam
   m_EditorClassIdentifier: 
-  _cost: 7
   _name: Nagellam
   _rarity: 3
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 7
+  _passiveCardEffects: []
   id: 44dc69c9-4e7d-45f2-8cd1-96be25d0e306
   _health: 10
   _chakra: 6
@@ -30,3 +31,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b909819cdca0d42f4b8a0e630a47367b, type: 2}
   - {fileID: 11400000, guid: 18b3dd40889b749298e3af4d85363fa9, type: 2}
   - {fileID: 11400000, guid: 3ce6da2cd1a96404fb7163e3fa52a077, type: 2}
+  references:
+    version: 2
+    RefIds: []

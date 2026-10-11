@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Chronos
   m_EditorClassIdentifier: 
-  _cost: 6
   _name: Chronos
   _rarity: 3
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 6
+  _passiveCardEffects: []
   id: 4f6600ad-4474-47db-b7a4-5703953b5f7f
   _health: 20
   _chakra: 8
@@ -28,3 +29,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b478861913d704624a0aa669c4ec9806, type: 2}
   - {fileID: 11400000, guid: f3d7f7d7099824c3abaf2f349a2a83d3, type: 2}
   - {fileID: 11400000, guid: a96fdca8aa77a4005b989784277ad7f0, type: 2}
+  references:
+    version: 2
+    RefIds: []

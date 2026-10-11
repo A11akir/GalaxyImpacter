@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Doppelganger
   m_EditorClassIdentifier: 
-  _cost: 4
   _name: Doppelganger
   _rarity: 2
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 4
+  _passiveCardEffects: []
   id: 99aa30b1-f773-4570-b717-473a0db2f7f4
   _health: 5
   _chakra: 4
@@ -27,3 +28,6 @@ MonoBehaviour:
   _spellsList:
   - {fileID: 11400000, guid: f91c3be8d0a3144009bbfe539acc64c2, type: 2}
   - {fileID: 11400000, guid: ccecf45ef8d98452fb1df4eb78e10465, type: 2}
+  references:
+    version: 2
+    RefIds: []

@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: White Flame
   m_EditorClassIdentifier: 
-  _cost: 3
   _name: White Flame
   _rarity: 3
   _iconImage: {fileID: 0}
@@ -20,7 +19,7 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
-  _baseCost: 0
+  _baseCost: 3
   _passiveCardEffects: []
   id: 774f20d8-36c4-4a5e-9876-b835f42c85f1
   _values: 00000000
@@ -42,12 +41,6 @@ MonoBehaviour:
       type: {class: TurnEndEffectPassive, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
         Config: {fileID: 11400000, guid: 8c88fb88c15f5d4468bbb6bf7919846e, type: 2}
+        UseSourceCardAsDescription: 0
         Duration: 0
-        _effects:
-        - rid: 6542063845839470595
-    - rid: 6542063845839470595
-      type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
-      data:
-        TargetSelection: 8
-        RandomSingleTarget: 0
-        _damageType: 1
+        Effects: []

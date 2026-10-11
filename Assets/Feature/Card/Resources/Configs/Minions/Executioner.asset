@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Executioner
   m_EditorClassIdentifier: 
-  _cost: 3
   _name: Executioner
   _rarity: 2
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 3
+  _passiveCardEffects: []
   id: 833ac0e4-2a81-4e33-8c00-f6a84064c570
   _health: 8
   _chakra: 2
@@ -28,3 +29,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cc5e2b1e0360741d4ab12901a513275c, type: 2}
   - {fileID: 11400000, guid: 492eaad82a1814b76b025a72a1c7ba29, type: 2}
   - {fileID: 11400000, guid: fd378d666d7fd4a129658fc0250f4369, type: 2}
+  references:
+    version: 2
+    RefIds: []

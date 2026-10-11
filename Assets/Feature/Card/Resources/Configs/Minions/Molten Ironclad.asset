@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Molten Ironclad
   m_EditorClassIdentifier: 
-  _cost: 4
   _name: Molten Ironclad
   _rarity: 2
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 4
+  _passiveCardEffects: []
   id: 4e7d87e5-9a98-4a31-b36d-acb77cc46b09
   _health: 12
   _chakra: 4
@@ -29,3 +30,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0cd7dd473796c4091aa80b6bbacc5a4d, type: 2}
   - {fileID: 11400000, guid: be9ddc1df0a10437ba01139f2ed6d108, type: 2}
   - {fileID: 11400000, guid: 7ca02c5f3ab034115b0cc5d3efb63ba0, type: 2}
+  references:
+    version: 2
+    RefIds: []

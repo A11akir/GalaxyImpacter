@@ -156,7 +156,6 @@ namespace Feature.GoogleSheets
                 }
 
                 so.Name = cfg.Name;
-                so.Cost = cfg.Cost;
                 so.Rarity = CardRarityConverter.FromString(cfg.Rarity);
                 so.Specialization = cfg.Specialization;
                 so.Level = cfg.Level;

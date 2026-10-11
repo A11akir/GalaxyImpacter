@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Wendigo Alpha
   m_EditorClassIdentifier: 
-  _cost: 6
   _name: Wendigo Alpha
   _rarity: 2
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 6
+  _passiveCardEffects: []
   id: 93afbffe-7872-4106-9b43-049d19465194
   _health: 20
   _chakra: 6
@@ -30,3 +31,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e97e64f5e4f91417187e22e49b7765d7, type: 2}
   - {fileID: 11400000, guid: 81f50b34ee3074dc68d0936d00ac1c75, type: 2}
   - {fileID: 11400000, guid: 77b93f72070c744638b6d333ec1b5c19, type: 2}
+  references:
+    version: 2
+    RefIds: []

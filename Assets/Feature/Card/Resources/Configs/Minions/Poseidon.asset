@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Poseidon
   m_EditorClassIdentifier: 
-  _cost: 40
   _name: Poseidon
   _rarity: 3
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 40
+  _passiveCardEffects: []
   id: 7b49d27c-ab9b-4295-b2d8-874de0796798
   _health: 40
   _chakra: 7
@@ -30,3 +31,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f6a1fc1bdedb4400a92f86b0395e4f96, type: 2}
   - {fileID: 11400000, guid: e707259aee01c442eb99e59629eaafeb, type: 2}
   - {fileID: 11400000, guid: bc93fe8cd9a0e4f02a4bd52ab73ba581, type: 2}
+  references:
+    version: 2
+    RefIds: []

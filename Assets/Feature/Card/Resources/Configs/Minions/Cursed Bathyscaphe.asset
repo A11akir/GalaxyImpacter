@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Cursed Bathyscaphe
   m_EditorClassIdentifier: 
-  _cost: 8
   _name: Cursed Bathyscaphe
   _rarity: 2
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 8
+  _passiveCardEffects: []
   id: 5537a052-2dcf-4c23-b9fe-d5da5a8658ff
   _health: 20
   _chakra: 4
@@ -28,3 +29,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1c3833887b27242c39ecbd7508f42440, type: 2}
   - {fileID: 11400000, guid: 569b396e77fb84a83bf1f017db7e83f0, type: 2}
   - {fileID: 11400000, guid: 74a5244269d194d72b21e94faea86c0b, type: 2}
+  references:
+    version: 2
+    RefIds: []

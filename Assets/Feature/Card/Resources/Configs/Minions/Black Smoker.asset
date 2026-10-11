@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Black Smoker
   m_EditorClassIdentifier: 
-  _cost: 3
   _name: Black Smoker
   _rarity: 1
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 3
+  _passiveCardEffects: []
   id: aeec378d-5df9-43b6-ba9c-a9c9c838455f
   _health: 5
   _chakra: 3
@@ -28,3 +29,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f25564eb8cd2f42a18d6a8e2d4b0d5cf, type: 2}
   - {fileID: 11400000, guid: c925b12cb6bed4f508db8b34025e1853, type: 2}
   - {fileID: 11400000, guid: e917d159b445b4e70943e97ed5b083c6, type: 2}
+  references:
+    version: 2
+    RefIds: []

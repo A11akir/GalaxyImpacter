@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: Learning Magic
   m_EditorClassIdentifier: 
-  _cost: 1
   _name: Learning Magic
   _rarity: 2
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
+  _baseCost: 1
+  _passiveCardEffects: []
   id: 3f7914d0-238b-4670-a518-463db712e95d
   _values: 01000000
   _description: 'Passive: Each hit this turn increases your next damage by 1.'

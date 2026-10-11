@@ -86,9 +86,9 @@ namespace Feature.Card.Script
                 handCardData.Subscriptions.Add(
                     _handCardPresenter.ActivatePassiveEffects(addedCard, state.Owner));
 
-                addedCard.CostReactive
-                    .Subscribe(_ => _handCardCastabilitySystem.Refresh(handCardData, state.Owner.Chakra))
-                    .AddTo(handCardData.Subscriptions);
+                handCardData.Subscriptions.Add(
+                    _handCardPresenter.BindCost(addedCard, view,
+                        () => _handCardCastabilitySystem.Refresh(handCardData, state.Owner.Chakra)));
             }
 
             _handCardsPositionSystem.UpdateCardsPosition(state.HandCardViews.transform);

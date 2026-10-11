@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: Clouds
   m_EditorClassIdentifier: 
-  _cost: 1
   _name: Clouds
   _rarity: 2
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
+  _baseCost: 1
+  _passiveCardEffects: []
   id: a8b28000-70b4-4987-b90f-d0e3ae788c15
   _values: 01000000
   _description: 'Passive: All creatures gains 1 more moisture until the end of the

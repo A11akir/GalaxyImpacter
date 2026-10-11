@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Electric Pegas
   m_EditorClassIdentifier: 
-  _cost: 6
   _name: Electric Pegas
   _rarity: 3
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 6
+  _passiveCardEffects: []
   id: e396c14f-679d-48ea-b6a6-090996a05829
   _health: 14
   _chakra: 6
@@ -28,3 +29,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 82e51db7284ae4097984896bf7290097, type: 2}
   - {fileID: 11400000, guid: 6efe295f6fc2a460db3f399fa81a4b96, type: 2}
   - {fileID: 11400000, guid: cf58dda88e9a54a88ae556e8fd25e216, type: 2}
+  references:
+    version: 2
+    RefIds: []

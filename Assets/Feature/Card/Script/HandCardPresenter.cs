@@ -19,5 +19,22 @@ namespace Feature.Card.Script
 
             return composite;
         }
+
+        // View — только отображение, подписка на цену — здесь.
+        // onCostChanged нужен, чтобы вызывающий пересчитал то, что зависит от цены (кастуемость).
+        public IDisposable BindCost(CardStatsData cardData, HandCardView view, Action onCostChanged)
+        {
+            var composite = new CompositeDisposable();
+
+            cardData.CostReactive
+                .Subscribe(cost =>
+                {
+                    view.SetCost(cost);
+                    onCostChanged?.Invoke();
+                })
+                .AddTo(composite);
+
+            return composite;
+        }
     }
 }

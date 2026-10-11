@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: Spirit transmission
   m_EditorClassIdentifier: 
-  _cost: 0
   _name: Spirit transmission
   _rarity: 2
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
+  _baseCost: 0
+  _passiveCardEffects: []
   id: d8116e18-e53f-4493-b6dc-b9c21b2f8ddb
   _values: 
   _description: Transfers all temporary spells to the hero

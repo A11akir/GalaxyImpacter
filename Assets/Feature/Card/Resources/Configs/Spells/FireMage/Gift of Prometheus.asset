@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: Gift of Prometheus
   m_EditorClassIdentifier: 
-  _cost: 1
   _name: Gift of Prometheus
   _rarity: 3
   _iconImage: {fileID: 0}
@@ -20,7 +19,7 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
-  _baseCost: 0
+  _baseCost: 1
   _passiveCardEffects: []
   id: 25fb0d20-fc4c-41a6-b108-e9c8207a7654
   _values: 01000000
@@ -41,5 +40,6 @@ MonoBehaviour:
       type: {class: FireDamageBonusWatcher, ns: Feature.PassiveEffect.Script, asm: Assembly-CSharp}
       data:
         Config: {fileID: 11400000, guid: 7051eaa103bbf440ba77cf5985a5df9c, type: 2}
+        UseSourceCardAsDescription: 0
         Duration: 0
         _bonusConfig: {fileID: 11400000, guid: 6c8b6a000c4779a4bbd7f9ffd4cfa2ef, type: 2}

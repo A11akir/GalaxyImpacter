@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: Burn sacrifice
   m_EditorClassIdentifier: 
-  _cost: 1
   _name: Burn sacrifice
   _rarity: 1
   _iconImage: {fileID: 0}
@@ -20,7 +19,7 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
-  _baseCost: 0
+  _baseCost: 1
   _passiveCardEffects: []
   id: 469f2eac-1059-4e48-aef6-833343b4c1ce
   _values: 
@@ -37,11 +36,9 @@ MonoBehaviour:
         TargetSelection: 0
         RandomSingleTarget: 0
         _damageType: 0
-        _damageSource: 1
     - rid: 6542063914513596417
       type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
         TargetSelection: 1
         RandomSingleTarget: 0
         _damageType: 0
-        _damageSource: 1

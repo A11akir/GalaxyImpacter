@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: Dig
   m_EditorClassIdentifier: 
-  _cost: 1
   _name: Dig
   _rarity: 1
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
+  _baseCost: 1
+  _passiveCardEffects: []
   id: 0976ab44-3db2-4e93-82cb-011b76c4483a
   _values: 0100000001000000
   _description: "\u041F\u0440\u0438\u0437\u044B\u0432\u0430\u0435\u0442 \u0441\u0442\u0435\u043D\u0443

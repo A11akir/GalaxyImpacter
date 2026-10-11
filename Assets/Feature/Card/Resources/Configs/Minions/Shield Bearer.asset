@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Shield Bearer
   m_EditorClassIdentifier: 
-  _cost: 1
   _name: Shield Bearer
   _rarity: 0
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 1
+  _passiveCardEffects: []
   id: 8a1da34d-c731-48ce-bd8b-4e259b47e33b
   _health: 10
   _chakra: 1
@@ -28,3 +29,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2505c65835c584fafbbb4c143c10bf7b, type: 2}
   - {fileID: 11400000, guid: 62cffff12ba3f4f229784b5199172d7e, type: 2}
   - {fileID: 11400000, guid: a9e9f684d99814b439a6fe2387513d8f, type: 2}
+  references:
+    version: 2
+    RefIds: []

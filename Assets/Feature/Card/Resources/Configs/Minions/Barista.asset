@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Barista
   m_EditorClassIdentifier: 
-  _cost: 3
   _name: Barista
   _rarity: 1
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 3
+  _passiveCardEffects: []
   id: 1b3550f4-2a96-4b72-ac37-65f6615c467c
   _health: 6
   _chakra: 2
@@ -28,3 +29,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1d3b5c49eb8ba4fef9c2da6dc0f2d81c, type: 2}
   - {fileID: 11400000, guid: 2269352d675fe42f9911577b88adf727, type: 2}
   - {fileID: 11400000, guid: 414b4380c05cd43e28be092718801409, type: 2}
+  references:
+    version: 2
+    RefIds: []

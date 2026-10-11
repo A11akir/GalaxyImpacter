@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: Water movement
   m_EditorClassIdentifier: 
-  _cost: 1
   _name: Water movement
   _rarity: 0
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 2
   _inCollection: 1
+  _baseCost: 1
+  _passiveCardEffects: []
   id: 5423b825-f921-4c72-8665-ad2c0a305883
   _values: 01000000
   _description: Transmits all the moisture to the target and 1 more

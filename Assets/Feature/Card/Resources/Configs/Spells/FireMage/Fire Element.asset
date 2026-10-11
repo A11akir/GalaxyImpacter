@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: Fire Element
   m_EditorClassIdentifier: 
-  _cost: 1
   _name: Fire Element
   _rarity: 0
   _iconImage: {fileID: 0}
@@ -41,3 +40,4 @@ MonoBehaviour:
           CardType: 1
           RaritySource: 0
           ManualRarities: 
+          SpecificCard: {fileID: 0}

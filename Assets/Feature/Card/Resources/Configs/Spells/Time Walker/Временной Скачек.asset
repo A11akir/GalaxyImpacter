@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: "\u0412\u0440\u0435\u043C\u0435\u043D\u043D\u043E\u0439 \u0421\u043A\u0430\u0447\u0435\u043A"
   m_EditorClassIdentifier: 
-  _cost: 2
   _name: "\u0412\u0440\u0435\u043C\u0435\u043D\u043D\u043E\u0439 \u0421\u043A\u0430\u0447\u0435\u043A"
   _rarity: 2
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
+  _baseCost: 2
+  _passiveCardEffects: []
   id: e8f9dc29-78b6-4aa8-bdfe-c242b0a54726
   _values: 
   _description: "Time Walker \u0438\u0441\u0447\u0435\u0437\u0430\u0435\u0442. \u0427\u0435\u0440\u0435\u0437

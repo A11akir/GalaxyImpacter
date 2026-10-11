@@ -156,7 +156,6 @@ namespace Feature.GoogleSheets
                 }
 
                 so.Name = cfg.Name;
-                so.Cost = cfg.Cost;
                 so.Description = cfg.Description;
                 so.Specialization = cfg.Specialization;
                 so.Values = cfg.Values;

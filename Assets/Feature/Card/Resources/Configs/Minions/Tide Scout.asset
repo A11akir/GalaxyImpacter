@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Tide Scout
   m_EditorClassIdentifier: 
-  _cost: 2
   _name: Tide Scout
   _rarity: 1
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 2
+  _passiveCardEffects: []
   id: ae65c220-8f42-4b7c-a5b6-10541a4f428a
   _health: 5
   _chakra: 3
@@ -28,3 +29,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 199cf5448a0fd4e9fac606efd2e5b4a9, type: 2}
   - {fileID: 11400000, guid: 63a6927c554ba457c9272c63af4bd970, type: 2}
   - {fileID: 11400000, guid: 0cff1cf29470e4621940f1e0cb1d9b38, type: 2}
+  references:
+    version: 2
+    RefIds: []

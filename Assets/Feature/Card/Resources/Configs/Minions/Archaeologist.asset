@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Archaeologist
   m_EditorClassIdentifier: 
-  _cost: 4
   _name: Archaeologist
   _rarity: 2
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 4
+  _passiveCardEffects: []
   id: 6d04e7f4-9906-4a0b-822f-e574bac7c40d
   _health: 6
   _chakra: 5
@@ -29,3 +30,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9bad64426486f4779b45a620836a6f17, type: 2}
   - {fileID: 11400000, guid: 261f74f0675e3454aa6cc95bd70139b3, type: 2}
   - {fileID: 11400000, guid: f4216a7be9b4a47d5bb8ce29733f2f36, type: 2}
+  references:
+    version: 2
+    RefIds: []

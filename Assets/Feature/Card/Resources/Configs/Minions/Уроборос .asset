@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: "\u0423\u0440\u043E\u0431\u043E\u0440\u043E\u0441 "
   m_EditorClassIdentifier: 
-  _cost: 8
   _name: "\u0423\u0440\u043E\u0431\u043E\u0440\u043E\u0441 "
   _rarity: 3
   _iconImage: {fileID: 0}
@@ -20,8 +19,13 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 8
+  _passiveCardEffects: []
   id: 5f7d29ef-526d-4fcb-945f-5835c1e61283
   _health: 20
   _chakra: 4
   _handCardCount: 4
   _spellsList: []
+  references:
+    version: 2
+    RefIds: []

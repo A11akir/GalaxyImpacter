@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Time Walker
   m_EditorClassIdentifier: 
-  _cost: 5
   _name: Time Walker
   _rarity: 2
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 5
+  _passiveCardEffects: []
   id: 526e3b38-67a4-4cce-900c-4416bf1e2e06
   _health: 10
   _chakra: 4
@@ -29,3 +30,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1b4babb01d6b7415587fb02419f9d777, type: 2}
   - {fileID: 11400000, guid: a2752436e85e74ec7be36d6175024338, type: 2}
   - {fileID: 11400000, guid: eb9eb9da8359149ce832106661a1fd09, type: 2}
+  references:
+    version: 2
+    RefIds: []

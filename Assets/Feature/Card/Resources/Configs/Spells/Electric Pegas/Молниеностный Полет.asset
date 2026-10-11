@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: "\u041C\u043E\u043B\u043D\u0438\u0435\u043D\u043E\u0441\u0442\u043D\u044B\u0439
     \u041F\u043E\u043B\u0435\u0442"
   m_EditorClassIdentifier: 
-  _cost: 2
   _name: "\u041C\u043E\u043B\u043D\u0438\u0435\u043D\u043E\u0441\u0442\u043D\u044B\u0439
     \u041F\u043E\u043B\u0435\u0442"
   _rarity: 3
@@ -22,6 +21,8 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
+  _baseCost: 2
+  _passiveCardEffects: []
   id: 4a18ecaa-bf6d-4326-aa84-3e02f1499912
   _values: 01000000
   _description: "\u0426\u0435\u043B\u044C \u0438 \u044D\u0442\u043E \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u043E

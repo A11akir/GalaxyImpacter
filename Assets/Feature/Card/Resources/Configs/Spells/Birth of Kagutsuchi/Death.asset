@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: Death
   m_EditorClassIdentifier: 
-  _cost: 5
   _name: Death
   _rarity: 3
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
+  _baseCost: 5
+  _passiveCardEffects: []
   id: 668f1794-b630-426b-93b0-20af35fb9d3f
   _values: 05000000
   _description: Cost 0 if it is on board during the third turn. Hero get 5 random

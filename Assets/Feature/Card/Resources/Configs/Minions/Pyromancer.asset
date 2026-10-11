@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Pyromancer
   m_EditorClassIdentifier: 
-  _cost: 2
   _name: Pyromancer
   _rarity: 0
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 2
+  _passiveCardEffects: []
   id: 4e21eae5-f83b-4fd6-98fe-862098a85361
   _health: 2
   _chakra: 2
@@ -28,3 +29,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5dcbadd9860a0410082302aec8f24efc, type: 2}
   - {fileID: 11400000, guid: 449f5f604d4c348cb9be60bb5c693d31, type: 2}
   - {fileID: 11400000, guid: 3dd8f47418d0b4ea4b2a3fc88ba7958f, type: 2}
+  references:
+    version: 2
+    RefIds: []

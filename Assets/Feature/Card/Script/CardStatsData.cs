@@ -10,7 +10,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "HeroStatsData", menuName = "Configs/Card/Card Stats Data", order = 1)]
 public class CardStatsData : ScriptableObject, ICardStatsData
 {
-    [SerializeField] private int _cost;
     [SerializeField] private string _name;
     [SerializeField] private CardRarity _rarity;
     [SerializeField] private Sprite _iconImage;
@@ -36,16 +35,18 @@ public class CardStatsData : ScriptableObject, ICardStatsData
     public virtual bool IsHero => false;
     public string Name { get => _name; set => _name = value; }
 
+    // Единственное сериализуемое значение цены — _baseCost, его пишут парсеры из таблицы.
+    // Cost — текущая цена в рантайме, CostReactive — подписка на её изменения.
     private ReactiveProperty<int> _costReactive;
-    public ReadOnlyReactiveProperty<int> CostReactive => _costReactive ??= new ReactiveProperty<int>(_cost);
+    public ReadOnlyReactiveProperty<int> CostReactive => _costReactive ??= new ReactiveProperty<int>(_baseCost);
 
     public int Cost
     {
-        get => CostReactive.CurrentValue;
+        get => _costReactive != null ? _costReactive.CurrentValue : _baseCost;
         set
         {
-            _cost = value;
-            ((ReactiveProperty<int>)CostReactive).Value = value;
+            _costReactive ??= new ReactiveProperty<int>(_baseCost);
+            _costReactive.Value = value;
         }
     }
 

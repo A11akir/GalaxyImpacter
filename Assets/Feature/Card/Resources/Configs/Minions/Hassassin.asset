@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Hassassin
   m_EditorClassIdentifier: 
-  _cost: 4
   _name: Hassassin
   _rarity: 2
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 4
+  _passiveCardEffects: []
   id: bba10852-c6f4-474e-89c3-1ed49b03de00
   _health: 5
   _chakra: 3
@@ -29,3 +30,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 579c61b97f19f47749d2bc2f3ebd211d, type: 2}
   - {fileID: 11400000, guid: 340d3290b14ae4f5499c8ea747f693d3, type: 2}
   - {fileID: 11400000, guid: 1b22e8701ced2411b98bbccb1cb29afd, type: 2}
+  references:
+    version: 2
+    RefIds: []

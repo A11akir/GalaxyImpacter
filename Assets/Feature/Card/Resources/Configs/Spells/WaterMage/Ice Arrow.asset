@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: Ice Arrow
   m_EditorClassIdentifier: 
-  _cost: 2
   _name: Ice Arrow
   _rarity: 1
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 2
   _inCollection: 1
+  _baseCost: 2
+  _passiveCardEffects: []
   id: f174ead4-4daf-4b53-965e-d654d87df9f5
   _values: 02000000
   _description: Deals 2 damage and frezees. Zone 3

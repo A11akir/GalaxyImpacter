@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Blue whale
   m_EditorClassIdentifier: 
-  _cost: 5
   _name: Blue whale
   _rarity: 3
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 5
+  _passiveCardEffects: []
   id: d81f27e5-2ff5-47a8-a780-dc36a343a1c6
   _health: 16
   _chakra: 4
@@ -29,3 +30,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 095a30d13680c43febec0385e5b47003, type: 2}
   - {fileID: 11400000, guid: 840b69d609b6146e5ace160f7b9bc2ec, type: 2}
   - {fileID: 11400000, guid: a803b55f7d93a454d978778ce9a2ccc5, type: 2}
+  references:
+    version: 2
+    RefIds: []

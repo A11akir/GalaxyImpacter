@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: Black Market
   m_EditorClassIdentifier: 
-  _cost: 4
   _name: Black Market
   _rarity: 2
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
+  _baseCost: 4
+  _passiveCardEffects: []
   id: 3dc53d38-3a0b-4689-882b-81a1eb1271c9
   _values: 
   _description: "\u0422\u0435\u043F\u0435\u0440\u044C \u0432\u044B \u043F\u043E\u0441\u0435\u0449\u0430\u0435\u0442\u0435

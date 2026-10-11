@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Thunderbird
   m_EditorClassIdentifier: 
-  _cost: 3
   _name: Thunderbird
   _rarity: 2
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 3
+  _passiveCardEffects: []
   id: 713d1059-4279-4444-88de-1bdde67c4f7a
   _health: 5
   _chakra: 4
@@ -29,3 +30,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9cfdc9805ae2c44acb50c1fd988ebd63, type: 2}
   - {fileID: 11400000, guid: ad86e9cac9c8349c295b881ba96f0691, type: 2}
   - {fileID: 11400000, guid: 566b10dbdf5134e549abd3788942d5f4, type: 2}
+  references:
+    version: 2
+    RefIds: []

@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Gladiator
   m_EditorClassIdentifier: 
-  _cost: 2
   _name: Gladiator
   _rarity: 1
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 2
+  _passiveCardEffects: []
   id: 32926d75-c87c-48c9-85fb-a235bfe87827
   _health: 6
   _chakra: 2
@@ -29,3 +30,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3051c946f95ab46ecb1e011534ac0093, type: 2}
   - {fileID: 11400000, guid: e98c97592913240aaabc2e1a3be641a3, type: 2}
   - {fileID: 11400000, guid: 91aa0f43ac09e47899e8829d14f343f5, type: 2}
+  references:
+    version: 2
+    RefIds: []

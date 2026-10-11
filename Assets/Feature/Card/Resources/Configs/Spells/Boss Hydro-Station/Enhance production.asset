@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: Enhance production
   m_EditorClassIdentifier: 
-  _cost: 3
   _name: Enhance production
   _rarity: 2
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
+  _baseCost: 3
+  _passiveCardEffects: []
   id: 4ea56bbb-1867-4f9e-8b20-ad427d69219d
   _values: 01000000
   _description: 'Passive: At the start of the turn, hero gain 1 chakra and draw card

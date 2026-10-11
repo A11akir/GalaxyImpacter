@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: Adventure Hunter
   m_EditorClassIdentifier: 
-  _cost: 2
   _name: Adventure Hunter
   _rarity: 2
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 0
   _inCollection: 1
+  _baseCost: 2
+  _passiveCardEffects: []
   id: 10f46e6f-42a5-418c-880f-d9af03a368c0
   _values: 01000000
   _description: "\u0421\u0438\u043B\u0430 \u0433\u0435\u0440\u043E\u044F: \u0423\u043D\u0447\u0438\u0442\u043E\u0436\u0430\u044F

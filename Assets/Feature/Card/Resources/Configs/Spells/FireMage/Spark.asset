@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
   m_Name: Spark
   m_EditorClassIdentifier: 
-  _cost: 0
   _name: Spark
   _rarity: 0
   _iconImage: {fileID: 0}

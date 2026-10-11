@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Boss Hydro-Station
   m_EditorClassIdentifier: 
-  _cost: 4
   _name: Boss Hydro-Station
   _rarity: 2
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 4
+  _passiveCardEffects: []
   id: 07bfdd5e-1beb-4a9f-b9d0-6da5cbde8ee3
   _health: 7
   _chakra: 3
@@ -28,3 +29,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dbd1b2fe03493490388571e4192eecb6, type: 2}
   - {fileID: 11400000, guid: 40f95a56d72e04f189d7e11146f08807, type: 2}
   - {fileID: 11400000, guid: c40aea37d8c3345f9b01d0f53ef0b1e7, type: 2}
+  references:
+    version: 2
+    RefIds: []

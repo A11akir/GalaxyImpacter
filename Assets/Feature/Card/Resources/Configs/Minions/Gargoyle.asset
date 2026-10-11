@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Gargoyle
   m_EditorClassIdentifier: 
-  _cost: 4
   _name: Gargoyle
   _rarity: 2
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 4
+  _passiveCardEffects: []
   id: 03dcdf68-6054-4874-bf27-5034911dffd6
   _health: 8
   _chakra: 4
@@ -29,3 +30,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f74fec84119a14be9830ca44b73535ab, type: 2}
   - {fileID: 11400000, guid: 76da0f95c4f7443c0bb16fb9ad3e3d25, type: 2}
   - {fileID: 11400000, guid: 506e2a6d0355f403487a91f226543d85, type: 2}
+  references:
+    version: 2
+    RefIds: []

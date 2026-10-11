@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Indra
   m_EditorClassIdentifier: 
-  _cost: 7
   _name: Indra
   _rarity: 3
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 7
+  _passiveCardEffects: []
   id: d619a60c-ac2b-43da-816c-5c102227c634
   _health: 18
   _chakra: 7
@@ -29,3 +30,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 57bfba6f880464370ab4a0187779256b, type: 2}
   - {fileID: 11400000, guid: 0f05ee5d7b22c4d7eb7f69bbc155a702, type: 2}
   - {fileID: 11400000, guid: 9b2b0070ec0864822a7ff1f5e223f245, type: 2}
+  references:
+    version: 2
+    RefIds: []

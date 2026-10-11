@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6edd17abd2104ab0b14ab8cd3b5f3463, type: 3}
   m_Name: Tectonic Scout
   m_EditorClassIdentifier: 
-  _cost: 4
   _name: Tectonic Scout
   _rarity: 2
   _iconImage: {fileID: 0}
@@ -20,6 +19,8 @@ MonoBehaviour:
   _level: 0
   targetType: 1
   _inCollection: 1
+  _baseCost: 4
+  _passiveCardEffects: []
   id: 501a42a0-7689-4174-b7f4-4f672f304d69
   _health: 7
   _chakra: 4
@@ -29,3 +30,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1d35fe0a4c6ba426786ca6546f4710e6, type: 2}
   - {fileID: 11400000, guid: bd4474eddeac64d1082c36d855b0dd70, type: 2}
   - {fileID: 11400000, guid: 6fc1c90c36be74241a41d22b4c8032d5, type: 2}
+  references:
+    version: 2
+    RefIds: []
