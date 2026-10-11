@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
 namespace Feature.CardEffect.Script
@@ -7,7 +8,7 @@ namespace Feature.CardEffect.Script
     [Serializable]
     public class GenerateTemporaryHandCardEffect : CardEffect
     {
-        [SerializeField] private CardPickQuery _query;
+        [FormerlySerializedAs("_query")] [SerializeField] private CardPickFilter filter = new();
         
         public override void Execute(EffectContext ctx)
         {
@@ -18,9 +19,7 @@ namespace Feature.CardEffect.Script
             {
                 for (int i = 0; i < count; i++)
                 {
-                    var template = _query.SpecificCard != null
-                        ? _query.SpecificCard
-                        : ctx.CardPoolPickSystem.Pick(_query, ctx);
+                    var template = ctx.CardPoolPickSystem.Pick(filter, ctx);
 
                     if (!template) return;
 

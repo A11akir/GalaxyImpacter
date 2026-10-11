@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Feature.CardEffect.Script
 {
     [Serializable]
-    public class CardPickQuery
+    public class CardPickFilter
     {
         public ClassSource ClassSource;
         public AllHeroClass ManualClass;
