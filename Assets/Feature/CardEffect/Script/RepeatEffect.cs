@@ -32,16 +32,12 @@ namespace Feature.CardEffect.Script
 
             context.ValueIndex = previousIndex;
 
-            try
-            {
                 for (int i = 0; i < repeatCount; i++)
                     previousEffect.Execute(context);
-            }
-            finally
-            {
+                
                 context.ValueIndex = savedIndex;
                 context.UsedTargets = savedUsedTargets;
-            }
+            
         }
     }
 }
