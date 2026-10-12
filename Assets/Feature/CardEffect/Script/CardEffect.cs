@@ -11,7 +11,7 @@ namespace Feature.CardEffect.Script
     public abstract class CardEffect
     {
         [SerializeField] protected TargetSelectionType TargetSelection = TargetSelectionType.Target;
-        [SerializeField] protected bool RandomSingleTarget; // галочка "Random" — актуальна только для множественных типов
+        [SerializeField] protected bool RandomSingleTarget;
 
         public abstract void Execute(EffectContext context);
 
@@ -19,10 +19,23 @@ namespace Feature.CardEffect.Script
         {
             var pool = GetCandidatePool(ctx);
 
-            if (RandomSingleTarget && pool.Count > 0)
-                return new List<CardAndHealthEntityOwnerData> { pool[UnityEngine.Random.Range(0, pool.Count)] };
+            // Галочка «не выбирать одну и ту же цель дважды» (RepeatEffect):
+            // цели, уже получившие эффект в этой серии повторов, исключаются из пула.
+            if (ctx.UsedTargets != null && ctx.UsedTargets.Count > 0)
+                pool = pool.Where(target => target != null && !ctx.UsedTargets.Contains(target)).ToList();
 
-            return pool;
+            var resolved = pool;
+
+            if (RandomSingleTarget && pool.Count > 0)
+                resolved = new List<CardAndHealthEntityOwnerData> { pool[UnityEngine.Random.Range(0, pool.Count)] };
+
+            if (ctx.UsedTargets != null)
+            {
+                foreach (var target in resolved)
+                    ctx.UsedTargets.Add(target);
+            }
+
+            return resolved;
         }
 
         private List<CardAndHealthEntityOwnerData> GetCandidatePool(EffectContext ctx)

@@ -18,6 +18,8 @@ namespace Feature.CardEffect.Script
         public int ValueIndex;
         public CardPoolPickSystem CardPoolPickSystem { get; set; }
         public List<CardEffect> CurrentEffectsList { get; set; }
+        
+        public HashSet<CardAndHealthEntityOwnerData> UsedTargets { get; set; }
 
         public TurnTriggerEffectQueue TurnEffectQueue;
     }

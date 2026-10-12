@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Feature.Battlefield.Script;
 using Feature.CardEffect.Script;
@@ -66,6 +67,13 @@ namespace Feature.Card.Script
             }
             else if (card is SpellCardData spell)
             {
+                // Если в карте есть RepeatEffect с галочкой «не выбирать одну и ту же цель дважды»,
+                // все эффекты карты делят один набор уже затронутых целей: тогда повтор не выберет
+                // цель, которую выбрало первое применение эффекта.
+                var usedTargets = spell.Effects.Any(effect => effect is RepeatEffect repeat && repeat.AvoidDuplicateTargets)
+                    ? new HashSet<CardAndHealthEntityOwnerData>()
+                    : null;
+
                 for (int i = 0; i < spell.Effects.Count; i++)
                     spell.Effects[i].Execute(new EffectContext
                     {
@@ -79,6 +87,7 @@ namespace Feature.Card.Script
                         CurrentEffectsList = spell.Effects,
                         CardPoolPickSystem = _cardPoolPickSystem,
                         TurnEffectQueue = _turnTriggerEffectQueue,
+                        UsedTargets = usedTargets,
                     });
             }
 
