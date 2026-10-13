@@ -15,6 +15,7 @@ namespace Feature.CardEffect.Script
         public BattlefieldSystem BattlefieldSystem;
         public CombatSystem.CombatSystem CombatSystem;
         public SpellCardData CardData;
+        public CardStatsData TargetCard;
         public int ValueIndex;
         public CardPoolPickSystem CardPoolPickSystem { get; set; }
         public List<CardEffect> CurrentEffectsList { get; set; }

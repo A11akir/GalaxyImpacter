@@ -67,28 +67,20 @@ namespace Feature.Card.Script
             }
             else if (card is SpellCardData spell)
             {
-                // Если в карте есть RepeatEffect с галочкой «не выбирать одну и ту же цель дважды»,
-                // все эффекты карты делят один набор уже затронутых целей: тогда повтор не выберет
-                // цель, которую выбрало первое применение эффекта.
-                var usedTargets = spell.Effects.Any(effect => effect is RepeatEffect repeat && repeat.AvoidDuplicateTargets)
-                    ? new HashSet<CardAndHealthEntityOwnerData>()
-                    : null;
+                var context = new EffectContext
+                {
+                    Caster = owner,
+                    Target = target,
+                    GameSessionModel = _gameSessionModel,
+                    BattlefieldSystem = _battlefieldSystem,
+                    CombatSystem = _combatSystem,
+                    CardData = spell,
+                    CurrentEffectsList = spell.Effects,
+                    CardPoolPickSystem = _cardPoolPickSystem,
+                    TurnEffectQueue = _turnTriggerEffectQueue,
+                };
 
-                for (int i = 0; i < spell.Effects.Count; i++)
-                    spell.Effects[i].Execute(new EffectContext
-                    {
-                        Caster = owner,
-                        Target = target,
-                        GameSessionModel = _gameSessionModel,
-                        BattlefieldSystem = _battlefieldSystem,
-                        CombatSystem = _combatSystem,
-                        CardData = spell,
-                        ValueIndex = i,
-                        CurrentEffectsList = spell.Effects,
-                        CardPoolPickSystem = _cardPoolPickSystem,
-                        TurnEffectQueue = _turnTriggerEffectQueue,
-                        UsedTargets = usedTargets,
-                    });
+                Feature.CardEffect.Script.CardEffect.ExecuteAll(context, spell.Effects);
             }
 
             _eventDispatcher.Notify(owner, new CardCastInfo { Caster = owner, Card = card });

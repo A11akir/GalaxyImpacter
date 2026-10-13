@@ -29,15 +29,30 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 5245221634071855104
+      type: {class: ModifyHandCardCostEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 0
+        RandomSingleTarget: 0
+        filter:
+          ClassSource: 0
+          ManualClass: 0
+          CardType: 0
+          RaritySource: 0
+          ManualRarities: 
+          SpecificCard: {fileID: 0}
+        _direction: 0
     - rid: 7964668059962310663
       type: {class: GenerateTemporaryHandCardEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
         TargetSelection: 1
         RandomSingleTarget: 0
-        _query:
+        filter:
           ClassSource: 1
           ManualClass: 5
           CardType: 1
           RaritySource: 0
           ManualRarities: 
           SpecificCard: {fileID: 0}
+        _modifiers:
+        - rid: 5245221634071855104

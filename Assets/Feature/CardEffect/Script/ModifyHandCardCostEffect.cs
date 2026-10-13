@@ -24,6 +24,13 @@ namespace Feature.CardEffect.Script
             int amount = values[context.ValueIndex];
             if (amount == 0) return;
 
+            // Режим модификатора сгенерированной карты: вложен в GenerateTemporaryHandCardEffect.
+            if (context.TargetCard != null)
+            {
+                ModifyCost(context.TargetCard, amount);
+                return;
+            }
+
             foreach (var handOwner in ResolveTargets(context))
             {
                 if (handOwner == null) continue;
@@ -31,10 +38,15 @@ namespace Feature.CardEffect.Script
                 var card = context.CardPoolPickSystem.PickFromHand(handOwner, filter, context);
                 if (card == null) continue;
 
-                card.Cost = _direction == CostChangeDirection.Reduce
-                    ? Mathf.Max(0, card.Cost - amount)
-                    : card.Cost + amount;
+                ModifyCost(card, amount);
             }
+        }
+
+        private void ModifyCost(CardStatsData card, int amount)
+        {
+            card.Cost = _direction == CostChangeDirection.Reduce
+                ? Mathf.Max(0, card.Cost - amount)
+                : card.Cost + amount;
         }
     }
 }

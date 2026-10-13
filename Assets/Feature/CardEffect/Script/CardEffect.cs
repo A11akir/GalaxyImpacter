@@ -15,9 +15,60 @@ namespace Feature.CardEffect.Script
 
         public abstract void Execute(EffectContext context);
 
+        /// <summary>
+        /// Сколько идущих за этим эффектом эффектов он оборачивает и выполняет сам.
+        /// Основной цикл пропускает их, чтобы они не срабатывали дважды. У обычных эффектов — 0.
+        /// </summary>
+        public virtual int ControlledFollowingCount => 0;
+
+        /// <summary>
+        /// Выполняет count эффектов, идущих сразу после текущего, передавая каждому
+        /// его собственный ValueIndex (значение из Values по его позиции) и
+        /// восстанавливая исходный ValueIndex после цикла.
+        /// </summary>
+        protected void ExecuteFollowingEffects(EffectContext context, int count)
+        {
+            var effects = context.CurrentEffectsList;
+            if (effects == null) return;
+
+            int savedIndex = context.ValueIndex;
+
+            for (int offset = 1; offset <= count; offset++)
+            {
+                int index = savedIndex + offset;
+                if (index < 0 || index >= effects.Count) break;
+
+                context.ValueIndex = index;
+                effects[index]?.Execute(context);
+            }
+
+            context.ValueIndex = savedIndex;
+        }
+
+        /// <summary>
+        /// Единый проход по плоскому списку эффектов. Каждый эффект читает Values по
+        /// своему индексу; эффекты-контейнеры сами выполняют следующие за ними эффекты,
+        /// поэтому ControlledFollowingCount эффектов после контейнера пропускаются.
+        /// </summary>
+        public static void ExecuteAll(EffectContext context, IReadOnlyList<CardEffect> effects)
+        {
+            if (effects == null) return;
+
+            for (int i = 0; i < effects.Count; i++)
+            {
+                var effect = effects[i];
+                if (effect == null) continue;
+
+                context.ValueIndex = i;
+                effect.Execute(context);
+                i += effect.ControlledFollowingCount;
+            }
+        }
+
         protected List<CardAndHealthEntityOwnerData> ResolveTargets(EffectContext ctx)
         {
             var pool = GetCandidatePool(ctx);
+            
 
             // Галочка «не выбирать одну и ту же цель дважды» (RepeatEffect):
             // цели, уже получившие эффект в этой серии повторов, исключаются из пула.

@@ -55,11 +55,7 @@ namespace Feature.CardEffect.Script
                 CardPoolPickSystem = CardPoolPickSystem,
             };
 
-            for (int i = 0; i < Effects.Count; i++)
-            {
-                innerContext.ValueIndex = i;
-                Effects[i].Execute(innerContext);
-            }
+            CardEffect.ExecuteAll(innerContext, Effects);
         }
     }
 }

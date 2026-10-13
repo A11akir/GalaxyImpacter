@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Feature.CardEffect.Script
@@ -7,20 +6,19 @@ namespace Feature.CardEffect.Script
     [Serializable]
     public class ChanceEffect : CardEffect
     {
-        [SerializeReference] private List<CardEffect> _effects = new();
+        // Сколько следующих эффектов карты выполняется только при успешном броске.
+        // Число каждого эффекта берётся из Values по его собственной позиции.
+        [SerializeField] private int _affectedCount = 1;
+
+        public override int ControlledFollowingCount => Mathf.Max(0, _affectedCount);
 
         public override void Execute(EffectContext context)
         {
             int chancePercent = context.CardData.Values[context.ValueIndex];
 
-            int roll = UnityEngine.Random.Range(0, 100);
-            if (roll >= chancePercent) return;
+            if (UnityEngine.Random.Range(0, 100) >= chancePercent) return;
 
-            for (int i = 0; i < _effects.Count; i++)
-            {
-                context.ValueIndex = i;
-                _effects[i].Execute(context);
-            }
+            ExecuteFollowingEffects(context, _affectedCount);
         }
     }
 }

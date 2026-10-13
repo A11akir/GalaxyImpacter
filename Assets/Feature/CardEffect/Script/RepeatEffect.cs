@@ -8,36 +8,29 @@ namespace Feature.CardEffect.Script
     [Serializable]
     public class RepeatEffect : CardEffect
     {
+        // Сколько следующих эффектов карты повторяется.
+        [SerializeField] private int _affectedCount = 1;
+
+        // Не выбирать одну и ту же цель дважды в рамках серии повторов.
         [SerializeField] private bool _avoidDuplicateTargets;
 
         public bool AvoidDuplicateTargets => _avoidDuplicateTargets;
 
+        public override int ControlledFollowingCount => Mathf.Max(0, _affectedCount);
+
         public override void Execute(EffectContext context)
         {
-            int repeatCount = context.CardData.Values[context.ValueIndex] - 1;
-            int previousIndex = context.ValueIndex - 1;
+            int repeatCount = context.CardData.Values[context.ValueIndex];
+            if (repeatCount <= 0) return;
 
-            if (previousIndex < 0 || previousIndex >= context.CurrentEffectsList.Count)
-                return;
-
-            var previousEffect = context.CurrentEffectsList[previousIndex];
-
-            int savedIndex = context.ValueIndex;
             var savedUsedTargets = context.UsedTargets;
-
-            // Если CardCastService уже завёл набор (в карте есть эта галочка) — переиспользуем его,
-            // тогда учитываются и цели, выбранные первым применением эффекта.
             if (_avoidDuplicateTargets && savedUsedTargets == null)
                 context.UsedTargets = new HashSet<CardAndHealthEntityOwnerData>();
 
-            context.ValueIndex = previousIndex;
+            for (int i = 0; i < repeatCount; i++)
+                ExecuteFollowingEffects(context, _affectedCount);
 
-                for (int i = 0; i < repeatCount; i++)
-                    previousEffect.Execute(context);
-                
-                context.ValueIndex = savedIndex;
-                context.UsedTargets = savedUsedTargets;
-            
+            context.UsedTargets = savedUsedTargets;
         }
     }
 }

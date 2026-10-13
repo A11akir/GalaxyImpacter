@@ -27,6 +27,7 @@ MonoBehaviour:
   _effects:
   - rid: 6542063849380773889
   - rid: 6542063849380773890
+  - rid: 6542063849380773891
   references:
     version: 2
     RefIds:
@@ -41,8 +42,7 @@ MonoBehaviour:
       data:
         TargetSelection: 1
         RandomSingleTarget: 0
-        _effects:
-        - rid: 6542063849380773891
+        _affectedCount: 1
     - rid: 6542063849380773891
       type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
