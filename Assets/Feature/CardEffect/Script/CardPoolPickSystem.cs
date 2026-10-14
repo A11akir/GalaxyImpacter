@@ -5,6 +5,7 @@ using Feature.Data;
 using Feature.GameSessionData;
 using Feature.GoogleSheets;
 using Feature.Hero;
+using Feature.Hero.Script;
 using UnityEngine;
 
 namespace Feature.CardEffect.Script
@@ -75,12 +76,8 @@ namespace Feature.CardEffect.Script
             _                         => true
         };
 
-        private bool MatchesClass(CardStatsData card, AllHeroClass requiredClass)
-        {
-            if (requiredClass == AllHeroClass.All) return true;
-
-            return card.Specialization != null && card.Specialization.Contains(requiredClass);
-        }
+        private bool MatchesClass(CardStatsData card, AllHeroClass requiredClass) =>
+            HeroClassCombos.Matches(requiredClass, card.Specialization);
 
         private HashSet<CardRarity> ResolveRarities(CardPickFilter filter, EffectContext ctx, AllHeroClass heroClass)
         {
@@ -93,12 +90,22 @@ namespace Feature.CardEffect.Script
             var baseDeck = ctx.GameSessionModel.GetPlayerDataByOwner(ctx.Caster).MainHeroEntity().BaseDeck;
 
             var rarities = baseDeck
-                .Where(c => c.Specialization.Contains(heroClass))
+                .Where(c => HeroClassCombos.Matches(heroClass, c.Specialization))
                 .Select(c => c.Rarity)
                 .ToHashSet();
 
+            // Класса нет в деке — берём самую низкую доступную редкость класса
+            // (для базовых это Common, для комбо — Hidden, т.к. у них нет Common).
             if (rarities.Count == 0)
-                rarities.Add(CardRarity.Common);
+            {
+                int lowest = _gameData.GetCardsByClass(heroClass)
+                    .Where(c => c != null)
+                    .Select(c => (int)c.Rarity)
+                    .DefaultIfEmpty((int)CardRarity.Common)
+                    .Min();
+
+                rarities.Add((CardRarity)lowest);
+            }
 
             return rarities;
         }
