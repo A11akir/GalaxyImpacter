@@ -22,9 +22,24 @@ MonoBehaviour:
   _baseCost: 1
   _passiveCardEffects: []
   id: 34c52793-bc32-4252-9d7c-ff3e512eee53
+  Origin: 0
   _values: 010000000100000000000000
   _description: Give 1 lightning temporary spell, it is cost 1 less.
-  _effects: []
+  _effects:
+  - rid: 5245221654683451396
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 5245221654683451396
+      type: {class: GenerateTemporaryHandCardEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 1
+        RandomSingleTarget: 0
+        filter:
+          ClassSource: 1
+          ManualClass: 11
+          CardType: 0
+          RaritySource: 0
+          ManualRarities: 
+          SpecificCard: {fileID: 0}
+        _modifiers: []

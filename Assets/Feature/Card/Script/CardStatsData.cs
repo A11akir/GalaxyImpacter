@@ -32,11 +32,12 @@ public class CardStatsData : ScriptableObject, ICardStatsData
     }
 
     public string id = System.Guid.NewGuid().ToString();
+    
+    [HideInInspector] public CardOrigin Origin = CardOrigin.Permanent;
+
     public virtual bool IsHero => false;
     public string Name { get => _name; set => _name = value; }
 
-    // Единственное сериализуемое значение цены — _baseCost, его пишут парсеры из таблицы.
-    // Cost — текущая цена в рантайме, CostReactive — подписка на её изменения.
     private ReactiveProperty<int> _costReactive;
     public ReadOnlyReactiveProperty<int> CostReactive => _costReactive ??= new ReactiveProperty<int>(_baseCost);
 

@@ -22,9 +22,38 @@ MonoBehaviour:
   _baseCost: 1
   _passiveCardEffects: []
   id: 2d3f2975-a7be-443d-9591-710de6ea9ccd
+  Origin: 0
   _values: 010000000100000000000000
   _description: Give 1 fire temporary spell, it is cost 1 less.
-  _effects: []
+  _effects:
+  - rid: 5245221654683451394
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 5245221654683451394
+      type: {class: GenerateTemporaryHandCardEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 1
+        RandomSingleTarget: 0
+        filter:
+          ClassSource: 1
+          ManualClass: 5
+          CardType: 1
+          RaritySource: 0
+          ManualRarities: 
+          SpecificCard: {fileID: 0}
+        _modifiers:
+        - rid: 5245221654683451395
+    - rid: 5245221654683451395
+      type: {class: ModifyHandCardCostEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 0
+        RandomSingleTarget: 0
+        filter:
+          ClassSource: 0
+          ManualClass: 0
+          CardType: 0
+          RaritySource: 0
+          ManualRarities: 
+          SpecificCard: {fileID: 0}
+        _direction: 0

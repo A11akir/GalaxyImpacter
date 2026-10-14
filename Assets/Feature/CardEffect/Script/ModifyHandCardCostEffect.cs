@@ -11,7 +11,7 @@ namespace Feature.CardEffect.Script
     }
 
     [Serializable]
-    public class ModifyHandCardCostEffect : CardEffect
+    public class ModifyHandCardCostEffect : CardEffect, IGeneratedCardModifier
     {
         [FormerlySerializedAs("_query")] [SerializeField] private CardPickFilter filter = new();
         [SerializeField] private CostChangeDirection _direction;

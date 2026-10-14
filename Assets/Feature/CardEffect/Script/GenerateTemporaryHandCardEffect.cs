@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
+using Feature.Card.Script;
 
 namespace Feature.CardEffect.Script
 {
@@ -10,10 +11,8 @@ namespace Feature.CardEffect.Script
     public class GenerateTemporaryHandCardEffect : CardEffect
     {
         [FormerlySerializedAs("_query")] [SerializeField] private CardPickFilter filter = new();
-
-        // Вложенные модификаторы сгенерированной карты. Каждый читает своё число из Values
-        // по позиции сразу после count: countIndex + 1 + номер модификатора.
-        [SerializeReference] private List<CardEffect> _modifiers = new();
+        
+        [SerializeReference] private List<IGeneratedCardModifier> _modifiers = new();
 
         public override void Execute(EffectContext ctx)
         {
@@ -29,6 +28,7 @@ namespace Feature.CardEffect.Script
 
                     var card = Object.Instantiate(template);
                     card.id = Guid.NewGuid().ToString();
+                    card.Origin = CardOrigin.Temporary;
 
                     ApplyModifiers(ctx, card);
 
