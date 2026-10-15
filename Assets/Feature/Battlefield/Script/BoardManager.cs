@@ -25,6 +25,43 @@ namespace Feature.Battlefield.Script
             _tipPlaceSystem = tipPlaceSystem;
         }
 
+        /// <summary>
+        /// Живые цели для зон в нужном порядке (компактный список, без пустых слотов):
+        /// у противника — герой первым, потом существа;
+        /// у игрока   — существа, потом герой последним.
+        /// </summary>
+        public List<CardAndHealthEntityOwnerData> GetEntitySlotsForTargets(GameSessionPlayerData playerData)
+        {
+            bool isEnemy = _gameSessionModel.EnemyHero == playerData;
+            var result = new List<CardAndHealthEntityOwnerData>();
+
+            if (isEnemy)
+                AddHero(playerData, result);
+
+            foreach (var card in playerData.CardsInBoardList)
+            {
+                if (card == null) continue;
+
+                var owner = playerData.CardAndHealthEntityOwners
+                    .FirstOrDefault(o => o.CardId == card.id && o.HealthValue > 0);
+
+                if (owner != null)
+                    result.Add(owner);
+            }
+
+            if (!isEnemy)
+                AddHero(playerData, result);
+
+            return result;
+        }
+
+        private static void AddHero(GameSessionPlayerData playerData, List<CardAndHealthEntityOwnerData> result)
+        {
+            var hero = playerData.MainHeroEntity();
+            if (hero != null && hero.HealthValue > 0)
+                result.Add(hero);
+        }
+        
         public void Subscribe(GameSessionPlayerData playerData)
         {
             _previousCards[playerData] = new();

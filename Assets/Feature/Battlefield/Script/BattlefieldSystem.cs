@@ -24,6 +24,7 @@ namespace Feature.Battlefield.Script
         private CreateOwnerCardAndHealthEntitySystem _createOwnerSystem;
         private TargetingSystem _targetingSystem;
         private HandViewSwitcher _handViewSwitcher;
+        public BoardManager BoardManager => _boardManager;
 
         [Inject]
         public void Construct(

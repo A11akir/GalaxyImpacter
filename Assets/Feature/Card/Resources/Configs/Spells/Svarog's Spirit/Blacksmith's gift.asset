@@ -40,7 +40,7 @@ MonoBehaviour:
           ManualClass: 12
           CardType: 1
           RaritySource: 0
-          ManualRarities: 
+          ManualRarities: 00000000
           SpecificCard: {fileID: 0}
         _modifiers:
         - rid: 5245221654683451393

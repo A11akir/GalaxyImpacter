@@ -22,9 +22,25 @@ MonoBehaviour:
   _baseCost: 1
   _passiveCardEffects: []
   id: 3f7914d0-238b-4670-a518-463db712e95d
+  Origin: 0
   _values: 01000000
   _description: 'Passive: Each hit this turn increases your next damage by 1.'
-  _effects: []
+  _effects:
+  - rid: 5245221676539445248
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 5245221676539445248
+      type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 1
+        RandomSingleTarget: 0
+        _passiveTemplate:
+          rid: 5245221676539445249
+    - rid: 5245221676539445249
+      type: {class: FireDamageBonusWatcher, ns: Feature.PassiveEffect.Script, asm: Assembly-CSharp}
+      data:
+        Config: {fileID: 11400000, guid: 7051eaa103bbf440ba77cf5985a5df9c, type: 2}
+        UseSourceCardAsDescription: 0
+        Duration: 0
+        _bonusConfig: {fileID: 11400000, guid: 6c8b6a000c4779a4bbd7f9ffd4cfa2ef, type: 2}

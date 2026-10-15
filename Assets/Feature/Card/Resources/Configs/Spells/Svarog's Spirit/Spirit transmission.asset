@@ -22,9 +22,16 @@ MonoBehaviour:
   _baseCost: 0
   _passiveCardEffects: []
   id: d8116e18-e53f-4493-b6dc-b9c21b2f8ddb
+  Origin: 0
   _values: 
   _description: Transfers all temporary spells to the hero
-  _effects: []
+  _effects:
+  - rid: 5245221654683451397
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 5245221654683451397
+      type: {class: TransferTemporaryCardsEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 3
+        RandomSingleTarget: 0

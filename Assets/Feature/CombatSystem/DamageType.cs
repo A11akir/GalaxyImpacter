@@ -4,6 +4,6 @@ namespace Feature.CombatSystem
     {
         Normal, 
         Pure, 
-        Deadly  
+        Deadly
     }
 }
