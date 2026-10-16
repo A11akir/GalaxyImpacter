@@ -7,7 +7,7 @@ namespace Feature.CombatSystem
 {
     public class HealthReactionSystem
     {
-        public void ApplyDamage(CardAndHealthEntityOwnerData target, int damage, DamageType type, bool targetIsHero, CardAndHealthEntityOwnerData source)
+        public bool ApplyDamage(CardAndHealthEntityOwnerData target, int damage, DamageType type, bool targetIsHero, CardAndHealthEntityOwnerData source)
         {
             int finalDamage = CalculateFinalDamage(target, damage, type, targetIsHero);
 
@@ -18,10 +18,11 @@ namespace Feature.CombatSystem
             foreach (var reaction in reactions)
             {
                 if (reaction.ReactToDamage(target, finalDamage, source))
-                    return;
+                    return false;   // урон заблокирован реакцией — смерть не наступила
             }
 
             target.HealthValue -= finalDamage;
+            return target.HealthValue <= 0;   // наступила ли смерть
         }
 
         private int CalculateFinalDamage(CardAndHealthEntityOwnerData target, int damage, DamageType type, bool targetIsHero)
