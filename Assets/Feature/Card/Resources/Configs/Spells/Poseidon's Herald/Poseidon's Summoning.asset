@@ -18,10 +18,11 @@ MonoBehaviour:
   _specialization: 
   _level: 0
   targetType: 0
-  _inCollection: 1
+  _inCollection: 0
   _baseCost: 1
   _passiveCardEffects: []
   id: cbec7f2e-c78d-4182-8cdc-dc3c7137b0eb
+  Origin: 0
   _values: 00000000
   _description: If you have 3 Poseidon's Herald on the field, give Poseidon random
     0 cost card.

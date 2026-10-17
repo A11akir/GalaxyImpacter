@@ -17,11 +17,12 @@ MonoBehaviour:
   _iconImage: {fileID: 0}
   _specialization: 
   _level: 0
-  targetType: 0
-  _inCollection: 1
+  targetType: 2
+  _inCollection: 0
   _baseCost: 3
   _passiveCardEffects: []
   id: 17814f7e-b69a-4472-ae6b-281fde754af7
+  Origin: 0
   _values: 020000000300000002000000
   _description: "\u041D\u0430\u043D\u043E\u0441\u0438\u0442 2 \u0443\u0440\u043E\u043D\u0430.
     \u0417\u043E\u043D\u0430 3. \u041F\u0440\u0438\u0437\u044B\u0432\u0435\u0442

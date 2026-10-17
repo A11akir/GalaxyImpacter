@@ -22,6 +22,7 @@ MonoBehaviour:
   _baseCost: 2
   _passiveCardEffects: []
   id: c32b39e6-1480-4ee7-a5ce-3c02ad7f82aa
+  Origin: 0
   _values: 0f000000
   _description: Ally get 15 moisture and freezes.
   _effects: []

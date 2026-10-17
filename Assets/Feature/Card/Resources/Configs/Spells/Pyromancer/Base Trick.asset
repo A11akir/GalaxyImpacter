@@ -15,19 +15,19 @@ MonoBehaviour:
   _name: Base Trick
   _rarity: 0
   _iconImage: {fileID: 0}
-  _specialization: 
+  _specialization: 05000000
   _level: 0
-  targetType: 0
-  _inCollection: 1
+  targetType: 2
+  _inCollection: 0
   _baseCost: 0
   _passiveCardEffects: []
   id: 9bac4e17-5c85-4d63-8b0f-a89fcbed5ba7
+  Origin: 0
   _values: 010000001900000001000000
   _description: Take 1 damage. 25% chance of dealing 1 damage to yourself.
   _effects:
   - rid: 6542063849380773889
   - rid: 6542063849380773890
-  - rid: 6542063849380773891
   references:
     version: 2
     RefIds:
@@ -42,7 +42,8 @@ MonoBehaviour:
       data:
         TargetSelection: 1
         RandomSingleTarget: 0
-        _affectedCount: 1
+        _effect:
+          rid: 6542063849380773891
     - rid: 6542063849380773891
       type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:

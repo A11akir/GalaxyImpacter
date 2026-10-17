@@ -20,10 +20,11 @@ MonoBehaviour:
   _specialization: 
   _level: 0
   targetType: 0
-  _inCollection: 1
+  _inCollection: 0
   _baseCost: 2
   _passiveCardEffects: []
   id: b10853f6-65c7-4551-97ff-418f3c8b621d
+  Origin: 0
   _values: 06000000
   _description: "\u041D\u0430\u043D\u043E\u0441\u0438\u0442 6 \u0443\u0440\u043E\u043D\u0430."
   _effects: []

@@ -22,6 +22,7 @@ MonoBehaviour:
   _baseCost: 8
   _passiveCardEffects: []
   id: 2c64919f-0c36-46a7-9f11-e9c24d20a210
+  Origin: 0
   _values: 030000000300000001000000
   _description: 'Destroy all your creatures. For each destroyed: deal 3 damage to
     all enemies, restore 3 HP, draw 1 card. '

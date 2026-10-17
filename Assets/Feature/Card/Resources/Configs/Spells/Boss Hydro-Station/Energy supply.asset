@@ -18,10 +18,11 @@ MonoBehaviour:
   _specialization: 
   _level: 0
   targetType: 0
-  _inCollection: 1
+  _inCollection: 0
   _baseCost: 3
   _passiveCardEffects: []
   id: a4cdbcb7-29ee-43ff-bdde-e693e9195cf3
+  Origin: 0
   _values: 01000000
   _description: All creatures gain 1 chakra and draw card.
   _effects: []

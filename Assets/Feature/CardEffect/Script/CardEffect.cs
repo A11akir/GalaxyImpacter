@@ -38,11 +38,37 @@ namespace Feature.CardEffect.Script
                 int index = savedIndex + offset;
                 if (index < 0 || index >= effects.Count) break;
 
-                context.ValueIndex = index;
-                effects[index]?.Execute(context);
-            }
+                var effect = effects[index];
+                if (effect == null) continue;
 
-            context.ValueIndex = savedIndex;
+                ExecuteInSlot(context, offset, effect.Execute);
+            }
+        }
+
+        /// <summary>
+        /// Выполняет вложенный эффект в его слоте Values и возвращает контекст в исходное
+        /// состояние. Единое правило: контейнер занимает слот N, вложенный эффект —
+        /// N + 1 (offset), следующий за ним — N + 2 и так далее.
+        /// </summary>
+        protected void ExecuteInSlot(EffectContext context, int offset, Action<EffectContext> body)
+        {
+            if (body == null) return;
+
+            int savedIndex = context.ValueIndex;
+            var savedTarget = context.Target;
+            var savedTargetCard = context.TargetCard;
+
+            context.ValueIndex = savedIndex + offset;
+            try
+            {
+                body(context);
+            }
+            finally
+            {
+                context.ValueIndex = savedIndex;
+                context.Target = savedTarget;
+                context.TargetCard = savedTargetCard;
+            }
         }
 
         /// <summary>
@@ -67,33 +93,48 @@ namespace Feature.CardEffect.Script
 
         protected List<CardAndHealthEntityOwnerData> ResolveTargets(EffectContext ctx)
         {
-            var pool = GetCandidatePool(ctx);
+            var pool = GetTargetsPool(ctx);
             
+            pool = RemoveRepeatTargetIfNeed(ctx, pool);
 
-            // Галочка «не выбирать одну и ту же цель дважды» (RepeatEffect):
-            // цели, уже получившие эффект в этой серии повторов, исключаются из пула.
-            if (ctx.UsedTargets != null && ctx.UsedTargets.Count > 0)
-                pool = pool.Where(target => target != null && !ctx.UsedTargets.Contains(target)).ToList();
+            pool = GetRandomTargetIfNeed(pool);
 
-            var resolved = pool;
+            SaveUsedTargets(ctx, pool);
 
-            if (RandomSingleTarget && pool.Count > 0)
-                resolved = new List<CardAndHealthEntityOwnerData> { pool[UnityEngine.Random.Range(0, pool.Count)] };
-
-            if (ctx.UsedTargets != null)
-            {
-                foreach (var target in resolved)
-                    ctx.UsedTargets.Add(target);
-            }
-
-            return resolved;
+            return pool;
         }
 
-        private List<CardAndHealthEntityOwnerData> GetCandidatePool(EffectContext ctx)
+        private List<CardAndHealthEntityOwnerData> GetRandomTargetIfNeed(List<CardAndHealthEntityOwnerData> pool)
         {
-            var casterSide = ctx.GameSessionModel.GetPlayerDataByOwner(ctx.Caster);
-            bool casterIsPlayer = casterSide == ctx.GameSessionModel.PlayerHero;
+            if (RandomSingleTarget && pool.Count > 0)
+                pool = new List<CardAndHealthEntityOwnerData> { pool[UnityEngine.Random.Range(0, pool.Count)]};
+            return pool;
+        }
 
+        private static void SaveUsedTargets(EffectContext ctx, List<CardAndHealthEntityOwnerData> pool)
+        {
+            if (ctx.UsedTargets != null)
+            {
+                foreach (var target in pool)
+                    ctx.UsedTargets.Add(target);
+            }
+        }
+
+        private static List<CardAndHealthEntityOwnerData> RemoveRepeatTargetIfNeed(EffectContext ctx, List<CardAndHealthEntityOwnerData> pool)
+        {
+            if (ctx.UsedTargets != null && ctx.UsedTargets.Count > 0)
+                pool = pool.Where(target => target != null && !ctx.UsedTargets.Contains(target)).ToList();
+            return pool;
+        }
+
+        private List<CardAndHealthEntityOwnerData> GetTargetsPool(EffectContext ctx)
+        {
+            //возвращает дату кастующей стороны
+            var casterSide = ctx.GameSessionModel.GetPlayerDataByOwner(ctx.Caster);
+            
+            //союзник тру, враг фолс
+            bool casterIsPlayer = casterSide == ctx.GameSessionModel.PlayerHero;
+            //возвращает своих или чужих кастера
             var ally = casterIsPlayer ? ctx.GameSessionModel.PlayerHero : ctx.GameSessionModel.EnemyHero;
             var enemy = casterIsPlayer ? ctx.GameSessionModel.EnemyHero : ctx.GameSessionModel.PlayerHero;
 
@@ -103,11 +144,11 @@ namespace Feature.CardEffect.Script
                 TargetSelectionType.Self         => new List<CardAndHealthEntityOwnerData> { ctx.Caster },
                 TargetSelectionType.PlayerHero    => new List<CardAndHealthEntityOwnerData> { ctx.GameSessionModel.PlayerHero.MainHeroEntity() },
                 TargetSelectionType.EnemyHero     => new List<CardAndHealthEntityOwnerData> { ctx.GameSessionModel.EnemyHero.MainHeroEntity() },
-                TargetSelectionType.EnemyMinion   => enemy.AliveMinions.ToList(),
-                TargetSelectionType.PlayerMinion  => ally.AliveMinions.ToList(),
-                TargetSelectionType.Allies        => ally.AllAlive.ToList(),
-                TargetSelectionType.Enemies       => enemy.AllAlive.ToList(),
-                TargetSelectionType.All           => ctx.GameSessionModel.GetAllEntityOwners().Where(o => o.HealthValue > 0).ToList(),
+                TargetSelectionType.EnemyMinion   => enemy.Minions.ToList(),
+                TargetSelectionType.PlayerMinion  => ally.Minions.ToList(),
+                TargetSelectionType.Allies        => ally.CardAndHealthEntityOwners.ToList(),
+                TargetSelectionType.Enemies       => enemy.CardAndHealthEntityOwners.ToList(),
+                TargetSelectionType.All           => ctx.GameSessionModel.GetAllEntityOwners().ToList(),
                 _ => new List<CardAndHealthEntityOwnerData>()
             };
         }

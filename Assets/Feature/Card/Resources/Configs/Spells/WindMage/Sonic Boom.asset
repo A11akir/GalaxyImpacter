@@ -22,6 +22,7 @@ MonoBehaviour:
   _baseCost: 4
   _passiveCardEffects: []
   id: e90b8605-f642-4e88-b42e-b6f72a78e372
+  Origin: 0
   _values: 
   _description: "\u0412\u0441\u0435 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0430
     \u0432\u043E\u0437\u0432\u0440\u0430\u0449\u0430\u0435\u0442\u0441\u044F \u0432

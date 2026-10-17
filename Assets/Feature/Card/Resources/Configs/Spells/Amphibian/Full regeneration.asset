@@ -18,10 +18,11 @@ MonoBehaviour:
   _specialization: 
   _level: 0
   targetType: 0
-  _inCollection: 1
+  _inCollection: 0
   _baseCost: 1
   _passiveCardEffects: []
   id: 8727f2f7-7d36-4b09-98f3-2688b9fff566
+  Origin: 0
   _values: 
   _description: 'Passive: Restores health when frozen.'
   _effects: []

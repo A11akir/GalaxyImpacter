@@ -22,6 +22,7 @@ MonoBehaviour:
   _baseCost: 4
   _passiveCardEffects: []
   id: 06da35b6-81c7-44fa-aa23-c3c3f27f6916
+  Origin: 0
   _values: 02000000
   _description: Multiplies everyone's moisture by 2 and freezes.
   _effects: []

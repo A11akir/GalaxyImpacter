@@ -18,10 +18,11 @@ MonoBehaviour:
   _specialization: 
   _level: 0
   targetType: 0
-  _inCollection: 1
+  _inCollection: 0
   _baseCost: 0
   _passiveCardEffects: []
   id: eb6c9ad9-d2d9-41dc-9d31-f4b2db0c95ba
+  Origin: 0
   _values: 01000000
   _description: The hero chooses 1 card from the deck and puts it in his hand.
   _effects: []

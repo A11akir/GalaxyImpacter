@@ -22,7 +22,8 @@ MonoBehaviour:
   _baseCost: 2
   _passiveCardEffects: []
   id: a2f7139d-1596-4409-a065-ae08efd719ca
-  _values: 0200000001000000
+  Origin: 0
+  _values: 0100000002000000
   _description: Take 1 damage 2 random minion.
   _effects:
   - rid: 5943948251302461443
@@ -30,16 +31,16 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 5943948251302461443
-      type: {class: RepeatEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
-      data:
-        TargetSelection: 0
-        RandomSingleTarget: 0
-        _avoidDuplicateTargets: 1
-        _affectedCount: 1
     - rid: 5943948251302461442
       type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
         TargetSelection: 8
         RandomSingleTarget: 1
         _damageType: 0
+    - rid: 5943948251302461443
+      type: {class: RepeatEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 0
+        RandomSingleTarget: 0
+        _affectedCount: 1
+        _avoidDuplicateTargets: 1

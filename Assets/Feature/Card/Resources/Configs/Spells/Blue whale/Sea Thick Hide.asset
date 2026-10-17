@@ -18,10 +18,11 @@ MonoBehaviour:
   _specialization: 
   _level: 0
   targetType: 0
-  _inCollection: 1
+  _inCollection: 0
   _baseCost: 1
   _passiveCardEffects: []
   id: 591b6380-9b79-4f52-b30f-e6270e249e9e
+  Origin: 0
   _values: 01000000
   _description: 'Passive: Blue Whale gains 1 moisture after taking damage.'
   _effects: []

@@ -1,5 +1,7 @@
 Обзор проекта
 GalaxyImpacter — карточная игра в стиле Hearthstone Battlegrounds / Slay the Spire на Unity.
+
+Предпочтения пользователя: короткие ответы. Без лишних объяснений.
 Два игрока (человек vs AI) выбирают героев, строят деки и сражаются в пошаговом режиме.
 Репозиторий: https://github.com/A11akir/GalaxyImpacter
 Unity версия: 2022+ (URP)

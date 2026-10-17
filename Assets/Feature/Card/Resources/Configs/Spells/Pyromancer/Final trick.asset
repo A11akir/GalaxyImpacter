@@ -15,19 +15,19 @@ MonoBehaviour:
   _name: Final trick
   _rarity: 0
   _iconImage: {fileID: 0}
-  _specialization: 
+  _specialization: 05000000
   _level: 0
-  targetType: 0
-  _inCollection: 1
+  targetType: 2
+  _inCollection: 0
   _baseCost: 2
   _passiveCardEffects: []
   id: 5a9bbda3-2b71-4f4d-8332-4a4c1a2d7b3b
+  Origin: 0
   _values: 040000006300000004000000
   _description: Take 4 damage. 99% chance of dealing 4 damage to yourself.
   _effects:
   - rid: 6542063849380773895
   - rid: 6542063849380773896
-  - rid: 6542063849380773897
   references:
     version: 2
     RefIds:
@@ -42,7 +42,8 @@ MonoBehaviour:
       data:
         TargetSelection: 1
         RandomSingleTarget: 0
-        _affectedCount: 1
+        _effect:
+          rid: 6542063849380773897
     - rid: 6542063849380773897
       type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:

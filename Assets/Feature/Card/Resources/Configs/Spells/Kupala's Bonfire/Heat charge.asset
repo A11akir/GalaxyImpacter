@@ -15,13 +15,14 @@ MonoBehaviour:
   _name: Heat charge
   _rarity: 1
   _iconImage: {fileID: 0}
-  _specialization: 
+  _specialization: 05000000
   _level: 0
   targetType: 0
-  _inCollection: 1
+  _inCollection: 0
   _baseCost: 1
   _passiveCardEffects: []
   id: 4a8fd37e-7e95-455d-8737-843d6ebfd8fb
+  Origin: 0
   _values: 0100000000000000
   _description: At the beginning of the turn, the hero receives 1 random fire spell.
   _effects:
@@ -49,10 +50,11 @@ MonoBehaviour:
       data:
         TargetSelection: 3
         RandomSingleTarget: 0
-        _query:
+        filter:
           ClassSource: 1
           ManualClass: 5
           CardType: 1
           RaritySource: 0
           ManualRarities: 
           SpecificCard: {fileID: 0}
+        _modifiers: []

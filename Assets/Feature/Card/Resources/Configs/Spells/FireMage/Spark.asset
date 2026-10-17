@@ -22,6 +22,7 @@ MonoBehaviour:
   _baseCost: 0
   _passiveCardEffects: []
   id: 22086cc8-d90d-4049-acc4-af8cae5f8241
+  Origin: 0
   _values: 01000000
   _description: Take 1 damage.
   _effects:

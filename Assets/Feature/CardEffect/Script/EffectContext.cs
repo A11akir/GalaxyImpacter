@@ -17,6 +17,22 @@ namespace Feature.CardEffect.Script
         public SpellCardData CardData;
         public CardStatsData TargetCard;
         public int ValueIndex;
+
+        /// <summary>
+        /// Значение из Values по слоту ValueIndex + offset.
+        /// Вне диапазона — 0, чтобы неполный конфиг не бросал IndexOutOfRange.
+        /// </summary>
+        public int Value(int offset = 0)
+        {
+            var values = CardData != null ? CardData.Values : null;
+            int index = ValueIndex + offset;
+
+            if (values == null || index < 0 || index >= values.Count)
+                return 0;
+
+            return values[index];
+        }
+
         public CardPoolPickSystem CardPoolPickSystem { get; set; }
         public List<CardEffect> CurrentEffectsList { get; set; }
         

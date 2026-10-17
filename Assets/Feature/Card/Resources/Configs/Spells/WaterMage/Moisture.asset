@@ -22,6 +22,7 @@ MonoBehaviour:
   _baseCost: 0
   _passiveCardEffects: []
   id: 54147262-33c7-47d3-94a0-def921e717c1
+  Origin: 0
   _values: 01000000
   _description: Everyone gets 1 moisture .
   _effects: []

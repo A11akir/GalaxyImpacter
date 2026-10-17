@@ -15,10 +15,10 @@ MonoBehaviour:
   _name: Spirit transmission
   _rarity: 2
   _iconImage: {fileID: 0}
-  _specialization: 
+  _specialization: 05000000
   _level: 0
   targetType: 0
-  _inCollection: 1
+  _inCollection: 0
   _baseCost: 0
   _passiveCardEffects: []
   id: d8116e18-e53f-4493-b6dc-b9c21b2f8ddb

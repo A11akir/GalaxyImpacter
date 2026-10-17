@@ -18,10 +18,11 @@ MonoBehaviour:
   _specialization: 
   _level: 0
   targetType: 0
-  _inCollection: 1
+  _inCollection: 0
   _baseCost: 3
   _passiveCardEffects: []
   id: 2aa1122d-743e-43fa-8b17-e9d4268cb65f
+  Origin: 0
   _values: 02000000
   _description: 2 Random targets become the target of a water spell.
   _effects: []

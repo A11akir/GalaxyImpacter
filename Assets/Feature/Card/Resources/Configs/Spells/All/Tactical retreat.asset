@@ -22,6 +22,7 @@ MonoBehaviour:
   _baseCost: 2
   _passiveCardEffects: []
   id: 2dfc7d73-a1b7-4283-a28e-ff0a6bced925
+  Origin: 0
   _values: 02000000
   _description: Draw 2 cards.
   _effects:

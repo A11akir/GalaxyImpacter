@@ -18,10 +18,11 @@ MonoBehaviour:
   _specialization: 
   _level: 0
   targetType: 0
-  _inCollection: 1
+  _inCollection: 0
   _baseCost: 3
   _passiveCardEffects: []
   id: e0ff65d9-b471-4977-a781-95e43de79ff6
+  Origin: 0
   _values: 
   _description: Until the end of the turn, the hero plays all the cards he receives
   _effects: []

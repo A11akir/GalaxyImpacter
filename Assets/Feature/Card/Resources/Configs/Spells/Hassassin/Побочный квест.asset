@@ -18,10 +18,11 @@ MonoBehaviour:
   _specialization: 
   _level: 0
   targetType: 0
-  _inCollection: 1
+  _inCollection: 0
   _baseCost: 4
   _passiveCardEffects: []
   id: 07cc931d-ed26-43ec-86a0-fb83f99665df
+  Origin: 0
   _values: 
   _description: "Hassassin \u043F\u043E\u043B\u0443\u0447\u0430\u0435\u0442 \u043C\u0430\u043B\u044B\u0439
     \u043A\u043E\u043D\u0442\u0440\u0430\u043A\u0442 \u043D\u0430 \u0443\u0431\u0438\u0439\u0441\u0442\u0432\u043E."

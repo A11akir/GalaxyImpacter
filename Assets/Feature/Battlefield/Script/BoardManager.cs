@@ -15,7 +15,7 @@ namespace Feature.Battlefield.Script
         private readonly GameSessionModel _gameSessionModel;
         private readonly TipPlaceBattlefieldViewSystem _tipPlaceSystem;
         private readonly Dictionary<GameSessionPlayerData, List<MinionCardData>> _previousCards = new();
-    
+
         public event Action<MinionCardData, int, GameSessionPlayerData> OnCardAdded;
         public event Action<MinionCardData, GameSessionPlayerData> OnCardRemoved;
 
@@ -25,47 +25,37 @@ namespace Feature.Battlefield.Script
             _tipPlaceSystem = tipPlaceSystem;
         }
 
-        /// <summary>
-        /// Живые цели для зон в нужном порядке (компактный список, без пустых слотов):
-        /// у противника — герой первым, потом существа;
-        /// у игрока   — существа, потом герой последним.
-        /// </summary>
         public List<CardAndHealthEntityOwnerData> GetEntitySlotsForTargets(GameSessionPlayerData playerData)
         {
             bool isEnemy = _gameSessionModel.EnemyHero == playerData;
             var result = new List<CardAndHealthEntityOwnerData>();
 
+            
+            //для противника герой добавляется до цикла, для героя после
             if (isEnemy)
-                AddHero(playerData, result);
+                result.Add(playerData.MainHeroEntity());
 
             foreach (var card in playerData.CardsInBoardList)
             {
                 if (card == null) continue;
 
                 var owner = playerData.CardAndHealthEntityOwners
-                    .FirstOrDefault(o => o.CardId == card.id && o.HealthValue > 0);
+                                .FirstOrDefault(o => o.CardId == card.id)
+                            ?? throw new InvalidOperationException($"Нет сущности для карты {card.id} в слоте");
 
-                if (owner != null)
-                    result.Add(owner);
+                result.Add(owner);
             }
 
             if (!isEnemy)
-                AddHero(playerData, result);
+                result.Add(playerData.MainHeroEntity());
 
             return result;
         }
 
-        private static void AddHero(GameSessionPlayerData playerData, List<CardAndHealthEntityOwnerData> result)
-        {
-            var hero = playerData.MainHeroEntity();
-            if (hero != null && hero.HealthValue > 0)
-                result.Add(hero);
-        }
-        
         public void Subscribe(GameSessionPlayerData playerData)
         {
             _previousCards[playerData] = new();
-        
+
             playerData.CardsInBoard.Subscribe(currentCards =>
             {
                 var nonNullCards = currentCards.Where(c => c != null).ToList();
@@ -102,7 +92,7 @@ namespace Feature.Battlefield.Script
         {
             var enemyBoard = _gameSessionModel.EnemyHero.CardsInBoardList;
             var freeSlots = new List<int>();
-        
+
             for (int i = 0; i < enemyBoard.Count; i++)
                 if (enemyBoard[i] == null)
                     freeSlots.Add(i);

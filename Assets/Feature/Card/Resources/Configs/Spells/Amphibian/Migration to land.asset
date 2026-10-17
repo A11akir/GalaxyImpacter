@@ -18,10 +18,11 @@ MonoBehaviour:
   _specialization: 
   _level: 0
   targetType: 0
-  _inCollection: 1
+  _inCollection: 0
   _baseCost: 1
   _passiveCardEffects: []
   id: 235d378a-c11f-4949-a5de-5702c9835922
+  Origin: 0
   _values: 
   _description: 'Passive: Freezes when it gets moisture'
   _effects: []

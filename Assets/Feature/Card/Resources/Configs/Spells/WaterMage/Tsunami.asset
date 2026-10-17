@@ -22,6 +22,7 @@ MonoBehaviour:
   _baseCost: 3
   _passiveCardEffects: []
   id: 556c6388-983b-48df-addd-eb6df5757164
+  Origin: 0
   _values: 0200000001000000
   _description: Deals 2 damage to enemies and causes each target to drop 1 card.
   _effects: []

@@ -15,13 +15,14 @@ MonoBehaviour:
   _name: Kupala fire
   _rarity: 1
   _iconImage: {fileID: 0}
-  _specialization: 
+  _specialization: 05000000
   _level: 0
   targetType: 0
-  _inCollection: 1
+  _inCollection: 0
   _baseCost: 2
   _passiveCardEffects: []
   id: e2585eaa-7d35-4798-a87b-dc4adf8305a7
+  Origin: 0
   _values: 01000000
   _description: 'Passive: All allies deal 1 more damage'
   _effects:

@@ -22,6 +22,7 @@ MonoBehaviour:
   _baseCost: 0
   _passiveCardEffects: []
   id: c15b2643-5a04-42fd-a903-c569e56c52a1
+  Origin: 0
   _values: 0100000002000000
   _description: Take 1 damage at the end of the turn 2 times.
   _effects:

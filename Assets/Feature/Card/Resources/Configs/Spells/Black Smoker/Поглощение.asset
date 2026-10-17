@@ -18,10 +18,11 @@ MonoBehaviour:
   _specialization: 
   _level: 0
   targetType: 0
-  _inCollection: 1
+  _inCollection: 0
   _baseCost: 2
   _passiveCardEffects: []
   id: 1bd0b667-c99d-43f3-a454-228069834545
+  Origin: 0
   _values: 
   _description: "\u0415\u0441\u043B\u0438 \u0443 \u0446\u0435\u043B\u0438 \u043C\u0435\u043D\u044C\u0448\u0435
     \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u044F \u043F\u0440\u043E\u0433\u043B\u0430\u0442\u044B\u0432\u0430\u0435\u0442

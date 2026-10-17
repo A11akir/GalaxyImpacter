@@ -18,10 +18,11 @@ MonoBehaviour:
   _specialization: 
   _level: 0
   targetType: 0
-  _inCollection: 1
+  _inCollection: 0
   _baseCost: 0
   _passiveCardEffects: []
   id: 08c7fb3c-249c-4357-ac07-e81893f31634
+  Origin: 0
   _values: 
   _description: "Passive: \u0421annot be stunned"
   _effects: []

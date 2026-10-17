@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      images-no-bg-HD (carve.photos)_0: -2888990333846234453
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

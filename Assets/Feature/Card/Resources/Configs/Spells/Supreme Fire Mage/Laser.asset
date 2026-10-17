@@ -15,15 +15,15 @@ MonoBehaviour:
   _name: Laser
   _rarity: 2
   _iconImage: {fileID: 0}
-  _specialization: 
+  _specialization: 05000000
   _level: 0
   targetType: 2
-  _inCollection: 1
+  _inCollection: 0
   _baseCost: 1
   _passiveCardEffects: []
   id: 4b6dd3b3-8e6e-4b6e-8d7f-ea4b43a9d1c4
   Origin: 0
-  _values: 03000000
+  _values: 0300000003000000
   _description: Take 3 pure damage and enemy hero.
   _effects:
   - rid: 5245221698659680256

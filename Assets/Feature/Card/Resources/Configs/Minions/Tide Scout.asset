@@ -22,6 +22,7 @@ MonoBehaviour:
   _baseCost: 2
   _passiveCardEffects: []
   id: ae65c220-8f42-4b7c-a5b6-10541a4f428a
+  Origin: 0
   _health: 5
   _chakra: 3
   _handCardCount: 2

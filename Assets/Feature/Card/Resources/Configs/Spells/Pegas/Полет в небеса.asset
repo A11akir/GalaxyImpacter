@@ -17,11 +17,12 @@ MonoBehaviour:
   _iconImage: {fileID: 0}
   _specialization: 
   _level: 0
-  targetType: 0
-  _inCollection: 1
+  targetType: 2
+  _inCollection: 0
   _baseCost: 2
   _passiveCardEffects: []
   id: 43e562ce-5b31-419e-9127-8af8b1a8e28a
+  Origin: 0
   _values: 00000000
   _description: "\u041F\u0440\u0438\u043C\u0435\u043D\u044F\u0435\u0442 Gust \u043D\u0430
     \u0446\u0435\u043B\u044C \u0441\u0442\u043E\u043B\u044C\u043A\u043E \u0440\u0430\u0437

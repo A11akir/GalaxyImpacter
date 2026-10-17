@@ -18,10 +18,11 @@ MonoBehaviour:
   _specialization: 
   _level: 0
   targetType: 0
-  _inCollection: 1
+  _inCollection: 0
   _baseCost: 1
   _passiveCardEffects: []
   id: f607eb5f-8759-4aff-897b-93d3a86b3e74
+  Origin: 0
   _values: 02000000
   _description: Next turn, the target has 2 more chakra.
   _effects: []

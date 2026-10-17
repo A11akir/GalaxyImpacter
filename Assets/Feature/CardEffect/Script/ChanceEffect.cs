@@ -6,19 +6,17 @@ namespace Feature.CardEffect.Script
     [Serializable]
     public class ChanceEffect : CardEffect
     {
-        // Сколько следующих эффектов карты выполняется только при успешном броске.
-        // Число каждого эффекта берётся из Values по его собственной позиции.
-        [SerializeField] private int _affectedCount = 1;
-
-        public override int ControlledFollowingCount => Mathf.Max(0, _affectedCount);
+        // Эффект, который выполняется при успешном броске. Вложен, как в ZoneEffect:
+        // контейнер читает Values[ValueIndex], вложенный эффект — Values[ValueIndex + 1].
+        [SerializeReference] private CardEffect _effect;
 
         public override void Execute(EffectContext context)
         {
-            int chancePercent = context.CardData.Values[context.ValueIndex];
+            int chancePercent = context.Value();
 
             if (UnityEngine.Random.Range(0, 100) >= chancePercent) return;
 
-            ExecuteFollowingEffects(context, _affectedCount);
+            ExecuteInSlot(context, 1, _effect.Execute);
         }
     }
 }

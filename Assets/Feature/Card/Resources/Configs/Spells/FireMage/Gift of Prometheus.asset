@@ -22,6 +22,7 @@ MonoBehaviour:
   _baseCost: 1
   _passiveCardEffects: []
   id: 25fb0d20-fc4c-41a6-b108-e9c8207a7654
+  Origin: 0
   _values: 01000000
   _description: Add Burning or increase 1 damage.
   _effects:

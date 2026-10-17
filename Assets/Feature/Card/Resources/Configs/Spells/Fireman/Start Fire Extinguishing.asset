@@ -18,10 +18,11 @@ MonoBehaviour:
   _specialization: 
   _level: 0
   targetType: 0
-  _inCollection: 1
+  _inCollection: 0
   _baseCost: 1
   _passiveCardEffects: []
   id: cc4c5f4c-bcc7-482c-821f-e14a53b624a7
+  Origin: 0
   _values: 02000000
   _description: Target get 2 moisture.
   _effects: []

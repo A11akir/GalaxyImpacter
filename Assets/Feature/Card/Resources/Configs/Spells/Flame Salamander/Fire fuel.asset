@@ -15,13 +15,14 @@ MonoBehaviour:
   _name: Fire fuel
   _rarity: 1
   _iconImage: {fileID: 0}
-  _specialization: 
+  _specialization: 05000000
   _level: 0
   targetType: 0
-  _inCollection: 1
+  _inCollection: 0
   _baseCost: 0
   _passiveCardEffects: []
   id: 561fbadb-214b-4170-a964-d3d1d2d7a191
+  Origin: 0
   _values: 01000000
   _description: Give hero 1 Salamander Hit.
   _effects:
@@ -34,10 +35,11 @@ MonoBehaviour:
       data:
         TargetSelection: 3
         RandomSingleTarget: 0
-        _query:
+        filter:
           ClassSource: 0
           ManualClass: 0
           CardType: 0
           RaritySource: 0
           ManualRarities: 
           SpecificCard: {fileID: 11400000, guid: 24aaf4febbd6a4a7991808f44846d767, type: 2}
+        _modifiers: []

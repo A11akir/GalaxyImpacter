@@ -22,6 +22,7 @@ MonoBehaviour:
   _baseCost: 2
   _passiveCardEffects: []
   id: 46494587-c85b-4765-9304-dbf0e3e8ef45
+  Origin: 0
   _values: 
   _description: "\u041F\u0440\u0438\u043C\u0435\u043D\u044F\u0435\u0442 Claw \u043D\u0430
     \u0441\u0435\u0431\u044F, \u043F\u043E\u0432\u0442\u043E\u0440\u044F\u0435\u0442\u0441\u044F

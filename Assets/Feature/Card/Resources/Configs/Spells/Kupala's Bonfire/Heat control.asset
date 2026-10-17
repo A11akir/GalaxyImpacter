@@ -15,13 +15,14 @@ MonoBehaviour:
   _name: Heat control
   _rarity: 1
   _iconImage: {fileID: 0}
-  _specialization: 
+  _specialization: 05000000
   _level: 0
   targetType: 0
-  _inCollection: 1
-  _baseCost: 0
+  _inCollection: 0
+  _baseCost: 1
   _passiveCardEffects: []
   id: 1a9609e5-750b-4909-a7d7-506dbbd55f7d
+  Origin: 0
   _values: 0100000001000000
   _description: At the beginning of the turn, the hero reduce cost by 1 random fire
     spell.

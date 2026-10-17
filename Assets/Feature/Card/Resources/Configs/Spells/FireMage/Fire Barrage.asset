@@ -22,6 +22,7 @@ MonoBehaviour:
   _baseCost: 3
   _passiveCardEffects: []
   id: 50a9de40-cd4e-4e51-8307-ad580b90deba
+  Origin: 0
   _values: 01000000
   _description: Take 1 damage random enemy. Repeated the same number of times.
   _effects:

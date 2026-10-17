@@ -15,13 +15,14 @@ MonoBehaviour:
   _name: Adult
   _rarity: 3
   _iconImage: {fileID: 0}
-  _specialization: 
+  _specialization: 05000000
   _level: 0
   targetType: 0
-  _inCollection: 1
+  _inCollection: 0
   _baseCost: 5
   _passiveCardEffects: []
   id: bd24443f-cde7-461a-b3af-768727e908ee
+  Origin: 0
   _values: 05000000
   _description: Cost 0 if it is on board during the second turn. Cast 5 random fire
     spell

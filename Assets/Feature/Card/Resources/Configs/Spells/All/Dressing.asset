@@ -22,6 +22,7 @@ MonoBehaviour:
   _baseCost: 1
   _passiveCardEffects: []
   id: 601b1664-0a66-493d-932b-0c8408b8df53
+  Origin: 0
   _values: 03000000
   _description: Restore 3 health.
   _effects:

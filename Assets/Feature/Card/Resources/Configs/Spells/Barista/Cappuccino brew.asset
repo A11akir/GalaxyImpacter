@@ -18,10 +18,11 @@ MonoBehaviour:
   _specialization: 
   _level: 0
   targetType: 0
-  _inCollection: 1
+  _inCollection: 0
   _baseCost: 1
   _passiveCardEffects: []
   id: 8f5612c2-a1d7-4fdf-9da6-9dcb66625c38
+  Origin: 0
   _values: 0100000001000000
   _description: Get target 1 chakra. Next turn, the target has 1 more chakra.
   _effects: []

@@ -15,10 +15,10 @@ MonoBehaviour:
   _name: Learning Magic
   _rarity: 2
   _iconImage: {fileID: 0}
-  _specialization: 
+  _specialization: 05000000
   _level: 0
   targetType: 0
-  _inCollection: 1
+  _inCollection: 0
   _baseCost: 1
   _passiveCardEffects: []
   id: 3f7914d0-238b-4670-a518-463db712e95d

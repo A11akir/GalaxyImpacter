@@ -22,6 +22,7 @@ MonoBehaviour:
   _baseCost: 3
   _passiveCardEffects: []
   id: 774f20d8-36c4-4a5e-9876-b835f42c85f1
+  Origin: 0
   _values: 00000000
   _description: 'Hero Power: At the end of the turn, all enemy take damage equel
     Burning.'

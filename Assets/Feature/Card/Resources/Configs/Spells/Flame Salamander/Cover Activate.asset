@@ -15,13 +15,14 @@ MonoBehaviour:
   _name: Cover Activate
   _rarity: 1
   _iconImage: {fileID: 0}
-  _specialization: 
+  _specialization: 05000000
   _level: 0
   targetType: 0
-  _inCollection: 1
+  _inCollection: 0
   _baseCost: 0
   _passiveCardEffects: []
   id: 59d5c9db-4483-45ff-bf76-08ab1ee5b2f6
+  Origin: 0
   _values: 01000000
   _description: 'Passive: Your spells give this creature instead of damaging it.'
   _effects:

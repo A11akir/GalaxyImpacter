@@ -15,10 +15,10 @@ MonoBehaviour:
   _name: Thunderstorm gift
   _rarity: 2
   _iconImage: {fileID: 0}
-  _specialization: 
+  _specialization: 05000000
   _level: 0
   targetType: 0
-  _inCollection: 1
+  _inCollection: 0
   _baseCost: 1
   _passiveCardEffects: []
   id: 34c52793-bc32-4252-9d7c-ff3e512eee53

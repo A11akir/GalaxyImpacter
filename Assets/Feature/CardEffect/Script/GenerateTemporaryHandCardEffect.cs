@@ -16,7 +16,7 @@ namespace Feature.CardEffect.Script
 
         public override void Execute(EffectContext ctx)
         {
-            int count = ctx.CardData.Values[ctx.ValueIndex];
+            int count = ctx.Value();
             var targets = ResolveTargets(ctx);
 
             foreach (var target in targets)
@@ -39,21 +39,17 @@ namespace Feature.CardEffect.Script
 
         private void ApplyModifiers(EffectContext ctx, CardStatsData card)
         {
-            int countIndex = ctx.ValueIndex;
-            var savedCard = ctx.TargetCard;
-
             for (int m = 0; m < _modifiers.Count; m++)
             {
                 var modifier = _modifiers[m];
                 if (modifier == null) continue;
 
-                ctx.ValueIndex = countIndex + 1 + m;
-                ctx.TargetCard = card;
-                modifier.Execute(ctx);
+                ExecuteInSlot(ctx, 1 + m, c =>
+                {
+                    c.TargetCard = card;
+                    modifier.Execute(c);
+                });
             }
-
-            ctx.ValueIndex = countIndex;
-            ctx.TargetCard = savedCard;
         }
     }
 }

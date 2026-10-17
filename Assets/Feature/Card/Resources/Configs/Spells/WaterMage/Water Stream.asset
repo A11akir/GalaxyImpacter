@@ -22,6 +22,7 @@ MonoBehaviour:
   _baseCost: 2
   _passiveCardEffects: []
   id: 06c0a073-0016-4147-9ad6-2403479e501e
+  Origin: 0
   _values: 0200000002000000
   _description: The target receives 2 moisture, and the next card costs 2 less
   _effects: []

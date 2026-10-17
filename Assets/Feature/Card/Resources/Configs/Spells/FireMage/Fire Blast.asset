@@ -23,6 +23,7 @@ MonoBehaviour:
   _passiveCardEffects:
   - rid: 5943948389448941568
   id: 522b2125-4709-404f-a52e-483d60ebf600
+  Origin: 0
   _values: 0a00000001000000
   _description: 'Take 10 damage. If target minion - kill him. Costs 1 less for each
     Burning effect '

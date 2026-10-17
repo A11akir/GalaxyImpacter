@@ -15,13 +15,14 @@ MonoBehaviour:
   _name: Insect fly
   _rarity: 0
   _iconImage: {fileID: 0}
-  _specialization: 
+  _specialization: 05000000
   _level: 0
   targetType: 0
-  _inCollection: 1
+  _inCollection: 0
   _baseCost: 1
   _passiveCardEffects: []
   id: 4cb946bd-16e9-402c-8612-1bf89479b435
+  Origin: 0
   _values: 
   _description: 'Passive: Cannot take damage from attacks until end turn..'
   _effects:

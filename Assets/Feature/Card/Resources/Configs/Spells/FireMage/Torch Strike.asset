@@ -22,6 +22,7 @@ MonoBehaviour:
   _baseCost: 1
   _passiveCardEffects: []
   id: 5a034ec1-37f6-4d96-8f24-dadfac797db9
+  Origin: 0
   _values: 0100000000000000
   _description: Fire Hit this turn increases your next damage by 1. Take 0 damage.
   _effects:

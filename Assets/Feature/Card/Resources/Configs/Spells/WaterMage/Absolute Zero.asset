@@ -22,6 +22,7 @@ MonoBehaviour:
   _baseCost: 0
   _passiveCardEffects: []
   id: a80e199d-bf1b-4279-b6ea-8696ead4f3f0
+  Origin: 0
   _values: 00000000
   _description: Freezes evryone.
   _effects: []

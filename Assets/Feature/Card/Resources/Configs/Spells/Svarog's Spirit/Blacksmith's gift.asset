@@ -15,10 +15,10 @@ MonoBehaviour:
   _name: Blacksmith's gift
   _rarity: 2
   _iconImage: {fileID: 0}
-  _specialization: 
+  _specialization: 05000000
   _level: 0
   targetType: 0
-  _inCollection: 1
+  _inCollection: 0
   _baseCost: 1
   _passiveCardEffects: []
   id: c969d8ed-0242-489e-8ccd-15cc364cff32

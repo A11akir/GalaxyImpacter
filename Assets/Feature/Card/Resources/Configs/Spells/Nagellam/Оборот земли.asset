@@ -18,10 +18,11 @@ MonoBehaviour:
   _specialization: 
   _level: 0
   targetType: 0
-  _inCollection: 1
+  _inCollection: 0
   _baseCost: 2
   _passiveCardEffects: []
   id: 0f3e4a11-c406-4480-a7f0-260a9d249f56
+  Origin: 0
   _values: 02000000
   _description: "Nagellam \u0438\u0441\u0447\u0435\u0437\u0430\u0435\u0442. \u0427\u0435\u0440\u0435\u0437
     2 \u0445\u043E\u0434\u0430 \u0432\u044B \u043A\u043B\u0430\u0434\u0435\u0442\u0435

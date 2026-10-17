@@ -15,12 +15,6 @@ namespace Feature.GameSessionData
 
         public IEnumerable<CardAndHealthEntityOwnerData> Minions =>
             CardAndHealthEntityOwners.Where(o => o != MainHeroEntity());
-
-        public IEnumerable<CardAndHealthEntityOwnerData> AliveMinions =>
-            Minions.Where(o => o.HealthValue > 0);
-
-        public IEnumerable<CardAndHealthEntityOwnerData> AllAlive =>
-            CardAndHealthEntityOwners.Where(o => o.HealthValue > 0);
         
         public HeroClassData HeroClassData { get; } = new HeroClassData();
         public HeroClassLevel HeroClassLevel { get; } = new HeroClassLevel();

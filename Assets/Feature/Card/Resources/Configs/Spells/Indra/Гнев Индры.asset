@@ -18,10 +18,11 @@ MonoBehaviour:
   _specialization: 
   _level: 0
   targetType: 0
-  _inCollection: 1
+  _inCollection: 0
   _baseCost: 5
   _passiveCardEffects: []
   id: 78cef7e7-4e33-415f-9919-add15d8d3fa5
+  Origin: 0
   _values: 
   _description: "\u041F\u0440\u0438\u043C\u0435\u043D\u044F\u0435\u0442 Thunder Spark
     \u043A\u043E \u0432\u0441\u0435\u043C \u043F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A\u0430\u043C."

@@ -15,13 +15,14 @@ MonoBehaviour:
   _name: Burn spell
   _rarity: 2
   _iconImage: {fileID: 0}
-  _specialization: 
+  _specialization: 05000000
   _level: 0
-  targetType: 0
-  _inCollection: 1
+  targetType: 2
+  _inCollection: 0
   _baseCost: 0
   _passiveCardEffects: []
   id: 92afd1ad-be73-41b3-9037-a90478b42962
+  Origin: 0
   _values: 01000000
   _description: Take 1 damage, if it kill target give Burn spell.
   _effects: []

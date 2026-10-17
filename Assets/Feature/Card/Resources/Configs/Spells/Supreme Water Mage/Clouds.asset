@@ -18,10 +18,11 @@ MonoBehaviour:
   _specialization: 
   _level: 0
   targetType: 0
-  _inCollection: 1
+  _inCollection: 0
   _baseCost: 1
   _passiveCardEffects: []
   id: a8b28000-70b4-4987-b90f-d0e3ae788c15
+  Origin: 0
   _values: 01000000
   _description: 'Passive: All creatures gains 1 more moisture until the end of the
     turn.'

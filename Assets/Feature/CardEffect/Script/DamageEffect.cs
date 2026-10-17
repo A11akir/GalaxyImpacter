@@ -49,7 +49,7 @@ namespace Feature.CardEffect.Script
         private List<CardAndHealthEntityOwnerData> GetAllies(CardAndHealthEntityOwnerData caster, GameSessionModel gameSessionModel)
         {
             var casterSide = gameSessionModel.GetPlayerDataByOwner(caster);
-            return casterSide != null ? casterSide.AllAlive.ToList() : new List<CardAndHealthEntityOwnerData>();
+            return casterSide != null ? casterSide.CardAndHealthEntityOwners.ToList() : new List<CardAndHealthEntityOwnerData>();
         }
     }
 }

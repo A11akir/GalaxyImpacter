@@ -15,10 +15,10 @@ MonoBehaviour:
   _name: Fire gift
   _rarity: 2
   _iconImage: {fileID: 0}
-  _specialization: 
+  _specialization: 05000000
   _level: 0
   targetType: 0
-  _inCollection: 1
+  _inCollection: 0
   _baseCost: 1
   _passiveCardEffects: []
   id: 2d3f2975-a7be-443d-9591-710de6ea9ccd

@@ -22,6 +22,7 @@ MonoBehaviour:
   _baseCost: 1
   _passiveCardEffects: []
   id: 5423b825-f921-4c72-8665-ad2c0a305883
+  Origin: 0
   _values: 01000000
   _description: Transmits all the moisture to the target and 1 more
   _effects: []

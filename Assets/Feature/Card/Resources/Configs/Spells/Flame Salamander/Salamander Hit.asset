@@ -15,13 +15,14 @@ MonoBehaviour:
   _name: Salamander Hit
   _rarity: 1
   _iconImage: {fileID: 0}
-  _specialization: 
+  _specialization: 05000000
   _level: 0
-  targetType: 0
-  _inCollection: 1
+  targetType: 2
+  _inCollection: 0
   _baseCost: 0
   _passiveCardEffects: []
   id: deed3195-cef6-452d-acf7-e3c14bb954e1
+  Origin: 0
   _values: 01000000
   _description: Take 1 damage.
   _effects:

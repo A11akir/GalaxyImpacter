@@ -22,6 +22,7 @@ MonoBehaviour:
   _baseCost: 1
   _passiveCardEffects: []
   id: e6951659-b140-4752-b816-77d0342f44e3
+  Origin: 0
   _values: 0100000000000000
   _description: When you use a spell before the end of your turn, you receive 1 temporary
     fire spell.
@@ -46,10 +47,11 @@ MonoBehaviour:
         _generator:
           TargetSelection: 1
           RandomSingleTarget: 0
-          _query:
+          filter:
             ClassSource: 1
             ManualClass: 5
             CardType: 1
             RaritySource: 0
             ManualRarities: 
             SpecificCard: {fileID: 0}
+          _modifiers: []

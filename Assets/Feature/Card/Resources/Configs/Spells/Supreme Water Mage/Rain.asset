@@ -18,10 +18,11 @@ MonoBehaviour:
   _specialization: 
   _level: 0
   targetType: 0
-  _inCollection: 1
+  _inCollection: 0
   _baseCost: 1
   _passiveCardEffects: []
   id: e5e3dad3-a4fb-475d-befa-2fe4036e3114
+  Origin: 0
   _values: 01000000
   _description: All creatures receive 1 moisture.
   _effects: []
