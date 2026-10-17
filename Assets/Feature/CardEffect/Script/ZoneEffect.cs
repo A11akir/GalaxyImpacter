@@ -13,8 +13,6 @@ namespace Feature.CardEffect.Script
 
         public override void Execute(EffectContext context)
         {
-            if (_effect == null) return;
-
             //велью зоны
             int zone = context.Value();
 

@@ -52,8 +52,6 @@ namespace Feature.CardEffect.Script
         /// </summary>
         protected void ExecuteInSlot(EffectContext context, int offset, Action<EffectContext> body)
         {
-            if (body == null) return;
-
             int savedIndex = context.ValueIndex;
             var savedTarget = context.Target;
             var savedTargetCard = context.TargetCard;

@@ -11,7 +11,7 @@ namespace Feature.CardEffect.Script
     [Serializable]
     public class DamageEffect : CardEffect
     {
-        [SerializeField] private DamageType _damageType = DamageType.Normal;
+        [SerializeField] protected DamageType _damageType = DamageType.Normal;
 
         public override void Execute(EffectContext context)
         {
