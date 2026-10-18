@@ -68,6 +68,22 @@ namespace Feature.Battlefield.Script
 
             playerData.AddCardToBoard((MinionCardData)cardData, index);
         }
+        
+        public bool SummonMinion(GameSessionPlayerData playerData, CardAndHealthEntityOwnerData source, MinionCardData template)
+        {
+            if (template == null) return false;
+
+            int sourceSlot = playerData.CardsInBoardList.FindIndex(c => c != null && c.id == source.CardId);
+            int slot = _boardManager.FindNearestFreeSlot(playerData, sourceSlot);
+
+            if (slot == -1) return false;
+
+            var minion = Object.Instantiate(template);
+            minion.id = System.Guid.NewGuid().ToString();
+
+            playerData.AddCardToBoard(minion, slot);
+            return true;
+        }
 
         private void OnCardAdded(MinionCardData card, int index, GameSessionPlayerData playerData)
         {

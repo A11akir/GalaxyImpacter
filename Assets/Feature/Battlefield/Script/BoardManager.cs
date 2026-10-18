@@ -100,6 +100,34 @@ namespace Feature.Battlefield.Script
             return freeSlots.Count == 0 ? -1 : freeSlots[UnityEngine.Random.Range(0, freeSlots.Count)];
         }
 
+        /// <summary>
+        /// Ближайший свободный слот к center: сначала сам слот, потом вправо, потом влево.
+        /// center &lt; 0 — ищем с первого слота.
+        /// </summary>
+        public int FindNearestFreeSlot(GameSessionPlayerData playerData, int center)
+        {
+            var board = playerData.CardsInBoardList;
+
+            if (center < 0)
+                center = 0;
+
+            if (center < board.Count && board[center] == null)
+                return center;
+
+            for (int dist = 1; dist < board.Count; dist++)
+            {
+                int right = center + dist;
+                if (right < board.Count && board[right] == null)
+                    return right;
+
+                int left = center - dist;
+                if (left >= 0 && board[left] == null)
+                    return left;
+            }
+
+            return -1;
+        }
+
         public void OccupySlot(int index)
         {
             _tipPlaceSystem.OccupySlot(index);
