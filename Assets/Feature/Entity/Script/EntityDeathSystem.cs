@@ -54,6 +54,8 @@ namespace Feature.Entity.Script
 
             int victimSlot = playerData.CardsInBoardList.FindIndex(c => c != null && c.id == victim.CardId);
 
+            Debug.Log($"[Summon] victim={victim._heroName} cardId={victim.CardId} slot={victimSlot}");
+
             OnEntityDied?.Invoke(victim, victim.LastDamageSource);
             
             if (cardOnBoard != null)

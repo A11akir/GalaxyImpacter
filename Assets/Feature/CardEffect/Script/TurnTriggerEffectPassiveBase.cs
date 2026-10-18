@@ -17,6 +17,7 @@ namespace Feature.CardEffect.Script
         protected CombatSystem.CombatSystem CombatSystem;
         protected CardStatsData CardData;
         protected CardPoolPickSystem CardPoolPickSystem;
+        protected GameSessionPlayerData CasterSide;
 
         public abstract TurnTriggerTiming Timing { get; }
 
@@ -30,7 +31,8 @@ namespace Feature.CardEffect.Script
             CardData = context.CardData;
             CardPoolPickSystem = context.CardPoolPickSystem;
 
-            context.TurnEffectQueue?.Enqueue(this);
+            // Сторона владельца пассивки — на случай, если он умрёт до триггера.
+            CasterSide = context.GameSessionModel.GetPlayerDataByOwner(context.Target);
         }
 
         public override void Register(CardAndHealthEntityOwnerData owner)
@@ -43,10 +45,19 @@ namespace Feature.CardEffect.Script
 
         public void TriggerEffects()
         {
+            // Слот владельца пассивки считаем ДО выполнения эффектов:
+            // DieEffect может убить владельца, после чего поиск по списку вернёт -1.
+            var side = CasterSide ?? GameSessionModel.GetPlayerDataByOwner(Target);
+            int ownerSlot = -1;
+            if (side != null && Target != null)
+                ownerSlot = side.CardsInBoardList.FindIndex(c => c != null && c.id == Target.CardId);
+
             var innerContext = new EffectContext
             {
                 Caster = Caster,
                 Target = Target,
+                CasterSide = CasterSide,
+                CasterSlot = ownerSlot,
                 GameSessionModel = GameSessionModel,
                 BattlefieldSystem = BattlefieldSystem,
                 CombatSystem = CombatSystem,

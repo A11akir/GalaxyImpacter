@@ -89,20 +89,22 @@ namespace Feature.StagesGameLogic
         private void TriggerTurnStartEffects()
         {
             foreach (var owner in _gameSessionModel.GetAllEntityOwners())
-                owner.PassiveEffects.EnqueuePermanentTurnEffects(_turnEffectQueue, TurnTriggerTiming.TurnStart);
+                owner.PassiveEffects.EnqueueTurnEffects(_turnEffectQueue, TurnTriggerTiming.TurnStart);
 
             _turnEffectQueue.TriggerAll(TurnTriggerTiming.TurnStart);
+
+            // Чистим ПОСЛЕ триггера начала хода: иначе TurnStart+UntilTurnEnd
+            // удалится в конце предыдущего хода, не успев сработать.
+            foreach (var owner in _gameSessionModel.GetAllEntityOwners())
+                owner.PassiveEffects.CleanupExpiredPassives();
         }
 
         private void TriggerTurnEndEffects()
         {
             foreach (var owner in _gameSessionModel.GetAllEntityOwners())
-                owner.PassiveEffects.EnqueuePermanentTurnEffects(_turnEffectQueue, TurnTriggerTiming.TurnEnd);
+                owner.PassiveEffects.EnqueueTurnEffects(_turnEffectQueue, TurnTriggerTiming.TurnEnd);
 
             _turnEffectQueue.TriggerAll(TurnTriggerTiming.TurnEnd);
-
-            foreach (var owner in _gameSessionModel.GetAllEntityOwners())
-                owner.PassiveEffects.CleanupExpiredPassives();
         }
     }
 }
