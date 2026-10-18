@@ -25,7 +25,14 @@ MonoBehaviour:
   Origin: 0
   _values: 05000000
   _description: Take 5 pure damage random enemy.
-  _effects: []
+  _effects:
+  - rid: 7458369320725250051
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 7458369320725250051
+      type: {class: SummonEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 2
+        RandomSingleTarget: 0
+        _summonedMinion: {fileID: 11400000, guid: 9f78b9b288cc00343b4e0e86db913d73, type: 2}
