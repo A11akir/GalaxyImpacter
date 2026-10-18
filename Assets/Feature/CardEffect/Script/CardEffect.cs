@@ -125,7 +125,7 @@ namespace Feature.CardEffect.Script
             return pool;
         }
 
-        private List<CardAndHealthEntityOwnerData> GetTargetsPool(EffectContext ctx)
+        protected List<CardAndHealthEntityOwnerData> GetTargetsPool(EffectContext ctx)
         {
             //возвращает дату кастующей стороны
             var casterSide = ctx.CasterSide ?? ctx.GameSessionModel.GetPlayerDataByOwner(ctx.Caster);

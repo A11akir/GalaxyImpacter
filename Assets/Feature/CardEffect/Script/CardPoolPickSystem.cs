@@ -26,6 +26,19 @@ namespace Feature.CardEffect.Script
         public CardStatsData PickFromHand(CardAndHealthEntityOwnerData handOwner, CardPickFilter filter, EffectContext ctx) =>
             PickFrom(handOwner.CardsInHand.CurrentValue, filter, ctx);
 
+        /// <summary>
+        /// Выбор карты + свежая копия с новым GUID. Общий для генерации в руку и каста.
+        /// </summary>
+        public CardStatsData PickInstance(CardPickFilter filter, EffectContext ctx)
+        {
+            var template = Pick(filter, ctx);
+            if (template == null) return null;
+
+            var copy = Object.Instantiate(template);
+            copy.id = System.Guid.NewGuid().ToString();
+            return copy;
+        }
+
         #region Подбор
 
         /// <summary>

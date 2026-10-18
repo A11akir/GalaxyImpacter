@@ -8,7 +8,7 @@ namespace Feature.CardEffect.Script
     [Serializable]
     public class FireDamageBonusValueSource : IDynamicCostValueSource
     {
-        public IDisposable Subscribe(CardAndHealthEntityOwnerData owner, Action<int> onValueChanged)
+        public IDisposable Subscribe(CardAndHealthEntityOwnerData owner, GameSessionPlayerData side, Action<int> onValueChanged)
         {
             var composite = new CompositeDisposable();
             var inner = new SerialDisposable();

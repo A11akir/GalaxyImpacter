@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
-using Object = UnityEngine.Object;
 using Feature.Card.Script;
 
 namespace Feature.CardEffect.Script
@@ -23,13 +22,10 @@ namespace Feature.CardEffect.Script
             {
                 for (int i = 0; i < count; i++)
                 {
-                    var template = ctx.CardPoolPickSystem.Pick(filter, ctx);
-                    if (!template) return;
+                    var card = ctx.CardPoolPickSystem.PickInstance(filter, ctx);
+                    if (card == null) return;
 
-                    var card = Object.Instantiate(template);
-                    card.id = Guid.NewGuid().ToString();
                     card.Origin = CardOrigin.Temporary;
-
                     ApplyModifiers(ctx, card);
 
                     target.AddCardToHand(card, target.CountCardsInHand);

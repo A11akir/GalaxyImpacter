@@ -29,7 +29,10 @@ namespace Feature.StagesGameLogic
             _heroPowerSystem.ResetAllHeroPowers();
         
             foreach (var owner in _gameSessionModel.GetAllEntityOwners())
+            {
                 owner.DiscardHand();
+                owner.TurnsOnBoard.Value++;
+            }
         
             _handFillSystem.FillHandDataInDecks();
             _chakraManager.NewTurnUpdate();

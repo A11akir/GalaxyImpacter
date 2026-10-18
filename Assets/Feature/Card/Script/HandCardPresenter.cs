@@ -7,15 +7,23 @@ namespace Feature.Card.Script
 {
     public class HandCardPresenter
     {
+        private readonly GameSessionModel _gameSessionModel;
+
+        public HandCardPresenter(GameSessionModel gameSessionModel)
+        {
+            _gameSessionModel = gameSessionModel;
+        }
+
         public void RemoveCardFromHand(HandCardView view, HandCardViews handCardViews) => 
             handCardViews.RemoveHandCardView(view);
 
         public IDisposable ActivatePassiveEffects(CardStatsData cardData, CardAndHealthEntityOwnerData owner)
         {
+            var side = _gameSessionModel.GetPlayerDataByOwner(owner);
             var composite = new CompositeDisposable();
 
             foreach (var effect in cardData.PassiveCardEffects)
-                composite.Add(effect.BindPassiveEffect(owner, cardData));
+                composite.Add(effect.BindPassiveEffect(owner, side, cardData));
 
             return composite;
         }

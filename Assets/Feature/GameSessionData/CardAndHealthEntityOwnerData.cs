@@ -40,6 +40,9 @@ namespace Feature.GameSessionData
         }
 
         public int StartChakra = 2;
+
+        // Сколько ходов сущность стоит на столе (1 = первый ход на столе).
+        public ReactiveProperty<int> TurnsOnBoard = new(1);
         
         private readonly ReactiveProperty<List<CardStatsData>> _cardsInBoard = new(new List<CardStatsData>());
         public ReadOnlyReactiveProperty<List<CardStatsData>> CardsInBoard => _cardsInBoard;

@@ -7,6 +7,6 @@ namespace Feature.CardEffect.Script
     [Serializable]
     public abstract class PassiveCardEffect
     {
-        public abstract IDisposable BindPassiveEffect(CardAndHealthEntityOwnerData owner, CardStatsData card);
+        public abstract IDisposable BindPassiveEffect(CardAndHealthEntityOwnerData owner, GameSessionPlayerData side, CardStatsData card);
     }
 }
