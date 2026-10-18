@@ -18,6 +18,7 @@ namespace Feature.CardEffect.Script
         private CombatSystem.CombatSystem CombatSystem;
         private CardStatsData CardData;
         private CardPoolPickSystem CardPoolPickSystem;
+        private GameSessionPlayerData CasterSide;
 
         public DeathRattlePassive() => Duration = DurationType.Permanent;
 
@@ -28,15 +29,18 @@ namespace Feature.CardEffect.Script
             CombatSystem = context.CombatSystem;
             CardData = context.CardData;
             CardPoolPickSystem = context.CardPoolPickSystem;
+            CasterSide = context.GameSessionModel.GetPlayerDataByOwner(context.Target);
         }
 
         public override void Register(CardAndHealthEntityOwnerData owner) { }
         public override void Unregister() { }
-        public void Trigger(CardAndHealthEntityOwnerData victim, CardAndHealthEntityOwnerData killer)
+        public void Trigger(CardAndHealthEntityOwnerData victim, CardAndHealthEntityOwnerData killer, int victimSlot)
         {
             var innerContext = new EffectContext
             {
                 Caster = victim,
+                CasterSide = CasterSide,
+                CasterSlot = victimSlot,
                 Target = killer,
                 GameSessionModel = GameSessionModel,
                 BattlefieldSystem = BattlefieldSystem,

@@ -13,6 +13,7 @@ namespace Feature.CardEffect.Script
         public override void Execute(EffectContext ctx)
         {
             var targets = ResolveTargets(ctx);
+            var savedTarget = ctx.Target;
 
             foreach (var target in targets)
             {
@@ -26,11 +27,18 @@ namespace Feature.CardEffect.Script
                 passive.SourceCard = ctx.CardData;
 
                 if (passive is ICardContextConsumer consumer)
-                    consumer.OnAppliedFromCard(ctx); // ← AddBonus/Value меняется ЗДЕСЬ, до Add
+                {
+                    // Передаём именно resolved-цель: при TargetSelection=Self ctx.Target пустой,
+                    // и пассивка не сможет определить своего владельца/сторону.
+                    ctx.Target = target;
+                    consumer.OnAppliedFromCard(ctx);
+                }
 
                 if (isNew)
-                    target.PassiveEffects.Add(passive); // ← добавляем в список ПОСЛЕ, когда Value уже актуален
+                    target.PassiveEffects.Add(passive);
             }
+
+            ctx.Target = savedTarget;
         }
     }
 }

@@ -9,6 +9,11 @@ namespace Feature.CardEffect.Script
     public class EffectContext
     {
         public CardAndHealthEntityOwnerData Caster;
+        // Сторона кастера. Заполняется, когда кастера уже нет в списках владельца
+        // (например, deathrattle после удаления существа с доски).
+        public GameSessionPlayerData CasterSide;
+        // Слот кастера на доске (-1 = нет/неизвестен). Нужен summon'у, чтобы встать на место жертвы.
+        public int CasterSlot = -1;
         public CardAndHealthEntityOwnerData Target;
         public List<CardAndHealthEntityOwnerData> Targets;
         public GameSessionModel GameSessionModel;

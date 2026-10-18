@@ -13,10 +13,13 @@ namespace Feature.CardEffect.Script
         {
             if (_summonedMinion == null) return;
 
-            var playerData = context.GameSessionModel.GetPlayerDataByOwner(context.Caster);
-            if (playerData == null) return;
+            var playerData = context.CasterSide ?? context.GameSessionModel.GetPlayerDataByOwner(context.Caster);
+            if (playerData == null)
+            {
+                return;
+            }
 
-            context.BattlefieldSystem.SummonMinion(playerData, context.Caster, _summonedMinion);
+            context.BattlefieldSystem.SummonMinion(playerData, _summonedMinion, context.CasterSlot);
         }
     }
 }

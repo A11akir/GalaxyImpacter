@@ -59,28 +59,28 @@ namespace Feature.Battlefield.Script
         public void AddCardInBattlefield(GameSessionPlayerData playerData, CardStatsData cardData)
         {
             bool isEnemy = playerData == _gameSessionModel.EnemyHero;
-        
-            int index = isEnemy 
+
+            int slot = isEnemy
                 ? _boardManager.GetRandomFreeSlotForEnemy()
                 : _boardManager.GetFreeSlotForPlayer();
 
-            if (index == -1) return;
-
-            playerData.AddCardToBoard((MinionCardData)cardData, index);
+            PlaceMinion(playerData, (MinionCardData)cardData, slot);
         }
-        
-        public bool SummonMinion(GameSessionPlayerData playerData, CardAndHealthEntityOwnerData source, MinionCardData template)
+
+        public bool SummonMinion(GameSessionPlayerData playerData, MinionCardData template, int preferredSlot)
         {
             if (template == null) return false;
-
-            int sourceSlot = playerData.CardsInBoardList.FindIndex(c => c != null && c.id == source.CardId);
-            int slot = _boardManager.FindNearestFreeSlot(playerData, sourceSlot);
-
-            if (slot == -1) return false;
 
             var minion = Object.Instantiate(template);
             minion.id = System.Guid.NewGuid().ToString();
 
+            int slot = _boardManager.FindNearestFreeSlot(playerData, preferredSlot);
+            return PlaceMinion(playerData, minion, slot);
+        }
+
+        private bool PlaceMinion(GameSessionPlayerData playerData, MinionCardData minion, int slot)
+        {
+            if (slot == -1) return false;
             playerData.AddCardToBoard(minion, slot);
             return true;
         }
@@ -88,7 +88,7 @@ namespace Feature.Battlefield.Script
         private void OnCardAdded(MinionCardData card, int index, GameSessionPlayerData playerData)
         {
             var view = _viewManager.SetupView(card, index, playerData);
-            var owner = CreateOwnerFromCard(card); // ← factory внутри
+            var owner = CreateOwnerFromCard(card);
             
         
             playerData.CardAndHealthEntityOwners.Add(owner);

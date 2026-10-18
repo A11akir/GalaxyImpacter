@@ -128,7 +128,7 @@ namespace Feature.CardEffect.Script
         private List<CardAndHealthEntityOwnerData> GetTargetsPool(EffectContext ctx)
         {
             //возвращает дату кастующей стороны
-            var casterSide = ctx.GameSessionModel.GetPlayerDataByOwner(ctx.Caster);
+            var casterSide = ctx.CasterSide ?? ctx.GameSessionModel.GetPlayerDataByOwner(ctx.Caster);
             
             //союзник тру, враг фолс
             bool casterIsPlayer = casterSide == ctx.GameSessionModel.PlayerHero;

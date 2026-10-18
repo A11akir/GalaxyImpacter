@@ -6,6 +6,7 @@ using Feature.CardEffect.Script;
 using Feature.EndGameSession;
 using Feature.GameSessionData;
 using R3;
+using UnityEngine;
 
 namespace Feature.Entity.Script
 {
@@ -27,8 +28,6 @@ namespace Feature.Entity.Script
 
         public void Init(CardAndHealthEntityOwnerData owner)
         {
-            // Одноразовая подписка: смерть срабатывает ровно один раз,
-            // повторные изменения HP (в т.ч. урон по трупу от рattle) уже игнорируются.
             owner.Health
                 .Where(hp => hp <= 0)
                 .Take(1)
@@ -53,19 +52,21 @@ namespace Feature.Entity.Script
             var cardOnBoard = playerData.CardsInBoard.CurrentValue
                 .FirstOrDefault(c => c != null && c.id == victim.CardId);
 
+            int victimSlot = playerData.CardsInBoardList.FindIndex(c => c != null && c.id == victim.CardId);
+
             OnEntityDied?.Invoke(victim, victim.LastDamageSource);
-
-            TriggerDeathRattles(victim, victim.LastDamageSource);
-
+            
             if (cardOnBoard != null)
                 playerData.RemoveCardFromBoard(cardOnBoard);
+
+            TriggerDeathRattles(victim, victim.LastDamageSource, victimSlot);
         }
 
-        private void TriggerDeathRattles(CardAndHealthEntityOwnerData victim, CardAndHealthEntityOwnerData killer)
+        private void TriggerDeathRattles(CardAndHealthEntityOwnerData victim, CardAndHealthEntityOwnerData killer, int victimSlot)
         {
             foreach (var passive in victim.PassiveEffects.ActivePassives.CurrentValue)
                 if (passive is DeathRattlePassive deathRattle)
-                    deathRattle.Trigger(victim, killer);
+                    deathRattle.Trigger(victim, killer, victimSlot);
         }
 
         public void Dispose() => _disposables.Dispose();
