@@ -23,7 +23,7 @@ MonoBehaviour:
   _passiveCardEffects: []
   id: e0032120-ab2b-47ba-b91d-7ac88a5f58c5
   Origin: 0
-  _values: 0100000003000000
+  _values: 0300000001000000
   _description: Take 1 damage with zone 3.
   _effects:
   - rid: 5245221676539445250

@@ -23,9 +23,31 @@ MonoBehaviour:
   _passiveCardEffects: []
   id: 92afd1ad-be73-41b3-9037-a90478b42962
   Origin: 0
-  _values: 01000000
+  _values: 0100000001000000
   _description: Take 1 damage, if it kill target give Burn spell.
-  _effects: []
+  _effects:
+  - rid: 7458369308373286912
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 7458369308373286912
+      type: {class: DealDamageLethalTrigger, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 0
+        RandomSingleTarget: 0
+        _damageType: 0
+        _onLethalEffect:
+          rid: 7458369308373286913
+    - rid: 7458369308373286913
+      type: {class: GenerateTemporaryHandCardEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 1
+        RandomSingleTarget: 0
+        filter:
+          ClassSource: 0
+          ManualClass: 0
+          CardType: 0
+          RaritySource: 0
+          ManualRarities: 
+          SpecificCard: {fileID: 11400000}
+        _modifiers: []

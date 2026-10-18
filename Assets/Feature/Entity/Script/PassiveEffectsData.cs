@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Feature.CardEffect.Script;
+using Feature.GameSessionData;
 using Feature.PassiveEffect.Script;
 using R3;
 using UnityEngine;

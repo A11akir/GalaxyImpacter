@@ -21,12 +21,10 @@ namespace Feature.Entity.Script
         public void HandlePassiveAdded(PassiveEffectBase passive)
         {
             var icon = _view.GetFreeSlot();
-            Debug.Log($"[PassiveEffectsPresenter] {passive.GetType().Name}, icon={(icon != null ? icon.name : "NULL — no free slot")}");
             if (icon == null) return;
 
             _activeIcons[passive] = icon;
             icon.SetIcon(passive.Icon);
-            Debug.Log($"[PassiveEffectsPresenter] icon.SetIcon called, sprite={(passive.Icon != null ? "OK" : "NULL sprite")}");
 
             if (passive is IValueProvider valueProvider)
             {
