@@ -57,7 +57,34 @@ namespace Feature.CardEffect.Script
                 TurnEffectQueue = ctx.TurnEffectQueue,
             };
 
+            int hpBefore = target != null ? target.HealthValue : 0;
+            int armorBefore = target != null ? target.ArmorValue : 0;
+
+            Debug.Log($"[CastCards] ═══════════════════════════");
+            Debug.Log($"[CastCards] Card   : {spell.Name} (Cost={spell.Cost})");
+            Debug.Log($"[CastCards] Caster : {DescribeOwner(ctx.Caster, ctx)}");
+            Debug.Log($"[CastCards] Target : {DescribeOwner(target, ctx)} | HP={hpBefore} | Armor={armorBefore}");
+
             CardEffect.ExecuteAll(castContext, spell.Effects);
+
+            int hpAfter = target != null ? target.HealthValue : 0;
+            int armorAfter = target != null ? target.ArmorValue : 0;
+
+            Debug.Log($"[CastCards] Result : {DescribeOwner(target, ctx)} | HP={hpAfter} ({(hpAfter - hpBefore >= 0 ? "+" : "")}{hpAfter - hpBefore}) | Armor={armorAfter} ({(armorAfter - armorBefore >= 0 ? "+" : "")}{armorAfter - armorBefore})");
+            Debug.Log($"[CastCards] ═══════════════════════════");
+        }
+
+        private static string DescribeOwner(CardAndHealthEntityOwnerData owner, EffectContext ctx)
+        {
+            if (owner == null) return "null";
+
+            var playerData = ctx.GameSessionModel.GetPlayerDataByOwner(owner);
+            bool isHero = playerData != null && owner == playerData.MainHeroEntity();
+
+            if (isHero)
+                return $"Hero({owner._heroName})";
+
+            return $"Minion({owner.CardId})";
         }
     }
 }

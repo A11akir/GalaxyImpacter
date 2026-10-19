@@ -8,7 +8,7 @@ using Zenject;
 
 namespace Feature.DevTools
 {
-    public class DebugCardSpawner : MonoBehaviour
+    public class CheatPanel : MonoBehaviour
     {
         [SerializeField] private GameData _gameData;
         [Inject] private GameSessionModel _gameSessionModel;
@@ -16,10 +16,10 @@ namespace Feature.DevTools
 
         [Title("Добавить карту в руку")]
         [SerializeField] private string _cardName;
-
-        public enum TargetSide { Player, Enemy, CurrentActiveOwner }
-
         [SerializeField] private TargetSide _target;
+
+        [Title("Добавить ману")]
+        [SerializeField] private int _manaAmount = 2;
 
         [Button("Добавить карту")]
         private void AddCardToHand()
@@ -53,5 +53,28 @@ namespace Feature.DevTools
             owner.AddCardToHand(cardCopy, owner.CountCardsInHand);
 
         }
+
+        [Button("Добавить ману")]
+        private void AddMana()
+        {
+            var owner = _target switch
+            {
+                TargetSide.Player => _gameSessionModel.PlayerHero.MainHeroEntity(),
+                TargetSide.Enemy => _gameSessionModel.EnemyHero.MainHeroEntity(),
+                TargetSide.CurrentActiveOwner => _handViewSwitcher.CurrentOwner,
+                _ => null
+            };
+
+            if (owner == null)
+            {
+                Debug.LogWarning("[CheatPanel] No active owner found");
+                return;
+            }
+
+            int max = owner.MaxChakraCountBaseIncrease;
+            owner.Chakra = Mathf.Min(owner.Chakra + _manaAmount, max);
+        }
+
+        public enum TargetSide { Player, Enemy, CurrentActiveOwner }
     }
 }

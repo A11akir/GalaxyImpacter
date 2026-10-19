@@ -16,7 +16,8 @@ namespace Feature.CardEffect.Script
 
         public override IDisposable BindPassiveEffect(CardAndHealthEntityOwnerData owner, GameSessionPlayerData side, CardStatsData card)
         {
-            int required = (card as SpellCardData)?.Values?.FirstOrDefault() ?? 0;
+            var values = (card as SpellCardData)?.Values;
+            int required = values != null && values.Count > 0 ? values[^1] : 0;
 
             return _surviveSource.Subscribe(owner, side, survived =>
                 card.Cost = survived >= required ? 0 : card.BaseCost);
