@@ -20,13 +20,51 @@ MonoBehaviour:
   targetType: 0
   _inCollection: 0
   _baseCost: 5
-  _passiveCardEffects: []
+  _passiveCardEffects:
+  - rid: 5245221767112818691
   id: 668f1794-b630-426b-93b0-20af35fb9d3f
   Origin: 0
-  _values: 05000000
+  _values: 050000006300000003000000
   _description: Cost 0 if it is on board during the third turn. Hero get 5 random
     tempory fire spell which cost 0
-  _effects: []
+  _effects:
+  - rid: 5245221767112818693
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 5245221767112818691
+      type: {class: FreeIfSurvivedEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        _surviveSource:
+          rid: 5245221767112818692
+    - rid: 5245221767112818692
+      type: {class: MinionSurviveCostSource, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        _requiredMinion: {fileID: 11400000, guid: cd5aac9a46db3aa46bf3dd575740ebe8, type: 2}
+    - rid: 5245221767112818693
+      type: {class: GenerateTemporaryHandCardEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 3
+        RandomSingleTarget: 0
+        filter:
+          ClassSource: 1
+          ManualClass: 5
+          CardType: 1
+          RaritySource: 1
+          ManualRarities: 00000000010000000200000003000000
+          SpecificCard: {fileID: 0}
+        _modifiers:
+        - rid: 5245221767112818694
+    - rid: 5245221767112818694
+      type: {class: ModifyHandCardCostEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 3
+        RandomSingleTarget: 0
+        filter:
+          ClassSource: 0
+          ManualClass: 0
+          CardType: 0
+          RaritySource: 0
+          ManualRarities: 
+          SpecificCard: {fileID: 0}
+        _direction: 0
