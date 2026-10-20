@@ -43,6 +43,8 @@ namespace Feature.GameSessionData
         {
             PlayerHero = playerHero;
             EnemyHero = enemyHero;
+            playerHero.MainHeroEntity().GameSessionModel = this;
+            enemyHero.MainHeroEntity().GameSessionModel = this;
         }
         
         public float PrepareStartTime = 10f;

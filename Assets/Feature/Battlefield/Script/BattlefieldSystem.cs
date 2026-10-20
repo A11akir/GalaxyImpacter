@@ -139,6 +139,7 @@ namespace Feature.Battlefield.Script
         {
             return new CardAndHealthEntityOwnerData
             {
+                GameSessionModel = _gameSessionModel,
                 CardId = card.id,
                 startCardsInDeckCount = card.SpellsList.Count,
                 startCardsInHandToDraw = card.HandCardCount,

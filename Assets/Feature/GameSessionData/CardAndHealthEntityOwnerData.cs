@@ -89,6 +89,8 @@ namespace Feature.GameSessionData
 
         public string CardId { get; set; }
 
+        public GameSessionModel GameSessionModel { get; set; }
+
         public Sprite _iconImage;
         
         public void AddCardToDeck(CardStatsData card)

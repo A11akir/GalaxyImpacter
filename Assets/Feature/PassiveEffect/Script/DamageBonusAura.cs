@@ -21,18 +21,13 @@ namespace Feature.PassiveEffect.Script
         public ReadOnlyReactiveProperty<int> Value => _bonus;
 
         protected CardAndHealthEntityOwnerData Owner;
-        protected GameSessionModel GameSessionModel;
 
-        public void OnAppliedFromCard(EffectContext context)
-        {
-            GameSessionModel = context.GameSessionModel;
+        public void OnAppliedFromCard(EffectContext context) =>
             AddBonus(context.CardData.Values[context.ValueIndex]);
-        }
 
         public void AddBonus(int amount) => _bonus.Value += amount;
 
-        // Владельца берём отсюда: Register вызывается lifecycle'ом при каждом добавлении,
-        // и owner тут всегда корректен (в отличие от context.Target в OnAppliedFromCard).
+        // Владельца берём отсюда: Register вызывается lifecycle'ом при каждом добавлении.
         public override void Register(CardAndHealthEntityOwnerData owner)
         {
             Owner = owner;
@@ -42,41 +37,33 @@ namespace Feature.PassiveEffect.Script
 
         public virtual int GetDamageBonus(CardStatsData sourceCard) => _bonus.Value;
 
-        /// <summary>
-        /// Попадает ли кастер в зону действия ауры.
-        /// </summary>
         public bool Covers(CardAndHealthEntityOwnerData caster)
         {
-            if (caster == null || Owner == null)
-                return false;
+            if (caster == null || Owner == null) return false;
 
-            // Self не требует модели: просто совпадение с владельцем.
-            if (TargetSelection == TargetSelectionType.Self)
-                return Owner == caster;
+            var model = Owner.GameSessionModel;
+            if (model == null) return false;
 
-            if (GameSessionModel == null)
-                return false;
-
-            return ResolveTargets().Contains(caster);
+            return ResolveTargets(model).Contains(caster);
         }
 
-        private List<CardAndHealthEntityOwnerData> ResolveTargets()
+        private List<CardAndHealthEntityOwnerData> ResolveTargets(GameSessionModel model)
         {
-            var side = GameSessionModel.GetPlayerDataByOwner(Owner);
-            bool ownerIsPlayer = side == GameSessionModel.PlayerHero;
-            var ally  = ownerIsPlayer ? GameSessionModel.PlayerHero : GameSessionModel.EnemyHero;
-            var enemy = ownerIsPlayer ? GameSessionModel.EnemyHero : GameSessionModel.PlayerHero;
+            var side = model.GetPlayerDataByOwner(Owner);
+            bool ownerIsPlayer = side == model.PlayerHero;
+            var ally  = ownerIsPlayer ? model.PlayerHero : model.EnemyHero;
+            var enemy = ownerIsPlayer ? model.EnemyHero : model.PlayerHero;
 
             return TargetSelection switch
             {
                 TargetSelectionType.Self         => new List<CardAndHealthEntityOwnerData> { Owner },
-                TargetSelectionType.PlayerHero   => new List<CardAndHealthEntityOwnerData> { GameSessionModel.PlayerHero.MainHeroEntity() },
-                TargetSelectionType.EnemyHero    => new List<CardAndHealthEntityOwnerData> { GameSessionModel.EnemyHero.MainHeroEntity() },
+                TargetSelectionType.PlayerHero   => new List<CardAndHealthEntityOwnerData> { model.PlayerHero.MainHeroEntity() },
+                TargetSelectionType.EnemyHero    => new List<CardAndHealthEntityOwnerData> { model.EnemyHero.MainHeroEntity() },
                 TargetSelectionType.EnemyMinion  => enemy.Minions.ToList(),
                 TargetSelectionType.PlayerMinion => ally.Minions.ToList(),
                 TargetSelectionType.Allies       => ally.CardAndHealthEntityOwners.ToList(),
                 TargetSelectionType.Enemies      => enemy.CardAndHealthEntityOwners.ToList(),
-                TargetSelectionType.All          => GameSessionModel.GetAllEntityOwners().ToList(),
+                TargetSelectionType.All          => model.GetAllEntityOwners().ToList(),
                 _                                => new List<CardAndHealthEntityOwnerData>()
             };
         }
