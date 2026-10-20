@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Feature.CombatSystem;
 using Feature.GameSessionData;
 using Feature.PassiveEffect.Script;
@@ -34,22 +32,13 @@ namespace Feature.CardEffect.Script
             int damage = context.CardData.Values[context.ValueIndex];
             int bonus = 0;
 
-            foreach (var passive in context.Caster.PassiveEffects.ActivePassives.CurrentValue)
-                if (passive is IDamageModifier modifier)
-                    bonus += modifier.GetDamageBonus(context.CardData);
-
-            foreach (var ally in GetAllies(context.Caster, context.GameSessionModel))
-            foreach (var passive in ally.PassiveEffects.ActivePassives.CurrentValue)
-                if (passive is ITeamDamageModifier teamModifier)
-                    bonus += teamModifier.GetDamageBonus(context.CardData);
+            // Ауры: проходим по всем сущностям и смотрим, чья аура накрывает кастера.
+            foreach (var entity in context.GameSessionModel.GetAllEntityOwners())
+            foreach (var passive in entity.PassiveEffects.ActivePassives.CurrentValue)
+                if (passive is DamageBonusAura aura && aura.Covers(context.Caster))
+                    bonus += aura.GetDamageBonus(context.CardData);
 
             return damage + bonus;
-        }
-    
-        private List<CardAndHealthEntityOwnerData> GetAllies(CardAndHealthEntityOwnerData caster, GameSessionModel gameSessionModel)
-        {
-            var casterSide = gameSessionModel.GetPlayerDataByOwner(caster);
-            return casterSide != null ? casterSide.CardAndHealthEntityOwners.ToList() : new List<CardAndHealthEntityOwnerData>();
         }
     }
 }
