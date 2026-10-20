@@ -8,7 +8,7 @@ namespace Feature.Battlefield.Script.View
     {
         [SerializeField] private GameObject fogWarView;
         [SerializeField] private CanvasGroup _canvasGroup;
-        
+        [SerializeField] private float _warFogRadius = 115f;
         private RectTransform _rectTransform;
 
         private void OnEnable()
@@ -23,7 +23,7 @@ namespace Feature.Battlefield.Script.View
             _rectTransform.anchoredPosition = new Vector2(_rectTransform.anchoredPosition.x, 100f);
             
             DOTween.Sequence()
-                .Join(_rectTransform.DOAnchorPosY(-115f, 1f).SetEase(Ease.OutQuad))
+                .Join(_rectTransform.DOAnchorPosY(_warFogRadius, 1f).SetEase(Ease.OutQuad))
                 .Join(_canvasGroup.DOFade(1f, 1f));
             
             _canvasGroup.blocksRaycasts = true;
