@@ -128,7 +128,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fog-smoke-design-alpha-free-png_0: -293855584420113915
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

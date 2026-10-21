@@ -125,30 +125,7 @@ namespace Feature.CardEffect.Script
             return pool;
         }
 
-        protected List<CardAndHealthEntityOwnerData> GetTargetsPool(EffectContext ctx)
-        {
-            //возвращает дату кастующей стороны
-            var casterSide = ctx.CasterSide ?? ctx.GameSessionModel.GetPlayerDataByOwner(ctx.Caster);
-            
-            //союзник тру, враг фолс
-            bool casterIsPlayer = casterSide == ctx.GameSessionModel.PlayerHero;
-            //возвращает своих или чужих кастера
-            var ally = casterIsPlayer ? ctx.GameSessionModel.PlayerHero : ctx.GameSessionModel.EnemyHero;
-            var enemy = casterIsPlayer ? ctx.GameSessionModel.EnemyHero : ctx.GameSessionModel.PlayerHero;
-
-            return TargetSelection switch
-            {
-                TargetSelectionType.Target       => new List<CardAndHealthEntityOwnerData> { ctx.Target },
-                TargetSelectionType.Self         => new List<CardAndHealthEntityOwnerData> { ctx.Caster },
-                TargetSelectionType.PlayerHero    => new List<CardAndHealthEntityOwnerData> { ctx.GameSessionModel.PlayerHero.MainHeroEntity() },
-                TargetSelectionType.EnemyHero     => new List<CardAndHealthEntityOwnerData> { ctx.GameSessionModel.EnemyHero.MainHeroEntity() },
-                TargetSelectionType.EnemyMinion   => enemy.Minions.ToList(),
-                TargetSelectionType.PlayerMinion  => ally.Minions.ToList(),
-                TargetSelectionType.Allies        => ally.CardAndHealthEntityOwners.ToList(),
-                TargetSelectionType.Enemies       => enemy.CardAndHealthEntityOwners.ToList(),
-                TargetSelectionType.All           => ctx.GameSessionModel.GetAllEntityOwners().ToList(),
-                _ => new List<CardAndHealthEntityOwnerData>()
-            };
-        }
+        protected List<CardAndHealthEntityOwnerData> GetTargetsPool(EffectContext ctx) =>
+            TargetScopeResolver.Resolve(TargetSelection, ctx.Caster, ctx.Target, ctx.GameSessionModel);
     }
 }

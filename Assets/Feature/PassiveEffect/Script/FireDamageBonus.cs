@@ -4,9 +4,6 @@ using Feature.Hero;
 
 namespace Feature.PassiveEffect.Script
 {
-    /// <summary>
-    /// Бонус урона только для себя, и только для огненных заклинаний.
-    /// </summary>
     [Serializable]
     public class FireDamageBonus : DamageBonusAura
     {

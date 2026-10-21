@@ -30,15 +30,18 @@ namespace Feature.CardEffect.Script
         public int CalculateDamage(EffectContext context)
         {
             int damage = context.CardData.Values[context.ValueIndex];
-            int bonus = 0;
+            int flatBonus = 0;
+            float multiplier = 1f;
 
-            // Ауры: проходим по всем сущностям и смотрим, чья аура накрывает кастера.
             foreach (var entity in context.GameSessionModel.GetAllEntityOwners())
             foreach (var passive in entity.PassiveEffects.ActivePassives.CurrentValue)
-                if (passive is DamageBonusAura aura && aura.Covers(context.Caster))
-                    bonus += aura.GetDamageBonus(context.CardData);
+                if (passive is DamageBonusAura aura && aura.ResolveAura(entity, context.Caster, context.GameSessionModel))
+                {
+                    flatBonus += aura.GetDamageBonus(context.CardData);
+                    multiplier *= aura.GetDamageMultiplier(context.CardData);
+                }
 
-            return damage + bonus;
+            return Mathf.RoundToInt((damage + flatBonus) * multiplier);
         }
     }
 }
