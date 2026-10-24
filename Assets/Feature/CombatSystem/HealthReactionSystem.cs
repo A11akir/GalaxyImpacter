@@ -7,9 +7,18 @@ namespace Feature.CombatSystem
 {
     public class HealthReactionSystem
     {
+        private readonly ShieldSystem _shieldSystem;
+
+        public HealthReactionSystem(ShieldSystem shieldSystem)
+        {
+            _shieldSystem = shieldSystem;
+        }
+
         public bool ApplyDamage(CardAndHealthEntityOwnerData target, int damage, DamageType type, bool targetIsHero, CardAndHealthEntityOwnerData source)
         {
-            int finalDamage = CalculateFinalDamage(target, damage, type, targetIsHero);
+            int afterShield = _shieldSystem.TryBlock(target, damage, type);
+
+            int finalDamage = CalculateFinalDamage(target, afterShield, type, targetIsHero);
 
             var reactions = target.PassiveEffects.ActivePassives.CurrentValue
                 .OfType<IDamageReaction>()
@@ -33,7 +42,7 @@ namespace Feature.CombatSystem
                     return damage;
 
                 case DamageType.Deadly:
-                    if (!targetIsHero)
+                    if (!targetIsHero && damage > 0)
                     {
                         target.HealthValue = 0;
                         return 0;

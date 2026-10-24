@@ -5,6 +5,7 @@ using Feature.DamageEffect;
 using Feature.Entity.Script;
 using Feature.GoogleSheets;
 using Feature.Health;
+using Feature.Shield.Script;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -38,7 +39,9 @@ namespace Feature.Battlefield.Script.View
         [SerializeField] private GameObject primordialSprite;
 
         [SerializeField] private PassiveEffectsContainerView _passiveEffectsView;
+        [SerializeField] private ShieldView _shieldView;
         public PassiveEffectsContainerView PassiveEffectsView => _passiveEffectsView;
+        public ShieldView ShieldView => _shieldView;
         public void ShowDamage(int amount) => _damagePopup.Show(amount);
 
         public event Action OnClicked;

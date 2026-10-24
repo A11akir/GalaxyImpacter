@@ -7,6 +7,7 @@ using Feature.GameSessionData;
 using Feature.Health;
 using Feature.Hero;
 using Feature.Hero.Script;
+using Feature.Shield.Script;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -34,7 +35,9 @@ namespace Feature.UI
         
         [SerializeField] private DamagePopupView _damagePopup;
         [SerializeField] private PassiveEffectsContainerView _passiveEffectsView;
+        [SerializeField] private ShieldView _shieldView;
         public PassiveEffectsContainerView PassiveEffectsView => _passiveEffectsView;
+        public ShieldView ShieldView => _shieldView;
         public void ShowDamage(int amount) => _damagePopup.Show(amount);
         public bool _isBlockedForSelect;
         public GameSessionPlayerData HeroData { get; private set; }

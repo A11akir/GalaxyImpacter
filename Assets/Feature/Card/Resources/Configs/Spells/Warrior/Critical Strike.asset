@@ -43,6 +43,11 @@ MonoBehaviour:
       type: {class: CritDamageAura, ns: Feature.PassiveEffect.Script, asm: Assembly-CSharp}
       data:
         Config: {fileID: 0}
-        UseSourceCardAsDescription: 0
+        UseSourceCardAsDescription: 1
         Duration: 0
         TargetSelection: 7
+        _modifiers:
+        - rid: 5245221879987044356
+    - rid: 5245221879987044356
+      type: {class: CritChanceModifier, ns: Feature.PassiveEffect.Script, asm: Assembly-CSharp}
+      data: 

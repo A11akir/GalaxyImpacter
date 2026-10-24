@@ -74,6 +74,19 @@ namespace Feature.GameSessionData
             get => _armor.Value;
             set => _armor.Value = Mathf.Max(0, value);
         }
+
+        private readonly ReactiveProperty<int> _shield = new(0);
+
+        public ReadOnlyReactiveProperty<int> Shield => _shield;
+
+        public int ShieldValue
+        {
+            get => _shield.Value;
+            set => _shield.Value = Mathf.Max(0, value);
+        }
+
+        public void AddShield(int amount) => ShieldValue += amount;
+
         public string _heroName;
         
         private readonly ReactiveProperty<int> _chakraCount = new();

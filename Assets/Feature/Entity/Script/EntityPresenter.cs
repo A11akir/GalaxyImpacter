@@ -4,6 +4,7 @@ using Feature.GameSessionData;
 using Feature.Hero.Script;
 using Feature.PassiveEffect;
 using Feature.PassiveEffect.Script;
+using Feature.Shield;
 using R3;
 
 namespace Feature.Entity.Script
@@ -17,6 +18,7 @@ namespace Feature.Entity.Script
         private readonly PassiveEffectsPresenter _passiveEffectsPresenter;
         private readonly PassiveEffectRouter _passiveEffectRouter;
         private readonly GameEventDispatcher _eventDispatcher;
+        private ShieldPresenter _shieldPresenter;
 
         public EntityPresenter(
             CardAndHealthEntityOwnerData owner,
@@ -32,6 +34,9 @@ namespace Feature.Entity.Script
 
             InitHealth();
             InitDamagePopup();
+
+            if (_entityView.ShieldView != null)
+                _shieldPresenter = new ShieldPresenter(_owner, _entityView.ShieldView);
 
             _passiveEffectsPresenter = passiveEffectsView != null
                 ? new PassiveEffectsPresenter(passiveEffectsView)
@@ -65,6 +70,7 @@ namespace Feature.Entity.Script
 
         public void Dispose()
         {
+            _shieldPresenter?.Dispose();
             _eventDispatcher.Unsubscribe<DamageDealtInfo>(HandleDamage);
             _disposables.Dispose();
         }
