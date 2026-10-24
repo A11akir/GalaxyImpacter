@@ -26,7 +26,13 @@ MonoBehaviour:
   _values: 03000000
   _description: "\u042D\u043A\u0438\u043F\u0438\u0440\u0443\u0435\u0442 \u0449\u0438\u0442
     \u0441 3 \u043F\u0440\u043E\u0447\u043D\u043E\u0441\u0442\u044F\u043C\u0438."
-  _effects: []
+  _effects:
+  - rid: 5245221879987044357
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 5245221879987044357
+      type: {class: AddShieldEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 0
+        RandomSingleTarget: 0
