@@ -1,34 +1,30 @@
 using System;
 using Feature.CardEffect.Script;
-using Feature.GameSessionData;
 using R3;
 using UnityEngine;
 
 namespace Feature.PassiveEffect.Script
 {
+    /// <summary>
+    /// Плоский бонус к урону. Цели и множитель не трогает.
+    /// </summary>
     [Serializable]
-    public class DamageBonusAura : PassiveEffectBase, ICardContextConsumer, IValueProvider, IStackablePassive
+    public class DamageBonusAura : AttackModifierAura, IValueProvider, IStackablePassive
     {
-        [SerializeField] protected TargetSelectionType TargetSelection = TargetSelectionType.Allies;
-
         private readonly ReactiveProperty<int> _bonus = new(0);
         public ReadOnlyReactiveProperty<int> Value => _bonus;
 
-        public virtual void OnAppliedFromCard(EffectContext context) =>
+        public DamageBonusAura()
+        {
+            TargetSelection = TargetSelectionType.Allies;
+        }
+
+        public override void OnAppliedFromCard(EffectContext context) =>
             AddBonus(context.CardData.Values[context.ValueIndex]);
 
         public void AddBonus(int amount) => _bonus.Value += amount;
 
-        public override void Register(CardAndHealthEntityOwnerData owner) { }
-
-        public override void Unregister() { }
-
-        public virtual int GetDamageBonus(CardStatsData sourceCard) => _bonus.Value;
-
-        public virtual float GetDamageMultiplier(CardStatsData sourceCard) => 1f;
-
-        public bool ResolveAura(CardAndHealthEntityOwnerData owner, CardAndHealthEntityOwnerData caster, GameSessionModel model) =>
-            TargetScopeResolver.Resolve(TargetSelection, owner, null, model).Contains(caster);
+        public override int GetDamageBonus(CardStatsData sourceCard) => _bonus.Value;
 
         public override PassiveEffectBase Clone() =>
             new DamageBonusAura { Config = Config, Duration = Duration, TargetSelection = TargetSelection };

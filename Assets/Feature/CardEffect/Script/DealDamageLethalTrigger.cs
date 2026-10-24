@@ -10,9 +10,9 @@ namespace Feature.CardEffect.Script
 
         public override void Execute(EffectContext context)
         {
-            int damage = CalculateDamage(context);
+            ResolveAttack(context, out int damage, out var targets);
 
-            foreach (var target in ResolveTargets(context))
+            foreach (var target in targets)
             {
                 bool isLethal = context.CombatSystem.DealDamage(
                     target,

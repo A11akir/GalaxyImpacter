@@ -114,7 +114,11 @@ namespace Feature.CardEffect.Script
                 if (modifier == null) continue;
 
                 int offset = m;
-                ExecuteInSlot(ctx, 1 + offset, c => pool = modifier.ModifyTargets(pool, c));
+                ExecuteInSlot(ctx, 1 + offset, c =>
+                {
+                    modifier.ReadValue(c);
+                    pool = modifier.ModifyTargets(pool, c);
+                });
             }
 
             return pool;
