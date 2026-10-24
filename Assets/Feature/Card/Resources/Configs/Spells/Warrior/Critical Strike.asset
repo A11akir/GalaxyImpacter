@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 099bfd14f41f425a8baba42df7fb6568, type: 3}
+  m_Name: Critical Strike
+  m_EditorClassIdentifier: 
+  _name: Critical Strike
+  _rarity: 0
+  _iconImage: {fileID: 0}
+  _specialization: 07000000
+  _level: 0
+  targetType: 0
+  _inCollection: 0
+  _baseCost: 0
+  _passiveCardEffects: []
+  id: 8158c5ae-bd5c-4437-8f04-f446d397f809
+  Origin: 0
+  _values: 9600000019000000
+  _description: "\u0410\u0442\u0430\u043A\u0438 \u0432\u0430\u0448\u0438\u0445 \u043F\u0435\u0440\u0441\u043E\u043D\u0430\u0436\u0435\u0439
+    \u0438\u043C\u0435\u044E\u0442 25% \u043D\u0430\u043D\u0435\u0441\u0442\u0438
+    150% \u0443\u0440\u043E\u043D\u0430."
+  _effects:
+  - rid: 5245221879987044354
+  references:
+    version: 2
+    RefIds:
+    - rid: 5245221879987044354
+      type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 1
+        RandomSingleTarget: 0
+        _passiveTemplate:
+          rid: 5245221879987044355
+    - rid: 5245221879987044355
+      type: {class: CritDamageAura, ns: Feature.PassiveEffect.Script, asm: Assembly-CSharp}
+      data:
+        Config: {fileID: 0}
+        UseSourceCardAsDescription: 0
+        Duration: 0
+        TargetSelection: 7

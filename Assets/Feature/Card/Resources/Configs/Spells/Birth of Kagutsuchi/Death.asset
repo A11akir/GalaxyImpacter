@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Death
   m_EditorClassIdentifier: 
   _name: Death
-  _rarity: 3
+  _rarity: 4
   _iconImage: {fileID: 0}
   _specialization: 05000000
   _level: 0
@@ -24,9 +24,9 @@ MonoBehaviour:
   - rid: 5245221767112818691
   id: 668f1794-b630-426b-93b0-20af35fb9d3f
   Origin: 0
-  _values: 050000006300000003000000
+  _values: 6300000003000000
   _description: Cost 0 if it is on board during the third turn. Hero get 5 random
-    tempory fire spell which cost 0
+    tempory fire spell which cost 0.
   _effects:
   - rid: 5245221767112818693
   references:

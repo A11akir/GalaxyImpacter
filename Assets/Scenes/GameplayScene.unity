@@ -10468,6 +10468,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fogWarView: {fileID: 1837858081}
   _canvasGroup: {fileID: 1837858083}
+  _warFogRadius: 115
 --- !u!1001 &320724496
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13849,8 +13850,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameData: {fileID: 11400000, guid: e7a49d18cdb3acd448fe17fa2db3161b, type: 2}
-  _cardName: Spark
-  _target: 0
+  _cardName: Critical Strike
+  _target: 2
+  _manaAmount: 2
 --- !u!4 &488387878
 Transform:
   m_ObjectHideFlags: 0

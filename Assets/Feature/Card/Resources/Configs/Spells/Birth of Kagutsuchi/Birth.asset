@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Birth
   m_EditorClassIdentifier: 
   _name: Birth
-  _rarity: 3
+  _rarity: 4
   _iconImage: {fileID: 0}
   _specialization: 05000000
   _level: 0
@@ -24,8 +24,8 @@ MonoBehaviour:
   - rid: 5245221767112818698
   id: e6e9230c-eb84-431f-9689-9ce16a2a5b38
   Origin: 0
-  _values: 0500000001000000
-  _description: Cost 0 if it is on board during the first turn. Deal enemy 5 damage
+  _values: 01000000
+  _description: Cost 0 if it is on board during the first turn. Deal enemy 1 damage
   _effects:
   - rid: 5245221767112818697
   references:

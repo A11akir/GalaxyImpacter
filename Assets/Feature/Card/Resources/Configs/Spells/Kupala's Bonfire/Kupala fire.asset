@@ -43,3 +43,4 @@ MonoBehaviour:
         Config: {fileID: 11400000, guid: b4a46d17c7a92b543bffc61b99a1afa5, type: 2}
         UseSourceCardAsDescription: 0
         Duration: 0
+        TargetSelection: 8

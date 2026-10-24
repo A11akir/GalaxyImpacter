@@ -14,7 +14,7 @@ namespace Feature.PassiveEffect.Script
         private readonly ReactiveProperty<int> _bonus = new(0);
         public ReadOnlyReactiveProperty<int> Value => _bonus;
 
-        public void OnAppliedFromCard(EffectContext context) =>
+        public virtual void OnAppliedFromCard(EffectContext context) =>
             AddBonus(context.CardData.Values[context.ValueIndex]);
 
         public void AddBonus(int amount) => _bonus.Value += amount;

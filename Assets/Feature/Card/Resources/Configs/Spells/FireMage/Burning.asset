@@ -33,7 +33,7 @@ MonoBehaviour:
     - rid: 7964668059962310665
       type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
-        TargetSelection: 1
+        TargetSelection: 7
         RandomSingleTarget: 0
         _passiveTemplate:
           rid: 7964668059962310666

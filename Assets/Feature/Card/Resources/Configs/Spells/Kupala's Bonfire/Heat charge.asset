@@ -23,7 +23,7 @@ MonoBehaviour:
   _passiveCardEffects: []
   id: 4a8fd37e-7e95-455d-8737-843d6ebfd8fb
   Origin: 0
-  _values: 010000000100000001000000
+  _values: 0100000000000000
   _description: At the beginning of the turn, the hero receives 1 random fire spell.
   _effects:
   - rid: 5245221404554821636

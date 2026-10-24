@@ -24,7 +24,7 @@ MonoBehaviour:
   id: 92afd1ad-be73-41b3-9037-a90478b42962
   Origin: 0
   _values: 0100000001000000
-  _description: Take 1 damage, if it kill target give Burn spell.
+  _description: Take 1 damage, if it kill target give 1 Burn spell.
   _effects:
   - rid: 7458369308373286912
   references:

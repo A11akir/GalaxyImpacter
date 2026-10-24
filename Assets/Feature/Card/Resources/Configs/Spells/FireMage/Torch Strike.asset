@@ -37,6 +37,7 @@ MonoBehaviour:
         Config: {fileID: 11400000, guid: 6c8b6a000c4779a4bbd7f9ffd4cfa2ef, type: 2}
         UseSourceCardAsDescription: 0
         Duration: 1
+        TargetSelection: 1
     - rid: 7964668059962310656
       type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:

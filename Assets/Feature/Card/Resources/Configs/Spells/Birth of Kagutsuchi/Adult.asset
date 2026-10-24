@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Adult
   m_EditorClassIdentifier: 
   _name: Adult
-  _rarity: 3
+  _rarity: 4
   _iconImage: {fileID: 0}
   _specialization: 05000000
   _level: 0
@@ -24,8 +24,8 @@ MonoBehaviour:
   - rid: 5245221767112818688
   id: bd24443f-cde7-461a-b3af-768727e908ee
   Origin: 0
-  _values: 0500000002000000
-  _description: Cost 0 if it is on board during the second turn. Cast 5 random fire
+  _values: 02000000
+  _description: Cost 0 if it is on board during the second turn. Cast 2 random fire
     spell
   _effects:
   - rid: 5245221767112818701
