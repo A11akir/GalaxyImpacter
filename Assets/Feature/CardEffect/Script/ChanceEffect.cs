@@ -6,7 +6,7 @@ namespace Feature.CardEffect.Script
     [Serializable]
     public class ChanceEffect : CardEffect
     {
-        // Эффект, который выполняется при успешном броске. Вложен, как в ZoneEffect:
+        // Эффект, который выполняется при успешном броске. Вложен через SerializeReference:
         // контейнер читает Values[ValueIndex], вложенный эффект — Values[ValueIndex + 1].
         [SerializeReference] private CardEffect _effect;
 

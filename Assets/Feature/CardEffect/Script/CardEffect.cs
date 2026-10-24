@@ -13,6 +13,8 @@ namespace Feature.CardEffect.Script
         [SerializeField] protected TargetSelectionType TargetSelection = TargetSelectionType.Target;
         [SerializeField] protected bool RandomSingleTarget;
 
+        [SerializeReference] protected List<ITargetModifier> _targetModifiers = new();
+
         public abstract void Execute(EffectContext context);
 
         /// <summary>
@@ -97,7 +99,23 @@ namespace Feature.CardEffect.Script
 
             pool = GetRandomTargetIfNeed(pool);
 
+            pool = ApplyTargetModifiers(ctx, pool);
+
             SaveUsedTargets(ctx, pool);
+
+            return pool;
+        }
+
+        private List<CardAndHealthEntityOwnerData> ApplyTargetModifiers(EffectContext ctx, List<CardAndHealthEntityOwnerData> pool)
+        {
+            for (int m = 0; m < _targetModifiers.Count; m++)
+            {
+                var modifier = _targetModifiers[m];
+                if (modifier == null) continue;
+
+                int offset = m;
+                ExecuteInSlot(ctx, 1 + offset, c => pool = modifier.ModifyTargets(pool, c));
+            }
 
             return pool;
         }

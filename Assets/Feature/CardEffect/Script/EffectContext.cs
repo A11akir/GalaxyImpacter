@@ -20,7 +20,7 @@ namespace Feature.CardEffect.Script
         public SpellCardData CardData;
         public CardStatsData TargetCard;
         public int ValueIndex;
-        
+
         public int Value(int offset = 0) => CardData.Values[ValueIndex + offset];
 
         public CardPoolPickSystem CardPoolPickSystem { get; set; }

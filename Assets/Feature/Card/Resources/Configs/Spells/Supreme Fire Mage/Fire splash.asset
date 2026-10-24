@@ -23,7 +23,7 @@ MonoBehaviour:
   _passiveCardEffects: []
   id: e0032120-ab2b-47ba-b91d-7ac88a5f58c5
   Origin: 0
-  _values: 0300000001000000
+  _values: 0100000003000000
   _description: Take 1 damage with zone 3.
   _effects:
   - rid: 5245221676539445250
@@ -31,15 +31,13 @@ MonoBehaviour:
     version: 2
     RefIds:
     - rid: 5245221676539445250
-      type: {class: ZoneEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
-      data:
-        TargetSelection: 0
-        RandomSingleTarget: 0
-        _effect:
-          rid: 5245221676539445251
-    - rid: 5245221676539445251
       type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
         TargetSelection: 0
         RandomSingleTarget: 0
         _damageType: 0
+        _targetModifiers:
+        - rid: 5245221676539445251
+    - rid: 5245221676539445251
+      type: {class: ZoneModifier, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data: {}
