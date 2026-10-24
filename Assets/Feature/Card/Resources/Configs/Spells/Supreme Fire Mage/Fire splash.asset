@@ -35,9 +35,9 @@ MonoBehaviour:
       data:
         TargetSelection: 0
         RandomSingleTarget: 0
-        _damageType: 0
         _targetModifiers:
         - rid: 5245221676539445251
+        _damageType: 0
     - rid: 5245221676539445251
       type: {class: ZoneModifier, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
-      data: {}
+      data: 

@@ -23,11 +23,28 @@ MonoBehaviour:
   _passiveCardEffects: []
   id: 60c871a2-4edf-455e-81ed-3aeab5b3193d
   Origin: 0
-  _values: 03000000
+  _values: 0100000003000000
   _description: "\u0421\u043B\u0435\u0434\u0443\u044E\u0449\u0430\u044F \u0430\u0442\u0430\u043A\u0430
     \u0431\u0443\u0434\u0435\u0442 \u0431\u0438\u0442\u044C \u0441 \u0437\u043E\u043D\u043E\u0439
     3."
-  _effects: []
+  _effects:
+  - rid: 5245221879987044360
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 5245221879987044360
+      type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 1
+        RandomSingleTarget: 0
+        _targetModifiers: []
+        _passiveTemplate:
+          rid: 5245221879987044361
+    - rid: 5245221879987044361
+      type: {class: TargetModifierAura, ns: Feature.PassiveEffect.Script, asm: Assembly-CSharp}
+      data:
+        Config: {fileID: 0}
+        UseSourceCardAsDescription: 1
+        Duration: 1
+        TargetSelection: 1
+        _modifiers: []
