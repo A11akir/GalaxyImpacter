@@ -23,6 +23,10 @@ namespace Feature.PassiveEffect.Script
             _bonusPerHit.Value += amount; 
         }
 
+        public bool CanStackWith(EffectContext context) => true;
+
+        public void PrepareStack(DurationType duration) { }
+
         public void OnAppliedFromCard(EffectContext context) =>
             AddBonus(context.CardData.Values[context.ValueIndex]);
 

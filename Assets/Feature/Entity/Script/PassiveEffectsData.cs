@@ -73,8 +73,12 @@ namespace Feature.Entity.Script
             var toRemove = new List<PassiveEffectBase>();
 
             foreach (var passive in passives)
+            {
+                passive.TickTurnEnd();   // эффект сам сбрасывает части, которые жили до конца хода
+
                 if (passive.Duration == DurationType.UntilTurnEnd)
                     toRemove.Add(passive);
+            }
 
             foreach (var passive in toRemove)
             {

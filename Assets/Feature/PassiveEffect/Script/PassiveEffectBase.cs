@@ -14,12 +14,12 @@ namespace Feature.PassiveEffect.Script
         [SerializeField] public DurationType Duration;
         public SpellCardData SourceCard { get; set; }
 
-        public Sprite Icon =>
+        public virtual Sprite Icon =>
             UseSourceCardAsDescription && SourceCard != null
                 ? SourceCard.IconImage
                 : Config?.Icon;
 
-        public string GetDescription(int value)
+        public virtual string GetDescription(int value)
         {
             if (UseSourceCardAsDescription && SourceCard != null)
                 return string.Format(SourceCard.Description, value);

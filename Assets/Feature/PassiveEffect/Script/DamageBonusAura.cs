@@ -24,6 +24,10 @@ namespace Feature.PassiveEffect.Script
 
         public void AddBonus(int amount) => _bonus.Value += amount;
 
+        public virtual bool CanStackWith(EffectContext context) => true;
+
+        public virtual void PrepareStack(DurationType duration) { }
+
         public override int GetDamageBonus(CardStatsData sourceCard) => _bonus.Value;
 
         public override PassiveEffectBase Clone()
