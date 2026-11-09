@@ -62,7 +62,11 @@ namespace Feature.PassiveEffect.Script
             };
         }
 
-        public override PassiveEffectBase Clone() =>
-            new SpellHealInsteadOfDamagePassive { Config = Config, _sourceFilter = _sourceFilter };
+        public override PassiveEffectBase Clone()
+        {
+            var clone = new SpellHealInsteadOfDamagePassive { _sourceFilter = _sourceFilter };
+            CopyBaseFields(clone);
+            return clone;
+        }
     }
 }

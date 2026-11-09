@@ -50,12 +50,11 @@ namespace Feature.PassiveEffect.Script
             });
         }
 
-        public override PassiveEffectBase Clone() =>
-            new FireSpellOnCastPassive
-            {
-                Config = Config,
-                Duration = Duration,
-                _generator = _generator
-            };
+        public override PassiveEffectBase Clone()
+        {
+            var clone = new FireSpellOnCastPassive { _generator = _generator };
+            CopyBaseFields(clone);
+            return clone;
+        }
     }
 }

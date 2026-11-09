@@ -25,6 +25,11 @@ namespace Feature.Battlefield.Script
             _tipPlaceSystem = tipPlaceSystem;
         }
 
+        /// <summary>
+        /// Сущности по позициям: герой занимает крайнюю позицию (противник — перед
+        /// нулевым слотом, игрок — после последнего), пустые слоты остаются null,
+        /// чтобы зона считалась по местам, а не по списку существ.
+        /// </summary>
         public List<CardAndHealthEntityOwnerData> GetEntitySlotsForTargets(GameSessionPlayerData playerData)
         {
             bool isEnemy = _gameSessionModel.EnemyHero == playerData;
@@ -37,7 +42,11 @@ namespace Feature.Battlefield.Script
 
             foreach (var card in playerData.CardsInBoardList)
             {
-                if (card == null) continue;
+                if (card == null)
+                {
+                    result.Add(null);   // пустой слот сохраняем — зона не должна через него перескакивать
+                    continue;
+                }
 
                 var owner = playerData.CardAndHealthEntityOwners
                                 .FirstOrDefault(o => o.CardId == card.id)

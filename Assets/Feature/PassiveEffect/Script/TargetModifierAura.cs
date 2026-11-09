@@ -71,13 +71,15 @@ namespace Feature.PassiveEffect.Script
 
         private bool ChargesUnlimited => _charges == 0;
 
-        public override PassiveEffectBase Clone() =>
-            new TargetModifierAura
+        public override PassiveEffectBase Clone()
+        {
+            var clone = new TargetModifierAura
             {
-                Config = Config,
-                Duration = Duration,
                 TargetSelection = TargetSelection,
                 _modifiers = _modifiers
             };
+            CopyBaseFields(clone);
+            return clone;
+        }
     }
 }

@@ -26,7 +26,11 @@ namespace Feature.PassiveEffect.Script
 
         public override int GetDamageBonus(CardStatsData sourceCard) => _bonus.Value;
 
-        public override PassiveEffectBase Clone() =>
-            new DamageBonusAura { Config = Config, Duration = Duration, TargetSelection = TargetSelection };
+        public override PassiveEffectBase Clone()
+        {
+            var clone = new DamageBonusAura { TargetSelection = TargetSelection };
+            CopyBaseFields(clone);
+            return clone;
+        }
     }
 }

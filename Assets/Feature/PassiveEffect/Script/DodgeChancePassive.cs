@@ -29,7 +29,11 @@ namespace Feature.PassiveEffect.Script
             return dodged; // true — урон полностью проигнорирован (уворот сработал)
         }
 
-        public override PassiveEffectBase Clone() =>
-            new DodgeChancePassive { Config = Config, Duration = Duration };
+        public override PassiveEffectBase Clone()
+        {
+            var clone = new DodgeChancePassive();
+            CopyBaseFields(clone);
+            return clone;
+        }
     }
 }

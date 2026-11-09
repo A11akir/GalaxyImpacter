@@ -50,7 +50,11 @@ namespace Feature.PassiveEffect.Script
             bonus.AddBonus(_bonusPerHit.Value);
         }
 
-        public override PassiveEffectBase Clone() =>
-            new FireDamageBonusWatcher { _bonusConfig = _bonusConfig, Config = Config };
+        public override PassiveEffectBase Clone()
+        {
+            var clone = new FireDamageBonusWatcher { _bonusConfig = _bonusConfig };
+            CopyBaseFields(clone);
+            return clone;
+        }
     }
 }

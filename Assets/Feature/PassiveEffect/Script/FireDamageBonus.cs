@@ -19,7 +19,11 @@ namespace Feature.PassiveEffect.Script
             return base.GetDamageBonus(sourceCard);
         }
 
-        public override PassiveEffectBase Clone() =>
-            new FireDamageBonus { Config = Config };
+        public override PassiveEffectBase Clone()
+        {
+            var clone = new FireDamageBonus();
+            CopyBaseFields(clone);
+            return clone;
+        }
     }
 }

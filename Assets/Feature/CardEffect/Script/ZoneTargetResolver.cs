@@ -41,7 +41,10 @@ namespace Feature.CardEffect.Script
             for (int slot = centerIndex - radius; slot <= centerIndex + radius; slot++)
             {
                 bool slotOnBoard = slot >= 0 && slot < slots.Count;
-                if (slotOnBoard)
+                if (!slotOnBoard) continue;
+
+                bool hasEntity = slots[slot] != null;
+                if (hasEntity)
                     result.Add(slots[slot]);
             }
 

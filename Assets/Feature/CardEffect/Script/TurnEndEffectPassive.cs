@@ -9,7 +9,11 @@ namespace Feature.CardEffect.Script
 
         public TurnEndEffectPassive() => Duration = PassiveEffect.Script.DurationType.UntilTurnEnd;
 
-        public override PassiveEffect.Script.PassiveEffectBase Clone() =>
-            new TurnEndEffectPassive { Effects = Effects, Config = Config, Duration = Duration, UseSourceCardAsDescription = UseSourceCardAsDescription };
+        public override PassiveEffect.Script.PassiveEffectBase Clone()
+        {
+            var clone = new TurnEndEffectPassive { Effects = Effects };
+            CopyBaseFields(clone);
+            return clone;
+        }
     }
 }

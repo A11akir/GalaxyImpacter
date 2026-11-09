@@ -41,13 +41,15 @@ namespace Feature.PassiveEffect.Script
                 ? (Value.CurrentValue + _state.DamagePercent) / 100f
                 : 1f;
 
-        public override PassiveEffectBase Clone() =>
-            new CritDamageAura
+        public override PassiveEffectBase Clone()
+        {
+            var clone = new CritDamageAura
             {
-                Config = Config,
-                Duration = Duration,
                 TargetSelection = TargetSelection,
                 _modifiers = _modifiers
             };
+            CopyBaseFields(clone);
+            return clone;
+        }
     }
 }

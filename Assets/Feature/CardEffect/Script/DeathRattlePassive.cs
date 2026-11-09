@@ -53,12 +53,11 @@ namespace Feature.CardEffect.Script
             CardEffect.ExecuteAll(innerContext, Effects);
         }
 
-        public override PassiveEffectBase Clone() =>
-            new DeathRattlePassive
-            {
-                Effects = Effects,
-                Config = Config,
-                UseSourceCardAsDescription = UseSourceCardAsDescription
-            };
+        public override PassiveEffectBase Clone()
+        {
+            var clone = new DeathRattlePassive { Effects = Effects };
+            CopyBaseFields(clone);
+            return clone;
+        }
     }
 }

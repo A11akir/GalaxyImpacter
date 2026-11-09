@@ -10,7 +10,11 @@ namespace Feature.CardEffect.Script
 
         public TurnStartEffectPassive() => Duration = PassiveEffect.Script.DurationType.Permanent;
 
-        public override PassiveEffectBase Clone() =>
-            new TurnStartEffectPassive { Effects = Effects, Config = Config, Duration = Duration, UseSourceCardAsDescription = UseSourceCardAsDescription };
+        public override PassiveEffectBase Clone()
+        {
+            var clone = new TurnStartEffectPassive { Effects = Effects };
+            CopyBaseFields(clone);
+            return clone;
+        }
     }
 }
