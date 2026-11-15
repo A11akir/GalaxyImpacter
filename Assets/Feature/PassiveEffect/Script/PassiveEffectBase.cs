@@ -29,10 +29,7 @@ namespace Feature.PassiveEffect.Script
 
         public void SetConfig(PassiveEffectConfig config) => Config = config;
 
-        /// <summary>
-        /// Переносит общие поля в клон: Config, Duration и UseSourceCardAsDescription.
-        /// Вызывать в Clone() после создания клона, чтобы галочка и длительность не терялись.
-        /// </summary>
+
         protected void CopyBaseFields(PassiveEffectBase clone)
         {
             clone.Config = Config;

@@ -116,6 +116,7 @@ namespace Feature.EntryPoint.Script
             Container.Bind<HandViewSwitcher>().FromComponentInHierarchy().AsSingle();
             
             Container.Bind<CardPoolPickSystem>().AsSingle();
+            Container.Bind<CritSystem>().AsSingle();
             Container.Bind<HandCardCastabilitySystem>().AsSingle();
 
         }

@@ -10,7 +10,7 @@ namespace Feature.CardEffect.Script
         {
             var damageEffect = new DamageEffect();
 
-            int repeatCount = damageEffect.CalculateDamage(context);
+            int repeatCount = damageEffect.CalculateBarrageDamage(context);
             
             Debug.Log($"BarrageRepeatEffect: Calculated repeat count = {repeatCount}");
 
@@ -27,7 +27,8 @@ namespace Feature.CardEffect.Script
                     CombatSystem = context.CombatSystem,
                     CardData = context.CardData,
                     CurrentEffectsList = context.CurrentEffectsList,
-                    ValueIndex = context.ValueIndex
+                    ValueIndex = context.ValueIndex,
+                    CritSystem = context.CritSystem
                 };
 
                 

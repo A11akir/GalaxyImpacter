@@ -18,6 +18,7 @@ namespace Feature.CardEffect.Script
         private CombatSystem.CombatSystem CombatSystem;
         private CardStatsData CardData;
         private CardPoolPickSystem CardPoolPickSystem;
+        private CritSystem CritSystem;
         private GameSessionPlayerData CasterSide;
 
         public DeathRattlePassive() => Duration = DurationType.Permanent;
@@ -29,6 +30,7 @@ namespace Feature.CardEffect.Script
             CombatSystem = context.CombatSystem;
             CardData = context.CardData;
             CardPoolPickSystem = context.CardPoolPickSystem;
+            CritSystem = context.CritSystem;
             CasterSide = context.GameSessionModel.GetPlayerDataByOwner(context.Target);
         }
 
@@ -48,6 +50,7 @@ namespace Feature.CardEffect.Script
                 CardData = (SpellCardData)CardData,
                 CurrentEffectsList = Effects,
                 CardPoolPickSystem = CardPoolPickSystem,
+                CritSystem = CritSystem,
             };
 
             CardEffect.ExecuteAll(innerContext, Effects);

@@ -30,8 +30,6 @@ namespace Feature.CardEffect.Script
 
                 if (passive is ICardContextConsumer consumer)
                 {
-                    // Передаём именно resolved-цель: при TargetSelection=Self ctx.Target пустой,
-                    // и пассивка не сможет определить своего владельца/сторону.
                     ctx.Target = target;
                     consumer.OnAppliedFromCard(ctx);
                 }

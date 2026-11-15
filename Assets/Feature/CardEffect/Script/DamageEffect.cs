@@ -27,9 +27,7 @@ namespace Feature.CardEffect.Script
             }
         }
 
-        /// <summary>
-        /// Один проход по всем модификаторам атаки: урон (бонус + множитель) и цели.
-        /// </summary>
+
         protected void ResolveAttack(EffectContext context, out int damage, out List<CardAndHealthEntityOwnerData> targets)
         {
             int flatBonus = 0;
@@ -42,10 +40,8 @@ namespace Feature.CardEffect.Script
             damage = Mathf.RoundToInt((baseDamage + flatBonus) * multiplier);
         }
 
-        /// <summary>
-        /// Только число урона, без модификации целей (для эффектов, считающих урон заранее).
-        /// </summary>
-        public int CalculateDamage(EffectContext context)
+
+        public int CalculateBarrageDamage(EffectContext context)
         {
             List<CardAndHealthEntityOwnerData> targets = null;
             int flatBonus = 0;
@@ -71,6 +67,10 @@ namespace Feature.CardEffect.Script
                     multiplier *= aura.GetDamageMultiplier(context.CardData);
                     targets = ModifyTargetsIfNeeded(aura, targets, context);
                 }
+
+
+            context.CritSystem.Resolve(context.Caster, context.GameSessionModel);
+            multiplier *= context.CritSystem.LastResult.Multiplier;
         }
 
         private static List<CardAndHealthEntityOwnerData> ModifyTargetsIfNeeded(

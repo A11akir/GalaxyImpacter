@@ -29,5 +29,7 @@ namespace Feature.CardEffect.Script
         public HashSet<CardAndHealthEntityOwnerData> UsedTargets { get; set; }
 
         public TurnTriggerEffectQueue TurnEffectQueue;
+
+        public CritSystem CritSystem;
     }
 }

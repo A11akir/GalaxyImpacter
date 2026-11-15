@@ -19,13 +19,15 @@ namespace Feature.Card.Script
         private readonly CardPoolPickSystem _cardPoolPickSystem;
         private readonly GameEventDispatcher _eventDispatcher;
         private readonly TurnTriggerEffectQueue _turnTriggerEffectQueue;
+        private readonly CritSystem _critSystem;
 
         public CardCastService(GameSessionModel gameSessionModel,
             BattlefieldSystem battlefieldSystem,
             CombatSystem.CombatSystem combatSystem,
             CardPoolPickSystem cardPoolPickSystem,
             GameEventDispatcher eventDispatcher,
-            TurnTriggerEffectQueue turnTriggerEffectQueue)
+            TurnTriggerEffectQueue turnTriggerEffectQueue,
+            CritSystem critSystem)
         {
             _gameSessionModel = gameSessionModel;
             _battlefieldSystem = battlefieldSystem;
@@ -33,6 +35,7 @@ namespace Feature.Card.Script
             _cardPoolPickSystem = cardPoolPickSystem;
             _eventDispatcher = eventDispatcher;
             _turnTriggerEffectQueue = turnTriggerEffectQueue;
+            _critSystem = critSystem;
         }
 
         public bool CheckCanCast(CardStatsData card, CardAndHealthEntityOwnerData owner)
@@ -78,6 +81,7 @@ namespace Feature.Card.Script
                     CurrentEffectsList = spell.Effects,
                     CardPoolPickSystem = _cardPoolPickSystem,
                     TurnEffectQueue = _turnTriggerEffectQueue,
+                    CritSystem = _critSystem,
                 };
 
                 Feature.CardEffect.Script.CardEffect.ExecuteAll(context, spell.Effects);

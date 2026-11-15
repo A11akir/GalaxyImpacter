@@ -55,6 +55,7 @@ namespace Feature.CardEffect.Script
                 CurrentEffectsList = spell.Effects,
                 CardPoolPickSystem = ctx.CardPoolPickSystem,
                 TurnEffectQueue = ctx.TurnEffectQueue,
+                CritSystem = ctx.CritSystem,
             };
 
             int hpBefore = target != null ? target.HealthValue : 0;
