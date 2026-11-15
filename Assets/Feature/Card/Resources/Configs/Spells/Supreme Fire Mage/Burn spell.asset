@@ -35,6 +35,7 @@ MonoBehaviour:
       data:
         TargetSelection: 0
         RandomSingleTarget: 0
+        _targetModifiers: []
         _damageType: 0
         _onLethalEffect:
           rid: 7458369308373286913
@@ -43,11 +44,13 @@ MonoBehaviour:
       data:
         TargetSelection: 1
         RandomSingleTarget: 0
+        _targetModifiers: []
         filter:
           ClassSource: 0
           ManualClass: 0
           CardType: 0
           RaritySource: 0
           ManualRarities: 
-          SpecificCard: {fileID: 11400000}
+          SpecificCard:
+          - {fileID: 11400000}
         _modifiers: []

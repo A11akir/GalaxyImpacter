@@ -36,6 +36,7 @@ MonoBehaviour:
       data:
         TargetSelection: 1
         RandomSingleTarget: 0
+        _targetModifiers: []
         _passiveTemplate:
           rid: 7964668149625520129
     - rid: 7964668149625520129
@@ -47,11 +48,13 @@ MonoBehaviour:
         _generator:
           TargetSelection: 1
           RandomSingleTarget: 0
+          _targetModifiers: []
           filter:
             ClassSource: 1
             ManualClass: 5
             CardType: 1
             RaritySource: 0
             ManualRarities: 
-            SpecificCard: {fileID: 0}
+            SpecificCard:
+            - {fileID: 0}
           _modifiers: []

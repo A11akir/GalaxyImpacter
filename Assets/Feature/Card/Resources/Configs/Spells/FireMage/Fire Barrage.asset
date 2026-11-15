@@ -35,3 +35,4 @@ MonoBehaviour:
       data:
         TargetSelection: 8
         RandomSingleTarget: 1
+        _targetModifiers: []

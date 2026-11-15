@@ -12,8 +12,8 @@ namespace Feature.PassiveEffect.Script
 
         public override void OnAppliedFromCard(EffectContext context)
         {
-            DamagePercent = context.Value();
-            ChancePercent = context.Value(1);
+            ChancePercent = context.Value();
+            DamagePercent = context.Value(1);
         }
 
         public override PassiveEffectBase Clone()

@@ -35,4 +35,5 @@ MonoBehaviour:
       data:
         TargetSelection: 2
         RandomSingleTarget: 0
+        _targetModifiers: []
         _summonedMinion: {fileID: 11400000, guid: 9f78b9b288cc00343b4e0e86db913d73, type: 2}

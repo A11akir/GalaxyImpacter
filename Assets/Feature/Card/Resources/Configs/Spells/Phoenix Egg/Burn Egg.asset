@@ -35,6 +35,7 @@ MonoBehaviour:
       data:
         TargetSelection: 1
         RandomSingleTarget: 0
+        _targetModifiers: []
         _passiveTemplate:
           rid: 7458369320725250057
     - rid: 7458369320725250057
@@ -51,9 +52,11 @@ MonoBehaviour:
       data:
         TargetSelection: 1
         RandomSingleTarget: 0
+        _targetModifiers: []
         _summonedMinion: {fileID: 11400000, guid: 4871da73c97316f46998012d46df74c2, type: 2}
     - rid: 7458369320725250062
       type: {class: DieEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
         TargetSelection: 1
         RandomSingleTarget: 0
+        _targetModifiers: []

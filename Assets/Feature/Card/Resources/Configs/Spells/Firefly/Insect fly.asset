@@ -35,6 +35,7 @@ MonoBehaviour:
       data:
         TargetSelection: 1
         RandomSingleTarget: 0
+        _targetModifiers: []
         _passiveTemplate:
           rid: 6542064022344957953
     - rid: 6542064022344957953

@@ -15,6 +15,10 @@ namespace Feature.CardEffect.Script
         public RaritySource RaritySource;
         public List<CardRarity> ManualRarities;
 
-        [SerializeField] public CardStatsData SpecificCard;
+        /// <summary>
+        /// Конкретные карты: одна — точечная генерация, несколько — случайная из списка.
+        /// Пусто — пул по классу/редкости.
+        /// </summary>
+        [SerializeField] public CardStatsData[] SpecificCard = Array.Empty<CardStatsData>();
     }
 }

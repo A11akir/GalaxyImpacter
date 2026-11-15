@@ -46,7 +46,9 @@ namespace Feature.CardEffect.Script
         /// </summary>
         private CardStatsData PickFrom(IEnumerable<CardStatsData> candidates, CardPickFilter filter, EffectContext ctx)
         {
-            if (filter.SpecificCard != null) return filter.SpecificCard;
+            // Конкретные карты: одна — точечно, несколько — случайная из списка.
+            if (filter.SpecificCard.Length > 0)
+                return filter.SpecificCard[Random.Range(0, filter.SpecificCard.Length)];
 
             var requiredClass = ResolveClass(filter, ctx);
 

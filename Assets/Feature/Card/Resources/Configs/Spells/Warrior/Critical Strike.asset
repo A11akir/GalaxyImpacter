@@ -23,7 +23,7 @@ MonoBehaviour:
   _passiveCardEffects: []
   id: 8158c5ae-bd5c-4437-8f04-f446d397f809
   Origin: 0
-  _values: 9600000019000000
+  _values: 1900000096000000
   _description: "\u0410\u0442\u0430\u043A\u0438 \u0432\u0430\u0448\u0438\u0445 \u043F\u0435\u0440\u0441\u043E\u043D\u0430\u0436\u0435\u0439
     \u0438\u043C\u0435\u044E\u0442 25% \u043D\u0430\u043D\u0435\u0441\u0442\u0438
     150% \u0443\u0440\u043E\u043D\u0430."
@@ -37,17 +37,13 @@ MonoBehaviour:
       data:
         TargetSelection: 1
         RandomSingleTarget: 0
+        _targetModifiers: []
         _passiveTemplate:
           rid: 5245221879987044355
     - rid: 5245221879987044355
       type: {class: CritDamageAura, ns: Feature.PassiveEffect.Script, asm: Assembly-CSharp}
       data:
-        Config: {fileID: 0}
+        Config: {fileID: 11400000, guid: d27b39e9c536f814a9d88cf79648c817, type: 2}
         UseSourceCardAsDescription: 1
         Duration: 0
         TargetSelection: 7
-        _modifiers:
-        - rid: 5245221879987044356
-    - rid: 5245221879987044356
-      type: {class: CritChanceModifier, ns: Feature.PassiveEffect.Script, asm: Assembly-CSharp}
-      data: 

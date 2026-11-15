@@ -27,7 +27,27 @@ MonoBehaviour:
   _description: "\u0417\u0430\u043F\u043E\u043B\u043D\u044F\u0435\u0442 \u0440\u0443\u043A\u0443
     \u0432\u0440\u0435\u043C\u0435\u043D\u043D\u044B\u043C\u0438 \u0430\u0442\u0430\u043A\u0430\u043C\u0438
     \u0432\u043E\u0438\u043D\u0430"
-  _effects: []
+  _effects:
+  - rid: 611417879363190796
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 611417879363190796
+      type: {class: GenerateTemporaryHandCardEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 0
+        RandomSingleTarget: 0
+        _targetModifiers: []
+        filter:
+          ClassSource: 0
+          ManualClass: 0
+          CardType: 0
+          RaritySource: 0
+          ManualRarities: 
+          SpecificCard:
+          - {fileID: 11400000, guid: 9d79c7b8f78974c75b490397f80dd5b2, type: 2}
+          - {fileID: 11400000, guid: a146e899aa42d46d78275d53ed170f41, type: 2}
+          - {fileID: 11400000, guid: 092a57d1e9f554c59a76500c60140c9e, type: 2}
+          - {fileID: 11400000, guid: 209308838c3664a44a9dd88bc1bd1a99, type: 2}
+          - {fileID: 0}
+        _modifiers: []

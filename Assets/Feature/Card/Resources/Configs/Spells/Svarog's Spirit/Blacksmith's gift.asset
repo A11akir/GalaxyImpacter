@@ -35,13 +35,15 @@ MonoBehaviour:
       data:
         TargetSelection: 1
         RandomSingleTarget: 0
+        _targetModifiers: []
         filter:
           ClassSource: 1
           ManualClass: 12
           CardType: 1
           RaritySource: 0
           ManualRarities: 00000000
-          SpecificCard: {fileID: 0}
+          SpecificCard:
+          - {fileID: 0}
         _modifiers:
         - rid: 5245221654683451393
     - rid: 5245221654683451393
@@ -49,11 +51,13 @@ MonoBehaviour:
       data:
         TargetSelection: 0
         RandomSingleTarget: 0
+        _targetModifiers: []
         filter:
           ClassSource: 0
           ManualClass: 0
           CardType: 0
           RaritySource: 0
           ManualRarities: 
-          SpecificCard: {fileID: 0}
+          SpecificCard:
+          - {fileID: 0}
         _direction: 0

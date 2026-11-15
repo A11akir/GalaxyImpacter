@@ -36,6 +36,7 @@ MonoBehaviour:
       data:
         TargetSelection: 8
         RandomSingleTarget: 0
+        _targetModifiers: []
         _damageType: 0
     - rid: 5245221767112818698
       type: {class: FreeIfSurvivedEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}

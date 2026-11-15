@@ -85,6 +85,10 @@ namespace Feature.GameSessionData
             set => _shield.Value = Mathf.Max(0, value);
         }
 
+        /// <summary>Замена прочности щита.</summary>
+        public void SetShield(int amount) => ShieldValue = amount;
+
+        /// <summary>Стак прочности щита.</summary>
         public void AddShield(int amount) => ShieldValue += amount;
 
         public string _heroName;

@@ -35,6 +35,7 @@ MonoBehaviour:
       data:
         TargetSelection: 1
         RandomSingleTarget: 0
+        _targetModifiers: []
         _passiveTemplate:
           rid: 7458369320725250050
     - rid: 7458369320725250050
@@ -50,4 +51,5 @@ MonoBehaviour:
       data:
         TargetSelection: 1
         RandomSingleTarget: 0
+        _targetModifiers: []
         _summonedMinion: {fileID: 11400000, guid: 332dc5c7ed22bc842b38f4c0ebd6d7b8, type: 2}

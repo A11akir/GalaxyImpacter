@@ -25,10 +25,18 @@ MonoBehaviour:
   Origin: 0
   _values: 05000000
   _description: "\u041D\u0430\u043D\u0435\u0441\u0438\u0442\u0435 \u0441\u0435\u0431\u0435
-    5 \u0443\u0440\u043E\u043D\u0430, \u044D\u043A\u0438\u043F\u0438\u0440\u0443\u0435\u0442
-    \u0449\u0438\u0442 \u0440\u0430\u0432\u043D\u043E\u0439 \u043F\u043E\u043B\u0443\u0447\u0435\u043D\u043D\u043E\u043C\u0443
-    \u0443\u0440\u043E\u043D\u0443."
-  _effects: []
+    5 \u0447\u0438\u0441\u0442\u043E\u0433\u043E \u0443\u0440\u043E\u043D\u0430,
+    \u044D\u043A\u0438\u043F\u0438\u0440\u0443\u0435\u0442 \u0449\u0438\u0442 \u0440\u0430\u0432\u043D\u044B\u0439
+    \u043F\u043E\u043B\u0443\u0447\u0435\u043D\u043D\u043E\u043C\u0443 \u0443\u0440\u043E\u043D\u0443."
+  _effects:
+  - rid: 611417879363190793
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 611417879363190793
+      type: {class: DealDamageEquipShieldEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 1
+        RandomSingleTarget: 0
+        _targetModifiers: []
+        _damageType: 1
