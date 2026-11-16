@@ -283,6 +283,11 @@ entityOwner вместо owner
 availableActions / chosenAction (явное назначение)
 Приватные поля: _camelCase
 Публичные свойства: PascalCase
+Использовать простые английские слова в именах — понятные человеку с низким уровнем английского.
+Избегать сложных слов (engaged, adjacent, pending и т.п.). Примеры вместо них:
+hasCrit вместо engaged (есть крит или нет)
+isAlive вместо activeEntity
+Если не уверен, что слово простое — выбрать самое короткое и очевидное.
 
 Регионы в больших классах
 csharp#region Action Collection

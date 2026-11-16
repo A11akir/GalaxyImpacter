@@ -6,10 +6,7 @@ using UnityEngine;
 
 namespace Feature.PassiveEffect.Script
 {
-    /// <summary>
-    /// Базовый модификатор атаки: бонус и множитель урона + модификация целей.
-    /// Наследник переопределяет только нужные части.
-    /// </summary>
+
     [Serializable]
     public abstract class AttackModifierAura : PassiveEffectBase, ICardContextConsumer
     {
@@ -18,8 +15,6 @@ namespace Feature.PassiveEffect.Script
         public virtual void OnAppliedFromCard(EffectContext context) { }
 
         public virtual int GetDamageBonus(CardStatsData sourceCard) => 0;
-
-        public virtual float GetDamageMultiplier(CardStatsData sourceCard) => 1f;
 
         public virtual List<CardAndHealthEntityOwnerData> ModifyTargets(
             List<CardAndHealthEntityOwnerData> targets, EffectContext context) => targets;

@@ -31,13 +31,12 @@ namespace Feature.CardEffect.Script
         protected void ResolveAttack(EffectContext context, out int damage, out List<CardAndHealthEntityOwnerData> targets)
         {
             int flatBonus = 0;
-            float multiplier = 1f;
 
             targets = ResolveTargets(context);
-            ApplyAttackModifiers(context, ref targets, ref flatBonus, ref multiplier);
+            ApplyAttackModifiers(context, ref targets, ref flatBonus);
 
             int baseDamage = context.CardData.Values[context.ValueIndex];
-            damage = Mathf.RoundToInt((baseDamage + flatBonus) * multiplier);
+            damage = Mathf.RoundToInt((baseDamage + flatBonus) * ResolveCritMultiplier(context));
         }
 
 
@@ -45,38 +44,38 @@ namespace Feature.CardEffect.Script
         {
             List<CardAndHealthEntityOwnerData> targets = null;
             int flatBonus = 0;
-            float multiplier = 1f;
 
-            ApplyAttackModifiers(context, ref targets, ref flatBonus, ref multiplier);
+            ApplyAttackModifiers(context, ref targets, ref flatBonus);
 
             int baseDamage = context.CardData.Values[context.ValueIndex];
-            return Mathf.RoundToInt((baseDamage + flatBonus) * multiplier);
+            return Mathf.RoundToInt((baseDamage + flatBonus) * ResolveCritMultiplier(context));
+        }
+
+
+        private static float ResolveCritMultiplier(EffectContext context)
+        {
+            context.CritSystem.Resolve(context.Caster, context.GameSessionModel);
+            return context.CritSystem.LastResult.Multiplier;
         }
 
         private static void ApplyAttackModifiers(
             EffectContext context,
             ref List<CardAndHealthEntityOwnerData> targets,
-            ref int flatBonus,
-            ref float multiplier)
+            ref int flatBonus)
         {
             foreach (var entity in context.GameSessionModel.GetAllEntityOwners())
             foreach (var passive in entity.PassiveEffects.ActivePassives.CurrentValue)
                 if (passive is AttackModifierAura aura && aura.ResolveAura(entity, context.Caster, context.GameSessionModel))
                 {
                     flatBonus += aura.GetDamageBonus(context.CardData);
-                    multiplier *= aura.GetDamageMultiplier(context.CardData);
                     targets = ModifyTargetsIfNeeded(aura, targets, context);
                 }
-
-
-            context.CritSystem.Resolve(context.Caster, context.GameSessionModel);
-            multiplier *= context.CritSystem.LastResult.Multiplier;
         }
 
         private static List<CardAndHealthEntityOwnerData> ModifyTargetsIfNeeded(
             AttackModifierAura aura, List<CardAndHealthEntityOwnerData> targets, EffectContext context)
         {
-            if (targets == null) return null;   // CalculateDamage: цели не участвуют
+            if (targets == null) return null;
             return aura.ModifyTargets(targets, context);
         }
     }

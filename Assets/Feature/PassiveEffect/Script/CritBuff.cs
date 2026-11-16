@@ -6,11 +6,6 @@ using UnityEngine;
 
 namespace Feature.PassiveEffect.Script
 {
-    /// <summary>
-    /// База личного крит-баффа. Один эффект = один конфиг:
-    /// урон ИЛИ шанс — конкретный вид задаёт наследник.
-    /// Стакается: повторное применение плюсует значение в тот же эффект.
-    /// </summary>
     [Serializable]
     public abstract class CritBuff : PassiveEffectBase, ICardContextConsumer, IStackablePassive, IValueProvider
     {

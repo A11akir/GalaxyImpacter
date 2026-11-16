@@ -2,10 +2,7 @@ using System;
 
 namespace Feature.PassiveEffect.Script
 {
-    /// <summary>
-    /// Крит-бафф шанса: +n% к шансу крита.
-    /// Конфиг: «Шанс нанесения критического урона увеличен на n%».
-    /// </summary>
+
     [Serializable]
     public class CritChanceBuff : CritBuff
     {

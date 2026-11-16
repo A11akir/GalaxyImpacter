@@ -2,10 +2,6 @@ using System;
 
 namespace Feature.PassiveEffect.Script
 {
-    /// <summary>
-    /// Крит-бафф урона: +n% к проценту урона крита.
-    /// Конфиг: «Критический урон увеличен на n% (минимальный шанс 10%)».
-    /// </summary>
     [Serializable]
     public class CritDamageBuff : CritBuff
     {

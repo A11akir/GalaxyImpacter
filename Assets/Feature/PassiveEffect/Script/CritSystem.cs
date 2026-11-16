@@ -17,14 +17,14 @@ namespace Feature.PassiveEffect.Script
             int chance = aura != null ? aura.ChancePercent : MinChancePercent;
             int damagePercent = aura != null ? aura.DamagePercent : BaseDamagePercent;
 
-            bool engaged = aura != null;
+            bool hasCrit = aura != null;
             bool hasMultiplier = false;
 
             foreach (var passive in caster.PassiveEffects.ActivePassives.CurrentValue)
             {
                 if (passive is CritBuff buff)
                 {
-                    engaged = true;
+                    hasCrit = true;
                     chance += buff.ChanceBonus;
                     damagePercent += buff.DamageBonus;
                     if (buff.DoubleChance)
@@ -34,7 +34,7 @@ namespace Feature.PassiveEffect.Script
                 }
             }
 
-            if (!engaged)
+            if (!hasCrit)
             {
                 LastResult = new CritResolveResult();
                 Debug.Log($"[Crit] {caster._heroName}: критов нет, резолв пропущен");
