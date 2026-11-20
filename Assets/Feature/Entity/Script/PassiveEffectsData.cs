@@ -74,7 +74,7 @@ namespace Feature.Entity.Script
 
             foreach (var passive in passives)
             {
-                passive.TickTurnEnd();   // эффект сам сбрасывает части, которые жили до конца хода
+                passive.TickTurnEnd();   
 
                 if (passive.Duration == DurationType.UntilTurnEnd)
                     toRemove.Add(passive);

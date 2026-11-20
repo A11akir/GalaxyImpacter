@@ -92,9 +92,7 @@ namespace Feature.StagesGameLogic
                 owner.PassiveEffects.EnqueueTurnEffects(_turnEffectQueue, TurnTriggerTiming.TurnStart);
 
             _turnEffectQueue.TriggerAll(TurnTriggerTiming.TurnStart);
-
-            // Чистим ПОСЛЕ триггера начала хода: иначе TurnStart+UntilTurnEnd
-            // удалится в конце предыдущего хода, не успев сработать.
+            
             foreach (var owner in _gameSessionModel.GetAllEntityOwners())
                 owner.PassiveEffects.CleanupExpiredPassives();
         }

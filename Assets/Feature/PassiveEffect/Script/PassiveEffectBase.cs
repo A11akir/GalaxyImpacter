@@ -10,7 +10,7 @@ namespace Feature.PassiveEffect.Script
     public abstract class PassiveEffectBase
     {
         [SerializeField] protected PassiveEffectConfig Config; 
-        [SerializeField] protected bool UseSourceCardAsDescription; // ← новая галочка
+        [SerializeField] protected bool UseSourceCardAsDescription;
         [SerializeField] public DurationType Duration;
         public SpellCardData SourceCard { get; set; }
 
@@ -28,16 +28,13 @@ namespace Feature.PassiveEffect.Script
         }
 
         public void SetConfig(PassiveEffectConfig config) => Config = config;
-
-
+        
         protected void CopyBaseFields(PassiveEffectBase clone)
         {
             clone.Config = Config;
             clone.Duration = Duration;
             clone.UseSourceCardAsDescription = UseSourceCardAsDescription;
         }
-
-        public virtual int GetDisplayValue(int duplicateCount) => duplicateCount;
 
         public abstract void Register(CardAndHealthEntityOwnerData owner);
         public abstract void Unregister();
