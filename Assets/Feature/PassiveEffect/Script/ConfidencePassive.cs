@@ -9,7 +9,8 @@ namespace Feature.PassiveEffect.Script
     /// <summary>
     /// Самоуверенность (сила героя): шанс крита = прочность щита,
     /// % урона крита = полученный за ход урон.
-    /// Держит в списке владельца два баффа: шанса (от щита) и урона (от полученного урона).
+    /// Баффы общие: если такой бафф уже висит (например, от карты), значения
+    /// добавляются в него, а не создаётся второй эффект.
     /// </summary>
     [Serializable]
     public class ConfidencePassive : PassiveEffectBase, ICardContextConsumer, IDamageReaction
@@ -18,12 +19,6 @@ namespace Feature.PassiveEffect.Script
         [SerializeField] private PassiveEffectConfig _damageConfig;  // CritDamageBuffConfig
 
         private CardAndHealthEntityOwnerData _owner;
-
-        // Бафф шанса: его значение = текущая прочность щита.
-        private CritChanceBuff _shieldChanceBuff;
-
-        // Бафф урона: его значение = полученный за ход урон.
-        private CritDamageBuff _takenDamageBuff;
 
         private readonly CompositeDisposable _disposables = new();
         private int _lastShield;
@@ -39,14 +34,14 @@ namespace Feature.PassiveEffect.Script
             _lastShield = owner.ShieldValue;
 
             if (_lastShield > 0)
-                UpdateShieldChanceBuff(_lastShield);
+                AddChanceFromShield(_lastShield);
 
             owner.Shield
                 .Subscribe(value =>
                 {
                     int delta = value - _lastShield;
                     _lastShield = value;
-                    UpdateShieldChanceBuff(delta);
+                    AddChanceFromShield(delta);
                 })
                 .AddTo(_disposables);
         }
@@ -54,70 +49,77 @@ namespace Feature.PassiveEffect.Script
         public override void Unregister()
         {
             _disposables.Dispose();
-            RemoveBuff(ref _shieldChanceBuff);
-            RemoveBuff(ref _takenDamageBuff);
+
+            Subtract<CritChanceBuff>(_lastShield);
+            Subtract<CritDamageBuff>(_damageTakenThisTurn);
         }
 
         public bool ReactToDamage(CardAndHealthEntityOwnerData target, int finalDamage, CardAndHealthEntityOwnerData source)
         {
             _damageTakenThisTurn += finalDamage;
-            UpdateTakenDamageBuff(finalDamage);
-            return false;  
+            AddDamageTaken(finalDamage);
+            return false;
         }
 
         protected override void OnTurnTick()
         {
-            // Старые баффы уберёт Cleanup (они UntilTurnEnd), тут просто забываем ссылки.
-            _takenDamageBuff = null;
+            // Бафф урона живёт до конца хода — его снимает CleanupExpiredPassives.
             _damageTakenThisTurn = 0;
-
-            // Щит пережил ход — вешаем шанс заново на новый ход.
-            _shieldChanceBuff = null;
-            if (_lastShield > 0)
-                UpdateShieldChanceBuff(_lastShield);
         }
 
-
-        private void UpdateShieldChanceBuff(int delta)
+        /// <summary>Шанс крита = текущая прочность щита. Добавляем только дельту.</summary>
+        private void AddChanceFromShield(int delta)
         {
-            if (_shieldChanceBuff == null)
+            if (delta == 0) return;
+
+            var buff = _owner.PassiveEffects.Find<CritChanceBuff>();
+
+            if (buff == null)
             {
                 if (delta <= 0) return;
 
-                _shieldChanceBuff = new CritChanceBuff { Duration = DurationType.UntilTurnEnd };
-                _shieldChanceBuff.SetConfig(_chanceConfig);
-                _owner.PassiveEffects.Add(_shieldChanceBuff);
+                buff = new CritChanceBuff { Duration = DurationType.Permanent };
+                buff.SetConfig(_chanceConfig);
+                _owner.PassiveEffects.Add(buff);
             }
 
-            _shieldChanceBuff.AddBonus(delta);
-
-            if (_shieldChanceBuff.Value.CurrentValue <= 0)
-                RemoveBuff(ref _shieldChanceBuff);
+            buff.AddBonus(delta);
+            RemoveBuffIfEmpty(buff);
         }
 
-
-        private void UpdateTakenDamageBuff(int delta)
+        /// <summary>Урон крита = полученный за ход урон. Добавляем только дельту.</summary>
+        private void AddDamageTaken(int delta)
         {
-            if (_takenDamageBuff == null)
+            if (delta <= 0) return;
+
+            var buff = _owner.PassiveEffects.Find<CritDamageBuff>();
+
+            if (buff == null)
             {
-                if (delta <= 0) return;
-
-                _takenDamageBuff = new CritDamageBuff { Duration = DurationType.UntilTurnEnd };
-                _takenDamageBuff.SetConfig(_damageConfig);
-                _owner.PassiveEffects.Add(_takenDamageBuff);
+                buff = new CritDamageBuff { Duration = DurationType.UntilTurnEnd };
+                buff.SetConfig(_damageConfig);
+                _owner.PassiveEffects.Add(buff);
             }
 
-            _takenDamageBuff.AddBonus(delta);
-
-            if (_takenDamageBuff.Value.CurrentValue <= 0)
-                RemoveBuff(ref _takenDamageBuff);
+            buff.AddBonus(delta);
         }
 
-        private void RemoveBuff<T>(ref T buff) where T : PassiveEffectBase
+        private void Subtract<T>(int amount) where T : CritBuff
         {
+            if (amount <= 0) return;
+
+            var buff = _owner.PassiveEffects.Find<T>();
             if (buff == null) return;
+
+            buff.AddBonus(-amount);
+            RemoveBuffIfEmpty(buff);
+        }
+
+        private void RemoveBuffIfEmpty(CritBuff buff)
+        {
+            if (buff.Value.CurrentValue > 0) return;
+
             _owner.PassiveEffects.Remove(buff);
-            buff = null;
         }
 
         public override PassiveEffectBase Clone()

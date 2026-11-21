@@ -13,10 +13,7 @@ namespace Feature.Entity.Script
         private readonly Dictionary<PassiveEffectBase, EffectIconViewBase> _activeIcons = new();
         private readonly Dictionary<PassiveEffectBase, System.IDisposable> _valueSubscriptions = new();
 
-        public PassiveEffectsPresenter(PassiveEffectsContainerView view)
-        {
-            _view = view;
-        }
+        public PassiveEffectsPresenter(PassiveEffectsContainerView view) => _view = view;
 
         public void HandlePassiveAdded(PassiveEffectBase passive)
         {
@@ -31,10 +28,7 @@ namespace Feature.Entity.Script
                 var sub = valueProvider.Value.Subscribe(value => UpdateIcon(icon, passive, value));
                 _valueSubscriptions[passive] = sub;
             }
-            else
-            {
-                UpdateIcon(icon, passive, null);
-            }
+            else UpdateIcon(icon, passive, null);
         }
 
         private void UpdateIcon(EffectIconViewBase icon, PassiveEffectBase passive, int? value)

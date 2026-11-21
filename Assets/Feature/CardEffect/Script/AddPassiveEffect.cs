@@ -33,7 +33,7 @@ namespace Feature.CardEffect.Script
                     ctx.Target = target;
                     consumer.OnAppliedFromCard(ctx);
                 }
-
+        
                 if (isNew)
                     target.PassiveEffects.Add(passive);
             }
