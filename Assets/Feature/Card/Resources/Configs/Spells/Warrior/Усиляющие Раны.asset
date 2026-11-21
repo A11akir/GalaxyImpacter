@@ -44,10 +44,10 @@ MonoBehaviour:
     - rid: 4483225065585115137
       type: {class: MissingHealthCritPassive, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
-        Config: {fileID: 11400000, guid: 30173933d4ce8cf44881889bf5a186bb, type: 2}
+        Config: {fileID: 0}
         UseSourceCardAsDescription: 1
         Duration: 0
-        _doubleChance: 0
+        _damageConfig: {fileID: 11400000, guid: 30173933d4ce8cf44881889bf5a186bb, type: 2}
         _missingHealth:
           rid: 4483225065585115139
     - rid: 4483225065585115139

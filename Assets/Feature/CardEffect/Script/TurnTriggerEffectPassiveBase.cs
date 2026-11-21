@@ -21,6 +21,7 @@ namespace Feature.CardEffect.Script
         protected CritSystem CritSystem;
         protected GameSessionPlayerData CasterSide;
         protected CalculateCardCostSystem CostSystem;
+        protected Feature.PassiveEffect.GameEventDispatcher EventDispatcher;
 
         public abstract TurnTriggerTiming Timing { get; }
 
@@ -35,6 +36,7 @@ namespace Feature.CardEffect.Script
             CardPoolPickSystem = context.CardPoolPickSystem;
             CritSystem = context.CritSystem;
             CostSystem = context.CostSystem;
+            EventDispatcher = context.EventDispatcher;
 
             // Сторона владельца пассивки — на случай, если он умрёт до триггера.
             CasterSide = context.GameSessionModel.GetPlayerDataByOwner(context.Target);
@@ -71,6 +73,7 @@ namespace Feature.CardEffect.Script
                 CardPoolPickSystem = CardPoolPickSystem,
                 CritSystem = CritSystem,
                 CostSystem = CostSystem,
+                EventDispatcher = EventDispatcher,
             };
 
             CardEffect.ExecuteAll(innerContext, Effects);

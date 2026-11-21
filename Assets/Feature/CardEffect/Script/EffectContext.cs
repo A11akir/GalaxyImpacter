@@ -3,6 +3,7 @@ using Feature.Battlefield.Script;
 using Feature.Card.Script;
 using Feature.GameSessionData;
 using Feature.GoogleSheets;
+using Feature.PassiveEffect;
 using Feature.PassiveEffect.Script;
 
 namespace Feature.CardEffect.Script
@@ -34,5 +35,7 @@ namespace Feature.CardEffect.Script
         public CritSystem CritSystem;
 
         public CalculateCardCostSystem CostSystem;
+
+        public GameEventDispatcher EventDispatcher;
     }
 }

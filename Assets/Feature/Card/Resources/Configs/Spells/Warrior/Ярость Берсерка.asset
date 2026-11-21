@@ -30,7 +30,37 @@ MonoBehaviour:
     \u0443\u0440\u043E\u043D \u043F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A\u0430\u043C
     \u043D\u0430\u043D\u043E\u0441\u044F\u0442 \u0443\u0440\u043E\u043D \u0438 \u0432\u0430\u0448\u0435\u043C\u0443
     \u0433\u0435\u0440\u043E\u044E."
-  _effects: []
+  _effects:
+  - rid: 4483225065585115140
+  - rid: 4483225065585115142
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4483225065585115140
+      type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 1
+        RandomSingleTarget: 0
+        _targetModifiers: []
+        _passiveTemplate:
+          rid: 4483225065585115141
+    - rid: 4483225065585115141
+      type: {class: AttackCostPassive, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        Config: {fileID: 0}
+        UseSourceCardAsDescription: 1
+        Duration: 1
+    - rid: 4483225065585115142
+      type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 1
+        RandomSingleTarget: 0
+        _targetModifiers: []
+        _passiveTemplate:
+          rid: 4483225065585115143
+    - rid: 4483225065585115143
+      type: {class: EnemyDamageHitsOwnerPassive, ns: Feature.PassiveEffect.Script, asm: Assembly-CSharp}
+      data:
+        Config: {fileID: 0}
+        UseSourceCardAsDescription: 1
+        Duration: 1

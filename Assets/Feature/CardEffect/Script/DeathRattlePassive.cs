@@ -22,6 +22,7 @@ namespace Feature.CardEffect.Script
         private CritSystem CritSystem;
         private GameSessionPlayerData CasterSide;
         private CalculateCardCostSystem CostSystem;
+        private Feature.PassiveEffect.GameEventDispatcher EventDispatcher;
 
         public DeathRattlePassive() => Duration = DurationType.Permanent;
 
@@ -34,6 +35,7 @@ namespace Feature.CardEffect.Script
             CardPoolPickSystem = context.CardPoolPickSystem;
             CritSystem = context.CritSystem;
             CostSystem = context.CostSystem;
+            EventDispatcher = context.EventDispatcher;
             CasterSide = context.GameSessionModel.GetPlayerDataByOwner(context.Target);
         }
 
@@ -55,6 +57,7 @@ namespace Feature.CardEffect.Script
                 CardPoolPickSystem = CardPoolPickSystem,
                 CritSystem = CritSystem,
                 CostSystem = CostSystem,
+                EventDispatcher = EventDispatcher,
             };
 
             CardEffect.ExecuteAll(innerContext, Effects);

@@ -158,7 +158,8 @@ namespace Feature.Hero.Script
                             GameSessionModel = _gameSessionModel,
                             CardData = heroPower,
                             CritSystem = _critSystem,
-                            CostSystem = _costSystem
+                            CostSystem = _costSystem,
+                            EventDispatcher = _gameEventDispatcher
                         });
                 }
             }

@@ -30,6 +30,7 @@ namespace Feature.CardEffect.Script
                     ValueIndex = context.ValueIndex,
                     CritSystem = context.CritSystem,
                     CostSystem = context.CostSystem,
+                    EventDispatcher = context.EventDispatcher,
                 };
 
                 

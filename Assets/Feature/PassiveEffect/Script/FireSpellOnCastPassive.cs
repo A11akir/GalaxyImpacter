@@ -19,6 +19,7 @@ namespace Feature.PassiveEffect.Script
         private GameSessionModel _gameSessionModel;
         private CardPoolPickSystem _cardPoolPickSystem;
         private CalculateCardCostSystem _costSystem;
+        private Feature.PassiveEffect.GameEventDispatcher _eventDispatcher;
 
         public void OnAppliedFromCard(EffectContext context)
         {
@@ -27,6 +28,7 @@ namespace Feature.PassiveEffect.Script
             _gameSessionModel = context.GameSessionModel;
             _cardPoolPickSystem = context.CardPoolPickSystem;
             _costSystem = context.CostSystem;
+            _eventDispatcher = context.EventDispatcher;
         }
 
         public override void Register(CardAndHealthEntityOwnerData owner)
@@ -49,7 +51,8 @@ namespace Feature.PassiveEffect.Script
                 ValueIndex = _valueIndex,
                 CardPoolPickSystem = _cardPoolPickSystem,
                 GameSessionModel = _gameSessionModel,
-                CostSystem = _costSystem
+                CostSystem = _costSystem,
+                EventDispatcher = _eventDispatcher
             });
         }
 

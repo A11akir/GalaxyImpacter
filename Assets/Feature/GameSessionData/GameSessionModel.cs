@@ -7,9 +7,36 @@ namespace Feature.GameSessionData
     public class GameSessionModel
     {
         public int Turn = 0;
-        
-        public GameSessionPlayerData PlayerHero;
-        public GameSessionPlayerData EnemyHero;
+
+        private GameSessionPlayerData _playerHero;
+        private GameSessionPlayerData _enemyHero;
+
+        /// <summary>
+        /// Игрок. Сеттер сразу проставляет GameSessionModel главному герою —
+        /// герой выбирается уже после создания модели, поэтому поле может заменяться.
+        /// </summary>
+        public GameSessionPlayerData PlayerHero
+        {
+            get => _playerHero;
+            set
+            {
+                _playerHero = value;
+                if (_playerHero != null)
+                    _playerHero.MainHeroEntity().GameSessionModel = this;
+            }
+        }
+
+        public GameSessionPlayerData EnemyHero
+        {
+            get => _enemyHero;
+            set
+            {
+                _enemyHero = value;
+                if (_enemyHero != null)
+                    _enemyHero.MainHeroEntity().GameSessionModel = this;
+            }
+        }
+
         public GameSessionPlayerData GetPlayerDataByOwner(CardAndHealthEntityOwnerData owner)
         {
             if (PlayerHero.CardAndHealthEntityOwners.Contains(owner)) return PlayerHero;
@@ -43,8 +70,6 @@ namespace Feature.GameSessionData
         {
             PlayerHero = playerHero;
             EnemyHero = enemyHero;
-            playerHero.MainHeroEntity().GameSessionModel = this;
-            enemyHero.MainHeroEntity().GameSessionModel = this;
         }
         
         public float PrepareStartTime = 10f;

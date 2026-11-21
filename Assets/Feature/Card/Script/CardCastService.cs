@@ -86,6 +86,7 @@ namespace Feature.Card.Script
                     TurnEffectQueue = _turnTriggerEffectQueue,
                     CritSystem = _critSystem,
                     CostSystem = _costSystem,
+                    EventDispatcher = _eventDispatcher,
                 };
 
                 Feature.CardEffect.Script.CardEffect.ExecuteAll(context, spell.Effects);
