@@ -6,12 +6,7 @@ using UnityEngine;
 
 namespace Feature.PassiveEffect.Script
 {
-    /// <summary>
-    /// Аура модификаторов целей атаки: пока живёт на сущности, её модификаторы
-    /// применяются к целям урона кастеров в области TargetSelection.
-    /// Велью: слот 0 = количество срабатываний (0 = без лимита),
-    /// слоты 1+m = велью вложенных модификаторов по порядку.
-    /// </summary>
+
     [Serializable]
     public class TargetModifierAura : AttackModifierAura
     {
@@ -44,8 +39,7 @@ namespace Feature.PassiveEffect.Script
         }
 
         public override void Register(CardAndHealthEntityOwnerData owner) => _owner = owner;
-
-        /// <summary>Плоский урон от вложенных DamageBonusModifier.</summary>
+        
         public override int GetDamageBonus(CardStatsData sourceCard)
         {
             int bonus = 0;

@@ -147,7 +147,8 @@ namespace Feature.CardEffect.Script
             return pool;
         }
 
-        protected List<CardAndHealthEntityOwnerData> GetTargetsPool(EffectContext ctx) =>
+        /// <summary>Пул целей эффекта по его TargetSelection (используется модификаторами целей).</summary>
+        public List<CardAndHealthEntityOwnerData> GetTargetsPool(EffectContext ctx) =>
             TargetScopeResolver.Resolve(TargetSelection, ctx.Caster, ctx.Target, ctx.GameSessionModel);
     }
 }
