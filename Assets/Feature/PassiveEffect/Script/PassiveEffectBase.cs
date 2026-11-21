@@ -12,6 +12,10 @@ namespace Feature.PassiveEffect.Script
         [SerializeField] protected PassiveEffectConfig Config; 
         [SerializeField] protected bool UseSourceCardAsDescription;
         [SerializeField] public DurationType Duration;
+
+        /// <summary>Не создавать вьюху эффекта — работает только под капотом.</summary>
+        [SerializeField] public bool HideView;
+
         public SpellCardData SourceCard { get; set; }
 
         public virtual Sprite Icon =>
@@ -34,6 +38,7 @@ namespace Feature.PassiveEffect.Script
             clone.Config = Config;
             clone.Duration = Duration;
             clone.UseSourceCardAsDescription = UseSourceCardAsDescription;
+            clone.HideView = HideView;
         }
 
         public abstract void Register(CardAndHealthEntityOwnerData owner);

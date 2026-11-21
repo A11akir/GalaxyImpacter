@@ -22,7 +22,7 @@ namespace Feature.PassiveEffect.Script
 
         public int Priority => 0;
 
-        public bool ReactToDamage(CardAndHealthEntityOwnerData target, int finalDamage, CardAndHealthEntityOwnerData source)
+        public bool ReactToDamage(CardAndHealthEntityOwnerData target, ref int finalDamage, CardAndHealthEntityOwnerData source)
         {
             int roll = UnityEngine.Random.Range(0, 100);
             bool dodged = roll < _dodgeChancePercent.Value;

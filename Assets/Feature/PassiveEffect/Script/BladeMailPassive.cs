@@ -25,7 +25,7 @@ namespace Feature.PassiveEffect.Script
 
         public int Priority => 100;
 
-        public bool ReactToDamage(CardAndHealthEntityOwnerData target, int finalDamage, CardAndHealthEntityOwnerData source)
+        public bool ReactToDamage(CardAndHealthEntityOwnerData target, ref int finalDamage, CardAndHealthEntityOwnerData source)
         {
             if (_isReacting) return false; 
             if (source == null || source == _owner) return false;

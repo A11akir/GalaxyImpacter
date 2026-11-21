@@ -20,12 +20,21 @@ namespace Feature.PassiveEffect.Script
         public virtual int DamageBonus => 0;
         public virtual int ChanceBonus => 0;
 
-        public virtual void OnAppliedFromCard(EffectContext context) =>
-            AddBonus(context.Value());
+        public virtual void OnAppliedFromCard(EffectContext context)
+        {
+            // бафф может быть без своего велью (например, только флаг DoubleChance)
+            var values = context.CardData?.Values;
+
+            if (values == null || context.ValueIndex >= values.Count) return;
+
+            AddBonus(values[context.ValueIndex]);
+        }
 
         public void AddBonus(int amount) => _bonus.Value += amount;
 
         public void SetBonus(int amount) => _bonus.Value = amount;
+
+        public void SetDoubleChance(bool value) => _doubleChance = value;
 
         public bool CanStackWith(EffectContext context) => true;
 

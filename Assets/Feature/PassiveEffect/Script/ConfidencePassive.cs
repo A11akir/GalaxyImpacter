@@ -24,7 +24,7 @@ namespace Feature.PassiveEffect.Script
         private int _lastShield;
         private int _damageTakenThisTurn;
 
-        public int Priority => 0;
+        public int Priority => 10;
 
         public void OnAppliedFromCard(EffectContext context) { }
 
@@ -54,7 +54,7 @@ namespace Feature.PassiveEffect.Script
             Subtract<CritDamageBuff>(_damageTakenThisTurn);
         }
 
-        public bool ReactToDamage(CardAndHealthEntityOwnerData target, int finalDamage, CardAndHealthEntityOwnerData source)
+        public bool ReactToDamage(CardAndHealthEntityOwnerData target, ref int finalDamage, CardAndHealthEntityOwnerData source)
         {
             _damageTakenThisTurn += finalDamage;
             AddDamageTaken(finalDamage);

@@ -37,6 +37,7 @@ namespace Feature.PassiveEffect
 
         private void HandleAdded(PassiveEffectBase passive)
         {
+            if (passive.HideView) return;
 
             if (RoutesToHeroPower(passive))
                 _heroPowerPresenter.HandlePassiveAdded(passive, _owner);
@@ -45,6 +46,8 @@ namespace Feature.PassiveEffect
         }
         private void HandleRemoved(PassiveEffectBase passive)
         {
+            if (passive.HideView) return;
+
             if (RoutesToHeroPower(passive))
                 _heroPowerPresenter.HandlePassiveRemoved(passive);
             else
