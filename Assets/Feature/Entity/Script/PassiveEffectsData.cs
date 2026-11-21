@@ -81,10 +81,16 @@ namespace Feature.Entity.Script
             }
 
             foreach (var passive in toRemove)
-            {
-                passive.Unregister();
                 Remove(passive);
-            }
+        }
+
+        /// <summary>Убирает все пассивки (например, при смерти владельца).</summary>
+        public void RemoveAll()
+        {
+            var passives = new List<PassiveEffectBase>(_activePassives.Value);
+
+            foreach (var passive in passives)
+                Remove(passive);
         }
     }
 }

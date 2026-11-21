@@ -11,7 +11,8 @@ namespace Feature.CardEffect.Script
     /// <summary>
     /// Сила героя стоит дешевле на велью карты, наложившей эффект.
     /// Карта силы героя задаётся в инспекторе, скидка ставится копии этой карты
-    /// у стороны владельца пассивки.
+    /// у стороны владельца пассивки. При смерти владельца скидка снимается
+    /// общей очисткой пассивок (PassiveEffectsData.RemoveAll).
     /// </summary>
     [Serializable]
     public class HeroPowerCostPassive : PassiveEffectBase, ICardContextConsumer
@@ -21,6 +22,7 @@ namespace Feature.CardEffect.Script
         private CardAndHealthEntityOwnerData _owner;
         private GameSessionModel _model;
         private CalculateCardCostSystem _costSystem;
+        private SpellCardData _discountedHeroPower;
         private int _discount;
 
         public void OnAppliedFromCard(EffectContext context)
@@ -37,15 +39,16 @@ namespace Feature.CardEffect.Script
             var heroPower = GetOwnerHeroPower();
             if (heroPower == null || _costSystem == null) return;
 
+            _discountedHeroPower = heroPower;
             _costSystem.SetDiscount(heroPower, this, _discount);
         }
 
         public override void Unregister()
         {
-            var heroPower = GetOwnerHeroPower();
-            if (heroPower == null || _costSystem == null) return;
+            if (_discountedHeroPower == null || _costSystem == null) return;
 
-            _costSystem.RemoveDiscount(heroPower, this);
+            _costSystem.RemoveDiscount(_discountedHeroPower, this);
+            _discountedHeroPower = null;
         }
 
         private SpellCardData GetOwnerHeroPower()

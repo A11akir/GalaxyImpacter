@@ -42,8 +42,8 @@ namespace Feature.Entity.Script
         {
             if (_activeIcons.TryGetValue(passive, out var icon))
             {
-                icon.ForceHide();
                 _activeIcons.Remove(passive);
+                if (icon != null) icon.ForceHide();
             }
 
             if (_valueSubscriptions.TryGetValue(passive, out var sub))

@@ -62,6 +62,9 @@ namespace Feature.Entity.Script
                 playerData.RemoveCardFromBoard(cardOnBoard);
 
             TriggerDeathRattles(victim, victim.LastDamageSource, victimSlot);
+
+            // смерть владельца откатывает все его пассивки
+            victim.PassiveEffects.RemoveAll();
         }
 
         private void TriggerDeathRattles(CardAndHealthEntityOwnerData victim, CardAndHealthEntityOwnerData killer, int victimSlot)
