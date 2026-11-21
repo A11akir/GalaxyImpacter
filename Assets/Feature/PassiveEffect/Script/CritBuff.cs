@@ -20,10 +20,12 @@ namespace Feature.PassiveEffect.Script
         public virtual int DamageBonus => 0;
         public virtual int ChanceBonus => 0;
 
-        public void OnAppliedFromCard(EffectContext context) =>
+        public virtual void OnAppliedFromCard(EffectContext context) =>
             AddBonus(context.Value());
 
         public void AddBonus(int amount) => _bonus.Value += amount;
+
+        public void SetBonus(int amount) => _bonus.Value = amount;
 
         public bool CanStackWith(EffectContext context) => true;
 

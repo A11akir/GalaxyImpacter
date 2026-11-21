@@ -5,9 +5,6 @@ using UnityEngine;
 
 namespace Feature.CardEffect.Script
 {
-    /// <summary>
-    /// Значение скидки = недостающее здоровье владельца (MaxHealth − текущее HP).
-    /// </summary>
     [Serializable]
     public class MissingHealthValueSource : IDynamicCostValueSource
     {
