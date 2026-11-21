@@ -12,6 +12,7 @@ namespace Feature.CardEffect.Script
             CardAndHealthEntityOwnerData owner,
             GameSessionPlayerData side,
             CardStatsData card,
-            CalculateCardCostSystem costSystem);
+            CalculateCardCostSystem costSystem,
+            CardCastService castService);
     }
 }

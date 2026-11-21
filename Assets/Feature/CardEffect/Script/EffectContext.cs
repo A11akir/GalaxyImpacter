@@ -23,6 +23,9 @@ namespace Feature.CardEffect.Script
         public CardStatsData TargetCard;
         public int ValueIndex;
 
+        /// <summary>Урон, который сейчас применяется (заполняет DamageTriggerPassive).</summary>
+        public int Damage;
+
         public int Value(int offset = 0) => CardData.Values[ValueIndex + offset];
 
         public CardPoolPickSystem CardPoolPickSystem { get; set; }

@@ -9,11 +9,13 @@ namespace Feature.Card.Script
     {
         private readonly GameSessionModel _gameSessionModel;
         private readonly CalculateCardCostSystem _costSystem;
+        private readonly CardCastService _castService;
 
-        public HandCardPresenter(GameSessionModel gameSessionModel, CalculateCardCostSystem costSystem)
+        public HandCardPresenter(GameSessionModel gameSessionModel, CalculateCardCostSystem costSystem, CardCastService castService)
         {
             _gameSessionModel = gameSessionModel;
             _costSystem = costSystem;
+            _castService = castService;
         }
 
         public void RemoveCardFromHand(HandCardView view, HandCardViews handCardViews) => 
@@ -25,7 +27,7 @@ namespace Feature.Card.Script
             var composite = new CompositeDisposable();
 
             foreach (var effect in cardData.PassiveCardEffects)
-                composite.Add(effect.BindPassiveEffect(owner, side, cardData, _costSystem));
+                composite.Add(effect.BindPassiveEffect(owner, side, cardData, _costSystem, _castService));
 
             return composite;
         }

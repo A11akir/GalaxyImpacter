@@ -12,7 +12,13 @@ namespace Feature.CardEffect.Script
 
         public override void Execute(EffectContext context)
         {
-            int chancePercent = context.Value();
+            if (_effect == null) return;
+
+            // нет велью под шанс — эффект просто не срабатывает
+            var values = context.CardData?.Values;
+            if (values == null || context.ValueIndex < 0 || context.ValueIndex >= values.Count) return;
+
+            int chancePercent = values[context.ValueIndex];
 
             if (UnityEngine.Random.Range(0, 100) >= chancePercent) return;
 

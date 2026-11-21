@@ -22,12 +22,18 @@ namespace Feature.PassiveEffect.Script
 
         public virtual void OnAppliedFromCard(EffectContext context)
         {
-            // бафф может быть без своего велью (например, только флаг DoubleChance)
             var values = context.CardData?.Values;
+            bool hasValue = values != null && context.ValueIndex >= 0 && context.ValueIndex < values.Count;
 
-            if (values == null || context.ValueIndex >= values.Count) return;
+            if (hasValue)
+            {
+                AddBonus(values[context.ValueIndex]);
+                return;
+            }
 
-            AddBonus(values[context.ValueIndex]);
+            // без велью бафф имеет смысл только как флаг (например, двойной шанс крита)
+            if (!_doubleChance)
+                Debug.LogError($"[CritBuff] нет велью для слота {context.ValueIndex} в карте {context.CardData?.Name}");
         }
 
         public void AddBonus(int amount) => _bonus.Value += amount;
