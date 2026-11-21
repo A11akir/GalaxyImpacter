@@ -47,4 +47,8 @@ MonoBehaviour:
         UseSourceCardAsDescription: 1
         Duration: 1
         TargetSelection: 1
-        _modifiers: []
+        _modifiers:
+        - rid: 5245221879987044362
+    - rid: 5245221879987044362
+      type: {class: ZoneModifier, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data: {}

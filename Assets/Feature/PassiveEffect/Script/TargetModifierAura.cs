@@ -45,6 +45,18 @@ namespace Feature.PassiveEffect.Script
 
         public override void Register(CardAndHealthEntityOwnerData owner) => _owner = owner;
 
+        /// <summary>Плоский урон от вложенных DamageBonusModifier.</summary>
+        public override int GetDamageBonus(CardStatsData sourceCard)
+        {
+            int bonus = 0;
+
+            foreach (var modifier in _modifiers)
+                if (modifier is IDamageBonusModifier damageModifier)
+                    bonus += damageModifier.DamageBonus;
+
+            return bonus;
+        }
+
         public override List<CardAndHealthEntityOwnerData> ModifyTargets(
             List<CardAndHealthEntityOwnerData> targets, EffectContext context)
         {
