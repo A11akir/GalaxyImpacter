@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Feature.Battlefield.Script;
+using Feature.Card.Script;
 using Feature.GameSessionData;
 using Feature.GoogleSheets;
 using Feature.PassiveEffect.Script;
@@ -31,5 +32,7 @@ namespace Feature.CardEffect.Script
         public TurnTriggerEffectQueue TurnEffectQueue;
 
         public CritSystem CritSystem;
+
+        public CalculateCardCostSystem CostSystem;
     }
 }

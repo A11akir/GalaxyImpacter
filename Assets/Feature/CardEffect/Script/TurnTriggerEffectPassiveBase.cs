@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Feature.Card.Script;
 using Feature.GameSessionData;
 using Feature.GoogleSheets;
 using Feature.PassiveEffect.Script;
@@ -19,6 +20,7 @@ namespace Feature.CardEffect.Script
         protected CardPoolPickSystem CardPoolPickSystem;
         protected CritSystem CritSystem;
         protected GameSessionPlayerData CasterSide;
+        protected CalculateCardCostSystem CostSystem;
 
         public abstract TurnTriggerTiming Timing { get; }
 
@@ -32,6 +34,7 @@ namespace Feature.CardEffect.Script
             CardData = context.CardData;
             CardPoolPickSystem = context.CardPoolPickSystem;
             CritSystem = context.CritSystem;
+            CostSystem = context.CostSystem;
 
             // Сторона владельца пассивки — на случай, если он умрёт до триггера.
             CasterSide = context.GameSessionModel.GetPlayerDataByOwner(context.Target);
@@ -67,6 +70,7 @@ namespace Feature.CardEffect.Script
                 CurrentEffectsList = Effects,
                 CardPoolPickSystem = CardPoolPickSystem,
                 CritSystem = CritSystem,
+                CostSystem = CostSystem,
             };
 
             CardEffect.ExecuteAll(innerContext, Effects);

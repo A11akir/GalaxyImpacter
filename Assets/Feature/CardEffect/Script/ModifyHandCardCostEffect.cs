@@ -1,4 +1,5 @@
 using System;
+using Feature.Card.Script;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -27,7 +28,7 @@ namespace Feature.CardEffect.Script
             // Режим модификатора сгенерированной карты: вложен в GenerateTemporaryHandCardEffect.
             if (context.TargetCard != null)
             {
-                ModifyCost(context.TargetCard, amount);
+                ModifyCost(context.TargetCard, amount, context.CostSystem);
                 return;
             }
 
@@ -38,15 +39,16 @@ namespace Feature.CardEffect.Script
                 var card = context.CardPoolPickSystem.PickFromHand(handOwner, filter, context);
                 if (card == null) continue;
 
-                ModifyCost(card, amount);
+                ModifyCost(card, amount, context.CostSystem);
             }
         }
 
-        private void ModifyCost(CardStatsData card, int amount)
+        private void ModifyCost(CardStatsData card, int amount, CalculateCardCostSystem costSystem)
         {
-            card.Cost = _direction == CostChangeDirection.Reduce
-                ? Mathf.Max(0, card.Cost - amount)
-                : card.Cost + amount;
+            if (costSystem == null) return;
+
+            int discount = _direction == CostChangeDirection.Reduce ? amount : -amount;
+            costSystem.SetDiscount(card, this, discount);
         }
     }
 }

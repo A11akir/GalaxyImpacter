@@ -26,6 +26,7 @@ namespace Feature.Hero.Script
         private readonly CombatSystem.CombatSystem _combatSystem;
         private readonly GameEventDispatcher  _gameEventDispatcher;
         private readonly CritSystem _critSystem;
+        private readonly CalculateCardCostSystem _costSystem;
 
         private readonly Dictionary<CardAndHealthEntityOwnerData, EntityPresenter> _entityPresenters = new();
 
@@ -33,7 +34,8 @@ namespace Feature.Hero.Script
             ChakraManagerSystem chakraManagerSystem, HandDataRepository handDataRepository,
             DeckFillSystem deckFillSystem, HandViewSwitcher handViewSwitcher, HandFillSystem handFillSystem,
             EntityDeathSystem entityDeathSystem, HeroPowerSystem heroPowerSystem, HeroPowerPresenter heroPowerPresenter,
-            CombatSystem.CombatSystem combatSystem, GameEventDispatcher gameEventDispatcher, CritSystem critSystem)
+            CombatSystem.CombatSystem combatSystem, GameEventDispatcher gameEventDispatcher, CritSystem critSystem,
+            CalculateCardCostSystem costSystem)
         {
             _gameSessionModel = gameSessionModel;
             _chakraManagerSystem = chakraManagerSystem;
@@ -47,6 +49,7 @@ namespace Feature.Hero.Script
             _combatSystem = combatSystem;
             _gameEventDispatcher = gameEventDispatcher;
             _critSystem = critSystem;
+            _costSystem = costSystem;
             _entityDeathSystem.OnEntityDied += DisposeEntity;
         }
 
@@ -154,7 +157,8 @@ namespace Feature.Hero.Script
                             CombatSystem = _combatSystem,
                             GameSessionModel = _gameSessionModel,
                             CardData = heroPower,
-                            CritSystem = _critSystem
+                            CritSystem = _critSystem,
+                            CostSystem = _costSystem
                         });
                 }
             }

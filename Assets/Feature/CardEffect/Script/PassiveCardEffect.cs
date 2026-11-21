@@ -1,5 +1,6 @@
 // PassiveCardEffect.cs
 using System;
+using Feature.Card.Script;
 using Feature.GameSessionData;
 
 namespace Feature.CardEffect.Script
@@ -7,6 +8,10 @@ namespace Feature.CardEffect.Script
     [Serializable]
     public abstract class PassiveCardEffect
     {
-        public abstract IDisposable BindPassiveEffect(CardAndHealthEntityOwnerData owner, GameSessionPlayerData side, CardStatsData card);
+        public abstract IDisposable BindPassiveEffect(
+            CardAndHealthEntityOwnerData owner,
+            GameSessionPlayerData side,
+            CardStatsData card,
+            CalculateCardCostSystem costSystem);
     }
 }

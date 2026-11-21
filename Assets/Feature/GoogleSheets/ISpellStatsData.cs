@@ -7,7 +7,7 @@ namespace Feature.GoogleSheets
     public interface ISpellStatsData
     {
         string Name { get; set; }
-        int Cost { get; set; }
+        int Cost { get; }
         List<int> Values { get; set; }
         string Description { get; set; }
         CardRarity Rarity { get; set; }

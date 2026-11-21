@@ -8,7 +8,7 @@ namespace Feature.Card.Script
     public interface ICardStatsData
     {
         string Name { get; set; }
-        int Cost { get; set; }
+        int Cost { get; }
         CardRarity Rarity { get; set; }
         List<AllHeroClass> Specialization { get; set; }
         int Level { get; set; }

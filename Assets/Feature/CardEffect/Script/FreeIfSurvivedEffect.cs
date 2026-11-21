@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Feature.Card.Script;
 using Feature.GameSessionData;
 using Feature.GoogleSheets;
 using UnityEngine;
@@ -14,13 +15,17 @@ namespace Feature.CardEffect.Script
     {
         [SerializeReference] private IDynamicCostValueSource _surviveSource;
 
-        public override IDisposable BindPassiveEffect(CardAndHealthEntityOwnerData owner, GameSessionPlayerData side, CardStatsData card)
+        public override IDisposable BindPassiveEffect(
+            CardAndHealthEntityOwnerData owner,
+            GameSessionPlayerData side,
+            CardStatsData card,
+            CalculateCardCostSystem costSystem)
         {
             var values = (card as SpellCardData)?.Values;
             int required = values != null && values.Count > 0 ? values[^1] : 0;
 
             return _surviveSource.Subscribe(owner, side, survived =>
-                card.Cost = survived >= required ? 0 : card.BaseCost);
+                costSystem.SetDiscount(card, this, survived >= required ? card.BaseCost : 0));
         }
     }
 }

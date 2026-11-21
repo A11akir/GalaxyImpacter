@@ -1,4 +1,6 @@
+using System.Linq;
 using Feature.Card.Script;
+using Feature.CardEffect.Script;
 using Feature.GameSessionData;
 using Feature.GoogleSheets;
 using Feature.Hero.Script;
@@ -14,7 +16,8 @@ namespace Feature.AI
         private readonly GameSessionModel _gameSessionModel;
         private readonly HeroPowerSystem _heroPowerSystem;
     
-        public bool DealsDamage() => _heroPower.DealsDamage(); 
+        public bool DealsDamage() =>
+            _heroPower.Effects.Any(e => e is Feature.CardEffect.Script.DamageEffect);
         public int Cost => _heroPower.Cost;
         public TargetType TargetType => _heroPower.TargetType;
 

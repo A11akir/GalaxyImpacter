@@ -28,7 +28,8 @@ namespace Feature.CardEffect.Script
                     CardData = context.CardData,
                     CurrentEffectsList = context.CurrentEffectsList,
                     ValueIndex = context.ValueIndex,
-                    CritSystem = context.CritSystem
+                    CritSystem = context.CritSystem,
+                    CostSystem = context.CostSystem,
                 };
 
                 

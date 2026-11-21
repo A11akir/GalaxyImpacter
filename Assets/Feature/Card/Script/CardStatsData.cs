@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using Feature.Card.Script;
 using Feature.CardEffect.Script;
 using Feature.GoogleSheets;
@@ -22,14 +21,8 @@ public class CardStatsData : ScriptableObject, ICardStatsData
     [SerializeReference] private List<PassiveCardEffect> _passiveCardEffects = new();
 
     public int BaseCost { get => _baseCost; set => _baseCost = value; }
-    public List<PassiveCardEffect> PassiveCardEffects => _passiveCardEffects;
 
-    public bool DealsDamage()
-    {
-        if (this is SpellCardData spell)
-            return spell.Effects.Any(e => e is DamageEffect);
-        return false;
-    }
+    public List<PassiveCardEffect> PassiveCardEffects => _passiveCardEffects;
 
     public string id = System.Guid.NewGuid().ToString();
     
@@ -41,14 +34,12 @@ public class CardStatsData : ScriptableObject, ICardStatsData
     private ReactiveProperty<int> _costReactive;
     public ReadOnlyReactiveProperty<int> CostReactive => _costReactive ??= new ReactiveProperty<int>(_baseCost);
 
-    public int Cost
+    public int Cost => _costReactive != null ? _costReactive.CurrentValue : _baseCost;
+    
+    public void SetCost(int value)
     {
-        get => _costReactive != null ? _costReactive.CurrentValue : _baseCost;
-        set
-        {
-            _costReactive ??= new ReactiveProperty<int>(_baseCost);
-            _costReactive.Value = value;
-        }
+        _costReactive ??= new ReactiveProperty<int>(_baseCost);
+        _costReactive.Value = value;
     }
 
     public TargetType TargetType { get => targetType; set => targetType = value; }

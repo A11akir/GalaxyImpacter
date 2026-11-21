@@ -8,10 +8,12 @@ namespace Feature.Card.Script
     public class HandCardPresenter
     {
         private readonly GameSessionModel _gameSessionModel;
+        private readonly CalculateCardCostSystem _costSystem;
 
-        public HandCardPresenter(GameSessionModel gameSessionModel)
+        public HandCardPresenter(GameSessionModel gameSessionModel, CalculateCardCostSystem costSystem)
         {
             _gameSessionModel = gameSessionModel;
+            _costSystem = costSystem;
         }
 
         public void RemoveCardFromHand(HandCardView view, HandCardViews handCardViews) => 
@@ -23,7 +25,7 @@ namespace Feature.Card.Script
             var composite = new CompositeDisposable();
 
             foreach (var effect in cardData.PassiveCardEffects)
-                composite.Add(effect.BindPassiveEffect(owner, side, cardData));
+                composite.Add(effect.BindPassiveEffect(owner, side, cardData, _costSystem));
 
             return composite;
         }

@@ -1,6 +1,9 @@
+using System.Linq;
 using Feature.AI;
 using Feature.Card.Script;
+using Feature.CardEffect.Script;
 using Feature.GameSessionData;
+using Feature.GoogleSheets;
 
 public class CardAIAction : IAIAction
 {
@@ -10,7 +13,9 @@ public class CardAIAction : IAIAction
     
     public int Cost => _card.Cost;
     public TargetType TargetType => _card.TargetType;
-    public bool DealsDamage() => _card.DealsDamage(); // ← вызов метода карты
+
+    public bool DealsDamage() =>
+        _card is SpellCardData spell && spell.Effects.Any(e => e is DamageEffect);
 
     public CardAIAction(CardStatsData card, CardAndHealthEntityOwnerData owner, CardCastService cardCastService)
     {

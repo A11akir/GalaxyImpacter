@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Feature.Card.Script;
 using Feature.GameSessionData;
 using Feature.GoogleSheets;
 using Feature.PassiveEffect.Script;
@@ -20,6 +21,7 @@ namespace Feature.CardEffect.Script
         private CardPoolPickSystem CardPoolPickSystem;
         private CritSystem CritSystem;
         private GameSessionPlayerData CasterSide;
+        private CalculateCardCostSystem CostSystem;
 
         public DeathRattlePassive() => Duration = DurationType.Permanent;
 
@@ -31,6 +33,7 @@ namespace Feature.CardEffect.Script
             CardData = context.CardData;
             CardPoolPickSystem = context.CardPoolPickSystem;
             CritSystem = context.CritSystem;
+            CostSystem = context.CostSystem;
             CasterSide = context.GameSessionModel.GetPlayerDataByOwner(context.Target);
         }
 
@@ -51,6 +54,7 @@ namespace Feature.CardEffect.Script
                 CurrentEffectsList = Effects,
                 CardPoolPickSystem = CardPoolPickSystem,
                 CritSystem = CritSystem,
+                CostSystem = CostSystem,
             };
 
             CardEffect.ExecuteAll(innerContext, Effects);

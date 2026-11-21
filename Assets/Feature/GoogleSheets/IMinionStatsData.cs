@@ -7,7 +7,7 @@ namespace Feature.GoogleSheets
     public interface IMinionStatsData
     {
         string Name { get; set; }
-        int Cost { get; set; }
+        int Cost { get; }
         CardRarity Rarity { get; set; }
         
         TargetType TargetType { get; set; }
