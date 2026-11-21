@@ -32,6 +32,9 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 4483225065585115146
+      type: {class: ZoneModifier, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data: 
     - rid: 5245221879987044360
       type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
@@ -46,9 +49,7 @@ MonoBehaviour:
         Config: {fileID: 0}
         UseSourceCardAsDescription: 1
         Duration: 1
+        HideView: 0
         TargetSelection: 1
         _modifiers:
-        - rid: 5245221879987044362
-    - rid: 5245221879987044362
-      type: {class: ZoneModifier, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
-      data: {}
+        - rid: 4483225065585115146

@@ -23,13 +23,46 @@ MonoBehaviour:
   _passiveCardEffects: []
   id: be3ed877-2e11-4b69-ae83-21390c8cc3c2
   Origin: 0
-  _values: 0200000002000000
+  _values: 02000000
   _description: "\u041D\u0430 \u044D\u0442\u043E\u043C \u0445\u043E\u0434\u0443 \u0433\u043B\u0430\u0434\u0438\u0430\u0442\u043E\u0440
     \u043F\u043E\u043B\u0443\u0447\u0430\u0435\u0442 \u0443\u0440\u043E\u043D \u0432
     2 \u0440\u0430\u0437\u0430 \u0431\u043E\u043B\u044C\u0448\u0435 \u043D\u043E
     \u0448\u0430\u043D\u0441 \u043A\u0440\u0438\u0442\u0430 \u0432 2 \u0440\u0430\u0437\u0430
     \u0431\u043E\u043B\u044C\u0448\u0435."
-  _effects: []
+  _effects:
+  - rid: 4483225065585115162
+  - rid: 4483225065585115171
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4483225065585115162
+      type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 1
+        RandomSingleTarget: 0
+        _targetModifiers: []
+        _passiveTemplate:
+          rid: 4483225065585115163
+    - rid: 4483225065585115163
+      type: {class: DamageMultiplierPassive, ns: Feature.PassiveEffect.Script, asm: Assembly-CSharp}
+      data:
+        Config: {fileID: 0}
+        UseSourceCardAsDescription: 1
+        Duration: 0
+        HideView: 0
+    - rid: 4483225065585115171
+      type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 1
+        RandomSingleTarget: 0
+        _targetModifiers: []
+        _passiveTemplate:
+          rid: 4483225065585115172
+    - rid: 4483225065585115172
+      type: {class: CritChanceBuff, ns: Feature.PassiveEffect.Script, asm: Assembly-CSharp}
+      data:
+        Config: {fileID: 0}
+        UseSourceCardAsDescription: 0
+        Duration: 0
+        HideView: 1
+        _doubleChance: 1

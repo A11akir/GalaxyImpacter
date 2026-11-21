@@ -23,7 +23,7 @@ MonoBehaviour:
   _passiveCardEffects: []
   id: 57a465b0-4b0f-45c5-b2a0-4a3d967bc6ca
   Origin: 0
-  _values: 03000000
+  _values: 0300000003000000
   _description: Take 3 damage.
   _effects:
   - rid: 5943948185077547012

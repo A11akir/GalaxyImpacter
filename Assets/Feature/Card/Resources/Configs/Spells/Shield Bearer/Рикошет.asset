@@ -24,10 +24,26 @@ MonoBehaviour:
   id: 5b2a9237-f42e-411d-96ed-4e3ef1d17a8f
   Origin: 0
   _values: 01000000
-  _description: "\u0410\u0442\u0430\u043A\u0443\u044E\u0449\u0438\u0435 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0430
-    \u0432 \u044D\u0442\u043E \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u043E \u043F\u043E\u043B\u0443\u0447\u0430\u044E\u0442
+  _description: "\u0410\u0442\u0430\u043A\u0443\u044E\u0449\u0438\u0435 \u044D\u0442\u043E
+    \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u043E \u043F\u043E\u043B\u0443\u0447\u0430\u044E\u0442
     1 \u0443\u0440\u043E\u043D"
-  _effects: []
+  _effects:
+  - rid: 4483225065585115160
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4483225065585115160
+      type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 1
+        RandomSingleTarget: 0
+        _targetModifiers: []
+        _passiveTemplate:
+          rid: 4483225065585115161
+    - rid: 4483225065585115161
+      type: {class: BladeMailPassive, ns: Feature.PassiveEffect.Script, asm: Assembly-CSharp}
+      data:
+        Config: {fileID: 0}
+        UseSourceCardAsDescription: 1
+        Duration: 0
+        HideView: 0

@@ -26,7 +26,24 @@ MonoBehaviour:
   _values: 01000000
   _description: "\u0421\u0438\u043B\u0430 \u0433\u0435\u0440\u043E\u044F \u0429\u0438\u0442
     \u0441\u0442\u043E\u0438\u0442 \u043D\u0430 1 \u043C\u0435\u043D\u044C\u0448\u0435."
-  _effects: []
+  _effects:
+  - rid: 4483225065585115158
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4483225065585115158
+      type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 1
+        RandomSingleTarget: 0
+        _targetModifiers: []
+        _passiveTemplate:
+          rid: 4483225065585115159
+    - rid: 4483225065585115159
+      type: {class: HeroPowerCostPassive, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        Config: {fileID: 0}
+        UseSourceCardAsDescription: 1
+        Duration: 0
+        HideView: 0
+        _heroPower: {fileID: 11400000, guid: 968e16bfb3443fa43a28797bd6d8186c, type: 2}

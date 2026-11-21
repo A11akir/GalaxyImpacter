@@ -23,12 +23,63 @@ MonoBehaviour:
   _passiveCardEffects: []
   id: 8a5c91b6-04e6-49bf-a9dc-023c619bfe24
   Origin: 0
-  _values: 0f000000
+  _values: 0f0000000f000000
   _description: "\u0415\u0441\u043B\u0438 \u043D\u0430 \u044D\u0442\u043E\u043C \u0445\u043E\u0434\u0443
     \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u043E \u0432\u044B\u0436\u0438\u0432\u0430\u0435\u0442
     \u0448\u0430\u043D\u0441 \u0438 \u0443\u0440\u043E\u043D \u043A\u0440\u0438\u0442\u0430
     \u0432\u043E\u0437\u0440\u0430\u0441\u0442\u0430\u0435\u0442 \u043D\u0430 15%"
-  _effects: []
+  _effects:
+  - rid: 4483225065585115173
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 4483225065585115173
+      type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 1
+        RandomSingleTarget: 0
+        _targetModifiers: []
+        _passiveTemplate:
+          rid: 4483225065585115174
+    - rid: 4483225065585115174
+      type: {class: TurnStartEffectPassive, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        Config: {fileID: 0}
+        UseSourceCardAsDescription: 1
+        Duration: 0
+        HideView: 0
+        Effects:
+        - rid: 4483225065585115175
+        - rid: 4483225065585115177
+    - rid: 4483225065585115175
+      type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 1
+        RandomSingleTarget: 0
+        _targetModifiers: []
+        _passiveTemplate:
+          rid: 4483225065585115176
+    - rid: 4483225065585115176
+      type: {class: CritDamageBuff, ns: Feature.PassiveEffect.Script, asm: Assembly-CSharp}
+      data:
+        Config: {fileID: 11400000, guid: 30173933d4ce8cf44881889bf5a186bb, type: 2}
+        UseSourceCardAsDescription: 0
+        Duration: 0
+        HideView: 0
+        _doubleChance: 0
+    - rid: 4483225065585115177
+      type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 1
+        RandomSingleTarget: 0
+        _targetModifiers: []
+        _passiveTemplate:
+          rid: 4483225065585115178
+    - rid: 4483225065585115178
+      type: {class: CritChanceBuff, ns: Feature.PassiveEffect.Script, asm: Assembly-CSharp}
+      data:
+        Config: {fileID: 11400000, guid: 5269e5a6bb71f0f44ab2cd4702e2b3e8, type: 2}
+        UseSourceCardAsDescription: 0
+        Duration: 0
+        HideView: 0
+        _doubleChance: 0
