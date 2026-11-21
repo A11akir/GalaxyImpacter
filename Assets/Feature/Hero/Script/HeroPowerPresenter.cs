@@ -24,6 +24,8 @@ namespace Feature.Hero.Script
 
         private readonly Dictionary<PassiveEffectBase, HeroPowerGameplayView> _passiveToView = new();
         private readonly Dictionary<PassiveEffectBase, IDisposable> _valueSubscriptions = new();
+
+        private readonly CompositeDisposable _costSubscriptions = new();
         
         public HeroPowerPresenter(HeroPowerSystem heroPowerSystem, HandViewSwitcher handViewSwitcher, GameSessionModel gameSessionModel)
         {
@@ -51,6 +53,16 @@ namespace Feature.Hero.Script
                 //словарь дата+вьюха
                 _playerCardToView[heroPower] = view;
 
+                //цена может меняться эффектами — держим вьюху в актуальном состоянии
+                heroPower.CostReactive
+                    .Subscribe(cost =>
+                    {
+                        view.SetCost(cost);
+                        _heroPowerSystem.UpdateBehaviour();
+                        UpdateHeroPowerView(view, _gameSessionModel.PlayerHero, index);
+                    })
+                    .AddTo(_costSubscriptions);
+
                 //привязка для реакции на использование передается отдельно вьюха герой и индекс хотя как будто уже можно передавать _playerCardToView
                 _heroPowerSystem.OnHeroPowerUsed += () => UpdateHeroPowerView(view, _gameSessionModel.PlayerHero, index);
                 UpdateHeroPowerView(view, _gameSessionModel.PlayerHero, index);
@@ -76,6 +88,15 @@ namespace Feature.Hero.Script
                 {
                     var heroPower = enemyHeroPowers[i];
                     _enemyCardToView[heroPower] = view;
+
+                    heroPower.CostReactive
+                        .Subscribe(cost =>
+                        {
+                            view.SetCost(cost);
+                            _heroPowerSystem.UpdateBehaviour();
+                            UpdateHeroPowerView(view, _gameSessionModel.EnemyHero, i);
+                        })
+                        .AddTo(_costSubscriptions);
                 }
 
                 _heroPowerSystem.OnEnemyHeroPowerUsed += () =>

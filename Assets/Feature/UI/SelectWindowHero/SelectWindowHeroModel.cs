@@ -1,6 +1,7 @@
     using System.Collections.Generic;
     using Feature.Data;
     using Feature.GameSessionData;
+    using Feature.GoogleSheets;
     using Feature.Hero;
     using UnityEngine;
 
@@ -31,7 +32,7 @@
                     GameSessionPlayerData heroData = new GameSessionPlayerData
                     {
                         _iconImage = selectedHeroStats.IconImage,
-                        HeroPowers = selectedHeroStats.HeroPowers
+                        HeroPowers = CopyHeroPowers(selectedHeroStats.HeroPowers)
                     };
 
 
@@ -46,5 +47,21 @@
                 }
             }
 
+            // Копии силы героя на игрока: цена меняется эффектами, общий ассет менять нельзя.
+            private static List<SpellCardData> CopyHeroPowers(List<SpellCardData> heroPowers)
+            {
+                var copies = new List<SpellCardData>();
+
+                if (heroPowers == null) return copies;
+
+                foreach (var heroPower in heroPowers)
+                {
+                    var copy = ScriptableObject.Instantiate(heroPower);
+                    copy.id = System.Guid.NewGuid().ToString();
+                    copies.Add(copy);
+                }
+
+                return copies;
+            }
         }
     }

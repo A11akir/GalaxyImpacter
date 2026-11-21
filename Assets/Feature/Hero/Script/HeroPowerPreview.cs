@@ -22,14 +22,21 @@ namespace Feature.Hero.Script
         
         private string _baseDescription;
 
-        public void OnPointerEnter(PointerEventData eventData) => heroPowerDescriptionWindow.SetActive(true);
-        public void OnPointerExit(PointerEventData eventData) => heroPowerDescriptionWindow.SetActive(false);
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            heroPowerDescriptionWindow.SetActive(true);
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            heroPowerDescriptionWindow.SetActive(false);
+        }
 
         public void SetDataView(CardStatsData cardStatsData)
         {
             var spell = (SpellCardData)cardStatsData;
             nameHeroPower.text = spell.Name;
-            costHeroPower.text = spell.Cost.ToString();
+            SetCost(spell.Cost);
 
             _baseDescription = spell.Description;
             descriptionHeroPower.text = _baseDescription;
@@ -40,6 +47,8 @@ namespace Feature.Hero.Script
             if (spell.IsPassive)
                 SetPassiveView();
         }
+
+        public void SetCost(int cost) => costHeroPower.text = cost.ToString();
 
         public virtual void SetPassiveView()
         {
