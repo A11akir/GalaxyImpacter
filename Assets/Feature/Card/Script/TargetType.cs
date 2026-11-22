@@ -5,8 +5,8 @@ namespace Feature.Card.Script
         All = 0,
         BoardPlace = 1,
         AnyTarget = 2,
-        Enemy = 3,
-        Ally = 4,
+        EnemyTarget = 3,
+        AllyTarget = 4,
         OtherTarget = 5
     }
 }

@@ -38,6 +38,9 @@ namespace Feature.Card.Script
             switch (cardData.Data.TargetType)
             {
                 case TargetType.AnyTarget:
+                case TargetType.EnemyTarget:
+                case TargetType.AllyTarget:
+                case TargetType.OtherTarget:
                     var selectObjectTarget =
                         _instantiator.InstantiateComponent<SelectTransformCastCardUseBehaviour>(
                             cardData.View.gameObject);
@@ -46,6 +49,8 @@ namespace Feature.Card.Script
                         cardData.View._cardContainer,
                         _cursorArrowData.ArrowHead,
                         _cursorArrowData.ArrowLine);
+
+                    selectObjectTarget.SetTargetType(cardData.Data.TargetType);
 
                     cardData.Behaviour = selectObjectTarget;
                     break;
@@ -69,10 +74,13 @@ namespace Feature.Card.Script
             switch (cardData.Data.TargetType)
             {
                 case TargetType.AnyTarget:
+                case TargetType.EnemyTarget:
+                case TargetType.AllyTarget:
+                case TargetType.OtherTarget:
                     var behaviour = _instantiator.InstantiateComponent<SelectTargetHeroPowerCastBehaviour>(heroPowerObject);
                     behaviour.Init(_cursorArrowData.ArrowHead, _cursorArrowData.ArrowLine);
+                    behaviour.SetTargetType(cardData.Data.TargetType);
                     cardData.Behaviour = behaviour;
-                    break;
                     break;
                 case TargetType.All:
                 case TargetType.BoardPlace:

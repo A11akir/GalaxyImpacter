@@ -29,6 +29,12 @@ namespace Feature.Card.Script
         private bool _isDragging;
 
         public bool _canCastCard { get; set; }
+
+        /// <summary>Кого можно выбрать целью: AnyTarget — любого, EnemyTarget — только врагов, AllyTarget — только союзников, OtherTarget — любого кроме себя.</summary>
+        private TargetType _targetType = TargetType.AnyTarget;
+
+        public void SetTargetType(TargetType targetType) => _targetType = targetType;
+
         private CardAndHealthEntityOwnerData _owner;
         private CardAndHealthEntityOwnerData _currentTarget;
 
@@ -138,7 +144,7 @@ namespace Feature.Card.Script
             var current = go.transform;
             while (current != null)
             {
-                var target = _targetingSystem.GetTarget(current.gameObject, _owner);
+                var target = _targetingSystem.GetTarget(current.gameObject, _owner, _targetType);
                 if (target != null) return target;
                 current = current.parent;
             }
