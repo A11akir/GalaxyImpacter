@@ -53,7 +53,14 @@ MonoBehaviour:
         TargetSelection: 1
         RandomSingleTarget: 0
         _targetModifiers: []
-        _summonedMinion: {fileID: 11400000, guid: 4871da73c97316f46998012d46df74c2, type: 2}
+        filter:
+          ClassSource: 0
+          ManualClass: 0
+          CardType: 2
+          RaritySource: 0
+          ManualRarities: 
+          SpecificCard:
+          - {fileID: 11400000, guid: 4871da73c97316f46998012d46df74c2, type: 2}
     - rid: 7458369320725250062
       type: {class: DieEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
