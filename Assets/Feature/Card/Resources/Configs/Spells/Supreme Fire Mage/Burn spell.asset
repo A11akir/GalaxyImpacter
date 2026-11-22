@@ -37,8 +37,8 @@ MonoBehaviour:
         RandomSingleTarget: 0
         _targetModifiers: []
         _damageType: 0
-        _onLethalEffect:
-          rid: 7458369308373286913
+        _onLethalEffects:
+        - rid: 7458369308373286913
     - rid: 7458369308373286913
       type: {class: GenerateTemporaryHandCardEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:

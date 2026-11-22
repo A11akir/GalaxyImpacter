@@ -1,6 +1,6 @@
 using Feature.GameSessionData;
 
-namespace Feature.PassiveEffect.Script
+namespace Feature.CombatSystem
 {
     public interface IDamageReaction
     {

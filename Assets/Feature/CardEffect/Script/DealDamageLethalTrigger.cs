@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Feature.CardEffect.Script
@@ -6,7 +7,7 @@ namespace Feature.CardEffect.Script
     [Serializable]
     public class DealDamageLethalTrigger : DamageEffect
     {
-        [SerializeReference] private CardEffect _onLethalEffect;
+        [SerializeReference] private List<CardEffect> _onLethalEffects = new();
 
         public override void Execute(EffectContext context)
         {
@@ -21,13 +22,19 @@ namespace Feature.CardEffect.Script
                     context.CardData,
                     _damageType);
 
-                if (!isLethal || _onLethalEffect == null) continue;
+                if (!isLethal) continue;
 
-                ExecuteInSlot(context, 1, ctx =>
+                for (int i = 0; i < _onLethalEffects.Count; i++)
                 {
-                    ctx.Target = target;
-                    _onLethalEffect.Execute(ctx);
-                });
+                    var effect = _onLethalEffects[i];
+                    if (effect == null) continue;
+
+                    ExecuteInSlot(context, 1 + i, ctx =>
+                    {
+                        ctx.Target = target;
+                        effect.Execute(ctx);
+                    });
+                }
             }
         }
     }
