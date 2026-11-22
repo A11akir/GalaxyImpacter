@@ -1,6 +1,7 @@
 using Feature.GameSessionData;
 using System.Collections.Generic;
 using Feature.Common;
+using Feature.GoogleSheets;
 using Feature.HandLogic;
 using Feature.Hero;
 using UnityEngine;
@@ -51,6 +52,7 @@ namespace Feature.Card.Script
                         _cursorArrowData.ArrowLine);
 
                     selectObjectTarget.SetTargetType(cardData.Data.TargetType);
+                    selectObjectTarget.SetTargetCheck((cardData.Data as SpellCardData)?.TargetCheck);
 
                     cardData.Behaviour = selectObjectTarget;
                     break;

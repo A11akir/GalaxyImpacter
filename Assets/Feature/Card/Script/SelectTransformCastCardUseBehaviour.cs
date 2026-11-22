@@ -46,6 +46,11 @@ namespace Feature.Card.Script
 
         public void SetTargetType(TargetType targetType) => _targetType = targetType;
 
+        /// <summary>Проверка цели карты (например, только с неполным здоровьем). Null — без проверки.</summary>
+        private TargetCheck _targetCheck;
+
+        public void SetTargetCheck(TargetCheck targetCheck) => _targetCheck = targetCheck;
+
         private CardAndHealthEntityOwnerData _owner;
         private CardAndHealthEntityOwnerData _currentTarget;
 
@@ -170,7 +175,7 @@ namespace Feature.Card.Script
             var current = go.transform;
             while (current != null)
             {
-                var target = _targetingSystem.GetTarget(current.gameObject, _owner, _targetType);
+                var target = _targetingSystem.GetTarget(current.gameObject, _owner, _targetType, _targetCheck);
                 if (target != null) return target;
                 current = current.parent;
             }

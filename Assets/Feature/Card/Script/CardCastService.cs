@@ -60,6 +60,11 @@ namespace Feature.Card.Script
             if (!CheckCanCast(card, owner))
                 return;
 
+            // Цель не проходит проверку карты (например, нужно неполное здоровье) — отменяем.
+            if (target != null && card is SpellCardData spellCard && spellCard.TargetCheck != null
+                && !spellCard.TargetCheck.CanPick(target, owner, _gameSessionModel))
+                return;
+
             owner.Chakra -= card.Cost;
 
             var cardInHand = owner.CardsInHand.CurrentValue.FirstOrDefault(c => c.id == card.id);

@@ -25,10 +25,13 @@ namespace Feature.Card.Script
             GetTarget(gameObject, caster, TargetType.AnyTarget);
 
         public CardAndHealthEntityOwnerData GetTarget(
-            GameObject gameObject, CardAndHealthEntityOwnerData caster, TargetType targetType)
+            GameObject gameObject, CardAndHealthEntityOwnerData caster, TargetType targetType, TargetCheck targetCheck = null)
         {
             if (!_targetsData.TryGetValue(gameObject, out var target)) return null;
-            return IsValidTarget(target, caster, targetType) ? target : null;
+            if (!IsValidTarget(target, caster, targetType)) return null;
+            if (targetCheck != null && !targetCheck.CanPick(target, caster, _gameSessionModel)) return null;
+
+            return target;
         }
 
         public void UnregisterTarget(GameObject gameObject)
@@ -40,16 +43,14 @@ namespace Feature.Card.Script
             CardAndHealthEntityOwnerData target, CardAndHealthEntityOwnerData caster, TargetType targetType)
         {
             bool isAlly = _gameSessionModel.AreAllies(caster, target);
-
-            // Карта сама говорит, кого можно выбрать.
+            
             switch (targetType)
             {
                 case TargetType.EnemyTarget: return !isAlly;
                 case TargetType.AllyTarget: return isAlly;
                 case TargetType.OtherTarget: return target != caster;
             }
-
-            // AnyTarget — старое правило: в подготовке только союзники, в бою любой.
+            
             if (!IsPreparePhase) return true;
             return isAlly;
         }
