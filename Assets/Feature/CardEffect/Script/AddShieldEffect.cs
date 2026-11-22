@@ -14,7 +14,7 @@ namespace Feature.CardEffect.Script
 
         public override void Execute(EffectContext context)
         {
-            int amount = context.Value();
+            int amount = GetValue(context);
 
             foreach (var target in ResolveTargets(context))
             {

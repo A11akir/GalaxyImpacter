@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace Feature.CardEffect.Script
 {
-    [CreateAssetMenu(menuName = "Effects/AddChakra", fileName = "AddChakraEffect")]
     public class AddChakraEffect : CardEffect
     {
         [SerializeField] private int _amount;

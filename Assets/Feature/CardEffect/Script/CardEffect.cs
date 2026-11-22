@@ -15,6 +15,15 @@ namespace Feature.CardEffect.Script
 
         [SerializeReference] protected List<ITargetModifier> _targetModifiers = new();
 
+        /// <summary>Откуда брать значение эффекта. Пусто — из велью карты (Values).</summary>
+        [SerializeReference] protected IEffectValueSource _valueSource;
+
+        /// <summary>
+        /// Значение эффекта: из источника, если задан, иначе из велью карты.
+        /// </summary>
+        protected int GetValue(EffectContext context) =>
+            _valueSource != null ? _valueSource.GetValue(context) : context.Value();
+
         public abstract void Execute(EffectContext context);
 
         /// <summary>

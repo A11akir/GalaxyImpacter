@@ -17,7 +17,7 @@ MonoBehaviour:
   _iconImage: {fileID: 0}
   _specialization: 
   _level: 0
-  targetType: 0
+  targetType: 2
   _inCollection: 0
   _baseCost: 1
   _passiveCardEffects: []
@@ -27,7 +27,23 @@ MonoBehaviour:
   _description: "\u0412\u044B\u0431\u0440\u0430\u043D\u043D\u0430\u044F \u0446\u0435\u043B\u044C
     \u043F\u043E\u043B\u0443\u0447\u0430\u0435\u0442 \u041A\u0430\u0432\u0430\u043B\u0435\u0440\u0438\u0439\u0441\u043A\u043E\u0435
     \u043F\u0440\u0435\u0438\u043C\u0443\u0449\u0435\u0441\u0442\u0432\u043E."
-  _effects: []
+  _effects:
+  - rid: 611418038760374272
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 611418038760374272
+      type: {class: GenerateTemporaryHandCardEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 0
+        RandomSingleTarget: 0
+        _targetModifiers: []
+        filter:
+          ClassSource: 0
+          ManualClass: 0
+          CardType: 0
+          RaritySource: 0
+          ManualRarities: 
+          SpecificCard:
+          - {fileID: 11400000, guid: c005b3d0b61f94a8fbbe7f904dce055d, type: 2}
+        _modifiers: []

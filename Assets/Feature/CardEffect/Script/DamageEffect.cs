@@ -35,7 +35,7 @@ namespace Feature.CardEffect.Script
             targets = ResolveTargets(context);
             ApplyAttackModifiers(context, ref targets, ref flatBonus);
 
-            int baseDamage = context.CardData.Values[context.ValueIndex];
+            int baseDamage = GetBaseValue(context);
             damage = Mathf.RoundToInt((baseDamage + flatBonus) * ResolveCritMultiplier(context));
         }
 
@@ -47,9 +47,12 @@ namespace Feature.CardEffect.Script
 
             ApplyAttackModifiers(context, ref targets, ref flatBonus);
 
-            int baseDamage = context.CardData.Values[context.ValueIndex];
+            int baseDamage = GetBaseValue(context);
             return Mathf.RoundToInt((baseDamage + flatBonus) * ResolveCritMultiplier(context));
         }
+
+        /// <summary>Базовое значение урона до бонусов и крита. Наследник может переопределить.</summary>
+        protected virtual int GetBaseValue(EffectContext context) => GetValue(context);
 
 
         private static float ResolveCritMultiplier(EffectContext context)
