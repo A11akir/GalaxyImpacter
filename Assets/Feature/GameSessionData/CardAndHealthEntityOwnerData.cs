@@ -135,6 +135,21 @@ namespace Feature.GameSessionData
         {
             _baseDeck = new List<CardStatsData>(cards);
         }
+
+        /// <summary>
+        /// Убирает карту из коллекции (BaseDeck) по id записи коллекции.
+        /// true — если такая карта была и её убрали.
+        /// </summary>
+        public bool RemoveFromCollection(string sourceId)
+        {
+            int index = _baseDeck.FindIndex(c => c != null && c.SourceId == sourceId);
+            if (index < 0) return false;
+
+            var newList = new List<CardStatsData>(_baseDeck);
+            newList.RemoveAt(index);
+            _baseDeck = newList;
+            return true;
+        }
         
         private void RefillDeckFromBase()
         {
@@ -142,6 +157,7 @@ namespace Feature.GameSessionData
             {
                 var copy = ScriptableObject.Instantiate(card);
                 copy.id = System.Guid.NewGuid().ToString();
+                copy.SourceId = card.SourceId ?? card.id;
                 return copy;
             }).ToList();
     

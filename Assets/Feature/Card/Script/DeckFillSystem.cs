@@ -32,6 +32,7 @@ namespace Feature.Card.Script
             {
                 var cardCopy = ScriptableObject.Instantiate(card);
                 cardCopy.id = System.Guid.NewGuid().ToString();
+                cardCopy.SourceId = cardCopy.id;
                 hero.AddCardToDeck(cardCopy);
             }
 

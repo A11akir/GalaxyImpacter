@@ -25,6 +25,12 @@ public class CardStatsData : ScriptableObject, ICardStatsData
     public List<PassiveCardEffect> PassiveCardEffects => _passiveCardEffects;
 
     public string id = System.Guid.NewGuid().ToString();
+
+    /// <summary>
+    /// id карты в коллекции (BaseDeck). У копий после рефила сохраняется,
+    /// чтобы карту можно было найти/сжечь в коллекции по id.
+    /// </summary>
+    [System.NonSerialized] public string SourceId;
     
     [HideInInspector] public CardOrigin Origin = CardOrigin.Permanent;
 

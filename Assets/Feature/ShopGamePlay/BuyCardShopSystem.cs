@@ -23,6 +23,7 @@ namespace Feature.ShopGamePlay
         {
             var cardCopy = ScriptableObject.Instantiate(card);
             cardCopy.id = System.Guid.NewGuid().ToString();
+            cardCopy.SourceId = cardCopy.id;
     
             var hero = _gameSessionModel.PlayerHero.MainHeroEntity();
     
