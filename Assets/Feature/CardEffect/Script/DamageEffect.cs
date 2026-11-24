@@ -57,7 +57,7 @@ namespace Feature.CardEffect.Script
 
         private static float ResolveCritMultiplier(EffectContext context)
         {
-            context.CritSystem.Resolve(context.Caster, context.GameSessionModel);
+            context.CritSystem.Resolve(context.Caster, context.GameSessionModel, context.CardData);
             return context.CritSystem.LastResult.Multiplier;
         }
 

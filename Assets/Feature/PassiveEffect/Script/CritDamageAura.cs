@@ -1,9 +1,11 @@
 using System;
 using Feature.CardEffect.Script;
+using Feature.GameSessionData;
+using Feature.Hero;
+using UnityEngine;
 
 namespace Feature.PassiveEffect.Script
 {
-  
     [Serializable]
     public class CritDamageAura : AttackModifierAura
     {
@@ -15,6 +17,17 @@ namespace Feature.PassiveEffect.Script
             ChancePercent = context.Value();
             DamagePercent = context.Value(1);
         }
+        
+        public bool ResolveAura(
+            CardAndHealthEntityOwnerData owner,
+            CardAndHealthEntityOwnerData caster,
+            GameSessionModel model,
+            CardStatsData sourceCard) =>
+            IsCritCard(sourceCard) && ResolveAura(owner, caster, model);
+
+        private static bool IsCritCard(CardStatsData sourceCard) =>
+            sourceCard.Specialization.Contains(AllHeroClass.Warrior) ||
+            sourceCard.Specialization.Contains(AllHeroClass.Dragonborn);
 
         public override PassiveEffectBase Clone()
         {

@@ -42,6 +42,7 @@ namespace Feature.PassiveEffect.Script
             if (info.Source != _owner) return;
             if (!info.SourceCard) return;
             if (!info.SourceCard.Specialization.Contains(AllHeroClass.FireMage)) return;
+            if (!info.SourceCard.Specialization.Contains(AllHeroClass.Dragonborn)) return;
 
             var bonus = _owner.PassiveEffects.Find<FireDamageBonus>();
 

@@ -28,7 +28,24 @@ MonoBehaviour:
     \u0440\u0430\u0432\u043D\u044B\u0439 \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u0443
     \u0432\u0441\u0435\u0445 \u0441 \u043D\u0435\u043F\u043E\u043B\u043D\u044B\u043C
     \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u044F."
-  _effects: []
+  _effects:
+  - rid: 4483225139221626880
+  _targetCheck:
+    rid: -2
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 4483225139221626880
+      type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 0
+        RandomSingleTarget: 0
+        _targetModifiers: []
+        _valueSource:
+          rid: 4483225139221626881
+        _damageType: 0
+    - rid: 4483225139221626881
+      type: {class: AllNotFullHealthValueSource, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data: 

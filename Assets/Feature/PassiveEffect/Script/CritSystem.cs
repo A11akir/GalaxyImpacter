@@ -10,9 +10,9 @@ namespace Feature.PassiveEffect.Script
         
         public CritResolveResult LastResult { get; private set; } = new();
 
-        public void Resolve(CardAndHealthEntityOwnerData caster, GameSessionModel model)
+        public void Resolve(CardAndHealthEntityOwnerData caster, GameSessionModel model, CardStatsData sourceCard)
         {
-            var aura = FindAura(caster, model);
+            var aura = FindAura(caster, model, sourceCard);
             
             int chance = aura != null ? aura.ChancePercent : MinChancePercent;
             int damagePercent = aura != null ? aura.DamagePercent : BaseDamagePercent;
@@ -57,11 +57,11 @@ namespace Feature.PassiveEffect.Script
             Debug.Log($"[Crit] {caster._heroName}: аура={(aura != null ? "есть" : "нет")} шанс={chance}% урон={damagePercent}% isCrit={isCrit} множитель={LastResult.Multiplier}");
         }
 
-        private static CritDamageAura FindAura(CardAndHealthEntityOwnerData caster, GameSessionModel model)
+        private static CritDamageAura FindAura(CardAndHealthEntityOwnerData caster, GameSessionModel model, CardStatsData sourceCard)
         {
             foreach (var entity in model.GetAllEntityOwners())
             foreach (var passive in entity.PassiveEffects.ActivePassives.CurrentValue)
-                if (passive is CritDamageAura aura && aura.ResolveAura(entity, caster, model))
+                if (passive is CritDamageAura aura && aura.ResolveAura(entity, caster, model, sourceCard))
                     return aura;
 
             return null;
