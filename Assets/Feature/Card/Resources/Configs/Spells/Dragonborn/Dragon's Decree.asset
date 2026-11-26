@@ -23,12 +23,14 @@ MonoBehaviour:
   _passiveCardEffects: []
   id: 987713f2-1f8b-48c6-b877-8d7f14773967
   Origin: 0
-  _values: 01000000
+  _values: 0100000001000000
   _description: "\u041F\u0440\u0438\u0437\u043E\u0432\u0438\u0442\u0435 1 \u0441\u043B\u0443\u0447\u0430\u0439\u043D\u043E\u0433\u043E
     \u0434\u0440\u0430\u043A\u043E\u043D\u0430 \u0438 \u043F\u0440\u0438\u043C\u0435\u043D\u0438\u0442\u0435
     \u043D\u0430 \u043D\u0435\u0433\u043E \u0441\u043B\u0443\u0447\u0430\u0439\u043D\u0443\u044E
     \u0430\u0442\u0430\u043A\u0443."
-  _effects: []
+  _effects:
+  - rid: 4483225183793446918
+  - rid: 4483225183793446919
   _targetCheck:
     rid: -2
   references:
@@ -36,3 +38,48 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 4483225183793446918
+      type: {class: SummonEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 2
+        RandomSingleTarget: 0
+        _targetModifiers: []
+        _valueSource:
+          rid: -2
+        filter:
+          ClassSource: 0
+          ManualClass: 0
+          CardType: 0
+          RaritySource: 0
+          ManualRarities: 
+          SpecificCard:
+          - {fileID: 11400000, guid: 3a3116ae666c58544b513b7f2af64bb9, type: 2}
+          - {fileID: 11400000, guid: 2e461f3a2e2779a459501d3064e00c70, type: 2}
+          - {fileID: 11400000, guid: cbad663d08a8ee749a5cabae6a44b66d, type: 2}
+        _targetSummoned: 1
+    - rid: 4483225183793446919
+      type: {class: CastCardsEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 0
+        RandomSingleTarget: 0
+        _targetModifiers: []
+        _valueSource:
+          rid: -2
+        filter:
+          ClassSource: 0
+          ManualClass: 0
+          CardType: 0
+          RaritySource: 0
+          ManualRarities: 
+          SpecificCard:
+          - {fileID: 11400000, guid: c3348d084a90247f0a3293430ee3ccd3, type: 2}
+          - {fileID: 11400000, guid: dbc5f14bfd0234db0a2a8d4ce426bb57, type: 2}
+          - {fileID: 11400000, guid: b020b1d31ebb84dc193c951a2fc3165e, type: 2}
+          - {fileID: 11400000, guid: 87bcb4d56222246859119cf3845ed74d, type: 2}
+          - {fileID: 11400000, guid: 0d7297f8f39d74d8d8007c5f9caca5cf, type: 2}
+          - {fileID: 11400000, guid: a37a7ec7cbad84250b33f2f6b0736c6a, type: 2}
+          - {fileID: 11400000, guid: 348fdaf96df25498d8119ab622eba57a, type: 2}
+          - {fileID: 11400000, guid: d39883157321440b5904d8c9e661d8b8, type: 2}
+          - {fileID: 11400000, guid: cf637b928a3d045329cf85e2c898e302, type: 2}
+          - {fileID: 11400000, guid: 3ac71b2d4e21746dba31614173e4769f, type: 2}
+          - {fileID: 11400000, guid: 10211172dd78a4d87ac4209395cd4c93, type: 2}

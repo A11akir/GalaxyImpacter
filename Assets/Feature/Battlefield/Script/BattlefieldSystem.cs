@@ -67,16 +67,20 @@ namespace Feature.Battlefield.Script
             PlaceMinion(playerData, (MinionCardData)cardData, slot);
         }
 
-        public bool SummonMinion(GameSessionPlayerData playerData, MinionCardData template, int preferredSlot)
+        public CardAndHealthEntityOwnerData SummonMinion(GameSessionPlayerData playerData, MinionCardData template, int preferredSlot)
         {
-            if (template == null) return false;
+            if (template == null) return null;
 
             var minion = Object.Instantiate(template);
             minion.id = System.Guid.NewGuid().ToString();
 
             int slot = _boardManager.FindNearestFreeSlot(playerData, preferredSlot);
             Debug.Log($"[Summon] preferred={preferredSlot} -> slot={slot}");
-            return PlaceMinion(playerData, minion, slot);
+
+            if (!PlaceMinion(playerData, minion, slot)) return null;
+
+            // OnCardAdded уже отработал синхронно (подписка на CardsInBoard)
+            return playerData.CardAndHealthEntityOwners.FirstOrDefault(o => o.CardId == minion.id);
         }
 
         private bool PlaceMinion(GameSessionPlayerData playerData, MinionCardData minion, int slot)
