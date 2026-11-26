@@ -26,6 +26,10 @@ MonoBehaviour:
   _values: 
   _description: "Passive: \u0421annot be stunned"
   _effects: []
+  _targetCheck:
+    rid: -2
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

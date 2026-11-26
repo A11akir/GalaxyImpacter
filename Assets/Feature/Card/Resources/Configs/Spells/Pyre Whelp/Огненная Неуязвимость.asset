@@ -27,6 +27,10 @@ MonoBehaviour:
   _description: "Passive: \u041D\u0435\u0443\u044F\u0437\u0432\u0438\u043C \u043A
     \u0443\u0440\u043E\u043D\u0443 \u043E\u0442 \u043E\u0433\u043D\u044F"
   _effects: []
+  _targetCheck:
+    rid: -2
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

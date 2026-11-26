@@ -26,6 +26,10 @@ MonoBehaviour:
   _values: 06000000
   _description: "\u0414\u0430\u0435\u0442 \u0449\u0438\u0442 (6) \u0446\u0435\u043B\u0438."
   _effects: []
+  _targetCheck:
+    rid: -2
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

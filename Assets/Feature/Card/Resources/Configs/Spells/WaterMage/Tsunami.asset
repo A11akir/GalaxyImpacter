@@ -26,6 +26,10 @@ MonoBehaviour:
   _values: 0200000001000000
   _description: Deals 2 damage to enemies and causes each target to drop 1 card.
   _effects: []
+  _targetCheck:
+    rid: -2
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

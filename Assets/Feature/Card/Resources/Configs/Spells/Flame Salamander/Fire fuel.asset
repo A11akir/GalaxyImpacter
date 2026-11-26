@@ -27,15 +27,21 @@ MonoBehaviour:
   _description: Give hero 1 Salamander Hit.
   _effects:
   - rid: 6542063849380773899
+  _targetCheck:
+    rid: -2
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 6542063849380773899
       type: {class: GenerateTemporaryHandCardEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
         TargetSelection: 3
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         filter:
           ClassSource: 0
           ManualClass: 0

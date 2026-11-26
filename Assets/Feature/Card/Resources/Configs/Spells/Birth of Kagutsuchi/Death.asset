@@ -29,9 +29,13 @@ MonoBehaviour:
     tempory fire spell which cost 0.
   _effects:
   - rid: 5245221767112818693
+  _targetCheck:
+    rid: -2
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 5245221767112818691
       type: {class: FreeIfSurvivedEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
@@ -47,6 +51,8 @@ MonoBehaviour:
         TargetSelection: 3
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         filter:
           ClassSource: 1
           ManualClass: 5
@@ -63,6 +69,8 @@ MonoBehaviour:
         TargetSelection: 3
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         filter:
           ClassSource: 0
           ManualClass: 0

@@ -28,15 +28,21 @@ MonoBehaviour:
     Burning.'
   _effects:
   - rid: 6542063845839470593
+  _targetCheck:
+    rid: -2
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 6542063845839470593
       type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
         TargetSelection: 1
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         _passiveTemplate:
           rid: 6542063845839470594
     - rid: 6542063845839470594
@@ -45,6 +51,7 @@ MonoBehaviour:
         Config: {fileID: 11400000, guid: 8c88fb88c15f5d4468bbb6bf7919846e, type: 2}
         UseSourceCardAsDescription: 0
         Duration: 0
+        HideView: 0
         Effects:
         - rid: 7458369320725250059
     - rid: 7458369320725250059
@@ -53,4 +60,6 @@ MonoBehaviour:
         TargetSelection: 8
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         _damageType: 0

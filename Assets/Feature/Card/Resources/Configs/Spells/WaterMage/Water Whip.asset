@@ -26,6 +26,10 @@ MonoBehaviour:
   _values: 0200000002000000
   _description: Deals 2 damage. Adds 2 moisture. Zone 3
   _effects: []
+  _targetCheck:
+    rid: -2
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

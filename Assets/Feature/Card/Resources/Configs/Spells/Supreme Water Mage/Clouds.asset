@@ -27,6 +27,10 @@ MonoBehaviour:
   _description: 'Passive: All creatures gains 1 more moisture until the end of the
     turn.'
   _effects: []
+  _targetCheck:
+    rid: -2
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

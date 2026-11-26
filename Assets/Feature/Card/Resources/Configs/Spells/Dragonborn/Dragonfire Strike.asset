@@ -23,11 +23,28 @@ MonoBehaviour:
   _passiveCardEffects: []
   id: de540909-f855-49e6-b197-99fbd2690146
   Origin: 0
-  _values: 03000000
+  _values: 0300000003000000
   _description: "\u041D\u0430\u043D\u043E\u0441\u0438\u0442 3 \u0447\u0438\u0441\u0442\u044B\u0445
-    \u0443\u0440\u043E\u043D\u0430, \u041F\u0440\u043E\u0436\u0438\u0433\u0430\u043D\u0438\u0435
-    \u0442\u043E\u0436\u0435 \u0431\u0443\u0434\u0435\u0442 \u0447\u0438\u0441\u0442\u044B\u043C."
-  _effects: []
+    \u0443\u0440\u043E\u043D\u0430. \u0417\u043E\u043D\u0430 3."
+  _effects:
+  - rid: 4483225183793446914
+  _targetCheck:
+    rid: -2
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
+    - rid: 4483225183793446914
+      type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data:
+        TargetSelection: 0
+        RandomSingleTarget: 0
+        _targetModifiers:
+        - rid: 4483225183793446915
+        _valueSource:
+          rid: -2
+        _damageType: 1
+    - rid: 4483225183793446915
+      type: {class: ZoneModifier, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
+      data: 

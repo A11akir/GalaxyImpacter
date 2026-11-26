@@ -27,6 +27,10 @@ MonoBehaviour:
   _description: Summon 2 3-health Earth Walls. Deal damage to target equal to each
     wall's current health.
   _effects: []
+  _targetCheck:
+    rid: -2
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

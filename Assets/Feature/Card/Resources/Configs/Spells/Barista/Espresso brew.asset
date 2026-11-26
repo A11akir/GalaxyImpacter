@@ -26,6 +26,10 @@ MonoBehaviour:
   _values: 0200000002000000
   _description: Get target 2 chakra. Next turn, the target has 2 fewer chakras.
   _effects: []
+  _targetCheck:
+    rid: -2
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

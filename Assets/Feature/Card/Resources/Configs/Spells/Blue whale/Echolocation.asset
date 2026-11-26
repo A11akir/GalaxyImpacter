@@ -26,6 +26,10 @@ MonoBehaviour:
   _values: 01000000
   _description: The hero chooses 1 card from the deck and puts it in his hand.
   _effects: []
+  _targetCheck:
+    rid: -2
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

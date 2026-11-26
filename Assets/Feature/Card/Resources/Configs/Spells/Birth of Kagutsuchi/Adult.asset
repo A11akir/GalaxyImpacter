@@ -30,9 +30,13 @@ MonoBehaviour:
   _effects:
   - rid: 5245221767112818701
   - rid: 5245221767112818690
+  _targetCheck:
+    rid: -2
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 5245221767112818688
       type: {class: FreeIfSurvivedEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
@@ -48,6 +52,8 @@ MonoBehaviour:
         TargetSelection: 8
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         filter:
           ClassSource: 1
           ManualClass: 5
@@ -64,5 +70,7 @@ MonoBehaviour:
         TargetSelection: 1
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         _affectedCount: 1
         _avoidDuplicateTargets: 0

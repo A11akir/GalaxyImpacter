@@ -29,6 +29,10 @@ MonoBehaviour:
   _description: "\u041F\u043E\u043B\u0443\u0447\u0438\u0442\u0435 3 hit, \u043E\u043D\u0438
     \u0441\u0442\u043E\u044F\u0442 0."
   _effects: []
+  _targetCheck:
+    rid: -2
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

@@ -26,6 +26,10 @@ MonoBehaviour:
   _values: 
   _description: Until the end of the turn, the hero plays all the cards he receives
   _effects: []
+  _targetCheck:
+    rid: -2
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

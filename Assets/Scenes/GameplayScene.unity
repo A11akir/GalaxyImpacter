@@ -13870,7 +13870,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gameData: {fileID: 11400000, guid: e7a49d18cdb3acd448fe17fa2db3161b, type: 2}
-  _cardName: Critical Strike
+  _cardName: Berserker's Flame
   _target: 2
   _recentCards: []
   _manaAmount: 2

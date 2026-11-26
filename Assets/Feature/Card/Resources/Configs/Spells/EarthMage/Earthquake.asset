@@ -26,6 +26,10 @@ MonoBehaviour:
   _values: 01000000
   _description: Deal all 1 damage.
   _effects: []
+  _targetCheck:
+    rid: -2
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

@@ -26,6 +26,10 @@ MonoBehaviour:
   _values: 0f000000
   _description: Ally get 15 moisture and freezes.
   _effects: []
+  _targetCheck:
+    rid: -2
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

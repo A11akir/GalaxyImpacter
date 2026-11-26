@@ -29,6 +29,10 @@ MonoBehaviour:
     \u0429\u0438\u0442 \u043D\u0435\u0443\u044F\u0437\u0432\u0438\u043C \u043E\u0442
     \u0441\u0432\u043E\u0438\u0445 \u0430\u0442\u0430\u043A. "
   _effects: []
+  _targetCheck:
+    rid: -2
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

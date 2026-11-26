@@ -26,6 +26,10 @@ MonoBehaviour:
   _values: 00000000
   _description: You get force-deck Poseidon's Herald.
   _effects: []
+  _targetCheck:
+    rid: -2
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

@@ -29,15 +29,21 @@ MonoBehaviour:
     1 \u0443\u0440\u043E\u043D"
   _effects:
   - rid: 4483225065585115160
+  _targetCheck:
+    rid: -2
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 4483225065585115160
       type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
         TargetSelection: 1
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         _passiveTemplate:
           rid: 4483225065585115161
     - rid: 4483225065585115161

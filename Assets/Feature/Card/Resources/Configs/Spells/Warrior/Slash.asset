@@ -29,9 +29,13 @@ MonoBehaviour:
     \u0431\u0438\u0442\u044C \u0441 \u0437\u043E\u043D\u043E\u0439 3."
   _effects:
   - rid: 5245221879987044360
+  _targetCheck:
+    rid: -2
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 4483225065585115146
       type: {class: ZoneModifier, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data: 
@@ -41,6 +45,8 @@ MonoBehaviour:
         TargetSelection: 1
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         _passiveTemplate:
           rid: 5245221879987044361
     - rid: 5245221879987044361

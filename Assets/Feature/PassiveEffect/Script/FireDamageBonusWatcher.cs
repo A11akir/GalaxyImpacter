@@ -41,8 +41,9 @@ namespace Feature.PassiveEffect.Script
         {
             if (info.Source != _owner) return;
             if (!info.SourceCard) return;
-            if (!info.SourceCard.Specialization.Contains(AllHeroClass.FireMage)) return;
-            if (!info.SourceCard.Specialization.Contains(AllHeroClass.Dragonborn)) return;
+
+            // маг огня или комбо маг огня + воин — в обоих случаях в классах карты есть FireMage
+            if (!CardClassCheck.Has(info.SourceCard, AllHeroClass.FireMage)) return;
 
             var bonus = _owner.PassiveEffects.Find<FireDamageBonus>();
 
@@ -50,9 +51,13 @@ namespace Feature.PassiveEffect.Script
             {
                 bonus = new FireDamageBonus();
                 bonus.SetConfig(_bonusConfig);
+                bonus.AddBonus(_bonusPerHit.Value);   // значение до добавления — вьюха сразу покажет итог
                 _owner.PassiveEffects.Add(bonus);
             }
-            bonus.AddBonus(_bonusPerHit.Value);
+            else
+            {
+                bonus.AddBonus(_bonusPerHit.Value);
+            }
         }
 
         public override PassiveEffectBase Clone()

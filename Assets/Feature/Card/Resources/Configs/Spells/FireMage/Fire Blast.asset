@@ -29,9 +29,13 @@ MonoBehaviour:
     Burning effect '
   _effects:
   - rid: 5943948389448941570
+  _targetCheck:
+    rid: -2
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 5943948389448941568
       type: {class: ReduceCostCardEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
@@ -46,4 +50,6 @@ MonoBehaviour:
         TargetSelection: 0
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         _damageType: 2

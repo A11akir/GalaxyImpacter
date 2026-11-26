@@ -28,15 +28,21 @@ MonoBehaviour:
     spell.
   _effects:
   - rid: 7458369161575268352
+  _targetCheck:
+    rid: -2
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 5245221607681294340
       type: {class: RepeatEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
         TargetSelection: 0
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         _affectedCount: 1
         _avoidDuplicateTargets: 1
     - rid: 7458369161575268352
@@ -45,6 +51,8 @@ MonoBehaviour:
         TargetSelection: 3
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         _passiveTemplate:
           rid: 7458369161575268353
     - rid: 7458369161575268353
@@ -53,6 +61,7 @@ MonoBehaviour:
         Config: {fileID: 0}
         UseSourceCardAsDescription: 1
         Duration: 1
+        HideView: 0
         Effects:
         - rid: 5245221607681294340
         - rid: 7458369161575268354
@@ -62,6 +71,8 @@ MonoBehaviour:
         TargetSelection: 3
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         filter:
           ClassSource: 1
           ManualClass: 5

@@ -27,15 +27,21 @@ MonoBehaviour:
   _description: 'Passive: At the start of the turn dies and summons a Phoenix.'
   _effects:
   - rid: 7458369320725250053
+  _targetCheck:
+    rid: -2
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 7458369320725250053
       type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
         TargetSelection: 1
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         _passiveTemplate:
           rid: 7458369320725250057
     - rid: 7458369320725250057
@@ -44,6 +50,7 @@ MonoBehaviour:
         Config: {fileID: 0}
         UseSourceCardAsDescription: 1
         Duration: 1
+        HideView: 0
         Effects:
         - rid: 7458369320725250062
         - rid: 7458369320725250058
@@ -53,6 +60,8 @@ MonoBehaviour:
         TargetSelection: 1
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         filter:
           ClassSource: 0
           ManualClass: 0
@@ -67,3 +76,5 @@ MonoBehaviour:
         TargetSelection: 1
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2

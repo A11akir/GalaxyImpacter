@@ -27,15 +27,21 @@ MonoBehaviour:
   _description: 'Passive: Your spells give this creature instead of damaging it.'
   _effects:
   - rid: 6542063998875992064
+  _targetCheck:
+    rid: -2
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 6542063998875992064
       type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
         TargetSelection: 0
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         _passiveTemplate:
           rid: 6542063998875992066
     - rid: 6542063998875992066
@@ -44,4 +50,5 @@ MonoBehaviour:
         Config: {fileID: 11400000, guid: 1eb663a81c404eb46b7960550ed78947, type: 2}
         UseSourceCardAsDescription: 0
         Duration: 0
+        HideView: 0
         _sourceFilter: 7

@@ -22,18 +22,13 @@ namespace Feature.CombatSystem
 
             var reactions = target.PassiveEffects.ActivePassives.CurrentValue
                 .OfType<IDamageReaction>()
-                .OrderBy(r => r.Priority)
-                .ToList();
-
-            Debug.Log($"[Damage] {target._heroName}: damage={damage} afterShield={afterShield} final={finalDamage} reactions={reactions.Count} ({string.Join(", ", reactions.Select(r => r.GetType().Name))})");
+                .OrderBy(r => r.Priority);
 
             foreach (var reaction in reactions)
             {
                 if (reaction.ReactToDamage(target, ref finalDamage, source))
                     return false;   // урон заблокирован реакцией — смерть не наступила
             }
-
-            Debug.Log($"[Damage] {target._heroName}: final after reactions={finalDamage}, hp before={target.HealthValue}");
 
             target.HealthValue -= finalDamage;
             return target.HealthValue <= 0;   // наступила ли смерть

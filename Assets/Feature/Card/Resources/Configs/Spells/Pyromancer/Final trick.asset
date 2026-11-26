@@ -28,15 +28,21 @@ MonoBehaviour:
   _effects:
   - rid: 6542063849380773895
   - rid: 6542063849380773896
+  _targetCheck:
+    rid: -2
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 6542063849380773895
       type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
         TargetSelection: 0
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         _damageType: 0
     - rid: 6542063849380773896
       type: {class: ChanceEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
@@ -44,6 +50,8 @@ MonoBehaviour:
         TargetSelection: 1
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         _effect:
           rid: 6542063849380773897
     - rid: 6542063849380773897
@@ -52,4 +60,6 @@ MonoBehaviour:
         TargetSelection: 1
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         _damageType: 0

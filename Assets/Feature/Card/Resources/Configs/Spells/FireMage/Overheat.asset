@@ -27,15 +27,21 @@ MonoBehaviour:
   _description: Take 1 damage at the end of the turn 2 times.
   _effects:
   - rid: 5943948251302461446
+  _targetCheck:
+    rid: -2
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 5943948251302461446
       type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
         TargetSelection: 0
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         _passiveTemplate:
           rid: 5943948251302461447
     - rid: 5943948251302461447
@@ -44,6 +50,7 @@ MonoBehaviour:
         Config: {fileID: 0}
         UseSourceCardAsDescription: 1
         Duration: 1
+        HideView: 0
         Effects:
         - rid: 7458369320725250061
         - rid: 7458369320725250060
@@ -53,6 +60,8 @@ MonoBehaviour:
         TargetSelection: 0
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         _damageType: 0
     - rid: 7458369320725250061
       type: {class: RepeatEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
@@ -60,5 +69,7 @@ MonoBehaviour:
         TargetSelection: 1
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         _affectedCount: 1
         _avoidDuplicateTargets: 0

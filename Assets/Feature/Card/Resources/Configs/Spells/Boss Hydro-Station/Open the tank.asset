@@ -26,6 +26,10 @@ MonoBehaviour:
   _values: 05000000
   _description: Randomly gives 5 target moisture, the effect is repeated by 1 less.
   _effects: []
+  _targetCheck:
+    rid: -2
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

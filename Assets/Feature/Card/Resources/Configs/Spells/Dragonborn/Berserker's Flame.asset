@@ -59,7 +59,7 @@ MonoBehaviour:
     - rid: 4483225139221626886
       type: {class: CastCardsEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
-        TargetSelection: 0
+        TargetSelection: 1
         RandomSingleTarget: 0
         _targetModifiers: []
         _valueSource:
@@ -70,4 +70,5 @@ MonoBehaviour:
           CardType: 0
           RaritySource: 0
           ManualRarities: 
-          SpecificCard: []
+          SpecificCard:
+          - {fileID: 11400000, guid: 60457340f976cac4c88271f464cac83e, type: 2}

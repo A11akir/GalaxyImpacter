@@ -26,6 +26,10 @@ MonoBehaviour:
   _values: 02000000
   _description: Next turn, the target has 2 more chakra.
   _effects: []
+  _targetCheck:
+    rid: -2
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

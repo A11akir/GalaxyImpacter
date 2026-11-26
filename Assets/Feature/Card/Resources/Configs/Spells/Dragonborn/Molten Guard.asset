@@ -39,7 +39,7 @@ MonoBehaviour:
     - rid: 4483225139221626882
       type: {class: AddShieldEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
-        TargetSelection: 0
+        TargetSelection: 1
         RandomSingleTarget: 0
         _targetModifiers: []
         _valueSource:

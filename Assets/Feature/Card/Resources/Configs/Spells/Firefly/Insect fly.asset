@@ -27,15 +27,21 @@ MonoBehaviour:
   _description: 'Passive: Cannot take damage from attacks until end turn..'
   _effects:
   - rid: 6542064022344957952
+  _targetCheck:
+    rid: -2
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 6542064022344957952
       type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
         TargetSelection: 1
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         _passiveTemplate:
           rid: 6542064022344957953
     - rid: 6542064022344957953
@@ -44,3 +50,4 @@ MonoBehaviour:
         Config: {fileID: 11400000, guid: 08542c4ee2241d4439a705f3264cd712, type: 2}
         UseSourceCardAsDescription: 0
         Duration: 1
+        HideView: 0

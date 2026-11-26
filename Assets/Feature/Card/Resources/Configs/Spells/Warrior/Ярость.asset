@@ -29,15 +29,21 @@ MonoBehaviour:
     \u0443\u0440\u043E\u043D \u043D\u0430 100%"
   _effects:
   - rid: 611417879363190787
+  _targetCheck:
+    rid: -2
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 611417879363190787
       type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
         TargetSelection: 1
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         _passiveTemplate:
           rid: 611417879363190788
     - rid: 611417879363190788
@@ -46,4 +52,5 @@ MonoBehaviour:
         Config: {fileID: 11400000, guid: 30173933d4ce8cf44881889bf5a186bb, type: 2}
         UseSourceCardAsDescription: 0
         Duration: 1
+        HideView: 0
         _doubleChance: 0

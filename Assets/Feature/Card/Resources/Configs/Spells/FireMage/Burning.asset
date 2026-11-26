@@ -27,15 +27,21 @@ MonoBehaviour:
   _description: Each fire hit this turn increases your fire next damage by 1.
   _effects:
   - rid: 7964668059962310665
+  _targetCheck:
+    rid: -2
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 7964668059962310665
       type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
         TargetSelection: 7
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         _passiveTemplate:
           rid: 7964668059962310666
     - rid: 7964668059962310666
@@ -44,4 +50,5 @@ MonoBehaviour:
         Config: {fileID: 11400000, guid: 7051eaa103bbf440ba77cf5985a5df9c, type: 2}
         UseSourceCardAsDescription: 0
         Duration: 0
+        HideView: 0
         _bonusConfig: {fileID: 11400000, guid: 6c8b6a000c4779a4bbd7f9ffd4cfa2ef, type: 2}

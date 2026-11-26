@@ -26,6 +26,10 @@ MonoBehaviour:
   _values: 03000000
   _description: Get 3 moisture and freezes.
   _effects: []
+  _targetCheck:
+    rid: -2
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

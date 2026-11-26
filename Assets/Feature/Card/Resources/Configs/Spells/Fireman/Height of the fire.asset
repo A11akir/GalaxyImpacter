@@ -26,6 +26,10 @@ MonoBehaviour:
   _values: 0300000001000000
   _description: 3 Random target get 1 moisture.
   _effects: []
+  _targetCheck:
+    rid: -2
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

@@ -88,13 +88,15 @@ namespace Feature.StagesGameLogic
         
         private void TriggerTurnStartEffects()
         {
+            // сначала убираем пассивки прошлого хода, потом играем триггеры нового —
+            // иначе пассивка, созданная триггером, удаляется в этом же вызове
+            foreach (var owner in _gameSessionModel.GetAllEntityOwners())
+                owner.PassiveEffects.CleanupExpiredPassives();
+
             foreach (var owner in _gameSessionModel.GetAllEntityOwners())
                 owner.PassiveEffects.EnqueueTurnEffects(_turnEffectQueue, TurnTriggerTiming.TurnStart);
 
             _turnEffectQueue.TriggerAll(TurnTriggerTiming.TurnStart);
-            
-            foreach (var owner in _gameSessionModel.GetAllEntityOwners())
-                owner.PassiveEffects.CleanupExpiredPassives();
         }
 
         private void TriggerTurnEndEffects()

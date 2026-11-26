@@ -32,9 +32,13 @@ MonoBehaviour:
     \u0446\u0435\u043B\u0438."
   _effects:
   - rid: 611417879363190800
+  _targetCheck:
+    rid: -2
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 611417879363190797
       type: {class: ReduceCostCardEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
@@ -49,4 +53,6 @@ MonoBehaviour:
         TargetSelection: 2
         RandomSingleTarget: 1
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         _damageType: 0

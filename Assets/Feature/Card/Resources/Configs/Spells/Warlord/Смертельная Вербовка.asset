@@ -30,15 +30,21 @@ MonoBehaviour:
   _effects:
   - rid: 611418038760374273
   - rid: 611418038760374274
+  _targetCheck:
+    rid: -2
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 611418038760374273
       type: {class: DamageEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
         TargetSelection: 2
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         _damageType: 0
     - rid: 611418038760374274
       type: {class: SummonEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
@@ -46,6 +52,8 @@ MonoBehaviour:
         TargetSelection: 0
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         filter:
           ClassSource: 0
           ManualClass: 0

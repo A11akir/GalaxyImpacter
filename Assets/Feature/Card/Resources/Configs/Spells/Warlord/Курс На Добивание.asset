@@ -30,8 +30,8 @@ MonoBehaviour:
     \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u0435\u043C."
   _effects:
   - rid: 611418040448843776
-  <Type>k__BackingField: 
-  <MinionNameOwner>k__BackingField: 
+  _targetCheck:
+    rid: -2
   references:
     version: 2
     RefIds:
@@ -48,4 +48,3 @@ MonoBehaviour:
         _stackShield: 0
     - rid: 611418040448843777
       type: {class: EnemiesIncompleteHealthValueSource, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
-      data: {}

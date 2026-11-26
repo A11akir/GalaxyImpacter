@@ -28,6 +28,10 @@ MonoBehaviour:
     Molo \u043D\u0435 \u043C\u043E\u0436\u0435\u0442 \u0431\u044B\u0442\u044C \u0446\u0435\u043B\u044C\u044E
     \u043F\u0440\u043E\u0442\u0438\u0432\u043D\u0438\u043A\u043E\u0432."
   _effects: []
+  _targetCheck:
+    rid: -2
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

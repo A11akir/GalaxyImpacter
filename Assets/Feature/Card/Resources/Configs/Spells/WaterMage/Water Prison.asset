@@ -27,6 +27,10 @@ MonoBehaviour:
   _description: If the target does not play 5 cards by the end of the next turn,
     it deals 25 damage.
   _effects: []
+  _targetCheck:
+    rid: -2
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

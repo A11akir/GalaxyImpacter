@@ -26,6 +26,10 @@ MonoBehaviour:
   _values: 
   _description: 'Passive: Cannot be targeted by attacks until next turn.'
   _effects: []
+  _targetCheck:
+    rid: -2
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

@@ -26,6 +26,10 @@ MonoBehaviour:
   _values: 0200000002000000
   _description: The target receives 2 moisture, and the next card costs 2 less
   _effects: []
+  _targetCheck:
+    rid: -2
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }

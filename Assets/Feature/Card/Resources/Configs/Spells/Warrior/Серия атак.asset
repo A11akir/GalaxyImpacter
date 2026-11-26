@@ -31,15 +31,21 @@ MonoBehaviour:
     \u0441\u0435\u0440\u0438\u044E \u0430\u0442\u0430\u043A \u0437\u0430 0."
   _effects:
   - rid: 611417879363190789
+  _targetCheck:
+    rid: -2
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 611417879363190789
       type: {class: DealDamageCritTrigger, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
         TargetSelection: 0
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         _damageType: 0
         _onCritEffect:
           rid: 611417879363190790
@@ -49,6 +55,8 @@ MonoBehaviour:
         TargetSelection: 0
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         filter:
           ClassSource: 0
           ManualClass: 0
@@ -65,6 +73,8 @@ MonoBehaviour:
         TargetSelection: 1
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         filter:
           ClassSource: 0
           ManualClass: 0

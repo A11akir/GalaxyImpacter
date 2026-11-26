@@ -28,15 +28,20 @@ MonoBehaviour:
   _effects:
   - rid: 7964668059962310656
   - rid: 7964668059962310658
+  _targetCheck:
+    rid: -2
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 5943948251302461440
       type: {class: FireDamageBonus, ns: Feature.PassiveEffect.Script, asm: Assembly-CSharp}
       data:
         Config: {fileID: 11400000, guid: 6c8b6a000c4779a4bbd7f9ffd4cfa2ef, type: 2}
         UseSourceCardAsDescription: 0
         Duration: 1
+        HideView: 0
         TargetSelection: 1
     - rid: 7964668059962310656
       type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
@@ -44,6 +49,8 @@ MonoBehaviour:
         TargetSelection: 1
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         _passiveTemplate:
           rid: 5943948251302461440
     - rid: 7964668059962310658
@@ -52,4 +59,6 @@ MonoBehaviour:
         TargetSelection: 0
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         _damageType: 0

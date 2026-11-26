@@ -27,15 +27,21 @@ MonoBehaviour:
   _description: 'Passive: After death summon Phoenix Egg'
   _effects:
   - rid: 7458369320725250049
+  _targetCheck:
+    rid: -2
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 7458369320725250049
       type: {class: AddPassiveEffect, ns: Feature.CardEffect.Script, asm: Assembly-CSharp}
       data:
         TargetSelection: 1
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         _passiveTemplate:
           rid: 7458369320725250050
     - rid: 7458369320725250050
@@ -44,6 +50,7 @@ MonoBehaviour:
         Config: {fileID: 0}
         UseSourceCardAsDescription: 1
         Duration: 0
+        HideView: 0
         Effects:
         - rid: 7458369320725250052
     - rid: 7458369320725250052
@@ -52,6 +59,8 @@ MonoBehaviour:
         TargetSelection: 1
         RandomSingleTarget: 0
         _targetModifiers: []
+        _valueSource:
+          rid: -2
         filter:
           ClassSource: 0
           ManualClass: 0
