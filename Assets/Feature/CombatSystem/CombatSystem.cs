@@ -39,6 +39,10 @@ namespace Feature.CombatSystem
             return isLethal;
         }
 
+        /// <summary>Восстанавливает HP цели с учётом запретов на лечение. Возвращает сколько реально вылечено.</summary>
+        public int Heal(CardAndHealthEntityOwnerData target, int heal) =>
+            _healthReactionSystem.ApplyHeal(target, heal);
+
         private bool IsHero(CardAndHealthEntityOwnerData target)
         {
             var playerData = _gameSessionModel.GetPlayerDataByOwner(target);

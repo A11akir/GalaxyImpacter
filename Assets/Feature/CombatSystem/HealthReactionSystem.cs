@@ -34,6 +34,29 @@ namespace Feature.CombatSystem
             return target.HealthValue <= 0;   // наступила ли смерть
         }
 
+        /// <summary>Восстанавливает HP с учётом запретов. Возвращает сколько реально вылечено.</summary>
+        public int ApplyHeal(CardAndHealthEntityOwnerData target, int heal)
+        {
+            if (target == null || heal <= 0) return 0;
+
+            var reactions = target.PassiveEffects.ActivePassives.CurrentValue
+                .OfType<IHealReaction>()
+                .OrderBy(r => r.Priority);
+
+            foreach (var reaction in reactions)
+                if (!reaction.CanHeal(target, heal))
+                    return 0;   // лечение запрещено
+
+            int healthBefore = target.HealthValue;
+            int max = target.MaxHealth;
+
+            target.HealthValue = max > 0
+                ? Mathf.Min(healthBefore + heal, max)
+                : healthBefore + heal;
+
+            return target.HealthValue - healthBefore;
+        }
+
         private int CalculateFinalDamage(CardAndHealthEntityOwnerData target, int damage, DamageType type, bool targetIsHero)
         {
             switch (type)

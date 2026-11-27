@@ -9,10 +9,9 @@ namespace Feature.CardEffect.Script
         public override void Execute(EffectContext context)
         {
             int heal = context.CardData.Values[context.ValueIndex];
-            int max = context.Target.MaxHealth;
-            context.Target.HealthValue = max > 0
-                ? Math.Min(context.Target.HealthValue + heal, max)
-                : context.Target.HealthValue + heal;
+
+            // через HealthReactionSystem — лечение могут запретить пассивки (IHealReaction)
+            context.CombatSystem.Heal(context.Target, heal);
         }
     }
 }
