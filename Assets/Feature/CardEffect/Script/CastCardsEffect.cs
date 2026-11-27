@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Feature.Card.Script;
 using Feature.GameSessionData;
 using Feature.GoogleSheets;
@@ -67,6 +68,7 @@ namespace Feature.CardEffect.Script
             Debug.Log($"[CastCards] Card   : {spell.Name} (Cost={spell.Cost})");
             Debug.Log($"[CastCards] Caster : {DescribeOwner(ctx.Caster, ctx)}");
             Debug.Log($"[CastCards] Target : {DescribeOwner(target, ctx)} | HP={hpBefore} | Armor={armorBefore}");
+            LogEffects(spell, castContext);
 
             CardEffect.ExecuteAll(castContext, spell.Effects);
 
@@ -88,6 +90,40 @@ namespace Feature.CardEffect.Script
                 return $"Hero({owner._heroName})";
 
             return $"Minion({owner.CardId})";
+        }
+
+        private static void LogEffects(SpellCardData spell, EffectContext castContext)
+        {
+            if (spell.Effects == null) return;
+
+            Debug.Log($"[CastCards] Effects: {spell.Effects.Count}");
+
+            for (int i = 0; i < spell.Effects.Count; i++)
+            {
+                var effect = spell.Effects[i];
+
+                if (effect == null)
+                {
+                    Debug.Log($"[CastCards]   [{i}] null");
+                    continue;
+                }
+
+                var targets = effect.GetTargetsPool(castContext);
+
+                Debug.Log($"[CastCards]   [{i}] {effect.GetType().Name} target={DescribeTargets(targets, castContext)}");
+            }
+        }
+
+        private static string DescribeTargets(List<CardAndHealthEntityOwnerData> targets, EffectContext ctx)
+        {
+            if (targets == null || targets.Count == 0) return "none";
+
+            var names = new List<string>(targets.Count);
+
+            foreach (var target in targets)
+                names.Add(DescribeOwner(target, ctx));
+
+            return string.Join(", ", names);
         }
     }
 }

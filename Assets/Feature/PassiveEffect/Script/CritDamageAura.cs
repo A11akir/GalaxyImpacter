@@ -26,8 +26,7 @@ namespace Feature.PassiveEffect.Script
             IsCritCard(sourceCard) && ResolveAura(owner, caster, model);
 
         private static bool IsCritCard(CardStatsData sourceCard) =>
-            CardClassCheck.Has(sourceCard, AllHeroClass.Warrior) ||
-            CardClassCheck.Has(sourceCard, AllHeroClass.FireMage);
+            CardClassCheck.Has(sourceCard, AllHeroClass.Warrior);
 
         public override PassiveEffectBase Clone()
         {

@@ -75,7 +75,7 @@ namespace Feature.Battlefield.Script
             minion.id = System.Guid.NewGuid().ToString();
 
             int slot = _boardManager.FindNearestFreeSlot(playerData, preferredSlot);
-            Debug.Log($"[Summon] preferred={preferredSlot} -> slot={slot}");
+
 
             if (!PlaceMinion(playerData, minion, slot)) return null;
 
